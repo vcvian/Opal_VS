@@ -4,4 +4,4 @@
 
 #Instruction
 
-To try out the game, download [[Opal_VS.html]] and open in the browser.
+To try out the game, download [Opal_VS.html](Opal_VS.html) and open in the browser.
