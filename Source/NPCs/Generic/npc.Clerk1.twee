@@ -1,0 +1,6 @@
+:: npc.Clerk1 [static-storage] {"position":"4200,1925","size":"100,100"}
+(metadata:
+"id", [Provincial Clerk],
+"color", #8a7f99,
+)\
+<!--This is a generic NPC that has no variables-->

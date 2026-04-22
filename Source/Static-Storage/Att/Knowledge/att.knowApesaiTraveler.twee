@@ -1,0 +1,14 @@
+:: att.knowApesaiTraveler [static-storage] {"position":"3225,1675","size":"100,100"}
+{=
+
+(metadata: 
+	"id", [Knowledge: Adventuring in Apesai],
+    "key", (a: "knowledge", "locale", "Apesai", ),
+    "value", (a: 1, 0, 0, 0, 0, 0),
+    "img", "",
+    "desc", [],
+    "tip", [],
+    "gainText", [],
+    "lossText", [],
+
+)

@@ -1,0 +1,33 @@
+:: S: Heal [storylet] {"position":"3475,2500","size":"100,100"}
+{=
+
+(storylet: when
+(passage:)'s name is $place's stay
+and $char's player's health's 1st < $char's player's health's 2nd
+)
+(metadata: "title", "Rest, Heal", "cardDesc", "And recuperate. Let the body have time to mend itself. Administer medicine if need be.", "img", "https://fallenlondon.wiki/w/images/9/93/Heart2.png",)
+(urgency: 1)
+
+$cssColumnParent[
+
+$cssColumnChild[
+	$cssBox[
+    	($funcImage: (passage:)'s img)
+         $cssBoxItem[''(print: (passage:)'s title )''<br>(print: (passage:)'s cardDesc)]
+    ]
+]
+
+$cssColumnChild[
+(The body heals naturally, but with some medicine, it will heal more...)
+<br>
+(if: $place's traveling is true)[$cssDesc[You're traveling. Taking time to rest might slow you down.
+<br>
+]]
+---
+<ol>
+<li>(if: ($funcCheckExists: $char's player's inv, "supplies", 0) > 0 or (passage: $place's stay)'s currency is not "supplies")[[[Rest, without aid.->Heal 1a]]](else:)[~~Rest, without aid~~ $cssDesc[(Won't work. You're too hungry. Find some ''(print: (passage: "item.supplies")'s id)'' or find proper lodging.)]]
+<li>($funcCheckGate: "Drink a medicinal tonic, then rest.", "inv", "healingTonic", 1, true, 100, "Heal 1b", "")
+<li>(link: "No, there are other things to do. You'll be fine.")[$funcBack]
+</ol>
+]<!--end child-->
+]<!--end parent-->

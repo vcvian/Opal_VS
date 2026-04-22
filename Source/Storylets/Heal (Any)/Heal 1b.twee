@@ -1,0 +1,32 @@
+:: Heal 1b {"position":"3575,2625","size":"100,100"}
+{=
+
+(metadata:
+"title", "Medicated Rest",
+"cardDesc", "Gor - to help ground yourself, so you do not ascend before your time.",
+)
+
+$cssColumnParent[
+
+$cssColumnChild[
+	$cssBox[
+    	($funcImage: (passage: "S: Heal")'s img)
+         $cssBoxItem[''(print: (passage:)'s title )''<br>(print: (passage:)'s cardDesc)]
+    ]
+]
+
+$cssColumnChild[
+(Having drunk a healing tonic...)
+<br>
+---
+(link: "Bitter, like all medicine.")[\
+    ($funcTempGainLoss: "magicHealing", 1)
+    (if: $char's player's timerQuest contains "traveling")[\
+    	(set: $char's player's timerQuest's traveling's timer to it + 1)\
+        (dialog: [Resting has slowed down your travel.], "OK.")\
+        ]\
+	$funcDone
+]
+<!--Might add more effects into the above code if there are diseases-->
+]<!--end child-->
+]<!--end parent-->

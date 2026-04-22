@@ -1,0 +1,100 @@
+:: S: studentDebate 1c [storylet]
+{=
+
+(storylet: when
+$place's location is "Apesai"
+and $place's sublocation is "Apesai Lighthouse"
+and ($funcCheckExists: $place's events, "studentDebate", "inactive") is "active"
+and ($funcCheckExists: $char's player's quests, "studentDebate", "") is not "active"
+)
+(exclusivity: 1)
+(urgency: 2)
+(metadata: "title", "Commotion Near the Lighthouse", "cardDesc", "A crowd has gathered around the gate of the Apesai Lighthouse, gawking, shouting, holding up in the air pieces of paper.", "img", "Assets/Portraits/Event_Argue_1.png",)
+
+$cssColumnParent[
+
+$cssColumnChild[
+	$cssBox[
+    	($funcImage: (passage:)'s img)
+         $cssBoxItem[''(print: (passage:)'s title )''<br>(print: (passage:)'s cardDesc)]
+    ]
+]
+
+$cssColumnChild[
+
+(They're slipping each other promisory notes, some loudly claiming that their side will win...)
+<br>
+---
+<ol>
+
+<li>(link: "Inquire a bystander: What's going on?")[(goto: "studentDebate 1d")]
+
+<li>(link: "Shove past the rabble. You have business with the davehmars.")[(goto: "studentDebate 1e")]
+
+</ol>
+
+]<!--end child-->
+]<!--end parent-->
+
+
+:: studentDebate 1d
+
+(metadata:
+"title", "Commotion Near the Lighthouse",
+"cardDesc", "",
+)
+
+$cssColumnParent[
+
+$cssColumnChild[
+	$cssBox[
+    	($funcImage: (passage: "event.studentDebate")'s img)
+         $cssBoxItem[''(print: (passage:)'s title )''<br>(print: (passage:)'s cardDesc)]
+    ]
+]
+
+$cssColumnChild[
+
+(It is explained to you that there is a debate going on...)
+
+<br>
+---
+<ol>
+<li>($funcQuestUpdateLink: "Debate? Among the apprentices? Why, you cannot miss this.", "studentDebate", "active", "Junior debates are either a pain to watch or a source of much-needed entertainment after long hours of study - a senior has told you this after you asked him to appraise your performance in one such event.", "You're older and wiser now.", [], "S: studentDebate 2",)
+
+<li>(link: "Walk away. You'll return once everyone is tired of this farce.")[(goto: "Apesai Lighthouse")]
+<ol>
+]<!--end child-->
+]<!--end parent-->
+
+
+
+:: studentDebate 1e
+
+(metadata:
+"title", "Commotion Near the Lighthouse",
+"cardDesc", "",
+)
+
+$cssColumnParent[
+
+$cssColumnChild[
+	$cssBox[
+    	($funcImage: (passage: "event.studentDebate")'s img)
+         $cssBoxItem[''(print: (passage:)'s title )''<br>(print: (passage:)'s cardDesc)]
+    ]
+]
+
+$cssColumnChild[
+
+(Try to enter the lighthouse, but there's no-one to greet you. Everyone's in the courtyard.)
+<br>
+---
+<ol>
+<li>($funcQuestUpdateLink: "You can simply indulge. Go see what the apprentices are up to.", "studentDebate", "active", "A school is where the students are. Without them, there is only dusty halls.", "This should be at least amusing.", [], "S: studentDebate 2",)
+
+<li>(link: "Turn back. You'll return once everyone remembers that they have a school to run.")[(goto: "Apesai Lighthouse")]
+</ol>
+
+]<!--end child-->
+]<!--end parent-->

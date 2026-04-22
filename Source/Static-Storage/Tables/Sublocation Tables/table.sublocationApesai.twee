@@ -1,0 +1,13 @@
+:: table.sublocationApesai [static-storage] {"position":"3100,2000","size":"100,100"}
+{=
+
+(set: _gettingAround to [The island-city of Apesai is labyrinthine - a product of centuries of demographic ebbs and flows, of development booms and near abandonment, of perhaps a scheme to personally overwhelm you with options:])
+
+(set: _sublocations to (dm:
+"Apesai Lighthouse", (dm: "knowApesaiLighthouse", 1,),
+"The Grand Exchange", (dm: "knowApesaiGE", 1),
+"The Provincial Court of Askava", (dm: "knowApesaiCourt", 1),
+"The Traveler's Society (Apesai Branch)", (dm: "knowApesaiTraveler", 1),
+"The Pleasure Quarter", (dm: "knowApesaiPleasure", 2),
+"Apesai Wharf", (dm:),
+))

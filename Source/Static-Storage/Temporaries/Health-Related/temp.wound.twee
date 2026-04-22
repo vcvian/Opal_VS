@@ -1,0 +1,26 @@
+:: temp.wound [static-storage] {"position":"3725,2500","size":"100,100"}
+(metadata:
+"id", [Wound],
+"timer", 4,
+"key", (a: "condition", "body",),
+"desc", [You are injured.],
+"tip", [Losing 1 health each day. May become infected if not treated.],
+
+"gainText", [Recent struggles has left you bruised in places, bleeding in others.],
+"gainEffect", [],
+
+"tickText", [The wound bleeds. (color:red)[Lost 1 health.]],
+"tickEffect", [\
+    <!--hurt health-->\
+    (set: $char's player's health's 1st to it - 1)\
+    <!--chance of infection-->\
+    (if: $char's player's temp's wound's 2nd < 2)[\
+    	(set: _woundDice to (random: 1,100))\
+        (if: _woundDice < 30)[($funcTempGainLoss: "infection", 1)]
+    ]\
+],
+
+"lossText", [The wound has closed. Only an itch remains.],
+"lossEffect", [],
+
+)

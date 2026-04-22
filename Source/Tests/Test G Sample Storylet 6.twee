@@ -1,0 +1,22 @@
+:: Test G Sample Storylet 6 [test] {"position":"1150,4900","size":"100,100"}
+{=
+
+(storylet: when
+(passage:)'s name is "Test G"
+and ($funcCheckExists: $char's player's quests, "urgentAssignment", "") is "failed"
+and ($funcCheckExists: $char's player's timerQuest, "urgentAssignment", "") contains "deadline"
+)
+(exclusivity: 1)
+(metadata: "title", "Berated", "cardDesc", "You've failed, so you have to hear all about it.", "img", "https://thefifthcity.wiki/w/images/3/3f/Currency3_copper.png",)
+
+Your teacher berates you for not completing the essay on time. You try to give him what you have, but he's won't accept.
+<br>
+$cssDesc[This storylet should only appear once after you've failed the quest. The deadline timer is removed now, after the quest has failed, so that the storylet will not retrigger.]
+<br>
+---
+(link-rerun: "Ugh.")[\
+	(set: _reset to ($funcCheckExists: $char's player's att, "urgentAssignment", 0))\
+	($funcGainLoss: "att.", "urgentAssignment", -_reset)\
+    ($funcRemoveTimer: "urgentAssignment", "deadline")\
+    (goto: "Test G")\
+    ]<!--[[Test G]]-->

@@ -1,0 +1,13 @@
+:: Test G Receive {"position":"650,4475","size":"100,100"}
+(metadata: "title", "Test G Receive Permit",)
+
+The clerk hands you your permit.
+<br>
+//"Congratulations."//
+<br>
+---
+
+($funcQuestUpdateLink: "You leave the immigration hall.", "permitAskava", "completed", "It is done. You can finally leave this island and enter Askava proper.", "Where your residency can begin in earnest.", [\
+	($funcGainLoss: "item.", "permitAskava", 1)\
+	($funcRemoveTimer: "permitAskava", "wait")\
+], "Test G",)

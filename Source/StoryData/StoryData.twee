@@ -1,0 +1,23 @@
+:: StoryData
+{
+	"ifid": "B7CA1AB8-D586-46A4-8186-D10662A25374",
+	"format": "Harlowe",
+	"format-version": "3.3.8",
+	"start": "Pre-Test (NEW)",
+	"tag-colors": {
+		"UI": "orange",
+		"book": "yellow",
+		"effect": "yellow",
+		"footer": "yellow",
+		"header": "yellow",
+		"startup": "orange",
+		"static-storage": "yellow",
+		"stay": "yellow",
+		"storylet": "blue",
+		"sublocation": "green",
+		"test": "blue",
+		"topic": "purple",
+		"traveling": "purple"
+	},
+	"zoom": 0.3
+}

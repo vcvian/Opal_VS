@@ -1,0 +1,40 @@
+:: Test B {"position":"1000,3475","size":"100,100"}
+(metadata: "title", "Test B (buying & selling)")
+
+(set: _priceModBuy to 2)
+(set: _priceModSell to .5)
+
+[[⇦ BACK->Pre-Test (NEW)]]
+<br>
+''Raw Buy/Sell Macro''
+<ul>
+<li>(link-rerun: "Buy 3 supplies")[($funcBuySell: "supplies", 3, "rial", _priceModBuy)]
+<li>(link-rerun: "Sell 3 supplies")[($funcBuySell: "supplies", -3, "rial", _priceModSell)]
+</ul>
+<br>
+''Multi Buy/Sell Macro''
+<ul>
+<li>($funcMultiBuySell: "buy", "supplies", "rial", _priceModBuy)
+<li>($funcMultiBuySell: "sell", "supplies", "rial", _priceModSell)
+<br>
+<li>($funcMultiBuySell: "buy", "ghan", "rial", _priceModBuy)
+<li>($funcMultiBuySell: "sell", "ghan", "rial", _priceModSell)
+<br>
+<li>($funcMultiBuySell: "buy", "baseOpal", "ghan", _priceModBuy)
+<li>($funcMultiBuySell: "sell", "baseOpal", "rial", _priceModSell)
+<br>
+(for: each _item, ...(data-names: $char's player's inv))[\
+	<li> ($funcMultiBuySell: "sell", _item, "rial", _priceModSell)\
+]\
+<br>
+''Ingredient Shop'' <br>
+(for: each _ingredient, ...(passages: where its name contains "item."))[\
+	(if: _ingredient's key contains "ingredient")[<li> ($funcMultiBuySell: "buy", (trimmed: "item.",_ingredient's name), "rial", _priceModBuy)]\
+]\
+
+</ul>
+
+
+<br>
+''Player Inventory''
+(print: $char's player's inv)

@@ -1,0 +1,27 @@
+:: att.sickly [static-storage] {"position":"2100,3225","size":"100,100"}
+{=
+
+(metadata: 
+	"id", [Body: Ill-Health],
+    "key", (a: "attribute", "health", ),
+    "img", "",
+    "desc", [Your body protests the long journey. It's been doing that a lot.],
+    "tip", [Each (print: (passage: "att.sickly")'s id) ''decreases max health by 1.''],
+    "newTotalOverride", [\
+    	<!--This is to override the default "new total" in the logs and noti--> \
+        (if: $char's player's _pocket contains _thingName)[(set: _newTotal to "Your max health is now " + (str: $char's player's health's 2nd) + ".")]\
+    	(else:)[(set: _newTotal to "None remains.")]\
+    ],
+    "gainText", [The journey has battered you, and your body bears the mark.],
+    "gainEffect", [\
+    	<!--_value is determined by $funcGainLoss-->\
+    	(set: $char's player's health's 1st to it - _value)\
+    	(set: $char's player's health's 2nd to it - _value)\
+    ],
+    "lossText", [Health is called "the silence of the organs". Your organs have quieted down somewhat.],
+    "lossEffect", [\
+    (set: $char's player's health's 1st to it + (abs:_value))\
+   	(set: $char's player's health's 2nd to it + (abs:_value))\
+    ],
+    
+)

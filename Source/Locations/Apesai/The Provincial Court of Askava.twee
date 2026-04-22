@@ -1,0 +1,19 @@
+:: The Provincial Court of Askava [sublocation] {"position":"4500,1750","size":"100,100"}
+{=
+(metadata:
+"prefecture", "Nurrah Coastlands",
+"location", "Apesai",
+"title", "The Provincial Court of Askava",
+)
+
+($funcUpdateLocation:)
+
+<h2>(print: (passage:)'s title)</h2>
+$cssColumnParent[
+$cssColumnChild[
+(The courthouse, where papers are collected and issued...)
+]
+$cssColumnChild[($funcNavigateSublocations:)]
+]<!--end of $cssColumnParent-->
+---
+($funcStorylet:)

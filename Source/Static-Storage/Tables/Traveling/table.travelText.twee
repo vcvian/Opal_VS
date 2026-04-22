@@ -1,0 +1,30 @@
+:: table.travelText [static-storage traveling] {"position":"1850,5100","size":"100,100"}
+{=
+
+(metadata:
+
+"Apesai", (dm:
+"nearDepart", [The Apesai lighthouse has disappeared in the distance, but its many-colored aurora can still be seen at night.],
+"middle", [Waves lap at your vessel, shaking you to and fro, back and forth. You thought you were done with the Nurrah Sea. How naive.],
+"nearArrive", [Already, you can see rainbow aurora weaving through the sky. Merchant vessels far larger and faster than yours sail right past you, towards the many-colored light.  Apesai is near.],
+),
+
+"Rokhab", (dm:
+"nearDepart", [\
+	(if: $quests's traveling's arrive is "Sabzam")[As you follow the Rokhrud River up north, away from the fisheries of Rokhab, your sense of smell slowly returns.]\
+	(else:)[You leave the docks of Rokhab. Fresh sea air fills your lungs. You realize that you can smell again!]
+],
+"middle", [\
+	(if: $quests's traveling's arrive is "Sabzam")[Sometimes, it gets so green, so lush along the Rokhrud River that you forget that you're in Askava. But upon closer inspection, whatever that grows here is hardy and thorned - an omen of what awaits you further in.]\
+	(elseif: $quests's traveling's arrive is "Apesai")[From looking at a map, one would think that Apesai was just over the horizon from the mainland. But it's been days now, and you're still in open sea.]\
+	(else:)[You've been tracing the coast, but not too closely. The shores of Askava hide jagged rocks beneath those idle waves.]
+],
+"nearArrive", [\
+	(if: $quests's traveling's depart is "Sabzam")[There is a pungent smell in the air. A barge is drifting lazily down the Rokhrud, towards the scent's distant source. Rokhab.]
+	(else:)[Far in the distance, the mountains of Askava appears as blue shadows. Seagulls are flocking. You are close to shore.]
+],
+),
+
+
+
+)

@@ -1,0 +1,332 @@
+:: AA. Synthesize [startup] {"position":"1525,3750","size":"100,100"}
+{=
+
+<!--Synthesis Jobs:
+1. Can you craft it? (controlled by the lab's "sophistication" metadata).
+	a. knowledge;
+	b. capable lab;
+	c. sufficient elements.
+2. Offer number of choices (multi-craft).
+3. Confirm, create job queue. (add to $char's player's timers as a (dm: "job._itemName", (a: num, num) ))
+4. Countdown and notify.
+5. Pickup, remove job queue.
+-->
+
+<!--Read player elements-->
+(set: $funcReadPlayerElements to (macro:[
+	(set: _elements to (a: "money", "at", "ab", "gor", "rokh", "zam",))\
+	(set: _playerElement to (a:))\
+	(for: each _e, ..._elements)[\
+		(if: $char's player's att contains _e)[\
+			(set: _playerElement to it + (a: $char's player's att's _e))\
+		]\
+			(else:)[(set: _playerElement to it + (a: 0))]\
+	]\
+	(out-data: _playerElement)\
+]))
+
+<!--Spell out per item cost in element
+Ex: 2|1 At, 0|1 Ab, 2|3 Gor, 0|2 Rokh, 0|0 Zam -->
+(set: $funcElementHaveNeed to (macro: str-type _itemName, num-type _value, [\
+	(set: _outHaveNeed to "")\
+	(set: _itemDM to (passage: "item." + _itemName))\
+	(set: _playerElement to ($funcReadPlayerElements:))\
+	(set: _elements to (a: "money", "''At''", "''Ab''", "''Gor''", "''Rokh''", "''Zam''",))\
+	(set: _index to (a: 2,3,4,5,6,))\
+	\
+	<!--Write out the full cost-->\
+	(for: each _i, ..._index)[\
+		<!--Numbers-->\
+        (set: _have to _playerElement's _i)\
+        (set: _cost to _itemDM's value's _i * _value)\
+        (if: _cost > 0)[\    
+            <!--phrase-->\
+            (if: _have < _cost)[\
+                (set: _outHaveNeed to it + "(color:red)[" + (str:_have) + "]|" + (str: _cost) + " " + (str:_elements's _i))\
+            ]\
+            (else:)[(set: _outHaveNeed to it + (str:_have) + "|" + (str: _cost) + " " + (str:_elements's _i))]\
+            <!--Punctuation-->\
+            (if: _i is not 6)[(set: _outHaveNeed to it + ", ")]\
+            (else:)[(set: _outHaveNeed to it + ".")]\
+        ]\
+	]\
+    (out-data: _outHaveNeed)\
+]))
+
+
+<!--List all possible jobs
+1. You know it;
+2. The lab is capable ("level");
+3. You have enough elements for at least 1.
+-->
+(set: $funcListCraftable to (macro: [(out:)[\
+	<!--empty list indicators-->\
+    (set: _emptySimple to true)\
+    (set: _emptyComplex to true)\
+    (set: _emptyExotic to true)\
+    [''Simple Products''\
+    <ol>\
+    []<simpleList|\
+    </ol>\
+    <br>\
+    ]<simple|\
+    [''Complex Products''\
+    <ol>\
+    []<complexList|\
+    </ol>\
+    <br>\
+    ]<complex|\
+    [''Exotic Products''\
+    <ol>\
+    []<exoticList|\
+    </ol>\
+    <br>\
+    ]<exotic|\
+    <!--1. What do you know?-->\
+	(for: each _itemName, ...$char's player's craftFormula)[\
+		<!--2. Does it meet the lab's level requirement?-->\
+		(set: _itemDM to (passage: "item." + _itemName) )\
+		(if: (passage:)'s level >= _itemDM's level)[\
+			<!--3. Can you craft at least 1?-->\
+			(set: _canAtLeast1 to true)\
+			\
+			<!--check att pocket-->\
+			(set: _playerElement to ($funcReadPlayerElements:))\
+			\
+			(set: _index to (a: 2,3,4,5,6,))\
+			(for: each _i, ..._index)[\
+				(if: _playerElement's _i < _itemDM's value's _i)[\
+					(set: _canAtLeast1 to false)\
+				]\
+			]\
+			<!--4. Call a multi-craft link-->\
+			(if: _canAtLeast1 is true)[
+            	(if: _itemDM's level is 1)[(set: _emptySimple to false)(append: ?simpleList)[<li> ($funcMultiCraft: _itemName)]]\
+                (elseif: _itemDM's level is 2)[(set: _emptyComplex to false)(append: ?complexList)[<li> ($funcMultiCraft: _itemName)]]\
+                (elseif: _itemDM's level is 3)[(set: _emptyExotic to false)(append: ?exoticList)[<li> ($funcMultiCraft: _itemName)]]\
+            ]\
+			\
+			(else:)[\
+            	(if: _itemDM's level is 1)[(set: _emptySimple to false)(append: ?simpleList)[<li> ~~Synthesize ''(print: _itemDM's id)''~~ ($funcLogTip: "item.", _itemName) $cssDesc[(Insufficient elements. You have|need at least: ($funcElementHaveNeed: _itemName, 1))]]]\
+                (elseif: _itemDM's level is 2)[(set: _emptyComplex to false)(append: ?complexList)[<li> ~~Synthesize ''(print: _itemDM's id)''~~ ($funcLogTip: "item.", _itemName) $cssDesc[(Insufficient elements. You have|need at least: ($funcElementHaveNeed: _itemName, 1))]]]\
+                (elseif: _itemDM's level is 3)[(set: _emptyExotic to false)(append: ?exoticList)[<li> ~~Synthesize ''(print: _itemDM's id)''~~ ($funcLogTip: "item.", _itemName) $cssDesc[(Insufficient elements. You have|need at least: ($funcElementHaveNeed: _itemName, 1))]]]\
+            ]\
+		]\
+		(else:)[\
+        	(if: _itemDM's level is 1)[(set: _emptySimple to false)(append: ?simpleList)[<li> ~~Synthesize ''(print: _itemDM's id)''~~ ($funcLogTip: "item.", _itemName) $cssDesc[(This magic workstation is not sophisticated enough to synthesize this object.)]]]\
+            (elseif: _itemDM's level is 2)[(set: _emptyComplex to false)(append: ?complexList)[<li> ~~Synthesize ''(print: _itemDM's id)''~~ ($funcLogTip: "item.", _itemName) $cssDesc[(This magic workstation is not sophisticated enough to synthesize this object.)]]]\
+            (elseif: _itemDM's level is 3)[(set: _emptyExotic to false)(append: ?exoticList)[<li> ~~Synthesize ''(print: _itemDM's id)''~~ ($funcLogTip: "item.", _itemName) $cssDesc[(This magic workstation is not sophisticated enough to synthesize this object.)]]]\
+        ]\
+	]\
+    <!--Hide empty lists-->
+    (if: _emptySimple is true)[(hide: ?simple)]\
+    (if: _emptyComplex is true)[(hide: ?complex)]\
+    (if: _emptyExotic is true)[(hide: ?exotic)]\
+]]))
+
+<!--Multi-craft link-->
+(set: $funcMultiCraft to (macro: str-type _itemName, [(out:)[\
+	<!--initialize-->\
+	(set: _itemDM to (passage: "item." + _itemName))\
+    (set: _currentJob to (dm:))\
+	(if: $char's player's timerCraft contains (passage:)'s name)[(set: _currentJob to $char's player's timerCraft's ((passage:)'s name))]\
+	<!--Check timer queue-->\
+	(if: $char's player's timerCraft does not contain (passage:)'s name)[\
+		<!--Create link-->\
+		Synthesize (link-rerun: "(print: _itemDM's id)")[\
+			<!--Figure out atMost-->\
+			(set: _atMost to 0)\
+			(set: _formula to (a:))\
+			(set: _playerElement to ($funcReadPlayerElements:))\
+			(set: _index to (a: 2,3,4,5,6,))\
+			(for: each _i, ..._index)[\
+				(if: _itemDM's value's _i > 0)[(set: _formula to it + (a: (trunc: _playerElement's _i / _itemDM's value's _i)))]\
+			]\
+			(set: _atMost to (min: ..._formula))\
+			<!--How many?-->\
+			(set: _options to (a:1,2,3,4,5,6,7,8,9,10,))\
+			(set: _manyOptions to (a:))\
+			(for: each _o, ..._options)[\
+				(if: _atMost >= _o and _o <= (passage:)'s max)[(set: _manyOptions to it + (a: (str: _o)))]\
+			]\
+				(if: _atMost > 10 and 10 <= (passage:)'s max)[(set: _manyOptions to it + (a: (str: _atMost)))]\
+			<!--Dialog-->\
+			(dialog: bind _value, "What amount of ''(print: _itemDM's id)'' do you wish to create? <br> $cssDesc[(print: _itemDM's tip) <ul style=\"line-height: 1.5\"><li>To synthesize 1 of this, you have|need at least: ($funcElementHaveNeed: _itemName, 1) You have enough to make _atMost. <li>This workstation can synthesize a ''maximum of (plural: (passage:)'s max, \"unit\")'' each run. <li> Each run will burn ''(print: (passage:)'s fuelCost) (print: (passage:\"item.vehzin\")'s id)''. <li>Regardless of amount, this workstation will automatically run for ''(plural: (passage:)'s duration, \"day\")'' before finishing. <li>Only 1 kind of thing can be made per run, per workstation.</ul>]", ..._manyOptions)\
+			\
+			(set: _value to (num: _value))\
+			⇝ ($funcJobAdd: _itemName, _value)\
+		] ($funcLogTip: "item.", _itemName) $cssDesc[(To make 1 unit of this, you have|need ($funcElementHaveNeed: _itemName, 1))]\
+	]\
+	(else:)[~~Synthesize (print: _itemDM's id)~~ ($funcLogTip: "item.", _itemName) $cssDesc[(Workstation busy synthesizing (print: _currentJob's 2nd) (print: (passage: "item." + _currentJob's 1st)'s id). (plural: _currentJob's 3rd, "day") left.)]]\
+]]))
+
+<!--Add job into $char's player's timerCraft-->
+(set: $funcJobAdd to (macro: str-type _itemName, num-type _value, [(out:)[\
+	<!--initial-->\
+	(set: _itemDM to (passage: "item." + _itemName))\
+	<!--Confirm link-->\
+	(color:yellow+orange)[(link-rerun: "Confirm: Create _value (print: _itemDM's id)?")[\
+		<!--Spend vehzin cost (always costs 1)-->\
+        ($funcGainLoss: "item.", "vehzin", -(passage:)'s fuelCost)\
+        <!--Spend elements-->\
+		(set: _index to (a: 2,3,4,5,6,))\
+		(set: _elements to (a: "money", "at", "ab", "gor", "rokh", "zam",))\
+		(for: each _i, ..._index)[\
+			(if: _itemDM's value's _i > 0)[\
+				(set: _cost to _value * _itemDM's value's _i)\
+				(set: _e to _elements's _i)\
+				($funcGainLoss: "att.", _e, -_cost)\
+			]\
+		]\
+		\
+		<!--Create job timer-->\
+		(set: _timer to (passage:)'s duration)\
+		(set: $char's player's timerCraft to it + (dm:
+			(str: (passage:)'s name), (a:
+				_itemName, _value, _timer,
+			)
+		))\
+        (set: $log to it + (a: "''" + (str: (passage:)'s title) + ":'' " + "You've (color:yellow+orange)[started a project] synthesizing ''" + (str: $char's player's timerCraft's ((passage:)'s name)'s 2nd) + " " + (str: (passage: "item." + $char's player's timerCraft's ((passage:)'s name)'s 1st)'s id) + "''($funcLogTip: \"item.\"," + "\"" + (str:$char's player's timerCraft's ((passage:)'s name)'s 1st) + "\"" +  ")."))\
+		(redirect: (passage:)'s name)\
+	]] $cssDesc[(About to create _value (print: _itemDM's id), costing (color:yellow+orange)[($funcElementHaveNeed: _itemName, _value)])]\
+]]))
+
+<!--Tick down all jobs each day-->
+(set: $funcJobTickDown to (macro: ,[(out:)[\
+	(if: (data-names: $char's player's timerCraft)'s length > 0)[\
+		(for: each _job, ...(data-names: $char's player's timerCraft))[\
+			(set: $char's player's timerCraft's _job's 3rd to it - 1)\
+			(if: $char's player's timerCraft's _job's 3rd is 0)[\
+				(set: $log to it + (a: "''" + (str: (passage:)'s title) + ":'' " + "Ding! Your ''" + (str: $char's player's timerCraft's _job's 2nd) + " " + (str: (passage: "item." + $char's player's timerCraft's _job's 1st)'s id) + "''($funcLogTip: \"item.\"," + "\"" + (str:$char's player's timerCraft's _job's 1st) + "\"" +  ") " + " is (color:yellow+orange)[done synthesizing]. You can come to the " + "''" + ((passage: _job)'s title) + "'' to pick it up."))\
+				\
+				($funcNoti: "craftTimer", [Ding! Your ''(print: $char's player's timerCraft's _job's 2nd) (print: (passage: "item." + $char's player's timerCraft's _job's 1st)'s id)'' is done synthesizing. You can come to the ''(print: (passage: _job)'s title)'' to pick it up.], "Finally.")\
+			]\
+		]\
+	]\
+]]))
+
+<!--Remove job from queue; purely functional - to be used inside of another macro or a codehook; only works if is literally at the workstation-->
+(set: $funcJobRemove to (macro: [(out:)[\
+	(if: $char's player's timerCraft contains ((passage:)'s name))[\
+		(move: $char's player's timerCraft's ((passage:)'s name) into _trash)\
+	]\
+]]))
+
+<!--Cancel job; manually-activated $funcJobRemove-->
+(set: $funcCancelLink to (macro: [(out:)[\
+	(if: $char's player's timerCraft contains ((passage:)'s name))[\
+		(if: ($char's player's timerCraft's ((passage:)'s name))'s 3rd > 0)[\
+			(color:red)[(link-rerun: "Cancel current project.")[\
+				(set: $log to it + (a: "''" + (str: (passage:)'s title) + ":'' " + "You've (color:red)[canceled a project], interrupting the synthesis of ''" + (str: $char's player's timerCraft's ((passage:)'s name)'s 2nd) + " " + (str: (passage: "item." + $char's player's timerCraft's ((passage:)'s name)'s 1st)'s id) + "''($funcLogTip: \"item.\"," + "\"" + (str:$char's player's timerCraft's ((passage:)'s name)'s 1st) + "\"" +  ")."))\
+				\
+				(display: "code.labPowerDown")\
+                (move: $char's player's timerCraft's ((passage:)'s name) into _trash)\
+                \
+				(redirect: (passage:)'s name)\
+				\
+			]] $cssDesc[(No refunds! This workstation is currently synthesizing ''(print:  $char's player's timerCraft's ((passage:)'s name)'s 2nd) (print: (passage: "item." +  $char's player's timerCraft's ((passage:)'s name)'s 1st)'s id)''. (plural:  $char's player's timerCraft's ((passage:)'s name)'s 3rd, "day") left.)]\
+		]\
+		(else:)[~~Cancel current project.~~ $cssDesc[(It's already done. Just take it.)]]\
+	]\
+	(else:)[~~Cancel current project.~~ $cssDesc[(Nothing is being created here at the moment.)]]\
+]]))
+
+<!--Claim product, remove job-->
+(set: $funcJobDone to (macro: [(out:)[\
+	(if: $char's player's timerCraft contains ((passage:)'s name))[\
+		(if: ($char's player's timerCraft's ((passage:)'s name))'s 3rd <= 0)[\
+			(color:yellow+orange)[(link-rerun: "Claim ''(print:  $char's player's timerCraft's ((passage:)'s name)'s 2nd) (print: (passage: \"item.\" +  $char's player's timerCraft's ((passage:)'s name)'s 1st)'s id)''.")[\
+			<!--Pickup-->\
+			(set: _value to $char's player's timerCraft's ((passage:)'s name)'s 2nd)\
+			($funcGainLoss: "item.", $char's player's timerCraft's ((passage:)'s name)'s 1st,_value)\
+			<!--Log-->\
+			(set: $log to it + (a: "''" + (str: (passage:)'s title) + ":'' " + "You've " + "(color:yellow+orange)[ended the project], producing ''" + (str: $char's player's timerCraft's ((passage:)'s name)'s 2nd) + " " + (str: (passage: "item." + $char's player's timerCraft's ((passage:)'s name)'s 1st)'s id) + "''($funcLogTip: \"item.\"," + "\"" + (str:$char's player's timerCraft's ((passage:)'s name)'s 1st) + "\"" +  ")."))\
+            \
+            <!--Remove job timer & refresh-->\
+			(display: "code.labPowerDown")\
+            ($funcJobRemove:)\
+			(redirect: (passage:)'s name)\
+			]] $cssDesc[It's done!]\
+		]\
+		(else:)[~~Claim ''(print:  $char's player's timerCraft's ((passage:)'s name)'s 2nd) (print: (passage: "item." +  $char's player's timerCraft's ((passage:)'s name)'s 1st)'s id)''.~~ $cssDesc[(It's not done yet; (plural:  $char's player's timerCraft's ((passage:)'s name)'s 3rd, "day") left.)]]\
+	]\
+	(else:)[~~Claim product.~~ $cssDesc[(Nothing is being created here at the moment.)]]\
+]]))
+
+<!--start up a lab with a vehzin-->
+(set: $funcVehzin to (macro: str-type _exit, [(out:)[\
+	<!--initialize-->\
+    (set: _justFueled to false)\
+    \
+    <!--Check if inv contain vehzin-->\
+	(set: _haveVehzin to false)\
+	(if: ($funcCheckExists: $char's player's inv, "vehzin", 0) >= (passage:)'s fuelCost)[(set: _haveVehzin to true)]\
+	\
+	<!--Check if workstation is busy-->\
+	(set: _busy to false)\
+	(if: $char's player's timerCraft contains (passage:)'s name)[(set: _busy to true)]\
+	\
+	<!--Create a startup link-->\
+	<ol>
+	(if: _haveVehzin is true and _busy is false)[\
+		|startup>[\
+			<li>(link: "Power up the workstation.")[\
+				(set: _justFueled to true)\
+                (show: ?running)\
+                (replace: ?exitText)[$cssDesc[(And reclaim the fuel.)]]\
+				(replace: ?startup)[\
+					<li>~~Power up the workstation.~~ $cssDesc[(It is up and running.)]
+					<li>(link: "Reclaim fuel.")[\
+					\
+					(display: "code.labPowerDown")\
+					\
+					(redirect: (passage:)'s name)\
+					\
+					] $cssDesc[(No synthesis job has started, so you can still reclaim your ''(print: (passage:)'s fuelCost) (print: (passage: "item.vehzin")'s id)''.).]\
+				]<!--end of replace ?startup-->\
+				\
+				(display: "code.labPowerUp")\
+				\
+			] $cssDesc[(Place ''(print: (passage:)'s fuelCost) (print: (passage: "item.vehzin")'s id)'' into the fuel receptacle. You have ($funcCheckExists: $char's player's inv, "vehzin", 0).)]\
+		]<!--end of startup hook-->\
+	]<!--end of if haveVehzin is true and busy is false-->\
+	\
+	(elseif: _haveVehzin is false)[\
+		<li>~~Power up the workstation.~~ $cssDesc[(This magical workstation requires ''(print: (passage:)'s fuelCost) (print: (passage: "item.vehzin")'s id)'' as fuel, of which you only have ($funcCheckExists: $char's player's inv, "vehzin", 0).)]\
+	]<!--end of haveVehzin is false-->\
+	\
+	(elseif: _busy is true)[\
+		<li>~~Power up the workstation.~~ $cssDesc[(It is up and running.)]\
+		<li>~~Reclaim fuel.~~ $cssDesc[(The ''(print: (passage: "item.vehzin")'s id)'' has already been consumed.)]\
+	]<!--end of if busy is true-->\
+	\
+	|running)[\
+		<br>''Current Projects''<br>
+		<li>($funcJobDone:)\
+		<li>($funcCancelLink:)\
+        <br>
+		<details open><summary>''Potential Projects''</summary>\
+		(box: "X", 10)[($funcListCraftable:)]\
+		</details>\
+	]<!--end of running-->\
+	\
+    <!--show ?running if lab is already running-->\
+    (if: _busy is true)[(show: ?running)]\
+    \
+	<!--back link-->\
+	Or...
+	<li>(link-rerun: "Exit (print: (passage:)'s title).")[\
+		(if: _justFueled is true)[(display: "code.labPowerDown")]\
+        (goto:_exit)\
+	] [$cssDesc[(if: _busy is true)[(Let the magic do its thing.)]]]<exitText|\
+    \
+    <!--replace exit tip text if done-->\
+    (if: _busy is true)[\
+    	(set: _jobDM to $char's player's timerCraft's ((passage:)'s name))\
+    	(if: _jobDM's 3rd <= 0 )[\
+        	(replace: ?exitText)[$cssDesc[(Your ''(print:_jobDM's 2nd) (print: (passage: "item."+_jobDM's 1st)'s id)'' is ready. Aren't you going to take it?)]]\
+        ]
+	]\
+    \
+	</ol>
+]]))

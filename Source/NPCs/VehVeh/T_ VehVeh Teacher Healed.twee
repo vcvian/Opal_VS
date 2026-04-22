@@ -1,0 +1,51 @@
+:: T: VehVeh Teacher Healed [topic] {"position":"6900,1775","size":"100,100"}
+{=
+
+(storylet: when
+(passage:) contains "NPC"
+and $char's VehVeh's opinion's 2nd > 20
+and($funcCheckExists: $char's player's quests, "sickTeacher", "") is "completed"
+and $char's VehVeh's talked contains "sickTeacher" and it does not contain "healedTeacher"
+and $char's player's timerCooldown does not contain "T: VehVeh Teacher Healed"
+)
+
+(urgency: 2)
+(metadata:
+"NPC", "VehVeh",
+"title", "Chatting with Veh-Veh",
+"topic", "My teacher's better now!",
+"topicDetail", "Just thought she should know.",
+"cooldown", 1,
+"talked", (a: "healedTeacher",),
+"addCode", [($funcNPCAttitude: "VehVeh", 5, "Veh-Veh springs up and claps, as though you were one of the younger students that she tutors.", "Hehe.", "She was impressed with your resourcefulness. Or maybe, she felt guilty for not having helped out more.", [])],
+)
+
+$cssColumnParent[
+
+$cssColumnChild[
+	$cssBox[
+    	($funcImage: (passage: "S: VehVeh")'s img)
+         $cssBoxItem[''(print: (passage:)'s title )''<br>(print: (passage:)'s topicDetail)]
+    ]
+]
+
+$cssColumnChild[
+
+$cssDesc[''You: //(print: (passage:)'s topic)//'']
+<br>
+
+That's awesome! I knew you could do it!
+<br>
+Does that mean you two will be leaving for Sabzam? (I know, I've been handling some of your paperwork).
+<br>
+Oh well, if you're back, come visit the lighthouse some time.
+<br>
+(Linger a bit... The compliment is still echoing.)
+<br>
+---
+<ol>
+($funcNPCTopics: "Veh-Veh smiles and tilts her head, wondering if you expect a pat on the head.", "Anyways, much gratitude, Veh-Veh. Bye.")
+</ol>
+
+]<!--end child-->
+]<!--end parent-->

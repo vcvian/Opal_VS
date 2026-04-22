@@ -1,0 +1,8 @@
+:: code.advanceDay [static-storage] {"position":"1550,4050","size":"100,100"}
+<!--Advance 1 day algorithm, called with a (display:) command-->
+
+(set: $time's dayCount to it + 1)
+(set: $time's day to it + 1)
+(if: $time's day > 7)[(set: $time's day to 1)(set: $time's week to it +1)]
+(if: $time's week > 4)[(set: $time's week to 1)(set: $time's month to it +1)]
+(if: $time's month > 12)[(set: $time's month to 1)(set: $time's year to it +1)]

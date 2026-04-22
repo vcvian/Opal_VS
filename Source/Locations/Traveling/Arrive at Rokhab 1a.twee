@@ -1,0 +1,22 @@
+:: Arrive at Rokhab 1a {"position":"5225,3225","size":"100,100"}
+{=
+
+(metadata: "title", "Landing in Rokhab")
+
+(They're checking your papers... Anyone funneled through Apesai must be carefully vetted.)
+<br>
+---
+<ol>
+(if: $quests's traveling's depart is "Apesai")[<li>($funcSpendGate: "Submit your entry permit.", $items's permitAskava, 1, 100, "Arrive at Rokhab 1b", "",)]
+
+(else:)[<li>(link: "No permit needed. You didn't come in from Apesai.")[(dialog: [The clerk stares at you incredulously, as though he can, by popping a vein, compel you admit to some hitherto hidden crime. But if he had that kind of magic, he wouldn't be working in this stinking place.], "At last, he tells you to move along.")(goto: "Arrive at Rokhab 1b")] $cssDesc[(It's the truth. There's no reason to risk it.)]]
+
+<li>($funcSpendGate: "Maybe a few rials will convince him to look the other way?", $items's rial, 100, 60, "Arrive at Rokhab 1c", "Arrive at Rokhab 1d",)
+
+<li>($funcLuckGate: "Cajole him into letting you through.", 40, "Arrive at Rokhab 1c", "Arrive at Rokhab 1d")
+
+<!--Legit pass, pick $stay [[Arrive at Rokhab 1b]]-->
+<!--Succeed at shady action, pass, pick $stay [[Arrive at Rokhab 1c]]-->
+<!--Fail at shady action, get arrested [[Arrive at Rokhab 1d]]-->
+
+</ol>

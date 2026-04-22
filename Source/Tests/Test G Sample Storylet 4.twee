@@ -1,0 +1,20 @@
+:: Test G Sample Storylet 4 [test] {"position":"1150,4650","size":"100,100"}
+{=
+
+(storylet: when
+(passage:)'s name is "Test G"
+and (($funcCheckExists: $char's player's quests, "urgentAssignment", "") is not "active" and it is not "completed" and it is not "failed")
+
+)
+
+(metadata: "title", "You Are Given an Assignment", "cardDesc", "Your teacher approaches you with an assignment.", "img", "https://thefifthcity.wiki/w/images/3/3f/Currency3_copper.png",)
+
+Apparently, it's an essay thing. You are given a limited amount of time to complete.
+<br>
+$cssDesc[This is an example of a timed quest, where the quest auto-fails.]
+<br>
+---
+<ol>
+<li>($funcQuestUpdateLink: "Time to get to it!", "urgentAssignment", "active", "You begin your assignment. Time is limited.", "No reason to dwadle.", [($funcAddTimer: "urgentAssignment", "deadline")], "Test G")
+<li>[[Never mind->Test G]]
+</ol>

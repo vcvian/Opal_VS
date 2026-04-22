@@ -1,0 +1,145 @@
+:: S: studentDebate (Betting) [storylet]
+{=
+(storylet: when
+$place's location is "Apesai"
+and $place's sublocation is "Apesai Lighthouse"
+and ($funcCheckExists: $place's events, "studentDebate", "inactive") is "active"
+)
+(exclusivity: 1)
+(urgency: 2)
+(metadata: "title", "An Academic Wager", "cardDesc", "The people are betting on which faction of apprentices will emerge the superior scholars.", "img", "Assets/Portraits/Event_Argue_1.png",)
+
+$cssColumnParent[
+
+$cssColumnChild[
+	$cssBox[
+    	($funcImage: (passage: "event.studentDebate")'s img)
+         $cssBoxItem[''(print: (passage:)'s title )''<br>(print: (passage:)'s cardDesc)]
+    ]
+]
+
+$cssColumnChild[
+
+(Although, something tells you that scholasticism isn't the main motivator here...)
+<br>
+(The bookie is glad that you're getting involved, since you're an expert... Preview of the topics and sides...)
+<br>
+(Bookie prompts you to place a bet:)
+<br>
+---
+<ol>
+
+(if: ($funcCheckExists: $char's player's quests, "studentDebate", "") is not "active")[<li>(link: "Ask the bookie: What's going on?")[(goto: "studentDebate (Betting) (Explanation)")]]
+
+
+
+<!--set betting link text-->
+(set: _betText to "You have an opinion on who might win, and you are willing to put money on it. Make a bet.")
+(if: ($funcCheckExists: $char's player's inv, "betTicketX", 0) > 0 or ($funcCheckExists: $char's player's inv, "betTicketY", 0) > 0)[(set: _betText to "You want to place a new bet.")]
+
+<li>(link: _betText)[
+     (if: ($funcCheckExists: $char's player's quests, "studentDebate", "") is not "active")[($funcQuestUpdate: "studentDebate", "active", "Nothing says 'intellectual integrity' like a financial stake. After all, it is harder to let your stance waver if it's your coin purse on the line.", "Sure.")]
+     (goto: "studentDebate (Placing Bets)")
+]
+
+<li>(link: "No, the prospect of financial gain will only taint your intellectual integrity.")[(goto: "Apesai Lighthouse")]
+</ol>
+
+]<!--end child-->
+]<!--end parent-->
+
+
+:: studentDebate (Betting) (Explanation)
+{=
+(metadata:
+"title", "An Academic Wager",
+"cardDesc", "",
+)
+<!--explanation, then leads back to option to place a bet-->
+
+$cssColumnParent[
+
+$cssColumnChild[
+	$cssBox[
+    	($funcImage: (passage: "event.studentDebate")'s img)
+         $cssBoxItem[''(print: (passage:)'s title )''<br>(print: (passage:)'s cardDesc)]
+    ]
+]
+
+$cssColumnChild[
+
+(Bookie is surprised that you don't know. You're an outsider.)
+<br>
+(The situation and sides are explained to you...)
+<br>
+---
+($funcQuestUpdateLink: "You nod along, suppressing your surprise.", "studentDebate", "active", "Apprentices are combative and eager anywhere - back in the heartlands or out here in the frontier. Only, you've never seen the adult public //betting// on such fights.", "Oh well. When in Apesai...", [], "studentDebate (Placing Bets)",)
+
+
+]<!--end child-->
+]<!--end parent-->
+
+:: studentDebate (Placing Bets)
+{=
+(metadata:
+"title", "Placing a Bet",
+"cardDesc", "",
+)
+<!--Multiple betting choices; can also back out-->
+
+$cssColumnParent[
+
+$cssColumnChild[
+	$cssBox[
+    	($funcImage: (passage: "event.studentDebate")'s img)
+         $cssBoxItem[''(print: (passage:)'s title )''<br>(print: (passage:)'s cardDesc)]
+    ]
+]
+
+$cssColumnChild[
+
+(The odds are explained (X=1.7, Y=3). Side X is usually the winner and has a higher payout)
+<br>
+
+<!--priceMod depends on buy-in day-->
+(set: _priceMod to 1)
+(set: _debateDaysLeft to ($funcCheckExists: $place's eventDuration, "studentDebate", 0))
+(cond:
+     _debateDaysLeft is 4, [(set: _priceMod to 1)],
+     _debateDaysLeft is 3, [(set: _priceMod to 1.1)],
+     _debateDaysLeft is 2, [(set: _priceMod to 1.4)],
+     _debateDaysLeft is 1, [(set: _priceMod to 1.6)],
+)
+
+<!--_priceMod tip text-->
+$cssDesc[(cond:
+     _debateDaysLeft is 4, [It is the first day of the debates. The buy-in price is cheapest.],
+     _debateDaysLeft is 3, [It is the second day of the debates. The buy-in price is still good.],
+     _debateDaysLeft is 2, [It is the third day of the debates. The buy-in price has increased significantly.],
+     _debateDaysLeft is 1, [It is the last day of the debates. Buying in now is not a good idea.],
+)]
+
+<br>
+(Bookie says: So? What will it be, master?)
+<br>
+$cssDesc[You currently have ($funcCheckExists: $char's player's inv, "rial", 0) rial.]
+<br>
+---
+<ol>
+You choose to bet on...
+<li>($funcMultiBuySell: "buy", "betTicketX", "rial", _priceMod)</li>
+<li>($funcMultiBuySell: "buy", "betTicketY", "rial", _priceMod)</li>
+
+
+<br>Actually...
+
+<!--set exit link text-->
+(set: _exitText to "Never mind. You'd rather keep your purse intact and your conscience clean.")
+(if: ($funcCheckExists: $char's player's inv, "betTicketX", 0) > 0 or ($funcCheckExists: $char's player's inv, "betTicketY", 0) > 0)[(set: _exitText to "You've risked enough. Time to watch the debate.")]
+
+<li>(link: _exitText)[{
+     (goto: "Apesai Lighthouse")
+}]</li>
+</ol>
+]<!--end child-->
+]<!--end parent-->

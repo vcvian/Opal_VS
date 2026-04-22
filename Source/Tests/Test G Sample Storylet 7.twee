@@ -1,0 +1,31 @@
+:: Test G Sample Storylet 7 [test] {"position":"825,4450","size":"100,100"}
+{=
+
+(storylet: when
+(passage:)'s name is "Test G"
+and $char's player's inv does not contain "permitAskava"
+)
+
+(metadata: "title", "Apply for an Entry Permit", "cardDesc", "The Hall of Immigration Affairs is packed full of those wanting to get off this rock and land in Askava proper.", "img", "https://thefifthcity.wiki/w/images/3/3f/Currency3_copper.png",)
+
+<h1>(print: (passage:)'s title )</h1>
+<br>
+(print: (passage:)'s cardDesc)
+<br>
+Imperial guardsmen eye you apathetically. It's like they don't even know that you're a magus. Well, a magus-to-be.
+<br>
+In the meantime, you're just the same as everyone else here: peasants, laborers, merchants, shoving each other for a place in the next ship into mainland Askava.
+<br>
+---
+<ol>
+(if: $char's player's timerQuest does not contain "permitAskava")[\
+	<li>[[Await your turn.->Test G Apply]]\
+]\
+(else:)[\
+	(if: $char's player's timerQuest's permitAskava's wait <= 0)[\
+    	<li>[[Receive your permit.->Test G Receive]]\
+    ]\
+    (else:)[<li>~~Receive your permit.~~ $cssDesc[(Your entry application is being processed.)]]
+]
+<li>[[Never mind->Test G]]
+</ol>

@@ -1,0 +1,17 @@
+:: table.monthNames [static-storage] {"position":"1625,3925","size":"100,100"}
+{=\
+<!--call with (display:), output month's name-->\
+(cond:
+$time's month is 1,"Yekvar",
+$time's month is 2,"Duvar",
+$time's month is 3,"Servar",
+$time's month is 4,"Charvar",
+$time's month is 5,"Panvar",
+$time's month is 6,"Shesvar",
+$time's month is 7,"Haftvar",
+$time's month is 8, "Hashtvar",
+$time's month is 9,"Nohvar",
+$time's month is 10,"Dahvar",
+$time's month is 11,"Dah-Yekvar",
+$time's month is 12,"Dah-Duvar",
+)

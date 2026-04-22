@@ -1,0 +1,32 @@
+:: Lab 1b {"position":"4950,1700","size":"100,100"}
+{=
+
+(metadata:
+"title", "The Student Lab",
+"cardDesc", "",
+)
+
+$cssColumnParent[
+
+$cssColumnChild[
+	$cssBox[
+    	($funcImage: (passage: "S: Lab 1")'s img)
+         $cssBoxItem[''(print: (passage:)'s title )''<br>(print: (passage:)'s cardDesc)]
+    ]
+]
+
+$cssColumnChild[
+Considering what to destroy...
+<br>
+$cssDesc[Select ingredient, then amount, then confirm.]
+<br>
+---
+<ol>
+(for: each _ingredient, ...(data-names: $char's player's inv))[\
+	(if: (passage: "item." + _ingredient)'s key contains "ingredient")[<li>($funcMultiElementalize: _ingredient)]\
+]\
+<br> Or...
+<li>[[Go back|S: Lab 1]]
+</ol>
+]<!--end child-->
+]<!--end parent-->

@@ -1,0 +1,14 @@
+:: item.highAir [static-storage] {"position":"2750,3275","size":"100,100"}
+{=
+
+(metadata: 
+	"id", [Vial of High Air],
+    "key", (a: "ingredient",),
+    "value", (a: 30, 5, 0, 12, 0, 0),
+    "img", "",
+    "desc", [Luminous remnant of a storm, harvested with high-altitude balloons. It smells like imminent danger.],
+    "tip", [A decent but expensive source of ''Gor'' and ''At''.],
+    "gainText", [The vial now glows faintly purple in your bag.],
+    "lossText", [It is gone, like the storm that birthed it.]
+
+)

@@ -1,0 +1,217 @@
+:: OldInrah Locales Travelers {"position":"3425,1300","size":"100,100"}
+{=
+
+(metadata:
+"NPC", "OldInrah",
+"title", "Asking Koh-Inrah for Directions",
+"topic", "\"Where would one go to earn an honest rial here in Apesai?\" - Especially for one so skilled as you.",
+"topicDetail", "A journeyman is by definition a itinerant worker. And a worker needs work to do.",
+"talked", (a: "localesApesai", "travelers"),
+"addCode", [],)
+
+$cssColumnParent[
+
+$cssColumnChild[
+	$cssBox[
+    	($funcImage: (passage: "npc.OldInrah")'s img)
+         $cssBoxItem[''(print: (passage:)'s title )''<br>(print: (passage:)'s topicDetail)]
+    ]
+]
+
+<!--Main content begins here-->
+$cssColumnChild[
+
+$cssDesc[''You: //(print: (passage:)'s topic)//'']
+<br>
+[
+You place Koh-Inrah's fee on the table. She eyes it suspiciously.
+<br>
+["Those with honest rials do not typically asks where to get more,"]<OldInrahLine| she says, yet still taking her coins. ["They would have had an employer or their own means already. Or, in the patron's case, a stipend from whichever university you're from. Perhaps even a sponsor. Isn't that the way of the davehmars?"]<OldInrahLine|
+<br>
+($funcInnerConvo: (dm:
+	"<!--A-->\"Yes, I have my monthly stipend, enough for bare living only.\"", "1a",
+    "<!--B-->\"I was assigned a sponsor in Sabzam, yes, but a journeyman is expected to find employment wherever they go.\"", "1b",
+    "<!--C-->\"Those who are honest often arrive in Askava with empty hands and a lot of hope.\"", "1c",
+))
+<br>
+](firstTime|
+
+[
+You place Koh-Inrah's fee on the table.
+<br>
+["We've already been through this, haven't we? Did the patron get lost on the way to the Society headquarter? Or did that sponsor of yours shirked your wage?"]<OldInrahLine| She says as she takes your coins.
+<br>
+($funcInnerConvo: (dm:
+	"<!--A-->\"I only wish to jog my memory.\"", "2nd1",
+    "<!--B-->\"I must admit, that I am hard on cash.\"", "1a",
+))
+<br>
+](secondTime|
+
+[
+["Very well, though if the patron's memory keeps failing, there might be more rials lost than gained... at least through honest work with the Society, heh. So, what does the patron need reminding of?"]<OldInrahLine| 
+<br>
+($funcInnerConvo: (dm:
+	"<!--C-->\"What does the Traveler's Society do?\"", "3",
+    "<!--A-->\"What work is there for travelers arriving in Apesai - or Askava for that matter?\"", "2",
+))
+<br>
+](2nd1|
+
+(if: ($funcTalkedTimesCheck: "travelers") < 1)[(show: ?firstTime)]
+(else:)[(show: ?secondTime)]
+
+[
+["Is this a jest? No?"]<OldInrahLine| the old woman strains to look at you. ["And Old Inrah thought that the davehmars were living lavishly. Does it not pay to be an alchemist? A forge-master? A diviner? A lawyer? A keeper of rials?"]<OldInrahLine|
+<br>
+($funcInnerConvo: (dm:
+	"<!--A-->\"It does, but only for the masters.\" - Which you strive to one day become.", "1a1",
+    "<!--B-->\"This talk is embarrassing for me, Koh-Inrah. Just tell me how a new arrival get their footing. Whom do I seek?\"", "2",
+))
+<br>
+](1a|
+
+[
+["Sabzam? You're in with //those// aristocrats?"]<OldInrahLine| the old woman squints. ["Don't mind Old Inrah for saying this, but aren't you a bit young to be a court magus?"]<OldInrahLine|
+<br>
+Few understands that a residency is different from full employment, and a journeyman is not truly a magus. But in these frontier lands, is a witch doctor all that different from a doctor?
+<br>
+($funcInnerConvo: (dm:
+	"<!--A-->\"No, Koh-Inrah, I am not qualified to be an adviser. Not yet.\"", "1a1",
+    "<!--B-->\"Magus training is valuable at any age, and wildlands like Askava needs all the help they can get.\"", "1b1",
+))
+<br>
+](1b|
+
+[
+You eye the pilgrims milling about the tea hall. There are the young with their children, and there are the old with their canes. Some of them dress nicely in the white-and-blue stripes of the Reclaimers. Many others, having sold most of their belongings at home for this journey, are left silver with salt.
+<br>
+["This lot? Honest?"]<OldInrahLine| The old woman chuckles quietly. ["Some of them, perhaps. They might appear empty-handed to you, but there are great powers and wealth at play that make their presence here possible."]<OldInrahLine|
+<br>
+($funcInnerConvo: (dm:
+	"<!--A-->\"Do you not believe in the pilgrimages, Koh-Inrah?\"", "1c1",
+    "<!--B-->\"So they're receiving help with their journey. I might need some as well.\"", "2",
+))
+<br>
+](1c|
+
+[
+You explain to her that journeying magi are only one step above wandering smiths or masons, and they even have to compete against itinerant artists or scribes, who are often just as learned but charge far lower fees, on account of fewer occupational hazards. After all, paint does not explode or drain one's health upon misuse, not easily.
+<br>
+It is only a master - one who has earned the title "magus" - who can run their own workshops, sought after by courts, or invited to teach in famous halls of learning.
+<br>
+["//'As above, so below'// - Old Inrah has read in one of your books,"]<OldInrahLine| she strokes her veil as though it were a beard. ["She never learned properly, but she understands enough that though high or low, there will always be a 'higher' and a 'lower'."]<OldInrahLine|
+<br>
+($funcInnerConvo: (dm:
+	"<!--A-->\"So it is, Koh-Inrah. Now, if I were to rent out my services...\"", "2",
+))
+<br>
+](1a1|
+
+
+[
+["Hmph, bold words for one looking for employment,"]<OldInrahLine| the old woman chuckles. ["Well, if the patron is already sought after by the //landed nobilities//, then the patron should have no problem looking for rats to kill or letters to deliver in this slum. If anyone could afford your fee, that is."]<OldInrahLine|
+<br>
+($funcInnerConvo: (dm:
+	"<!--A-->\"Apologies, Koh-Inrah; I yet remain a student. Tell me where in Apesai might I put my training to use.\"", "2",
+    "<!--B-->\"Just point me to them, then. I've already paid you for advice.\"", "2",
+))
+<br>
+](1b1|
+
+[
+["Do //they// believe in their own pilgrimage?"]<OldInrahLine| She holds a frail finger to her veil, above her lips. ["Old Inrah is a practical woman. Whether she shares her guests' beliefs does not matter - their rials are real to her. And to them, //living-land// is real, no matter how arid or hostile, as real as whatever it is they've fled from back home. There may be true believers among them, but most are like Old Inrah. They're //real//."]<OldInrahLine|
+<br>
+($funcInnerConvo: (dm:
+	"<!--A-->\"Very well, Koh-Inrah. And if, say, a pilgrim was looking for opportunities or aid, where would they seek it?\"", "2",
+))
+<br>
+](1c1|
+
+
+[
+["The Traveler's Society - do you have it where you're from?"]<OldInrahLine| the old woman points to a pulp affiche on the wall.
+<br>
+It depicts, in woodcut print, a nude woman with a striped sash around her waist, pointing a spear or a javelin at a gigantic eye. The eye shines like the sun over a desert scene. The printed big letters call for, "Wayward adventurers: reclaim your home!"
+<br>
+($funcInnerConvo: (dm:
+	"<!--A-->\"Yes, their fundraising activities were practically unavoidable.\"", "2a",
+    "<!--B-->\"I've heard of them via pilgrims I've met, but the Society is not prevalent in my province.\"", "2b",
+    "<!--C-->\"No, but there are other adventuring guilds. That's what this is, right?\"", "2c",
+))
+<br>
+](2|
+
+[
+["Then you are witnessing the fruit of all those funds raised back home. Needless to say, now that the pilgrims are here, the Society's role is no longer limited to... high-society panhandling."]<OldInrahLine|
+<br>
+($funcInnerConvo: (dm:
+	"<!--A-->\"How so? What do they do around here?\"", "3",
+))
+<br>
+](2a|
+
+[
+["Oh? Well, here in Askava, the Society is present in most settlements, at least wherever imperials are found. Old Inrah considers the Society to be her unofficial business partners. Without the them, there wouldn't be pilgrims - well, not nearly as many. And without pilgrims, there'd be no Pilgrim's Rest, heh."]<OldInrahLine|
+<br>
+($funcInnerConvo: (dm:
+	"<!--A-->\"But what *does* the Society do around here?\"", "3",
+))
+<br>
+](2b|
+
+[
+["Yes, something like that, but a little different - so says the adventurers that pass by here. Those who //aren't// pilgrims. Old Inrah just takes their word for it. She can't travel these days, so listening is all she does."]<OldInrahLine|
+<br>
+($funcInnerConvo: (dm:
+	"<!--A-->\"How different can it be? What *does* the Society do?\"", "3",
+))
+<br>
+](2c|
+
+[
+["Anything for a safe and fruitful journey. They help members with paperwork, organize and police adventuring bands, hire guards for caravans, provide lodgings for travelers - though my establishment is still preferred, for a lack of louse, heh - and even underwrite loans with the Grand Exchange for those seeking to build a home out in the Gardusrah Corridor, which is practically all pilgrims. And, perhaps not surprisingly, they handle the resale of all artifacts found Navveh. After all, it is illegal to traffick in or export artifacts without a license. And adventurers are not usually licensed."]<OldInrahLine|
+<br>
+Koh-Inrah continues to list several more types of services and functions, but it all blends together into a single word: "opportunity".
+<br>
+($funcInnerConvo: (dm:
+	"<!--A-->\"Can you tell me where to find the local branch of the Traveler's Society?\"", "4",
+))
+<br>
+](3|
+
+[
+["Of course, that was what the patron paid Old Inrah for."]<OldInrahLine|
+<br>
+She begins to describe a long hike first down through the slums, then towards the city's wilder, more rural outskirts, into a different side of the island where she describes as "overrun" with mercenaries' and adventurers' camps. There, the Traveler's Society headquarter is found.
+(show: ?done)
+<br>
+](4|
+
+<!--done-->
+[
+
+<!--register talked keys-->
+($funcTalked:)
+<!--determine if already know-->
+(set: _alreadyKnow to false)
+(if: ($funcCheckExists: $char's player's att, "knowApesaiTraveler", 0) >= 1)[(set: _alreadyKnow to true)]
+<!--determine link text if already know-->
+(set: _doneText to "")
+(if: _alreadyKnow is true)[(set: _doneText to "It is more or less what you already know. Still, it is a good reminder.")]
+(else:)[(set: _doneText to "Take note of the location of the Traveler's Society on Apesai.")]
+<br>
+
+
+---
+(link-rerun: _doneText)[{
+	(if: _alreadyKnow is true)[($funcTempGainLoss: "impressionApesai", 1)]
+    (if: _alreadyKnow is false)[($funcTempGainLoss: "impressionApesai", 5)]
+    ($funcOpinionGainLoss: "OldInrah", 1, "Much goodwill is earned through the exchange of money, and the old woman happily takes yours.")
+    (set: $char's OldInrah's energy's 1st to it - 1)
+    (goto: "OldInrah Locales Else")
+}]
+](done|
+
+]<!--end child-->
+]<!--end parent-->

@@ -1,0 +1,15 @@
+:: att.accessLighthouseStudentLab [static-storage] 
+
+{=
+
+(metadata: 
+	"id", [Access: Student Lab],
+    "key", (a: "access", "Apesai", ),
+    "value", (a: 1, 0, 0, 0, 0, 0),
+    "img", "",
+    "desc", [],
+    "tip", [],
+    "gainText", [],
+    "lossText", [],
+
+)

@@ -1,0 +1,26 @@
+:: Test D {"position":"1000,3725","size":"100,100"}
+(metadata: "title", "Test D (synthesis labs)")
+
+[[⇦ BACK->Pre-Test (NEW)]]
+
+<ol>
+<li>[[Simple Lab]]
+<li>[[Professional Lab]]
+<li>[[Experimental Lab]]
+</ol>
+<br>
+($funcReadPlayerElements:)
+<br>
+($funcElementHaveNeed: "healingTonic", 1)
+<br>
+
+
+<!--(set: _a to 10)
+(set: _b to 2)
+(set: _compare to "")
+(if: _b > _a)[ (set: _compare to "(color:green)[larger than])"]
+(else:)[(set: _compare to "(color:red)[smaller than]")]
+
+(set: _result to (str:_b) + " is " + (str: _compare) + " " + (str: _a) + ".")
+
+_result-->

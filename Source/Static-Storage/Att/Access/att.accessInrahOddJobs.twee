@@ -1,0 +1,14 @@
+:: att.accessInrahOddJobs [static-storage] {"position":"3100,1225","size":"100,100"}
+{=
+
+(metadata: 
+	"id", [Access: Odd Jobs at The Pilgrim's Rest],
+    "key", (a: "access", "Apesai", ),
+    "value", (a: 1, 0, 0, 0, 0, 0),
+    "img", "",
+    "desc", [It is rare that a business allows a stranger to meddle, much less one of their patrons. Perhaps there is something particularly sincere about you. Perhaps that "something" is your naivety.],
+    "tip", [You are allowed to help with the day-to-day tasks at the Pilgrim's Rest, which earns you favors, which can help with alleviating rent... and much else.],
+    "gainText", [A few words here, a nod there, and suddenly, the staff at the Pilgrim's Rest begins to see you as their own. To be more precise, someone they can order around.],
+    "lossText", [The cooks no longer welcomes you into their kitchen. The maids grow stiff and formal around you. You are a patron, and that's all you are.],
+
+)

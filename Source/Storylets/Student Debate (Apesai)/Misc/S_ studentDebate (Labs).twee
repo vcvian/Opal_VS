@@ -1,0 +1,32 @@
+:: S: studentDebate (Labs) [storylet] {"position":"5150,1575","size":"100,100"}
+{=
+
+(storylet: when
+$place's sublocation is "Apesai Lighthouse"
+and ($funcCheckExists: $place's events, "studentDebate", "inactive") is "active"
+and $char's player's att contains "accessLighthouseStudentLab"
+)
+(exclusivity: 1)
+(metadata: "title", "The Student Lab", "cardDesc", "Everyone's in the courtyard and hall. Who's running the labs?", "img", "https://fallenlondon.wiki/w/images/8/83/University.png",)
+
+$cssColumnParent[
+
+$cssColumnChild[
+	$cssBox[
+    	($funcImage: (passage:)'s img)
+         $cssBoxItem[''(print: (passage:)'s title )''<br>(print: (passage:)'s cardDesc)]
+    ]
+]
+
+$cssColumnChild[
+(No-one, that's who...)
+<br>
+---
+<ol>
+<li>~~Access the student lab.~~ $cssDesc[(The doors are locked. Even the davehmars are caught up in this debate business.)]
+
+<li>(link: "Go back out.")[$funcBack]
+
+</ol>
+]<!--end child-->
+]<!--end parent-->

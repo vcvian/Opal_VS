@@ -1,0 +1,26 @@
+:: Apesai Streets [sublocation stay] {"position":"3425,2000","size":"100,100"}
+{=
+
+(metadata:
+"prefecture", "Nurrah Coastlands",
+"location", "Apesai",
+"currency", "supplies",
+"rent", 1,
+"title", "Apesai Streets",
+)
+
+($funcUpdateLocation:)
+
+<h2>$sublocation</h2>
+
+<!--Weather passage-->
+($funcWeatherBox:)
+
+
+<br>
+---
+($funcNavigateSublocations:)
+---
+<br>
+---
+($funcStorylet:)

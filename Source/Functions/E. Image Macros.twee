@@ -1,0 +1,13 @@
+:: E. Image Macros [startup] {"position":"1475,3100","size":"100,100"}
+<!--Macros to display images (excluding weather)-->
+
+<!--Display icons-->
+(set: $funcIcon to (macro: str-type _key, [(out:)[\
+	(print: "<img style=\"margin: 2px; position: relative; top:10px;\" height=\"32px\" src=\"" + $icons's _key + "\">")\
+]]))
+
+
+<!--Display card portrait-->
+(set: $funcImage to (macro: str-type _imageAddress, [(out:)[\
+	(print: "<img style =\"margin: 20px;\" width=\"150px\" src=\"" + (str:_imageAddress) + "\">")
+]]))

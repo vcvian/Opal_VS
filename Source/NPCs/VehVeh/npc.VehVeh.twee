@@ -1,0 +1,45 @@
+:: npc.VehVeh [startup static-storage] {"position":"6025,1525","size":"100,100"}
+{=
+
+(metadata:
+"id", [Veh-Veh],
+"desc", "Mahveh-Vehkhan is a magus-in-training studying at the Apesai Lighthouse.",
+"img", "Assets/Portraits/Girl_1.png",
+"color", #ccbff2,
+"opinionBonus", (dm:
+	"repDavehmarGood", 2,
+    "repDavehmarBad", -3,
+),
+"travelItinerary", (dm:
+	"fresh", (dm:
+    1, (a: "Apesai Lighthouse", 4),
+    2, (a: "The Grand Exchange", 2),
+    3, (a: "The Pleasure Quarter", 1),
+    ),
+    "testMode", (dm:
+    1, (a: "test sublocation 1", 3),
+    2, (a: "test sublocation 2", 6),
+    3, (a: "test sublocation 3", 4),
+    ),
+),
+"arcConditions", [(set: _newArc to (cond:
+	($funcCheckExists: $char's player's inv, "rial", 0) > 900, 3,
+	$place's location is not "Apesai", 2, 
+    $char's VehVeh's alive is true, 1, 0
+))],
+
+)
+
+
+(set: $char to it + (dm:
+
+"VehVeh", (dm:
+"alive", true,
+"health", (a: 50, 50),
+"know", false, "opinion", (a: 30, 30),
+"talked", (dm:), "energy", (a: 3,3),
+"isCompanion", false, "location", "Apesai Lighthouse",
+"arc", 1, "travelMode", "fresh", "travel", (a: 1, 4),
+),
+
+))

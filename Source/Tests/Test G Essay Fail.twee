@@ -1,0 +1,9 @@
+:: Test G Essay Fail {"position":"1325,4775","size":"100,100"}
+(metadata: "title", "Essay Regress",)
+Oh no, you've somehow made it worse!
+<br>
+---
+(link-rerun: "Scrap that! You'll try again tomorrow.")[\
+	(if: $char's player's att contains "urgentAssignment")[($funcGainLoss: "att.", "urgentAssignment", -1)]\
+    $funcDone
+]

@@ -1,0 +1,10 @@
+:: E. Images [startup] {"position":"1350,3100","size":"100,100"}
+<!--Database of all images. Will need to convert to relative addresses when exporting project-->
+
+(set: $icons to (dm:
+"supplies","Assets/Icons/icon_Supplies.png",
+"","",
+
+))
+
+<!--Weather images are stored in A. Weather Data-->

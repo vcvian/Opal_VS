@@ -1,0 +1,29 @@
+:: item.betTicketX [static-storage]
+
+(metadata: 
+	"id", [Betting Ticket (X)],
+    "key", (a: "document",),
+    "value", (a: 10, 0, 0, 0, 0, 20,),
+    "img", "",
+    "desc", [A pamphlet for a local business with a number written on the back, indicating the amount of rial you've wagered on side X.],
+    "tip", [Redeemed at the conclusion of the impromptu debate tournament.],
+    "gainText", [You are handed a pamphlet for a local business with the amount you've wagered written on the back. Your name and bet were registered elsewhere.],
+    "lossText", [Torn up, never to be acknowledged.],
+    "content", [],
+
+)
+
+:: item.betTicketY [static-storage]
+
+(metadata: 
+	"id", [Betting Ticket (Y)],
+    "key", (a: "document",),
+    "value", (a: 10, 0, 0, 0, 0, 20,),
+    "img", "",
+    "desc", [A pulp-paper scrap with a number written on the back, indicating the amount of rial you've wagered on side Y.],
+    "tip", [Redeemed at the conclusion of the impromptu debate tournament.],
+    "gainText", [You are handed a piece of scrap paper with the amount you've wagered written on the back. Your name and bet were registered elsewhere.],
+    "lossText", [Torn up, never to be acknowledged.],
+    "content", [],
+
+)

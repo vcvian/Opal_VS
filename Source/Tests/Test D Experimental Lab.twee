@@ -1,0 +1,19 @@
+:: Experimental Lab {"position":"1150,3875","size":"100,100"}
+{=
+(metadata: 
+"title", "Experimental Lab (Test)",
+"level", 3,
+"max", 1,
+"duration", 5,
+"fuelCost", 5,
+)
+
+[[⇦ BACK->Pre-Test (NEW)]] <br>
+[[⇦ Lab Hub->Test D]] <br>
+[[Simple Lab]] <br>
+[[Professional Lab]] <br>
+
+<h3>(print: (passage:)'s title)</h3>
+
+<br>
+ ($funcVehzin: "Test D")

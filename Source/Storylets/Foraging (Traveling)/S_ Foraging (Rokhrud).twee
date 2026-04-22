@@ -1,0 +1,29 @@
+:: S: Foraging (Rokhrud) [storylet traveling] {"position":"5425,3550","size":"100,100"}
+{=
+
+(storylet: when
+$place's traveling is true
+and ((str: $place's travelingFrom + $place's travelingTo) contains "Sabzam" and (it contains "Rokhab" or it contains "Besarag"))
+and $place's weather is not "stormy"
+and $char's player's timerCooldown does not contain "S: Foraging (Rokhrud)"
+)
+(metadata: "title", "Foraging Along the Rokhrud", "cardDesc", "The green banks of the Rokhrud River promises sustenance to those who'd seek it.", "img", "https://fallenlondon.wiki/w/images/a/a0/Fruit.png", "cooldown", 2,)
+
+$cssColumnParent[
+
+$cssColumnChild[
+$cssBox[
+    ($funcImage: (passage:)'s img)
+        $cssBoxItem[''(print: (passage:)'s title )''<br>(print: (passage:)'s cardDesc)]
+]
+]
+
+$cssColumnChild[
+<br>
+---
+<ol>
+<li>(link: "Go foraging. ⧗")[($funcAddStoryletCooldown: (passage:)'s name)(goto: "Foraging 1a")]<!--[[Foraging 1a]]-->
+<li>(link: "Never mind.")[$funcBack]
+<ol>
+]<!--end child-->
+]<!--end parent-->

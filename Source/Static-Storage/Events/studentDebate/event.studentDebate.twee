@@ -1,0 +1,127 @@
+:: event.studentDebate [static-storage]
+{=
+
+(metadata: 
+	"id", [Situation: A Debate Among Half-Peers],
+    "img", "Assets/Portraits/Event_Argue_1.png",
+    "desc", [The sort-of-students of Apesai's quasi-academy will hold a series of debates (is it so civil?) in the lighthouse's courtyard.],
+    "tip", [The debate will go on for a few days, with or without your interference.],
+    "eventConditions", [{
+        (set: _onCond to (cond:
+            ($funcCheckExists: $char's player's att, "knowApesaiLighthouse", 0) >= 1
+            and $time's dayCount > 5
+            and ($funcCheckExists: $place's eventCooldown, "studentDebate", 0) <= 0
+        ,true,false))
+
+        (set: _offCond to (cond:
+            ($funcCheckExists: $place's eventDuration, "studentDebate", 0) <= 0
+        ,true,false))
+    }],
+    "repeat", true, "cooldown", (random: 35, 65),
+    "timed", true, "duration", 4,
+    "startup", true,
+)
+
+:: event.sample1 [static-storage]
+
+(metadata:
+    "id", [Every other weekend],
+    "img", "",
+    "desc", [],
+    "tip", [],
+    "eventConditions", [{
+        (set: _onCond to (cond:
+            ($time's day is 1 or it is 7)
+            and ($funcCheckExists: $place's eventCooldown, "sample1", 0) <= 0
+        ,true,false))
+
+        (set: _offCond to (cond:
+            ($time's day is not 1 and it is not 7)
+        ,true,false))
+    }],
+    "repeat", true, "cooldown", 9,
+    "timed", false, "duration", 0,
+    "startup", true,
+)
+
+:: event.sample2 [static-storage]
+
+(metadata:
+    "id", [Completely manual event],
+    "img", "",
+    "desc", [],
+    "tip", [],
+    "eventConditions", [{
+        <!--both _onCond and _ofCond are simply false, since there is no automatic (de)activation-->
+        (set: _onCond to false)
+        (set: _offCond to false)
+    }],
+    "repeat", false, "cooldown", 0,
+    "timed", false, "duration", 0,
+    "startup", false,
+)
+
+:: event.sample3 [static-storage]
+
+(metadata:
+    "id", [Event that only happens once],
+    "img", "",
+    "desc", [],
+    "tip", [],
+    "eventConditions", [{
+        <!--Note: at startup, event is "inactive", it is not automatically removed, even though "repeat" is false. It is only removed at the moment of switching off again-->
+        (set: _onCond to (cond:
+            ($funcCheckExists: $place's eventCooldown, "sample3", 0) <= 0
+        ,true,false))
+        <!--_offCond will indirectly lead to deletion, since "repeat" is false-->
+        (set: _offCond to (cond:
+            ($funcCheckExists: $place's eventDuration, "sample3", 0) <= 0
+        ,true,false))
+    }],
+    "repeat", false, "cooldown", 0,
+    "timed", true, "duration", 7,
+    "startup", true,
+)
+
+:: event.sample4 [static-storage]
+
+(metadata:
+    "id", [One-time event in Hashtvar (August) that is inactive at startup (without being deleted)],
+    "img", "",
+    "desc", [],
+    "tip", [],
+    "eventConditions", [{
+        <!--In this case, the initial inactive state is based on the calendar (month=8) and not a cooldown-->
+        (set: _onCond to (cond:
+            ($funcCheckExists: $place's eventCooldown, "sample4", 0) <= 0
+            and $time's month is 8
+        ,true,false))
+        <!--_offCond will indirectly lead to deletion, since "repeat" is false-->
+        (set: _offCond to (cond:
+            ($funcCheckExists: $place's eventDuration, "sample4", 0) <= 0
+        ,true,false))
+    }],
+    "repeat", false, "cooldown", 0,
+    "timed", true, "duration", 2,
+    "startup", true,
+)
+
+:: event.sample5 [static-storage]
+
+(metadata:
+    "id", [Event that waits, automatically activates, and stays on],
+    "img", "",
+    "desc", [],
+    "tip", [],
+    "eventConditions", [{
+        <!--In this case, the initial inactive state is based on the calendar (month=8) and not a cooldown-->
+        (set: _onCond to (cond:
+            ($funcCheckExists: $place's eventCooldown, "sample5", 0) <= 0
+        ,true,false))
+        <!--_offCond is false; no automatic off swtich; must be manually deleted via switch of addOrRemove functions-->
+        (set: _offCond to false)
+    }],
+    "repeat", false, "cooldown", 0,
+    "timed", false, "duration", 0,
+    "startup", false,
+)

@@ -1,0 +1,27 @@
+::  studentDebate VehVeh {"position":"5750,1700","size":"100,100"}
+{=
+
+(metadata:
+"title", "Veh-Veh the Apprentice",
+"cardDesc", "Veh-Veh has picked her side of the fight.",
+)
+
+$cssColumnParent[
+
+$cssColumnChild[
+	$cssBox[
+    	($funcImage: (passage: "S: VehVeh Debate")'s img)
+         $cssBoxItem[''(print: (passage:)'s title )''<br>(print: (passage:)'s cardDesc)]
+    ]
+]
+
+$cssColumnChild[
+MY side is right, of course, you dolt!
+<br>
+---
+<ol>
+<li>Wow
+<li>(link: "Ok thanks for the insight, Veh-Veh.")[$funcBack]
+</ol>
+]<!--end child-->
+]<!--end parent-->

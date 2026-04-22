@@ -1,0 +1,35 @@
+:: npc.OldInrah [static-storage startup] {"position":"2625,1075","size":"100,100"}
+{=
+
+(metadata:
+"id", [Koh-Inrah the Landlady],
+"desc", "As owner and proprietress of the Pilgrim's Rest in Apesai, Old Inrah has seen much over the years. Perhaps that is why she squints so often.",
+"img", "Assets/Portraits/Old_1.png",
+"color", #c7a069,
+"opinionBonus", (dm:
+	"repFamilyBizGood", 2,
+),
+"travelItinerary", (dm:
+	"default", (dm:
+    1, (a:"The Pilgrim's Rest", 7)
+    ),
+),
+"arcConditions", [(set: _newArc to (cond:
+	$char's OldInrah's alive is true, 1, 0
+))]
+
+)
+
+
+(set: $char to it + (dm:
+
+"OldInrah", (dm:
+"alive", true,
+"health", (a: 5, 5),
+"know", false, "opinion", (a: 19,19),
+"talked", (dm:), "energy", (a: 2, 2),
+"isCompanion", false, "location", "The Pilgrim's Rest",
+"arc", 1, "travelMode", "default", "travel", (a: 1, 1),
+),
+
+))

@@ -1,0 +1,22 @@
+:: Foraging 1c {"position":"5550,3800","size":"100,100"}
+{=
+
+(metadata: "title", "Wasted Time in the Bushes",
+"cardDesc", "You've got twigs in your hair and hook-seeds on your clothes.")
+
+$cssColumnParent[
+
+$cssColumnChild[
+$cssBox[
+    ($funcImage: (passage: "S: Foraging (Rokhrud)")'s img)
+        $cssBoxItem[''(print: (passage:)'s title )''<br>(print: (passage:)'s cardDesc)]
+]
+]
+
+$cssColumnChild[
+... Nothing of note.
+<br>
+---
+(link: "Oh well.")[$funcDone]
+]<!--end child-->
+]<!--end parent-->

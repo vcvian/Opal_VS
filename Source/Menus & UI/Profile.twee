@@ -1,0 +1,70 @@
+:: Profile [UI] {"position":"2300,2400","size":"100,100"}
+{=
+
+(metadata: "UI", true,)
+
+($funcUITopBar:)
+
+''Currently at $location''
+<br>
+<!--Player profile-->
+$cssBox[\
+	(print: "<img style=\"margin: 20px\" width=\"150px\" src=\"" + "https://fallenlondon.wiki/w/images/8/85/Bohogirl1.png" + "\">")\
+	$cssBoxItem[\
+    <h4>(print: $char's player's customName) $cssDesc[(print: $char's player's title)]</h4>
+    ''Health'': (print: $char's player's health's 1st)/(print: $char's player's health's 2nd)
+    ]\
+]
+<!--end of player profile-->
+
+<!--Resources-->
+$cssBox[\
+$cssBoxItem[\
+	<ul style="list-style-type:none;">
+	<li>''(print: (passage: "item.supplies")'s id)'': ($funcCheckExists: $char's player's inv, "supplies", 0)
+    <li>''(print: (passage: "item.rial")'s id)'': ($funcCheckExists: $char's player's inv, "rial", 0)
+	<li>''(print: (passage: "item.ghan")'s id)'': ($funcCheckExists: $char's player's inv, "ghan", 0)
+	<li>''(print: (passage: "item.keshi")'s id)'': ($funcCheckExists: $char's player's inv, "keshi", 0)
+	</ul>
+]\
+$cssBoxItem[\
+	<ul style="list-style-type:none;">
+	<li>''(print: (passage: "att.at")'s id)'': ($funcCheckExists: $char's player's att, "at", 0)
+	<li>''(print: (passage: "att.ab")'s id)'': ($funcCheckExists: $char's player's att, "ab", 0)
+	<li>''(print: (passage: "att.gor")'s id)'': ($funcCheckExists: $char's player's att, "gor", 0)
+	<li>''(print: (passage: "att.rokh")'s id)'': ($funcCheckExists: $char's player's att, "rokh", 0)
+	<li>''(print: (passage: "att.zam")'s id)'': ($funcCheckExists: $char's player's att, "zam", 0)
+	</ul>
+]\
+]
+<!--end of Resources-->
+
+<!--Conditions-->
+(if: (data-names: $conditionTimer)'s length > 0)[\
+<div style="padding: 20px;">\
+	<details open>\
+	<summary>''Temporary Conditions''</summary>\
+	(for: each _conID, ...(data-names: $conditionTimer))[\
+		<div style="padding:10px">''(print: $conditions's _conID's id)'' — (print: $conditions's _conID's desc)
+		$cssDesc[<br>		↪  (print: $conditions's _conID's timerDesc) (plural: $conditionTimer's _conID, "day") left.]
+        </div>
+	]\
+	</details>
+</div>
+]
+
+<!--Attributes-->
+<div style="padding: 20px;">
+<details open>
+<summary>''Attributes''</summary>
+(for: each _att, ...(data-names: $char's player's att))[\
+	(if: $char's player's att's _att > 0)[\
+    	<!--Load att's DM-->\
+        (set: _attDM to (passage: "att."+_att))\
+		<div style="padding:10px">''(print: _attDM's id)'' ((print: $char's player's att's _att)) — (print: _attDM's desc)
+        </div>
+	]\
+]\
+</details>
+</div>
+<!--end of Attributes-->

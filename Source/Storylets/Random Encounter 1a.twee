@@ -1,0 +1,9 @@
+:: Random Encounter 1a {"position":"4925,3675","size":"100,100"}
+{=
+
+(metadata: "title", "???")
+
+(windy...)
+<br>
+---
+(link: "Done.")[$funcDone]

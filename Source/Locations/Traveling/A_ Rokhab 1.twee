@@ -1,0 +1,21 @@
+:: A: Rokhab 1 [storylet traveling] {"position":"5225,3100","size":"100,100"}
+{=
+<!--2 variants: 1 is arrival by sea, and 2 is arrival by land-->
+(storylet: when
+$place's traveling is true
+and $place's travelingArriveReady is true
+and $place's travelingTo is "Rokhab"
+and $place's travelingFrom is not "Sabzam"
+)
+(exclusivity: 1)
+(metadata: "title", "Landing in Rokhab", "cardDesc", "Mainland - it is here.", "img", "https://fallenlondon.wiki/w/images/9/95/Ship.png",)
+
+<h1>(print: (passage:)'s title )</h1>
+<br>
+(print: (passage:)'s cardDesc)
+<br>
+(Rokhab... a layover if you've ever seen one)
+<br>
+---
+($funcArrive: "Disembark and find a place to rest. ⧗","Arrive at Rokhab 1a",)
+<!--[[Arrive at Rokhab 1a]]-->

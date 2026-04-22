@@ -1,0 +1,25 @@
+:: att.vigorous [static-storage] {"position":"2000,3225","size":"100,100"}
+{=
+
+(metadata: 
+	"id", [Body: Vigorous],
+    "key", (a: "attribute", "health", ),
+    "img", "",
+    "desc", [We all die, but some do so later.],
+    "tip", [Each (print: (passage: "att.vigorous")'s id) ''increases max health by 1.''],
+    "newTotalOverride", [\
+    	<!--This is to override the default "new total" in the logs and noti--> \
+        (if: $char's player's _pocket contains _thingName)[(set: _newTotal to "Your max health is now " + (str: $char's player's health's 2nd) + ".")]\
+    	(else:)[(set: _newTotal to "None remains.")]\
+    ],
+    "gainText", [Your blood is redder, and your breaths are freer.],
+    "gainEffect", [\
+    	<!--_value is determined by $funcGainLoss-->\
+    	(set: $char's player's health's 1st to it + _value)\
+    	(set: $char's player's health's 2nd to it + _value)\
+    ],
+    "lossText", [Your bones are creaking.],
+    "lossEffect", [(print: (passage: "att.vigorous")'s gainEffect)],
+    
+
+)

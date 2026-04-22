@@ -1,0 +1,52 @@
+:: Test J {"position":"975,5550","size":"100,100"}
+{=
+
+(metadata: "title", "Test J (NPCs)")
+
+[[⇦ BACK->Pre-Test (NEW)]]
+
+<ul>
+''Know Test:''
+<li>Veh-Veh is currently (if: $char's VehVeh's know is false)[(color:red)[unknown to you.]](else:)[(color:green)[acquainted.]]
+<li>(link-rerun: "Get to know Veh-Veh.")[($funcNPCKnow: "VehVeh", "You've met Veh-Veh under the strangest of circumstances. (Custom test log)")]
+</ul>
+
+<ul>
+''Arc Test:''
+<li>Veh-Veh's current arc is: ''(print: $char's VehVeh's arc)''. <br> $cssDesc[Her arc conditions are: (verbatim-print: (passage: "npc.VehVeh")'s arcConditions)]
+<li>Now, what if... (link-rerun: "I've left Apesai")[(set: $place's location to "Rokhab")]? And then I (link-rerun: "come back")[(set: $place's location to "Apesai")]? Or I (link-rerun: "gain a bunch of money")[($funcGainLoss: "item.", "rial", 1000)]? Or I unfortunately  (link-rerun: "lose all my money")[(if: $char's player's inv contains "rial")[(move: $char's player's inv's rial into _trash)]]?
+<li>(link-rerun: "Update all NPC arcs.")[($funcUpdateNPCArc:)(redirect: (passage:)'s name)]
+</ul>
+
+<ul>
+''Travel Test:''
+<li>Veh-Veh's current travel mode is ''(print: $char's VehVeh's travelMode)''. <br> Her current phase is ''(print: $char's VehVeh's travel's 1st)'', making her location ''(print: $char's VehVeh's location)''. <br> She has (plural: $char's VehVeh's travel's 2nd ,"day") left before moving on.
+<br> Switch Veh-Veh's intinerary ("travelMode"):
+<li>... to (link-rerun: "test mode")[(set: $char's VehVeh's travelMode to "testMode")(redirect: (passage:)'s name)] ... or (link-rerun: "fresh")[(set: $char's VehVeh's travelMode to "fresh")(redirect: (passage:)'s name)].
+<li>(link-rerun: "Update travel")[($funcAdvanceNPCTravel:)(redirect: (passage:)'s name)]
+</ul>
+
+<ul>
+''Opinion Test:''
+<li>Veh-Veh: ($funcOpinionCalc: "VehVeh", true)
+<li>Your teacher: ($funcOpinionCalc: "Teacher", true)
+<br>
+<li>(link-rerun: "Give self 2 repDavehmarGood.")[($funcGainLoss: "att.", "repDavehmarGood", 2)]
+<li>(link-rerun: "Give self 2 repDavehmarBad.")[($funcGainLoss: "att.", "repDavehmarBad", 2)]
+<li>(link-rerun: "Flatter your teacher (gain 5 base opinion)")[($funcOpinionGainLoss: "Teacher", 5, "He really likes flattery.")]
+<li>(link-rerun: "Piss off your teacher (lose 3 base opinion)")[($funcOpinionGainLoss: "Teacher", -3, "You pissed him off.")]
+<br>
+<li>(link-rerun:"Update all NPCs.")[($funcUpdateNPC:)(redirect: (passage:)'s name)] 
+</ul>
+
+<details open>
+<summary>NPC list:</summary>
+(box: "X", 10)[
+(for: each _char,...(data-names: $char))[\
+	(if: _char is not "player")[\
+    	(set: _charDM to (passage: "npc."+_char))
+        ''(print: _charDM's id)'' <br> (print: _charDM's desc) <br> (print: $char's _char)\
+        <br>
+    ]\
+]]
+</details>

@@ -1,0 +1,50 @@
+:: AA. Elementalize [startup] {"position":"1425,3750","size":"100,100"}
+{=
+
+<!--Elementalize confirm link-->
+
+<!--First, it destroys a certain amount of the item
+Then, it multiplies that amount with the item's value and gives back the corresponding amount of elements-->
+
+(set: $funcElementalize to (macro: str-type _itemName, num-type _value, [(out:)[\
+	<!--initial values-->\
+	(set: _amountGot to _value)\
+	(set: _item to (passage: "item." + _itemName))\
+    <!--Create link-->\
+	(color: red)[(link-rerun: "Confirm: Destroy _value (print: _item's id)?")[\
+		($funcGainLoss: "item.", _itemName, -_value)\
+		(set: _index to (a: 2,3,4,5,6))\
+		(set: _valueIndex to (a: "money", "at", "ab", "gor", "rokh", "zam"))\
+		(for: each _i, ..._index)[\
+			(if: _item's value's _i > 0)[\
+				(set: _amountGot to (_value * _item's value's _i))\
+				($funcGainLoss: "att.", _valueIndex's _i, _amountGot)\
+			]\
+		]\
+		(redirect: (passage:)'s name)\
+	]] $cssDesc[ (Destroy ''_value (print: _item's id)'' to absorb its elemental value.)]\
+]]))
+
+<!--Multi-elementalize-->
+
+<!--1. Reads every ingredients in inventory
+2. Create links
+3. Links offer number to destroy (passing the _value onto the confirm link)
+3. Run $funcElementalize-->
+
+(set: $funcMultiElementalize to (macro: str-type _itemName, [(out:)[\
+	(set: _itemDM to (passage: "item." + _itemName))\
+		Destroy (link-rerun: "(print: _itemDM's id)")[\
+			(set: _manyOptions to (a:))\
+			(set: _options to (a:1,2,3,4,5,6,7,8,9,10))\
+			(for: each _o, ..._options)[\
+				(if: $char's player's inv's _itemName >= _o)[(set: _manyOptions to it + (a: (str: _o)))]\
+			]\
+				(if: $char's player's inv's _itemName > 10)[(set: _manyOptions to it + (a: (str: $char's player's inv's _itemName)))]\
+				\
+				(dialog: bind _value, "Choose amount of ''(print: _itemDM's id)'' to turn into pure elements. <br> $cssDesc[(print: _itemDM's tip)] <br> $cssDesc[You currently have (print: $char's player's inv's _itemName) (print: _itemDM's id).]", ..._manyOptions)\
+				\
+				(set: _value to (num: _value))\
+				🝢 ($funcElementalize: _itemName, _value)\
+		] ($funcLogTip: "item.", _itemName) $cssDesc[(You currently have (print: $char's player's inv's _itemName).)]\
+]]))

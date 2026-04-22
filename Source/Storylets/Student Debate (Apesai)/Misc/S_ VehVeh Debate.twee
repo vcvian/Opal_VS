@@ -1,0 +1,42 @@
+:: S: VehVeh Debate [storylet] {"position":"5750,1575","size":"100,100"}
+{=
+
+(storylet: when
+$char's VehVeh's alive is true
+and $char's VehVeh's know is true
+and $char's VehVeh's location is $place's sublocation and it is "Apesai Lighthouse"
+and ($funcCheckExists: $char's player's quests, "studentDebate", "") is "active"
+and ($funcCheckExists: $place's events, "studentDebate", "inactive") is "active"
+)
+
+(exclusivity: 1)
+(urgency: 1)
+(metadata:
+"NPC", "VehVeh",
+"title", "Veh-Veh the Apprentice",
+"cardDesc", "Veh-Veh has picked her side of the fight.",
+"img", "D:/GHE/Site/VCV(html)/Opal/Assets/Portraits/Girl_1.png", 
+)
+
+
+$cssColumnParent[
+
+$cssColumnChild[
+	$cssBox[
+    	($funcImage: (passage:)'s img)
+         $cssBoxItem[''(print: (passage:)'s title )''<br>(print: (passage:)'s cardDesc)]
+    ]
+]
+
+$cssColumnChild[
+She's uncharacteristically warlike...
+<br>
+---
+<ol>
+<li>[[Talk to her about the debate. Which side is right? -> studentDebate VehVeh]]
+<li>(link: "Never mind.")[$funcBack]
+</ol>
+
+<!--The topic storylet function reads the current passage's NPC-->
+]<!--end child-->
+]<!--end parent-->

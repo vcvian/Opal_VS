@@ -1,0 +1,88 @@
+:: AA. Check Macros [startup] {"position":"1825,3750","size":"100,100"}
+{=
+
+<!--A check gate that may or may not force spending, with a failure chance-->
+(set: $funcCheckGate to (macro: str-type _linkText, str-type _pocketName, str-type _thingName, num-type _checkAmount, boolean-type _spend, num-type _chance, str-type _gotoSuccess, str-type _gotoFailure, [(out:)[\
+	<!--determine which pocket, output datamap-->\
+	(set: _pocket to "")\
+	(if: _pocketName is "inv" or it is "item")[(set: _pocket to $char's player's inv)]\
+	(elseif: _pocketName is "att")[(set: _pocket to $char's player's att)]\
+    (elseif: _pocketName is "temp")[(set: _pocket to $char's player's temp)]\
+	\
+	<!--Check pocket-->\
+	(set: _enough to false)\
+	(set: _haveNone to true)\
+	(if: _pocket contains _thingName)[\
+		(set: _haveNone to false)\
+		(unless: _pocketName is "temp")[(if: _pocket's _thingName >= _checkAmount)[(set: _enough to true)]]\
+        (else:)[(if: _pocket's _thingName's 1st >= _checkAmount)[(set: _enough to true)]]\
+	]\
+	\
+	<!--Determines _thingType-->\
+	(set: _thingDM to "")\
+	(set: _thingType to "")\
+	(if: _pocketName is "inv" or it is "item")[(set: _thingType to "item.")]\
+	(elseif: _pocketName is "att")[(set: _thingType to "att.")]\
+    (elseif: _pocketName is "temp")[(set: _thingType to "temp.")]\
+	(set: _thingDM to (passage: _thingType + _thingName))\
+	\
+	<!--Create link-->\
+	(if: _enough is true)[\
+		(link: _linkText)[\
+			<!--GainLoss function-->\
+			(if: _spend is true and _pocketName is not "temp")[($funcGainLoss: _thingType, _thingName, -_checkAmount)]\
+            (if: _spend is true and _pocketName is "temp")[($funcTempGainLoss: _thingName, -_checkAmount)]\
+			\
+			<!--Roll dice-->\
+			(set: _dice to (random: 1,100))\
+			(if: _chance < 100)[\
+				(if: (100-_chance)<=_dice)[($funcNoti: "dice", [Success! <br> $cssDesc[You needed to roll ''above (print: 100-_chance)'', and you ''got _dice''!]], "Nice!")(goto: _gotoSuccess)]\
+				(else:)[($funcNoti: "dice", [Failure! $cssDesc[You needed to roll ''above (print: 100-_chance)'', but you ''got _dice''...]], "Aw.")(goto: _gotoFailure)]\
+			]\
+			(else:)[(goto: _gotoSuccess)]\
+		] $cssDesc[((if: _spend is true)[Lose](else:)[Without taking anything from you, check for at least] ''_checkAmount (print: _thingDM's id)'', of which you currently have (print: _pocket's _thingName).(if: _chance < 100)[ There is a _chance% chance of success.])]\
+	]\
+	(else:)[\
+		~~_linkText~~ $cssDesc[(Not enough. Need ''_checkAmount (print: _thingDM's id)'', but you have (if: _haveNone is false)[(print: _pocket's _thingName)](else:)[0].)]\
+	]\
+]]))
+
+<!--A luck gate-->
+(set: $funcLuckGate to (macro: str-type _text, num-type _chance, str-type _gotoSuccess, str-type _gotoFailure,[(out:)[\
+	(link: _text)[\
+		(set: _dice to (random: 1,100))\
+		(if: (100-_chance) <= _dice)[(dialog: [Success! <br> $cssDesc[You needed to roll above (print: 100-_chance), and you got _dice!]], "Nice!")(goto: _gotoSuccess)]\
+		(else:)[(dialog: [Failure! $cssDesc[You needed to roll above (print: 100-_chance), and you got _dice.]], "Aw.")(goto: _gotoFailure)]\
+	] $cssDesc[(Pray fortune. (print: _chance)% chance of success.)]\
+]]))
+
+<!--An opinion gate-->
+(set: $funcOpinionGate to (macro: str-type _linkText, str-type _char, num-type _opinionRequired, num-type _chance, str-type _gotoSuccess, str-type _gotoFailure, [(out:)[\
+	<!--Load NPC's DM-->\
+	(set: _charDM to (passage: "npc."+_char))\
+	<!--Refresh and update char's opinion-->\
+	($funcOpinionCalc: _char, false)\
+	\
+	<!--Check opinion-->\
+	(set: _pass to false)\
+	(set: _opinion to $char's _char's opinion's 2nd)\
+	(if: _opinion >= _opinionRequired)[(set: _pass to true)]\
+	\
+	<!--Create link-->\
+	(if: _pass is true)[\
+		(link-rerun: _linkText)[\
+			<!--Roll dice-->\
+			(set: _dice to (random: 1,100))\
+			(if: _chance < 100)[\
+				(if: (100-_chance)<=_dice)[($funcNoti: "dice", [Success! <br> $cssDesc[You needed to roll ''above (print: 100-_chance)'', and you ''got _dice''!]], "Nice!")(goto: _gotoSuccess)]\
+				(else:)[($funcNoti: "dice", [Failure! $cssDesc[You needed to roll ''above (print: 100-_chance)'', but you ''got _dice''...]], "Aw.")(goto: _gotoFailure)]\
+			]\
+			(else:)[(goto: _gotoSuccess)]\
+		] $cssDesc[((print: _charDM's id)'s opinion of you is high enough. ''At least _opinionRequired'' is required, which it is currently at ($funcOpinionCalc: _char, true).(if: _chance <100)[ There is a _chance% chance of success.])]\
+		<!--end of link-->\
+	]<!--end of if pass is true-->\
+	\
+	(else:)[\
+		~~_linkText~~ $cssDesc[((print: _charDM's id)'s opinion of you is too low. ''At least _opinionRequired'' is required, but it is currently ($funcOpinionCalc: _char, true).)]\
+	]<!--end of if pass is false-->\
+]]))

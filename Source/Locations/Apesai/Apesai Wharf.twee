@@ -1,0 +1,27 @@
+:: Apesai Wharf [sublocation] {"position":"4600,2725","size":"100,100"}
+{=
+
+(metadata:
+"prefecture", "Nurrah Coastlands",
+"location", "Apesai",
+"title", "Apesai Wharf",
+)
+
+($funcUpdateLocation:)
+
+<h2>(print: (passage:)'s title)</h2>
+$cssColumnParent[
+$cssColumnChild[
+
+The long marble quay curves around Apesai's rocky shore and juts out into the ocean, like an unfinished bridge reaching towards the imperial heartland on the other side of the Nurrah Sea.
+<br>
+''Apesai Wharf'' is the coloquial, comically understating name for the vast complex of commercial and military ports that dominate wholly the western side of Apesai.
+<br>
+Through here, all maritime traffic in and out of continental Askava is routed. All goods and people must pass through, register, and be tolled appropriately in Apesai. Such has been the law since the Reclamation's start nearly a century ago, which the Imperial Admiralty diligently enforces.
+<br>
+You count a dozen massive long-haulers flying all kinds of flags, a dozen more vehzin-powered frigates speeding through the horizon, and perhaps a hundred smaller vessels swarming these docks, but at that point, you've lost count.
+]
+$cssColumnChild[($funcNavigateSublocations:)]
+]<!--end of $cssColumnParent-->
+---
+($funcStorylet:)

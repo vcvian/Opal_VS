@@ -1,0 +1,18 @@
+:: item.supplies [static-storage] {"position":"2000,3375","size":"100,100"}
+{=
+
+(metadata: 
+	"id", [($funcIcon: "supplies") Travel Supplies],
+    "key", (a: "resource", "food",),
+    "value", (a: 10, 3,1,1,0,2,),
+    "img", "",
+    "desc", [Things to eat on the go and things to drink on the road.],
+    "tip", [Supplies are consumed when traveling or when there isn't proper lodging. Without anything to eat or drink, you will begin to lose health.],
+    "gainText", [You're a bit more prepared for your journey.],
+    "lossText", [What good is being less prepared?],
+    "brokeEffect", [\
+    	(set: $char's player's health's 1st to it -1)\
+    	(set: $log to it + (a: "''" + (str: $place's stay) + ":'' (color:red)[Lost 1 health] (" + (str:$char's player's health's 1st) + "/" + (str:$char's player's health's 2nd) + ") due to lack of supplies."))\
+    ],
+
+)

@@ -1,0 +1,22 @@
+:: Inventory [UI] {"position":"2375,2450","size":"100,100"}
+{=
+
+(metadata: "UI", true,)
+
+($funcUITopBar:)
+
+<!--All Items-->
+<div style="padding: 20px;">
+<details open>
+<summary>''All Items''</summary>
+(for: each _item, ...(data-names: $char's player's inv))[\
+	(if: $char's player's inv's _item > 0)[\
+    	<!--Load item DM-->\
+        (set: _itemDM to (passage: "item." + _item))\
+        <!--print item info-->\
+		<div style="padding:10px">''(print: _itemDM's id)'' ((print: $char's player's inv's _item)) — (print: _itemDM's desc)</div>
+	]\
+]<!--end of loops-->\
+</details>
+</div>
+<!--end of All Items-->

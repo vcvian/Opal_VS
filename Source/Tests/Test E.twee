@@ -1,0 +1,32 @@
+:: Test E {"position":"1000,4050","size":"100,100"}
+{=
+
+(metadata: "title", "Test E (time, place & weather)")
+
+[[⇦ BACK->Pre-Test (NEW)]]
+<br>
+`Everything dynamic is stored in $time, and everything static in associated "code." passages.`
+
+<br>
+Right now, it is:
+<ul>
+<li>Day count: (print: $time's dayCount)
+<li>Day of the week: (print: $time's day) ((display:"table.dayNames"))
+<li>Week: (print: $time's week) ((display:"table.weekNames"))
+<li>Month: (print: $time's month) ((display:"table.monthNames"))
+<li>Year: (print: $time's year)
+</ul>
+(link-rerun: "Advance 1 day")[
+	(display: "code.advanceDay")
+	($funcWeatherToday:)
+	(redirect: (passage:)'s name)
+    ]
+<br>
+---
+<br>
+Current location: (print: $place's sublocation), (print: $place's location), (print: $place's prefecture).
+<br>
+Staying at: (print: $place's stay).
+<br>
+The weather in (print: $place's location) is ''(print: $place's weather)'':
+($funcWeatherBox:)

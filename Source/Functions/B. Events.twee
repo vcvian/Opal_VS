@@ -1,0 +1,121 @@
+:: B. Events [startup]
+{=
+
+<!--Note: events are registered in 3 different lists:
+    1. $place's events: The main thing.
+    2. $place's eventDuration: How long is it on for? (if timed)
+    3. $place's eventCooldown: How long is it off for? (if repeats)
+-->
+
+<!--Add or remove event into the game; does not override if event is already in the game-->
+(set: $funcEventAddOrRemove to (macro: str-type _eventName, boolean-type _addOrRemove, num-type _delay, [(out:)[{
+    <!--Add scenario-->
+    (if: _addOrRemove is true)[
+        <!--Add the entry itself-->
+        (if: $place's events does not contain _eventName)[
+            (set: $place's events to it + (dm: _eventName, "inactive"))
+        ]
+        <!--Add the cooldown entry-->
+        (if: $place's eventCooldown does not contain _eventName)[
+            (set: $place's eventCooldown to it + (dm: _eventName, _delay))
+        ]
+    ]
+    <!--Remove scenario-->
+    (if: _addOrRemove is false)[
+        <!--Remove event-->
+        (if: $place's events contains _eventName)[(move: $place's events's _eventName into _trash)]
+        <!--Remove cooldown, if any-->
+        (if: $place's eventCooldown contains _eventName)[(move: $place's eventCooldown's _eventName into _trash)]
+        <!--Remove duration, if any-->
+        (if: $place's eventDuration contains _eventName)[(move: $place's eventDuration's _eventName into _trash)]
+    ]
+}]]))
+
+<!--Auto add (runs at startup, no call needed in game)-->
+(for: each _event, ...(passages: where its name contains "event."))[{
+    (if: _event contains "startup")[
+        (if: _event's startup is true)[($funcEventAddOrRemove: (trimmed: "event.",_event's name), true, 1)]
+    ]
+}]
+
+<!--Tickdown function, must trigger before switch and listen functions-->
+(set: $funcEventTickdown to (macro: [(out:)[{
+    <!--for cooldown-->
+    (if: (datanames: $place's eventCooldown)'s length > 0)[
+        (for: each _cooldown, ...(datanames: $place's eventCooldown))[
+            <!--tick down 1-->
+            (set: $place's eventCooldown's _cooldown to it - 1)
+            <!--auto clear-->
+            (if: $place's eventCooldown's _cooldown <= 0)[(move: $place's eventCooldown's _cooldown into _trash)]
+        ]<!--end of looping (cooldown)-->
+    ]<!--end of if length > 0-->
+    <!--end of cooldown-->
+    
+    <!--for duration-->
+    (if: (datanames: $place's eventDuration)'s length > 0)[
+        (for: each _duration, ...(datanames: $place's eventDuration))[
+            <!--tick down 1-->
+            (set: $place's eventDuration's _duration to it - 1)
+            <!--auto clear-->
+            (if: $place's eventDuration's _duration <=0)[(move: $place's eventDuration's _duration into _trash)]
+        ]<!--end of looping (duration)-->
+    ]<!--end of if length > 0-->
+    <!--end of duration-->
+}]]))
+
+<!--Switch function (manual): "active" or "inactive", adding duration or cooldown if any; to be used inside listen function-->
+(set: $funcEventSwitch to (macro: str-type _eventName, boolean-type _switchTo, [(out:)[{
+    <!--Load DM-->
+    (set: _eventDM to (passage: "event." + _eventName))
+
+    <!--if activating-->
+    (if: _switchTo is true)[
+        <!--Activate, overriding any existing entry-->
+        (set: $place's events to it + (dm: _eventName, "active"))
+        <!--If timed, then add duration-->
+        (if: _eventDM's timed is true and $place's eventDuration does not contain _eventName)[(set: $place's eventDuration to it + (dm: _eventName, _eventDM's duration))]
+    ]<!--end of activation-->
+
+    <!--if deactivating-->
+    (if: _switchTo is false)[
+        <!--Deactivate, overriding any existing entry-->
+        (set: $place's events to it + (dm: _eventName, "inactive"))
+        <!--If repeat, then add cooldown-->
+        (if: _eventDM's repeat is true and $place's eventCooldown does not contain _eventName)[(set: $place's eventCooldown to it + (dm: _eventName, _eventDM's cooldown))]
+        <!--if non-repeating, delete entire event from game-->
+        (if: _eventDM's repeat is false)[($funcEventAddOrRemove: _eventName, false, 0)]
+    ]<!--end of deactivation-->
+}]]))
+
+<!--"Listen" function (auto switch):
+    1. Given all events present in $place's events...
+    2. If event is active, check offCond. If offCond is true, switch to "inactive", and if event has cooldown, begin cooldown. Auto delete if non repeating.
+    3. If event is inactive, check onCond. If onCond is true, switch to "active", and if event is timed, begin duration.
+-->
+
+(set: $funcEventListen to (macro: [(out:)[{
+    <!--Initialize _onCond and _offCond-->
+    (set: _onCond to [])
+    (set: _offCond to [])
+    
+    <!--Begin looping-->
+    (for: each _eventName, ...(datanames: $place's events))[
+        <!--Load DM-->
+        (set: _eventDM to (passage: "event." + _eventName))
+        <!--Load eventConditions (_onCond and _offCond)-->
+        (print: _eventDM's eventConditions)
+        
+        <!--If currently inactive...-->
+        (if: $place's events's _eventName is "inactive")[
+            <!--Check onCond, if true then switch on-->
+            (if: _onCond)[($funcEventSwitch: _eventName, true)]
+        ]<!--end of inactive scenario-->
+
+        <!--If currently active...-->
+        (elseif: $place's events's _eventName is "active")[
+            <!--Check offCond, if true then switch off (potentially delete event if non-repeating; the switch function handles this)-->
+            (if: _offCond)[($funcEventSwitch: _eventName, false)]<!--end of offCond-->
+        ]<!--end of active scenario-->
+
+    ]<!--end of looping-->
+}]]))

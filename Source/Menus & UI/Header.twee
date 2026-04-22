@@ -1,0 +1,13 @@
+:: Header [header] {"position":"2175,2225","size":"100,100"}
+{=
+
+$cssDesc[It is ''(display:"table.dayNames")'', ''(display:"table.weekNames")'', ''(display:"table.monthNames")'', year ''(print:$time's year)''. Location: ''[(print: $place's location)]<location|'', [(print: $place's prefecture)]<prefecture|, Askava.]
+<br>
+---
+<br>
+
+<!--Set _value at 1 just in case I forget to set it for the various (print: $something's something's gain/lossEffect)-->
+(set: _value to 1)
+
+<!--Clear history-->
+(forget-visits:-50)(forget-undos:-50)

@@ -1,0 +1,31 @@
+:: S: Lab 1 [storylet] {"position":"5025,1575","size":"100,100"}
+{=
+
+(storylet: when
+$place's sublocation is "Apesai Lighthouse"
+and $char's player's att contains "accessLighthouseStudentLab"
+)
+(metadata: "title", "The Student Lab", "cardDesc", "The davehmars of Apesai keep an old alchemical lab.", "img", "https://fallenlondon.wiki/w/images/8/83/University.png",)
+
+$cssColumnParent[
+
+$cssColumnChild[
+	$cssBox[
+    	($funcImage: (passage:)'s img)
+         $cssBoxItem[''(print: (passage:)'s title )''<br>(print: (passage:)'s cardDesc)]
+    ]
+]
+
+$cssColumnChild[
+It's nothing like what you had back in the academy at home. But this is not home. This is the frontiers. You'll make due, just as these magi have, for a hundred years now.
+<br>
+$cssDesc[Alchemical labs have special equipments for... well, alchemy.]
+<br>
+---
+<ol>
+<li>[[Elementalize your ingredients|Lab 1b]]
+<li>[[Create a substance|Apesai Student Lab]]
+<li>(link: "Never mind.")[$funcBack]
+</ol>
+]<!--end child-->
+]<!--end parent-->

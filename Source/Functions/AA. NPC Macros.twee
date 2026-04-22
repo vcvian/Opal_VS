@@ -1,0 +1,108 @@
+:: AA. NPC Macros [startup] {"position":"1450,5550","size":"100,100"}
+{=
+
+<!--Update NPCs (energy, opinion, etc.)-->
+(set: $funcUpdateNPC to (macro: [(out:)[\
+	(for: each _char, ...(data-names: $char) )[\
+		(if: _char is not "player" and $char's _char's alive is true)[\
+			<!--Refill conversational energy-->\
+			(set: $char's _char's energy's 1st to $char's _char's energy's 2nd)\
+			\
+			<!--Set health towards base-->\
+			(if: $char's _char's health's 1st + < $char's _char's health's 2nd)[\
+				(set: $char's _char's health's 1st to it + 1)\
+			]\
+			(if: $char's _char's health's 1st + > $char's _char's health's 2nd)[\
+				(set: $char's _char's health's 1st to it - 1)\
+			]\
+			\
+			<!--Calculate opinion-->\
+			($funcOpinionCalc: _char, false)\
+		]\
+	]\
+]]))
+
+
+<!--Calculate opinion; optionally output a number with explanation-->
+(set: $funcOpinionCalc to (macro: str-type _char, boolean-type _explain,[(out:)[\
+	<!--load character data-->\
+	(set: _charDM to (passage: "npc." + _char))\
+	(set: _bonusDM to (dm:))\
+	\
+	<!--Create arithmetic array out of opinionBonus DM-->\
+	(for: each _bonus, ...(data-names: _charDM's opinionBonus))[\
+		(if: $char's player's att contains _bonus)[\
+			(set: _bonusDM to it + (dm: _bonus, (round: _charDM's opinionBonus's _bonus * $char's player's att's _bonus) ))\
+		]\
+	]\
+	\
+	<!--Opinion is a 2-number array, the 1st number is the base, and the 2nd number is the final post-calculation-->\
+	\
+	<!--Calculation starts with the 1st number-->\
+	(set: $char's _char's opinion's 2nd to $char's _char's opinion's 1st)\
+	\
+	<!--Then add each item in _bonusDM into the 2nd number-->\
+	(for: each _calc,...(data-names: _bonusDM))[\
+		(set: $char's _char's opinion's 2nd to it + _bonusDM's _calc)\
+	]\
+	\
+	<!--Optionally output an explanation of the calculation-->\
+	(if: _explain is true)[\
+		(print: $char's _char's opinion's 2nd)\
+		(color:#2FA4D7)+(text-style:"superscript")[(link-rerun: "🗭")[(dialog: [\
+		(set: _opinion to $char's _char's opinion)\
+		(print: _charDM's id)'s personal opinion of you is ''(print: _opinion's 1st)''.\
+		(if: (data-names: _bonusDM)'s length > 0)[\
+		And, due to various circumstances, it is now ''(cond: _opinion's 2nd > _opinion's 1st, "(color:green+yellow)[(print: _opinion's 2nd)]", _opinion's 2nd < _opinion's 1st, "(color:red+orange)[(print: _opinion's 2nd)]", _opinion's 2nd)''.\
+			<br> $cssDesc[\
+				<ul>
+                Such circumstances are:
+				(box: "X", 3)[(for: each _bonusItem,...(data-names: _bonusDM))[\
+					(set: _bonusItemDM to (passage: "att."+_bonusItem) )\
+                     (set: _modValue to _charDM's opinionBonus's _bonusItem)\
+                     (set: _modResult to $char's player's att's _bonusItem * _modValue)\
+					<li> (cond: _modValue > 0, "(color:green+yellow)[(print: $char's player's att's _bonusItem)]", _modValue < 0, "(color:red+orange)[(print: $char's player's att's _bonusItem)]", 0) ''(print: _bonusItemDM's id)'' × (cond: _modValue > 0, "(color:green+yellow)[_modValue]", _modValue < 0, "(color:red+orange)[_modValue]", 0) impact = ''(cond: _modResult > 0, "(color:green+yellow)[_modResult]", _modResult < 0, "(color:red+orange)[_modResult]", 0)''
+                    <br>
+				]]<!--end of looping-->\
+				</ul>\
+			]<!--end of $cssDesc-->\
+		]<!--end of if; if nothing, then this block won't even show up.-->\
+		], "✓"
+		)]]\
+	]\
+]]))
+
+<!--Modify base opinion + log & notify-->
+(set: $funcOpinionGainLoss to (macro: str-type _char, num-type _value, str-type _log, [(out:)[\
+	<!--Load NPC datamap & initialize temp var-->\
+	(set: _charDM to (passage: "npc." + _char) )\
+	(set: _gainText to "")\
+	\
+	<!--set _gainText-->\
+	(if: _value > 0)[(set: _gainText to "(color:green+yellow)[opinion of you improved:]")]\
+	(else:)[(set: _gainText to "(color:red+orange)[opinion of you reduced:]")]\
+	\
+	<!--Perform calculations-->\
+	(set: $char's _char's opinion's 1st to it + _value)\
+	($funcOpinionCalc: _char, false)\
+	\
+	<!--Log and notify (only do so if person is known)-->\
+	(if: $char's _char's know is true)[\
+		(set: $log to it + (a: "''" + (str: (passage:)'s title) + ":'' " + (str: _charDM's id) + "'s " + (substring: _gainText, 1, -3) + "] by " + (str:(abs:_value)) + ", new total " + (str: $char's _char's opinion's 1st) + " ''(" +  (str: $char's _char's opinion's 2nd) + ")''. " + (str: _log) ) )\
+		($funcNoti: "NPC", [''(print: _charDM's id)'s _gainText'' <br> _log <br> $cssDesc[Opinion (cond: _value > 0, "(color:green+yellow)[increased]", "(color:red+orange)[decreased]") by (abs:_value). New total (print: $char's _char's opinion's 1st) ''(($funcOpinionCalc: _char, true))''.] ], "✓")\
+		\
+	]<!--end of if known-->\
+]]))
+
+<!--Meeting an NPC & log-->
+(set: $funcNPCKnow to (macro: str-type _char, str-type _log,[(out:)[\
+	<!--Load NPC datamap-->\
+	(set: _charDM to (passage: "npc." + _char))\
+	\
+	<!--Set-->\
+	(set: $char's _char's know to true)\
+	\
+	<!--Log & notify-->\
+	(set: $log to it + (a: "''" + (str: (passage:)'s title) + ":'' " + "(color:blue)[New acquaintance: ]''" + (str: _charDM's id) + "—''" + _log ))\
+	($funcNoti: "NPC", [''(color:blue)[New acquaintance: ](print: _charDM's id):'' <br> _log <br> $cssDesc[(print: _charDM's desc)]], "✓")\
+]]))

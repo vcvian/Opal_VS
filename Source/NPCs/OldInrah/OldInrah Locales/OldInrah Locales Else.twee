@@ -1,0 +1,45 @@
+:: OldInrah Locales Else {"position":"3525,1425","size":"100,100"}
+{=
+
+(metadata:
+"NPC", "OldInrah",
+"title", "Asking Koh-Inrah for Directions",
+"topicDetail", "Services rendered.",
+"talked", (a: "localesApesai"),)
+
+$cssColumnParent[
+
+$cssColumnChild[
+	$cssBox[
+    	($funcImage: (passage: "npc.OldInrah")'s img)
+         $cssBoxItem[''(print: (passage:)'s title )''<br>(print: (passage:)'s topicDetail)]
+    ]
+]
+
+<!--Main content begins here-->
+$cssColumnChild[
+
+(if: $char's OldInrah's energy's 1st > 0)[(either:
+	[["Glad to be of help. Now, if there's anything else..."]<OldInrahLine| Koh-Inrah has already cleared the table of your coins. It is empty and waiting.],
+    [["Yes, yes, and... Ah, I shouldn't say..."]<OldInrahLine| Koh-Inrah pours herself another cup of tea.],
+    [["You won't get this kind of information out of those atlases you davehmars keep in your libraries,"]<OldInrahLine| Koh-Inrah sips her tea. ["Apesai changes too quickly for outsiders to document. Especially these days."]<OldInrahLine|],
+    [["Normally, my granddaughter plays the guide for our guests. But ah, but she's left for another one of her adventures,"]<OldInrahLine| Koh-Inrah sighs pouring another cup of tea. ["I happily perform these duties in her stead, if you still have more questions..."]<OldInrahLine|],
+)]
+(else:)[(either:
+	[["Glad to be of help. Now, if there's nothing else..."]<OldInrahLine| Koh-Inrah is already waving the next guest over, who is holding (either: "a dripping blanket", "a dead mouse", "some soiled clothes").],
+    [["Yes, yes, well... thank you, dear patron,"]<OldInrahLine| Koh-Inrah says, pouring a fresh cup of tea, ready for the next guest, who has been waiting for their turn.],
+    [["Normally, my granddaughter is our tour guide. But ah, but she's left for another one of her adventures,"]<OldInrahLine| Koh-Inrah sighs, eyeing the few guests behind you. ["Right when pilgrims start arriving by the dozens."]<OldInrahLine|],
+)]
+<br>
+---
+<ol>
+
+(if: $char's OldInrah's energy's 1st > 0)[(display: "links.OldInrahLocales")
+<br> Actually, you want to talk about something else...]
+
+($funcNPCTopics: "You may still have coin and time to spare, but the other guests' patience is running thin. They, too, have money and are in need of Old Inrah's guidance.", "\"Grateful for the advice. Goodbye, Koh-Inrah.\"")
+
+</ol>
+
+]<!--end child-->
+]<!--end parent-->

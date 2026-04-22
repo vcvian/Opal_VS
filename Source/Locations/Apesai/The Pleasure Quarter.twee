@@ -1,0 +1,26 @@
+:: The Pleasure Quarter [sublocation] {"position":"4200,2725","size":"100,100"}
+{=
+
+(metadata:
+"prefecture", "Nurrah Coastlands",
+"location", "Apesai",
+"title", "The Pleasure Quarter",
+)
+
+($funcUpdateLocation:)
+
+<h2>(print: (passage:)'s title)</h2>
+$cssColumnParent[
+$cssColumnChild[
+
+Hive-like condominiums overlook criss-crossing canals, with lanterns hung above establishments ranging from unacceptable to prohibited if one were anywhere else in Nurandah: This is the Yavanid enclave in Apesai, the so-called ''"Pleasure Quarter"''.
+<br>
+The people of Yavana are not subjects of the empire; they are guests, and they have been given this run down section of the city to live in their own way and be govern by the laws of their land, to a reasonable degree.
+<br>
+Of course, what is "reasonable" varies greatly between different cultures, and there is no telling when it comes to the Yavanids.
+
+]
+$cssColumnChild[($funcNavigateSublocations:)]
+]<!--end of $cssColumnParent-->
+---
+($funcStorylet:)

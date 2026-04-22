@@ -1,0 +1,14 @@
+:: att.rokh [static-storage] {"position":"1650,3125","size":"100,100"}
+{=
+
+(metadata: 
+	"id", [Rokh],
+    "key", (a: "element", ),
+    "value", (a: 1, 0, 0, 0, 1, 0),
+    "img", "",
+    "desc", [Rokh - elemental light.],
+    "tip", [],
+    "gainText", [Suddenly, things are much clearer.],
+    "lossText", [Sense sinks back into ambiguity.]
+
+)

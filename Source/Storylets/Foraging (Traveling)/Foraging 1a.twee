@@ -1,0 +1,26 @@
+:: Foraging 1a {"position":"5425,3675","size":"100,100"}
+{=
+
+(metadata:
+    "title", "Foraging Along the Rokhrud",
+    "cardDesc", "You go off the beaten path. There's more to be found that way.",
+)
+
+$cssColumnParent[
+
+$cssColumnChild[
+$cssBox[
+    ($funcImage: (passage: "S: Foraging (Rokhrud)")'s img)
+        $cssBoxItem[''(print: (passage:)'s title )''<br>(print: (passage:)'s cardDesc)]
+]
+]
+
+$cssColumnChild[
+(Foraging...)
+<br>
+---
+<!--[[Foraging 1b]][[Foraging 1c]]-->
+($funcLuckGate: "You find...", 40, "Foraging 1b", "Foraging 1c")
+
+]<!--end child-->
+]<!--end parent-->

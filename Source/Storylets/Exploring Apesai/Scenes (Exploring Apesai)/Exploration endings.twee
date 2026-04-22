@@ -1,0 +1,289 @@
+:: scene.exploreApesaiFail
+{=
+
+(metadata:
+"title", "Lost and Confused",
+"cardDesc", "The streets of Apesai has played you.")
+
+$cssColumnParent[
+
+$cssColumnChild[
+	$cssBox[
+    	($funcImage: (passage: "S: Explore Apesai")'s img)
+         $cssBoxItem[''(print: (passage:)'s title )''<br>(print: (passage:)'s cardDesc)]
+    ]
+    ($funcWeatherBox:)
+]
+
+$cssColumnChild[
+
+... Nowhere. You've arrived at nowhere of note.
+<br>
+(either:
+"Every direction, the scenery seems familiar, as though you've been trekking in circles. How could that be?",
+"If anything, you're further away from where you //thought// you were headed to. Impossible!",
+"Did you get sidetracked somewhere along the way? Where did you //think// you were headed to?",
+"You've tried noting down where you are, but street signs do not readily present themselves, and even if they do, they tend to disagree with each other.",
+"You stop a local to ask for directions, but their accent makes things even more confusing. So, you both shrug, and you let them head on their way.",
+)
+
+<br>
+<!--Weather-->
+(cond:
+$place's weather is "rainy", "The dark sky has grown darker. The day is ending, and the rain is still relentless. You should head back and rest before you catch a cold.",
+$place's weather is "stormy", "Though lightning still streaks behind heavy clouds, the rain has quieted, if only to leave you with a quick window to retreat. You should take the opportunity.",
+$place's weather is "overcast", "Up on high, seagulls squawk, calling for each other to go home after a fruitful day. If only you could say the same about yours.",
+$place's weather is "foggy", "The fog has made it impossible to find your way around this city. And likewise, it veils the time of day, though you know that the day is reaching its end.",
+$place's weather is "windy", "The evening wind has grown bolder, like laughter, like mockery. That's your signal to go back and rest, while your dignity is still intact.",
+$place's weather is "sunny", "Looking up, you see the sun reddening in the horizon - soon to be purple, then blue, then finally, there will be no contest for the rainbow aurora. You should head back before the crystal lights come on.",
+"It's late. The day is ending. You should head back.",
+)
+<br>
+Though Apesai has won today, it isn't a complete defeat for you. You've gotten better acquainted with this city, even if you can never know it fully. Perhaps next time (and soon, lest you start forgetting the side streets and the hidden alleyways), you'll do better.
+<br>
+$cssDesc[You gain a temporary ''(print: (passage: "temp.impressionApesai")'s id)'', which will increase your chances next time you explore Apesai.]
+<br>
+---
+
+(link: "Go back the way you came, knowing better than when you first started.")[
+    ($funcTempGainLoss: "impressionApesai", 1)
+    $funcDone
+]
+
+
+
+]<!--end child-->
+]<!--end parent-->
+
+:: scene.exploreApesaiLighthouse
+{=
+
+(metadata:
+"title", "Discovered the Apesai Lighthouse!",
+"cardDesc", "Well, \"discover\" is a strong word. The lighthouse is the most visible thing in the city. Still, getting there has been an accomplishment.")
+
+$cssColumnParent[
+
+$cssColumnChild[
+	$cssBox[
+    	($funcImage: (passage: "S: Explore Apesai")'s img)
+         $cssBoxItem[''(print: (passage:)'s title )''<br>(print: (passage:)'s cardDesc)]
+    ]
+]
+
+$cssColumnChild[
+
+The Apesai Lighthouse! What an achievement of magical architecture - a tower of fused tusks and melded red steel, both of which are coaxed and bent by specially-trained magi. At the very top, inside lenses and glass housing, lies a giant, light-emitting opal.
+<br>
+The stone was the sacred byproduct from a terrifying act of magic committed long ago against Nurandah in these lands. People of lesser spirit would have buried it long ago, if only to forget. But your people, admirers of great talent, resilent and eternal, have kept it shining at the peak of this island so that visitors may know of civilization's highest aspirations.
+<br>
+The houses around the tower now glimmer with light. Colors shift across its courtyard. The air hums to the giant opal's tune. You wouldn't be surprised if the giant opal was somehow powering the entire city. But that would require a retinue of magi to keep it functional. Where are they?
+<br>
+There, you see them in the courtyard: People in garbs like yours, with stars adorning their heads. Magi. Davehmars. Though this is not the district-spanning complex you expect a university to be, it is no doubt a place of learning - the only one in Apesai, or maybe even the whole of Askava!
+<br>
+But before you can call out to your peers, a bell tolls, and they retreat inside their tower. You haven't realized how late it is; the incessant illumination here can be deceiving.
+<br>
+The tower will still be here tomorrow. You know where it is now.
+<br>
+$cssDesc[You gain ''(print: (passage: "att.knowApesaiLighthouse")'s id)'', allowing you to quickly travel here (via the ''"Getting Around Apesai"'' menu) without having to search for it like you just did.]
+<br>
+---
+
+(link: "Return and rest for today.")[
+    ($funcGainLoss: "att.", "knowApesaiLighthouse", 1)
+    (if: $char's player's temp contains "impressionApesai")[($funcTempGainLoss: "impressionApesai", -($char's player's temp's impressionApesai's 1st))]
+    $funcDone
+]
+
+
+
+]<!--end child-->
+]<!--end parent-->
+
+:: scene.exploreApesaiGE
+{=
+
+(metadata:
+"title", "Discovered the Grand Exchange!",
+"cardDesc", "Flags and banners can easily be replaced, but if there is a sure sign that one is in Nurandah territory, it is the presence of a Grand Exchange.")
+
+$cssColumnParent[
+
+$cssColumnChild[
+	$cssBox[
+    	($funcImage: (passage: "S: Explore Apesai")'s img)
+         $cssBoxItem[''(print: (passage:)'s title )''<br>(print: (passage:)'s cardDesc)]
+    ]
+]
+
+$cssColumnChild[
+
+The Grand Exchange building - or rather a series of bazaars, commodities trading halls, and multi-story warehouses built into one another, each with a distinctive red steel dome - looms large before you.
+<br>
+Red steel, or rather the vehzin that forms the magical alloy, is only ever used in small quantities for complex parts or structural cores. Using it this way is //almost// like building a house entirely out of gold. Well, "almost". Vehzin is abundant in central Askava, so you hear. That's why the Grand Exchange - as in, the namesake company - is here.
+<br>
+Placed at the crossroads of civilizations, the Apesai branch of the Grand Exchange is beyond crowded, and it doesn't rest, not even now, when the sun has sunken beneath the sea.
+<br>
+The thought of joining that crowd makes your head spin, let alone having to put up with hawkers. You've been wandering the entire afternoon. It's time to rest; at least you know how to get here now, if you ever crave the thrill of being swindled.
+<br>
+$cssDesc[You gain ''(print: (passage: "att.knowApesaiGE")'s id)'', allowing you to quickly travel here (via the ''"Getting Around Apesai"'' menu) without having to search for it like you just did.]
+<br>
+---
+
+(link: "Return and rest for today.")[
+    ($funcGainLoss: "att.", "knowApesaiGE", 1)
+    (if: $char's player's temp contains "impressionApesai")[($funcTempGainLoss: "impressionApesai", -($char's player's temp's impressionApesai's 1st))]
+    $funcDone
+]
+
+
+]<!--end child-->
+]<!--end parent-->
+
+
+:: scene.exploreApesaiCourt
+{=
+(metadata:
+"title", "Discovered the Provincial Court!",
+"cardDesc", "From this seat of power, the whole of Askava is administered.")
+
+$cssColumnParent[
+
+$cssColumnChild[
+	$cssBox[
+    	($funcImage: (passage: "S: Explore Apesai")'s img)
+         $cssBoxItem[''(print: (passage:)'s title )''<br>(print: (passage:)'s cardDesc)]
+    ]
+]
+
+$cssColumnChild[
+From this one street in Apesai, the rest of the Askava dahak - or province - is administered.
+<br>
+In days when the Kuchkhan League - and aristocrats more generally - dominated imperial politics, and there were still provincial "kings", no commoner would ever be allowed to see the inside of any of these buildings.
+<br>
+But now, what used to be a circle of private palaces open their gates to all kinds of citizens and non-citizens alike, who have come to their marble halls for the most commonplace of business: To petition for favorable judgments, to complain of damages, or to simply wait in line for paperwork.
+<br>
+Where courtiers would have strolled, scribes and clerks now rush back and forth, scrolls falling from their arms. Where elite household guards would have roamed, now the city garrison patrols - recruited from the same stock they protect.
+<br>
+This shift has been going on everywhere in the empire for nearly a century now. In the capital, they call it the "Reclamation" - to reclaim the emperor's authority, to reclaim fallen territories.
+<br>
+As far as you know, Askava remains untamed. The governor of Askava has his work cut out for him. And so do you, but the day is ending, and you need your rest. Whatever business you have with the local government, you can always come back later.
+<br>
+$cssDesc[You gain ''(print: (passage: "att.knowApesaiCourt")'s id)'', allowing you to quickly travel here (via the ''"Getting Around Apesai"'' menu) without having to search for it like you just did.]
+<br>
+---
+
+(link: "Return and rest for today.")[
+    ($funcGainLoss: "att.", "knowApesaiCourt", 1)
+    (if: $char's player's temp contains "impressionApesai")[($funcTempGainLoss: "impressionApesai", -($char's player's temp's impressionApesai's 1st))]
+    $funcDone
+]
+
+]<!--end child-->
+]<!--end parent-->
+
+:: scene.exploreApesaiTraveler
+{=
+(metadata:
+"title", "Discovered the Traveler's Society!",
+"cardDesc", "Where there is opportunity, there is the Society. Its Apesai branch is larger than any that you've ever seen.")
+
+$cssColumnParent[
+
+$cssColumnChild[
+	$cssBox[
+    	($funcImage: (passage: "S: Explore Apesai")'s img)
+         $cssBoxItem[''(print: (passage:)'s title )''<br>(print: (passage:)'s cardDesc)]
+    ]
+]
+
+$cssColumnChild[
+
+Among the camps, a few vegetable farmsteads, and the odd smithy, you see a tall brick building dominating the tree line. On a nearby obelisk, you find carved on its face the phrase, "Fortune finds its seeker". The motto is already familiar to you when you were still studying in the heartlands. On the other side, a poster is pasted on the stone, "(text-style: "underline")[NO] vacancies".
+<br>
+Elsewhere in Nurandah, Society offices are usually not much more than an office attached to a warehouse. However, the Apesai branch appears to be a former palace. It was probably acquired when the aristocrats fell from favor, and the last owner had to sell for cheap. 
+<br>
+Gathering in the courtyard are dozens of people in traveling gears - some pilgrims, others simple adventurers - gazing at a stone board. Must be job postings, or maybe land sale. You try to come closer, but the crystal light is dim, the crowd too rowdy, and you're tired. You've been walking all day.
+<br>
+At least you know where the Traveler's Society is. You can always come back later.
+<br>
+$cssDesc[You gain ''(print: (passage: "att.knowApesaiTraveler")'s id)'', allowing you to quickly travel here (via the ''"Getting Around Apesai"'' menu) without having to search for it like you just did.]
+<br>
+---
+
+(link: "Return and rest for today.")[
+    ($funcGainLoss: "att.", "knowApesaiTraveler", 1)
+    (if: $char's player's temp contains "impressionApesai")[($funcTempGainLoss: "impressionApesai", -($char's player's temp's impressionApesai's 1st))]
+    $funcDone
+]
+
+]<!--end child-->
+]<!--end parent-->
+
+:: scene.exploreApesaiPleasure
+{=
+
+(metadata:
+"title", "Discovered a Strange Part of Apesai.",
+"cardDesc", "A city within a city. ")
+
+$cssColumnParent[
+
+$cssColumnChild[
+	$cssBox[
+    	($funcImage: (passage: "S: Explore Apesai")'s img)
+         $cssBoxItem[''(print: (passage:)'s title )''<br>(print: (passage:)'s cardDesc)]
+    ]
+]
+
+$cssColumnChild[
+
+<!--($funcGainLoss: "att.", "knowApesaiPleasure", 1)-->
+
+<!--Determines if it's the first time-->
+(set: _firstTime to true)
+(if: ($funcCheckExists: $char's player's att, "knowApesaiPleasure", 0) is 1)[(set: _firstTime to false)]
+
+_firstTime[
+You cross several canals until you no longer recognize Apesai.
+<br>
+What is this place? The architecture looks too different from the First Colony dwellings, too dilapidated to be compared to the Second Colony villas, too lively to be Keshan.
+<br>
+How did you get here? You are flanked by two-, three-stories condominiums, all in some state of disrepair, each with a wilder paint job than the last. Their tall, deftly carved wood columns look like ship masts, perhaps it is because they //are// masts. These houses seem to have been built from the same ships that have taken their denizens to this island.
+<br>
+And where are the city guards? Burly men with pale face powder are laughing and glaring at you, and is that child breathing fire from his his mouth? Someone yells at you in a foreign tongue, but you cannot tell if it is a threat or an invitation. The sun is setting. You should get out of here.
+<br>
+$cssDesc[You gain ''1 (print: (passage: "att.knowApesaiPleasure")'s id)'', but it is not enough yet to find your way back here.]
+<br>
+---
+(link: "Go back the way you came. That's it for today.")[
+    ($funcGainLoss: "att.", "knowApesaiPleasure", 1)
+    (if: $char's player's temp contains "impressionApesai")[($funcTempGainLoss: "impressionApesai", -($char's player's temp's impressionApesai's 1st))]
+    $funcDone
+]
+]
+
+(else:)[You once again find yourself in the alien heart of Apesai. You try to recall the turns you've taken, but it is difficult to think what with all the singing, shouting, laughing. You take a deep breath, trying to comprehend your surrounding.
+<br>
+Quite different from the other parts of the slum, the people of this quarter seem to have forgotten their destitution. Everywhere, they adorn their crumbling homes with rich fabric and richer art, as though, to them, the worst thing about poverty is not hunger or crime but instead ugliness. Most of all, they adorn themselves.
+<br>
+There, on the far wall, you notice the faded murals - yes, you recognize them; in the imperial heartlands, such designs often fetch a high price and invite much imitation - are an exercise in excess. Excessive proportions, excessive expressions, excessive sensuality. You have never seen Yavanid art so neglected and grimy; chipping a lord's imported fresco will warrant several lashes. You have never seen one on its original wall either, but here they are on every grimy street, flaking off unceremoniously.
+<br>
+This must be the island's Yavanid enclave - the so-called "Pleasure Quarter" you've read in the chronicles of the provinces. Out of all the Seven Provinces, Askava dahak is the closest to the Yavana Archipelago, some four-hundred nautical miles to the East of the Nurrah Sea. It is no surprise to find the people of Yavana are here in large numbers.
+<br>
+And they're all looking at you - the drab and nervous imperial. You should head back; it's late. At least you can now find your way back to the Pleasure Quarter, for whatever reason.
+<br>
+$cssDesc[You gain ''1 more (print: (passage: "att.knowApesaiPleasure")'s id)'', allowing you to quickly travel here (via the ''"Getting Around Apesai"'' menu) without having to search for it like you just did.]
+<br>
+---
+(link: "Go back and rest. It has been a long day.")[
+    ($funcGainLoss: "att.", "knowApesaiPleasure", 1)
+    (if: $char's player's temp contains "impressionApesai")[($funcTempGainLoss: "impressionApesai", -($char's player's temp's impressionApesai's 1st))]
+    $funcDone
+]
+]
+
+
+
+]<!--end child-->
+]<!--end parent-->

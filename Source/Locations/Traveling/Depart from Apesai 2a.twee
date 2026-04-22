@@ -1,0 +1,12 @@
+:: Depart from Apesai 2a {"position":"4600,2975","size":"100,100"}
+{=
+
+(metadata: "title", "Departing from Apesai",)
+
+(Heading to the ruins? What about an adventuring license? Can't have just about anyone taking valuable artifacts out of the ruins. )
+<br>
+---
+<ol>
+<li>($funcCheckGate: "Show your adventuring license. ⧗", $items's licenseAdventuring, 1, 100, "Depart from Apesai 2b", "",)<!--[[Depart from Apesai 2b]]-->
+<li>[[On second thought, you want to travel somewhere else.->S: Depart from Apesai]] $cssDesc[(Or you want to have more time to prepare.)]
+</ol>

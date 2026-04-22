@@ -1,0 +1,53 @@
+:: S: studentDebate (Clear) [storylet]
+{=
+(storylet: when
+$place's sublocation is $place's stay
+and $place's traveling is false
+and ($funcCheckExists: $place's events, "studentDebate", "inactive") is "inactive"
+and ($funcCheckExists: $char's player's quests, "studentDebate", "") is "active"
+and (($funcCheckExists: $char's player's inv, "betTicketX", 0) <= 0 and ($funcCheckExists: $char's player's inv, "betTicketY", 0) <= 0)
+)
+(exclusivity: 1)
+(metadata: "title", "Post-Debate", "cardDesc", "You hear news of the semi-conclusion of the impromptu debate tournament.", "img", "Assets/Portraits/Event_Argue_1.png", "interrupt", true)
+
+$cssColumnParent[
+
+$cssColumnChild[
+	$cssBox[
+    	($funcImage: (passage:)'s img)
+         $cssBoxItem[''(print: (passage:)'s title )''<br>(print: (passage:)'s cardDesc)]
+    ]
+]
+
+$cssColumnChild[
+
+<!--progress check-->
+(set: _debateProgress to ($funcCheckExists: $char's player's att, "studentDebateY", 0) > ($funcCheckExists: $char's player's att, "studentDebateX", 0))
+
+<!--who wins?-->
+(set: _victor to "")
+(if: _debateProgress is true)[(set: _victor to "Y")]
+(else:)[(set: _victor to "X")]
+
+<!--inserted into final links. If the player misses the final day, on the next day, there will be an interrupt storylet that performs this reset-->
+(set: _resetDebate to [\
+    <!--Reset progress att-->\
+    (set: _reset to ($funcCheckExists: $char's player's att, "studentDebateX", 0))\
+	($funcGainLoss: "att.", "studentDebateX", -_reset)\
+    (set: _reset to ($funcCheckExists: $char's player's att, "studentDebateY", 0))\
+	($funcGainLoss: "att.", "studentDebateY", -_reset)\
+])
+
+<!--Passage text begins-->
+(You missed the conclusion. Just thought you should  know...)
+<br>
+<!--Victor-->
+(if: _victor is "Y")[Side Y victory.]
+
+(else:)[Side X victory.]
+<br>
+---
+($funcQuestUpdateLink: "Good for them.", "studentDebate", "inactive", "The students of Apesai have grown tired of being at each other's throats, for now. But it seems inevitable that, some time in the future, they will relitigate their disagreements.", "Debate rarely resolves anything.", [_resetDebate], $place's sublocation)
+
+]<!--end child-->
+]<!--end parent-->

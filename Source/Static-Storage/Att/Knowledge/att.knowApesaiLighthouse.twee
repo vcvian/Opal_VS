@@ -1,0 +1,14 @@
+:: att.knowApesaiLighthouse [static-storage] {"position":"3125,1575","size":"100,100"}
+{=
+
+(metadata: 
+	"id", [Knowledge: Apesai's Lighthouse],
+    "key", (a: "knowledge", "locale", "Apesai", ),
+    "value", (a: 1, 0, 0, 0, 0, 0),
+    "img", "",
+    "desc", [Upon Apesai Island's tallest peak stands the ''Lighthouse'', and upon the spire's ivory crown rests a giant opal, emanating a many-colored light across the Nurrah Sea, guiding hundreds of vessels each year towards continental Askava.],
+    "tip", [This knowledge allows you to navigate Apesai's maze-like streets and find the Lighthouse, where the davehmars - your (future) colleagues - have established a school.],
+    "gainText", [Heading towards Apesai, its ''Lighthouse'' is the first thing one sees the horizon, but once one is inside the island-city, the hills and the alleys can be impenetrable. Still, if one turns left at this plaza... and takes that stairs... and follows the rainbow...],
+    "lossText", [],
+
+)

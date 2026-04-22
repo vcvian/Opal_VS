@@ -1,0 +1,30 @@
+:: Meeting OldInrah 1a {"position":"2750,1200","size":"100,100"}
+{=
+
+(metadata:
+"NPC", "OldInrah",
+"title", "Chatting up the Landlady",
+"cardDesc", "Koh-Indrah. \"Koh\", as in \"old\".",)
+
+$cssColumnParent[
+
+$cssColumnChild[
+	$cssBox[
+    	($funcImage: (passage: "npc.OldInrah")'s img)
+         $cssBoxItem[''(print: (passage:)'s title )''<br>(print: (passage:)'s cardDesc)]
+    ]
+]
+
+$cssColumnChild[
+
+["Koh-Inrah - at your service. What might I help you with, dear //patron//?"]<OldInrahLine|
+<br>
+Yes, "patron". //That// is what you are.
+<br>
+---
+
+<ol>
+($funcNPCTopics: "Old Inrah turns away. There are other guests in need of her services. Guests with rial.", "You only wanted to say hello. Leave.")
+</ol>
+]
+]<!--end parent-->

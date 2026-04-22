@@ -1,0 +1,18 @@
+:: nextDay [effect] {"position":"2300,2725","size":"100,100"}
+''Daily Summary''
+(box:"X", 7)[\
+	(for: each _logItem, ...$log)[\
+    	<li> <span style="font-size: 80%">_logItem</span>
+	]\
+]
+<br>
+''Time Has Crawled Forward.''
+<br>
+$cssDesc[It is now ''(display:"table.dayNames")'', ''(display:"table.weekNames")'', ''(display:"table.monthNames")'', year ''(print:$time's year)''.]
+
+---
+<!--Done setting, go back to location-->
+(link: "Onward.")[(set: $logLong to it + (dm: $time's dayCount-1, $log))(set: $log to (a:))(goto: $place's stay)]
+
+<!--Date announcement
+(dialog: [''Time has crawled forward.'' <br> It is now ''($funcDay: $day)'', ''($funcWeek: $week)'', ''($funcMonth: $month)'', year ''$year''.], "Another day.")-->

@@ -1,0 +1,25 @@
+:: Test K {"position":"975,5725","size":"100,100"}
+{=
+
+(metadata: "title", "Test K (Temps)")
+
+[[⇦ BACK->Pre-Test (NEW)]]
+<br>
+''Player's "temp" pocket:''
+<br>
+(print: $char's player's temp)
+
+<ol>
+<li>(link-rerun: "Gain 1 wound")[\
+	($funcTempGainLoss: "wound", 1)\
+    (redirect: (passage:)'s name)\
+]
+
+<li>(link-rerun: "Lose 1 wound")[\
+	($funcTempGainLoss: "wound", -1)\
+    (redirect: (passage:)'s name)\
+]
+
+<li>($funcCheckGate: "Check for 2 wounds", "temp", "wound", 2, true, 50, "Test K Success", "Test K Fail")
+
+</ol>

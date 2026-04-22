@@ -1,0 +1,28 @@
+:: S: Sick Teacher 1 [storylet] {"position":"3100,2500","size":"100,100"}
+{=
+
+(storylet: when
+$place's sublocation is $place's stay
+and $place's location is "Apesai"
+and $char's player's quests does not contain "sickTeacher"
+)
+(exclusivity: 0)
+(metadata: "title", "A Sick Teacher", "cardDesc", "Your teacher isn't feeling great.", "img", "https://thefifthcity.wiki/w/images/b/bc/Bloodstain.png?20240509225948", "interrupt", false,)
+
+$cssColumnParent[
+
+$cssColumnChild[
+	$cssBox[
+    	($funcImage: (passage:)'s img)
+         $cssBoxItem[''(print: (passage:)'s title )''<br>(print: (passage:)'s cardDesc)]
+    ]
+]
+
+$cssColumnChild[
+<br>
+["Argh, I'm so gassy,"]<TeacherLine| says the respectable magus.
+<br>
+---
+[[What the...|Sick Teacher 1a]]
+]<!--end child-->
+]<!--end parent-->

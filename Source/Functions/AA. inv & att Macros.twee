@@ -1,0 +1,96 @@
+:: AA. inv & att Macros [startup] {"position":"1425,3550","size":"100,100"}
+{=
+
+<!--Unified item/att gain/loss macro-->
+
+(set: $funcGainLoss to (macro: str-type _thingType, str-type _thingName, num-type _value, [(out:)[\
+	<!--Initial values-->\
+	(set: _thing to (passage: _thingType + _thingName))\
+	(set: _pocket to "")\
+	(if: _thingType is "item.")[(set: _pocket to "inv")]\
+	(elseif: _thingType is "att.")[(set: _pocket to "att")]\
+	\
+	<!--Actually modifying values-->\
+	(if: $char's player's _pocket does not contain _thingName)[\
+		(set: $char's player's _pocket to it + (dm: _thingName, _value))\
+	]\
+	(else:)[\
+		(set: $char's player's _pocket's _thingName to it + _value)\
+	]\
+    \
+	<!--Auto-trigger effects for attributes, if any-->\
+	(if: _value > 0 and _thing contains "gainEffect")[(print: _thing's gainEffect)]\
+    (if: _value < 0 and _thing contains "lossEffect")[(print: _thing's lossEffect)]\
+	\
+    <!--Delete if ends up 0 or less-->\
+    (if: $char's player's _pocket's _thingName <= 0)[\
+			(move: $char's player's _pocket's _thingName into _trash)\
+		]\
+    \
+	<!--Finally, notify and write logs-->\
+	($funcNotifyAndLog: _thingType, _thingName, _value,)\
+]]))
+
+<!--Notify, used for both items and att-->
+(set: $funcNotifyAndLog to (macro: str-type _thingType, str-type _thingName, num-type _value, [(out:)[\
+	<!--initial values-->\
+	(set: _thing to (passage: _thingType + _thingName))\
+	(set: _pocket to "")\
+    (set: _noti to "")\
+    (if: _thingType is "item.")[(set: _noti to "item")(set: _pocket to "inv")]\
+    (elseif: _thingType is "att.")[(set: _noti to "attribute")(set: _pocket to "att")]\
+    (elseif: _thingType is "temp.")[(set: _noti to "condition")(set: _pocket to "temp")]\
+	\
+	<!--"New total", with override-->\
+	(set: _newTotal to "")\
+	(if: _thing does not contain "newTotalOverride")[\
+		(if: $char's player's _pocket contains _thingName)[(set: _newTotal to "New total " + (str: $char's player's _pocket's _thingName) + ".")]\
+		(else:)[(set: _newTotal to "None remains.")]\
+	]\
+	(else:)[(print: _thing's newTotalOverride)]\
+    \
+    (if: _thingType is "temp.")[
+    	(if: $char's player's _pocket contains _thingName)[(set: _newTotal to "New total " + (str: $char's player's _pocket's _thingName's 1st) + "." )]\
+        (else:)[(set: _newTotal to "None remains.")]
+    ]\
+    \
+	<!--Logs and notification-->\
+    <!--But first, some exceptions-->\
+    (if: _thing's key contains "element")[(set: _noti to "element")]\
+    (if: _thing's key contains "currency")[(set: _noti to "currency")]\
+    \
+    (if: _value > 0)[\
+		(set: $log to it +  (a: "''"+ (str: (passage:)'s title) + "'': " + "(color: green+yellow)[Gained " + (str:_value) + " " + (str: _thing's id) + ".]($funcLogTip: \"" + (str:_thingType) + "\",\"" + (str:_thingName) + "\")  " + (str:_newTotal) ))\
+		\
+		($funcNoti: _noti, [''(color: green+yellow)[Gained _value (print: _thing's id):]'' <br> (print: _thing's gainText) <br> $cssDesc[(print: _thing's tip)] <br> $cssDesc[_newTotal]], "✓")\
+	]\
+	\
+	(if: _value < 0)[\
+		(set: $log to it + (a: "''"+ (str: (passage:)'s title) + "'': " + "(color: red+orange)[Lost " + (str:-_value) + " " + (str: _thing's id) + ".]($funcLogTip: \"" + (str:_thingType) + "\",\"" + (str:_thingName) + "\")  " + (str:_newTotal) ))\
+		\
+		($funcNoti: _noti, [''(color: red+orange)[Lost (print: -_value) (print: _thing's id):]'' <br> (print: _thing's lossText) <br> $cssDesc[(print: _thing's tip)] <br> $cssDesc[_newTotal]], "✓")\
+	]\
+]]))
+
+<!--put a little question mark next to something-->
+(set: $funcLogTip to (macro: str-type _thingType, str-type _thingName, [(out:)[\
+	(set: _thing to (passage: _thingType + _thingName))\
+    (color:#2FA4D7)+(text-style: "superscript")[(link-rerun: "?")[\
+		(dialog: [''(print: _thing's id)'' <br> (print: _thing's desc) <br> $cssDesc[(print: _thing's tip)]], "✓")\
+	]]\
+]]))
+
+<!--Check inv/att and output number-->
+(set: $funcCheckSelf to (macro: str-type _pocket, str-type _thingName, [\
+	<!--initialize temp var & pocket-->\
+	(set: _qt to 0)\
+	(if: _pocket is "item" or it is "item." or it is "inv")[(set: _pocket to "inv")]\
+	(elseif: _pocket is "att" or it is "att.")[(set: _pocket to "att")]\
+	\
+	<!--Check pocket-->\
+	(if: $char's player's _pocket contains _thingName)[\
+		(set: _qt to $char's player's _pocket's _thingName)\
+	]\
+	\
+	(out-data: _qt)\
+]))

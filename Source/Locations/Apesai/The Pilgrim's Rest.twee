@@ -1,0 +1,35 @@
+:: The Pilgrim's Rest [sublocation stay] {"position":"3275,2000","size":"100,100"}
+{=
+
+(metadata:
+"prefecture", "Nurrah Coastlands",
+"location", "Apesai",
+"currency", "rial",
+"rent", 10,
+"title", "The Pilgrim's Rest",
+)
+
+($funcUpdateLocation:)
+
+<h2>(print: (passage:)'s title)</h2>
+
+<!--Weather passage-->
+
+$cssColumnParent[
+$cssColumnChild[
+There are nearly a hundred guesthouses in ($f: "Apesai", "f.Apesai"), and it seems that there will only be more, thanks to the recent influx of colonists, adventurers, and yes, pilgrims - this particular establishment's namesake.
+<br>
+''The Pilgrim's Rest'' is an Second-Colony-style courtyard house, with guest rooms built around a small pond garden, where the occasional Askavan duck loiters.
+<br>
+The main hall doubles as a tea room, where guests of various looks, tongues, and creeds pour in and out constantly.(if: $char's OldInrah's location is "The Pilgrim's Rest")[ In the middle of it all is the landlady, still at the helm of it all despite what the years has done to her back.]
+<br>
+$cssDesc[Staying at (print: (passage:)'s title) will cost you ''(plural: (passage:)'s rent, (passage:)'s currency)'' everyday. You currently have ($funcCheckExists: $char's player's inv, (passage:)'s currency, 0).]
+<br>
+($funcWeatherBox:)
+]
+
+$cssColumnChild[($funcNavigateSublocations:)]
+]<!--end of $cssColumnParent-->
+<br>
+---
+($funcStorylet:)

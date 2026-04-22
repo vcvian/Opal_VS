@@ -1,0 +1,21 @@
+:: temp.magicHealing [static-storage] {"position":"3625,2500","size":"100,100"}
+(metadata:
+"id", [Magical Healing],
+"timer", 7,
+"key", (a: "condition", "body",),
+"desc", [You are healing, slowly.],
+"tip", [Magically regaining 1 health each day for an entire week. May even exceed maximum health, but that can be troublesome.],
+
+"gainText", [Your feel your flesh weaving into itself and your organs heating up, driving forth what ought to come naturally.],
+"gainEffect", [],
+
+"tickText", [An unnatural quickening of the flesh. (color:green)[Regained 1 health.]],
+"tickEffect", [\
+    <!--heal-->\
+    (set: $char's player's health's 1st to it + 1)\
+],
+
+"lossText", [The unnatural healing has stopped - you can sense it.],
+"lossEffect", [],
+
+)

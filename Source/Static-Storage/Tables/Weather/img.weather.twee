@@ -1,0 +1,11 @@
+:: img.weather [static-storage] {"position":"1425,4175","size":"100,100"}
+{=
+
+(set: _weatherImage to (dm:
+	"rainy", "Assets/Weather/weather_Rain.png",
+	"stormy", "Assets/Weather/weather_Stormy.png",
+	"overcast", "Assets/Weather/weather_Overcast.png",
+	"foggy", "Assets/Weather/weather_Foggy.png",
+	"windy", "Assets/Weather/weather_Windy.png",
+	"sunny", "Assets/Weather/weather_Sunny.png",
+))

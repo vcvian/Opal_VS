@@ -1,0 +1,16 @@
+:: Arrive at Rokhab 1c {"position":"5225,3350","size":"100,100"}
+{=
+
+(metadata: "title", "Landing in Rokhab")
+
+<!--Succeed at shady action, pass, pick $stay-->
+
+(Reluctantly, he accepts... Any other day, and it'd be like he never knew you.)
+<br>
+---
+(link: "You're through, like a slimy eel.")[\
+	(print: $attributes's infamy's gainEffect)\
+    (goto: "Arrive at Rokhab 1b")\
+]
+
+<!--Legit pass, pick $stay [[Arrive at Rokhab 1b]]-->

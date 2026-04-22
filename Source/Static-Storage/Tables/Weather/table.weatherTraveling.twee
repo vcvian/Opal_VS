@@ -1,0 +1,11 @@
+:: table.weatherTraveling [static-storage traveling] {"position":"1550,4175","size":"100,100"}
+{=
+
+(set: _weatherTravelText to (dm:
+	"rainy", "Soft rain is falling, rapping against your waxed cloak. There is a leak somewhere. You can feel it.",
+	"stormy", "Nature is raging, and you're hiding, like some desert mouse, wet and afraid.",
+	"overcast", "It is mercifully overcast. A good time for traveling. Or a promise of something worse.",
+	"foggy", "You cannot see much past this fog. But still, your journey continues.",
+	"windy", "The wind is howling. If you were any lighter, you'd be blown away.",
+	"sunny", "Sun, sun, sun! The sun doesn't care if your skin stings or if your head spins.",
+))

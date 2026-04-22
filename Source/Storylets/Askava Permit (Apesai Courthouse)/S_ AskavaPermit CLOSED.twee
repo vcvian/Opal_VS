@@ -1,0 +1,35 @@
+:: S: AskavaPermit CLOSED [storylet] {"position":"4625,1900","size":"100,100"}
+{=
+
+(storylet: when
+$place's sublocation is "The Provincial Court of Askava"
+and ($time's day is 1 or it is 7)
+and $char's player's inv does not contain "permitAskava"
+)
+(metadata: "title", "Apply for an Entry Permit", "cardDesc", "But the Hall of Immigration Affairs is closed today.", "img", "https://thefifthcity.wiki/w/images/3/3f/Currency3_copper.png",)
+
+$cssColumnParent[
+
+$cssColumnChild[
+	$cssBox[
+    	($funcImage: (passage:)'s img)
+         $cssBoxItem[''(print: (passage:)'s title )''<br>(print: (passage:)'s cardDesc)]
+    ]
+]
+
+$cssColumnChild[
+<br>
+ The gilded gates are shut tight. On them, wrought iron forms the zig-zagging letters of ''"Zamruz"'', and twisted gold spells ''"Khurruz"'' - //"From the soil to the sun"//.
+<br>
+In other words, weekends.
+<br>
+---
+
+<ol>
+
+<li>~~About a permit...~~ $cssDesc[(Not today.)]
+<li>(link: "Never mind.")[$funcBack]
+
+</ol>
+]<!--end child-->
+]<!--end parent-->

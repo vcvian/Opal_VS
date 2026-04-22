@@ -1,0 +1,14 @@
+:: att.gor [static-storage] {"position":"1850,3225","size":"100,100"}
+{=
+
+(metadata: 
+	"id", [Gor],
+    "key", (a: "element", ),
+    "value", (a: 1, 0, 0, 1, 0, 0),
+    "img", "",
+    "desc", [Gor - elemental storm.],
+    "tip", [],
+    "gainText", [The pieces are falling into place. They are charged with anticipation.],
+    "lossText", [Destined discharge.]
+
+)

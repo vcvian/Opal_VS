@@ -1,0 +1,35 @@
+:: OldInrah Refund Exit {"position":"3275,1450","size":"100,100"}
+(metadata:
+"NPC", "OldInrah",
+"title", "Receiving a Rent Refund ",
+"topicDetail", "She is squinting, so hard.",
+"talked", (a: "refund"),)
+
+$cssColumnParent[
+
+$cssColumnChild[
+	$cssBox[
+    	($funcImage: (passage: "npc.OldInrah")'s img)
+         $cssBoxItem[''(print: (passage:)'s title )''<br>(print: (passage:)'s topicDetail)]
+    ]
+]
+
+<!--Main content begins here-->
+$cssColumnChild[
+
+(cond:
+$char's OldInrah's opinion's 2nd < 10, [["Hmph!"]<OldInrahLine| Koh-Inrah scoffs as she dumps her old tea leaves into the waste basket. A maid quickly fetches her a new pot of boiled water.],
+$char's OldInrah's opinion's 2nd < 20, [["A promise is a promise,"]<OldInrahLine| the old woman keeps muttering. ["One of good sense knows to keep it. But one of better sense knows also the limits of such words."]<OldInrahLine|],
+$char's OldInrah's opinion's 2nd < 30, [["Your aid has been appreciated,"]<OldInrahLine| she says. ["And Old Inrah would //like// to keep on appreciating."]<OldInrahLine|],
+[["Surely, the patron has other lucrative uses for such talent,"]<OldInrahLine| she says, chuckling. ["There is little value in bankrupting an old woman."]<OldInrahLine|],
+)
+<br>
+$cssDesc[Koh-Inrah's opinion of you is now ($funcOpinionCalc: "OldInrah", true).]
+<br>
+---
+<ol>
+($funcNPCTopics: "She waves in the next patron, who is more likely to give her money, rather than take.", "Gratitude, Koh-Inrah. (Bow out).")
+</ol>
+
+]<!--end child-->
+]<!--end parent-->

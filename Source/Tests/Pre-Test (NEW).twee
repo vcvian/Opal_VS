@@ -1,0 +1,37 @@
+:: Pre-Test (NEW) {"position":"825,3350","size":"100,100"}
+{=
+
+$cssColumnParent[
+
+$cssColumnChild[
+(link: "Play for realisies")[(goto: $place's sublocation)]
+<br>
+(link-rerun: "DEBUG")[(debug: )]
+<br>
+(link-rerun: "Jump to a passage")[
+    (set: _passage to (prompt: [Enter passage name:], "", "Cancel", "Confirm"))
+    (unless: _passage is "")[(goto: _passage)]
+]
+<br>
+(link: "Restart game")[(restart:)]
+<br>
+(link-rerun: "End day (mock)")[(goto: "mockDay")]
+]<!--end child-->
+
+$cssColumnChild[
+<ul>
+<li>[[Test A]] $cssDesc[(Gaining and losing Items/attributes,)]
+<li>[[Test B]] $cssDesc[(Buying & selling)]
+<li>[[Test C]] $cssDesc[(Elementalizing)]
+<li>[[Test D]] $cssDesc[(Synthesis labs)]
+<li>[[Test E]] $cssDesc[(Time, place & weather)]
+<li>[[Test F]] $cssDesc[(Checks & gates)]
+<li>[[Test G]] $cssDesc[(Quests)]
+<li>[[Test H]] $cssDesc[(Traveling)]
+<li>[[Test I]] $cssDesc[(Navigating sublocations)]
+<li>[[Test J]] $cssDesc[(NPCs)]
+<li>[[Test K]] $cssDesc[(Temporary conditions and impressions)]
+<li>[[Test L]] $cssDesc[(Events)]
+
+]<!--child end-->
+]<!--parent end-->

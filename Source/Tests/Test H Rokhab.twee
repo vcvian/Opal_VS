@@ -1,0 +1,19 @@
+:: Test H Rokhab [test] {"position":"1125,5075","size":"100,100"}
+{=
+
+(storylet: when
+(passage:)'s name is "Traveling"
+and $place's traveling is true
+and $place's travelingTo is "Rokhab"
+and $place's travelingArriveReady is true
+)
+(exclusivity: 1)
+(metadata: "title", "Arriving in Rokhab (test)", "cardDesc", "Finally, shore!", "img", "https://fallenlondon.wiki/w/images/9/95/Ship.png",)
+
+You've arrived in Rokhab. Disembark?
+<br>
+---
+<ol>
+<li>($funcArrive: "Get settled in Rokhab", "Test H PickStay")<!--[[Test H PickStay]]-->
+<li>(link-rerun: "Not yet")[(goto: "Traveling")]
+</ol>

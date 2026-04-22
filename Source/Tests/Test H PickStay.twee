@@ -1,0 +1,10 @@
+:: Test H PickStay {"position":"1125,5200","size":"100,100"}
+{=
+(metadata: "title", "Picking a Place to Stay at Rokhab (test)")
+
+You're thinking about where to stay.
+
+<br>
+---
+<li>($funcPickStay: "Stay at the caravanserai, where all the traders and travelers do.", "Rokhab Caravanserai")
+<li>($funcPickStay: "Slum it in an alleyway, between the warehouses and the dock.", "Rokhab Vagrant Camp")

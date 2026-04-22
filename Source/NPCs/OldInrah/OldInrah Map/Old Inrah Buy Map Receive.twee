@@ -1,0 +1,36 @@
+:: Old Inrah Buy Map Receive {"position":"3825,1475","size":"100,100"}
+{=
+
+(metadata:
+"NPC", "OldInrah",
+"title", "Bought Inrah's Map",
+"topicDetail", "Well, at least it's yours now.",
+"talked", (a: "youngInrah", "mapInrah", "mapInrahBought"),
+)
+
+
+$cssColumnParent[
+
+$cssColumnChild[
+	$cssBox[
+    	($funcImage: (passage: "npc.OldInrah")'s img)
+         $cssBoxItem[''(print: (passage:)'s title )''<br>(print: (passage:)'s topicDetail)]
+    ]
+]
+
+<!--Main content begins here-->
+$cssColumnChild[
+
+["Glad to have done business with you,"]<OldInrahLine| Koh-Inrah sits back down to scoop your coins from the desk top into a leather pouch. ["You will see that the map is indeed intricate, perhaps difficult to parse, not without practical reference. But Old Inrah is still here, ready to provide you directions if practicality is what you seek."]<OldInrahLine|
+<br>
+$cssDesc[Like most documents, Inrah's map can be read in your lodging. But it is most useful when you are out exploring actual locations.]
+<br>
+["And of course, no refund,"]<OldInrahLine| she squints at you, coin pouch disappearing into her velvet cape. ["Now, if there is nothing else..."]<OldInrahLine|
+<br>
+---
+<ol>
+($funcNPCTopics: "Even after such a hefty sale, business never truly stops for Koh-Inrah, and there are other customers to see to.", "Perhaps it is best that you leave and test your new purchase.")
+</ol>
+
+]<!--end child-->
+]<!--end parent-->

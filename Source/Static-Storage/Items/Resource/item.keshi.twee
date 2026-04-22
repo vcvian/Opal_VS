@@ -1,0 +1,14 @@
+:: item.keshi [static-storage] {"position":"1850,3375","size":"100,100"}
+{=
+
+(metadata: 
+	"id", [keshi],
+    "key", (a: "resource", "currency",),
+    "value", (a: 0.05, 30, 100, 50, 100, 200),
+    "img", "",
+    "desc", [Near useless - not only because of the war, but also because the Keshans have been debasing their coins - because of the war.],
+    "tip", [Silver coins with very little silver in them. Much of it still circulates in Askava long after the Keshan occupation has ended.],
+    "gainText", [Just having these can put you under suspicion of being a spy for the Kesh Empire. But of course, Keshan spies use rials.],
+    "lossText", [The Keshan coins are more valuable melted down and forged into swords than they are as coins. But of course, if the Keshans had your economic genius, they'd have won the war already.]
+
+)

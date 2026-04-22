@@ -1,0 +1,14 @@
+:: item.sample3 [static-storage] {"position":"2425,3475","size":"100,100"}
+<!--Not to be displayed. Only metadata used-->
+
+(metadata:
+	"id", [Sample item 3],
+    "key", (a: "craftable", "consumable"),
+    "level", 3,
+    "value", (a: 1, 125, 1515, 5363, 323, 1526,),
+    "img", "",
+    "desc", [Sample description 3],
+    "tip", [An ''exotic'' subtance. Sample tip 3.],
+    "gainText", [Gain text 3.],
+    "lossText", [Loss text 3.]
+)

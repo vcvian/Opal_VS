@@ -1,0 +1,43 @@
+:: quest.studentDebate [static-storage] {"position":"5325,1700","size":"100,100"}
+{=
+
+<!--An example of a quest with (1) progress that the player affects; (2) auto-disappearing timer (and auto-resetting the quest);-->
+
+(metadata: 
+"id", [Situation: A Debate Among Half-Peers],
+"img", "Assets/Portraits/Event_Argue_1.png",
+"desc", [The sort-of-students of Apesai's quasi-academy will hold a series of debates (is it so civil?) in the lighthouse's courtyard.],
+"tip",[{
+    <!--time check-->
+    (set: _debateDaysLeft to ($funcCheckExists: $place's eventDuration, "studentDebate", 0))
+
+    (if: _debateDaysLeft >= 4)[The debates just started. They will go on for a few more days.]
+    (elseif: _debateDaysLeft > 1)[The debates have been going on for (plural: 4 - _debateDaysLeft, "day").]
+    (elseif: _debateDaysLeft is 1)[The debates are winding to a close. Today should be the last.]
+    (elseif: _debateDaysLeft <= 0)[The debates have ended.]
+}],
+)
+
+<!--
+"timer", [($funcCheckExists: $place's eventDuration, "studentDebate", 0)],
+"timerDesc", [\
+	(if: $char's player's timerQuest's studentDebate's timer > 0)[Passionate words are still raging. Give it, say (plural: $char's player's timerQuest's studentDebate's timer, "more day").](else:)[They're done debating.]\
+],
+"timerAddLog", [These verbal spars will taper out in a few days - say, (print: (passage: "quest.studentDebate")'s timer) at most.],
+"timerAddDialog", [These verbal spars will taper out in a few days - say, (print: (passage: "quest.studentDebate")'s timer) at most - if it's anything like the ones you've been in.],
+"timerAddConfirm", "Passion burns quick.",
+"timerDoneDialog", [The students of Apesai have grown tired of being at each other's throats, for now.],
+"timerDoneConfirm", "Back to normal.",
+"timerDoneEffect", [\
+	<!--Deactive quest-->\
+	($funcQuestUpdate: "studentDebate", "inactive", "Matters of debate do not resolve conclusively. They only sometimes need venting, which they will again some time in the future.", "Seems inevitable.")
+    <!--Reset progress att-->\
+    (set: _reset to ($funcCheckExists: $char's player's att, "studentDebateX", 0))\
+	($funcGainLoss: "att.", "studentDebateX", -_reset)\
+    (set: _reset to ($funcCheckExists: $char's player's att, "studentDebateY", 0))\
+	($funcGainLoss: "att.", "studentDebateY", -_reset)\
+    <!--Remove timer-->\
+    ($funcRemoveTimer: "studentDebate", "timer")\
+],
+"timerDoneLog", [The students of Apesai have grown tired of being at each other's throats, for now.],
+-->

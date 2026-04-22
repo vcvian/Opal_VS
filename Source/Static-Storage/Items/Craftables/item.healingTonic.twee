@@ -1,0 +1,14 @@
+:: item.healingTonic [static-storage] {"position":"2325,3375","size":"100,100"}
+<!--Not to be displayed. Only metadata used-->
+
+(metadata:
+	"id", [Healing Tonic],
+    "key", (a: "craftable", "consumable", "potion",),
+    "level", 1,
+    "value", (a: 50, 0, 1, 2, 0, 1,),
+    "img", "",
+    "desc", [A brownish suspension of Gor. Helps the body repair itself but isn't a substitute for more specialized treatments.],
+    "tip", [A ''simple'' subtance. When resting, you can drink this to bolster your healing.],
+    "gainText", [You now hold in your hand a vial of rejuvinating tonic.],
+    "lossText", [Aand... gone.]
+)

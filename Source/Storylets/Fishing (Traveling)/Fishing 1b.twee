@@ -1,0 +1,26 @@
+:: Fishing 1b {"position":"5175,3800","size":"100,100"}
+{=
+
+(metadata: "title", "Caught a Fish",
+"cardDesc", "Success! The ocean yields its delicious treasure.")
+
+$cssColumnParent[
+
+$cssColumnChild[
+$cssBox[
+    ($funcImage: (passage: "S: Fishing (Nurrah)")'s img)
+        $cssBoxItem[''(print: (passage:)'s title )''<br>(print: (passage:)'s cardDesc)]
+]
+($funcWeatherBox:)
+]
+
+$cssColumnChild[
+Yes! Now what do you do? Filet it? Cure it over embers? Sear it in a pan? So many options.
+<br>
+---
+(link: "Either way, you have more to eat now.")[\
+    ($funcGainLoss: "item.", "supplies", 1)\
+    $funcDone\
+    ]
+]<!--end child-->
+]<!--end parent-->

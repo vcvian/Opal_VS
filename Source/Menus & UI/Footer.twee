@@ -1,0 +1,17 @@
+:: Footer [footer] {"position":"2175,2475","size":"100,100"}
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<!--Color NPC speech. Applied to all hooks named _char + Line-->
+($funcNPCSpeak:)
+
+<!--Ending flower-->
+(css: "  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;")[$cssDesc[❦]]

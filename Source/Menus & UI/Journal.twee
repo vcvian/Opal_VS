@@ -1,0 +1,94 @@
+:: Journal [UI] {"position":"2425,2500","size":"100,100"}
+{=
+
+(metadata: "UI", true,)
+
+($funcUITopBar:)
+
+<!--Job Queue-->
+(if: (data-names: $char's player's timerCraft)'s length > 0)[\
+<div style="padding: 20px;">
+	<details open>
+	<summary>''Things Being Created''</summary>
+	(for: each _job, ...(data-names: $char's player's timerCraft))[\
+    	<!--Load item DM-->\
+        (set: _itemDM to (passage: "item."+($char's player's timerCraft's _job's 1st) ))\
+        <!--Load lab's DM-->\
+        (set: _labDM to (passage: _job))\
+        \
+		$cssDesc[	↪	''(print: $char's player's timerCraft's _job's 2nd) (print: _itemDM's id)'' being synthesized at the (print: _labDM's title). (if: $char's player's timerCraft's _job's 3rd > 0)[(plural: $char's player's timerCraft's _job's 3rd, "day") remaining.](else:)[(It's done! Come to the ''(print: _labDM's title)'' to pick it up.)]]\
+	<br>
+    ]\
+	</details>
+</div>
+]<!--end of if-->
+
+<!--Active quests-->
+<div style="padding: 20px;">
+<details open>
+<summary>''Active Stories''</summary>
+(for: each _quest, ...(data-names: $char's player's quests))[\
+	<!--Load quest DM-->\
+    (set: _questDM to (passage: "quest."+_quest))\
+    \
+	(if: $char's player's quests's _quest is "active")[\
+		<div>$cssBox[<div>(print: "<img style=\"margin: 20px\" width=\"150px\" src=\"" + _questDM's img + "\">")</div>\
+		$cssBoxItem[\
+            📜 ''(print: _questDM's id)'' — (print:_questDM's desc)\
+            $cssDesc[<br>		↪  (print: _questDM's tip)]\
+            (if: (data-names: $char's player's timerQuest) contains _quest)[\
+                (for: each _timer, ...(data-names: $char's player's timerQuest's _quest))[\
+                    $cssDesc[<br>		↪  (print: _questDM's (_timer + "Desc"))]\
+                ]<!--end of timer loops-->\
+        ]<!--end of if has timer-->\
+		]<!--end of boxItem-->\
+		]<!--end of box-->\
+	</div>\
+	]\
+]\
+</details>
+</div>
+<!--end of active quests-->
+
+<!--Completed quests-->
+<div style="padding: 20px;">
+<details>
+<summary>''Completed Stories''</summary>
+(for: each _quest, ...(data-names: $char's player's quests))[\
+	<!--Load quest DM-->\
+    (set: _questDM to (passage: "quest."+_quest))\
+    \
+	(if: $char's player's quests's _quest is "completed")[\
+		<div>$cssBox[<div>(print: "<img style=\"margin: 20px\" width=\"150px\" src=\"" + _questDM's img + "\">")</div>\
+        $cssBoxItem[\
+			✔️ ''(print: _questDM's id)'' — (print: _questDM's desc)\
+        ]<!--end of boxItem-->\
+        ]<!--end of box-->\
+        </div>\
+	]<!--end of if completed-->\
+]\
+</details>
+</div>
+<!--end of completed quests-->
+
+<!--Failed quests-->
+<div style="padding: 20px;">
+<details>
+<summary>''Failed Stories''</summary>
+<br>
+(for: each _quest, ...(data-names: $char's player's quests))[\
+	<!--Load quest DM-->\
+    (set: _questDM to (passage: "quest."+_quest))\
+    \
+	(if: $char's player's quests's _quest is "failed")[\
+		<div>$cssBox[<div>(print: "<img style=\"margin: 20px\" width=\"150px\" src=\"" + _questDM's img + "\">")</div>\
+        $cssBoxItem[\
+			❌ ''(print: _questDM's id)'' — (print: _questDM's desc)\
+        ]<!--end of boxItem-->\
+        ]<!--end of box-->\
+        </div>\
+	]<!--end of if failed-->\
+]\
+</details>
+</div>
+<!--end of failed quests-->

@@ -1,0 +1,12 @@
+:: item.baseOpal [static-storage] {"position":"2100,3375","size":"100,100"}
+<!--Not to be displayed. Only metadata used-->
+
+(metadata:
+	"id", [Base Opal],
+    "key", (a: "resource", "tradeGoods",),
+    "value", (a: 100, 23, 12, 13, 35, 14),
+    "desc", [The luminous and glowing stone. Crucial to the production of magical artifacts and higher-level alchemy.],
+    "tip", [This is used to turn magic into solid artifacts.],
+    "gainText", [You have acquired a base opal. Keep it well.],
+    "lossText", [You part ways with the precious stone.]
+)

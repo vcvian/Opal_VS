@@ -1,0 +1,14 @@
+:: item.ginger [static-storage] {"position":"2750,3375","size":"100,100"}
+{=
+
+(metadata: 
+	"id", [Askavan Ginger],
+    "key", (a: "ingredient",),
+    "value", (a: 5, 0, 0, 2, 0, 0),
+    "img", "",
+    "desc", [Sailors chew this root to get rid of their fish breath and to calm their bleeding gums.],
+    "tip", [A minor alchemical source of ''Gor''.],
+    "gainText", [Now everything in your bag is going to smell like it.],
+    "lossText", [Gone, but its scent lingers.]
+
+)

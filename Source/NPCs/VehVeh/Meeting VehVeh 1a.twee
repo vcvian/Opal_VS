@@ -1,0 +1,32 @@
+:: Meeting VehVeh 1a {"position":"6150,1650","size":"100,100"}
+{=
+
+(metadata:
+"NPC", "VehVeh",
+"title", "Meeting Veh-Veh",
+"cardDesc", "",)
+
+$cssColumnParent[
+
+$cssColumnChild[
+	$cssBox[
+    	($funcImage: (passage: "S: Meeting VehVeh")'s img)
+         $cssBoxItem[''(print: (passage:)'s title )''<br>(print: (passage:)'s cardDesc)]
+    ]
+]
+
+$cssColumnChild[
+
+["Hi, I'm Veh-Veh..."]<VehVehLine|
+<br>
+["You're a journeyman, and you've come from... the imperium? Wow. Fancy.""]<VehVehLine|
+<br>
+["And your teacher is with you?"]<VehVehLine|
+
+<br>
+---
+<ol>
+($funcNPCTopics: "Veh-Veh seems distracted. You should leave her be for today.", "It's good to have met a fellow student, Veh-Veh. Bye.")
+</ol>
+]<!--end child-->
+]<!--end parent-->

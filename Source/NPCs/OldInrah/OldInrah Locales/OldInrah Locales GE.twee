@@ -1,0 +1,148 @@
+:: OldInrah Locales GE {"position":"3525,1200","size":"100,100"}
+{=
+
+(metadata:
+"NPC", "OldInrah",
+"title", "Asking Koh-Inrah for Directions",
+"topic", "\"Where would one buy or sell things? I've seen the red dome of the local Grand Exchange from the sea, but now that I'm on land, I need some directions.\"",
+"topicDetail","Upon arriving at a new place, one must always find out where the market is.",
+"talked", (a: "localesApesai", "exchange"),
+"addCode", [],)
+
+$cssColumnParent[
+
+$cssColumnChild[
+	$cssBox[
+    	($funcImage: (passage: "npc.OldInrah")'s img)
+         $cssBoxItem[''(print: (passage:)'s title )''<br>(print: (passage:)'s topicDetail)]
+    ]
+]
+
+<!--Main content begins here-->
+$cssColumnChild[
+
+
+$cssDesc[''You: //(print: (passage:)'s topic)//'']
+<br>
+<!--first time-->[
+You place her fee on the table.
+<br>
+["Maginificent, isn't it? Red steel,"]<OldInrahLine| she says. You're unsure whether she is referring to the rial coins or the dome of the Grand Exchange. ["Askava's Grand Exchange might not be as... well, grand as the ones where you're from, whichever dahak it is, but //almost// anything can be found in our branch. With a hefty markup, of course. You have the Ministry of Funds to thank for that. Ah, but Old Inrah should not speak ill of the taxmen."]<OldInrahLine|
+<br>
+($funcInnerConvo: (dm:
+	"<!--A-->\"Then you can speak *positively* about which direction, which streets, which turns I might take to get there.\"", "1a",
+    "<!--B-->\"*Almost* anything?\"", "1b",
+    "<!--C-->\"Taxmen are spoken of poorly anywhere.\"", "1c",
+))
+<br>
+](firstTime|
+
+<!--second time-->
+[
+You place the coins on the table and inquire about the Grand Exchange.
+<br>
+["Again? Please don't say you got lost on the way there. Did you end up at some fish market instead? Old Inrah accepts no liability for the patron's failure to heed perfectly good directions."]<OldInrahLine|
+<br>
+($funcInnerConvo: (dm:
+	"<!--A-->\"They say that good students never learn once.\"", "2nd1",
+    "<!--B-->\"Would you please spare the remarks and just give me the directions?\"", "pre-3a",
+))
+<br>
+](secondTime|
+
+[
+["So clever, the patron is. Old Inrah cannot but oblige,"]<OldInrahLine| she chuckles, scooping up the money into her pouch. ["Although, if the patron wishes to brave the Exchange, then the patron should know that some lessons should be learned quickly and soon. Else, far more rials than this will be lost. Not that it's a waste in Old Inrah's hands."]<OldInrahLine|
+<br>
+($funcInnerConvo: (dm:
+	"<!--A-->\"The way of commerce is a tricky one, far more than necessary.\"", "1a",
+    "<!--B-->\"It is an acceptable price, if it is indeed true that *almost* anything could be found where you're directing me.\"", "1b",
+    "<!--C-->\"Better a citizen's hands than the taxman's.\"", "1c",
+))
+<br>
+](2nd1|
+
+
+
+
+(if: ($funcTalkedTimesCheck: "exchange") < 1)[(show: ?firstTime)]
+(else:)[(show: ?secondTime)]
+
+
+[
+Though Apesai's landmarks are plain to see from a distance, the paths towards them are surprisingly difficult.
+<br>
+["Yes, isn't it a shame? The streets around here has become a mess, especially once you get closer to the Grand Exchange. People crowd around the markets, and there is only so much land on our island. Soon, even palaces must stand wall-to-wall. You've learned how to plan cities in your fancy universities, yes? Well, our new governor will need some sage counsel."]<OldInrahLine|
+<br>
+($funcInnerConvo: (dm:
+	"<!--B-->\"More importantly, I need //your// counsel right now, which was what I paid for.\"", "pre-3a",
+    "<!--A-->\"Yes, all rulers need counsel, but I am merely a jounreyman looking for the way to the market. Can you show me the way?\"", "pre-3b",
+))
+<br>
+](1a|
+
+
+[
+["Yes, *almost*,"]<OldinrahLine| she says, a black grin appears under her veil. ["And the patron will not catch Old Inrah saying anything more."]<OldInrahLine|
+<br>
+Which is to say, there is *much* else that could be acquired outside of the Exchange's dome. After all, merchants from all corners of the empire, as well as those from Yavana, Kesh, and beyond, do not endure such a long journey to Askava - and more specifically, Apesai - for *only* spices, silk, and pottery, as valuable as those things might be.
+<br>
+($funcInnerConvo: (dm:
+	"<!--A-->\"Then surely, you //can// say where which streets to take to get to the Grand Exchange.\"", "pre-3b",
+))
+<br>
+](1b|
+
+[
+["By the light, the youths are bold these days,"]<OldInrahLine| the old woman makes a sign of blessing. ["It is by the wisdom emperor that a Grand Exchange is here at all, and by the law of the Ministry of Funds does it continue to stand. All else on this island sprung up around the Exchange, slowly over centuries like lichen on stone, all throughout the Second Colony Era. Without it, Apesai would remain a fishing village like Rokhab still is, or we'd devolve into banditry like Zirab. So, what is a few coins for safer conduct?"]<OldInrahLine|
+<br>
+($funcInnerConvo: (dm:
+	"<!--A-->\"Indeed. It is an acceptable price. Then can you show me the way to the Grand Exchange?\"", "pre-3b",
+    "<!--B-->\"Thank you for the lesson in civics, but I will test its veracity under the dome itself. Can you show me the way?\"", "pre-3a",
+))
+<br>
+](1c|
+
+[
+["Hmph, Old Inrah simply wanted ours patrons to get their rial's worth. Directions are worthless without knowing what one is heading into."]<OldInrahLine|
+(show:?3)
+<br>
+](pre-3a|
+
+[
+["Yes, Old Inrah can certainly do that."]<OldInrahLine|
+(show:?3)
+<br>
+](pre-3b|
+
+[
+And so, she begins to show you several ways to the Grand Exchange, which involves weaving through some of the busiest streets of Apesai marked by red granite obelisks. Or failing that, one can simply follow the scent of spices.
+(show: ?done)
+<br>
+](3|
+
+<!--done-->
+[
+<!--register talked keys-->
+($funcTalked:)
+<!--determine if already know-->
+(set: _alreadyKnow to false)
+(if: ($funcCheckExists: $char's player's att, "knowApesaiGE", 0) >= 1)[(set: _alreadyKnow to true)]
+<!--determine link text if already know-->
+(set: _doneText to "")
+(if: _alreadyKnow is true)[(set: _doneText to "It is the same directions you've memorized. Was this a wise way to spend your money?")]
+(else:)[(set: _doneText to "Pay close attention, and get your money's worth.")]
+<br>
+
+
+---
+(link-rerun: _doneText)[{
+	(if: _alreadyKnow is true)[($funcTempGainLoss: "impressionApesai", 1)]
+    (if: _alreadyKnow is false)[($funcTempGainLoss: "impressionApesai", 5)]
+    ($funcOpinionGainLoss: "OldInrah", 1, "Much goodwill is earned through the exchange of money, and the old woman happily takes yours.")
+    (set: $char's OldInrah's energy's 1st to it - 1)
+    (goto: "OldInrah Locales Else")
+}]
+](done|
+
+]<!--end child-->
+]<!--end parent-->

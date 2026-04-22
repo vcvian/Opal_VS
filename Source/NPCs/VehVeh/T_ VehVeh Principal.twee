@@ -1,0 +1,61 @@
+:: T: VehVeh Principal [topic] {"position":"6625,1650","size":"100,100"}
+{=
+
+(storylet: when
+(passage:) contains "NPC"
+and $char's VehVeh's opinion's 2nd > 20
+and $char's VehVeh's location is "Apesai Lighthouse"
+and $char's VehVeh's talked contains "absentPrincipal"
+and $char's player's timerCooldown does not contain "T: VehVeh Principal"
+)
+<!--Add in more conditions as we progress in that principal-finding quest-->
+
+(urgency: 2)
+(metadata:
+"NPC", "VehVeh",
+"title", "Chatting with Veh-Veh",
+"topic", "Wait, you said that the principal is... gone?",
+"topicDetail", "A school without a principal.",
+"cooldown", 1,
+"talked", (a: "absentPrincipal",),
+"addCode", [],
+)
+
+$cssColumnParent[
+
+$cssColumnChild[
+	$cssBox[
+    	($funcImage: (passage: "S: VehVeh")'s img)
+         $cssBoxItem[''(print: (passage:)'s title )''<br>(print: (passage:)'s topicDetail)]
+    ]
+]
+
+$cssColumnChild[
+
+$cssDesc[''You: //(print: (passage:)'s topic)//'']
+<br>
+
+(if: ($funcTalkedTimesCheck: "absentPrincipal") is 0)[
+["Yup, it sucks. He's off for the frontlines. Said it's going to be his breakthrough of the century..."]<VehVehLine|
+]
+
+(else:)[What's more to say, man? It's a bummer. But I expect nothing less from an elder demahvars... You don't get to be that way by lacking in ambition...]
+
+<br>
+---
+(if: ($funcTalkedTimesCheck: "absentPrincipal") is 0)[\
+	(link: "Interesting...")[\
+    	($funcQuestUpdate: "absentPrincipal", "primed", "", "")\
+        ($funcAddStoryletCooldown: (passage:)'s name)\
+        ($funcTalked:)
+    	(goto: "VehVeh Principal 1a")\
+	]\
+]<!--[[VehVeh Principal 1a]]-->
+(else:)[
+<ol>
+($funcNPCTopics: "Veh-Veh sighs and looks up at the lighthouse. She seems distracted. You should leave her be.", "Let's hope he finds what he's looking for, and things can get back to normal. Bye, Veh-Veh.")
+</ol>
+]
+
+]<!--end child-->
+]<!--end parent-->

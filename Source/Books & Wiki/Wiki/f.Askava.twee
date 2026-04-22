@@ -1,0 +1,9 @@
+:: f.Askava [book] {"position":"1775,1100","size":"100,100"}
+{=
+
+(dialog: [(box:"X", 7)[\
+Askava is a province of the Nurandah Empire, one of seven.
+
+
+
+]], "I knew that.")

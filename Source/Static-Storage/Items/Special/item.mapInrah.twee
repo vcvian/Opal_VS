@@ -1,0 +1,15 @@
+:: item.mapInrah [static-storage] {"position":"3775,1325","size":"100,100"}
+{=
+
+(metadata: 
+	"id", [Inrah's Map of the Nurrah Coastlands],
+    "key", (a: "document",),
+    "value", (a: 1000, 50, 50, 20, 50, 100,),
+    "img", "",
+    "desc", [An intricate parchment map made by one "Nav-Inrah". It pays special attention in depicting the major settlements found in the Nurrah rostak of Askava, down to the streets and alleyways. Perhaps unsurprisingly, the wilderness is only sparsely rendered.],
+    "tip", [The map will come in handy when you are exploring the major settlements found in the Nurrah Coastlands.],
+    "gainText", [You have in your hands a one-of-a-kind map of the Nurrah rostak, made by one "Nav-Inrah".],
+    "lossText", [You've lost Inrah's map. There are other ways to navigate the settlements of Nurrah rostak, but this map was something special.],
+    "content", [],
+
+)

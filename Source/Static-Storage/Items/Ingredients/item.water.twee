@@ -1,0 +1,14 @@
+:: item.water [static-storage] {"position":"2850,3375","size":"100,100"}
+{=
+
+(metadata: 
+	"id", [Sanctified Water],
+    "key", (a: "ingredient",),
+    "value", (a: 4, 0, 2, 0, 0, 0),
+    "img", "",
+    "desc", [A bottle of what's misleadingly called 'sanctified water'. Oh, it //is// sanctified, but it is //not// water.],
+    "tip", [A minor alchemical source of ''Ab''.],
+    "gainText", [You keep the bottle sealed tight. If any of it gets on your skin, you'll be scratching for days.],
+    "lossText", [You're glad to carry less of the damnable liquid.]
+
+)

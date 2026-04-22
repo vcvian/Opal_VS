@@ -1,0 +1,14 @@
+:: att.urgentAssignment [static-storage] {"position":"1700,4675","size":"100,100"}
+{=
+
+(metadata: 
+	"id", [Progress: Urgent Essay],
+    "key", (a: "progress", ),
+    "value", (a: 1, 0, 0, 0, 0, 0),
+    "img", "",
+    "desc", [How far along you are with your essay.],
+    "tip", [Keep at it before time's up!],
+    "gainText", [You made progress with your essay,],
+    "lossText", [Gone, all that effort.]
+
+)

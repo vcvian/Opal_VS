@@ -1,0 +1,293 @@
+:: S: studentDebate (Bookie After) [storylet]
+{=
+(storylet: when
+$place's sublocation is $place's stay
+and $place's traveling is false
+and ($funcCheckExists: $place's events, "studentDebate", "inactive") is "inactive"
+and ($funcCheckExists: $char's player's quests, "studentDebate", "") is "active"
+and (($funcCheckExists: $char's player's inv, "betTicketX", 0) > 0 or ($funcCheckExists: $char's player's inv, "betTicketY", 0) > 0)
+)
+(exclusivity: 1)
+(metadata: "title", "Running Into the Bookie", "cardDesc", "Though the debates have momentarily concluded, there is still the matter of your wager.", "img", "Assets/Portraits/Event_Argue_1.png", "interrupt", true)
+
+$cssColumnParent[
+
+$cssColumnChild[
+	$cssBox[
+    	($funcImage: (passage:)'s img)
+         $cssBoxItem[''(print: (passage:)'s title )''<br>(print: (passage:)'s cardDesc)]
+    ]
+]
+
+$cssColumnChild[
+
+<!--progress check-->
+(set: _debateProgress to ($funcCheckExists: $char's player's att, "studentDebateY", 0) > ($funcCheckExists: $char's player's att, "studentDebateX", 0))
+
+<!--who wins?-->
+(set: _victor to "")
+(if: _debateProgress is true)[(set: _victor to "Y")]
+(else:)[(set: _victor to "X")]
+
+<!--inserted into final links. If the player misses the final day, on the next day, there will be an interrupt storylet that performs this reset-->
+(set: _resetDebate to [\
+    <!--Reset progress att-->\
+    (set: _reset to ($funcCheckExists: $char's player's att, "studentDebateX", 0))\
+	($funcGainLoss: "att.", "studentDebateX", -_reset)\
+    (set: _reset to ($funcCheckExists: $char's player's att, "studentDebateY", 0))\
+	($funcGainLoss: "att.", "studentDebateY", -_reset)\
+])
+
+<!--cheated-->
+(set: _cheated to false)
+(set: _helped to false)
+(if: (($funcCheckExists: $char's player's att, "studentDebateY", 0) + ($funcCheckExists: $char's player's att, "studentDebateX", 0)) >= 2)[(set: _helped to true)]
+(if: _victor is "X" and ($funcCheckExists: $char's player's inv, "betTicketX", 0) > 0 and _helped)[(set: _cheated to true)]
+(if: _victor is "Y" and ($funcCheckExists: $char's player's inv, "betTicketY", 0) > 0 and _helped)[(set: _cheated to true)]
+
+<!--Passage text begins-->
+(You run into the bookie. This may occur at the end of the last debate or back at stay.)
+<br>
+<!--Victor-->
+(if: _victor is "Y")[Side Y victory.]
+
+(else:)[Side X victory.]
+
+<br>
+
+(Readout of current tickets held & recall both sides' odds)
+
+<br>
+
+(if: _cheated)[
+(But... you've meddled with the results. I'll give you a few options.)
+<br>
+]
+---
+<!--cheating scenario-->
+(if: _cheated)[
+<ol>
+
+<li>(link: "Forfeit all of your stakes. No harm, no foul.")[{
+    (set: _loss to ($funcCheckExists: $char's player's inv, "betTicketX", 0))
+    (if: _loss > 0)[($funcGainLoss: "item.", "betTicketX", -_loss)]
+    (set: _loss to ($funcCheckExists: $char's player's inv, "betTicketY", 0))
+    (if: _loss > 0)[($funcGainLoss: "item.", "betTicketY", -_loss)]
+    (goto: "studentDebate (Cheated Forfeit)")
+}]
+
+<li>(link: "Accept only half of what you would have earned, and be henceforth known in this city as a //swindler//.")[{
+    (goto: "studentDebate (Cheated Swindler)")
+}]
+
+</ol>
+]<!--end of cheated options-->
+
+
+<!--uninvolved scenario-->
+(else:)[
+
+<!--still got tickets?-->
+(if: (($funcCheckExists: $char's player's inv, "betTicketX", 0) > 0 or ($funcCheckExists: $char's player's inv, "betTicketY", 0) > 0))[
+<ol>
+Cash out your winnings...
+
+<!--setting _priceMod-->
+(set: _priceMod to 1)
+(if: _victor is "X")[(set: _priceMod to 1.7)]
+(elseif: _victor is "Y")[(set: _priceMod to 3)]
+
+<!--if X wins-->
+(if: _victor is "X")[
+<li>($funcMultiBuySell: "sell", "betTicketX", "rial", _priceMod)</li>
+(set: _loss to ($funcCheckExists: $char's player's inv, "betTicketY", 0))
+(if: _loss > 0)[<li>(link: "Rip up the non-winning tickets")[($funcGainLoss: "item.", "betTicketY", -_loss)(redirect: (passage:)'s name)]]</li>
+]
+
+<!--if Y wins-->
+(if: _victor is "Y")[
+<li>($funcMultiBuySell: "sell", "betTicketY", "rial", _priceMod)</li>
+(set: _loss to ($funcCheckExists: $char's player's inv, "betTicketX", 0))
+(if: _loss > 0)[<li>(link: "Rip up the non-winning tickets")[($funcGainLoss: "item.", "betTicketX", -_loss)(redirect: (passage:)'s name)]]</li>
+]
+
+<li>~~Shake the bookie's hand and be done with him.~~ $cssDesc[(Expend all of your tickets first.)]</li>
+</ol>
+]<!--end of still got tickets-->
+
+<!--done cashing out?-->
+(else:)[
+
+<!--determine where to go next depending on context (sublocation)-->
+(set: _gotoNext to $place's sublocation)
+(if: $place's sublocation is "Apesai Lighthouse")[(set: _gotoNext to "mockDay")]
+
+($funcQuestUpdateLink: "Shake the bookie's hand and be done with him.", "studentDebate", "completed", "One thing that you have realized early into your academic career was that while students like you toiled in hope of one day having a lucrative employment, there were already others making a killing off of your sweat. It is never too early to start making money.", "Whether you are proficient at it is a different matter.", [_resetDebate], _gotoNext)
+
+]
+
+
+]<!--end of uninvolved options-->
+
+]<!--end child-->
+]<!--end parent-->
+
+
+
+:: studentDebate (Cheated Forfeit)
+{=
+
+(metadata: "title", "Forfeiting Winnings", "cardDesc", "")
+
+$cssColumnParent[
+
+$cssColumnChild[
+	$cssBox[
+    	($funcImage: (passage: "S: studentDebate (Bookie After)")'s img)
+         $cssBoxItem[''(print: (passage:)'s title )''<br>(print: (passage:)'s cardDesc)]
+    ]
+]
+
+$cssColumnChild[
+
+<!--progress check-->
+(set: _debateProgress to ($funcCheckExists: $char's player's att, "studentDebateY", 0) > ($funcCheckExists: $char's player's att, "studentDebateX", 0))
+
+<!--who wins?-->
+(set: _victor to "")
+(if: _debateProgress is true)[(set: _victor to "Y")]
+(else:)[(set: _victor to "X")]
+
+<!--inserted into final links. If the player misses the final day, on the next day, there will be an interrupt storylet that performs this reset-->
+(set: _resetDebate to [\
+    <!--Reset progress att-->\
+    (set: _reset to ($funcCheckExists: $char's player's att, "studentDebateX", 0))\
+	($funcGainLoss: "att.", "studentDebateX", -_reset)\
+    (set: _reset to ($funcCheckExists: $char's player's att, "studentDebateY", 0))\
+	($funcGainLoss: "att.", "studentDebateY", -_reset)\
+])
+
+<!--Passage text begins-->
+"Hope you've learned your lesson. It's been good doing business with you. Looking forward to more."
+<br>
+---
+
+<!--determine where to go next depending on context (sublocation)-->
+(set: _gotoNext to $place's sublocation)
+(if: $place's sublocation is "Apesai Lighthouse")[(set: _gotoNext to "mockDay")]
+
+($funcQuestUpdateLink: "Grit your teeth as he leaves.", "studentDebate", "inactive", "What is going through your mind right now, o davehmar-to-be? Anger? Shame? Grief? A hundred different voices debating what you could have done differently? Or are they all saying, in unison, that these emotions are too fanciful, too expensive? You can only afford to swallow your pride and count your remaining coins.", "Such are the wages of naivete.", [_resetDebate], _gotoNext)
+
+
+]<!--end child-->
+]<!--end parent-->
+
+
+
+:: studentDebate (Cheated Swindler)
+{=
+
+(metadata: "title", "A Shameful Earning", "cardDesc", "")
+
+$cssColumnParent[
+
+$cssColumnChild[
+	$cssBox[
+    	($funcImage: (passage: "S: studentDebate (Bookie After)")'s img)
+         $cssBoxItem[''(print: (passage:)'s title )''<br>(print: (passage:)'s cardDesc)]
+    ]
+]
+
+$cssColumnChild[
+
+<!--progress check-->
+(set: _debateProgress to ($funcCheckExists: $char's player's att, "studentDebateY", 0) > ($funcCheckExists: $char's player's att, "studentDebateX", 0))
+
+<!--who wins?-->
+(set: _victor to "")
+(if: _debateProgress is true)[(set: _victor to "Y")]
+(else:)[(set: _victor to "X")]
+
+<!--inserted into final links. If the player misses the final day, on the next day, there will be an interrupt storylet that performs this reset-->
+(set: _resetDebate to [\
+    <!--Reset progress att-->\
+    (set: _reset to ($funcCheckExists: $char's player's att, "studentDebateX", 0))\
+	($funcGainLoss: "att.", "studentDebateX", -_reset)\
+    (set: _reset to ($funcCheckExists: $char's player's att, "studentDebateY", 0))\
+	($funcGainLoss: "att.", "studentDebateY", -_reset)\
+])
+
+<!--still got tickets to cash in?-->
+(set: _stillGotTickets to false)
+(if: (($funcCheckExists: $char's player's inv, "betTicketX", 0) > 0 or ($funcCheckExists: $char's player's inv, "betTicketY", 0) > 0))[(set: _stillGotTickets to true)]
+
+<!--Body text begins-->
+<!--still got tickets?-->
+(if: _stillGotTickets)[
+"Give me those tickets. Come on, come get your //'hard-earned'// money, you cheat."
+<br>
+
+<!--FOMO-->
+$cssDesc[
+(if: _victor is "X" and ($funcCheckExists: $char's player's inv, "betTicketX", 0) > 0)[Since X was the victor, and you have ($funcCheckExists: $char's player's inv, "betTicketX", 0) (print: (passage: "item.betTicketX")'s id), you would have gained ''(round: ($funcCheckExists: $char's player's inv, "betTicketX", 0) * 17) rial'', but your earnings are halved.]
+(elseif: _victor is "Y" and ($funcCheckExists: $char's player's inv, "betTicketY", 0) > 0)[Since Y was the victor, and you have ($funcCheckExists: $char's player's inv, "betTicketY", 0) (print: (passage: "item.betTicketY")'s id), you would have gained ''(round: ($funcCheckExists: $char's player's inv, "betTicketY", 0) * 30) rial'', but your earnings are halved.]
+]
+
+]<!--end of still got tickets?-->
+
+<!--no tickets left; done-->
+(else:)[
+You're sure he has shorted you a coin or two, but you're in no position to haggle right now.
+<br>
+"Got all you wanted? Good. Pleasure doing business with you, master," he extends his hand to you.
+]
+
+<br>
+---
+
+<!--still got tickets?-->
+(if: _stillGotTickets)[
+<ol>
+Cash out your winnings...
+
+<!--setting _priceMod-->
+(set: _priceMod to 1)
+(if: _victor is "X")[(set: _priceMod to 1.7/2)]
+(elseif: _victor is "Y")[(set: _priceMod to 3/2)]
+
+<!--if X wins-->
+(if: _victor is "X")[
+<li>($funcMultiBuySell: "sell", "betTicketX", "rial", _priceMod)</li>
+(set: _loss to ($funcCheckExists: $char's player's inv, "betTicketY", 0))
+(if: _loss > 0)[<li>(link: "Rip up the non-winning ticket")[($funcGainLoss: "item.", "betTicketY", -_loss)(redirect: (passage:)'s name)]]</li>
+]
+
+<!--if Y wins-->
+(if: _victor is "Y")[
+<li>($funcMultiBuySell: "sell", "betTicketY", "rial", _priceMod)</li>
+(set: _loss to ($funcCheckExists: $char's player's inv, "betTicketX", 0))
+(if: _loss > 0)[<li>(link: "Rip up the non-winning ticket")[($funcGainLoss: "item.", "betTicketX", -_loss)(redirect: (passage:)'s name)]]</li>
+]
+
+<li>~~Shake the bookie's hand and be done with him.~~ $cssDesc[(He's making you "cash out" the tickets first.)]</li>
+</ol>
+]<!--end of still got tickets-->
+
+<!--done, no tickets left-->
+(else:)[
+
+<!--determine where to go next depending on context (sublocation)-->
+(set: _gotoNext to $place's sublocation)
+(if: $place's sublocation is "Apesai Lighthouse")[(set: _gotoNext to "mockDay")]
+
+($funcQuestUpdateLink: "Shake the bookie's hand and be done with him.", "studentDebate", "inactive", "The moment he leaves, you furiously wipe your hand against your robe, but it does nothing to stop the dirty feeling. It didn't come from him. It didn't come from the coins he gave you either, as greasy as they are. You know well where this feeling comes from. It will follow you for a long, long time.", "Meanwhile, you can keep wiping.", [{
+    ($funcGainLoss: "att.", "repApesaiSwindler", 1)
+    _resetDebate
+}], _gotoNext)
+
+]
+
+
+
+]<!--end child-->
+]<!--end parent-->

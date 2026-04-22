@@ -1,0 +1,21 @@
+:: Test F {"position":"1000,4200","size":"100,100"}
+{=
+
+(metadata: "title", "Test F (checks & gates)")
+
+[[⇦ BACK->Pre-Test (NEW)]]
+<br>
+<!--[[Test F Success]][[Test F Failure]]-->
+<ul>
+100% success with a common item:
+<li>($funcCheckGate: "Spend some ginger", "inv", "ginger", 10, true, 100, "Test F Success", "Test F Failure")
+<br>
+Some chance of failure:
+<li>($funcCheckGate: "Bribe the guard", "inv", "rial", 20, true, 50, "Test F Success", "Test F Failure")
+<br>
+Check attribute without spending:
+<li>($funcCheckGate: "Check vigor", "att", "vigorous", 1, false, 70, "Test F Success", "Test F Failure")
+<br>
+Pure luck:
+<li>($funcLuckGate: "Try your luck", 70, "Test F Success", "Test F Failure")
+</ul>

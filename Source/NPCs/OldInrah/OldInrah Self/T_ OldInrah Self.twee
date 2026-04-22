@@ -1,0 +1,42 @@
+:: T: OldInrah Self [topic] {"position":"3000,1075","size":"100,100"}
+{=
+
+(storylet: when
+(passage:) contains "NPC"
+and $char's player's timerCooldown does not contain "T: OldInrah Self"
+)
+
+(metadata:
+"NPC", "OldInrah",
+"title", "Chatting with Koh-Inrah",
+"topic", "\"What is it like, being a proprietress of an guesthouse?\"",
+"topicDetail", "Some small talk might go a long way in building rapport.",
+"cooldown", 1,
+"talked", (a: "", ),
+"addCode", [($funcOpinionGainLoss: "OldInrah", -1, "The old woman squints at you, wondering why you're wasting her time.")],)
+
+$cssColumnParent[
+
+$cssColumnChild[
+	$cssBox[
+    	($funcImage: (passage: "npc.OldInrah")'s img)
+         $cssBoxItem[''(print: (passage:)'s title )''<br>(print: (passage:)'s topicDetail)]
+    ]
+]
+
+$cssColumnChild[
+
+$cssDesc[''You: //(print: (passage:)'s topic)//'']
+<br>
+["What is it like? Why, it's wonderful!"]<OldInrahLine| She sighs and closes her guest book. ["There is no shortage fresh faces, with so many questions for Koh-Inrah to answer, such as, 'Is there down in my pillow?' or, 'Where would one purchase a lion?' or, 'What is it like, being an old woman running a business?'"]<OldInrahLine|
+<br>
+The old woman smiles to herself, revealing rows of black teeth under her veil.
+<br>
+["Ridiculous. Even a child knows that are no lions here in Askava."]<OldInrahLine|
+<br>
+---
+<ol>
+($funcNPCTopics: "Old Inrah eyes an impatient guest behind you, and another one behind them, all waiting to ask her things or lodge a complaint. That is what's being a proprietress is like.", "Say your goodbye and get out of the way.")
+</ol>
+]
+]<!--parent end-->

@@ -1,0 +1,107 @@
+:: AA. NPC Conversation [startup] {"position":"1650,5550","size":"100,100"}
+<!--NPC talk topics (storylets)-->
+(set: $funcNPCTopics to (macro: str-type _tired, str-type _back, [(out:)[\
+	<!--Call cooldown and talked functions here-->\
+	(if: (passage:) contains "cooldown")[($funcAddStoryletCooldown: (passage:)'s name)]\
+    (if: (passage:) contains "talked")[($funcTalked:)]\
+    \
+	<!--Who are we talking to?-->\
+	(set: _char to (passage:)'s NPC)\
+	(for: each _topic, ...(open-storylets: where its tags contains "topic"))[\
+    	(if: _topic's NPC is _char and $char's _char's energy's 1st > 0)[\
+			<li>(link-rerun: _topic's topic)[\
+				\
+				<!--add topic's keys into NPC's talked DM-->\
+				\
+				<!--run addCode if any exists-->\
+				(if: _topic contains "addCode")[(print: _topic's addCode)]\
+				\
+                <!--Reduce energy-->\
+                (set: $char's _char's energy's 1st to it - 1)\
+				<!--Finally, goto-->\
+				(goto: _topic's name)\
+			] $cssDesc[((print: _topic's topicDetail))]<!--end of link-->\
+        ]<!--end of checking NPC's identity and energy-->\
+	]<!--end of looping-->\
+    (if: $char's _char's energy's 1st <= 0)[\
+			<li>~~Continue talking.~~ $cssDesc[(_tired)]\
+		]<!--end of tired cross out-->\
+    <br> Or...
+	<li> (link-rerun: _back)[(goto: $place's sublocation)] $cssDesc[(End the conversation.)]
+]]))
+
+<!--Talked function, to be inserted into $funcNPCTopics: Automatically adds & counts up all of this topic's keys. Only counts up if it's a different day (to prevent accidentally adding up times talked by dipping in and out of the player menus/inventory).-->
+(set: $funcTalked to (macro: [(out:)[\
+	<!--Who am I talking to?-->\
+	(set: _char to (passage:)'s NPC)\
+	\
+	(if: (passage:) contains "talked")[\
+		(for: each _key, ...(passage:)'s talked )[\
+			<!--if first time mentioning this key, add it in-->\
+			(if: $char's _char's talked does not contain _key)[\
+				(set: $char's _char's talked to it + (dm: _key, (a: $time's dayCount, 1) ) )\
+			]<!--end of add new if _char's talked does not already contain key-->\
+			\
+			<!--if already talked about this key before (but on a different date), update to new date and count up.-->\
+			(elseif: $char's _char's talked's _key's 1st < $time's dayCount)[\
+				<!--Update most recent date-->\
+				(set: $char's _char's talked's _key's 1st to $time's dayCount)\
+				<!--Count up-->\
+				(set: $char's _char's talked's _key's 2nd to it + 1)\
+			]<!--end of 2nd time talking about these topics, count up-->\
+		]<!--end of looping-->\
+	]<!--end of if contains talked keys-->\
+]]))
+
+<!--Check how many times a certain topic (talked key) has been mentioned. While this check works most of the time because the number is checked before the $funcTalked (inside $funcNPCTopics) is run (since code runs from top to bottom), there will be a bug when the whole passage loads (thus counting up times talked), and the player dips into the menu/inventory, then returns only to find that the text looks different. Therefore, to prevent this bug, $funcTalkedTimesCheck must minus 1 if it's evaluated on the same day that the keys were added.-->
+(set: $funcTalkedTimesCheck to (macro: str-type _key,[\
+	(set: _times to 0)\
+	\
+	<!--Who are we talking to?-->\
+	(set: _char to (passage:)'s NPC)\
+	\
+	(if: $char's _char's talked contains _key)[\
+		(set: _times to $char's _char's talked's _key's 2nd)\
+		(if: $time's dayCount <= $char's _char's talked's _key's 1st)[(set: _times to it - 1)]\
+	]\
+	\
+	<!--output a number-->\
+	(out-data: _times)\
+]))
+
+<!--Format an NPC's dialog. Placed in the footer; ran on every passages; automatically formats every major NPCs's lines given that those lines are named hooks.-->
+(set: $funcNPCSpeak to (macro: [(out:)[\
+	(for: each _char,...(data-names: $char))[\
+		(if: _char is not "player")[\
+			<!--Load NPC's color-->\
+            (set: _color to "white")\
+			(if: (passage: "npc." + _char) contains "color")[(set: _color to (passage: "npc." + _char)'s color)]\
+			<!--Determine NPC hooks-->\
+			(set: _charLine to _char + "Line")\
+			<!--Enchant!-->\
+			(enchant: (hooks-named: _charLine), (color: _color))\
+		]<!--end of if not player-->\
+	]<!--end of looping-->\
+]]))
+
+<!--Manually format NPC lines. Used for generic, non-variabled NPCs. Placed inside specific passages, and the NPC's name has to be manually declared.-->
+(set: $funcNPCSpeakManual to (macro: str-type _charName, [(out:)[\
+	(set: _color to (passage: "npc." + _charName)'s color)\
+    (set: _charLine to _charName + "Line")\
+    (enchant: (hooks-named: _charLine), (color: _color))\
+]]))
+
+<!--Inner conversations. The DM _convoChoices is formatted like so: (dm: "choice", (hooks-named: "1a") )-->
+(set: $funcInnerConvo to (macro: dm-type _convoChoices, [(out:)[\
+	<!--beginning of choices block-->[\
+    	<ol>\
+		(for: each _choice, ...(data-names: _convoChoices))[\
+			<li> (link: _choice)[\
+				(hide: ?choicesBlock)\
+                (show: (hooks-named: (str:_convoChoices's _choice)))\
+                (prepend: (hooks-named: (str:_convoChoices's _choice)))[$cssDesc[''You: _choice''] <br><br>]\
+			]<!--end of choice link-->\
+		</ol>\
+        ]<!--end of looping-->\
+	]<choicesBlock|\
+]]))

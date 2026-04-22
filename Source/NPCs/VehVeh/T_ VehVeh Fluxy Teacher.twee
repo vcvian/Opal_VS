@@ -1,0 +1,57 @@
+:: T: VehVeh Fluxy Teacher [topic] {"position":"6900,1650","size":"100,100"}
+{=
+
+(storylet: when
+(passage:) contains "NPC"
+and $char's VehVeh's opinion's 2nd > 20
+and ($funcCheckExists: $char's player's quests, "sickTeacher", "") is "active"
+and $char's player's timerCooldown does not contain "T: VehVeh Fluxy Teacher"
+)
+
+(urgency: 1)
+(metadata:
+"NPC", "VehVeh",
+"title", "Regarding Your Ill Teacher",
+"topic", "Ask for help. Your teacher isn't feeling great.",
+"topicDetail", "The Apesai school must have a spare tonic, or at least the equipments to make one.",
+"cooldown", 1,
+"talked", (a: "sickTeacher", "studentLab",),
+"addCode", [],
+)
+
+$cssColumnParent[
+
+$cssColumnChild[
+	$cssBox[
+    	($funcImage: (passage: "S: VehVeh")'s img)
+         $cssBoxItem[''(print: (passage:)'s title )''<br>(print: (passage:)'s topicDetail)]
+    ]
+]
+
+$cssColumnChild[
+
+$cssDesc[''You: //(print: (passage:)'s topic)//'']
+<br>
+
+(if: ($funcTalkedTimesCheck: "sickTeacher") < 1)[
+["Oh no, what's wrong?"]<VehVehLine|
+<br>
+(Regretful about school's lack of facilities...)
+<br>
+["OK, then you need some healing tonic... Lucky for you and your teacher, we've got a lab a few floors up..."]<VehVehLine|
+]
+
+(else:)[
+["Still? Damn."]<VehVehLine|
+]
+<br>
+(Veh-Veh gives you tips...)
+<br>
+$cssDesc[The student lab - a tentative place for you to work your magic - is inside the Apesai Lighthouse. End this conversation to access it.]
+<br>
+---
+<ol>
+($funcNPCTopics: "Veh-Veh seems regretful for not doing more. Any more and you'll just make her feel worse.", "You've been of great help, Veh-Veh. Bye.")
+</ol>
+]<!--end child-->
+]<!--end parent-->

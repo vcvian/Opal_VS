@@ -1,0 +1,39 @@
+:: OldInrah Buy Map Decline {"position":"3750,1175","size":"100,100"}
+(metadata:
+"NPC", "OldInrah",
+"title", "Declining Inrah's Map",
+"topicDetail", "Unable or unwilling, you're not paying either way.",
+"talked", (a: "youngInrah", "mapInrah", "mapInrahDeclined"),
+)
+
+
+$cssColumnParent[
+
+$cssColumnChild[
+	$cssBox[
+    	($funcImage: (passage: "npc.OldInrah")'s img)
+         $cssBoxItem[''(print: (passage:)'s title )''<br>(print: (passage:)'s topicDetail)]
+    ]
+]
+
+<!--Main content begins here-->
+$cssColumnChild[
+
+["Hmm? Don't have the rial?"]<OldInrahLine| Koh-Inrah says with a huff, stuffing the map back into one fo her drawer, among the many other scrolls. ["Tsk, Old Inrah should have known. Just another destitute traveler, hoping their fortunes would turn in Askava. Well, here's a free advice: Fortune does not favor the broke. But that's obvious; it is free advice, after all. Rial-less patrons should not expect more."]<OldInrahLine|
+<br>
+(if: $char's OldInrah's energy's 1st > 0)[She squints at you, waiting.
+<br>
+["Now, is there anything else?"]<OldInrahLine|]
+(else:)[She squints at you.
+<br>
+["Now, if there's nothing else, Old Inrah must bid you farewell. There are other paying patrons who require my attention."]<OldInrahLine|]
+
+<br>
+---
+
+<ol>
+($funcNPCTopics: "The other guests are growing impatient.", "Apologies, and goodbye, Koh-Inrah.")
+</ol>
+
+]<!--end child-->
+]<!--end parent-->

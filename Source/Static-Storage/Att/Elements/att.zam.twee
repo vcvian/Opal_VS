@@ -1,0 +1,14 @@
+:: att.zam [static-storage] {"position":"1750,3125","size":"100,100"}
+{=
+
+(metadata: 
+	"id", [Zam],
+    "key", (a: "element", ),
+    "value", (a: 1, 0, 0, 0, 0, 1),
+    "img", "",
+    "desc", [Zam - elemental earth.],
+    "tip", [],
+    "gainText", [Surety settles into you. Time seems to slow down.],
+    "lossText", [Thoughts take flight, and the world is less certain.]
+
+)

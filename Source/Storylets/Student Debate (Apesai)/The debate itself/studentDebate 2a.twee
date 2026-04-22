@@ -1,0 +1,58 @@
+:: studentDebate 2a {"position":"5575,1750","size":"100,100"}
+{=
+
+(metadata:
+"title", "The Debate",
+"cardDesc", "",
+)
+
+
+$cssColumnParent[
+
+$cssColumnChild[
+	$cssBox[
+    	($funcImage: (passage: "S: studentDebate 2")'s img)
+         $cssBoxItem[''(print: (passage:)'s title )''<br>(print: (passage:)'s cardDesc)]
+    ]
+]
+
+$cssColumnChild[
+
+<!--time check-->
+(set: _debateDaysLeft to ($funcCheckExists: $place's eventDuration, "studentDebate", 0))
+<!--progress check-->
+(set: _debateProgress to ($funcCheckExists: $char's player's att, "studentDebateY", 0) > ($funcCheckExists: $char's player's att, "studentDebateX", 0))
+
+(if: _debateDaysLeft is 4)[\
+	Topic A...
+]
+
+(elseif: _debateDaysLeft is 3)[\
+	Topic B...
+]
+
+(elseif: _debateDaysLeft is 2)[\
+	Topic C...
+]
+
+(elseif: _debateDaysLeft is 1)[\
+	Topic D...
+]
+
+<br>
+(They notice you can call out to you to be their referee/tiebreaker (where are all the teachers?). Prompt to pick side...)
+<br>
+$cssDesc[\
+	(if: _debateProgress is true)[Side Y currently has the advantage.]\
+    (else:)[Side X currently has the advantage.]\
+]
+<br>
+---
+<ol>
+<li>[[Pick side X->studentDebate 2X]]
+<li>[[Pick side Y->studentDebate 2Y]]
+<li>[[Pick no side->studentDebate noneA]]
+</ol>
+
+]<!--end child-->
+]<!--end parent-->

@@ -1,0 +1,25 @@
+:: quest.traveling [static-storage traveling] {"position":"1600,5100","size":"100,100"}
+{=
+(metadata: 
+	"id", [Currently: Traveling],
+    "img", "https://fallenlondon.wiki/w/images/f/f6/Ship3.png",
+    "desc", [You are currently from ''(print: $place's travelingFrom)'' to ''(print: $place's travelingTo)''.],
+    "tip", [Each day, the journey will cost ''1 (print: (passage: "item.supplies")'s id)''.],
+    
+    "timer", 0,
+    "timerDesc", [\
+    (set: _travelTimeLeft to $char's player's timerQuest's traveling's timer)\
+    (if: _travelTimeLeft > 0)[You're ''(plural: _travelTimeLeft, "day")'' away.]\
+    (else:)[You're already in the vicinity of and are ready to enter ''(print: $place's travelingTo)''.]\
+    ],
+    "timerAddLog", [],
+    "timerAddDialog", [You've set out for ''(print: $place's travelingTo)''. It will take ''(plural: $char's player's timerQuest's traveling's timer, "day")'' to get there.],
+    "timerAddConfirm", "Onward!",
+    "timerDoneDialog", [You've arrived at ''(print: $place's travelingTo)''.],
+    "timerDoneConfirm", "Finally.",
+    "timerDoneEffect", [\
+    (set: $place's travelingArriveReady to true)\
+    (set: $log's last to it + "''" + (str: $place's travelingTo) + "''.")\
+    ],
+    "timerDoneLog", [You've arrived at ],
+)

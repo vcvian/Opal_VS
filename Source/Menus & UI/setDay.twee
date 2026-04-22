@@ -1,0 +1,29 @@
+:: setDay [effect] {"position":"2250,2675","size":"100,100"}
+{=
+
+(metadata: "title", "Passage of Time")
+
+<!--date (1 action/week, 4 weeks/month, 12 months/year)-->
+(set: $dayCount to it + 1)
+(set: $day to it + 1)
+(if: $day is > 7)[(set: $day to 1)(set: $week to it + 1)]
+(if: $week > 4)[(set: $week to 1)(set: $month to it + 1)]
+(if: $month > 12)[(set: $month to 1)(set: $year to it + 1)]
+
+<!--Dynamic effects: consequences, timers, etc.-->
+(display: "Effects")
+
+<!--Health check, GAME OVER if 0 or below; might make more sense to put on the nextDay passage-->
+($funcHealthCheck:)
+
+<!--updates location as we get closer to travel destination, affects weather, only activates if $travel is true-->
+($funcUpdateLocationWhileTraveling:)
+
+<!--weather, runs the weather table, formula is $location+ Weather-->
+($funcHowsWeather:)
+
+<!--Roll global dice-->
+(set: $dice to (random: 1,100))
+
+<!--Go to nextDay immediately to avoid faffing around with the auto-triggers above interacting weirdly with menu buttons-->
+(link-rerun: "Done setting Day")[(goto: "nextDay")]

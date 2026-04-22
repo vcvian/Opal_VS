@@ -1,0 +1,15 @@
+:: Arrive at Rokhab 1d {"position":"5100,3350","size":"100,100"}
+{=
+
+(metadata: "title", "Landing in Rokhab")
+
+<!--Fail at shady action, get arrested-->
+
+(He sighs, asking why you'd think it'd work...)
+<br>
+---
+(link: "You are arrested.")[\
+	(print: $attributes's infamy's gainEffect)\
+    (dialog: [ERROR! Carceral system hasn't been invented.])\
+    (goto: "Rokhab Jail")\
+]

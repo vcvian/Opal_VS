@@ -1,0 +1,56 @@
+:: Shopping Day 1d {"position":"4075,2300","size":"100,100"}
+{=
+
+(metadata:
+"currency", "rial",
+"title", "Apesai Apothecaries",
+"cardDesc", ".",
+)
+
+$cssColumnParent[
+
+$cssColumnChild[
+	$cssBox[
+    	($funcImage: (passage: "S: Shopping Day 1")'s img)
+         $cssBoxItem[''(print: (passage:)'s title )''<br>(print: (passage:)'s cardDesc)]
+    ]
+]
+
+$cssColumnChild[
+(prose)
+
+]<!--end child-->
+]<!--end parent-->
+
+---
+$cssColumnParent[
+
+
+<!--Very important! If the passage is a merchant, then where player might buy or sell things, then _priceMod must be defined. The formula can get more complex later on to account for faction attitudes, weather, and various other modifiers-->
+(set: _priceModBuy to 3)
+(set: _priceModSell to 1)
+
+$cssColumnChild[
+(Market info here)
+<br>
+$cssDesc[The Grand Exchange only accepts ''(print: (passage:)'s currency)'' - by order of the Ministry of Funds. But you can always sell your other currencies here, if you like being ripped off.
+<br>
+You currently have ($funcCheckExists: $char's player's inv, (passage:)'s currency, 0) (print: (passage:)'s currency).]
+]
+
+$cssColumnChild[
+<ol>
+Browsing... <br>
+(for: each _ingredient, ...(passages: where its name contains "item."))[\
+	(if: _ingredient contains "key")[(if: _ingredient's key contains "potion")[\
+    	''(print: _ingredient's id)''($funcLogTip: "item.", (trimmed: "item.", _ingredient's name)) <br>
+    	<li>($funcMultiBuySell: "buy", (trimmed: "item.", _ingredient's name), (passage:)'s currency, _priceModBuy)
+        <li>($funcMultiBuySell: "sell", (trimmed: "item.", _ingredient's name), (passage:)'s currency, _priceModSell)
+        ]]\
+]
+<br>
+Or...
+<li>[[Never mind.|S: Shopping Day 1]]
+</ol>
+]<!--end child-->
+]<!--end parent-->

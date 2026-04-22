@@ -1,0 +1,8 @@
+:: Test G Apply {"position":"700,4400","size":"100,100"}
+(metadata: "title", "Test G Applying for Permit",)
+
+You submit your papers and were told to wait.
+<br>
+---
+
+($funcQuestUpdateLink: "You leave the immigration hall.", "permitAskava", "active", "Your papers are submitted. It'll take a while. Try to keep yourself busy in the mean time.", "Bureaucracies are the same everywhere - back home and here also.", [($funcAddTimer: "permitAskava", "wait")], "Test G",)

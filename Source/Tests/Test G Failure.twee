@@ -1,0 +1,7 @@
+:: Test G Failure {"position":"1275,4525","size":"100,100"}
+(metadata: "title", "Test G Dead Teacher",)
+
+Oh no! He's... Oh no!
+<br>
+---
+($funcQuestUpdateLink: "Fail the Fluxy Teacher Quest", "sickTeacher", "failed", "He's... dead?", "Can a magus even die?", [(set: $char's teacher's alive to false)], "Test G")

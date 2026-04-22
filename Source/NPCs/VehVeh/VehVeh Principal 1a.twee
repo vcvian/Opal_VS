@@ -1,0 +1,30 @@
+:: VehVeh Principal 1a {"position":"6625,1775","size":"100,100"}
+{=
+
+(metadata:
+"NPC", "VehVeh",
+"title", "Chatting with Veh-Veh",
+"topicDetail", "",
+)
+
+$cssColumnParent[
+
+$cssColumnChild[
+	$cssBox[
+    	($funcImage: (passage: "S: VehVeh")'s img)
+         $cssBoxItem[''(print: (passage:)'s title )''<br>(print: (passage:)'s topicDetail)]
+    ]
+]
+
+$cssColumnChild[
+
+["I wonder... if it's worth it. He's founded this school, but his real project is off somewhere. It must worth it."]<VehVehLine|
+
+<br>
+---
+<ol>
+($funcNPCTopics: "Veh-Veh sighs and looks up at the lighthouse. She seems distracted. You should leave her be.", "Let's hope he finds what he's looking for, and things can get back to normal. Bye, Veh-Veh.")
+</ol>
+
+]<!--end child-->
+]<!--end parent-->

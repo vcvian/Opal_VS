@@ -1,0 +1,20 @@
+:: Rokhab Dock [sublocation] {"position":"5875,2575","size":"100,100"}
+{=
+(metadata:
+"prefecture", "Nurrah Coastlands",
+"location", "Rokhab",
+"title", "Rokhab Dock"
+)
+
+($funcUpdateLocation:)
+
+<h2>(print: (passage:)'s title)</h2>
+$cssColumnParent[
+$cssColumnChild[
+(The Rokhab Dock... Mainland...)
+]
+$cssColumnChild[($funcNavigateSublocations:)]
+]<!--end of $cssColumnParent-->
+
+---
+($funcStorylet:)

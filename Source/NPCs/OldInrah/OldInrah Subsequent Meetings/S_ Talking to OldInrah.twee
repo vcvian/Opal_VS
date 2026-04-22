@@ -1,0 +1,37 @@
+:: S: Talking to OldInrah [storylet] {"position":"2850,1075","size":"100,100"}
+{=
+
+(storylet: when
+$place's sublocation is $place's stay and it is "The Pilgrim's Rest"
+and $char's OldInrah's alive is true
+and $char's OldInrah's know is true
+)
+
+(urgency: 2)
+(metadata: "title", "Chat up the Landlady", "cardDesc", "Koh-Inrah knows this city well. Talking to her will be fruitful, provided you have the coins.", "img", "Assets/Portraits/Old_1.png", "NPC", "OldInrah",)
+
+
+$cssColumnParent[
+
+$cssColumnChild[
+	$cssBox[
+    	($funcImage: (passage: "")'s img)
+         $cssBoxItem[''(print: (passage:)'s title )''<br>(print: (passage:)'s cardDesc)]
+    ]
+]
+
+$cssColumnChild[
+
+<br>
+The proprietress of the Pilgrim's Rest is sitting downstairs in the main hall, at her desk, as she has for decades, long before her back became so hunched. All this sitting must be the culprit for her posture.
+<br>
+(if: $char's OldInrah's energy's 1st <= 0)[(either: "Presently, a rotund merchant is nagging her about a wine shipment. He takes care not to raise his voice or disrespect her, but it is clear that he won't leave before long.", "Currently, a group of scruffy men, all with blue-and-white sashes, are complaining about their amenities in relation to the price. Pilgrims are notoriously demanding.", "Right now, a young couple and their toddler are taking up Koh-Inrah's attention. The parents' voices are soft and urgent. The child, however, is staring at you intensely.", "Apparently, some servant has broken something, or failed to collect the proper due, or any number of error that warrants Koh-Inrah's reprimand, which she is doling out liberally and publicly.")]
+(elseif: $char's OldInrah's opinion's 2nd < 30)[["Hmph,"]<OldInrahLine| the old woman grunts and squints at your approach. ["Yes?"]<OldInrahLine|]
+(else:)[["Dear patron!"]<OldInrahLine| She flashes a black grin, each tooth glittering like a black pearl from behind her veil. ["How was your sleep? The lavender is helping, I hope."]<OldInrahLine|]
+<br>
+---
+<ol>
+($funcNPCTopics: "Koh-Inrah is occupied with her duties as host.", "Leave her be for now.")
+</ol>
+]<!--child end-->
+]<!--parent end-->

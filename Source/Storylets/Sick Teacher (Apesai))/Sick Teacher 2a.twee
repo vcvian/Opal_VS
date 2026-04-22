@@ -1,0 +1,31 @@
+:: Sick Teacher 2a {"position":"3225,2625","size":"100,100"}
+{=
+
+(metadata:
+"title", "Medicating Your Teacher",
+"cardDesc", "Tonic - administered.",
+)
+
+$cssColumnParent[
+
+$cssColumnChild[
+	$cssBox[
+    	($funcImage: (passage: "S: Sick Teacher 1")'s img)
+         $cssBoxItem[''(print: (passage:)'s title )''<br>(print: (passage:)'s cardDesc)]
+    ]
+]
+
+$cssColumnChild[
+
+["Yooo, give it here!"]<TeacherLine| Your teacher says as he takes a large swig, larger either you or any of your peers in the academy has ever been able to, not in your wildest benders.
+<br>
+["Aaah, that's the shit,"]<TeacherLine| he says, wiping his mouth, colors returning to his face.
+<br>
+You tell him you're glad he's well.
+<br>
+["We set out as soon as the ferries able to! You have the ''permits'', don't you?"]<TeacherLine|
+<br>
+---
+($funcQuestUpdateLink: "Uh...", "sickTeacher", "completed", "Your teacher is good as new. You can finally start to leave this rock.", "Finally!", [], $place's sublocation,)
+]<!--end child-->
+]<!--end parent-->

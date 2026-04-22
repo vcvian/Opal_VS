@@ -1,0 +1,76 @@
+:: scene.exploreApesaiCenter1
+{=
+
+[
+All around you, the street is narrow, and the houses are tall. Each house is lined with projecting caged balconies, their metalwork intricate, their splendor blocking out your view of the sky, making it difficult to keep track of the cardinal directions.
+<br>
+(either: "You spot an imperial lady and her handmaidens in one of those balconies, enjoying their sweets and tea while watching the river of people beneath flow by - and you the flotsam.", "You spot an old man draping the houshold rugs - veritable treasures - over his balconiy, emblazoning his home with scenes of faraway Nudankhan - the imperial capital.", "There on one of the balconies, a crone of copper skin and face veil is hoisting up by pulley a basket of goods, which another copper-skinned man had delivered. The natives take to the imperial way of life better than many at home are led to believe.")
+](A|
+
+[
+In heartland cities, it is typical to see roofed alleys with beautiful vaulted ceilings and never have to be exposed to the elements. In Apesai, these alleys are discontinuous, many seem unplanned.
+<br>
+(either: "You walk through one such alley that appears to be the remnant of a First-Colony adobe longhouse, now hollowed out end-to-end to welcome foot traffic. Its mosaic inner walls now provide a colorful backdrop for a fruitmonger to do her business.", "You pass by one so crowded that people have to wait in line in order to pass. At least some semblance of civility is still maintained here.", "The one you are passing through is covered with lavishly painted fabric, and as light falls through, the art makes blurry impressions on the brick road.")
+](B|
+
+[
+You pass by a riad villa, with merciful shade from its many olives and orange trees falling onto the sidewalk. Such dwellings are typical of the Second Colony, when Apesai became a favorite destination for many noble families in the heartland to expel their least favorite children.
+<br>
+(either: "This particular house seems to have been overtaken with Keshan stucco reliefs once - likely during or after the fall of the Second Colony, when Apesai came under the Kesh. Now that the city has come back into imperial fold, many of these reliefs were stripped down, leaving only faint outlines of northern serpent-saints.", "Inside, one such noble scion, now an old woman, sits idly in her porch, watching people go by.You wonder how she feels, or if she even knows, about how humbled the aristocrats are these days, and how quiet their Kuchkhan League has been.", "Looking inside the weedy garden, you see a lone maid trying to fish dead leaves from the center pool. The water is already green, and the inner house is overgrown. Soon, this place will be made into something else. Perhaps a guesthouse.")
+](C|
+
+[
+Your teachers have often said that all subjects of the Nurandah civilization enjoys the fruit of its enlightenment, but not all subjects cultivate their ability for reason, especially in the frontiers.
+<br>
+Apesai is giving you direct evidence of this insight: There is an excess of foreign faiths and falsehoods, thriving like fungus in the undergrowth, where light shines little.
+<br>
+(either: "Just now, you passed a small Yavanid temple - opulently decorated with lurid reliefs of men and women in various degrees of conrtosion, their intoxicating smiles are apt to contort the mind of lookers as well. To their credit, the Yavanids are faithful admirers of anatomy, and their disturbing art has contributed greatly to the science of the senses.",
+
+"On a wall, you spot some crude painted letters saying, \"Kuchmar worships his god.\", and next to it is an equally crude drawing of a man with an elephant's head. Only, the trunk is depicted like a phallus. A winged spear pierces the man's ribs.
+
+You shouldn't be surprised. Askava was the birthplace of the Great Charlatan, after all. But you //are// surprised. It is taught that such ignorance was a thing of the past, thoroughly eradicated. Evidently not",
+
+"You've counted at least twenty roadside shrines - little wooden boxes with incense, offerings of fruit, and a statuette of one animal or another. A native specialty. One must wonder what is so great about animalhood when being human is already a grand mystery by itself, worthy of an eternity of inquiry. Perhaps to some, it is more comforting to retreat to simplicity.",
+
+"To wit, some Keshan pavilions still stand, though in a poor state - many of their serpent reliefs broken, and many of their saints defaced. A squat woman, gold of skin but robed like an imperial, is washing the paint splatter from the wooden columns. Maybe she hopes that when the war is over - if it is ever done - Keshans like her will be re-accepted, and these pavilions will once again host prayer lectures.",
+
+"One wonders how earnest learning might be possible here. You've passed by more than a handful of houses with signs claiming that they can teach anything from \"alternative\" medicine, to laws of the psyche, to \"practical magic for the non-academic businessman\", to divination, to love. What ridiculousness. Even the greatest universities - yours included - do not purport to teach such a wide range of subjects. What pedagogical fidelity is to be expected from a frontier //hovel//? It's an outrage that the local davehmar tolerate such heresies, no matter how light.
+")
+
+<br>
+It is the emperors' wisdom that one ought to be convinced of wisdom, not forced, save for grave heresies. Instead, it is better to let such primitivism be contained and wither by way of tax.
+](temple|
+
+(set: _show to (either: "A","B","C","temple"))
+(show: (hooks-named: _show))
+
+:: scene.exploreApesaiCenter2
+{=
+
+[
+During your long walk, your mind starts to drift. You recall something your architecture teacher - whom you only attended a single year - has said:
+<br>
+A city's layout is an expression of the architect's rationality - and by extension, the rationality of the ruler who employs said architect. Newer cities in the empire, especially those erected within a handful of lifetimes, tend to reflect a unified rationality - e.g. grids, concentric circles, economically sufficient neighborhoods - one which is sophisticated yet decipherable to most.
+<br>
+Witnessing Apesai upclose, it becomes very clear to you just how old, how //irrational// this city is. It is a hodgepodge of different and often competing visions of what this place is and how it ought to be. The streets themselves are a web of a very undecisive spider. It is lichen or mold.
+](E|
+
+[
+Most schools of magic espouses "mind produces matter", but your teachers do make concessions for the material environment to influence the mind. That is why a university's floor plan must be meticulously planned to ensure that scholars and magi alike think clearly and rationally. You wonder the kinds of mental concessions Apesaians have to make for their city to be this way.
+<br>
+The urban heart of Apesai leaves little room to breathe and even less room for thought, since you have to stay constantly vigilant while navigating these winding and confusing streets.
+<br>
+For example: You're not very sure whether you've walked past this corner or not. It all looks familiar, but not. Has this (either: "house","tower","palace") always been so (either: "green", "blue", "red")? Or is it something new?
+](D|
+
+[
+It seems you've spent an entire afternoon breathing in others' breath and shoving against their bodies. In your long years of training, holed up in a cloister and rooming with bunkmates, you've never felt so drowned in people.
+<br>
+You wonder how long this can keep going - not you, but the city itself. Apesai is only a small island, and its urban part is already churning into itself, with houses was wedged and stacked as their dwellers. Will they start flooding the high hills towards the lighthouse? Or will they clear out the shoreward slums? Where will //those// go when driven out?
+<br>
+Inland, of course. Harsh but vast, vast inland Askava. Your head fills with the continent, no doubt tired from all the walking.
+](F|
+
+
+(set: _show to (either: "D","E","F"))
+(show: (hooks-named: _show))

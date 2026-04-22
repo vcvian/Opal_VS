@@ -1,0 +1,12 @@
+:: Arrive at Apesai 1a {"position":"4950,3225","size":"100,100"}
+{=
+
+(metadata: "title", "Arriving in Apesai",)
+
+(Apesai. Time to pick a place to stay...)
+<br>
+---
+<ol>
+<li>($funcPickStay: "Stay at the inn called \"The Pilgrim's Rest\"", "The Pilgrim's Rest")
+<li>($funcPickStay: "Rough it out in the streets", "Apesai Streets")
+</ol>

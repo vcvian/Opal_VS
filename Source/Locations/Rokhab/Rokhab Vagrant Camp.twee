@@ -1,0 +1,26 @@
+:: Rokhab Vagrant Camp [sublocation stay] {"position":"6125,2575","size":"100,100"}
+{=
+(metadata:
+"prefecture", "Nurrah Coastlands",
+"location", "Rokhab",
+"currency", "supplies",
+"rent", 1,
+"title", "Rokhab Vagrant Camp",
+)
+
+($funcUpdateLocation:)
+
+<h2>(print: (passage:)'s title)</h2>
+<br>
+<!--Weather passage-->
+($funcWeatherBox:)
+
+$cssColumnParent[
+$cssColumnChild[
+(Being homeless at the docks...)
+]
+$cssColumnChild[($funcNavigateSublocations:)]
+]<!--end of $cssColumnParent-->
+
+---
+($funcStorylet:)

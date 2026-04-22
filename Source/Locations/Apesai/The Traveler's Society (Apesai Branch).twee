@@ -1,0 +1,22 @@
+:: The Traveler's Society (Apesai Branch) [sublocation] {"position":"4350,2725","size":"100,100"}
+{=
+
+(metadata:
+"prefecture", "Nurrah Coastlands",
+"location", "Apesai",
+"title", "The Traveler's Society",
+)
+
+($funcUpdateLocation:)
+
+<h2>(print: (passage:)'s title)</h2>
+$cssColumnParent[
+$cssColumnChild[
+(The traveler's society...)
+]
+$cssColumnChild[($funcNavigateSublocations:)]
+]<!--end of $cssColumnParent-->
+---
+
+---
+($funcStorylet:)

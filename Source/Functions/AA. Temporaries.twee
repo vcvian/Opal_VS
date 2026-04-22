@@ -1,0 +1,75 @@
+:: AA. Temporaries [startup] {"position":"1450,5750","size":"100,100"}
+<!--GainLoss temporary conditions; uses the same $funcNotifyAndLog as items and att; compatible with $funcCheckGate-->
+(set: $funcTempGainLoss to (macro: str-type _temp, num-type _value, [(out:)[\
+	<!--Load the temp DM-->\
+	(set: _tempDM to (passage: "temp." + _temp))\
+	\
+	<!--Check temp pocket-->\
+	(set: _already to false)\
+	(if: $char's player's temp contains _temp)[(set: _already to true)]\
+	\
+	<!--Modify $char's player's temp-->\
+	(if: _already is false)[\
+		(set: $char's player's temp to it + (dm: _temp, (a: _value, _tempDM's timer )))\
+	]\
+	(else:)[\
+		(set: $char's player's temp's _temp's 1st to it + _value)\
+	]\
+    <!--Auto-trigger effects for attributes, if any-->\
+	(if: _value > 0 and _tempDM contains "gainEffect")[(print: _tempDM's gainEffect)]\
+    (if: _value < 0 and _tempDM contains "lossEffect")[(print: _tempDM's lossEffect)]\
+	\
+    <!--Delete if ends up 0 or less-->\
+    (if: $char's player's temp's _temp's 1st <= 0)[\
+			(move: $char's player's temp's _temp into _trash)\
+		]\
+    \
+	<!--log and notify-->\
+	($funcNotifyAndLog: "temp.", _temp, _value,)\
+]]))
+
+<!--Tick down temporaries, to be used in setDay/mockDay-->
+(set: $funcTempTickDown to (macro: [(out:)[\
+	(if: (data-names: $char's player's temp)'s length > 0)[\
+		(for: each _temp, ...(data-names: $char's player's temp))[\
+			<!--Load temp's full DM passage-->\
+			(set: _tempDM to (passage: "temp."+_temp))\
+			<!--Usual countdown-->\
+			(set: $char's player's temp's _temp's 2nd to it - 1)\
+			\
+			<!--Tick effect-->\
+			(if: _tempDM contains "tickEffect")[\
+				\
+				<!--Log & notify-->\
+				(set: $log to it + (a: "''" + (str: (passage:)'s title) + "'': " + "(color:red+purple)[Temporary effect (" + (str: _tempDM's id) + "):]($funcLogTip: \"temp.\",\"" + (str:_temp) + "\") " + (str: _tempDM's tickText) ))\
+				\
+				($funcNoti: "conTick", [(color:red+purple)[Temporary effect ((print: _tempDM's id)):] <br> (print:_tempDM's tickText) <br> $cssDesc[(print:_tempDM's tip)]], "✓")\
+                \
+                <!--Primary effect (goes at the end to prevent tickEffect potentially overwriting _tempDM's content, such as in cases where the tickEffect calls $funcTempGainLoss, which also defines its own _tempDM-->\
+				(print: _tempDM's tickEffect)\
+                \
+			]<!--end of if contains tickEffect-->\
+			\
+			<!--When timer<=0-->\
+			(if: $char's player's temp's _temp's 2nd <= 0)[\
+				<!--Reset timer-->\
+				(set: $char's player's temp's _temp's 2nd to _tempDM's timer)\
+				<!--Lose 1 in stack, automatically remove entry from temp pocket if stack reaches 0-->\
+				($funcTempGainLoss: _temp, -1)\
+			]<!--end of if timer<=0-->\
+		]<!--end of looping-->\
+	]<!--end of if temp pocket contains anything at all-->\
+]]))
+
+<!--Output temp stack (because temp works differently than other pockets, so $checkExists cannot be used). $funcCheckGate can do it too, but it creates a link, which we don't always want.-->
+(set: $funcCheckTemp to (macro: str-type _temp, [\
+	<!--initialize-->\
+	(set: _out to 0)\
+	(set: _exists to false)\
+	\
+	<!--determine if it even exists. If so, set to entry's 1st value (assuming that the format is "entry", (a: _stackCount, _timer))-->\
+	(if: $char's player's temp contains _temp)[(set: _out to $char's player's temp's _temp's 1st)]\
+	\
+	<!--output-->\
+	(out-data: _out)\
+]))

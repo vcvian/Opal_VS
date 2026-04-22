@@ -1,0 +1,17 @@
+:: table.distances [static-storage traveling] {"position":"1725,5100","size":"100,100"}
+{=
+
+(metadata:
+
+"Apesai|Rokhab", 3,
+"Apesai|Navveh", 5,
+"Apesai|Zirab", 7,
+"Apesai|test", 100,
+
+"Rokhab|Sabzam", 7,
+"Rokhab|Navveh", 6,
+"Rokhab|Zirab", 8,
+
+"Besarag|Sabzam", 9,
+
+)

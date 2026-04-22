@@ -1,0 +1,21 @@
+:: quest.urgentAssignment [static-storage] {"position":"1700,4575","size":"100,100"}
+{=
+
+(metadata: 
+	"id", [Urgent: An Assignment],
+    "img", "https://fallenlondon.wiki/w/images/8/83/University.png",
+    "desc", [You've been given an urgent assignment.],
+    "tip", [],
+    
+    "deadline", 3,
+    "deadlineDesc", [(if: $char's player's timerQuest's urgentAssignment's deadline > 0)[You have (plural: $char's player's timerQuest's urgentAssignment's deadline, "day") left to complete the assignment.](else:)[The deadline's past.]],
+    "deadlineAddLog", [You were given (plural: (passage: "quest.urgentAssignment")'s deadline, "day") to complete the assignment.],
+    "deadlineAddDialog", [You've been given an assignment, and you have (plural: (passage: "quest.urgentAssignment")'s deadline, "day") to complete the assignment.],
+    "deadlineAddConfirm", "Got it.",
+    "deadlineDoneDialog", [''Deadline'' is up. You've failed to submit the assignment on time.],
+    "deadlineDoneConfirm", "Aw man!",
+    "deadlineDoneEffect", [($funcQuestUpdate: "urgentAssignment", "failed", "You didn't meet the deadline.", "Aw damn.")],
+    "deadlineDoneLog", [Damn, out of time.],
+    
+)\
+<!--Example of a deadline quest that autofails when timer runs out. If succeed, remove timer. Notice how deadlineDesc is meant to be dynamic, but deadlineAddLog and deadlineAddDialog aren't. This is because only the deadlineDesc, which shows up in the UI, needs to countdown. Everything else, especially the deadlineAddLog, needs to stay static so that the longLog won't break.-->

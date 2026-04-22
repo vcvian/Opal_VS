@@ -1,0 +1,117 @@
+:: scene.exploreApesaiDown1
+{=
+
+[
+As you trace the muddy alleys, careful to not let the hem of your robe get dirtied, you see children - some copper-skinned, some golden, and some paler, albeit sun-baked - running and rolling in the muck without a care.
+<br>
+Since the Reclamation reopened Apesai's tradeports, and by extension Askava's, people from all nearby nations have come to make their fortune. Those people tend to stay in the upper parts of the city. These children, however, are descendants of those who have either failed to make that fortune, or have been living in Apesai for generations, long before the Navy retook this wharf.
+<br>
+A child dashes past you, yelling heartily in a strange tongue, which you guess to be a pidgin of Nurango, Keshan, and native Askavan.
+<br>
+There are a few specks of mud on your clothes now.
+](A|
+
+[
+As you descend some adobe stairs, you find yourself on the flat rooftop of an old woman's home. You assume so because said old woman is presently lounging on her wicker chair on this roof, not noticing the intruder, rheumy eyes lost in the distant horizon.
+<br>
+You look where she is looking. (if: $place's weather is "stormy" or it is "foggy" or it is "rainy")[But the weather makes it difficult to see beyond the coast. Perhaps when one grows old, one trades one sight for another. But you know where she is looking: Mainland Askava.](else:)[There they are: The bluish peaks beyond the sea - the Besarag Range, and beyond that, which is completely occluded to you, the Daabrag and the Andarrag. The mountains of Askava.]
+<br>
+Suddenly, a scream. The woman throws her sandal at you, which you gracefully dodges. Hearing the commotion, a burly gentleman, which you guess to be her son, appears in the door way. But you've already made yourself scarce.
+](B|
+
+[
+Nature has prematurely reclaimed the houses down here; the tenants have yet to move out, and they won't be any time soon.
+<br>
+In one spot, you see beach brambles overtaking a hole-in-the-wall shop. Inside a tailor dilligently sews while vines slowly weave his window shut. In another spot, you see an earthen tower, perhaps abandoned, slowly turning into a flower vase, with magenta, white, and yellow paperblooms dangling in the wind.
+<br>
+The further you descend, the closer you are to the shore, the more apprent the ocean's ferocity is. White foam is bubbling and spraying, but underneath all that seeming fluffiness hides jagged, almost glassy rocks - a beachful of axeheads. That lighthouse up there is not for show.
+<br>
+Eventually, perhaps too soon, the ground will give way, and parts of the slums, which is barely holding on, will return to the sea.
+](C|
+
+(set: _show to (either: "A", "B", "C"))
+(show: (hooks-named: _show))
+
+
+:: scene.exploreApesaiDown2
+{=
+
+[
+[Deeper into the slums, the canals take up most of the width of the streets, which aren't very wide to begin with. The stench of canal water, coupled with a ubiquitous scent of perfume, is stinging your eyes. You try your best stick close to the houses, only occasionally crossing wooden bridges to get to the other side of the water.
+<br>
+A person - a (either: "woman", "man")? - is idly watching you from their tall balcony while combing their long hair - hair like flaming curls. A Yavanid, you realize. Apesai is closer to //their// Yavana than it is to //your// imperial heartlands. There must be tens of thousands of them on this island. They all have such dangerous smiles.
+<br>
+Your thought is interrupted when you, so busy looking up, almost slipped into the canal. The redhead giggles and retreats indoors, satin robe swirling like a peacock's tail.
+<br>
+You best forget them and carry on.](pleasure1|
+
+[
+You walk by what used to be a small Kesh pavilion, now adorned with decidedly un-Kesh flags and lanterns. Here, a crowd has gathered to watch a street show.
+<br>
+Only, it is no street show you have ever seen. The performer - face powdered white, or is it a mask? - is dangling from the low ceiling, hanging onto only a thin veil, seemingly flying overhead the crowd, which rouses a collective gasp whenever a collision appears inevitable. But it never happens. The performer only snatches a man's shawl, much to his embarrassment and the crowd's joy.
+<br>
+You sense some magic is being used here to aid the performance. Such frivolous use of talent is frowned upon in Nurandah, but these performers are not citizens of Nurandah. They are Yavanid.
+<br>
+You best carry on, lest it be your turn to get something of yours snatched.
+](pleasure2|
+
+(set: _show to (either: "pleasure1", "pleasure2"))
+(show: (hooks-named: _show))
+](pleasureText|
+
+[
+[
+After a bit of walking, you see some odd types - pilgrims, wearing the white-and-blue of Reclaimers - setting up tents on the grass.
+<br>
+You would expect most to stay somewhere more decent, like an guesthouse, but it seems that this group - haggard and salted by their long journey - are mostly poorer laborers. All sorts of people become Reclaimers. Many would endure vagrancy for a chance to go into the desert - the //living-land//. At least the city guards do not often patrol these edges of the city, else these pilgrims would no doubt be kicked out or arrested.   
+<br>
+One of them, a boy, notices your garb and waves at you, jumping up and down. You smile and wave back. They revere the davehmars as the progenitors of their pilgrimage. You'd know. Back in the heartlands, while under your university's employment, you've hand-copied about a hundred propaganda leaflets saying the exact thing. You needed the pocket money.
+<br>
+You better move on. They tend to ask too many theological questions.
+](traveler1|
+
+[
+You walk and walk, losing and regaining your way. Eventually, at a grassy clearing, you see an encampment. An ashen-haired boy is trying to get a fire started, but the sticks he had picked from the nearby beach are too damp. He mutters curses in Askavan.
+<br>
+Inside the large velvet tent, another boy - a dark-haired imperial of the same age and build - is posing before a large mirror, his oversized helm and scale coat gleaming in the crystal light. He is attended (or rather, doted on) by two tall, redhaired warriors in far better fitting leather, their long, muscular arms filled with intricate tattoos.
+<br>
+Adventurers - you realize. Likely treasure-hunters bound for Navveh. Some vain little lordling with his hired retinue, presently pretending to rough it out in the "wilderness". The nearest fruit market is literally half a mile away.
+](traveler2|
+
+(set: _show to (either: "traveler1", "traveler2"))
+(show: (hooks-named: _show))
+](travelerText|
+
+[
+[
+Tradeports dot the length of the Known World, forming an unbroken chain of commerce that connects the Nurandah Empire to the most distant of nations. The individual links in those chains may falter once in every while, but they are quickly reforged.
+<br>
+For example, the Port of Apesai - most here just call it the "wharf" - briefly fell under Keshan control when the province was abandoned. Taking control of the shipping lanes, the Kesh considered it reparations for the Grand Exchange's unprovoked aggression.
+<br>
+Your emperor never felt the need to apologize on behalf of his rogue merchant guild. It was moot. The Kesh had overextended, and after a few decades, crumbled. The Nurandahid merchants were dealt with internally and thoroughly tamed.
+<br>
+Now, walking along the quay, you can see faded murals of Keshan serpents on the walls, over which are the brass emblems of the Imperial Navy and the Grand Exchange.
+](wharf1|
+
+[
+You gaze out at the marble wharf in the distance and think: If the Grand Exchange building is the heart of Apesai, then it is pumping red, red vehzin out of these veins - the Apesai Wharf.
+<br>
+Each week, tonnes upon tonnes of the powder, often compressed into monolithic bricks, are mined from inner Askava, shipped out from this port, and fed into the magical machinery of Nurandah.
+<br>
+Conversely, shipments of basic goods and food (for Askava produces litte of its own), as well as people - soldiers, opportunists, and exiles (aren't you //a type// of exile?) have been arriving in increasing numbers.
+<br>
+There is not enough space in Apesai for all of them. Most will end up in some rural bandak in the Coastlands - likely Sabzam - or perhaps even deeper into Askava.
+](wharf2|
+
+(set: _show to (either: "wharf1", "wharf2"))
+(show: (hooks-named: _show))
+](wharfText|
+
+<!--determine where _nearest is. This code block WILL NOT WORK if not placed inside an exploration passage.-->
+(set: _near to "")
+(set: _nearText to "")
+(set: _nearest to (sorted: _nearWharf,_nearTraveler, _nearPleasure)'s last)
+
+(if: _nearest is _nearPleasure)[(show: ?pleasureText)]
+(elseif: _nearest is _nearTraveler)[(show: ?travelerText)]
+(elseif: _nearest is _nearWharf)[(show: ?wharfText)]

@@ -1,0 +1,14 @@
+:: item.rial [static-storage] {"position":"1650,3375","size":"100,100"}
+{=
+
+(metadata: 
+	"id", [rial],
+    "key", (a: "resource", "currency", ),
+    "value", (a: 1, 300, 1000, 500, 1000, 2000),
+    "img", "",
+    "desc", [Red steel coins of the Nurandah Empire - impossible to conterfeit.],
+    "tip", [Rial is the dominant currency in the Askava dahak, but not all of Askava is part of the dahak. Make sense?],
+    "gainText", [Rial makes the world go round and your coin purse heavier.],
+    "lossText", [Material possessions are an illusion - a wise magus once said - and you should be glad to part with them.]
+
+)

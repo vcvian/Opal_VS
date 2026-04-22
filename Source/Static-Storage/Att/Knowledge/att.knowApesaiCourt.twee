@@ -1,0 +1,14 @@
+:: att.knowApesaiCourt [static-storage] {"position":"3125,1675","size":"100,100"}
+{=
+
+(metadata: 
+	"id", [Knowledge: The Provincial Seat],
+    "key", (a: "knowledge", "locale", "Apesai", ),
+    "value", (a: 1, 0, 0, 0, 0, 0),
+    "img", "",
+    "desc", [],
+    "tip", [],
+    "gainText", [],
+    "lossText", [],
+
+)

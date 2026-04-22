@@ -1,0 +1,20 @@
+:: Test G Sample Storylet 2 [test] {"position":"1150,4500","size":"100,100"}
+{=
+
+(storylet: when
+(passage:)'s name is "Test G"
+and ($funcCheckExists: $char's player's quests, "sickTeacher", "") is "active"
+
+)
+
+(metadata: "title", "Heal Your Teacher", "cardDesc", "Your teacher isn't feeling great.", "img", "https://thefifthcity.wiki/w/images/b/bc/Bloodstain.png?20240509225948",)
+
+Oh no, your teacher is sick!
+<br>
+---
+<ol>
+<li>($funcCheckGate: "Give him the meds", "inv", "healingTonic", 1, true, 50, "Test G Success", "Test G Failure")
+<li>[[Never mind->Test G]]
+</ol>
+
+<!--[[Test G Success]][[Test G Failure]]-->

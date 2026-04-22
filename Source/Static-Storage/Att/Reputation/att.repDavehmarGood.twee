@@ -1,0 +1,24 @@
+:: att.repDavehmarGood [static-storage] {"position":"2000,3125","size":"100,100"}
+{=
+
+(metadata: 
+	"id", [Goodwill: Davehmars],
+    "key", (a: "social", ),
+    "value", (a: 1, 0, 0, 0, 0, 0),
+    "img", "",
+    "desc", [],
+    "tip", [],
+    "gainText", [],
+    "gainEffect", [\
+    	(for: each _char, ...(data-names: $char))[\
+        	(if: _char is not "player")[($funcOpinionCalc: _char, false)]\
+        ]\
+    ],
+    "lossText", [],
+    "lossEffect", [\
+    	(for: each _char, ...(data-names: $char))[\
+        	(if: _char is not "player")[($funcOpinionCalc: _char, false)]\
+        ]\
+    ],
+
+)

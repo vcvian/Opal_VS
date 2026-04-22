@@ -1,0 +1,7 @@
+:: Test G Success {"position":"1275,4400","size":"100,100"}
+(metadata: "title", "Test G Healed Teacher",)
+
+Yay!, He's feeling better!
+<br>
+---
+($funcQuestUpdateLink: "Complete the Fluxy Teacher Quest", "sickTeacher", "completed", "You gave your teacher his medicine. He's feeling better now.", "We can get going, finally.", [], "Test G")

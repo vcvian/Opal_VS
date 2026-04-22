@@ -1,0 +1,59 @@
+:: studentDebate 2Y {"position":"5650,1875","size":"100,100"}
+{=
+
+(metadata:
+"title", "The Student Debate",
+"cardDesc", "",
+)
+
+$cssColumnParent[
+
+$cssColumnChild[
+	$cssBox[
+    	($funcImage: (passage: "S: studentDebate 2")'s img)
+         $cssBoxItem[''(print: (passage:)'s title )''<br>(print: (passage:)'s cardDesc)]
+    ]
+]
+
+$cssColumnChild[
+
+<!--time check-->
+(set: _debateDaysLeft to ($funcCheckExists: $place's eventDuration, "studentDebate", 0))
+<!--progress check-->
+(set: _debateProgress to ($funcCheckExists: $char's player's att, "studentDebateY", 0) > ($funcCheckExists: $char's player's att, "studentDebateX", 0))
+
+(if: _debateDaysLeft is 4)[\
+	Side Y, Topic A...
+]
+
+(elseif: _debateDaysLeft is 3)[\
+	Side Y, Topic B...
+]
+
+(elseif: _debateDaysLeft is 2)[\
+	Side Y, Topic C...
+]
+
+(elseif: _debateDaysLeft is 1)[\
+	Side Y, Topic D...
+]
+
+<br>
+$cssDesc[\
+	(if: _debateProgress is true)[Side Y currently has the advantage.]\
+    (else:)[Side X currently has the advantage.]\
+]
+<br>
+---
+(link: "End day with a thought about Y's advantage.")[\
+	($funcGainLoss: "att.", "studentDebateY", 1)\
+    (if: _debateDaysLeft <= 1)[(goto: "studentDebate 2 END")]\
+    <!--^ if last day, goes to a concluding passage instead of ending the day-->
+    (dialog: [The debate will continue tomorrow. Do come back to the lighthouse for more.])
+    $funcDone\
+]
+
+<!--[[studentDebate 2 END]]-->
+
+]<!--end child-->
+]<!--end parent-->

@@ -1,0 +1,25 @@
+:: Foraging 1b {"position":"5425,3800","size":"100,100"}
+{=
+
+(metadata: "title", "Successful Forage",
+"cardDesc", "Bounty awaits those who dares, and you did dare.")
+
+$cssColumnParent[
+
+$cssColumnChild[
+$cssBox[
+    ($funcImage: (passage: "S: Foraging (Rokhrud)")'s img)
+        $cssBoxItem[''(print: (passage:)'s title )''<br>(print: (passage:)'s cardDesc)]
+]
+]
+
+$cssColumnChild[
+... A lot!
+<br>
+---
+(link: "You have more to eat.")[\
+	($funcGainLoss: "item.", "supplies", 1)\
+    $funcDone\
+    ]
+]<!--end child-->
+]<!--end parent-->

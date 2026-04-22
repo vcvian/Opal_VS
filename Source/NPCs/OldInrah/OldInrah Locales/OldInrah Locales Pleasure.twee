@@ -1,0 +1,274 @@
+:: OldInrah Locales Pleasure {"position":"3525,1300","size":"100,100"}
+{=
+
+(metadata:
+"NPC", "OldInrah",
+"title", "Asking Koh-Inrah for Directions",
+"topic", "\"What about a less-than-honest rial? Where would one go to earn that?\"",
+"topicDetail", "The arm of the law is long, but does it reach to Askava?",
+"talked", (a: "localesApesai", "pleasure"),
+"addCode", [],)
+
+$cssColumnParent[
+
+$cssColumnChild[
+	$cssBox[
+    	($funcImage: (passage: "npc.OldInrah")'s img)
+         $cssBoxItem[''(print: (passage:)'s title )''<br>(print: (passage:)'s topicDetail)]
+    ]
+]
+
+<!--Main content begins here-->
+$cssColumnChild[
+
+$cssDesc[''You: //(print: (passage:)'s topic)//'']
+<br>
+
+<!--set lie outside of conditional hooks-->
+(set: _lie to false)
+
+<!--firstTime-->
+[
+You slip the coins across the table.
+<br>
+["Are //these// rials honest?"]<OldInrahLine| Koh-Inrah eyes them suspiciously. ["Ah, Old Inrah knows this trick. You work for the Ministry of Funds, don't you? Or the governor? No, the Interior?"]<OldInrahLine|
+<br>
+($funcInnerConvo: (dm:
+	"<!--A-->\"No! I'm not, I promise!\"", "truth1",
+    "<!--B-->(Lie) \"Maybe. Whomever I work for, you should cooperate.\"", "lie1",
+))
+<br>
+](firstTime|
+
+<!--secondTime-->
+[
+You place her fee on the table.
+<br>
+["Again? Did the patron get lost in the slums?"]<OldInrahLine| The old woman says while quickly swiping the coins before you can change your mind.
+<br>
+<!--determine dialog text-->
+(set: _againText to "")
+(set: _againReply to "")
+(if: _alreadyKnow)[(set: _againText to "\"I think I've already found it. But just to be sure...\"")(set: _againReply to "againKnow")]
+(else:)[(set: _againText to "\"A reminder would be useful, please.\"")(set: _againReply to "againNotKnow")]
+<!--dialog-->
+($funcInnerConvo: (dm:
+	_againText, _againReply,
+))
+<br>
+](secondTime|
+
+[
+["Old Inrah does not blame the patron. It is not easy for an outsider to find their way around. To a non-Yavanid looking for their alienage, it is doubly difficult."]<OldInrahLine| she sips her tea. ["But perhaps it is better that you do not find it. Still, the fee has been paid, and Old Inrah will tell the patron again of what she knows."]
+<br>
+($funcInnerConvo: (dm:
+	"<!--A-->\"Yes, tell me about the Yavanid Quarter again, Koh-Inrah.\"", "advice3",
+))
+<br>
+](againNotKnow|
+
+[
+["Ah, the patron has both time and coin to waste,"]<OldInrahLine| she squints at you, searching for truth. ["Seems like Old Inrah's advice has paid off. Don't tell her where you've got these coins though. She will take it, and she will perform her obligations as guide."]<OldInrahLine|
+<br>
+($funcInnerConvo: (dm:
+	"<!--A-->\"Yes, tell me about the Yavanid Quarter again, Koh-Inrah.\"", "advice3",
+))
+<br>
+](againKnow|
+
+<!--determine if already know-->
+(set: _alreadyKnow to false)
+(if: ($funcCheckExists: $char's player's att, "knowApesaiPleasure", 0) >= 2)[(set: _alreadyKnow to true)]
+
+<!--Determine if this is the first or second time-->
+(if: ($funcTalkedTimesCheck: "pleasure") < 1)[(show: ?firstTime)]
+(else:)[(show: ?secondTime)]
+
+
+<!--truth branch-->
+[
+["Of course,"]<OldInrahLine| she winks. ["The patron is far too... honest for trickery, yes? But why would such a virtuous person - a young davehmar, no less - seek out dishonesty? Is that not like a sheep looking for a wolf's den?"]<OldInrahLine|
+<br>
+($funcInnerConvo: (dm:
+	"<!--A-->\"I'm simply curious. Every city has its underbelly.\"", "advice2a",
+    "<!--B-->\"Never hurts to know how to turn a quick rial.\"", "advice2b",
+    "<!--C-->\"A magus needs to be... resourceful.\"", "advice2c",
+))
+<br>
+](truth1|
+
+<!--lie branch-->
+[
+(set: _lie to true)
+["Haha, that answers it: The patron works for no-one,"]<OldInrahLine| she concludes with a giggle. ["An agent of the law knows better than to admit anything."]<OldInrahLine|
+<br>
+It seems that the old woman has tricks of her own, and you've fallen for one.
+<br>
+($funcInnerConvo: (dm:
+	"<!--A-->\"Sorry, I was only joking.\"", "lieAdmit",
+    "<!--B-->(Lie) \"No, I //am// on official business, and I want the truth from you.\"", "lie2",
+))
+<br>
+](lie1|
+
+<!--admit to lie-->
+[
+["What is the joke here? That the patron makes a fool of themself? Or is Old Inrah the fool?"]<OldInrahLine| Her smile curls into a sneer. ["The patron understands that the fee is for Old Inrah's time and not her laugh, yes? And time does not flow backward."]<OldInrahLine|
+<br>
+($funcInnerConvo: (dm:
+	"<!--A-->\"Yes, I understand.\"", "advice1",
+))
+<br>
+](lieAdmit|
+
+[
+["Good. Then do tell: Why would the patron pay to seek out dishonesty in Apesai? theres plenty of that to go around for free."]<OldInrahLine|
+<br>
+($funcInnerConvo: (dm:
+	"<!--A-->\"I'm simply curious. Every city has its underbelly.\"", "advice2a",
+    "<!--B-->\"Never hurts to know how to turn a quick rial.\"", "advice2b",
+    "<!--C-->\"A magus needs to be... resourceful.\"", "advice2c",
+))
+<br>
+](advice1|
+
+<!--double down-->
+[
+["Oh? 'Official business', you say? Is your 'business' to get a laugh out of Old Inrah? Not a profitable enterprise then. No wonder why the patron is destitute and has to turn to a life of dishonesty?"]<OldInrahLine|
+<br>
+($funcInnerConvo: (dm:
+	"<!--A-->Try to think of a comeback.", "lie3",
+))
+<br>
+](lie2|
+
+[
+But you stammer.
+<br>
+["What's the matter? Don't they train you to properly use your words? Your university has ripped you off, it seems. Not a surprise on account of your poor business acumen."]<OldInrahLine|
+<br>
+She is relentless.
+<br>
+["Enough of this farce. Do tell: Why does the patron seek to know such //distasteful// things about this most wonderful city?"]<OldInrahLine|
+<br>
+($funcInnerConvo: (dm:
+	"<!--A-->\"I'm simply curious. Every city has its underbelly.\"", "advice2a",
+    "<!--B-->\"Never hurts to know how to turn a quick rial.\"", "advice2b",
+    "<!--C-->\"A magus needs to be... resourceful.\"", "advice2c",
+))
+<br>
+](lie3|
+
+<!--advice series-->
+[
+["Curiosity kills the cat, you know,"]<OldInrahLine| she sighs. ["But it also leads said cat to the lard jar. Old Inrah cannot guarantee that you will find anything as filling and tasty as //lard// down in the slums - she herself is an upright citizen and not a very curious one - but down there is a certain quarter of a certain... reputation, where the emperor's law has made an exception."]<OldInrahLine|
+<br>
+($funcInnerConvo: (dm:
+	"<!--A-->\"Intriguing. Go on.\"", "advice3",
+))
+<br>
+](advice2a|
+
+[
+["Hah, almost everyone who comes to Apesai is looking to 'turn a quick rial', as the patron has so delicately put it,"]<OldInrahLine| she says. ["Most of them do so in the Grand Exchange or finds jobs at the Traveler's Society, both of which operates under the city's laws and guarantees, as well as the various ministries, light blesses them. But plenty of them still get hurt. If they wish to risk even more hurt, then there is certain quarter in Apesai for which our laws have made an exception."]<OldInrahLine|
+<br>
+($funcInnerConvo: (dm:
+	"<!--A-->\"Yes, go on.\"", "advice3",
+))
+<br>
+](advice2b|
+
+[
+["Oh? Perhaps it is wise that Old Inrah does not ask what manner of vices or agendas you magi have. One shudders to think what someone who can see and manipulate the elements considers 'resource', light guides us."]<OldInrahLine|
+<br>
+There has always been preconceptions about what magic and their users are, and in the frontiers, so far from proper schools, these preconceptions border on superstition.
+<br>
+["Still, if loose morals and contrabands are to be found anywhere, it'd be where Nurandahid laws has made an exception. Of course, it is still illegal for an imperial citizen, which you are, to partake. Old Inrah is mere stating a fact."]<OldInrahLine|
+<br>
+($funcInnerConvo: (dm:
+	"<!--A-->\"And where might this place be?\"", "advice3",
+))
+<br>
+](advice2c|
+
+
+<!--advice converges-->
+[
+["What its denizens call it, I cannot say without tying my tongue in a knot, but most simply call it the 'Pleasure Quarter'. It is where our emperor, blessed be his wisdom, houses our foreign guests from the archipelagoes of Yavana and let them rule themselves, so long as they pay their tax and do not violate common morality, although that is a contentious matter."]<OldInrahLine|
+<br>
+($funcInnerConvo: (dm:
+	"<!--A-->\"Why are they exempt from our laws?\"", "advice4a",
+    "<!--B-->\"What are they exempt from?\"", "advice4b",
+    "<!--C-->\"Can you show me how to get there?\"", "advice5",
+))
+<br>
+](advice3|
+
+[
+["//Why// indeed, Old Inrah has asked herself this everyday of her life, though she should not question the decisions of her betters,"]<OldInrahLine| she spits out a tea leaf. ["Rumor has it that the Yavanids are so tribalistic in their petty kingdoms - did you know each of their island is a seperate kingdom and a seperate pantheon, and they've got dozens, no, hundreds? - that they find it difficult to be part of a larger commune. A public and responsible life ill-suits the so-called //free// individual, you see."]<OldInrahLine|
+<br>
+Artistic, idolatrous, frivolous, and most of all, untrustworthy - such is the reputation of the Yavanids.
+<br>
+($funcInnerConvo: (dm:
+	"<!--A-->\"What are they exempt from?\"", "advice4b",
+    "<!--B-->\"Where can I find the Yavanid Quarter?\"", "advice5",
+))
+<br>
+](advice4a|
+
+[
+["Have some decorum; it is too distasteful to make an old woman talk about these things. It's anything that might poison the mind and its virtues, but mostly, they smoke farabek to kill their intellect and let their animal bodies do whatever that comes after."]<OldInrahLine|
+<br>
+($funcInnerConvo: (dm:
+	"<!--A-->\"Don't we - the Nurandahids - sell farabek?\"", "advice4c",
+    "<!--B-->\"So debaucheries. Where exactly is this place?\"", "advice5",
+))
+<br>
+](advice4b|
+
+[
+["Tsk, not to our own citizens, only the Yavanids. A smith is not liable for the murderer's deeds."]<OldInrahLine|
+<br>
+You've spent a few of your university years studying  smiliar moral quandaries, but you have the sense that the landlady is not so interested in debate.
+<br>
+($funcInnerConvo: (dm:
+    "<!--A-->\"Fine, where is this 'Pleasure Quarter'?\"", "advice5",
+))
+<br>
+](advice4c|
+
+[
+["Don't say Old Inrah didn't warn you."]<OldInrahLine|
+<br>
+The old woman proceeds to describe a zig-zagging path through the city, which you can barely begin to imagine how it would look in reality.
+<br>
+There used to be a series of obsidian obelisks that pointed to the wealthier parts of the Yavanid Quarter, but since the city kept changing, and the Yavanids driven deeper into the canal-laden slums below, these markers have become less reliable.
+(show: ?done)
+](advice5|
+
+<!--done-->
+[
+<!--register talked keys-->
+($funcTalked:)
+<!--determine if already know-->
+(set: _alreadyKnow to false)
+(if: ($funcCheckExists: $char's player's att, "knowApesaiPleasure", 0) >= 2)[(set: _alreadyKnow to true)]
+<!--determine link text if already know-->
+(set: _doneText to "")
+(if: _alreadyKnow is true)[(set: _doneText to "The actual route - which you already know - is even more convoluted than her instructions. Still, it is good to have a reminder.")]
+(else:)[(set: _doneText to "Note down her instructions as best as you can.")]
+<br>
+---
+
+(link-rerun: _doneText)[{
+	(if: _alreadyKnow is true)[($funcTempGainLoss: "impressionApesai", 1)]
+    (if: _alreadyKnow is false)[($funcTempGainLoss: "impressionApesai", 5)]
+    (if: _lie is true)[($funcOpinionGainLoss: "OldInrah", -5, "Koh-Inrah didn't appreciate you lying to her, even as a joke.")]
+    (if: _lie is false)[($funcOpinionGainLoss: "OldInrah", 1, "Much goodwill is earned through the exchange of money, and the old woman happily takes yours.")]
+    (set: $char's OldInrah's energy's 1st to it - 1)
+    (goto: "OldInrah Locales Else")
+}]
+](done|
+
+]<!--end child-->
+]<!--end parent-->

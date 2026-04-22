@@ -1,0 +1,68 @@
+:: T: OldInrah Refund [topic] {"position":"3200,1100","size":"100,100"}
+{=
+
+(storylet: when
+(passage:) contains "NPC"
+and $char's player's att contains "accessInrahOddJobs"
+and $char's player's timerCooldown does not contain "T: OldInrah Jobs" and it does not contain "T: OldInrah Refund"
+and ($funcCheckExists: (passage:), "talked", (a:)) does not contain "refund"
+)
+
+(urgency: -1)
+(metadata:
+"NPC", "OldInrah",
+"title", "Asking About Rent \"Refund\"",
+"topic", "\"About that rent 'refund'...\"",
+"topicDetail", "The favors you've accrued can be exchange for a 'rent refund' - the landlady has promised.",
+"cooldown", 1,
+"talked", (a: "oddJobs", "refund"),
+"addCode", [],)
+
+
+
+$cssColumnParent[
+
+$cssColumnChild[
+	$cssBox[
+    	($funcImage: (passage: "npc.OldInrah")'s img)
+         $cssBoxItem[''(print: (passage:)'s title )''<br>(print: (passage:)'s topicDetail)]
+    ]
+]
+
+<!--Main content begins here-->
+$cssColumnChild[
+
+$cssDesc[''You: //(print: (passage:)'s topic)//'']
+<br>
+(cond:
+($funcCheckExists: $char's player's att, "repFamilyBizGood", 0) <= 0, [["Hmm? Haven't Old Inrah already given you her assent to help out around here?"]<OldInrahLine| The landlady asks, eyes sharp. ["Well, get on with it. Make yourself useful. Why, are you waiting for Old Inrah to give you orders? What is she, your employer? A humble proprietress such as her cannot //afford// for a magus to be her payroll. But... she //can// afford some small refunds for a helpful patron."]<OldInrahLine|
+<br>
+$cssDesc[Earn favors with Inrah by helping her staff at the Pilgrim's Rest. The opportunities will (ocassionally) appear among the guesthouse's stories.]
+],
+($funcCheckExists: $char's player's att, "repFamilyBizGood", 0) <= 7, [["Already? Old Indrah had expected the magus to commit a bit more. Young people these days, always expecting reward for the smallest of effort,"]<OldInrahLine| she gazes at you through narrow lids, waiting for you to flinch. You don't. ["But, a promise is a promise. Now, what //about// your rent?"]<OldInrahLine|],
+($funcCheckExists: $char's player's att, "repFamilyBizGood", 0) <= 14, [["Why, what //about// your rent, dear patron?"]<OldInrahLine| She chuckles, black teeth gleaming. ["It's jest, of course, but only half. You've been very helpful; Old Inrah heard good things. Not //specific// things - let us keep it that way - but good, nonetheless. And Koh-Indrah has her good repute to keep also."]<OldInrahLine|],
+[["Old Inrah confesses, dear patron,"]<OldInrahLine| she says, rubbing her eyes. ["That she has been thinking, despite her gratitude, and she is grateful: Doesn't the patron have a greater calling than to busy themselves with odds and ends here in the Pilgrim's Rest? Surely, a magus, especially a davehmar, has loftier concerns that those of the maids and cooks."]<OldInrahLine|
+<br>
+So you do, but why is that of //her// concern? You've known practical women like Old Inrah to not look a gift zebra in the mouth.
+<br>
+["Yes, it's true that Old Inrah is a practical woman, and it is in her practicality that she is wary of owing someone too much. Light shows, she is grateful, do not think otherwise. But one does not live to be as old as I am without looking at a few equine mouths."]<OldInrahLine|
+<br>
+And what does she see at the end of such creature's throats? No lies, one might hope?
+<br>
+["No..."]<OldInrahLine| she squints at you.
+],
+)
+<br>
+$cssDesc[You currently have ''($funcCheckExists: $char's player's att, "repFamilyBizGood", 0) (print: (passage: "att.repFamilyBizGood")'s id)'' to exchange for rent refunds (''10 rials per day''). Keep in mind that calling in favors will affect Koh-Inrah's opinion of you - which currently sits at ($funcOpinionCalc: "OldInrah", true) - as well as the opinion of anyone who cares about the Inrah family business.]
+<br>
+---
+<ol>
+<li>($funcCheckGate: (passage: "OldInrah Refund x1")'s topic, "att", "repFamilyBizGood", 1, true, 100, "OldInrah Refund x1", "")<!--[[OldInrah Refund x1]]-->
+<li>($funcCheckGate: (passage: "OldInrah Refund x7")'s topic, "att", "repFamilyBizGood", 7, true, 100, "OldInrah Refund x7", "")<!--[[OldInrah Refund x7]]-->
+<li>($funcCheckGate: (passage: "OldInrah Refund x14")'s topic, "att", "repFamilyBizGood", 14, true, 100, "OldInrah Refund x14", "")<!--[[OldInrah Refund x14]]-->
+<br> Actually, that matter can wait...
+($funcNPCTopics: "One either pays, or one works. That seems to be the foremost law here. Or anywhere.", "Gratitude, Koh-Inrah, and goodbye.")
+</ol>
+
+]<!--end child-->
+]<!--end parent-->

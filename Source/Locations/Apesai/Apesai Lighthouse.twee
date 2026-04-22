@@ -1,0 +1,27 @@
+:: Apesai Lighthouse [sublocation] {"position":"5025,1450","size":"100,100"}
+{=
+(metadata:
+"prefecture", "Nurrah Coastlands",
+"location", "Apesai",
+"title", "Apesai Lighthouse",
+)
+
+($funcUpdateLocation:)
+
+<h2>(print: (passage:)'s title)</h2>
+
+$cssColumnParent[
+$cssColumnChild[
+
+Wrought ivory thrusts towards the firmament. On its red steel crown sits a giant opal, showering the sky and sea with its silk-like light.
+<br>
+Towards that rainbow, hundreds of ships comes every year, each bringing troves of books and scrolls to be lined along the tower's endlessly spiraling shelves. And even so, it is only a pale imitation of the heartland's many houses of learning.
+<br>
+The ''Apesai Lighthouse'' is not really a university. Not yet anyhow. Sure, the davehmars are here, magi masters and their students living in cramped barracks. But they are all fresh and much too close to the distractions of the frontier to wholly focus on their studies.
+<br>
+As it is right now, this tower is, more appropriately, a very tall monument to what your fellow magi might bring to this land. A promise, if you will.
+]
+$cssColumnChild[($funcNavigateSublocations:)]
+]<!--end of $cssColumnParent-->
+---
+($funcStorylet:)

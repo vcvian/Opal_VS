@@ -1,0 +1,23 @@
+:: quest.absentPrincipal [static-storage] {"position":"6700,1825","size":"100,100"}
+{=
+<!--A long-haul quest with multiple ways to prime. Right now, the only way is hearing it from Veh-Veh-->
+
+<!--quests can be "inactive", "primed", "active", "completed", "failed"-->
+(metadata: 
+"id", [The Absent Principal],
+"img", "https://fallenlondon.wiki/w/images/8/83/University.png",
+"desc", [???],
+"tip",[],
+)
+
+(set: $quests to it + (dm:
+
+"absentPrincipal", (dm:
+"id", [The Absent Principal],
+"img", "https://fallenlondon.wiki/w/images/8/83/University.png",
+"status", "inactive",
+"desc", [???],
+
+))
+
+)

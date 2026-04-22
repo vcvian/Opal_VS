@@ -1,0 +1,47 @@
+:: S: VehVeh Market [storylet] {"position":"6300,1300","size":"100,100"}
+{=
+
+(storylet: when
+$char's VehVeh's alive is true
+and $char's VehVeh's know is true
+and $char's VehVeh's location is $place's sublocation and it is "The Grand Exchange"
+and $char's VehVeh's opinion's 2nd > 20
+and $char's VehVeh's arc is 1
+)
+
+(metadata:
+"NPC", "VehVeh",
+"convoHub", true,
+
+"title", "Veh-Veh the Apprentice",
+"cardDesc", "Mahveh-Vehkhan is wrangling a group of rowdy fair-haired toddlers.",
+"img", "Assets/Portraits/Girl_1.png", 
+)
+
+
+$cssColumnParent[
+
+$cssColumnChild[
+	$cssBox[
+    	($funcImage: (passage:)'s img)
+         $cssBoxItem[''(print: (passage:)'s title )''<br>(print: (passage:)'s cardDesc)]
+    ]
+]
+
+$cssColumnChild[
+
+(if: $char's VehVeh's energy's 1st > 0)[A child's arm in one hand and heavy bags in another, she spots you and says hi.]
+
+(else:)[Veh-Veh says hi but remains busy with chores for her school.]
+
+
+<br>
+---
+<ol>
+($funcNPCTopics: "Veh-Veh seems busy. You should leave her be for today.", "Keep it up, Veh-Veh. Bye.")
+</ol>
+
+<!--The topic storylet function reads the current passage's NPC-->
+
+]<!--end child-->
+]<!--end parent-->

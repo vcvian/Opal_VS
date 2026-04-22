@@ -1,0 +1,52 @@
+:: AskavaPermit 1a {"position":"4450,2025","size":"100,100"}
+{=
+
+(metadata:
+"title", "The Hall of Immigration Affairs",
+"cardDesc", "",
+)
+
+$cssColumnParent[
+
+$cssColumnChild[
+	$cssBox[
+    	($funcImage: (passage: "S: AskavaPermit 1")'s img)
+         $cssBoxItem[''(print: (passage:)'s title )''<br>(print: (passage:)'s cardDesc)]
+    ]
+]
+
+$cssColumnChild[
+
+($funcNPCSpeakManual: "Clerk1")
+
+After standing around for what seems to be forever, thumbing your number slip until the ink has near-faded, your name is finally called.
+<br>
+You approach the clerk. Despite his military uniform, you're sure that he's just a clerk. He doesn't look up.
+<br>
+["Documents?"]<Clerk1Line| He mumbles. 
+<br>
+You give him a stack of whatever you can think of - bill of sale from the captain of the ship that carried you here, letters of recommendation from your university, a manifest of belongings, etc.
+<br>
+He flips through the parchments, eyes strangely still, as if not reading at all.
+<br>
+["A magus?"]<Clerk1Line|
+<br>
+Yes. Kind of. Not yet.
+<br>
+["Where's your master?"]<Clerk1Line|
+<br>
+He's indisposed.
+<br>
+The clerk stares at you with the same distant look he has for your documents.
+<br>
+["Alright. Be back in a few days,"]<Clerk1Line| the clerk says, tossing your parchments onto the huge pile behind him.
+<br>
+A few? How long?
+<br>
+The clerk eyes the pile, sighs, and says, ["However long it takes. Next!"]<Clerk1Line|
+<br>
+---
+($funcQuestUpdateLink: "You leave the immigration hall.", "permitAskava", "active", "Your papers are submitted. It'll take a while. Try to keep yourself busy in the mean time.", "Bureaucracies are the same everywhere - back home and here also.", [($funcAddTimer: "permitAskava", "wait")], "mockDay",)
+
+]<!--end parent-->
+]<!--end child-->

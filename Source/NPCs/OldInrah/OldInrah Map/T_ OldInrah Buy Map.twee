@@ -1,0 +1,141 @@
+:: T: OldInrah Buy Map [topic] {"position":"3875,1075","size":"100,100"}
+(storylet: when
+(passage:) contains "NPC"
+and $char's OldInrah's talked contains "mapInrah"
+and $char's player's inv does not contain "mapInrah"
+and ($funcCheckExists: (passage:), "talked", (a:)) does not contain "localesApesai" and it does not contain "mapInrah"
+)
+
+(metadata:
+"NPC", "OldInrah",
+"title", "Inquiring About Inrah's Map",
+"topic", "\"About that one-of-a-kind map...\"",
+"topicDetail", "There's no way this isn't a rip-off.",
+"talked", (a: "youngInrah", "mapInrah", "mapInrahAsk"),
+"addCode", [],)
+
+
+$cssColumnParent[
+
+$cssColumnChild[
+	$cssBox[
+    	($funcImage: (passage: "npc.OldInrah")'s img)
+         $cssBoxItem[''(print: (passage:)'s title )''<br>(print: (passage:)'s topicDetail)]
+    ]
+]
+
+<!--Main content begins here-->
+$cssColumnChild[
+
+$cssDesc[''You: //(print: (passage:)'s topic)//'']
+<br>
+
+
+<!--firstTime-->[
+["Oh? You're interested?"]<OldInrahLine| Koh-Inrah shoots up straight, surprisingly nimble for her age. ["You magi are all very smart, everyone knows."]<OldInrahLine|
+($funcInnerConvo: (dm:
+	"Continue.", "1stA",
+))
+<br>
+](firstTime|
+
+
+[From her many drawers, she produces a rolled up parchment. You can already tell from the gilded trims that this was lovingly made.
+<br>
+["For obvious reasons, Old Inrah won't open it now, but have faith that this map contains the entirety of the Coastlands, even some of the ruins in Ancient Navveh that only a handful adventurers have ever seen, all in one parchment."]<OldInrahLine|
+<br>
+($funcInnerConvo: (dm:
+    "<!--A-->Observe the roll.", "1stA1",
+))
+<br>
+](1stA|
+
+[
+The boast is too incredible for you to believe. Truly, the roll's width is only your arm's length; how much detail can it really contain? But something about Koh-Inrah's enthusiasm says that she is not entirely lying. Still, you inspect it as much as you are allowed. A red ink seal has marked one corner with stylized monogram for what you guess to be "Nav-Inrah" - "Young Inrah".
+<br>
+($funcInnerConvo: (dm:
+    "Continue.", "1stA1a",
+))
+<br>
+](1stA1|
+
+[
+["That girl has some of the most meticulous draftsmanship you'll ever see, and surely a well-traveled davehmar such as yourself has seen many maps. But not this one. It is as though she could fly and look down from above and, oh..."]<OldInrahLine| she sighs. ["Too bad, such talent comes with a wandering heart. She's off to who-knows-where again. Old Inrah wonders when or if her granddaughter will settle down. Take over the family business. Let an old woman have some peace of mind."]<OldInrahLine|
+<br>
+The old woman lets the silence hang.
+<br>
+($funcInnerConvo: (dm:
+    "<!--A-->Stay silent with her.", "1stA1a1",
+    "<!--B-->\"So how much is it?\"", "1stA1a1",
+))
+<br>
+](1stA1a|
+
+
+[She turns suddenly to you and states, like she has been dying to say it, ["dusat-pandah."]<OldInrahLine|
+<br>
+That's almost a month's worth of rent at her guesthouse!
+(show: ?done)
+<br>
+](1stA1a1|
+
+
+
+<!--secondTime-->[
+["Again?"]<OldInrahLine| She spits the question at you. ["What makes the patron think Old Inrah hasn't sold it? All travelers need maps, and this place sees a lot of travelers. All serious men and women with money."]<OldInrahLine|
+<br>
+($funcInnerConvo: (dm:
+     "<!--A-->(Ignore her taunt) \"So long as you still have it, I'm still interested.\"", "2ndA1",
+     "<!--B-->\"Travelers need maps, but they don't like to bankrupt themselves on one either.\"", "2ndA2",
+))
+<br>
+](secondTime|
+
+[
+["Tut-tut, does the patron not know that interest alone doesn't pay the help around here?"]<OldInrahLine| She squints at you, then sigh. ["Dusat-pandah - just as before."]<OldInrahLine|
+(show: ?done)
+<br>
+](2ndA1|
+
+[
+["Bankrupt?"]<OldInrahLine| She raises an eyebrow. ["Such a strong word for one with an airy pouch. The price is as fair as the product itself, given the level of care with which it was made. Is the patron quite sure that the scale isn't light on their end, instead of heavy on mine?"]<OldInrahLine|
+<br>
+($funcInnerConvo: (dm:
+     "\"Just name your price.\"", "2ndA2a",
+     "\"I'm not broke, if that's what you're implying.\"", "2ndA2b",
+))
+<br>
+](2ndA2|
+
+[
+["Heh, of course,"]<OldInrahLine| she chews on a tea leaf for a bit. ["Dusat-pandah - just as before."]<OldInrahLine|
+(show: ?done)
+<br>
+](2ndA2a|
+
+[
+["Hehe, then surely the patron can afford my asking price,"]<OldInrahLine| she chews on a tea leaf for a bit. ["Dusat-pandah - just as before."]<OldInrahLine|
+(show: ?done)
+<br>
+](2ndA2b|
+
+
+
+<!--done-->[
+---
+<ol>
+($funcTalked:)
+<li>($funcCheckGate: "Accept the asking price.", "inv", "rial", 250, true, 100, "OldInrah Buy Map Accept", "")<!--[[OldInrah Buy Map Accept]]-->
+<li>($funcOpinionGate: "Appeal to her for a lower price.", "OldInrah", 30, 50, "OldInrah Buy Map Haggle Success", "OldInrah Buy Map Haggle Failed")<!--[[OldInrah Buy Map Haggle Success]]--><!--[[OldInrah Buy Map Haggle Failed]]-->
+<li>($funcCheckGate: "Call in favors for a lowered price.", "att", "repFamilyBizGood", 4, true, 100, "OldInrah Buy Map Haggle Success", "")<!--[[OldInrah Buy Map Accept]]-->
+<li>(link-rerun: "Never mind.")[($funcOpinionGainLoss: "OldInrah", -1, "The old woman sneers, as though the price she has asked for is not ridiculous.")(goto: "OldInrah Buy Map Decline")]<!--[[OldInrah Buy Map Decline]]-->
+</ol>
+](done|
+
+
+]<!--end child-->
+]<!--end parent-->
+
+<!--Determine if 1st time-->
+(if: ($funcTalkedTimesCheck: "mapInrahAsk") < 1)[(show: ?firstTime)]
+(else:)[(show: ?secondTime)]

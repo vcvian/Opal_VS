@@ -1,0 +1,36 @@
+:: OldInrah Buy Map Haggle Success {"position":"4050,1200","size":"100,100"}
+(metadata:
+"NPC", "OldInrah",
+"title", "Successfully Haggled for Inrah's Map",
+"topicDetail", "Keep that innocent grin up, or she'll change her mind.",)
+
+
+$cssColumnParent[
+
+$cssColumnChild[
+	$cssBox[
+    	($funcImage: (passage: "npc.OldInrah")'s img)
+         $cssBoxItem[''(print: (passage:)'s title )''<br>(print: (passage:)'s topicDetail)]
+    ]
+]
+
+<!--Main content begins here-->
+$cssColumnChild[
+
+
+
+["Hmm, if Old Inrah didn't know any better, she'd be inclined to think that her goodwill is being taken advantage of,"]<OldInrahLine| Koh-Inrah says, narrowing her eyes as though to crush you with her wizened lids. ["But Old Inrah //does// know better. Impertinence is simply the way of the youths."]<OldInrahLine|
+<br>
+She gazes away, muttering a calculation and sucking on her black teeth, finding the new number bitter.
+<br>
+["Fine. she'll shave off a pandah,"]<OldInrahLine| she says, still not looking at you. ["But no more. This old woman cannot afford it. And she is so old that she will not remember this deal beyond today."]<OldInrahLine|
+<br>
+---
+<ol>
+<li>($funcCheckGate: "Accept the new price.", "inv", "rial", 200, true, 100, "OldInrah Buy Map Accept", "")<!--[[OldInrah Buy Map Accept]]-->
+<li>(link-rerun: "Regretfully admit that you won't be buying.")[($funcOpinionGainLoss: "OldInrah", -5, "She has lowered the price, and still you said 'no'.")(goto: "OldInrah Buy Map Decline")]<!--[[OldInrah Buy Map Decline]]-->
+</ol>
+
+
+]<!--end child-->
+]<!--end parent-->

@@ -1,0 +1,48 @@
+:: Apesai Student Lab {"position":"5075,1700","size":"100,100"}
+{=
+
+(metadata:
+"title", "The Student Lab",
+"cardDesc", "",
+"level", 2,
+"max", 4,
+"duration", 3,
+"fuelCost", 1,
+)
+
+$cssColumnParent[
+
+$cssColumnChild[
+	$cssBox[
+    	($funcImage: (passage: "S: Lab 1")'s img)
+         $cssBoxItem[''(print: (passage:)'s title )''<br>(print: (passage:)'s cardDesc)]
+    ]
+]
+
+$cssColumnChild[
+
+Vials, burners, pots, and pans - they're all here.
+<br>
+But you'll have to bring the ingredients yourself or buy them from the market. The students here are already resorting to combing the beach and scouring the pantry. They're not in a giving mood.
+<br>
+What shall you make today?
+]<!--end child-->
+]<!--end parent-->
+
+---
+$cssColumnParent[
+
+$cssColumnChild[
+Lab info.
+<br>
+(set: _self to $char's player's att)\
+You've absorbed and are currently holding these elements: ($funcCheckExists: _self, "at",0) At, ($funcCheckExists: _self, "ab",0) Ab, ($funcCheckExists: _self, "gor",0) Gor, ($funcCheckExists: _self, "rokh",0) Rokh, ($funcCheckExists: _self, "zam",0) Zam.\
+]
+
+
+$cssColumnChild[
+
+ ($funcVehzin: "S: Lab 1")
+ 
+ ]<!--end child-->
+ ]<!--end parent-->

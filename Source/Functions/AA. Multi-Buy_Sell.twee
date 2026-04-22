@@ -1,0 +1,83 @@
+:: AA. Multi-Buy/Sell [startup] {"position":"1525,3650","size":"100,100"}
+{=
+
+<!--Multi-buy/sell-->
+
+<!--First, it converts the price of 1 unit of item to the price in the appropriate currency, given _priceMod. Outputs _pricePerUnit
+Second, it checks the inv to see if the player can afford 1 _pricePerUnit at all. If yes to 1, then how many at most?
+Third, it creates a (dialog: ) with variable unit prices.
+Fourth, it runs the buy/sell macro, passing into it the appropriate arguments.-->
+
+(set: $funcMultiBuySell to (macro: str-type _transactionType, str-type _item, str-type _currency, num-type _priceMod, [(out:)[\
+	<!--initial-->\
+	(set: _transactionType to (lowercase: _transactionType))\
+	(set: _itemDM to (passage: "item." + _item))\
+	(set: _currencyDM to (passage: "item." + _currency))\
+	(set: _price to (abs:_itemDM's value's 1st))\
+	<!--Convert currency-->\
+	(set: _pricePerUnit to (round: (_price * _priceMod) / _currencyDM's value's 1st))\
+	(if: _pricePerUnit < 1)[(set: _pricePerUnit to 1)]\
+	\
+	<!--inv checks-->\
+	(set: _canBuy to false)\
+	(set: _canBuyMax to 0)\
+	(set: _canSell to false)\
+	(set: _canSellMax to 0)\
+	\
+	(if: _transactionType is "buy")[\
+		(if: $char's player's inv contains _currency)[\
+			(if: $char's player's inv's _currency >= _pricePerUnit)[\
+				(set: _canBuy to true)\
+				(set: _canBuyMax to (trunc:$char's player's inv's _currency / _pricePerUnit) )\
+			]\
+		]\
+	]\
+	\
+	(elseif: _transactionType is "sell")[\
+		(if: $char's player's inv contains _item)[\
+			(set: _canSell to true)\
+			(set: _canSellMax to $char's player's inv's _item)\
+		]\
+	]\
+	\
+	<!--Create buy link-->\
+	(if: _transactionType is "buy")[\
+		(if: _canBuy is true)[\
+			Buy (link-rerun: "(print: _itemDM's id)")[\
+				(set: _options to (a: 1,2,3,4,5,6,7,8,9,10,))\
+				(set: _manyOptions to (a:))\
+				(for: each _o, ..._options)[\
+					(if: _canBuyMax >= _o)[(set: _manyOptions to it + (a: (str: _o)) )]\
+				]\
+					(if: _canBuyMax > 10)[(set: _manyOptions to it + (a: (str: _canBuyMax)) )]\
+				(dialog: bind _value, "How many ''(print:  _itemDM's id)'' do you wish to (color:green+yellow)[buy?] <br> $cssDesc[Each will cost you (color:red+ orange)[''_pricePerUnit (print: _currencyDM's id).''] <br> (print: _itemDM's tip)]", ..._manyOptions)\
+				\
+				(set: _value to (num: _value))\
+				 ⚖ ($funcBuySell: _item, _value, _currency, _priceMod)\
+			] $cssDesc[(Each will cost you ''_pricePerUnit (print: _currencyDM's id).'' You currently have ''(if: $char's player's inv contains _item)[(print: $char's player's inv's _item)](else:)[0] (print: _itemDM's id).'')]\
+		]<!--end of canBuy-->\
+		(else:)[\
+			~~Buy (print: _itemDM's id)~~ $cssDesc[(Insufficient ''(print: _currencyDM's id)''. You have|need at least (color:red)[(if: $char's player's inv contains _currency)[(print: $char's player's inv's _currency)](else:)[0]]|_pricePerUnit (print: _currencyDM's id). Also, you currently have ''(if: $char's player's inv contains _item)[(print: $char's player's inv's _item)](else:)[0] (print: _itemDM's id)''.)]\
+		]\
+	]<!--end of buy link-->\
+	<!--Create sell link-->\
+	(if: _transactionType is "sell")[\
+		(if: _canSell is true)[\
+			Sell (link-rerun: "(print: _itemDM's id)")[\
+				(set: _options to (a:1,2,3,4,5,6,7,8,9,10))\
+				(set: _manyOptions to (a:))\
+				(for: each _o, ..._options)[\
+					(if: $char's player's inv's _item >= _o)[(set: _manyOptions to it + (a: (str: _o)))]\
+				]\
+					(if: $char's player's inv's _item > 10)[(set: _manyOptions to it + (a: (str: $char's player's inv's _item)))]\
+				(dialog: bind _value, "How many ''(print:  _itemDM's id)'' do you wish to (color:red+orange)[sell?] <br> $cssDesc[You currently have (print: $char's player's inv's _item) (print: _itemDM's id). Each will fetch you (color:green+yellow)[''_pricePerUnit (print: _currencyDM's id).''] <br> (print: _itemDM's tip)]", ..._manyOptions)\
+				\
+				(set: _value to -(num: _value))\
+				⚖ ($funcBuySell: _item, _value, _currency, _priceMod)\
+			] $cssDesc[(Each will fetch you ''_pricePerUnit (print: _currencyDM's id).'' You currently have ''(if: $char's player's inv contains _item)[(print: $char's player's inv's _item)](else:)[0] (print: _itemDM's id).'')]\
+		]<!--end of canSell-->\
+		(else:)[\
+			~~Sell (print: _itemDM's id)~~ $cssDesc[(Each will fetch you ''_pricePerUnit (print: _currencyDM's id),'' but alas, you don't have any to sell.)]\
+		]\
+	]<!--end of sell link-->\
+]]))

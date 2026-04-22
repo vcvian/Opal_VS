@@ -1,0 +1,37 @@
+:: S: Fishing (Nurrah) [storylet traveling] {"position":"5300,3550","size":"100,100"}
+{=
+
+(storylet: when
+$place's traveling is true
+and (
+((str: $place's travelingFrom + $place's travelingTo) contains "Apesai" and (it contains "Rokhab" or it contains "Zirab" or it contains "Navveh"))
+or
+((str: $place's travelingFrom + $place's travelingTo) contains "Rokhab" and (it contains "Zirab" or it contains "Navveh"))
+)
+and $place's weather is not "stormy"
+and $char's player's timerCooldown does not contain "S: Fishing (Nurrah)"
+)
+(metadata: "title", "Fishes of the Nurrah Sea", "cardDesc", "There are silver flecks beneath the blue waves.", "img", "https://fallenlondon.wiki/w/images/3/3b/Fish_white.png", "cooldown", 2,)
+
+$cssColumnParent[
+
+$cssColumnChild[
+$cssBox[
+    ($funcImage: (passage:)'s img)
+        $cssBoxItem[''(print: (passage:)'s title )''<br>(print: (passage:)'s cardDesc)]
+]
+($funcWeatherBox:)
+]
+
+$cssColumnChild[
+
+(Description...)
+<br>
+---
+<ol>
+<li>(link: "Cast a line. ⧗")[($funcAddStoryletCooldown: (passage:)'s name)(goto: "Fishing 1a")]<!--[[Fishing 1a]]-->
+<li>(link: "Never mind.")[$funcBack]
+</ol>
+
+]<!--end child-->
+]<!--end parent-->

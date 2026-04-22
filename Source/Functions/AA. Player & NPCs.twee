@@ -1,0 +1,29 @@
+:: AA. Player & NPCs [startup] {"position":"1425,3400","size":"100,100"}
+{=
+
+<!--initial character list-->
+(set: $char to (dm:))
+
+<!--player character-->
+(set: $char to it + (dm:
+
+"player", (dm:
+"customName", "Lê Thị Mèo", "title", "the Journeyman", "titleList", (a:),
+"id", "You",
+"img", "",
+
+"health", (a: 9, 10),
+"alive", true,
+
+"att", (dm:),"temp", (dm:),"inv", (dm: "rial", 300, "supplies", 3, "vehzin", 1, "ginger", 5, "water", 5, "charcoal", 5, ),
+
+"quests", (dm:),
+
+"craftFormula", (a: "healingTonic", "sample1","sample2","sample3"),
+
+"timerCraft", (dm:),
+"timerCooldown", (dm:),
+"timerQuest", (dm:), 
+),
+
+))

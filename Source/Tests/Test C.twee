@@ -1,0 +1,28 @@
+:: Test C {"position":"1000,3600","size":"100,100"}
+(metadata: "title", "Test C (elementalizing)")
+
+[[⇦ BACK->Pre-Test (NEW)]]
+<ul>
+''Pure Elementalize Code''
+<li>(link-rerun: "Elementalize 5 rials")[($funcElementalize: "rial", 5)]
+<li>(link-rerun: "Elementalize 1 ginger")[($funcElementalize: "ginger", 1)]
+<li>(link-rerun: "Elementalize 1 water")[($funcElementalize: "water", 1)]
+<li>(link-rerun: "Elementalize 1 charcoal")[($funcElementalize: "charcoal", 1)]
+
+<br>
+''Multi-Elementalize Code'' <br>
+Arbitrary <br>
+($funcMultiElementalize: "rial")
+<br>
+Based on inventory & only ingredients (use this in game) <br>
+(for: each _ingredient, ...(data-names: $char's player's inv))[\
+	(if: (passage: "item." + _ingredient)'s key contains "ingredient")[<li>($funcMultiElementalize: _ingredient)]\
+]\
+</ul>
+
+<br>
+''Player Inventory''
+(print: $char's player's inv)
+<br>
+''Player Attributes''
+(print: $char's player's att)

@@ -1,0 +1,46 @@
+:: S: VehVeh [storylet] {"position":"6275,1525","size":"100,100"}
+{=
+
+(storylet: when
+$char's VehVeh's alive is true
+and $char's VehVeh's know is true
+and $char's VehVeh's location is $place's sublocation and it is "Apesai Lighthouse"
+and $char's VehVeh's opinion's 2nd > 20
+and $char's VehVeh's arc is 1
+)
+
+(metadata:
+"NPC", "VehVeh",
+"convoHub", true,
+
+"title", "Veh-Veh the Apprentice",
+"cardDesc", "Mahveh-Vehkhan is studying under the Apesai davehmars.",
+"img", "Assets/Portraits/Girl_1.png", 
+)
+
+
+$cssColumnParent[
+
+$cssColumnChild[
+	$cssBox[
+    	($funcImage: (passage:)'s img)
+         $cssBoxItem[''(print: (passage:)'s title )''<br>(print: (passage:)'s cardDesc)]
+    ]
+]
+
+$cssColumnChild[
+
+(if: $char's VehVeh's energy's 1st > 0)[Veh-Veh says hi!...]
+
+(else:)[Veh-Veh is busy doing something. She waves at you but continues on her way...]
+
+
+<br>
+---
+<ol>
+($funcNPCTopics: "Veh-Veh seems busy. You should leave her be for today.", "Good to see you, Veh-Veh. Bye.")
+</ol>
+
+<!--The topic storylet function reads the current passage's NPC-->
+]<!--end child-->
+]<!--end parent-->

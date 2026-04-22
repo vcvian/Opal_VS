@@ -1,0 +1,49 @@
+:: Test A {"position":"1000,3350","size":"100,100"}
+{=
+
+(metadata: "title", "Test A (item basics)")
+
+[[⇦ BACK->Pre-Test (NEW)]]
+($funcNotifyAndLog: "att.", "at", 20)
+<br>
+<li>(link-rerun: "Gain 100 rials")[($funcGainLoss: "item.", "rial", 100)(replace: ?inv)[(print: $char's player's inv)]]
+<li>(link-rerun: "Lose 100 rials")[($funcGainLoss: "item.", "rial", -100)(replace: ?inv)[(print: $char's player's inv)]]
+<br>
+<li>(link-rerun: "Gain 2 tonics")[($funcGainLoss: "item.", "healingTonic", 2)(replace: ?inv)[(print: $char's player's inv)]]
+<li>(link-rerun: "Lose 2 tonics")[($funcGainLoss: "item.", "healingTonic", -2)(replace: ?inv)[(print: $char's player's inv)]]
+<li>(link-rerun: "Gain 2 supplies")[($funcGainLoss: "item.", "supplies", 2)(replace: ?inv)[(print: $char's player's inv)]]
+<li>(link-rerun: "Lose 2 supplies")[($funcGainLoss: "item.", "supplies", -2)(replace: ?inv)[(print: $char's player's inv)]]
+<li>(link-rerun: "Gain 2 permits")[($funcGainLoss: "item.", "permitAskava", 2)(replace: ?inv)[(print: $char's player's inv)]]
+<li>(link-rerun: "Lose 2 permits")[($funcGainLoss: "item.", "permitAskava", -2)(replace: ?inv)[(print: $char's player's inv)]]
+<br>
+<li>(link-rerun: "Gain 2 vigorous")[($funcGainLoss: "att.", "vigorous", 2)(replace: ?att)[(print: $char's player's att)]]
+<li>(link-rerun: "Lose 2 vigorous")[($funcGainLoss: "att.", "vigorous", -2)(replace: ?att)[(print: $char's player's att)]]
+<li>(link-rerun: "Gain 2 sickly")[($funcGainLoss: "att.", "sickly", 2)(replace: ?att)[(print: $char's player's att)]]
+<li>(link-rerun: "Lose 2 sickly")[($funcGainLoss: "att.", "sickly", -2)(replace: ?att)[(print: $char's player's att)]]
+<br>
+<li>(link-rerun: "Gain 1 At")[($funcGainLoss: "att.", "at", 1)(replace: ?att)[(print: $char's player's att)]]
+<li>(link-rerun: "Lose 1 At")[($funcGainLoss: "att.", "at", -1)(replace: ?att)[(print: $char's player's att)]]
+<li>(link-rerun: "Gain 1 Ab")[($funcGainLoss: "att.", "ab", 1)(replace: ?att)[(print: $char's player's att)]]
+<li>(link-rerun: "Lose 1 Ab")[($funcGainLoss: "att.", "ab", -1)(replace: ?att)[(print: $char's player's att)]]
+<li>(link-rerun: "Gain 1 Gor")[($funcGainLoss: "att.", "gor", 1)(replace: ?att)[(print: $char's player's att)]]
+<li>(link-rerun: "Lose 1 Gor")[($funcGainLoss: "att.", "gor", -1)(replace: ?att)[(print: $char's player's att)]]
+<li>(link-rerun: "Gain 1 Rokh")[($funcGainLoss: "att.", "rokh", 1)(replace: ?att)[(print: $char's player's att)]]
+<li>(link-rerun: "Lose 1 Rokh")[($funcGainLoss: "att.", "rokh", -1)(replace: ?att)[(print: $char's player's att)]]
+<li>(link-rerun: "Gain 1 Zam")[($funcGainLoss: "att.", "zam", 1)(replace: ?att)[(print: $char's player's att)]]
+<li>(link-rerun: "Lose 1 Zam")[($funcGainLoss: "att.", "zam", -1)(replace: ?att)[(print: $char's player's att)]]
+<br>
+
+''Player''
+[(print: $char's player's inv)]<inv|
+[(print: $char's player's att)]<att|
+
+<br>
+
+<li>(link-rerun: "What is my health?")[ (print: $char's player's health)]
+<br>
+---
+<br>
+Tests for `($funcCheckExists:)` macro, which takes (1) a datamap and (2) the name of a key that may or may not exists --> outputs the value of that key if it exists. Otherwise outputs nothing:
+<li>sickTeacher quest: ($funcCheckExists: $char's player's quests, "sickTeacher", "")
+<li>Ginger: ($funcCheckExists: $char's player's inv, "ginger", 0)
+<li>vigorous attribute: ($funcCheckExists: $char's player's att, "vigorous", 0)

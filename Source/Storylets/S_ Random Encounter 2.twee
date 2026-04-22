@@ -1,0 +1,19 @@
+:: S: Random Encounter 2 [storylet traveling] {"position":"5050,3550","size":"100,100"}
+{=
+
+(storylet: when
+$place's traveling is true
+and $place's weather is "sunny"
+and $char's player's timerCooldown does not contain "S: Random Encounter 2"
+)
+(metadata: "title", "Encounter 1 (sunny)", "cardDesc", "An sunny encounter.", "img", "D:/GHE/Site/VCV(html)/Opal/Assets/Weather/weather_Sunny.png", "cooldown", 7,)
+
+<h1>(print: (passage:)'s title )</h1>
+<br>
+(print: (passage:)'s cardDesc)
+<br>
+---
+<ol>
+<li>(link: "Sunny event. ⧗")[($funcAddStoryletCooldown: (passage:)'s name)(goto: "Random Encounter 2a")]<!--[[Random Encounter 2a]]-->
+<li>(link: "Never mind.")[$funcBack]
+<ol>

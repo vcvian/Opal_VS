@@ -1,0 +1,29 @@
+:: Long Log [UI] {"position":"2575,2650","size":"100,100"}
+{=
+
+(metadata: "UI", true,)
+
+''Today So Far''
+(box:"X", 7)[\
+''Day (print: $time's dayCount)''
+    <ul>
+        (for: each _logItem, ...$log)[\
+        	<li> <span style="font-size: 80%">_logItem</span>
+        ]\
+    </ul>
+]
+
+<br>
+''Game-Long Record''
+(box:"X", 15)[\
+	(for: each _day, ...(data-names: $logLong))[\
+    <details closed>
+    <summary>''Day _day''</summary>
+    <ul>
+        (for: each _logItem, ...$logLong's _day)[\
+        	<li> <span style="font-size: 80%">_logItem</span>
+        ]\
+    </ul>
+	</details>
+    ]\
+]

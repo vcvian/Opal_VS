@@ -1,0 +1,56 @@
+:: T: VehVeh Crafting [topic] {"position":"7025,1650","size":"100,100"}
+{=
+
+(storylet: when
+(passage:) contains "NPC"
+and $char's VehVeh's opinion's 2nd > 20
+and $char's VehVeh's location is "Apesai Lighthouse"
+and $char's VehVeh's talked contains "studentLab"
+and $char's player's timerCooldown does not contain "T: VehVeh Crafting"
+)
+(urgency: 1)
+(metadata:
+"NPC", "VehVeh",
+"title", "Chatting with Veh-Veh",
+"topic", "How would a magus go about doing synthesis here in Apesai?",
+"topicDetail", "A magus without a synthesis lab is like an sculptor without chisel.",
+"cooldown", 1,
+"talked", (a: "studentLab", "absentPrincipal",),
+"addCode", [],
+)
+
+$cssColumnParent[
+
+$cssColumnChild[
+	$cssBox[
+    	($funcImage: (passage: "S: VehVeh")'s img)
+         $cssBoxItem[''(print: (passage:)'s title )''<br>(print: (passage:)'s topicDetail)]
+    ]
+]
+
+$cssColumnChild[
+
+$cssDesc[''You: //(print: (passage:)'s topic)//'']
+<br>
+
+["We have a lab, of course..."]<VehVehLine|
+<br>
+
+(if: ($funcTalkedTimesCheck: "sickTeacher") >= 1 and ($funcCheckExists: $char's player's quests, "sickTeacher", "") is "active")[
+["It'll be good for your sick teacher..."]<VehVehLine|
+<br>
+]
+
+["Well, normally, we wouldn't let just anyone in. But then again, you're not just anyone, are you? Plus, the principal isn't here, so it's not like anyone gives a damn."]<VehVehLine|
+<br>
+(Veh-Veh gives some instruction..)
+
+<br>
+$cssDesc[The student lab - a tentative place for you to work your magic - is inside the Apesai Lighthouse. End this conversation to access it.]
+<br>
+---
+<ol>
+($funcNPCTopics: "Veh-Veh has told you much. Any more and it'd seem like you don't know how to use a lab.", "Thanks for the instructions, Veh-Veh. Bye.")
+</ol>
+]<!--end child-->
+]<!--end parent-->

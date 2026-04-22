@@ -1,0 +1,22 @@
+:: Test H {"position":"975,5100","size":"100,100"}
+{=
+
+(metadata: "title", "Test H (traveling)")
+
+[[⇦ BACK->Pre-Test (NEW)]]
+<br>
+
+<ul>
+Test distance (outputs a number from table.distances):
+<li>Distance from (link-rerun: "Apesai to Rokhab.")[($funcGetDistance: "Apesai", "Rokhab")]
+<li>(link-rerun: "And vice versa?")[($funcGetDistance: "Rokhab", "Apesai")]
+<li>What about (link-rerun: "Rokhab to Zirab?")[($funcGetDistance: "Rokhab", "Zirab")]
+<li>And (link-rerun: "from Rokhab upstream to the plantations?")[($funcGetDistance: "Rokhab", "Sabzam")]
+<li>What about (link-rerun: "Apesai and Test?")[($funcGetDistance: "Apesai", "test")]
+
+<br>
+Now, let's travel from here ((print: $place's location)) to...
+<li>($funcDepart: "The fishing village of Rokhab.", "Rokhab")
+<li>($funcDepart: "The ruins of Navveh.", "Navveh")
+<li>($funcDepart: "The mysterious land known only as 'test location'.", "test")
+</ul>

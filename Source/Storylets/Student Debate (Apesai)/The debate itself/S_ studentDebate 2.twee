@@ -1,0 +1,40 @@
+:: S: studentDebate 2 [storylet] {"position":"5575,1625","size":"100,100"}
+{=
+
+(storylet: when
+$place's sublocation is "Apesai Lighthouse"
+and ($funcCheckExists: $char's player's quests, "studentDebate", "") is "active"
+and ($funcCheckExists: $place's events, "studentDebate", "inactive") is "active"
+)
+(exclusivity: 1)
+(urgency: 2)
+(metadata: "title", "The Student Debate", "cardDesc", "Cracked, heavily-accented, and mostly loud. A debate is raging in the school courtyard.", "img", "Assets/Portraits/Event_Argue_1.png",)
+
+$cssColumnParent[
+
+$cssColumnChild[
+	$cssBox[
+    	($funcImage: (passage:)'s img)
+         $cssBoxItem[''(print: (passage:)'s title )''<br>(print: (passage:)'s cardDesc)]
+    ]
+]
+
+$cssColumnChild[
+
+<!--time check-->
+(set: _debateDaysLeft to ($funcCheckExists: $place's eventDuration, "studentDebate", 0))
+
+(A large crowd of Apesai citizens are spilling out to the sidewalk, trying to listen in...)
+<br>
+$cssDesc[(if: _debateDaysLeft is 1)[The debate is nearing its conclusion. Will you be there to see it?]
+(else:)[The debate will continue for another (plural: _debateDaysLeft, "day").]
+]
+<br>
+---
+<ol>
+<li>[[Get in front. Listen. ⧗->studentDebate 2a]] 
+<li>(link: "No, you've long put such silliness behind.")[$funcBack]
+
+</ol>
+]<!--end child-->
+]<!--end parent-->

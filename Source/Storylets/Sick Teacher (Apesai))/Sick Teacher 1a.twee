@@ -1,0 +1,33 @@
+:: Sick Teacher 1a {"position":"3100,2625","size":"100,100"}
+{=
+
+(metadata:
+"title", "Finding Your Teacher Sick",
+"cardDesc", "Your teacher isn't feeling great."
+)
+
+$cssColumnParent[
+
+$cssColumnChild[
+	$cssBox[
+    	($funcImage: (passage: "S: Sick Teacher 1")'s img)
+         $cssBoxItem[''(print: (passage:)'s title )''<br>(print: (passage:)'s cardDesc)]
+    ]
+]
+
+$cssColumnChild[
+
+["Yo broski, this is bad,"]<TeacherLine| the magus says, curling over the latrine. ["I need my meds, stat!"]<TeacherLine|
+<br>
+You're not so sure why he's talking like that.
+<br>
+$cssDesc[A ''Healing Tonic'' will do. It's helped you before.]
+<br>
+---
+<ol>
+<li>($funcCheckGate: "Give your teacher a ''Healing Tonic''.", "inv", "healingTonic", 1, true, 100, "Sick Teacher 2a", "Sick Teacher 2b")<!--[[Sick Teacher 2a]]-->
+<li>($funcQuestUpdateLink: "You tell him to stay put. Medicine is on the way.", "sickTeacher", "active", "Your teacher is sick with the flux. You'll have to find him a ''Healing Tonic''.", "You know what to do, right? You're a magus!", [], $place's sublocation,)
+</ol>
+
+]<!--end child-->
+]<!--end parent-->

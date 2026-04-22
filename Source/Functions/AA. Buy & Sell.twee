@@ -1,0 +1,30 @@
+:: AA. Buy & Sell [startup] {"position":"1425,3650","size":"100,100"}
+{=
+
+<!--Create final buying & selling link-->
+
+(set: $funcBuySell to (macro: str-type _item, num-type _value, str-type _currency, num-type _priceMod, [(out:)[\
+	<!--set initial values-->\
+    (set: _itemDM to (passage: "item." + _item))\
+	(set: _currencyDM to (passage: "item." + _currency))\
+	(set: _price to (_itemDM's value)'s 1st * (abs:_value))\
+	<!--Convert currency-->\
+	(set: _priceFinal to (round: (_price * _priceMod) / _currencyDM's value's 1st))\
+	(if: _priceFinal < 1)[(set: _priceFinal to 1)]\
+	\
+	<!--Create confirm link-->\
+		(if: _value > 0)[\
+			(color: green+yellow)[(link-rerun: "Confirm: Purchase _value (print: _itemDM's id)?")[\
+				($funcGainLoss: "item.", _currency, -_priceFinal)\
+				($funcGainLoss: "item.", _item, _value)\
+                (redirect: (passage:)'s name)<!--refresh page-->\
+			]] $cssDesc[ (About to spend ''(print:  _priceFinal) (print: _currencyDM's id)'' for ''_value (print: _itemDM's id)''.)]\
+		]\
+		(if: _value < 0)[\
+			(color: red+orange)[(link-rerun: "Confirm: Sell (print: -_value) (print: _itemDM's id)?")[\
+				($funcGainLoss: "item.", _item, _value)\
+                ($funcGainLoss: "item.", _currency, _priceFinal)\
+                (redirect: (passage:)'s name)<!--refresh page-->\
+			]] $cssDesc[ (About to sell ''(print: -_value) (print: _itemDM's id)'' for ''(print:  _priceFinal) (print: _currencyDM's id)''.)]\
+		]\
+]]))

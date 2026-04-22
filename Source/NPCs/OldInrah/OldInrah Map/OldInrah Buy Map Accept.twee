@@ -1,0 +1,40 @@
+:: OldInrah Buy Map Accept {"position":"3825,1200","size":"100,100"}
+{=
+
+(metadata:
+"NPC", "OldInrah",
+"title", "Bought Inrah's Map",
+"topicDetail", "You're already wondering if you'll recuperate this investment.",)
+
+$cssColumnParent[
+
+$cssColumnChild[
+	$cssBox[
+    	($funcImage: (passage: "npc.OldInrah")'s img)
+         $cssBoxItem[''(print: (passage:)'s title )''<br>(print: (passage:)'s topicDetail)]
+    ]
+]
+
+<!--Main content begins here-->
+$cssColumnChild[
+
+You produce the agreed upon coins. Koh-Inrah counts them, and upon finding the amount acceptable, she grins, flashing her black teeth.
+<br>
+["I meant for the map to be her dowry, but that's... well, she won't miss it too dearly, I'm sure. That girl just keeps doing what she loves, and she never looks back. I'll simply consider it recuperation for lost investment."]<OldInrahLine|
+<br>
+Koh-Inrah bows in that customary imperial way and extends the map to you. It reminds you of home.
+<br>
+["Gratitude, davehmar."]<OldInrahLine|
+<br>
+---
+(link-rerun: "Bow and receive the map.")[\
+	($funcTalked:)\
+    ($funcGainLoss: "item.", "mapInrah", 1)\
+	($funcOpinionGainLoss: "OldInrah", 10, "The old woman seems elated. Is it because she has taken yet more rial from your hands? Or is she simply glad to be rid of the map?")\
+    (set: $char's OldInrah's energy's 1st to it - 1)\
+    (goto: "Old Inrah Buy Map Receive")\
+]<!--[[Old Inrah Buy Map Receive]]-->
+
+
+]<!--end child-->
+]<!--end parent-->

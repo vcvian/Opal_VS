@@ -1,0 +1,26 @@
+:: Fishing 1c {"position":"5300,3800","size":"100,100"}
+{=
+
+(metadata: "title", "Unsuccessfully Fished",
+"cardDesc", "You tried, and the fishes cared not for your effort.",
+)
+
+$cssColumnParent[
+
+$cssColumnChild[
+$cssBox[
+    ($funcImage: (passage: "S: Fishing (Nurrah)")'s img)
+        $cssBoxItem[''(print: (passage:)'s title )''<br>(print: (passage:)'s cardDesc)]
+]
+($funcWeatherBox:)
+]
+
+$cssColumnChild[
+
+The hook dangles, now baitless.
+<br>
+---
+(link: "Oh well.")[$funcDone]
+
+]<!--end child-->
+]<!--end parent-->

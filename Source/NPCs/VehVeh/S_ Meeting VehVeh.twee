@@ -1,0 +1,45 @@
+:: S: Meeting VehVeh [storylet] {"position":"6150,1525","size":"100,100"}
+{=
+
+(storylet: when
+$char's VehVeh's alive is true
+and $char's VehVeh's know is false
+and $char's VehVeh's location is $place's sublocation and it is "Apesai Lighthouse"
+and $char's VehVeh's opinion's 2nd > 20
+and $char's VehVeh's arc is 1
+)
+
+(metadata:
+"NPC", "VehVeh",
+"title", "A Fellow Student?",
+"cardDesc", "Under the shadow of the lighthouse, a girl your age is lost between the pages of a tome.",
+"img", "Assets/Portraits/Girl_1.png", 
+)
+
+
+$cssColumnParent[
+
+$cssColumnChild[
+	$cssBox[
+    	($funcImage: (passage:)'s img)
+         $cssBoxItem[''(print: (passage:)'s title )''<br>(print: (passage:)'s cardDesc)]
+    ]
+]
+
+$cssColumnChild[
+(Description of Veh-Veh... But not engaged in convo yet...)
+<br>
+---
+<ol>
+
+<li>(link: "Ask her if this is where the davehmars are.")[\
+	($funcNPCKnow: "VehVeh", "You've met Veh-Veh, an apprentice-magus. It's good to know another student here.")\
+    (goto: "Meeting VehVeh 1a")\
+]<!--[[Meeting VehVeh 1a]]-->
+
+<li>(link: "Leave her alone.")[$funcBack]
+</ol>
+
+<!--The topic storylet function reads the current passage's NPC-->
+]<!--end child-->
+]<!--end parent-->

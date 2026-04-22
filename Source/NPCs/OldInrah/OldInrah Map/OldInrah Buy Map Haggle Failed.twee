@@ -1,0 +1,30 @@
+:: OldInrah Buy Map Haggle Failed {"position":"3975,1175","size":"100,100"}
+(metadata:
+"NPC", "OldInrah",
+"title", "Failed to Haggle for Inrah's Map",
+"topicDetail", "You tried.",)
+
+$cssColumnParent[
+
+$cssColumnChild[
+	$cssBox[
+    	($funcImage: (passage: "npc.OldInrah")'s img)
+         $cssBoxItem[''(print: (passage:)'s title )''<br>(print: (passage:)'s topicDetail)]
+    ]
+]
+
+<!--Main content begins here-->
+$cssColumnChild[
+
+["Why, this is worth a small treasure,"]<OldInrahLine| Koh-Inrah says, indignant. ["Old Inrah already feels foolish enough to have given it away for so cheap!"]<OldInrahLine|
+<br>
+Despite your best effort this time, the old woman won't be moved.
+<br>
+---
+<ol>
+<li>($funcCheckGate: "Accept the asking price.", "inv", "rial", 250, true, 100, "OldInrah Buy Map Accept", "")<!--[[OldInrah Buy Map Accept]]-->
+<li>(link-rerun: "Concede that you won't be buying.")[($funcOpinionGainLoss: "OldInrah", -2, "The old woman is annoyed at your failed attempt to bargain.")(goto: "OldInrah Buy Map Decline")]<!--[[OldInrah Buy Map Decline]]-->
+</ol>
+
+]<!--end child-->
+]<!--end parent-->

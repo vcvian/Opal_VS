@@ -1,0 +1,14 @@
+:: att.studentDebateY [static-storage] {"position":"5375,1800","size":"100,100"}
+{=
+
+(metadata: 
+	"id", [Debate: Side Y Advantage],
+    "key", (a: "progress", ),
+    "value", (a: 1, 0, 0, 0, 0, 0),
+    "img", "",
+    "desc", [Side Y advantage.],
+    "tip", [Side Y needs all the win they could get, but will it be enough?],
+    "gainText", [Side Y celebrates their small wins.],
+    "lossText", [The thing about debate is that once it's done, all that's been discussed is flushed from the mind, and everything goes back to normal.]
+
+)

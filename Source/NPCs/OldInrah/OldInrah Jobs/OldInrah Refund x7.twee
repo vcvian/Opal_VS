@@ -1,0 +1,45 @@
+:: OldInrah Refund x7 {"position":"3275,1250","size":"100,100"}
+{=
+
+(metadata:
+"NPC", "OldInrah",
+"title", "Asking About Rent \"Refund\"",
+"topic", "\"I'd like a whole week's rent 'refunded'.",
+"topicDetail", "It's only fair.",
+)
+
+$cssColumnParent[
+
+$cssColumnChild[
+	$cssBox[
+    	($funcImage: (passage: "npc.OldInrah")'s img)
+         $cssBoxItem[''(print: (passage:)'s title )''<br>(print: (passage:)'s topicDetail)]
+    ]
+]
+
+<!--Main content begins here-->
+$cssColumnChild[
+
+$cssDesc[''You: //(print: (passage:)'s topic)//'']
+<br>
+["Oh, the dear patron has been //so// generous to this humble establishment,"]<OldInrahLine| the old woman says as she counts the coins you're owed. ["If only the dear patron could be convinced to keep it that way."]<OldInrahLine|
+<br>
+She gives you a sly glance.
+<br>
+(set: _pay to 70)
+(if: $dice >= 70)[
+["Old Inrah is feeling generous also. Here's a little extra."]<OldInrahLine|
+	(set: _extra to (round: $dice/4))
+	(set: _pay to it + _extra)
+<br>
+$cssDesc[Koh-Inrah throws in an extra _extra rials, on top of the 70 that you expect]
+<br>
+]
+---
+(link-rerun: "Collect (print: _pay) rials.")[\
+	($funcGainLoss: "item.", "rial", _pay)\
+    (goto: "OldInrah Refund Exit")\
+]
+
+]<!--end child-->
+]<!--end parent-->

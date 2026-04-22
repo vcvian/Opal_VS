@@ -1,0 +1,31 @@
+:: People [UI] {"position":"2475,2550","size":"100,100"}
+{=
+
+(metadata: "UI", true,)
+
+($funcUITopBar:)
+
+<br>
+
+<!--Known People-->
+<div style="padding: 20px;">
+<details open>
+<summary>''People Met''</summary>
+(for: each _char, ...(data-names: $char))[\
+	(if: _char is not "player")[\
+    	<!--Load NPC's DM-->\
+        (set: _charDM to (passage: "npc."+_char))\
+    	(if: $char's _char's know is true)[\
+        	<div>$cssBox[<div>(print: "<img style=\"margin: 20px\" width=\"150px\" src=\"" + _charDM's img + "\">")</div>\
+		$cssBoxItem[\
+            ''(print: _charDM's id)'' — (print: _charDM's desc)\
+            <br>$cssDesc[	↪	Opinion of you: (print: $char's _char's opinion's 1st) ''(($funcOpinionCalc: _char, true))'' ]\
+		]<!--end of boxItem-->\
+		]<!--end of box-->\
+	</div>\
+        ]<!--end of if know-->\
+    ]<!--end of if not player-->\
+]\
+</details>
+</div>
+<!--end of known people-->

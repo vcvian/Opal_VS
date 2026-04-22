@@ -1,0 +1,38 @@
+:: AskavaPermit 1b {"position":"4575,2025","size":"100,100"}
+{=
+
+(metadata:
+"title", "The Hall of Immigration Affairs",
+"cardDesc", "",
+)
+
+$cssColumnParent[
+
+$cssColumnChild[
+	$cssBox[
+    	($funcImage: (passage: "S: AskavaPermit 1")'s img)
+         $cssBoxItem[''(print: (passage:)'s title )''<br>(print: (passage:)'s cardDesc)]
+    ]
+]
+
+$cssColumnChild[
+
+($funcNPCSpeakManual: "Clerk1")
+
+["Hmm,"]<Clerk1Line| the clerk stares at you, unsure if you're the same person he met. You're unsure whether he's the same one you handed your papers to. They all look kind of the same - isn't that the point of uniforms?
+<br>
+["Apologies,"]<Clerk1Line| he says, finally. ["Askava is rich in resources and poor in morals. A lot of bad types come around."]<Clerk1Line|
+<br>
+You assure him that you're one of the good ones.
+<br>
+["Sure, keep it up then,"]<Clerk1Line| he hands you your permit and all the documents you've submitted. ["The Light shows you."]<Clerk1Line|
+<br>
+---
+
+($funcQuestUpdateLink: "You leave the immigration hall.", "permitAskava", "completed", "It is done. You can finally leave this island and enter Askava proper.", "Where your residency can begin in earnest.", [\
+	($funcGainLoss: "item.", "permitAskava", 1)\
+	($funcRemoveTimer: "permitAskava", "wait")\
+], "mockDay",)
+
+]<!--end child-->
+]<!--end child-->

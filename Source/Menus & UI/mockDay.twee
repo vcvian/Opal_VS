@@ -1,0 +1,39 @@
+:: mockDay [effect] {"position":"825,3625","size":"100,100"}
+{=
+
+(metadata: "title", "Passage of Time")
+
+<!--Change the weather-->
+($funcWeatherToday:)
+
+<!--Tick down jobs-->
+($funcJobTickDown:)
+<!--Tick down quest timer-->
+($funcTimerQuestTickDown:)
+<!--Tick down storylet timer-->
+($funcStoryletCooldownTickdown:)
+<!--Tick down temporary conditions-->
+($funcTempTickDown:)
+
+<!--Update NPC basic (health, opinion, energy)-->
+($funcUpdateNPC:)
+<!--Advance NPC travel along their set itinerary-->
+($funcAdvanceNPCTravel:)
+<!--Check & update NPC arc-->
+($funcUpdateNPCArc:)
+
+<!--Pay rent (place last)-->
+($funcPayRent:)
+
+<!--Advance 1 day-->
+(display: "code.advanceDay")
+
+<!--Tick down all current events-->
+($funcEventTickdown:)
+<!--Listen/auto-switch events (must come AFTER day's advance)-->
+($funcEventListen:)
+    
+<!--Roll global dice-->
+(set: $dice to (random: 1,100))
+
+(link: "Go to nextDay")[(goto: "nextDay"))]

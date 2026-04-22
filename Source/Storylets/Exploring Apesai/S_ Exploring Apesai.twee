@@ -1,0 +1,72 @@
+:: S: Explore Apesai [storylet]
+{=
+(storylet: when
+    $place's location is "Apesai"
+    and $place's traveling is false
+)
+
+(urgency: -1)
+
+(metadata:
+    "title", "Explore Apesai",
+    "cardDesc", "There are probably better ways to get to know these tangled streets, but wandering them is the only free way.",
+    "img", "https://fallenlondon.wiki/w/images/f/f4/River2.png",
+)
+
+$cssColumnParent[
+
+$cssColumnChild[
+	$cssBox[
+    	($funcImage: (passage:)'s img)
+         $cssBoxItem[''(print: (passage:)'s title )''<br>(print: (passage:)'s cardDesc)]
+    ]
+]
+
+$cssColumnChild[
+
+From afar, island-city of Apesai had (cycling-link: "seemed intelligible enough.(hide:?city)", "seemed intelligible enough.(show:?city)")
+<br>
+[The rainbow-spewing lighthouse stood tall the island's tallest peak, surrounded by domes of red steel - the unmistakable Nurandahid grand architecture. Civilization.
+<br>
+You remember seeing among the cityscape many bright obelisks, like smaller mirror-images of the lighthouse, or like little teeth - many perfect, many rotten - beneath a large tusk.
+<br>
+Further down, closer to the shores, time winded backwards, and you swear you saw some First Colony Era houses still standing, albeit overgrown and compacted together under the weight of the newer palaces above, forming dense alleys that you imagined would stay shaded through out the year, which would be a feat in sunny Askava.
+<br>
+Out of the this shoreward slum, the Apesai marble wharf stuck out like white talon into the ocean to meet fleets of imperial galleys, merchant carracks, Yavanid music barges, and the occasional cog of some lonely adventurer.
+<br>
+](city|
+
+<!--Map check-->
+(if: $char's player's inv does not contain "mapInrah")[You thought you've understood everything from a glance.
+<br>
+But //now// is a different matter. You can barely recognize where you are. Some of your teachers back in the university have derived great intellectual satisfaction from putting rats through room-sized mazes. You wonder if you'll fare any better than those animals.
+<br>
+]
+(else:)[All of that is clearly laid out on Inrah's map, along with fine, vein-like tracings through meticulously documented landmarks, showing exactly which turns one must take.
+<br>
+$cssDesc[Having ''(print: (passage: "item.mapInrah")'s id)($funcLogTip: "item.", "mapInrah")'' in your possession means you'll have a much easier time finding your way around Apesai, as well as other places in the Nurrah Coastlands Region.]
+<br>
+]
+
+<!--impressionApesai check-->
+(if: ($funcCheckTemp: "impressionApesai") > 0)[You come back, like a duelist itching for another round, telling yourself that this time, you'll wrest these streets to your will.
+<br>
+$cssDesc[''($funcCheckTemp: "impressionApesai") (print: (passage: "temp.impressionApesai")'s id)($funcLogTip: "temp.", "impressionApesai")'' means you'll have more luck, and hopefully rely less on it.]
+<br>
+]
+
+$cssDesc[Successfully exploring Apesai will open up many of the city's locations, allowing you to quickly travel to them every day.]
+<br>
+
+---
+
+<ol>
+<li>(link: "Climb uphill, towards the domes and spires of the island-city.")[(goto: "Exploring Apesai (Up)")]
+<li>(link: "Follow a series of obelisks into the heart of Apesai.")[(goto: "Exploring Apesai (Center)")]
+<li>(link: "Descend shoreward, where the houses and trees twist into one another.")[(goto: "Exploring Apesai (Down)")]
+<br>Or...
+<li>(link: "Never mind.")[$funcBack]
+</ol>
+
+]<!--end child-->
+]<!--end parent-->

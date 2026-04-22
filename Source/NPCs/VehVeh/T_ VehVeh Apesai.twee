@@ -1,0 +1,44 @@
+:: T: VehVeh Apesai [topic] {"position":"6750,1650","size":"100,100"}
+{=
+
+(storylet: when
+(passage:) contains "NPC"
+and $char's VehVeh's opinion's 2nd > 20
+and ($char's VehVeh's location is "Apesai Lighthouse" or it is "The Grand Exchange")
+and $char's player's timerCooldown does not contain "T: VehVeh Apesai"
+)
+
+(metadata:
+"NPC", "VehVeh",
+"title", "Chatting with Veh-Veh",
+"topic", "Ask her about this island-city.",
+"topicDetail", "What's there to do, to see on this rock, how to get off of it, etc.",
+"cooldown", 1,
+"talked", (a:),
+"addCode", [],
+)
+
+$cssColumnParent[
+
+$cssColumnChild[
+	$cssBox[
+    	($funcImage: (passage: "S: VehVeh")'s img)
+         $cssBoxItem[''(print: (passage:)'s title )''<br>(print: (passage:)'s topicDetail)]
+    ]
+]
+
+$cssColumnChild[
+
+$cssDesc[''You: //(print: (passage:)'s topic)//'']
+<br>
+
+Apesai... Getting around...
+
+<br>
+---
+<ol>
+($funcNPCTopics: "Veh-Veh trails off. The mind can draw blanks when one is too familiar with the place.", "Thanks anyway, Veh-Veh. Bye.")
+</ol>
+
+]<!--end child-->
+]<!--end parent-->

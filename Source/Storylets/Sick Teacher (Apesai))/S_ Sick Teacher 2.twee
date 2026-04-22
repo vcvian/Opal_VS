@@ -1,0 +1,42 @@
+:: S: Sick Teacher 2 [storylet] {"position":"3225,2500","size":"100,100"}
+{=
+
+(storylet: when
+$place's sublocation is $place's stay
+and $place's location is "Apesai"
+and ($funcCheckExists: $char's player's quests, "sickTeacher", "") is "active"
+)
+(metadata: "title", "A Sick Teacher", "cardDesc", "Your teacher is still fluxy...", "img", "https://thefifthcity.wiki/w/images/b/bc/Bloodstain.png?20240509225948",)
+
+$cssColumnParent[
+
+$cssColumnChild[
+	$cssBox[
+    	($funcImage: (passage:)'s img)
+         $cssBoxItem[''(print: (passage:)'s title )''<br>(print: (passage:)'s cardDesc)]
+    ]
+]
+
+$cssColumnChild[
+<br>
+["Ughh, didja get my meds?"]<TeacherLine| asks the respectable magus. ["I'm so gassy..."]<TeacherLine|
+<br>
+---
+<ol>
+
+<li>($funcCheckGate: "Give your teacher his ''Healing Tonic''.", "inv", "healingTonic", 1, true, 100, "Sick Teacher 2a", "")
+
+(if: $char's OldInrah's talked contains "gingerBought" and $char's player's inv contains "ginger")[
+     (if: $char's Teacher's talked does not contain "gingerGiven")[
+          <li>(link: "Present the 'alternative medicine' you bought.")[(goto: "Sick Teacher 2b")] $cssDesc[(Askavan ginger ''might'' help, so said the landlady.)]
+     ]
+     (else:)[<li>~~Present the 'alternative medicine' you bought.~~ $cssDesc[(You've learned your lesson.)]]
+]
+
+
+
+<li>(link: "Close the door!")[$funcBack]
+</ol>
+<!--[[Sick Teacher 2a]] and [[Sick Teacher 2b]]-->
+]<!--end child-->
+]<!--end parent-->

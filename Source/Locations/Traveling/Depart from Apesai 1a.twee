@@ -1,0 +1,14 @@
+:: Depart from Apesai 1a {"position":"4475,3100","size":"100,100"}
+{=
+
+(metadata: "title", "Departing from Apesai",)
+
+(Hiring a boat to the Rokhab docks (mainland)...)
+<br>
+$cssDesc[The journey will take ''(plural: ($funcDistance: "Rokhab"), "day")''. Each travel day costs ''1 (print: $items's supplies's id)'', of which you have ''(print: $items's supplies's qt) left''.]
+<br>
+---
+<ol>
+<li>($funcSpendGate: "Pay for a place on a passenger boat.", $items's rial, 25, 100, "Depart from Apesai 1b", "",)<!--[[Depart from Apesai 1b]]-->
+<li>[[On second thought, you want to travel somewhere else.->S: Depart from Apesai]] $cssDesc[(Or you want to have more time to prepare.)]
+</ol>

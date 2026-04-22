@@ -1,0 +1,39 @@
+:: Fishing 1a {"position":"5300,3675","size":"100,100"}
+{=
+
+(metadata: "title", "Casting a Line",
+"cardDesc", "The feathered lure bobs in the ocean waves.",
+)
+
+
+$cssColumnParent[
+
+$cssColumnChild[
+$cssBox[
+    ($funcImage: (passage: "S: Fishing (Nurrah)")'s img)
+        $cssBoxItem[''(print: (passage:)'s title )''<br>(print: (passage:)'s cardDesc)]
+]
+($funcWeatherBox:)
+]
+
+$cssColumnChild[
+
+
+(set: _chance to 0)
+
+You cast the line into the water.
+<br>
+(if: $place's weather is "sunny")[(set: _chance to 30)The sun is scorching, and the larger fishes have all dived deeper below, where it is cooler. Not ideal.]
+(elseif: $place's weather is "rainy")[(set: _chance to 80)Rain splatters on the water surface, and prodigious schools of fishes are dancing, jumping, and generally froilicking.]
+(elseif: $place's weather is "overcast")[(set: _chance to 70)The cloud drapes the sky in a drowsy color of tin, and the fishes are teeming and confident.]
+(elseif: $place's weather is "foggy")[(set: _chance to 40)You can't see very well in this fog, but the fishes can't see you either. Does that even matter?]
+(elseif: $place's weather is "windy")[(set: _chance to 30)Wind is in your eyes. Waters are choppy. The angler keeps drifting back towards you.]
+(else:)[(set: _chance to 40)It is what it is.]
+
+<br>
+---
+<!--[[Fishing 1b]][[Fishing 1c]]-->
+($funcLuckGate: "Wait for them to bite.", _chance, "Fishing 1b", "Fishing 1c")
+
+]<!--end child-->
+]<!--end parent-->

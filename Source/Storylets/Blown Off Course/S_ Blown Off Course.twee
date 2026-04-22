@@ -1,0 +1,31 @@
+:: S: Blown Off Course [storylet traveling] {"position":"4825,3550","size":"100,100"}
+{=
+
+(storylet: when
+$place's traveling is true
+and ($place's weather is "windy" or it is "stormy")
+and (
+((str: $place's travelingFrom + $place's travelingTo) contains "Apesai" and it contains "Rokhab")
+or
+((str: $place's travelingFrom + $place's travelingTo) contains "Apesai" and it contains "Zirab")
+or
+((str: $place's travelingFrom + $place's travelingTo) contains "Apesai" and it contains "Navveh")
+or
+((str: $place's travelingFrom + $place's travelingTo) contains "Rokhab" and it contains "Zirab")
+or
+((str: $place's travelingFrom + $place's travelingTo) contains "Rokhab" and it contains "Navveh")
+)
+and $dice >= 60
+and $char's player's timerCooldown does not contain "S: Blown Off Course"
+)
+(exclusivity: 1)
+(metadata: "title", "Blown Off Course", "cardDesc", "Strong winds are blowing your sails, in a bad way.", "img", "D:/GHE/Site/VCV(html)/Opal/Assets/Weather/weather_Windy.png", "cooldown", 3,)
+
+<h1>(print: (passage:)'s title )</h1>
+<br>
+(print: (passage:)'s cardDesc)
+<br>
+---
+<ol>
+<li>(link: "Oh no... ⧗")[($funcAddStoryletCooldown: (passage:)'s name)(goto: "Blown Off Course 1a")]<!--[[Blown Off Course 1a]]-->
+<ol>

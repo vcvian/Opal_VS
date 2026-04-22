@@ -1,0 +1,36 @@
+:: npc.Teacher [startup static-storage] {"position":"2850,2500","size":"100,100"}
+{=
+
+(metadata:
+"id", [The Respectable Magus],
+"desc", "For months, you've been traveling with him from the university. You're helping with his research, hoping to be credited in his breakthrough.",
+"img", "Assets/Portraits/Old_2.png",
+"color", #cde74c,
+"opinionBonus", (dm:
+	"repDavehmarGood", 1,
+    "repDavehmarBad", -2,
+),
+"travelItinerary", (dm:
+	"newlyArrived", (dm:
+    1, (a:"The Pilgrim's Rest", 7)
+    ),
+),
+"arcConditions", [(set: _newArc to (cond:
+	$char's Teacher's alive is true, 1, 0
+))]
+
+)
+
+
+(set: $char to it + (dm:
+
+"Teacher", (dm:
+"alive", true,
+"health", (a: 50, 50),
+"know", true, "opinion", (a: 40, 40),
+"talked", (dm:), "energy", (a: 5, 5),
+"isCompanion", true, "location", "The Pilgrim's Rest",
+"arc", 1, "travelMode", "newlyArrived", "travel", (a: 1, 4),
+),
+
+))

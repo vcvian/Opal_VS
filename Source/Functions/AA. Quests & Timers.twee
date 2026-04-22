@@ -1,0 +1,132 @@
+:: AA. Quests & Timers [startup] {"position":"1425,4575","size":"100,100"}
+{=
+
+<!--Quests are stored in $char's player's quests. It is a datamap with "questName", "status"-->
+
+<!--Pure update code, to be used inside things like auto-trigger timers-->
+(set: $funcQuestUpdate to (macro: str-type _questName, str-type _newStatus, str-type _dialog, str-type _confirm, [(out:)[\
+	<!--Status spellcheck-->\
+	(unless: _newStatus is "active" or it is "primed" or it is "completed" or it is "failed" or it is "inactive")[(dialog: [Mispelled quest `_newStatus`! <br> $cssDesc[It can only be either "active", "primed", "completed", "failed", or "inactive". <br> But, I've written ''_newStatus''.]], "I'll fix it.")]\
+    \
+	<!--initialize temp variables-->\
+	(set: _newStatusDialog to "")\
+	(set: _newStatusLog to "")\
+	\
+    <!--Fetch quest datamap-->\
+	(set: _questDM to (passage: "quest." + _questName))\
+	\
+	<!--activate-->\
+		(if: _newStatus is "active")[\
+			(set: $char's player's quests to it + (dm: _questName, "active"))\
+			(set: _newStatusDialog to "''" + (str: _questDM's id) + "'' is now ''(color:blue+green)[active]''.")\
+			(set: _newStatusLog to "(color:blue+green)[Active story]")\
+		]\
+		\
+		<!--completed-->\
+		(elseif: _newStatus is "completed")[\
+			(set: $char's player's quests to it + (dm: _questName, "completed"))\
+			(set: _newStatusDialog to "''" + (str: _questDM's id) + "'' is now (color:green)[complete].")\
+			(set: _newStatusLog to "(color:green)[Completed story]")\
+		]\
+		\
+		<!--failed-->\
+		(elseif: _newStatus is "failed")[\
+			(set: $char's player's quests to it + (dm: _questName, "failed"))\
+			(set: _newStatusDialog to "''" + (str: _questDM's id) + "'' ends in (color:red)[failure].")\
+			(set: _newStatusLog to "(color:red)[Failed story]")\
+		]\
+		\
+		<!--inactive-->\
+		(elseif: _newStatus is "inactive")[\
+            (set: $char's player's quests to it + (dm: _questName, "inactive"))\
+			(set: _newStatusDialog to "''" + (str: _questDM's id) + "'' has become (color:purple+blue)[dormant].")\
+			(set: _newStatusLog to "(color:purple+blue)[Story shelved]")\
+		]\
+		\
+		<!--primed-->\
+		(elseif: _newStatus is "primed")[\
+			(set: $char's player's quests to it + (dm: _questName, "primed"))\
+		]\
+		\
+		<!--Notify and log, only for when the player needs to see it-->\
+        (if: _newStatus is "active" or it is "completed" or it is "failed" or it is "inactive")[\
+			(dialog: [_dialog <br> $cssDesc[_newStatusDialog] ], _confirm)\
+			(set: $log to it + (a: "''" + (str: (passage:)'s title) + ":'' " + (str:_newStatusLog) + "''—" + (str: _questDM's id) + "—''" + (str:_dialog) ))\
+		]\
+]]))
+
+<!--Create link that updates quest-->
+(set: $funcQuestUpdateLink to (macro: str-type _linkText, str-type _questName, str-type _newStatus, str-type _dialog, str-type _confirm, codehook-type _addCode, str-type _goto, [(out:)[\
+	<!--Status spellcheck-->\
+	(unless: _newStatus is "active" or it is "primed" or it is "completed" or it is "failed" or it is "inactive")[(dialog: [Mispelled quest `_newStatus`! <br> $cssDesc[It can only be either "active", "primed", "completed", "failed", or "inactive". <br> But, I've written ''_newStatus''.]], "I'll fix it.")]\
+	\
+	<!--Initialize temp variables-->\
+	(set: _newStatusDialog to "")\
+	(set: _newStatusLog to "")\
+	\
+	<!--Fetch quest datamap-->\
+	(set: _questDM to (passage: "quest." + _questName))\
+	\
+	<!--Create link-->\
+	(link-rerun: _linkText)[\
+		($funcQuestUpdate: _questName, _newStatus, _dialog, _confirm)\
+        \
+		<!--Run added code-->\
+		_addCode\
+		\
+		<!--Goto-->\
+		(if: _goto is "setDay" or it is "mockDay")[$funcDone](else:)[(goto: _goto)]\
+	]\
+]]))
+
+<!--Add Timer-->
+(set: $funcAddTimer to (macro: str-type _questName, str-type _timerName, [(out:)[\
+	<!--load quest datamap-->\
+	(set: _questDM to (passage: "quest." + _questName))\
+	\
+	<!--add timer-->\
+	(set: $char's player's timerQuest to it + (dm: _questName, (dm: _timerName,  _questDM's _timerName)) )\
+	\
+	<!--log and notify-->\
+	(set: $log to it + (a: "''" + (str: (passage:)'s title) + ":'' (color:blue+green)[Sand grains are flowing]''—" + (str: _questDM's id) + "—''" + (str: _questDM's (_timerName + "AddLog"))) )\
+    \
+    (dialog: [(print:_questDM's (_timerName + "AddDialog")) <br> $cssDesc[''(print: _questDM's id):'' (color:blue+green)[Sand grains are flowing].]], _questDM's (_timerName + "AddConfirm"))\
+]]))
+
+<!--Tick down quest timers, to be used at the end of each day-->
+(set: $funcTimerQuestTickDown to (macro: ,[(out:)[\
+	<!--Begin iterating-->\
+	(if: (datanames: $char's player's timerQuest)'s length > 0)[\
+		(for: each _questName, ...(datanames: $char's player's timerQuest))[\
+			<!--initialize temp variables-->\
+			(set: _questDM to (passage: "quest." + _questName) )\
+			\
+			(for: each _timerName, ...(datanames: $char's player's timerQuest's _questName))[\
+				<!--Tick down-->\
+				(set: $char's player's timerQuest's _questName's _timerName to it - 1)\
+				\
+				<!--when timer ends, only notify, without auto-remove. To auto-remove, place code in timer's DoneEffect-->\
+				(if: $char's player's timerQuest's _questName's _timerName is 0)[\
+                    <!--Log and notify when done-->\
+					(set: $log to it + (a: "''" + (str: (passage:)'s title) + ":'' (color:red+blue)[The sands have stopped]''—" + (str: _questDM's id) + "—''" + (str:_questDM's (_timerName+"DoneLog")) ))\
+					\
+					(dialog: [(print: _questDM's (_timerName+"DoneDialog")) <br> $cssDesc[''(print: _questDM's id):'' (color:red+blue)[The sands have stopped].]], _questDM's (_timerName+"DoneConfirm") )\
+                    \
+                    (print: _questDM's (_timerName+"DoneEffect"))\
+				]\
+			]\
+		]\
+	]\
+]]))
+
+<!--Remove quest timer-->
+(set: $funcRemoveTimer to (macro: str-type _questName, str-type _timerName, [(out:)[\
+	(if: (data-names: $char's player's timerQuest) contains _questName)[\
+		(if: (data-names: $char's player's timerQuest's _questName) contains _timerName)[\
+			(move: $char's player's timerQuest's _questName's _timerName into _trash)\
+		]\
+		(if: (data-names: $char's player's timerQuest's _questName)'s length <= 0)[\
+			(move: $char's player's timerQuest's _questName into _trash)\
+		]\
+	]\
+]]))

@@ -1,0 +1,59 @@
+:: AA. Game Menus [startup] {"position":"2300,2275","size":"100,100"}
+{=
+
+<!--Master settings datamap-->
+(set: $op to (dm:
+	"noti", (dm:
+		"rent" , false,
+        "item", true,
+        "currency", true,
+        "element", false,
+        "attribute", true,
+        "condition", true,
+        "conTick", false,
+        "craftTimer", true,
+        "quest", true,
+        "questTimer", true,
+        "NPC", true,
+        "dice", true,
+    	)
+))
+
+<!--log, to be cleared each day-->
+(set: $log to (a:))
+
+<!--long long, experimental-->
+(set: $logLong to (dm:))
+
+<!--Governs all toggable dialogs; use this for the most common notifications (ticks, dailies, item gains/losses)-->
+(set: $funcNoti to (macro: str-type _type, codehook-type _notification, str-type _confirm, [(out:)[\
+    (if: $op's noti's _type is true)[(dialog: _notification, _confirm)]\
+]]))
+
+(set: $funcUITopBar to (macro: [(out:)[\
+	(css: "display: flex; flex-direction: row; align-items: top; width: 100%; padding: 3px; margin: 5px; font-size: 70%")[\
+		
+		<div style="width: 100%;">(link-rerun: "⬅️ Back")[(redirect:$currentPassage)]</div>
+		
+		<div style="width: 100%;">(link-rerun: "👩 Self")[(redirect: "Profile")](if: (passage:)'s name is "Profile")[$cssDesc[ ↢ (You are here.)]]</div>
+		
+		<div style="width: 100%;">(link-rerun: "📦 Things")[(redirect: "Inventory")](if: (passage:)'s name is "Inventory")[$cssDesc[ ↢ (You are here.)]]</div>
+		
+		<div style="width: 100%;">(link-rerun: "📜 Going-ons")[(redirect: "Journal")](if: (passage:)'s name is "Journal")[$cssDesc[ ↢ (You are here.)]]</div>
+        
+        <div style="width: 100%;">(link-rerun: "👥 People")[(redirect: "People")](if: (passage:)'s name is "People")[$cssDesc[ ↢ (You are here.)]]</div>
+        
+        <div style="width: 100%;">(link-rerun: "⚙️ Settings")[(redirect: "Setting")](if: (passage:)'s name is "Setting")[$cssDesc[ ↢ (You are here.)]]</div>
+	]\
+]]))
+
+<!--go back to last location. Mostly used to navigate out of storylet intro cards; if deeper in, use $sublocation as a goto destination.-->
+(set: $funcBack to "(redirect: $place's sublocation)")
+
+<!--End a day, trigger end-of-day effects-->
+(set: $funcDone to "(redirect: \"mockDay\")")
+
+<!--Create asterisk footnotes-->
+(set: $f to (macro: str-type _footed, str-type _footnote, [(out:)[\
+	_footed(text-style:"superscript")[(link-rerun: "؎")[(display: _footnote)]]\
+]]))

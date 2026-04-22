@@ -1,0 +1,28 @@
+:: table.weatherApesai [static-storage] {"position":"1650,4175","size":"100,100"}
+{=\
+<!--Apesai weather data-->\
+(set: _weatherData to (dm:
+	"data", (dm:
+		1, (a: 6, "rainy", 9, "stormy", "overcast",),
+		2, (a: 5, "rainy", 8, "stormy", "foggy",),
+		3, (a: 7, "rainy", 9, "overcast", "stormy",),
+		4, (a: 6, "rainy", 9, "overcast", "foggy",),
+		5, (a: 4, "overcast", 7, "foggy", "windy",),
+		6, (a: 4, "windy", 8, "foggy", "overcast",),
+		7, (a: 4, "windy", 8, "sunny", "overcast",),
+		8, (a: 5, "windy", 8, "overcast", "sunny",),
+		9, (a: 7, "sunny", 9, "windy", "overcast",),
+		10, (a: 7, "sunny", 9, "windy", "overcast",),
+		11, (a: 7, "sunny", 9, "windy", "overcast",),
+		12, (a: 5, "overcast", 8, "rainy", "rainy",),
+	),
+    
+    	"text", (dm:
+		"rainy", "Rain - twinkling like an opal's many lights - is a rare sight in continental Askava. But this isn't quite Askava yet. This is Apesai Island.",
+		"stormy", "A storm is battering the lighthouse, and waves are shaking the ships below. Pilgrims and merchants huddle under shop awnings, which are ubiquitous.",
+		"overcast", "A shadow hangs over Apesai, but the aurora from the lighthouse chases the gloom away and basks the clouds in undulating rainbows.",
+		"foggy", "It is a hazy day in Apesai. The streets, already mazelike, have become almost impossible to navigate, and just as hard to not slip on the wet cobblestone.",
+		"windy", "Sea wind is howling through the narrow streets. A guard tries to keep his helmet from blowing away, but the noble ladies, with their face veils and parasols, are faring much worse.",
+		"sunny", "The sun is out. Askava might lack in many things, but sunshine isn't it. You're lucky that the sea is all around you to cool things down. It gets much worse inland.",
+	),
+))

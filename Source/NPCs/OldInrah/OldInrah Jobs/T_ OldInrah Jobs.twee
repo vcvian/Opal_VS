@@ -1,0 +1,67 @@
+:: T: OldInrah Jobs [topic] {"position":"3125,1075","size":"100,100"}
+{=
+
+(storylet: when
+(passage:) contains "NPC"
+and $char's OldInrah's opinion's 2nd > 15
+and $char's player's att does not contain "accessInrahOddJobs"
+and $char's player's timerCooldown does not contain "T: OldInrah Jobs"
+)
+(urgency: -1)
+(metadata:
+"NPC", "OldInrah",
+"title", "Asking Koh-Inrah for Odd Jobs",
+"topic", "\"Is there anything that needs doing around the Pilgrim's Rest?\"",
+"topicDetail", "If you're in need of a little pocket change, or just to get on her good side.",
+"cooldown", 1,
+"talked", (a: "oddJobs", ),
+"addCode", [],)
+
+
+$cssColumnParent[
+
+$cssColumnChild[
+	$cssBox[
+    	($funcImage: (passage: "npc.OldInrah")'s img)
+         $cssBoxItem[''(print: (passage:)'s title )''<br>(print: (passage:)'s topicDetail)]
+    ]
+]
+
+<!--Main content begins here-->
+$cssColumnChild[
+
+$cssDesc[''You: //(print: (passage:)'s topic)//'']
+<br>
+["Oh? Light guides us, that's not good,"]<OldInrahLine| the old woman mutters, her eyes wide for once. ["Now, what does that say about the state of our economy, the state of the //whole Empire//, if a davehmar has to ask an old lady for odd jobs? Are you... out of rial?"]<OldInrahLine|
+<br>
+You deny this wholeheartedly and reassure her that you can still pay for rent. Only, you might need some... supplementary income. Just in case.
+<br>
+["So you might..."]<OldInrahLine| she sucks her teeth, squinting at you, weighing. ["You know the laws of our land - and Askava //is// our land, never mind what bandits may disagree - Koh-Inrah cannot employ or pay you a wage without a contract. And Koh-Inrah, self-educated as she is, knows better than to enter into a contract with one who has learned their terms and stipulations from an imperial university."]<OldInrahLine|
+<br>
+Her eyes gleam. She is going somewhere with this.
+<br>
+["But there is no law that prevents a davehmar from doing the maids and cooks here some favors. And there is no law that stops the establishment's mistress from feeling grateful. So grateful that she might even... refund the day's rent - such is her money, such is her wish. Refund, //not// waive, and especially //not// a wage. The books needs to be honest for the taxman. I'm sure you understand, well-educated as you are."]<OldInrahLine|
+<br>
+She leaves it at that.
+<br>
+---
+<ol>
+<li>(link-rerun: "Sure, 'refund', I understand.")[\
+	($funcAddStoryletCooldown: (passage:)'s name)\
+    ($funcTalked:)\
+	($funcOpinionGainLoss: "OldInrah", 1, "Like many proprietors and proprietresses, Koh-Inrah values discretion in others.")\
+    ($funcGainLoss: "att.", "accessInrahOddJobs", 1)\
+    (goto: "OldInrah Jobs Gain Access")<!--[[OldInrah Jobs Gain Access]]-->\
+]
+<li>(link-rerun: "I don't get why it has to be so complicated.")[\
+	($funcAddStoryletCooldown: (passage:)'s name)\
+    ($funcTalked:)\
+    ($funcOpinionGainLoss: "OldInrah", -1, "She knows you don't get why it's complicated, but do you //have// to admit your ignorance out loud? She pretends that you've understood.")\
+    ($funcGainLoss: "att.", "accessInrahOddJobs", 1)\
+    (goto: "OldInrah Jobs Gain Access")<!--[[OldInrah Jobs Gain Access]]-->\
+]
+</ol>
+
+
+]<!--end child-->
+]<!--end parent-->

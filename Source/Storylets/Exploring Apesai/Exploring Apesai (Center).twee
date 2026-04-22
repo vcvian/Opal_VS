@@ -1,0 +1,173 @@
+:: Exploring Apesai (Center)
+
+{=
+(metadata:
+"title", "Following Apesai's Obelisks",
+"cardDesc", "They're leading you somewhere. But //where//?",
+)
+
+
+$cssColumnParent[
+
+$cssColumnChild[
+	$cssBox[
+    	($funcImage: (passage: "S: Explore Apesai")'s img)
+         $cssBoxItem[''(print: (passage:)'s title )''<br>(print: (passage:)'s cardDesc)]
+    ]
+    ($funcWeatherBox:)
+]
+
+$cssColumnChild[
+
+<!--intro-->
+(either:
+"Where you're from, obelisks are carved with directions to a city's major districts. The ones in Apesai, however, are not so helpful.
+
+The older ones - no doubt from Keshan times (or at least the abandonment of the Second Colony) - have been defaced.
+
+The newer ones espouse the virtues and wisdom of the last three emperors - dubbed the \"Reclaimers\" - with wide empty spaces at the base. Maybe the new governor hasn't decided what to name his districts, or if those districts will still be there when he is through with this city.",
+
+"Some are made from red granite, some black glass, and others white marble, all gilded with shimmering vehzin or gold, the obelisks mark each plaza or intersection with their presence.
+
+You try reading some of the text but realize that only the letters are recognizably Nurango. The syntax - though decipherable through some guesswork - belongs to a local dialect - a hybrid offspring of the frontier, just like Apesai itself.
+
+Very nonstandard. Distinctly senseless. It is no surprise that many of the obelisks are defaced, waiting to have new plaques installed.",
+
+"From your experience, you've noticed that obelisks - insofar as they are landmarks - are always placed in a specific quarters of a city.
+
+If the quarter is too wealthy, then there is no desire for travelers to find their way around, since the travelers themselves are not wanted there. If the quarter is too poor, then the traveler's fate is in their own hands.
+
+Therefore, obelisks are most often placed where travelers have profitable and respectable business.",
+)
+
+<br>
+
+<!--Weather-->
+(cond:
+$place's weather is "rainy", "Presently, rain clouds cover the sky, and the monoliths cast no shadow on their sun-rings. You keep close to the awnings, zig-zagging your way from one obelisk to another.",
+$place's weather is "stormy", "Now, lighting flashes, casting harsh shadows from the monoliths, now falling on their sun-rings' midday, then early morning, then midnight. Heavy rain wears down the spires' stone, as it will your resolve. Not a good day to be outside.",
+$place's weather is "overcast", "It is a mercifully cool day. A seagull perches on top of one of the monoliths. As you walk by, it coos. You choose to believe that it was meant to be a word of encouragement.",
+$place's weather is "foggy", "Now, setting off into the fog, they appear from afar like very tall, very thin strangers, beckoning, waiting for you to lose your way. What distressing thoughts; the fog must be clouding your mind also.",
+$place's weather is "windy", "Fierce winds are tearing themselves on the stone monoliths. Walking beneath one, you wonder if it will topple. But the oldest of them have stood in place for centuries, while the city around them eddied like a whirlpool in the Nurrah Sea.",
+$place's weather is "sunny", "Obelisks - or at least their shadows - are also used to tell time. By the time you set out, the shadow has all but disappeared, for the cruel Askavan sun is directly overhead. It is the time to suffer.",
+"You continue forward.",
+)
+<br>
+
+<!--testing if code.exploreApesaiBonus bonus works-->
+<!--(set: $char's player's inv to it + (dm: "mapInrah", 1))-->
+
+<!--initialize temp vars for result calculations. _chanceMod MUST be calculated outside of $funcChanceMod for scope reasons.-->
+(set: _chance to 0)
+(set: _chanceMod to 0)
+(set: _nearGE to (random: 0,2))
+(set: _nearCourt to (random: 2,4))
+(set: _nearPleasure to 0)
+
+<!--general progress value, to be added to or subtracted from the final _chance value-->
+(set: _progress to 3)
+
+<!--produces _chanceMod, which should already be initialized-->
+($funcChanceMod: (dm:
+    "sunny", -5,
+    "overcast", 5,
+    "foggy", -10,
+    "stormy", -15,
+    "rainy", -3,
+    "windy", -5,
+    "impressionApesai", 10,
+    "mapInrah", 80,
+))
+
+(set: _a to (either: "There, a white marble obelisk - follow it.", "Follow the pale obelisks with the gold gilding.", "The white marble obelisks are the most imperious - perhaps they will lead you somewhere important."))
+(set: _b to (either: "Head towards a worn-out, red granite obelisk.", "The red obelisks are old - they've stood the test of time.", "Find your way to the closest red obelisk."))
+(set: _c to (either: "The black glass obelisks look new. Perhaps they are most reliable.", "A black obelisk glints, calling out to you.", "Where did they get the glass for the black obelisks? There are no volcanoes in Askava. You follow your curiosity."))
+
+($funcInnerConvo: (dm:
+    "<!--"+(str:(random:1,10))+"-->_a", "1a",
+    "<!--"+(str:(random:1,10))+"-->_b", "1b",
+    "<!--"+(str:(random:1,10))+"-->_c", "1c"
+))
+<br>
+
+[(set: _nearCourt to it + _progress)(show: ?1)](1a|
+[(set: _nearGE to it + _progress)(show: ?1)](1b|
+[(set: _nearPleasure to it + _progress)(show: ?1)](1c|
+
+[
+(display: "scene.exploreApesaiCenter1")
+<br>
+At a intersection, you look on ahead and see several more obelisks.
+(set: _d to (either: "The white one leads to a large plaza.", "The white one leads under a monumental archway.", "The white one leads through rows of palaces."))
+(set: _e to (either: "The red one leads to a street crowded with people and donkey carts.", "In the red one's direction, you can smell exotic perfumes and spices.", "Far past the red one, you see the glint of a crimson dome."))
+(set: _f to (either: "The black one peeks through a dense alleyway.", "The black one leads down the incline, towards where houses are small and tightly packed.", "Beneath the glass one, strange and colorful people have gathered to sing."))
+<br>
+($funcInnerConvo: (dm:
+    "<!--"+(str:(random:1,10))+"-->_d", "2d",
+    "<!--"+(str:(random:1,10))+"-->_e", "2e",
+    "<!--"+(str:(random:1,10))+"-->_f", "2f"
+))
+<br>
+](1|
+
+[(set: _nearCourt to it + _progress)(show: ?2)](2d|
+[(set: _nearGE to it + _progress)(show: ?2)](2e|
+[(set: _nearPleasure to it + _progress)(show: ?2)](2f|
+
+
+[
+(display: "scene.exploreApesaiCenter2")
+<br>
+Feeling lost again, you look around for the obelisks, but the streets are too packed to see beyond the crowd's many heads.
+(set: _g to (either: "Follow the patroling city guards - they ought to pass by the most important places.", "Look down at your feet and follow the nicest stones.", "Keep your wits about you. Go where someone like you ought to."))
+(set: _h to (either: "Forget seeing and follow the scent of spices.", "Follow the caravan of merchants.", "Follow the most well-worn street stones.", "Feel where the heart of the city is and follow its veins."))
+(set: _i to (either: "Avoid the crowd and cut across an alleyway.", "Instead of trying to see, you listen and follow a strange music.", "Let go of trying to think and simply let your feet take you where they want."))
+<br>
+($funcInnerConvo: (dm:
+    "<!--"+(str:(random:1,10))+"-->_g", "3g",
+    "<!--"+(str:(random:1,10))+"-->_h", "3h",
+    "<!--"+(str:(random:1,10))+"-->_i", "3i"
+))
+<br>
+](2|
+
+[(set: _nearCourt to it + _progress)(show: ?done)](3g|
+[(set: _nearGE to it + _progress)(show: ?done)](3h|
+[(set: _nearPleasure to it + _progress)(show: ?done)](3i|
+
+[
+<!--calculate _near-->
+(set: _near to "")
+(set: _nearText to "")
+(set: _nearest to (sorted: _nearCourt,_nearGE,_nearPleasure)'s last)
+(if: _nearest is _nearCourt)[
+    (set: _near to "scene.exploreApesaiCourt")
+    (if: ($funcCheckExists: $char's player's att, "knowApesaiCourt", 0) >= 1)[(set: _near to "Apesai Courthouse")(set: _chance to 100)]
+    (set: _nearText to "You are so close now. You see banners everywhere, white marble obelisks had turned to white marble columns, holding up grand porches of grander buildings.")
+]
+(elseif: _nearest is _nearGE)[
+    (set: _near to "scene.exploreApesaiGE")
+    (if: ($funcCheckExists: $char's player's att, "knowApesaiGE", 0) >= 1)[(set: _near to "The Grand Exchange")(set: _chance to 100)]
+    (set: _nearText to "You can hear them - the discordant choir of hawkers and their hagglers. A myriad of foreign scents is in the air.") 
+]
+(elseif: _nearest is _nearPleasure)[
+    (set: _near to "scene.exploreApesaiPleasure")
+    (if: ($funcCheckExists: $char's player's att, "knowApesaiPleasure", 0) >= 2)[(set: _near to "The Pleasure Quarter")(set: _chance to 100)]
+    (set: _nearText to "As the streets get drabber, the people only get more colorful, more decorated, more insistent.")
+]
+
+<!--Calculate _chance-->
+(set: _chance to it + _nearest + _chanceMod)
+(if: _chance > 100)[(set: _chance to 100)]
+(if: _chance < 0)[(set: _chance to 0)]
+
+(if: _chance >= 50)[(print: _nearText)]
+(else:)[As much as you've tried, you are still uncertain of where you are, and the day is already ending.]
+<br>
+---
+Keep walking, and ($funcLuckGate: "you arrive at...", _chance, _near, "scene.exploreApesaiFail")
+
+](done|
+
+]<!--end child-->
+]<!--end parent-->

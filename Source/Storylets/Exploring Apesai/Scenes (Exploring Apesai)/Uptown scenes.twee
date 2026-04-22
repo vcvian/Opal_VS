@@ -1,0 +1,46 @@
+:: scene.exploreApesaiUp1
+{=
+
+[At a glance, the Upper Apesai looks just like any heartland metropolis - shining tileworks everywhere, intricate mosaics and reliefs adorn every house, terrace palaces built on the side of mountains, and vivid rugs draping from high balconies, of which there are many.
+<br>
+However, when one listens, strange tongues are what one hears. You pick up a few words here and there, but the syntax is all wrong. Perhaps the local has been borrowing more than a few Nurango words.](A|
+
+[Anywhere the empire calls its own, there lies great works of architecture, impossible to accomplish with mundane, non-magical tools.
+<br>
+From a distance, as one approaches the island, one sees immediately the spires and the domes. Magus-architects from the Ministry of Works love to put these on high places so their skill can be admired.
+<br>
+But from down here, in the crowded streets, one could hardly see the splendor.](B|
+
+[Walking these magnificent streets of the upper city, you wonder: if you //had// to be posted in Askava, why couldn't it be Apesai? Such amenities, such luxuries, perhaps all out of your reach, but you could be a scribe for some lawfirm, a red steel engineer, or at least be fixer of crystal lamps.
+<br>
+Did it have to be middle-of-nowhere //Sabzam//? Mainland Askava is such a rough place.](C|
+
+(set: _show to (either: "A","B","C"))
+(show: (hooks-named: _show))
+
+:: scene.exploreApesaiUp2
+{=
+
+
+[Since Apesai was built on a steep slope, many buildings' roofs become the next one's yard, or even its street.
+<br>
+Presently, you are walking past an elevated bridge towards a hanging garden, part of a small terrace mansion, which the owner has made into a public park. You wonder which exiled noble or local chief-monger owns the place. Or even a master magus. Yes, with that kind of title, you, too, can have your own hanging garden.
+<br>
+It probably won't be in Apesai though. All this stair-climbing is awful for your knees.](D|
+
+[You see children - copper-skinned and fair of hair - playing barefooted by the side of a palace. A guard - an old man in older armor, maybe from Keshan times decades ago - tries to shoo them away, but the children simply laughs at him.
+<br>
+However, when they see you, they call out to each other in their tongues and begin to scamper, but not before throwing a few Nurango insults your way. The old guard hesitantly gives you a nod and retreats back inside the palace.
+<br>
+Is it the clothes you wear? Something wrong with your face? And what are native children doing up here? Never mind that, you carry on.](E|
+
+[Along the way, you take note of a few bookstores. A market city like Apesai, especially one that sits between great civilizations - Nurandah, Yavana, and Kesh ("great" until recently) - must have accrued an impressive amount of scientific literature after enturies of ideas crossing-pollinating.
+<br>
+However, that hope is quickly dashed away when you see posters promoting "fantastical tales of other-lives and temporal-displacements" and other impossible nonsense.
+<br>
+Though you've come across such drivel at home, it appears that light forms of heresies thrive like weed in the especially in the frontiers, far away from the watchful eyes of the Interior Ministry.
+<br>
+Those guys are //way// more uptight than even your meanest teachers.](F|
+
+(set: _show to (either: "D","E","F"))
+(show: (hooks-named: _show))

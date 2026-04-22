@@ -1,0 +1,4 @@
+:: code.labPowerDown [static-storage] {"position":"1700,3775","size":"100,100"}
+{=(set: _busy to false)\
+(if: $char's player's timerCraft contains (passage:)'s name)[(set: _busy to true)]\
+(dialog: [(either: "Light quickly retreats. Dusk, sudden and quiet, floods the room.", "Life ebbs from the magical equipment, slumping down as though some invisible string has been cut from these puppets.", "The magical hum lowers until it is only a faint, sputtering snore. The room is asleep once again.") <br> $cssDesc[(if: _busy is false)[Fuel retrieved.](else:)[The remaining fuel burns out.] Workstation powering down.]], "✓")

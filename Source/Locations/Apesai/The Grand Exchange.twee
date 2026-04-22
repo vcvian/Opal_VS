@@ -1,0 +1,20 @@
+:: The Grand Exchange [sublocation] {"position":"4000,2025","size":"100,100"}
+{=
+
+(metadata:
+"prefecture", "Nurrah Coastlands",
+"location", "Apesai",
+"title", "The Grand Exchange",
+)
+($funcUpdateLocation:)
+
+<h2>(print: (passage:)'s title)</h2>
+$cssColumnParent[
+$cssColumnChild[
+
+The Grand Exchange is actually two buildings under one red steel dome: A commodities trading floor for big buyers, and a retail market for the small buyers - you. Two guesses: which one has a mural on the vaulted ceiling?
+]
+$cssColumnChild[($funcNavigateSublocations:)]
+]<!--end of $cssColumnParent-->
+---
+($funcStorylet:)

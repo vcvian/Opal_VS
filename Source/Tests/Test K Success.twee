@@ -1,0 +1,6 @@
+:: Test K Success {"position":"1100,5675","size":"100,100"}
+{=
+
+Yay, you lost your wounds!
+<br>
+(link: "Back")[(goto: "Test K")]

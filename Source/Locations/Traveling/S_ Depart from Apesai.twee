@@ -1,0 +1,23 @@
+:: S: Depart from Apesai [storylet] {"position":"4600,2850","size":"100,100"}
+{=
+
+(storylet: when
+$place's sublocation is "Apesai Wharf"
+)
+
+(metadata: "title", "Departing from Apesai", "cardDesc", "Ferries for hire flock at the wharf, waiting to take those with coins and papers into the mainland.", "img", "https://fallenlondon.wiki/w/images/3/3b/Shipilaltun.png",)
+
+<h1>(print: (passage:)'s title )</h1>
+<br>
+(print: (passage:)'s cardDesc)
+<br>
+(Show your permit...)
+<br>
+---
+<ol>
+You intend to leave for...
+<li>($funcCheckGate: "Rokhab. ⧗", "inv", "permitAskava", 1, false, 100, "Depart from Apesai 1a", "",)<!--[[Depart from Apesai 1a]]-->
+<li>($funcCheckGate: "Navveh. ⧗", "inv", "permitAskava", 1, false, 100, "Depart from Apesai 2a", "",)<!--[[Depart from Apesai 2a]]-->
+<li>($funcCheckGate: " Zirab. ⧗", "inv", "permitAskava", 1, false, 100, "Depart from Apesai 3a", "",)<!--[[Depart from Apesai 3a]]-->
+<li>(link: "Never mind.")[$funcBack]
+</ol>

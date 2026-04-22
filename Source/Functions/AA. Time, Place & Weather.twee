@@ -1,0 +1,97 @@
+:: AA. Time, Place & Weather [startup] {"position":"1425,4050","size":"100,100"}
+{=
+
+<!--Time variables-->
+(set: $time to (dm:
+"dayCount", 1,
+"day", 6,
+"week", 1,
+"month", 7,
+"year", 1056,
+))
+
+<!--Place and weather variables-->
+(set:$place to (dm:
+"prefecture", "Nurrah Coastlands",
+"location", "Apesai",
+"sublocation", "The Pilgrim's Rest",
+"stay", "The Pilgrim's Rest",
+"traveling", false,
+"travelingTo", "",
+"travelingFrom", "",
+"travelingArriveReady", false,
+"weather", "rainy",
+"events", (dm:),
+"eventDuration", (dm:),
+"eventCooldown", (dm:),
+))
+
+<!--macro that determines weather-->
+(set: $funcWeatherToday to (macro: [(out:)[\
+	<!--Roll weather dice-->\
+	(set: _weatherDice to (random: 1,10))\
+	<!--load the right table based on location, outputs _weatherData-->\
+	(set: _weatherData to (dm:))\
+    (display: "table.weather" + $place's location)\
+	<!--Get the array of this month's weather-->\
+	(set: _now to _weatherData's data's ($time's month))\
+	\
+	<!--Set weather based on dice-->\
+	(if: _weatherDice <= _now's 1st)[(set: $place's weather to _now's 2nd)]\
+	(elseif: _weatherDice <= _now's 3rd)[(set: $place's weather to _now's 4th)]\
+	(else:)[(set: $place's weather to _now's 5th)]\
+]]))
+
+<!--Get weather text-->
+(set: $funcWeatherText to (macro: [\
+	<!--load the right table based on location, outputs _weatherData-->\
+	(set: _weatherData to (dm:))\
+    (display: "table.weather" + $place's location)\
+	<!--Get text-->\
+	(set: _weatherText to "")\
+	(set: _weatherText to _weatherData's text's ($place's weather))\
+	(out-data: _weatherText)\
+]))
+
+<!--Create weather box-->
+(set: $funcWeatherBox to (macro: [(out:)[\
+	<!--Load images (_weatherImage) & text (_weatherData's text)-->\
+	(set: _weatherImage to (dm:))\
+    (set: _weatherData to (dm:))\
+    (set: _weatherTravelText to (dm:))\
+    (display: "img.weather")\
+	(display: "table.weather" + $place's location)\
+    (display: "table.weatherTraveling")\
+	\
+	<!--Make weather box-->\
+	<div>$cssBox[\
+		<!--Image-->\
+		<div>\
+        (print: "<img style=\"margin:20px\" width=\"150px\" src=\"" + _weatherImage's ($place's weather) + "\">")\
+        </div><!--for some reason, only the image should be a div-->\
+		<!--Text-->\
+		$cssBoxItem[$cssDesc[\
+        	<!--By default, uses the table.weather[location], but a different table (table.weatherTraveling) is used when traveling-->\
+        	(if: (passage:)'s name is not "Traveling")[(print: _weatherData's text's ($place's weather))]\
+            (else:)[(print: _weatherTravelText's ($place's weather))]\
+        ]]\
+	]</div>\
+]]))
+
+(set: $funcUpdateLocation to (macro: ,[(out:)[\
+	(if: (passage:) contains "prefecture")[(set: $place's prefecture to (passage:)'s prefecture)]\
+	(if: (passage:) contains "location")[(set: $place's location to (passage:)'s location)]\
+	(set: $place's sublocation to (passage:)'s name)\
+	($funcUpdateHeader:)\
+]]))
+
+<!--Only update header-->
+(set: $funcUpdateHeader to (macro: ,[(out:)[\
+	(if: $place's traveling is true)[\
+		(replace: ?location)[somewhere between ''(print: $place's travelingFrom)'' and ''(print: $place's travelingTo)'']\
+	]\
+	(else:)[\
+		(replace: ?location)[(print: $place's location)]\
+	]\
+	(replace: ?prefecture)[(print: $place's prefecture)]\
+]]))

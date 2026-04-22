@@ -1,0 +1,24 @@
+:: Test G Sample Storylet 5 [test] {"position":"1150,4775","size":"100,100"}
+{=
+
+(storylet: when
+(passage:)'s name is "Test G"
+and ($funcCheckExists: $char's player's quests, "urgentAssignment", "") is "active"
+
+)
+
+(metadata: "title", "Doing the Assignment", "cardDesc", "You've only got so many days.", "img", "https://thefifthcity.wiki/w/images/3/3f/Currency3_copper.png",)
+
+The essay stares at you. All that dizzying whitespace...
+<br>
+$cssDesc[Contribute temp values for the quest.]
+<br>
+---
+<ol>
+
+<li>($funcLuckGate: "Write.", 60, "Test G Essay Progress", "Test G Essay Fail")<!--[[Test G Essay Progress]][[Test G Essay Fail]]-->
+
+<li>($funcCheckGate: "Turn in what you have", "att", "urgentAssignment", 2, true, 100, "Test G Essay Done", "")<!--Only [[Test G Essay Done]] exists due to 100% success chance-->
+
+<li>[[Never mind->Test G]]
+</ol>

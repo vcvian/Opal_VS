@@ -1,0 +1,59 @@
+:: AA. Chance Mod [startup]
+
+{=
+<!--Modify success chances of challenges. Outputs _chanceMod, to be inserted into gates and checks. Print prosaic list of modifiers.-->
+(set: $funcChanceMod to (macro: dm-type _chanceModList, [(out:)[{
+
+<!--initialize temp vars-->
+(set: _chanceMod to 0)
+(set: _pocketInv to $char's player's inv)
+(set: _pocketAtt to $char's player's att)
+(set: _pocketTemp to $char's player's temp)
+
+<!--Prose-->
+$cssDesc[How likely you are to be successful at this challenge will ''depend on your choices'', as well as ''various influences''.
+<br>
+[The following influences are currently present:
+<ul>
+[]<proseHook|
+</ul>
+](chanceModProse|
+]<!--end prose-->
+
+<!--apply bonus and & update prose-->
+(for: each _factor, ...(data-names: _chanceModList))[
+    <!--temporary formatting macro-->
+    (set: _colorNumber to (macro: num-type _num, boolean-type _plus, [(out:)[\
+        (set: _output to "")\
+        (if: _num >= 0 and _plus is true)[(set: _output to "(color: green+yellow)[+" + (str: _num) + "]")]\
+        (elseif: _num >= 0 and _plus is false)[(set: _output to "(color: green+yellow)[" + (str: _num) + "]")]\
+        (elseif: _chanceModList's _factor < 0)[(set: _output to "(color: red+orange)[" + (str: _num) + "]")]\
+        (print: _output)\
+    ]]))
+    
+    (if: $place's weather is _factor)[
+        (show: ?chanceModProse)
+        (append: ?proseHook)[<li>''(upperfirst: _factor)'' weather = (_colorNumber: _chanceModList's _factor, true)%]
+        (set: _chanceMod to it + _chanceModList's _factor)
+    ]
+
+    (elseif: _pocketInv contains _factor)[
+        (show: ?chanceModProse)
+        (append: ?proseHook)[<li>(_colorNumber: _pocketInv's _factor, false) ''(print: (passage: "item."+_factor)'s id)'' × (_colorNumber: _chanceModList's _factor, false)% impact = (_colorNumber: _pocketInv's _factor * _chanceModList's _factor, true)%]
+        (set: _chanceMod to it + (_pocketInv's _factor * _chanceModList's _factor))
+
+    ]
+    (elseif: _pocketAtt contains _factor)[
+        (show: ?chanceModProse)
+        (append: ?proseHook)[<li>(_colorNumber: _pocketAtt's _factor, false) ''(print: (passage: "att."+_factor)'s id)'' × (_colorNumber: _chanceModList's _factor, false)% impact = (_colorNumber: _pocketAtt's _factor * _chanceModList's _factor, true)%]
+        (set: _chanceMod to it + (_pocketAtt's _factor * _chanceModList's _factor))
+    ]
+    (elseif: _pocketTemp contains _factor)[
+        (show: ?chanceModProse)
+        (append: ?proseHook)[<li>(_colorNumber: _pocketTemp's _factor's 1st, false) ''(print: (passage: "temp."+_factor)'s id)'' × (_colorNumber: _chanceModList's _factor, false)% impact = (_colorNumber: _pocketTemp's _factor's 1st * _chanceModList's _factor, true)%]
+        (set: _chanceMod to it + (_pocketTemp's _factor's 1st * _chanceModList's _factor))
+    ]
+]
+<br>
+}]]))
+

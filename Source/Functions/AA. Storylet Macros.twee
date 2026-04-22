@@ -1,0 +1,80 @@
+:: AA. Storylet Macros [startup] {"position":"1425,4450","size":"100,100"}
+{=
+
+<!--Show storylets as "cards", used in sublocations-->
+<!--(set: $funcStorylet to (macro: [(out:)[\
+    {=\
+    (for: each _storylet, ...(open-storylets: where its tags contains "storylet"))[\
+		$cssBox[(print: "<img style=\"margin: 20px\" width=\"150px\" src=\"" + _storylet's img + "\">")\
+        $cssBoxItem[\
+        	(link: _storylet's title)[(goto: _storylet's name)]\
+			<br>(print: _storylet's cardDesc)\
+        ]<!--end of $cssBoxItem-->\
+        ]<!--end of $cssBox-->\
+        ]<!--end of looping-->\
+]]))-->
+
+(set: $funcStorylet to (macro: [(out:)[\
+	<!--Build arrays-->\
+	(set: _list to (open-storylets: where its tags contains "storylet"))\
+	(set: _index to (range: 1, _list's length))\
+	(set: _listA to (a:))\
+	(set: _listB to (a:))\
+	(for: each _storylet, ..._list)[\
+		(for: each _i, ..._index)[\
+			(if: _list's _i is _storylet)[\
+				(if: _i%2 is 0)[(set: _listB to it + (a: _storylet))]\
+				(else:)[(set: _listA to it + (a: _storylet))]\
+			]<!--end of checking if _i is the right position number for the storylet in question.-->\
+		]<!--end of looping through _index-->\
+	]<!--end of looping through _list-->\
+	\
+	<!--Render the actual list-->\
+	<br>\
+	<h3>Stories</h3>\
+	$cssColumnParent[\
+		<!--column 1-->\
+		$cssColumnChild[\
+			(for: each _storylet, ..._listA)[\
+			$cssBox[(print: "<img style=\"margin: 20px\" width=\"150px\" src=\"" + _storylet's img + "\">")\
+			$cssBoxItem[\
+				(link: _storylet's title)[(goto: _storylet's name)]\
+				<br>(print: _storylet's cardDesc)\
+			]<!--end of $cssBoxItem-->\
+			]<!--end of $cssBox-->\
+			]<!--end of looping-->\
+		]\
+		<!--column 2-->\
+		$cssColumnChild[\
+			(for: each _storylet, ..._listB)[\
+			$cssBox[(print: "<img style=\"margin: 20px\" width=\"150px\" src=\"" + _storylet's img + "\">")\
+			$cssBoxItem[\
+				(link: _storylet's title)[(goto: _storylet's name)]\
+				<br>(print: _storylet's cardDesc)\
+			]<!--end of $cssBoxItem-->\
+			]<!--end of $cssBox-->\
+			]<!--end of looping-->\
+		]\
+	]<!--end of parent-->\
+]]))
+
+
+<!--Add cooldown (stored in passage metadata) into $char's player's timerCooldown. This function should be used in the storylet's commit link.-->
+(set: $funcAddStoryletCooldown to (macro: str-type _passageName, [(out:)[\
+	(if: (passage: _passageName) contains "cooldown")[\
+		(set: $char's player's timerCooldown to it + (dm: _passageName, (passage:)'s cooldown ))\
+	]\
+	(else:)[(dialog: [ERROR! The passage _passageName does not contain a "cooldown" entry in its metadata.], "Aw dang it.")]\
+]]))
+
+<!--Tick down storylet's cooldown; inserted into mockDay/setDay-->
+(set: $funcStoryletCooldownTickdown to (macro: ,[(out:)[\
+	(if: (data-names: $char's player's timerCooldown)'s length > 0)[\
+		(for: each _storylet, ...(data-names: $char's player's timerCooldown))[\
+			<!--tick down-->\
+			(set: $char's player's timerCooldown's _storylet to it - 1)\
+			<!--delete if done-->\
+			(if: $char's player's timerCooldown's _storylet <= 0)[(move: $char's player's timerCooldown's _storylet into _trash)]\
+		]\
+	]\
+]]))

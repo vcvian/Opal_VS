@@ -1,0 +1,12 @@
+:: Blown Off Course 1a {"position":"4825,3675","size":"100,100"}
+{=
+
+(metadata: "title", "Blown off Course")
+
+(Added 1 more day to travel time)
+<br>
+---
+(link: "Dang it!")[
+	(set: $questTimer's traveling's timer to it + 1)
+	$funcDone\
+]

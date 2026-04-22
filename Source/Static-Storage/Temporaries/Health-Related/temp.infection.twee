@@ -1,0 +1,26 @@
+:: temp.infection [static-storage] {"position":"3825,2500","size":"100,100"}
+(metadata:
+"id", [Infection],
+"timer", 5,
+"key", (a: "condition", "body",),
+"desc", [You're burning up from an infection.],
+"tip", [Losing 1 health each day. Might leave you permanently weaker at the end.],
+
+"gainText", [And injury has become infected.],
+"gainEffect", [],
+
+"tickText", [Your flesh feels like fire. (color:red)[Lost 1 health.]],
+"tickEffect", [\
+    <!--hurt health-->\
+    (set: $char's player's health's 1st to it - 1)\
+    <!--chance of sickly-->\
+    (if: $char's player's temp's infection's 2nd < 1)[\
+    	(set: _woundDice to (random: 1,100))\
+        (if: _woundDice < 30)[($funcGainLoss: "att.", "sickly", 1)]
+    ]\
+],
+
+"lossText", [The swelling has stopped, and the pain subsided.],
+"lossEffect", [],
+
+)

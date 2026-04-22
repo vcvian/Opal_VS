@@ -1,0 +1,66 @@
+:: T: OldInrah Locales [topic] {"position":"3425,1075","size":"100,100"}
+{=
+
+(storylet: when
+(passage:) contains "NPC"
+and ($char's player's att does not contain "knowApesaiLighthouse" or it does not contain "knowApesaiGE" or it does not contain "knowApesaiCourt" or it does not contain "knowApesaiTraveler" or ($funcCheckExists: $char's player's att, "knowApesaiPleasure", 0) < 2)
+and ($funcCheckExists: (passage:), "talked", (a:)) does not contain "localesApesai"
+)
+(urgency: 2)
+(metadata:
+"NPC", "OldInrah",
+"title", "Asking Koh-Inrah About Apesai",
+"topic", "\"Do you know how to get around Apesai?\"",
+"topicDetail", "Guesthouses often provides guide services.",
+"cooldown", 1,
+"talked", (a: "youngInrah", "mapInrah", "localesApesai"),
+"addCode", [],
+"fee", 20,)
+
+$cssColumnParent[
+
+$cssColumnChild[
+	$cssBox[
+    	($funcImage: (passage: "npc.OldInrah")'s img)
+         $cssBoxItem[''(print: (passage:)'s title )''<br>(print: (passage:)'s topicDetail)]
+    ]
+]
+
+$cssColumnChild[
+
+$cssDesc[''You: //(print: (passage:)'s topic)//'']
+<br>
+
+(if: ($funcTalkedTimesCheck: "localesApesai") < 1)[["Does Old Inrah know how to 'get around' Apesai?"]<OldInrahLine| She repeats with a scoff. ["Like the veins and spots on her backhand, she does. Better than the governor, who wasn't even //born// when Old Inrah took over this establishment from Grand Inrah, Light guides her soul."]<OldInrahLine|
+<br>
+That is great to hear.
+<br>
+["She remembers where everything is... with a little help."]<OldInrahLine|
+]
+
+(else:)[["Ah, a traveler needs directions,"]<OldInrahLine| she says, pouring herself a cup of tea. ["Which Old Inrah is glad to give."]<OldInrahLine|]
+<br>
+
+$cssDesc[For a small fee, Inrah will give you hints to Apesai's various locales.]
+<br>
+
+(if: $char's OldInrah's talked does not contain "mapInrahBought")[["Or, why settle for //just// Apesai? Old Inrah have a one-of-a-kind map of the //all// of the Nurrah Coastlands' most notable destinations - from Apesai all the way up to the Besarag Pass - that her very talented granddaughter has drafted, far better than the scribbles being hawked out there, blessed be Young Inrah."]<OldInrahLine|
+<br>
+
+$cssDesc[For a larger fee, you might purchase from Koh-Inrah a map of the major settlements of the Nurrah Coastlands - Apesai included.]
+<br>
+]<!--end of if haven't bought map-->
+
+(elseif: $char's OldInrah's talked contains "mapInrahBought")[["You'll find Old Inrah advice more... practical compared to my granddaughter's map,"]<OldInrahLine| she chuckles. ["Not that there's anything wrong with your purchase, don't misunderstand. But Old Inrah knows the value of experience over scrolls."]<OldInrahLine|
+<br>
+]<!--end of if already bought map-->
+
+---
+<ol>
+(display: "links.OldInrahLocales")
+<br> On second thought, you wanted to talk about something else...
+($funcNPCTopics: "There are other guests, so pay up, ask your question, then get out - that is what the old woman's squint seems to be saying.", "Perhaps some other time. Goodbye, Koh-Inrah.")
+</ol>
+
+]
+]<!--parent end-->

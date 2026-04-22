@@ -1,0 +1,34 @@
+:: Sick Teacher 2b {"position":"3325,2625","size":"100,100"}
+{=
+
+(metadata:
+    "NPC", "Teacher",
+    "title", "Alternative Medicine",
+    "cardDesc", "It seems obvious to ask her. Guests often get sick after a long journey, right?",
+    "talked", (a: "gingerGiven",),
+)
+
+<!--Manually add $funcTalked because this is not normal dialogue, and yet, there is still a new talked entry to be registered-->
+$cssColumnParent[
+
+$cssColumnChild[
+	$cssBox[
+    	($funcImage: (passage:)'s img)
+         $cssBoxItem[''(print: (passage:)'s title )''<br>(print: (passage:)'s cardDesc)]
+    ]
+]
+
+$cssColumnChild[
+
+(Giving him ginger, getting scolded)
+
+<br>
+---
+(link: "Sorry")[
+    ($funcTalked:)
+    ($funcOpinionGainLoss: "Teacher", -2, "You'd like to say that he isn't mad, just disappointed. But he //is// mad.")
+    $funcBack
+]
+
+]<!--end child-->
+]<!--end parent-->

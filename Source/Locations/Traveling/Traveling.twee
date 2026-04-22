@@ -1,0 +1,21 @@
+:: Traveling [sublocation stay traveling] {"position":"1450,5200","size":"100,100"}
+{=
+
+(metadata:
+"currency", "supplies",
+"rent", 1,
+"title", "Traveling",
+)
+
+<h2>(print: (passage:)'s title)</h2>
+
+<!--Weather passage-->
+($funcWeatherBox:)
+
+<br>
+$cssDesc[You're traveling from (print: $place's travelingFrom) to (print: $place's travelingTo).]
+<br>
+---
+<br>
+<h3>Stories</h3>
+($funcStorylet:)

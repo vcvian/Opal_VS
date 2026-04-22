@@ -1,0 +1,9 @@
+:: Test G Essay Progress {"position":"1275,4725","size":"100,100"}
+(metadata: "title", "Essay Progress",)
+Yes, little by little!
+<br>
+---
+(link-rerun: "Word by word.")[\
+	($funcGainLoss: "att.", "urgentAssignment", 1)\
+    $funcDone
+]

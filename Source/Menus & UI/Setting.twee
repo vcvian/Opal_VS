@@ -1,0 +1,36 @@
+:: Setting [UI] {"position":"2525,2600","size":"100,100"}
+{=
+
+(metadata: "UI", true,)
+
+($funcUITopBar:)
+
+<br>
+
+<details open>
+<summary>''In-Game Notifications''</summary>
+$cssDesc[In-game notifications are pop-ups that inform the player about changes to the game state, such as losing health or gaining an item. These are especially for new players, and it is recommended that these be left on.
+<br>
+However, as the game goes on, a confident player might find the messages repetitive; this is where they would turn them off/on again.]
+
+(set: _notiList to (dm:
+	"rent" , "''Rent:'' $cssDesc[What must be paid everyday - either food or money.]",
+	"item", "''Item:'' $cssDesc[Things - bought, sold, consumed, awarded.]",
+	"currency", "''Money:'' $cssDesc[A medium of exchange, used in most major markets.]",
+	"element", "''Element:'' $cssDesc[The building blocks of magic.]",
+	"attribute", "''Attribute:'' $cssDesc[What is it about you?]",
+	"condition", "''Temporary Condition:'' $cssDesc[Effects that temporarily affects you.]",
+	"conTick", "''Condition's Tick:'' $cssDesc[Daily effects from having a condition.]",
+	"craftTimer", "''Synthesis Timer:'' $cssDesc[Making things take time; this is when it's done.]",
+	"quest", "''Story:'' $cssDesc[When an on-going story is updated. (Due to technical issues, this toggle does not work yet).]",
+	"questTimer", "''Story Timer:'' $cssDesc[Some stories are timed. (Due to technical issues, this toggle does not work yet).]",
+    "NPC", "''People:'' $cssDesc[You'll meet notable people, and their opinion matters. You'll want to be informed if that changes.]",
+    "dice", "''Dice rolls:'' $cssDesc[Some times, you'll have to take a risk, upon success or failure, you'll be notified.]",
+))
+
+<ul>
+(for: each _noti, ...(data-names: $op's noti))[\
+	<li> (checkbox: 2bind $op's noti's _noti, _notiList's _noti)\
+]
+</ul>
+</details>

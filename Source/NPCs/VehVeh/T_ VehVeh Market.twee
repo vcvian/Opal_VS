@@ -1,0 +1,44 @@
+:: T: VehVeh Market [topic] {"position":"6525,1175","size":"100,100"}
+{=
+
+(storylet: when
+(passage:) contains "NPC"
+and $char's VehVeh's opinion's 2nd > 20
+and $char's VehVeh's location is "The Grand Exchange"
+and $char's player's timerCooldown does not contain "T: VehVeh Market"
+)
+
+(urgency: 1)
+(metadata:
+"NPC", "VehVeh",
+"title", "Chatting with Veh-Veh",
+"topic", "What's there to do in the market?",
+"topicDetail", "Small talk about the market has never failed anyone.",
+"cooldown", 1,
+"talked", (a:),
+"addCode", [],
+)
+
+$cssColumnParent[
+
+$cssColumnChild[
+	$cssBox[
+    	($funcImage: (passage: "S: VehVeh Market")'s img)
+         $cssBoxItem[''(print: (passage:)'s title )''<br>(print: (passage:)'s topicDetail)]
+    ]
+]
+
+$cssColumnChild[
+
+$cssDesc[''You: //(print: (passage:)'s topic)//'']
+<br>
+
+["You can help me shop for a few things haha!"]<VehVehLine|
+<br>
+---
+<ol>
+($funcNPCTopics: "She's already wandering off, more than comfortable of her ability to haul groceries without you.", "Alright, be seeing you, Veh-Veh.")
+</ol>
+
+]<!--end child-->
+]<!--end parent-->

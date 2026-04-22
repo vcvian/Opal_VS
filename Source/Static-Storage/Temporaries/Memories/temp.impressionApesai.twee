@@ -1,0 +1,19 @@
+:: temp.impressionApesai [static-storage]
+{=
+
+(metadata:
+"id", [Impression: The Streets of Apesai],
+"timer", 3,
+"key", (a: "memory", "place", "Apesai",),
+"desc", [There was garden here, an obelisk there, and then you turned left... No, right, right?],
+"tip", [The more of this memory you have, the better your chances are of exploring Apesai. Will fade in a couple of days.],
+
+"gainText", [You try to hold onto an impression of Apesai's streets. It's slippery.],
+"gainEffect", [],
+
+"lossText", [Like the streets of Apesai themselves, your impressions of them are blending in together into nonsensical configurations. Best to forget at this point.],
+"lossEffect", [],
+
+)
+
+<!--entries "tickText" and "tickEffect" removed from this temp, since there is none, and we don't want to trigger an empty effect-->

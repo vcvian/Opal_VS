@@ -1,0 +1,35 @@
+:: OldInrah Jobs Gain Access {"position":"3125,1375","size":"100,100"}
+{=
+
+(metadata:
+"NPC", "OldInrah",
+"title", "Asking Koh-Inrah for Odd Jobs",
+"topicDetail", "Did you just get hired?",
+"talked", (a: "oddJobs", ),)
+
+$cssColumnParent[
+
+$cssColumnChild[
+	$cssBox[
+    	($funcImage: (passage: "npc.OldInrah")'s img)
+         $cssBoxItem[''(print: (passage:)'s title )''<br>(print: (passage:)'s topicDetail)]
+    ]
+]
+
+<!--Main content begins here-->
+$cssColumnChild[
+
+["Ehem... Old Inrah will let her helpers know that a certain young magus //might// be available should there be a potion that needs brewing,"]<OldInrahLine| she says, jotting something down into her guestbook. ["Or a mop that needs animating. Do you do that? //Can// you do that? Oh, that's illegal? Old Inrah wouldn't know; she's not university-educated, heh."]<OldInrahLine|
+<br>
+$cssDesc[Being helpful towards the Pilgrim's Rest staff will be seen favorably by Koh-Inrah the Landlady. Upon accruing favors, you can speak to Koh-Inrah about "rent refunds" - but the landlady will not appreciate having to part ways with her money.]
+<br>
+(if: $char's OldInrah's energy's 1st > 0)[["Now, is there anything else?"]<OldInrahLine|]
+(else:)[["Now, go be helpful,"]<OldInrahLine| the old woman returns to her guestbook, waving you away.]
+<br>
+---
+<ol>
+($funcNPCTopics: "One either pays, or one works. That seems to be the foremost law here. Or anywhere.", "Gratitude, Koh-Inrah, and goodbye.")
+</ol>
+
+]<!--end child-->
+]<!--end parent-->

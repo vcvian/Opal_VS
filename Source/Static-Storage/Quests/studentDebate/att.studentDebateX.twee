@@ -1,0 +1,14 @@
+:: att.studentDebateX [static-storage] {"position":"5275,1800","size":"100,100"}
+{=
+
+(metadata: 
+	"id", [Debate: Side X Advantage],
+    "key", (a: "progress", ),
+    "value", (a: 1, 0, 0, 0, 0, 0),
+    "img", "",
+    "desc", [Side X advantage.],
+    "tip", [Does side X really need //more// advantage?],
+    "gainText", [Side X grows smug.],
+    "lossText", [The thing about debate is that once it's done, all that's been discussed is flushed from the mind, and everything goes back to normal.]
+
+)

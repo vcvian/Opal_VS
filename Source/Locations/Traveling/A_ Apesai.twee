@@ -1,0 +1,20 @@
+:: A: Apesai [storylet traveling] {"position":"4950,3100","size":"100,100"}
+{=
+
+(storylet: when
+$place's traveling is true
+and $place's travelingArriveReady is true
+and $place's travelingTo is "Apesai"
+)
+(exclusivity: 1)
+(metadata: "title", "Arriving in Apesai", "cardDesc", "An Apesai patrol boat hails you down.", "img", "https://fallenlondon.wiki/w/images/f/f6/Ship3.png",)
+
+<h1>(print: (passage:)'s title )</h1>
+<br>
+(print: (passage:)'s cardDesc)
+<br>
+(Getting close to Apesai means being hailed down by the imperial navy)
+<br>
+---
+($funcArrive: "Follow the patrol boat into the wharf. ⧗","Arrive at Apesai 1a",)
+<!--[[Arrive at Apesai 1a]]-->

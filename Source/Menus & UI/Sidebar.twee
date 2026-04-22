@@ -1,0 +1,88 @@
+:: Sidebar [footer] {"position":"2175,2350","size":"100,100"}
+{=
+
+(append: ?Sidebar)[
+
+(if: (data-names: (passage:)) contains "UI")[\
+	(link-rerun: "⬅️")[(redirect: $currentPassage)]\
+]\
+(else:)[<span style="opacity:0.2;">⬅️</span>]
+
+(link-rerun: "👩")[\
+	(if: (passage:)'s name is not "Profile")[\
+		(if: (data-names:(passage:)) does not contain "UI")[(set: $currentPassage to (passage:)'s name)]\
+		(redirect: "Profile")\
+	]\
+	(else:)[\
+		(redirect: $currentPassage)
+	]\
+]\
+
+(link-rerun: "📦")[\
+	(if: (passage:)'s name is not "Inventory")[\
+		(if: (data-names:(passage:)) does not contain "UI")[(set: $currentPassage to (passage:)'s name)]\
+		(redirect: "Inventory")\
+	]\
+	(else:)[\
+		(redirect: $currentPassage)
+	]\
+]\
+
+(link-rerun: "📜")[\
+	(if: (passage:)'s name is not "Journal")[\
+		(if: (data-names:(passage:)) does not contain "UI")[(set: $currentPassage to (passage:)'s name)]\
+		(redirect: "Journal")\
+	]\
+	(else:)[\
+		(redirect: $currentPassage)
+	]\
+]\
+
+(link-rerun: "👥")[\
+	(if: (passage:)'s name is not "People")[\
+		(if: (data-names:(passage:)) does not contain "UI")[(set: $currentPassage to (passage:)'s name)]\
+		(redirect: "People")\
+	]\
+	(else:)[\
+		(redirect: $currentPassage)
+	]\
+]\
+
+(link-rerun: "⚙️")[\
+	(if: (passage:)'s name is not "Setting")[\
+		(if: (data-names:(passage:)) does not contain "UI")[(set: $currentPassage to (passage:)'s name)]\
+		(redirect: "Setting")\
+	]\
+	(else:)[\
+		(redirect: $currentPassage)
+	]\
+]\
+
+<!--Long Log-->
+(link-rerun: "🪵")[\
+	(redirect: "Long Log")
+]\
+
+<!--dev tools-->
+$cssBox[
+<!--Test-->
+(link-rerun: "🧪")[\
+	(redirect: "Pre-Test (NEW)")
+]\
+
+<!--Debug view-->
+(link-rerun: "🐞")[(debug: )]
+
+<!--Jump to arbitrary passage-->
+(link-rerun: "🧭")[\
+    (set: _passage to (prompt: [Enter passage name:], "", "Cancel", "Confirm"))\
+    (unless: _passage is "")[(goto: _passage)]\
+]\
+
+<!--Next day-->
+(link-rerun: "➡️")[\
+	$funcDone
+]\
+]<!--end of dev box-->
+
+]<!--end of sidebar append-->

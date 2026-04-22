@@ -1,0 +1,18 @@
+:: links.OldInrahLocales {"position":"3550,1075","size":"100,100"}
+{=
+
+<!--List of dynamic links when talking to Koh-Inrah about getting around-->
+
+Advice for getting around... <br>
+
+(if: $char's OldInrah's talked does not contain "mapInrahBought")[<li>(link-rerun: "\"About that one-of-a-kind map...\"")[(set: $char's OldInrah's energy's 1st to it -1)(goto: "T: OldInrah Buy Map")] $cssDesc[(Such a spirited pitch... Be prepared to part ways with a significant sum.)]<!--[[T: OldInrah Buy Map]]-->]
+
+<li>($funcCheckGate: (passage: "OldInrah Locales Lighthouse")'s topic, "inv", "rial", (passage: "T: OldInrah Locales")'s fee, true, 100, "OldInrah Locales Lighthouse", "")<!--[[OldInrah Locales Lighthouse]]-->
+
+<li>($funcCheckGate: (passage: "OldInrah Locales GE")'s topic, "inv", "rial", (passage: "T: OldInrah Locales")'s fee, true, 100, "OldInrah Locales GE", "")<!--[[OldInrah Locales GE]]-->
+
+<li>($funcCheckGate: (passage: "OldInrah Locales Travelers")'s topic, "inv", "rial", (passage: "T: OldInrah Locales")'s fee, true, 100, "OldInrah Locales Travelers", "")<!--[[OldInrah Locales Travelers]]-->
+
+<li>($funcCheckGate: (passage: "OldInrah Locales Pleasure")'s topic, "inv", "rial", (passage: "T: OldInrah Locales")'s fee, true, 100, "OldInrah Locales Pleasure", "")<!--[[OldInrah Locales Pleasure]]-->
+
+<li>($funcCheckGate: (passage: "OldInrah Locales Court")'s topic, "inv", "rial", (passage: "T: OldInrah Locales")'s fee, true, 100, "OldInrah Locales Court", "")<!--[[OldInrah Locales Court]]-->

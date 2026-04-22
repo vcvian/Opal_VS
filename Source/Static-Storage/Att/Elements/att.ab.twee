@@ -1,0 +1,14 @@
+:: att.ab [static-storage] {"position":"1750,3225","size":"100,100"}
+{=
+
+(metadata: 
+	"id", [Ab],
+    "key", (a: "element", ),
+    "value", (a: 1, 0, 1, 0, 0, 0),
+    "img", "",
+    "desc", [Ab - elemental water.],
+    "tip", [],
+    "gainText", [Sweat collects on your brows, and blood rushes through your veins.],
+    "lossText", [One thing leads to another.]
+
+)

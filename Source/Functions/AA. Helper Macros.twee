@@ -1,0 +1,14 @@
+:: AA. Helper Macros [startup] {"position":"1350,3250","size":"100,100"}
+{=
+
+<!--Saves the current passage to return from UI menus-->
+(set: $currentPassage to "The Pilgrim's Rest")
+
+<!--global dice-->
+(set: $dice to (random: 1,100))
+
+<!--Workaround for storylets: Check exists, then output thing's data-->
+(set: $funcCheckExists to (macro: any-type _pocket, str-type _thing, any-type _out,[\
+	(if: _pocket contains _thing)[(set: _out to _pocket's _thing)]\
+	(out-data: _out)\
+]))

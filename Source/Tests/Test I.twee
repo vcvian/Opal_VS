@@ -1,0 +1,21 @@
+:: Test I {"position":"975,5400","size":"100,100"}
+{=
+
+(metadata: "title", "Test I (navigating sublocations)")
+
+[[⇦ BACK->Pre-Test (NEW)]]
+<br>
+
+Sublocations in Apesai:
+<br>
+---
+<br>
+($funcNavigateSublocations:)
+<br>
+---
+<br>
+<ul>
+Set knowledge:
+<li>(link-rerun: "I know where the Lighthouse is.")[($funcGainLoss: "att.", "knowApesaiLighthouse", 1, )(redirect: (passage:)'s name)]
+<li>(link-rerun: "I learn a bit about the Yavanid quarter.")[($funcGainLoss: "att.", "knowApesaiPleasure", 1, )(redirect: (passage:)'s name)]
+</ul>

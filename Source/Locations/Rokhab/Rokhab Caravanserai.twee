@@ -1,0 +1,26 @@
+:: Rokhab Caravanserai [sublocation stay] {"position":"6000,2575","size":"100,100"}
+{=
+(metadata:
+"prefecture", "Nurrah Coastlands",
+"location", "Rokhab",
+"currency", "rial",
+"rent", 5,
+"title", "Rokhab Caravanserai"
+)
+
+($funcUpdateLocation:)
+
+<h2>(print: (passage:)'s title)</h2>
+<br>
+<!--Weather passage-->
+($funcWeatherBox:)
+
+$cssColumnParent[
+$cssColumnChild[
+(A caravanserai...)
+]
+$cssColumnChild[($funcNavigateSublocations:)]
+]<!--end of $cssColumnParent-->
+
+---
+($funcStorylet:)

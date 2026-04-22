@@ -1,0 +1,173 @@
+:: OldInrah Locales Court {"position":"3625,1200","size":"100,100"}
+{=
+
+(metadata:
+"NPC", "OldInrah",
+"title", "Asking Koh-Inrah for Directions",
+"topic", "\"I'm sure Apesai is a pleasant place once one gets used to it, but how might one get off of this island? I'm heading elsewhere.\"",
+"topicDetail", "What's a journeyman who doesn't journey?",
+"talked", (a: "localesApesai", "courthouse"),
+"addCode", [],)
+
+$cssColumnParent[
+
+$cssColumnChild[
+	$cssBox[
+    	($funcImage: (passage: "npc.OldInrah")'s img)
+         $cssBoxItem[''(print: (passage:)'s title )''<br>(print: (passage:)'s topicDetail)]
+    ]
+]
+
+<!--Main content begins here-->
+$cssColumnChild[
+
+$cssDesc[''You: //(print: (passage:)'s topic)//'']
+<br>
+You place Koh-Inrah's fee on the table.
+<br>
+[
+["Why, by boat of course, as one would when one is on an island,"]<OldInrahLine| she says with a black grin while her withered fingers scoop up the rials. ["There are many captains-for-hire down by the Apesai wharf. They're ready to leave at any time, //if// the patron has the coins. And the paperwork."]<OldInrahLine|
+<br>
+($funcInnerConvo: (dm:
+	"<!--A-->\"I already know where the wharf is; it was where I landed.\"", "1a",
+    "<!--B-->\"Paperwork? I need to be *allowed* off of this place?\"", "1b",
+    "<!--C-->\"Money, again. Sounds like everything costs money here.\"", "1c",
+))
+<br>
+](firstTime|
+
+[
+["That's good for you, dear patron, but my advice is non-refundable,"]<OldInrahLine| she snickers. ["It is jest. Old Inrah intends to be more helpful than that. To leave Apesai - for the mainland, yes? - the patron will need an entry permit."]<OldInrahLine|
+<br>
+Permits, licenses, contracts, applications - so far, Askava is proving to be not all that foreign. But isn't Askava part of the imperium, after all? It //should// be the same everywhere in the Seven Provinces.
+(show: ?2)
+<br>
+](1a|
+
+[
+["No, no, the patron is //perfectly// free to come and leave,"]<OldInrahLine| Koh-Inrah chuckles. ["That is, //if// the patron has no fear nor respect for our emperor's law, or the govenorship, or the city guards, or the navy patrol, or the Interior Ministry, or prison, or..."]<OldInrahLine|
+<br>
+You've thought, perhaps naively, that there would be less bureaucracy here at the edge of the empire. But if anything, there might be //more//. Perhaps, the less civilized a place is, the greater the need for rules.
+(show: ?2)
+<br>
+](1b|
+
+[
+["Yes, because everything //does// cost something here, either money or time. Why, is there //free// transportation where you're from? Old Inrah would not be surprised - may the empire grows strong - but heartlanders are too spoiled by wealth and magic. Many magi tend to forget that even the great Apesai Lighthouse was mostly built by laborers over the course of... well, you know your history."]<OldInrahLine|
+<br>
+($funcInnerConvo: (dm:
+	"<!--A-->\"Apologies. Journeymen like myself are anxious about their coin pouches by necessity.\"", "1c1",
+    "<!--B-->\"This island's lighthouse would not have been possible without architect-magi.\"", "1c2",
+    "<!--C-->\"Few things are free in the imperial heartlands, but I've hoped that the far colonies were more accomodating to a citizen.\"", "1c3",
+))
+<br>
+](1c|
+
+[
+["Aren't we all? Look at Old Inrah, still here after all these years, without anyone to take over the family business. She needs money - she stays. If the patron already has money and a permit - the patron leaves."]<OldInrahLine|
+<br>
+Koh-Inrah pours herself another cup of tea.
+<br>
+(show: ?2)
+](1c1|
+
+[
+["The patron can magic their way off this island, yes? If not, then they need money and a permit."]<OldInrahLine|
+<br>
+Koh-Inrah pours herself another cup of tea.
+<br>
+(show: ?2)
+](1c2|
+
+[
+["Old Inrah is a citizen also, two generations before her, and two after. But she has never known of such 'accomodation'. Money and permit - it is the same for everyone."]<OldInrahLine|
+<br>
+Koh-Inrah pours herself another cup of tea.
+<br>
+(show: ?2)
+](1c3|
+
+[
+["We live in delicate times, as one so learned as you must know. Delicate and //lucractive//. So much wealth is coming through these ports, wealth that feeds and heals our Nurandah. So, nothing comes in or out of Askava without going through Apesai. And nothing comes in or out of Apesai without the governor's approval - his seal."]<OldInrahLine|
+<br>
+($funcInnerConvo: (dm:
+	"<!--A-->\"And I assume this is obtained at the governor's manor.\"", "2a",
+    "<!--B-->\"I'm one of the davehmars. Legally speaking, shouldn't a local circle ensure my passage?\"", "2b",
+))
+<br>
+](2|
+
+[
+["//'Manor'//? Oh, what does the patron think Apesai is, a rural village? Some backward holding of a lord?"]<OldInrahLine| the old woman covers her giggling with her hand, momentarily seeming like a young girl. ["Our governor is not nobility. He is a high servant of the emperor, yes, but he is only the most important clerk in a courthouse full of clerks. Apesai is a proper city like any other capitals in the Seven Provinces. 'Manor' - please. We're not //Sabzam//."]<OldInrahLine|
+<br>
+Koh-Inrah takes a moment to recover from your naivete and remember what she was talking about, ["Right, the courthouse. Old Inrah will show you how to get there. That is where you will apply for an entry permit. Once you're among the farmsteads up the Rokhrud, you'll find plenty of manors, hah."]<OldInrahLine|
+(show: ?3)
+<br>
+](2a|
+
+[
+["That's between you, the governor's clerks, and whatever that passes for a 'circle' here. Old Inrah can only give the patron the directions to the courthouse. That is where you will apply for an entry permit. The patron will have to pay Old Inrah a lot more for her legal counsel."]<OldInrahLine|
+(show: ?3)
+<br>
+](2b|
+
+[
+["Age might have taken some of Old Inrah's spriteliness, not her memory. She has already told you how to get to the courthouse,"]<OldInrahLine| The old woman says, wary of the coins but still taking it all the same. ["Or are you simply looking for a reason to talk, you flatterer?"]<OldInrahLine|
+<br>
+($funcInnerConvo: (dm:
+	"<!--A-->\"I simply want to jog my memory. The roads can confuse.\"", "secondA",
+    "<!--B-->\"What is true once will be true twice. Repetition carve truth.\"", "secondB",
+))
+](secondTime|
+
+[
+["This old woman worries for the youth sometimes,"]<OldInrahLine| she chuckles and shakes her head.
+(show: ?3)
+<br>
+](secondA|
+
+[
+["Such high-minded poetics! The patron could have simply accused Old Inrah of lying,"]<OldInrahLine| she giggles. ["But Old Inrah knows better than to expect you davehmars to come down to earth with us uncouth peasants. She does not mind."]<OldInrahLine|
+<br>
+($funcInnerConvo: (dm:
+	"<!--A-->\"Then you wouldn't mind showing me the way to the courthouse again.\"", "3",
+))
+](secondB|
+
+(if: ($funcTalkedTimesCheck: "courthouse") < 1)[(show: ?firstTime)]
+(else:)[(show: ?secondTime)]
+
+[
+Koh-Inrah then describes a series of white obelisks, forming an itinerary that twists through various palaces and monuments, which she claims, will leave you at the steps of the provincial courthouse.
+(show: ?done)
+<br>
+](3|
+
+<!--done-->
+[
+<!--register talked keys-->
+($funcTalked:)
+<!--determine if already know-->
+(set: _alreadyKnow to false)
+(if: ($funcCheckExists: $char's player's att, "knowApesaiCourt", 0) >= 1)[(set: _alreadyKnow to true)]
+<!--determine link text if already know-->
+(set: _doneText to "")
+(if: _alreadyKnow is true)[(set: _doneText to "You already know your way to the courthouse. Still, a reminder is always good, so you tell yourself.")]
+(else:)[(set: _doneText to "Take careful note of her instructions.")]
+<br>
+
+
+---
+(link-rerun: _doneText)[{
+	(if: _alreadyKnow is true)[($funcTempGainLoss: "impressionApesai", 1)]
+    (if: _alreadyKnow is false)[($funcTempGainLoss: "impressionApesai", 5)]
+    ($funcOpinionGainLoss: "OldInrah", 1, "Much goodwill is earned through the exchange of money, and the old woman happily takes yours.")
+    (set: $char's OldInrah's energy's 1st to it - 1)
+    (goto: "OldInrah Locales Else")
+}]
+
+
+](done|
+
+]<!--end child-->
+]<!--end parent-->

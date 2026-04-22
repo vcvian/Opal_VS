@@ -1,0 +1,9 @@
+:: quest.sickTeacher [static-storage] {"position":"2975,2500","size":"100,100"}
+{=
+
+(metadata: 
+	"id", [Situation: A Fluxy Teacher],
+    "img", "https://thefifthcity.wiki/w/images/b/bc/Bloodstain.png?20240509225948",
+    "desc", [Your teacher is sick and cannot travel. He needs his medicine.],
+    "tip", [],
+)

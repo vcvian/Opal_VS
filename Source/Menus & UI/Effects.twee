@@ -1,0 +1,26 @@
+:: Effects [effect] {"position":"2175,2625","size":"100,100"}
+{=
+
+<!--Jobs tick down (only activates if there are jobs inside $queueJob)-->
+($funcJobTickDown:)
+
+<!--Quest timer tick down (only activates if there are timers inside $questTimer)-->
+($funcQuestTimerTickDown:)
+
+<!--Storylet cooldown tick down (only activates when there are cooldowns inside $storyletCooldown)-->
+($funcStoryletCooldownTickdown:)
+
+<!--Conditions effects and timer tick down (only activates when there are cooldowns inside $conditionTimer)-->
+($funcConditionTickdown:)
+
+<!--Update NPCs (restore conversation energy, apply effects, etc.-->
+($funcNPCUpdate:)
+
+<!--Advance NPCs' itineraries-->
+($funcAdvanceNPCItineraries:)
+
+<!--Advance NPC's arcs-->
+($funcAdvanceNPCArc:)
+
+<!--Rent-->
+($funcPayRent:)

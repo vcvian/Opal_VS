@@ -1,0 +1,49 @@
+:: S: Meeting OldInrah [storylet] {"position":"2750,1075","size":"100,100"}
+{=
+
+(storylet: when
+$place's sublocation is $place's stay and it is "The Pilgrim's Rest"
+and $char's OldInrah's alive is true
+and $char's OldInrah's know is false
+)
+
+(urgency: 2)
+(metadata: "title", "Chat up the Landlady", "cardDesc", "You've seen her briefly. Surely, she can tell you how to get around this crowded rock. And how to get off it.", "img", "Assets/Portraits/Old_1.png", "NPC", "OldInrah",)
+
+
+$cssColumnParent[
+
+$cssColumnChild[
+	$cssBox[
+    	($funcImage: (passage:)'s img)
+         $cssBoxItem[''(print: (passage:)'s title )''<br>(print: (passage:)'s cardDesc)]
+    ]
+]
+
+$cssColumnChild[
+It is not hard to find where she is.
+<br>
+There in the main hall, where pilgrims, merchants, and adventurers alike gather to seek lodging, or to pack up before journeying out, sits a hunched little woman in a velvet cape and veil. Behind her is a wall lined with drawers - no doubt full of guest records. One such record - a tome of a guestbook - currently sits on her desk, alongside a tea set and a pile of coins, which is cleared as quickly as it is topped.
+<br>
+["Hmmph,"]<OldInrahLine| the old woman grunts as she looks up from her guestbook with a squint, just as she has done when she handed you the keys to your lodging upstairs.
+
+
+<br>
+---
+<ol>
+<li>(link-rerun: "Approach confidently, coin pouch jiggling on your hips.")[\
+	($funcNPCKnow: "OldInrah", "The landlady currently housing you isn't the warmest sort, but you have cold coins.")\
+    ($funcOpinionGainLoss: "OldInrah", 1, "The old woman cannot help but smirk. Perhaps she finds it charming that you think you're some sort of big spender.")\
+    (goto: "Meeting OldInrah 1a")\
+]
+<li>(link-rerun: "Approach meekly and with a smile, like how one ought to with one's elders, or like one who seeks favors.")[\
+	($funcNPCKnow: "OldInrah", "The landlady currently housing you isn't the warmest sort, but perhaps that will change.")\
+    ($funcOpinionGainLoss: "OldInrah", -1, "The old woman sneers like she has seen a roach in her kitchen.")\
+    (goto: "Meeting OldInrah 1a")\
+]
+<li>(link: "Never mind.")[$funcBack]
+<!--[[Meeting OldInrah 1a]]-->
+</ol>
+
+]
+]<!--end parent-->

@@ -1,0 +1,9 @@
+:: Depart from Apesai 1b {"position":"4475,3225","size":"100,100"}
+{=
+
+(metadata: "title", "Departing from Apesai",)
+
+(You board a passenger boat...)
+<br>
+---
+($funcDepart: "Leave for Rokhab Docks", "Rokhab",)

@@ -1,0 +1,60 @@
+:: S: Shopping Day 1 [storylet] {"position":"4000,2175","size":"100,100"}
+{=
+
+(storylet: when
+$place's sublocation is "The Grand Exchange"
+)
+(metadata: "title", "Shopping Day", "cardDesc", "The Grand Exchange stays open as long as Apesai stands.", "img", "https://fallenlondon.wiki/w/images/c/c8/Bazaar.png", "currency", "rial",)
+
+$cssColumnParent[
+
+$cssColumnChild[
+	$cssBox[
+    	($funcImage: (passage:)'s img)
+         $cssBoxItem[''(print: (passage:)'s title )''<br>(print: (passage:)'s cardDesc)]
+    ]
+]
+
+$cssColumnChild[
+
+(either:
+"The retail side of the Grand Exchange is packed with people, as hot and humid as a steam bath. Grand Exchanges everywhere are alike - you almost miss home.",
+"You make your way past the crowd, through a maze of stalls, almost tripped on a precious vase, only to be offered it right away. You push the smiling monger aside and go on your way.",
+"It is so loud here. Haggling, boasting, arguing, laughing, all at once. Makes one forget what one is here for. Makes one more inclined to buy anything pushed one's way. ",
+)
+<br>
+You keep your coins close. (either:
+"Many are eager to take it, and not always politely.",
+"They will serve you well.",
+"Buy only what you need. No matter how good that dizi stall smells.",
+)
+<br>
+$cssDesc[The Grand Exchange only accepts ''(print: (passage:)'s currency)'' - by order of the Ministry of Funds. But you can always sell your other currencies here, if you like being ripped off.
+<br>
+You currently have ($funcCheckExists: $char's player's inv, (passage:)'s currency, 0) (print: (passage:)'s currency).]
+<br>
+<br>
+---
+<ol>
+You end up at...
+<li>[[The dry food warehouse.|Shopping Day 1b]] $cssDesc[(To fill your belly during your travels.)]
+<li>[[The spices and reagents market.|Shopping Day 1c]] $cssDesc[(And herbs, and extracts, and whatever else that goes in a cauldron in small quantities.)]
+<li>[[The apothecaries and those who present themselves as such.|Shopping Day 1d]] $cssDesc[(Tinctures, balms, and face powder, too!)]
+<li>[[An antique store.|Shopping Day 1e]] $cssDesc[(Full of books and scrolls, too!)]
+<li>(link: "Nowhere. There are better uses of your money.")[$funcBack]
+</ol>
+
+<!--
+<li>(link-rerun: "A roll of wolfsilk.")[]
+
+<li>(link-rerun: "An opal amulet.")[]
+
+<li>(link-rerun: "A bluehide coat.")[]
+
+<li>(link-rerun: "A snakecat.")[]
+
+<li>(link-rerun: "A book - //'The Magical Travelogue of the Wise and Witty Mago-Ahmaqam'//.")[]
+-->
+
+]<!--end child-->
+]<!--end parent-->

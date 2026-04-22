@@ -1,0 +1,38 @@
+:: S: AskavaPermit 1 [storylet] {"position":"4500,1900","size":"100,100"}
+{=
+
+(storylet: when
+$place's sublocation is "The Provincial Court of Askava"
+and ($time's day > 1 and it < 7)
+and $char's player's inv does not contain "permitAskava"
+)
+(metadata: "title", "Apply for an Entry Permit", "cardDesc", "The Hall of Immigration Affairs is packed full of those wanting to get off this rock and land in Askava proper.", "img", "https://thefifthcity.wiki/w/images/3/3f/Currency3_copper.png",)
+
+$cssColumnParent[
+
+$cssColumnChild[
+	$cssBox[
+    	($funcImage: (passage:)'s img)
+         $cssBoxItem[''(print: (passage:)'s title )''<br>(print: (passage:)'s cardDesc)]
+    ]
+]
+
+$cssColumnChild[
+Imperial guardsmen eye you apathetically. It's like they don't even know that you're a magus. Well, a magus-to-be.
+<br>
+In the meantime, you're just the same as everyone else here: peasants, laborers, merchants, shoving each other for a place in the next ship into mainland Askava.
+<br>
+---
+<ol>
+
+(if: (datanames: $char's player's timerQuest) contains "permitAskava")[
+	(if: $char's player's timerQuest's permitAskava's wait > 0)[<li>~~Await your turn.~~ $cssDesc[ (Your entry application is being processed.)]]
+	(else:)[<li>[[Receive your Askava entry permit. ⧗|AskavaPermit 1b]]]
+]
+(else:)[<li>[[Await your turn. ⧗|AskavaPermit 1a]]]
+
+<li>(link: "Never mind.")[$funcBack]
+
+</ol>
+]<!--end child-->
+]<!--end parent-->

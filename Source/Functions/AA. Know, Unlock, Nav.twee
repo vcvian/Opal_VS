@@ -1,0 +1,130 @@
+:: AA. Know, Unlock, Nav [startup] {"position":"1450,5425","size":"100,100"}
+{=
+
+<!--NPCs, sublocations, and many storylets are only unlocked if you have knowledge of them.
+
+Knowledge is a type of attributes (att). It must contain the key "knowledge", and optionally, "person's name", "location", etc.
+
+Sublocations check for whether the player has this knowledge (and enough of it). If so, display a navigation link. If not, then a "??? (require XYZ)" is produced instead.
+
+Navigation links are displayed in every sublocations. A list of sublocations and their unlock conditions are stored in a "table." passage.
+
+Sublocation's knowledge is purpose-specific, meaning there's no such thing as knowApesai*2, but instead knowApesaiCommerce, knowApesaiLighthouse, etc.
+
+Storylets, such as access to the Lighthouse's student lab, can be controlled this way too. For instance: the attKnowLab is a reward for talking to Veh-Veh.-->
+
+
+<!--List all sublocations based on unlocks: Steps are (1) check if att contains every required item; (2) check if required item meets the amount; (3) produces either link or "???"-->
+
+<!--Write the unlock tips for a given sublocation-->
+(set: $funcUnlockTip to (macro: str-type _sub,[\
+	<!--Initialize unlock requirement DM & temp var-->
+	(set: _tip to "")\
+	(set: _reqDM to (dm:))\
+	(set: _sublocations to (dm:))\
+	(display: "table.sublocation" + $place's location)\
+	(set: _reqDM to _sublocations's _sub)\
+	\
+	<!--Iterate through each requirement & write tip str-->\
+	(for: each _req,...(data-names: _reqDM))[\
+		(if: $char's player's att contains _req)[\
+			(if: $char's player's att's _req >= _reqDM's _req)[\
+				<!--sufficient, uncolored number-->\
+				(set: _tip to it + (str: $char's player's att's _req))\
+			]<!--end of check amount-->\
+			<!--if have but not sufficient, print a red non-zero number-->\
+			(else:)[(set: _tip to it + "(color:red)[" + (str: $char's player's att's _req) + "]")]\
+		]<!--end of check merely have-->\
+		<!--if not have any, print red zero-->\
+		(else:)[(set: _tip to it + "(color:red)[0]")]\
+		\
+		<!--Write the rest of the requirement info-->\
+		(set: _tip to it + "|" + (str: _reqDM's _req) + " ''" + (str: (passage: "att." + _req)'s id) + "''")\
+		<!--Punctuation-->\
+		(if: (data-names: _reqDM)'s last is not _req)[\
+			(set: _tip to it + ", ")\
+		]\
+		(else:)[(set: _tip to it + ".")]\
+	]<!--end of looping-->\
+	\
+	(out-data: _tip)\
+]))
+
+(set: $funcNavigateSublocations to (macro: ,[(out:)[\
+	<!--Load the appropriate table, based on current $place's location; initialize temp var-->\
+	(set: _sublocations to (dm:))\
+    (set: _gettingAround to [])\
+    (set: _amountUnlocked to 0)\
+    (set: _amountTotal to 0)\
+	(display: "table.sublocation" + $place's location)\
+	\
+	<!--Check interrupts-->\
+	(set: _interrupt to false)\
+	(set: _interruptList to (a:))\
+	(for: each _storylet, ...(open-storylets: where its tags contains "storylet"))[\
+		(if: _storylet contains "interrupt")[(if: _storylet's interrupt is true)[\
+			(set: _interrupt to true)\
+			(set: _interruptList to it + (a: _storylet's title))
+		]]\
+	]\
+	\
+	<!--only display if no interrupt-->\
+	(if: _interrupt is false)[\
+    <!--Begin collapsible heading + _gettingAround text-->\
+    <details open>\
+    <summary>''Getting Around (print: $place's location)'' []<unlocks|</summary>\
+    (print: _gettingAround)<br>\
+	<!--Begin list-->\
+    (box: "X", 7)[\
+	<ol>\
+    <!--Stay location-->\
+    (set: _amountUnlocked to it + 1)\
+    (set: _amountTotal to it + 1)\
+    <li>Staying at: (link-rerun: $place's stay)[(goto: $place's stay)] (if: $place's stay is $place's sublocation)[$cssDesc[(color:yellow+orange)[↢ You are here.]]] <br> $cssDesc[↪ One of several possible places to rest your head here in (print: $place's location).]\
+	<!--Iterate through _sublocations DM-->\
+	(for: each _sub,...(data-names: _sublocations))[\
+		<!--initialize _unlocked-->\
+		(set: _unlocked to true)\
+        (set: _amountTotal to it + 1)\
+		<!--if no requirements, then automatically unlock-->\
+		(if: (data-names: _sublocations's _sub)'s length <= 0)[(set: _unlocked to true)]\
+		<!--Then check requirements-->\
+		(for: each _req,...(data-names: _sublocations's _sub))[\
+			(if: $char's player's att contains _req)[\
+				(if: $char's player's att's _req < _sublocations's _sub's _req)[\
+					(set: _unlocked to false)<!--Only 1 failed check can set it to false-->\
+				]<!--end of amount contain check-->\
+			]<!--end of mere contain check-->\
+            (else:)[(set: _unlocked to false)]<!--fails mere contain check, set to false-->\
+		]<!--end of requirements loops-->\
+		\
+		<!--Should've figured out by now if a given _sub meets all requirements (_unlocked is true). Now, create link-->\
+		(if: _unlocked is true)[\
+        (set: _amountUnlocked to it + 1)\
+			<li  style="margin-top:5px;">(link-rerun: _sub)[(redirect: _sub)] (if: _sub is $place's sublocation)[$cssDesc[(color:yellow+orange)[↢ You are here.]]]\
+        	(if: (data-names: _sublocations's _sub)'s length > 0)[<br> $cssDesc[↪ Have discovered with ($funcUnlockTip: _sub)]]\
+            (else:)[<br> $cssDesc[↪ It's quite obvious where this is.]]\
+		]\
+		(else:)[<li style="margin-top:5px;">??? <br> $cssDesc[↪ Discoverable with ($funcUnlockTip: _sub)]]\
+		\
+	]<!--end of _sublocation loops-->\
+	</ol>\
+    ]<!--end of box-->\
+    <!--End collapsible heading-->\
+    </details>\
+    <!--Update final number of unlocks displayed in heading-->\
+    (replace: ?unlocks)[(_amountUnlocked/_amountTotal locations)]\
+    $cssDesc[Different location gives different stories.]\
+	<!--end list-->\
+	]<!--end of interrupt-->\
+	<!--else, interrupt is true-->\
+	(else:)[\
+		~~''Getting Around (print: $place's location)''~~ <br> $cssDesc[Interrupted! Some urgent matters requires your attention first. Resolve these stories before moving elsewhere:
+		<ol>
+		(for: each _matter, ..._interruptList)[\
+			<li>_matter
+		]\
+		</ol>
+		]
+	]
+]]))

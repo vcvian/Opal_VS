@@ -1,0 +1,6 @@
+:: Test K Fail {"position":"1100,5800","size":"100,100"}
+{=
+
+Failure! But you still lost your wounds!? How?
+<br>
+(link: "Back")[(goto: "Test K")]

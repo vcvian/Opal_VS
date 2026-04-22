@@ -1,0 +1,51 @@
+:: AA. NPC Movement & Arcs [startup] {"position":"1550,5550","size":"100,100"}
+<!--Move NPC along their travelItinerary. Uses (1) char's [name]'s (1a) travel and (1b) travelMode and (1c) location and (2) the table npc.[name]'s travelItinerary's [mode]-->
+
+<!--$char's _char's travel is a 2-number array, with the 1st being the "phase" and the 2nd being the "dayLeft" number, to use the old names-->
+
+
+(set: $funcAdvanceNPCTravel to (macro: [(out:)[\
+	(for: each _char, ...(data-names: $char))[\
+		(if: _char is not "player" and $char's _char's alive is true)[\
+			<!--Load current travel itinerary & charDM-->\
+			(set: _charDM to (passage: "npc."+_char))\
+			(set: _travelDM to _charDM's travelItinerary's ($char's _char's travelMode))\
+			\
+			<!--Tick down "daysLeft"-->\
+			(set: $char's _char's travel's 2nd to it -1)\
+			\
+			<!--Switch "phase" when no days left-->\
+			(if: $char's _char's travel's 2nd <= 0)[\
+            	<!--First, figure out phase (and if reset is needed-->
+				(set: $char's _char's travel's 1st to it + 1)\
+				\
+				<!--if "phase" exceeds maximum, reset-->\
+				(if: $char's _char's travel's 1st > (data-names: _travelDM)'s length)[\
+					(set: $char's _char's travel's 1st to 1)\
+				]<!--end of phase reset-->\
+				<!--Finally, update location & "daysLeft" once phase ticks up-->\
+                (set: $char's _char's travel's 2nd to _travelDM's ($char's _char's travel's 1st)'s 2nd)\
+				(set: $char's _char's location to _travelDM's ($char's _char's travel's 1st)'s 1st)\
+			]<!--end of phase uptick-->\
+		]<!--end of alive condition-->\
+	]<!--end of looping-->\
+]]))
+
+<!--Arc conditions are stored as codehooks inside the "npc.[name]" passage. The codehook produces a temp var "_newArc". _newArc is then compared against $char's [name]'s arc and replaces it if _newArc is greater.-->
+
+<!--Check arc and advance only if new arc > current arc-->
+(set: $funcUpdateNPCArc to (macro: [(out:)[\
+	(for: each _char, ...(data-names: $char))[\
+		(if: _char is not "player" and $char's _char's alive is true)[\
+			<!--Load charDM-->\
+			(set: _charDM to (passage: "npc."+_char))\
+			\
+			<!--Load _newArc for arc conditions (might be a lower number than current). _newArc is a temp var saved in the passage metadata, since (cond:) can't be in the metadata alone-->\
+            (set: _newArc to 0)\
+			(print: _charDM's arcConditions)<!--upon printing, the codehook should change _newArc-->\
+			\
+			<!--Compare with current, then update if greater-->\
+			(if: _newArc > $char's _char's arc)[(set: $char's _char's arc to _newArc)]\
+		]\
+	]\
+]]))

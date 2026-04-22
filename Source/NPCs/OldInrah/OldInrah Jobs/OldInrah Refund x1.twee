@@ -1,0 +1,37 @@
+:: OldInrah Refund x1 {"position":"3250,1175","size":"100,100"}
+{=
+
+(metadata:
+"NPC", "OldInrah",
+"title", "Asking About Rent \"Refund\"",
+"topic", "\"I'd like to 'refund' today's rent.",
+"topicDetail", "Small favors for small pay.",
+)
+$cssColumnParent[
+
+$cssColumnChild[
+	$cssBox[
+    	($funcImage: (passage: "npc.OldInrah")'s img)
+         $cssBoxItem[''(print: (passage:)'s title )''<br>(print: (passage:)'s topicDetail)]
+    ]
+]
+
+<!--Main content begins here-->
+$cssColumnChild[
+
+$cssDesc[''You: //(print: (passage:)'s topic)//'']
+<br>
+["For a pittance?"]<OldInrahLine| Koh-Inrah lifts her veil up to look at you better. The cracks in her face powder are so much harsher without the chiffon to cover over. ["Is it worth this conversation? Had you asked nicely, I would have given it to you for nothing."]<OldIndrahLine|
+<br>
+But you //are// asking nicely.
+<br>
+["Fine,"]<OldInrahLine| she says and tosses you the few coins you're owed.
+<br>
+---
+(link-rerun: "Collect 10 rials.")[\
+	($funcGainLoss: "item.", "rial", 10)\
+    (goto: "OldInrah Refund Exit")\
+]
+
+]<!--end child-->
+]<!--end parent-->

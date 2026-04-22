@@ -1,0 +1,177 @@
+:: OldInrah Locales Lighthouse {"position":"3425,1200","size":"100,100"}
+{=
+
+(metadata:
+"NPC", "OldInrah",
+"title", "Asking Koh-Inrah for Directions",
+"topic", "\"Where do magi gather in Apesai? Are there schools? Labroratories? I have need for their facilities.\"",
+"topicDetail", "First thing first: You should know where your kind is.",
+"talked", (a: "localesApesai", "lighthouse"),
+"addCode", [],)
+
+
+$cssColumnParent[
+
+$cssColumnChild[
+	$cssBox[
+    	($funcImage: (passage: "npc.OldInrah")'s img)
+         $cssBoxItem[''(print: (passage:)'s title )''<br>(print: (passage:)'s topicDetail)]
+    ]
+]
+
+<!--Main content begins here-->
+$cssColumnChild[
+
+
+$cssDesc[''You: //(print: (passage:)'s topic)//'']
+<br>
+You place the rial on the table.
+<br>
+
+<!--first time-->[
+["You mean you don't know where your colleagues are?"]<OldInrahLine| The old woman squints at you, as if to say you are not really a magi. Well, you aren't. Not yet. ["Not sure if they have //laboratories// up there, but everyone knows that the island's davehmars live and teach in the Lighthouse. That's where they've been since Koh-Inrah was //just// Inrah, and that's where they still are."]<OldInrahLine|
+<br>
+($funcInnerConvo: (dm:
+	"<!--A-->\"The Apesai Lighthouse... I could have guessed that.\"", "1a",
+))
+<br>
+](firstTime|
+
+<!--second time-->[
+["Hasn't the patron asked this before?"]<OldInrahLine| she asks while collecting the money regardless. ["Old Inrah doesn't misremember. Else, she'd make a bad guide, wouldn't she?"]<OldInrahLine|
+<br>
+($funcInnerConvo: (dm:
+	"<!--A-->You stutter, trying to find some excuse for why you've repeated this inquiry.", "2nd1",
+    "<!--B-->\"Yes, I did ask about the magi in Apesai. But you mentioned that more than half has gone into the desert. What is the reason for this exodus?\"", "2b",
+))
+](secondTime|
+
+[
+["Don't blame Old Inrah's directions. It cannot be plainer - simply follow the rainbow,"]<OldInrahLine| she sucks her teeth. ["Ah, but not all students are aces. Old Inrah does not mind repeating for the benefit of the class."]<OldInrahLine|
+<br>
+($funcInnerConvo: (dm:
+	"<!--B-->\"Yes, please repeat your instructions.\"", "pre-3",
+))
+<br>
+](2nd1|
+
+
+(if: ($funcTalkedTimesCheck: "lighthouse") < 1)[(show: ?firstTime)]
+(else:)[(show: ?secondTime)]
+
+[
+It's obvious: The aurora coming from Apesai's Lighthouse could be seen days before you landed on the island. Who else could maintain such constant spell but the most formally trained davehmars?
+<br>
+["Such an observant and clever student you are. You're sure to find geniuses like //you// in the Lighthouse. Except, many of them have set out for the mainland, what with the Reclamation and all."]<OldInrahLine|
+<br>
+($funcInnerConvo: (dm:
+	"<!--A-->\"Right, but knowing the destination is one thing; getting there is a different matter.\"", "2a",
+    "<!--B-->\"The mainland? What are the davehmars doing there?\"", "2b",
+))
+<br>
+](1a|
+
+[
+Were it simple, you wouldn't be talking to her. The journey is proving itself more winding than expected.
+<br>
+["Ah yes, Old Inrah is not surprised. The new governor - well, perhaps not 'new' to you younglings - have played with these streets like a child would his toys. But a newcomer cannot change the inner veins of something so old."]<OldInrahLine|
+<br>
+($funcInnerConvo: (dm:
+	"<!--A-->\"I sense that the established locals do not take well to the new governorship.\"", "3a",
+    "<!--B-->\"Then show me these inner veins, Koh-Inrah.\"", "pre-3",
+))
+](2a|
+
+[
+["Isn't the patron a one of them? Isn't the patron headed that way? The patron should be the one telling Old Inrah about what the davehmars' plans. Do tell: What business do university magi have so far inside Askava? There is nothing there but the desert, goat herders, and their goats."]<OldInrahLine|
+<br>
+($funcInnerConvo: (dm:
+	"<!--A-->\"I'm only to stop at Sabzam - the home of my sponsor. I know little of what my colleagues are up to elsewhere in Askava.\"", "2b1",
+    "<!--B-->\"If I have to guess, the masters may be looking for prospective students among the natives.\"", "2b2",
+    "<!--C-->\"They might be needed at the front. Soldiers and pilgrims alike need their protection.\"", "2b3",
+))
+<br>
+](2b|
+
+[Your school has told you little of what to expect in Askava, your teacher even less. You only know that you are to travel into the mainland and serve Sabzam Villa for however long it takes for you and your teacher to create a Sacred Opal. Then, you will be certified as a master magus and return to the imperial heartlands - to civilization - where your career can finally begin.
+<br>
+["Such fanciful tasks. Old Inrah cannot begin to comprehend these things. Well, may the young davehmar find their path revealed."]<OldInrahLine|
+<br>
+($funcInnerConvo: (dm:
+	"<!--A-->\"Yes, but meanwhile, you can reveal the path to my colleagues here on this island.\"", "pre-3",
+))
+<br>
+](2b1|
+
+[
+Imperial universities do not lack for applicants, which hail from the Seven Provinces and beyond. However, in the far reaches of the empire - such as Askava - where there is not yet an established school, and the natives are yet do not yet see the necessity of a proper education, the davehmars have to take on a more //proactive// stance towards recruitment.
+<br>
+["Is that so? Usually, they'll only send out two or three of the old-heads; my granddaughter has accompanied several of such outings as their guide. They'll bring a handful of younglings back each month. But nearly half of them? Are the hut-dwellers truly worth the time wasted? Well, it is magi business, and there are limits to Old Inrah's curiosity."]<OldInrahLine|
+<br>
+($funcInnerConvo: (dm:
+	"<!--A-->\"I'll know more when I get to the Lighthouse. Please show me the way.\"", "pre-3",
+))
+<br>
+](2b2|
+
+[
+Though the emperor has once again proclaimed the Province of Askava, the actual border is pourous and wavering. Only the Nurrah Coastlands are truly under the imperial rule. Still, the army is trying its best to bring the more civilized clans beyond the Besarag into the empire's fold, and pilgrims are already venturing forth into the badlands, quickly establishing new settlements while diplomacy trudges.
+<br>
+["Can you believe it? Many of these clans are descended from the First and Second Colonies. They're imperial by blood. But many of them have gone feral; they're as likely to prey on pilgrims as they are to help. With the magi out in the frontier... May the light be swift."]<OldInrahLine|
+<br>
+($funcInnerConvo: (dm:
+	"<!--A-->\"I'll find out their purpose once I get to the Lighthouse. But I need your guidance.\"", "pre-3",
+))
+<br>
+](2b3|
+
+[
+["Did Old Inrah say that? She said no such thing! The governor is an honorable and intelligent servant of the emperor. His acumen, however... well, the patron ought to discuss the art of statesmanship with those colleagues of yours in the Lighthouse,"]<OldInrahLine| the old woman waves her hand. ["Old Inrah is only ever qualified to speak of the streets."]<OldInrahLine|
+<br>
+($funcInnerConvo: (dm:
+	"<!--A-->\"Yes, then please show me the way to the Lighthouse.\"", "pre-3",
+))
+<br>
+](3a|
+
+
+[
+["Of course."]<OldInrahLine|
+(show: ?3)
+<br>
+](pre-3|
+
+[
+Her eyes begin to flutter. Her lips are mumbling. The old woman makes the mere act of recall look like a magus channeling a spell. Your teachers have told you that it was bad form to make an incantation look so obvious.
+<br>
+["See, if you keep climbing, up the step streets, and you can see the direction of the many-colored light, then..."]<OldInrahLine|
+<br>
+(show: ?done)
+](3|
+
+<!--done-->
+[
+<!--register talked keys-->
+($funcTalked:)
+<!--determine if already know-->
+(set: _alreadyKnow to false)
+(if: ($funcCheckExists: $char's player's att, "knowApesaiLighthouse", 0) >= 1)[(set: _alreadyKnow to true)]
+<!--determine link text if already know-->
+(set: _doneText to "")
+(if: _alreadyKnow is true)[(set: _doneText to "You already know how to get to the Lighthouse. Still, you let her finish, having already spent the money.")]
+(else:)[(set: _doneText to "Note down everything Koh-Inrah says.")]
+<br>
+
+
+---
+(link-rerun: _doneText)[{
+	(if: _alreadyKnow is true)[($funcTempGainLoss: "impressionApesai", 1)]
+    (if: _alreadyKnow is false)[($funcTempGainLoss: "impressionApesai", 5)]
+    ($funcOpinionGainLoss: "OldInrah", 1, "Much goodwill is earned through the exchange of money, and the old woman happily takes yours.")
+    (set: $char's OldInrah's energy's 1st to it - 1)
+    (goto: "OldInrah Locales Else")
+}]
+](done|
+
+]<!--end child-->
+]<!--end parent-->

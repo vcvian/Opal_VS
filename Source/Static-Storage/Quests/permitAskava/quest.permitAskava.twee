@@ -1,0 +1,21 @@
+:: quest.permitAskava [static-storage] {"position":"4200,1800","size":"100,100"}
+{=
+
+(metadata: 
+	"id", [Task: Permit into Askava],
+    "img", "https://thefifthcity.wiki/w/images/3/3f/Currency3_copper.png",
+    "desc", [No-one enters mainland Askava without a permit from the provincial government.],
+    "tip", [],
+    
+    "wait", 5,
+    "waitDesc", [Application submitted. You were told come back later, (if: $char's player's timerQuest's permitAskava's wait > 0)[perhaps in (plural: $char's player's timerQuest's permitAskava's wait, "day")](else:)[and well, today is "later"].],
+    "waitAddLog", [You were told to come back in (plural: (passage: "quest.permitAskava")'s wait, "day").],
+    "waitAddDialog", [The clerk files away your application, telling you to come back in (plural: (passage: "quest.permitAskava")'s wait, "day").],
+    "waitAddConfirm", "Right.",
+    "waitDoneDialog", [Your Askava entry permit should be ready. Come pick it up at the ''Provincial Court''.],
+    "waitDoneConfirm", "Finally.",
+    "waitDoneEffect", [],
+    "waitDoneLog", [Your Askava entry permit should be ready to be picked up at the ''Provincial Court''.],
+    
+)\
+<!--Example of a quest that makes you wait-->

@@ -1,0 +1,23 @@
+:: Test G {"position":"975,4650","size":"100,100"}
+{=
+
+(metadata: "title", "Test G (quests)")
+
+[[⇦ BACK->Pre-Test (NEW)]]
+<br>
+|==
+''Current Quests:''
+(print: $char's player's quests)
+==|
+''Quest Timers:''
+(print: $char's player's timerQuest)
+|==|
+---
+<br>
+''Storylets:''
+<ul>
+(for: each _testStory, ...(open-storylets: where its tags contains "test"))[\
+	<li>(link-rerun: _testStory's title)[(goto: _testStory's name)]\
+]\
+
+</ul>

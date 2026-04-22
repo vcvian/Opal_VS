@@ -1,0 +1,14 @@
+:: item.ghan [static-storage] {"position":"1750,3375","size":"100,100"}
+{=
+
+(metadata: 
+	"id", [ghan],
+    "key", (a: "resource", "currency", ),
+    "value", (a: 5, 30, 100, 50, 100, 200),
+    "img", "",
+    "desc", [Trading knives made of... gold? Actual gold? How quaint of these Yavanids.],
+    "tip", [Traded among merchants from the Yavana Kingdom. Otherwise, it is not accepted in most imperial market or courts.],
+    "gainText", [You string the gold knives together and hang them by your hip - like you've seen the Yavanids do.],
+    "lossText", [Like all foreign currencies, these Yavanid knives are meant to be rid of. ]
+
+)

@@ -1,0 +1,153 @@
+:: Exploring Apesai (Up)
+{=
+(metadata:
+"title", "Climbing Apesai's Upper Quarters",
+"cardDesc", "Grand things are often placed high above for others to see.",
+)
+
+
+$cssColumnParent[
+
+$cssColumnChild[
+	$cssBox[
+    	($funcImage: (passage: "S: Explore Apesai")'s img)
+         $cssBoxItem[''(print: (passage:)'s title )''<br>(print: (passage:)'s cardDesc)]
+    ]
+    ($funcWeatherBox:)
+]
+
+$cssColumnChild[
+
+<!--general number, which _chance will be modified by with each step-->
+(set: _progress to 3)
+
+<!--Intro-->
+(either:
+"You strike out, one step at a time up winding step streets of stone. You climb and climb and becomes sharply aware of how your civilization has managed to drape itself over what used to be a mountain.",
+"Iconic red steel domes play hide-and-seek from behind the city roofscape, constantly reminding that you are in the shadow of Nurandah, though you are very far away from home.",
+"As you climb up, you keep track of the many-colored aurora coming from the Apesai Lighthouse, glimmering in the sky. What incredible magic, you think. One day, you will achieve something of comparable greatness.",
+)
+
+<br>
+
+<!--Weather-->
+(cond:
+$place's weather is "rainy", "The rain is tapping on linen awnings and dripping down from lush balconies. Both pet plants and rain are luxuries anywhere in arid Askava, but Apesai - the island city - is both luxuriant and wet.",
+$place's weather is "stormy", "Storm rages above. White, angry torrents batters against the far towers. You hear the sea waves roar from beyond these alleys. Was it a good idea to be outside today?",
+$place's weather is "overcast", "A cool shade hangs over the sky. It makes your walk through these streets far more comfortable.",
+$place's weather is "foggy", "As you look towards far shadows, the street before you remains difficult to navigate on account of the fog. You watch your steps carefully; you are as likely to bump into someone as you are to slip on the wet stone.",
+$place's weather is "windy", "Fierce winds are howling through the narrow streets and screeching in the alleys, turning the entire city into one giant and ill-tuned instrument. The ocean waves provide the percussion.",
+$place's weather is "sunny", "The day is dizzyingly hot. You think you might pass out at any moment. How would you ever put up with mainland Askava?",
+"You continue forward.",
+)
+<br>
+
+<!--testing if code.exploreApesaiBonus bonus works-->
+<!--(set: $char's player's inv to it + (dm: "mapInrah", 1))-->
+
+<!--initialize temp vars for result calculations. _chanceMod MUST be calculated outside of $funcChanceMod for scope reasons.-->
+(set: _chance to (random: -2, 2))
+(set: _chanceMod to 0)
+
+($funcChanceMod: (dm:
+    "sunny", -5,
+    "overcast", 5,
+    "foggy", -10,
+    "stormy", -15,
+    "rainy", -3,
+    "windy", -5,
+    "impressionApesai", 10,
+    "mapInrah", 80,
+))
+
+(set: _a to (either: "Keep your eyes on the rainbow in the sky and climb.", "Choose a steep and tall step street.", "Go towards Apesai's peak.",))
+(set: _b to (either: "Stick to the merchant's road.", "Walk through a market alley.", "Head towards where the red steel domes are.",))
+
+($funcInnerConvo: (dm:
+    "<!--"+(str:(random:1,10))+"-->_a", "1a",
+    "<!--"+(str:(random:1,10))+"-->_b", "1b",
+))
+<br>
+
+[
+(display: "scene.exploreApesaiUp1")
+(set: _c to (either: "Ascend. The higher you climb, the more you will see.", "A band of pink streaks across the sky - you follow it.", "Continue up the step streets, huffing and puffing."))
+(set: _d to (either: "Descend to more crowded streets. The air is growing thin here, and the streets sparse.", "No more climbing. Perhaps a more agreeable road will be more fruitful."))
+(set: _chance to it + _progress)
+<br>
+($funcInnerConvo: (dm:
+    "<!--"+(str:(random:1,10))+"-->_c", "2a",
+    "<!--"+(str:(random:1,10))+"-->_d", "2b",
+))
+<br>
+](1a|
+
+[
+(display: "scene.exploreApesaiUp1")
+(set: _e to (either: "The towers of Apesai tempt you. You head over to them.", "Unsure of where you are, you follow the tallest thing in the distance - the Lighthouse.", "The rainbow light beckons you to it, and like a moth to a flame - you head towards it."))
+(set: _f to (either: "Continue. It's getting crowded here, meaning you're close to somewhere important.", "No detours, keep going.", "There is the scent of spice in the air - follow it."))
+(set: _chance to it - _progress)
+<br>
+($funcInnerConvo: (dm:
+    "<!--"+(str:(random:1,10))+"-->_e", "2a",
+    "<!--"+(str:(random:1,10))+"-->_f", "2b",
+))
+<br>
+](1b|
+
+
+[
+(display: "scene.exploreApesaiUp2")
+(set: _g to (either: "You feel a crackling in the air. Continue regardless.", "The air is thin here. Take a deep breath and push on.", "Your legs are tired, but you keep on going."))
+(set: _h to (either: "Take a surprise turn. You must outsmart these streets.", "You feel lost. Perhaps a change in direction is needed.", "A hunch: Something great is just right around the corner. Hurry and make a turn."))
+(set: _chance to it + _progress)
+<br>
+($funcInnerConvo: (dm:
+    "<!--"+(str:(random:1,10))+"-->_g", "3a",
+    "<!--"+(str:(random:1,10))+"-->_h", "3b",
+))
+<br>
+](2a|
+
+[
+(display: "scene.exploreApesaiUp2")
+(set: _i to (either: "You find the streets too crowded for comfort. Turn back and take a high road.", "Your legs are killing you, but you keep on going.", "Further, you are almost there - wherever 'there' is."))
+(set: _j to (either: "Great, colorful awnings replace the rainbow in the sky. You push on.", "The smell of spices and dry meat wafts in the air. You follow it.", "It is so crowded here. What's the commotion?"))
+(set: _chance to it - _progress)
+<br>
+($funcInnerConvo: (dm:
+    "<!--"+(str:(random:1,10))+"-->_i", "3a",
+    "<!--"+(str:(random:1,10))+"-->_j", "3b",
+))
+<br>
+](2b|
+
+[(set: _chance to it + _progress)(show: ?done)](3a|
+[(set: _chance to it - _progress)(show: ?done)](3b|
+
+[
+<!--extract nearest location info. If already unlocked, go straight to the sublocation-->
+(set: _near to "scene.exploreApesaiFail")
+(if: _chance >= 0)[
+    (set: _near to "scene.exploreApesaiLighthouse")
+    (if: ($funcCheckExists: $char's player's att, "knowApesaiLighthouse", 0) >= 1)[(set: _near to "Apesai Lighthouse")(set: _chance to 100)]
+]
+(else:)[
+    (set: _near to "scene.exploreApesaiGE")
+    (if: ($funcCheckExists: $char's player's att, "knowApesaiGE", 0) >= 1)[(set: _near to "The Grand Exchange")(set: _chance to 100)]
+]
+
+<!--take _chance's absolute value + _chanceMod, then cap it-->
+(set: _chance to (abs: _chance) + _chanceMod)
+(if: _chance > 100)[(set: _chance to 100)]
+(if: _chance < 0)[(set: _chance to 0)]
+
+And so, you keep on walking, trying to enjoy the luxuriant cityscape, even though your legs are afire.
+<br>
+---
+After long climb through Apesai's mountainous upper quarters, ($funcLuckGate: "you arrive at...", _chance, _near, "scene.exploreApesaiFail")
+
+](done|
+
+]<!--end child-->
+]<!--end parent-->

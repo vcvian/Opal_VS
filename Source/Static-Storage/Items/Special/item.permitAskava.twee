@@ -1,0 +1,15 @@
+:: item.permitAskava [static-storage] {"position":"4300,1925","size":"100,100"}
+{=
+
+(metadata: 
+	"id", [Askava Entry Permit],
+    "key", (a: "document",),
+    "value", (a: 300, 100, 500, 200, 500, 1000,),
+    "img", "",
+    "desc", [A piece of papyrus with your name and a terse description of why you're in Askava, stamped with the magical, tamper-proof seal of the governor.],
+    "tip", [This document permits you a one-time passage from Apesai into mainland Askava, collected at either of the 3 major shores: Rokhab, Navveh, or Zirab. Valid once.],
+    "gainText", [After some trouble, you are finally granted a permit into Askava.],
+    "lossText", [You are loath to part with the precious papyrus, mostly because it will be bother to get another one if you ever make another trip from the island into the mainland.],
+    "content", [],
+
+)

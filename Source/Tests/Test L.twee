@@ -1,0 +1,49 @@
+:: Test L
+(metadata: "title", "Test L (buying & selling)")
+
+{=
+
+[[⇦ BACK->Pre-Test (NEW)]]
+<br>
+
+$cssColumnParent[
+
+<!--controls-->
+$cssColumnChild[
+<li>(link-rerun: "Advance")[{
+    (display: "code.advanceDay")
+    ($funcEventTickdown:)
+    ($funcEventListen:)
+    (redirect: (passage:)'s name)
+}] a day and update events.
+
+<li>(link-rerun: "Switch sample event 2")[{
+    (if: ($funcCheckExists: $place's events, "sample2", "inactive") is "inactive")[($funcEventSwitch: "sample2", true)]
+    (elseif: ($funcCheckExists: $place's events, "sample2", "inactive") is "active")[($funcEventSwitch: "sample2", false)]
+    (redirect: (passage:)'s name)
+}]
+
+<li>(link-rerun: "Add sample event 5 with delay")[{
+    (set: _delayEvent5 to "")
+    (dialog: bind _delayEvent5, "How much to delay?", "1", "2", "3", "4", "5")
+    (set: _delayEvent5 to (num: _delayEvent5))
+    ($funcEventAddOrRemove: "sample5", true, _delayEvent5)
+    (redirect: (passage:)'s name)
+}]
+
+]<!--end of child-->
+
+<!--displays-->
+$cssColumnChild[
+<ol>
+(for: each _eventName, ...(datanames: $place's events))[{
+    <!--load DM-->
+    (set: _eventDM to (passage:"event." + _eventName))
+    <li>''(print: _eventDM's id) (_eventName):'' (if: $place's events's _eventName is "active")[(color:green)[active]](else:)[(color:red)[inactive]], ($funcCheckExists: $place's eventDuration, _eventName, 0) duration, ($funcCheckExists: $place's eventCooldown, _eventName, 0) cooldown
+    <br>
+}]
+</ol>
+
+
+]<!--end child-->
+]<!--end parent-->

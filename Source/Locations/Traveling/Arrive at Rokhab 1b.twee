@@ -1,0 +1,12 @@
+:: Arrive at Rokhab 1b {"position":"5350,3350","size":"100,100"}
+{=
+
+(metadata: "title", "Staying in Rokhab")
+
+(Rokhab. Time to pick a place to stay...)
+<br>
+---
+<ol>
+<li>($funcPickStay: "Rokhab Caravanserai")
+<li>($funcPickStay: "Rokhab Vagrant Camp")
+</ol>

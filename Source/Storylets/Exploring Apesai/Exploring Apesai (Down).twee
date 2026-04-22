@@ -1,0 +1,192 @@
+:: Exploring Apesai (Down)
+
+{=
+(metadata:
+"title", "Weaving Through Apesai's Slums",
+"cardDesc", "For most, this is not a place they will go to unless they absolutely //have// to. For you, curiosity is its own reward.")
+
+$cssColumnParent[
+
+$cssColumnChild[
+	$cssBox[
+    	($funcImage: (passage: "S: Explore Apesai")'s img)
+         $cssBoxItem[''(print: (passage:)'s title )''<br>(print: (passage:)'s cardDesc)]
+    ]
+    ($funcWeatherBox:)
+]
+
+$cssColumnChild[
+
+<!--intro-->
+
+(either:
+"The first Nurandahids to settle Apesai were fishermen. That was almost a millennia ago, but this factoid has clung tight to your mind. So, you were very surprised to see not a quaint village but a human hive.
+
+Like hives, most of the hovels here are adobe - loam baked dry under the Askavan sun. They stack on top of each other like a spilled bag of bricks, which no-one has yet to rearrange. The stairs here cross over roofs, and sometimes, it is difficult to tell if you have accidentally entered someone's home.",
+
+"Lower Apesai is like a foot - mud-caked, supports the entire weight of the creature above, and doesn't smell great. Here, squat adobe houses - a signature of the First Colony Era - stack on top of each other in confusing terraces, with dense fishnets drying across many roofs, forming a sort of thatching or awning.
+
+Wind traps sit on every roof, capturing sea breezes to relieve its denizens from the sweltering Askavan sun. Unfortunately, tubular chimneys are just as common, which spew smoke into their neighbors' wind traps.",
+
+"Some houses of the lower quarters - otherwise drab - have some ochre, sienna, and sometimes even ground cacti mixed their clay, producing a washed but not-unpleasant hues, like punctuations to an otherwise monotone sentence.
+
+The people here make due with what was given to them, as they have for centuries since the First Colony Era, when they first landed on these shore.",
+)
+<br>
+
+<!--weather-->
+(cond:
+$place's weather is "rainy", "Now, rain is dripping down from the overhang, and the sewage channels, which run down from Upper Apesai, are about to overfill. It will be a slog to walk through these streets.",
+$place's weather is "stormy", "Lightning streaks. Some cheap tarp is flapping in the storm, moments away from tearing. Mothers are screaming for their children to go back inside. Was it a good idea to be out in this weather?",
+$place's weather is "overcast", "Though it is no scenic stroll, the day is at least agreeable. Seagulls flock at the quays and stony beaches, awaiting the inevitable over-optimistic fish.",
+$place's weather is "foggy", "A veil of vapor has fallen onto the slums. You cannot see more then ten steps ahead. But then again, the maze does not readily present itself on a good day anyway.",
+$place's weather is "windy", "Strong winds are rushing through the narrow alleys, like water through a needle. The not-so-distant shoreline is splattering foam and seaweed onto the slums.",
+$place's weather is "sunny", "There is not a cloud in the sky. The mud beneath your feet is being baked, and foul vapors are rising to sting your eyes.",
+)
+
+<br>
+
+<!--initialize temp vars for result calculations. _chanceMod MUST be calculated outside of $funcChanceMod for scope reasons.-->
+(set: _chance to 0)
+(set: _chanceMod to 0)
+(set: _nearWharf to (random: 2,4))
+(set: _nearTraveler to (random: 0,2))
+(set: _nearPleasure to 0)
+
+<!--general progress value, to be added to or subtracted from the final _chance value-->
+(set: _progress to 3)
+
+<!--produces _chanceMod, which should already be initialized-->
+($funcChanceMod: (dm:
+    "sunny", -5,
+    "overcast", 5,
+    "foggy", -15,
+    "stormy", -20,
+    "rainy", -3,
+    "windy", -5,
+    "impressionApesai", 10,
+    "mapInrah", 80,
+))
+
+You set out...
+<br>
+(set: _a to (either: "Walk along the quays.", "Walk along the boardwalk.", "Stick close to the ocean."))
+(set: _b to (either: "Get away from the dark alleys.", "Choose a greener path.", "Skirt around the slums."))
+(set: _c to (either: "Head deeper inside the slum.", "Follow a row of colorful houses.", "Let your feet take you where they may."))
+
+($funcInnerConvo: (dm:
+    "<!--"+(str:(random:1,10))+"-->_a", "1a",
+    "<!--"+(str:(random:1,10))+"-->_b", "1b",
+    "<!--"+(str:(random:1,10))+"-->_c", "1c"
+))
+<br>
+
+[(set: _nearWharf to it + _progress)(show: ?1)](1a|
+[(set: _nearTraveler to it + _progress)(show: ?1)](1b|
+[(set: _nearPleasure to it + _progress)(show: ?1)](1c|
+
+[
+(display: "scene.exploreApesaiDown1")
+<br>
+(set: _d to (either: "An naval carrack is patrolling the shore. You follow to see where it goes.", "A group of merchants are hauling their carts somewhere. You follow them.", "Sailors' songs drift in the wind. You follow in that direction."))
+(set: _e to (either: "A burly mercenary and his boyish sidekick waddles up a hill. You stroll behind them.", "A caped ranger crosses an overhead bridge. It looks easier than walking down here.", "A group of pilgrims are going from one sidewalk shrine to another, lighting incense. Where did they come from?"))
+(set: _f to (either: "A black glass obelisk marks the street ahead. Head that direction.", "A person in colorful garb whistles at you and point in a direction. You go there.", "A music barge emits a strange melody. You follow, see where it drifts."))
+<br>
+($funcInnerConvo: (dm:
+    "<!--"+(str:(random:1,10))+"-->_d", "2d",
+    "<!--"+(str:(random:1,10))+"-->_e", "2e",
+    "<!--"+(str:(random:1,10))+"-->_f", "2f"
+))
+<br>
+](1|
+
+[(set: _nearWharf to it + _progress)(show: ?2)](2d|
+[(set: _nearTraveler to it + _progress)(show: ?2)](2e|
+[(set: _nearPleasure to it + _progress)(show: ?2)](2f|
+
+[
+(display: "scene.exploreApesaiDown2")
+<br>
+
+<!--establish temp var-->
+(set: _g to "")
+(set: _h to "")
+(set: _i to "")
+(set: _order to (a: "1", "2", "3"))
+
+<!--determine _nearest-->
+(set: _nearest to (sorted: _nearWharf,_nearTraveler, _nearPleasure)'s last)
+
+<!--granular responses, sensitive to _nearest-->
+(if: _nearest is _nearWharf)[
+(set: _g to (either: "You are walking among a forest of masts and sails. Keep going.", "You find yourself approaching the marble wharf of Apesai. Keep going.", "Sailors, soldiers, and merchants are all around. You keep going towards the wharf."))
+(set: _h to (either: "Isn't this where you landed on Apesai? Turn back and walk the opposite direction.", "You already know where the wharf is. How about a little adventure?", "The wharf's old news. Walk in the other direction, until the houses get sparse."))
+(set: _i to (either: "Or, turn and go deeper into the slums instead.", "Or, take a turn into the alleys instead.", "Maybe go in a new direction, like the slums."))
+(set: _order to (a: "1", "2", "3"))
+]
+(elseif: _nearest is _nearTraveler)[
+(set: _g to (either: "Actually, you don't want to get far from the city center. Turn back to more familiar streets.", "It gets less safe the further you are away from familiar neighborhoods. Maybe you should go towards the wharf instead.", "It's a bad idea to be out here at sundown. Trace the quay back to busier areas."))
+(set: _h to (either: "It's hard to believe, but you're beginning to see some wilderness in the distance. Keep going.", "There are camps and caravans are on the road. You must be approaching the outskirts of Apesai. Keep going.", "You find yourself among rag-tag bands of mercenaries and pilgrims. Keep going."))
+(set: _i to (either: "Or, you can turn back towards the slums. You'll be anonymous there.", "You're still not out of the slums yet. You can always turn back and go deeper in."))
+(set: _order to (a: "2", "1", "3"))
+]
+(elseif: _nearest is _nearPleasure)[
+(set: _g to (either: "No, this is a bit much for you. Turn and walk towards the sea.", "The laws of this neighborhood might not be to your liking. Turn back towards the wharf.", "Canals and sewage channels criss-cross this neighborhood, and you are liable to slip and fall into them. Turn back towards the sea."))
+(set: _h to (either: "Enough with the slums. You cut across some overgrowth, back up the hills again.", "Dense streets make you feel suffocated. Go find where the air opens up a bit.", "Or, turn and walk away until you're at the city's edge."))
+(set: _i to (either: "The architecture here is foreign, and the air is perfumed. You keep going.", "There are very flamboyant, very insistent people here, and they are singing in a foreign tongue. Follow them.", "Glistening silk flags are strung across the muddy street. You are in a strange place. Keep going."))
+(set: _order to (a: "2", "3", "1"))
+]
+
+<br>
+($funcInnerConvo: (dm:
+    "<!--"+(str: _order's 1st)+"-->_g", "3g",
+    "<!--"+(str: _order's 2nd)+"-->_h", "3h",
+    "<!--"+(str: _order's 3rd)+"-->_i", "3i"
+))
+<br>   
+](2|
+
+[(set: _nearWharf to it + _progress)(show: ?done)](3g|
+[(set: _nearTraveler to it + _progress)(show: ?done)](3h|
+[(set: _nearPleasure to it + _progress)(show: ?done)](3i|
+
+[
+<!--calculate _near-->
+(set: _near to "")
+(set: _nearText to "")
+(set: _nearest to (sorted: _nearWharf,_nearTraveler, _nearPleasure)'s last)
+
+(if: _nearest is _nearPleasure)[
+    (set: _near to "scene.exploreApesaiPleasure")
+    (if: ($funcCheckExists: $char's player's att, "knowApesaiPleasure", 0) >= 2)[(set: _near to "The Pleasure Quarter")(set: _chance to 100)]
+    (set: _nearText to "The sky has gone dim, but instead of crystal lamps, there are paper lanterns glowing with all colors, rivaling the lighthouse's rainbow. You are in a foreign land.") 
+]
+
+(elseif: _nearest is _nearTraveler)[
+(set: _near to "scene.exploreApesaiTraveler")
+    (if: ($funcCheckExists: $char's player's att, "knowApesaiTraveler", 0) >= 2)[(set: _near to "The Traveler's Society (Apesai Branch)")(set: _chance to 100)]
+    (set: _nearText to "Finally, you see more trees than houses. But it is far from quiet. Bawdy drunken songs can be heard from the many smoky campfires.") 
+]
+
+(elseif: _nearest is _nearWharf)[
+    (set: _near to "Apesai Wharf")
+    (set: _chance to 100)
+    (set: _nearText to "One one side of the quay are barracks and warehouses, and on the other rows and rows of merchant vessels, warships, and not a few exotic crafts of foreign make. And too many people.") 
+]
+
+<!--Calculate _chance-->
+(set: _chance to it + _nearest + _chanceMod)
+(if: _chance > 100)[(set: _chance to 100)]
+(if: _chance < 0)[(set: _chance to 0)]
+
+(if: _chance >= 50)[(print: _nearText)]
+(else:)[You walk around and around, and you feel like you've lost your way. Still, you keep going.]
+<br>
+---
+Eventually, ($funcLuckGate: "you arrive at...", _chance, _near, "scene.exploreApesaiFail")
+
+
+](done|
+
+]<!--end child-->
+]<!--end parent-->

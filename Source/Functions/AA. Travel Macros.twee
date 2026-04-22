@@ -1,0 +1,80 @@
+:: AA. Travel Macros [startup] {"position":"1450,5100","size":"100,100"}
+{=
+
+<!--Get distance from table.distances-->
+(set: $funcGetDistance to (macro: str-type _from, str-type _to ,[\
+	<!--Load distance table (datamap), initialize temp var-->\
+	(set: _mapDM to (passage: "table.distances"))\
+	(set: _distance to 0)\
+	(set: _key to "")\
+	\
+	<!--Go through to find match-->\
+	(for: each _pair,...(data-names:_mapDM))[\
+		(if: _pair contains _from and it contains _to)[\
+			(set: _key to _pair)\
+		]\
+	]\
+	\
+	<!--Check key validity (key has changed)-->\
+	(if: _key is "")[(dialog: [ERROR! The from-to pair "_from" and "_to" cannot be found in table.distances.], "Better go check it.")]\
+	\
+	<!--output-->\
+	(if: _key is not "" and _mapDM contains _key)[(set: _distance to _mapDM's _key)]\
+	(out-data: _distance)\
+]))
+
+<!--Depart. Uses 2 different DMs to track: (1) the player's quest+timer and (2) $place.-->
+(set: $funcDepart to (macro: str-type _linkText, str-type _to, [(out:)[\
+	(link-rerun: _linkText)[\
+		<!--Load travel quest's DM-->\
+		(set: _travelDM to (passage: "quest.traveling"))\
+		\
+		<!--Set up $place-->\
+		(set: $place's traveling to true)\
+        (set: $place's travelingArriveReady to false)\
+		(set: $place's stay to "Traveling")\
+		(set: $place's travelingFrom to $place's location)\
+		(set: $place's travelingTo to _to)\
+		\
+		<!--Activate quest-->\
+		($funcQuestUpdate: "traveling", "active", "Hauling your bags upon your shoulders, you set out.", "A new journey.")\
+		\
+		<!--Manually add timer, due to all the in-built log/noti shenanigan in the normal $funcAddTimer-->\
+		(set: _distance to ($funcGetDistance: $place's location, _to))\
+		\
+		(set: $char's player's timerQuest to it + (dm: "traveling", (dm: "timer", _distance)))\
+		\
+		<!--Manually log and notify-->\
+		(set: $log to it + (a: "''" + (str: (passage:)'s title) + ":'' (color:blue+green)[Sand grains are flowing]''—" + (str: _travelDM's id) + "—''From " + (str: $place's location) + ", it will take ''" + (str: _distance) + " days'' arrive at " + (str: _to) + "." ))\
+		\
+		(dialog: [(print:_travelDM's timerAddDialog) <br> $cssDesc[''(print: _travelDM's id):'' (color:blue+green)[Sand grains are flowing].]], _travelDM's timerAddConfirm)\
+		\
+		<!--Goto-->\
+		(goto: "Traveling")\
+	] $cssDesc[(Leave (print: $place's location) for _to.)]\
+]]))
+
+<!--Arrive, complete quest, remove timer, and reset $place-->
+(set: $funcArrive to (macro: str-type _linkText, str-type _goto, [(out:)[\
+	(link-rerun: _linkText)[\
+		<!--partially $place, keep the itinerary for potential storylets-->\
+		(set: $place's traveling to false)\
+        (set: $place's travelingArriveReady to false)\
+		\
+		<!--Complete quest-->\
+		($funcQuestUpdate: "traveling", "completed", "Put down your bags. You are done traveling.", "For now.")\
+		\
+		($funcRemoveTimer: "traveling", "timer")\
+		\
+		<!--Goto-->\
+		(goto: _goto)\
+	] $cssDesc[(Conclude your travels.)]\
+]]))
+
+<!--Create a link to set $place's stay; passage must have in its metadata "currency" and "rent"; used to exit a an arrival (end of traveling) sequence-->
+(set: $funcPickStay to (macro: str-type _linkText, str-type _stay, [(out:)[\
+	(link-rerun: _linkText)[\
+		(set: $place's stay to _stay)\
+		$funcDone\
+	] $cssDesc[(Staying at ''(print: (passage: _stay)'s name)'' costs ''(print: (passage: _stay)'s rent) (print: (passage: "item." + (passage: _stay)'s currency)'s id)'' each day.)]\
+]]))

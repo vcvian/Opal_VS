@@ -1,0 +1,9 @@
+:: table.weekNames [static-storage] {"position":"1650,4000","size":"100,100"}
+{=\
+<!--call with (display:), output week's name-->\
+(cond:
+$time's week is 1,"Yekhet",
+$time's week is 2,"Duhet",
+$time's week is 3,"Serhet",
+$time's week is 4,"Charhet",
+)

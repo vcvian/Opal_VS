@@ -1,0 +1,23 @@
+:: att.repApesaiSwindler [static-storage]
+{=
+
+(metadata: 
+	"id", [Infamy: Swindling in Apesai],
+    "key", (a: "social", ),
+    "value", (a: 1, 0, 0, 0, 0, 0),
+    "img", "",
+    "desc", [],
+    "tip", [],
+    "gainText", [],
+    "gainEffect", [\
+    	(for: each _char, ...(data-names: $char))[\
+        	(if: _char is not "player")[($funcOpinionCalc: _char, false)]\
+        ]\
+    ],
+    "lossText", [],
+    "lossEffect", [\
+    	(for: each _char, ...(data-names: $char))[\
+        	(if: _char is not "player")[($funcOpinionCalc: _char, false)]\
+        ]\
+    ],
+)

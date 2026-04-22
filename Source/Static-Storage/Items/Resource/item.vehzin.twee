@@ -1,0 +1,14 @@
+:: item.vehzin [static-storage] {"position":"2000,3475","size":"100,100"}
+{=
+
+(metadata: 
+	"id", [Clump of Vehzin],
+    "key", (a: "resource", ),
+    "value", (a: 1, 300, 1000, 500, 1000, 2000),
+    "img", "",
+    "desc", [],
+    "tip", [],
+    "gainText", [],
+    "lossText", [],
+
+)

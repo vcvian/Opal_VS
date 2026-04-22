@@ -1,0 +1,290 @@
+:: T: OldInrah sickTeacher [topic]
+
+{=
+
+(storylet: when
+    (passage:) contains "NPC"
+    and $char's VehVeh's opinion's 2nd > 20
+    and ($funcCheckExists: $char's player's quests, "sickTeacher", "") is "active"
+    and $char's player's timerCooldown does not contain "T: OldInrah sickTeacher"
+)
+
+(urgency: 3)
+
+(metadata:
+    "NPC", "OldInrah",
+    "title", "Regarding Your Ill Teacher",
+    "topic", "\"My teacher - he's ill. He needs medical attention.\"",
+    "topicDetail", "It seems obvious to ask her. Guests often get sick after a long journey, right?",
+    "cooldown", 1,
+    "talked", (a: "sickTeacher",),
+    "addCode", [],
+)
+
+<!--Manually add cooldown since there's no guarantee that the player will trigger $funcTopics-->
+($funcAddStoryletCooldown: (passage:)'s name)
+
+$cssColumnParent[
+
+$cssColumnChild[
+	$cssBox[
+    	($funcImage: (passage: "npc.OldInrah")'s img)
+         $cssBoxItem[''(print: (passage:)'s title )''<br>(if: ($funcTalkedTimesCheck: "sickTeacher") < 1)[(print: (passage:)'s topicDetail)](else:)[She can't help much with this matter.]]
+    ]
+]
+
+$cssColumnChild[
+    [
+        Only after you've assured Koh-Inrah that whatever your teacher has isn't contagious - and you said so as if you knew for a fact - does she listen.
+<br>
+        ["Why yes, we //do// stock something for such contingencies,"]<OldInrahLine| the old woman smiles under her veil, a hint of black teeth. ["But the patron understands - it is so costly to keep medicine at the right temperature, and we are no apothecary..."]<OldInrahLine|
+<br>
+        What she means is: You'll have to pay for it.
+<br>
+        ($funcInnerConvo: (dm:
+	        "<!--A-->\"Yes, I need that medicine! Well, my teacher does.\"", "1stA",
+            "<!--B-->\"Small expense for the comfort of a davehmar.\"", "1stA",
+            "<!--C-->\"Costly, you say? How much?\"", "1stA",
+        ))
+<br>
+    ](firstTime|
+
+    [
+        ["It'll be //serdah// for a fist of Askavan ginger. Servant?"]<OldInrahLine| Not waiting for your reply, she immediately calls over a maid. ["Get our dear patron a fist of ginger. And clean it this time, yes?"]<OldInrahLine|
+<br>
+        ... Ginger?
+        <br>
+        ($funcInnerConvo: (dm:
+	        "\"<!--A-->That is not //real// medicine.\"", "1stA1",
+            "\"<!--B-->Besides, thirty rial is //far// too expensive for a measly fist.\"", "1stA2",
+        ))
+<br>
+    ](1stA|
+
+    [
+       ["Oh? And what does the patron, so wise and knowledgable, know about the natural prices of //this// market?"]<OldInrahLine| She lifts her veil to spit in her tea dish. ["Go to some Sabzam village if you want cheap. Ginger sprouts on the side of the road there. Here - we're on a rock, if you haven't noticed. Everything's imported."]<OldInrahLine|
+<br>
+       ($funcInnerConvo: (dm:
+	        "<!--A-->\"Prices aside, Askavan ginger is not medicine.\"", "1stA1",
+        ))
+<br>
+    ](1stA2|
+
+    [
+        ["Why, haven't you learned in your fancy university about the wonderous properties of //Askavan// ginger?"]<OldInrahLine| The old woman acts shocked, but not all that much. ["The hut-dwellers use it in their salves, and our sailors use it for their breath. You have a lot to learn from //real// people, salt-of-the-earth. Why limit yourself to books?"]<OldInrahLine|
+<br>
+        ($funcInnerConvo: (dm:
+	        "\"<!--A-->Fine, just let me see it.\"", "1stA1a",
+            "\"<!--B-->Is there somewhere else on this island I can go to for help? A davehmar-trained clinic, or at least an //actual// apothecary?\"", "1stA1b",
+        ))
+<br>
+    ](1stA1|
+
+    [
+        ["Of course there is! Apesai's a civilized place, unlike the mainland,"]<OldInrahLine| she huffs. ["There is an enclave of magi living in the lighthouse, though they're no hospitallers. And, all kinds of shops can be found at the market district, right under... Ah, Old Inrah should not say anymore without charging. She does not give out free directions."]<OldInrahLine|
+<br>
+        It seems that directions do not come with your rent.
+<br>
+        ["Now, do you want the ginger?"]<OldInrahLine|
+<br>
+        ($funcInnerConvo: (dm:
+	        "\"<!--B-->Fine, just let me see it.\"", "1stA1a",
+            "\"<!--A-->No, I'd much rather discuss something else.\"", "done2",
+        ))
+<br>
+    ](1stA1b|
+
+    [
+        A maid brings out a bundle of linen, inside its folds is what looks to be a greenish thing, more potato than root. The aroma stings your nose, even from a polite distance. Some of the fiber has been stripped, no doubt to sell to another traveler with stomach problems.
+<br>
+        You've seen this plant before. Studied it, even. And you know that this isn't what your teacher needs.
+<br>
+        (show: ?done1)
+<br>
+    ](1stA1a|
+
+    <!--done1-->
+    [
+        ---
+        ($funcTalked:)
+        <ol>
+        <li>($funcCheckGate: "Buy the ginger.", "inv", "rial", 30, true, 100, "OldInrah Buy Ginger Accept", "")
+        <li>(link: "Refuse.")[
+            ($funcOpinionGainLoss: "OldInrah", -1, "You've wasted her time over only a bit of ginger.")
+            (goto: "OldInrah Buy Ginger Decline")
+        ]
+        </ol>
+    ](done1|
+
+    [
+        [
+            (if: $char's OldInrah's energy's 1st > 0)["Fine, if your teacher can bear it, talk away."]
+            (else:)["A tragedy: Other patrons would like to talk to Old Inrah, too."]
+        ]<OldInrahLine|
+<br>
+        ---
+        <ol>
+        ($funcNPCTopics: "Old Inrah eyes an impatient guest behind you.", "\"Thank you anyway, Koh-Inrah. Goodbye.\"")
+        </ol>
+    ](done2|
+
+<!--second time-->
+[
+<!--Check if already bought ginger-->
+(if: ($funcTalkedTimesCheck: "gingerBought") < 1)[
+        ["Is he still sick? You better hurry and get that sorted. If he gets too dehydrated... Well, Old Inrah won't embarrass herself by lecturing a //davehmar// about matters of medicine. Else, she'd be a accused of being a peddler."]<OldInrahLine|
+<br>
+        She chuckles and shakes her head.
+<br>
+        ["Just wash the beddings yourself if anything happens."]<OldInrahLine|
+<br>
+        ---
+        <ol>
+        <li>($funcCheckGate: "\"Actually, I want to buy that fist of ginger off of you.\"", "inv", "rial", 30, true, 100, "OldInrah Buy Ginger Accept", "")
+<br>
+        On second thought...
+        ($funcNPCTopics: "Old Inrah eyes an impatient guest behind you.", "\"Thank you anyway, Koh-Inrah. Goodbye.\"")
+        </ol>
+]<!--end of gingerBought check-->
+
+<!--else if already bought ginger-->
+(else:)[
+    ["Did the ginger not work? Maybe your teacher needs a stronger dose. But alas, as it happens, you've bought our last bit of ginger. Old Inrah //did// say that medicine was hard to stock."]<OldInrahLine|
+<br>
+
+(if: $char's player's att does not contain "knowApesaiGE")[
+    She turns away, acting busy, as if afraid you might say the dreaded word - "refund". But when she sees that you're standing there, she adds,
+<br>
+    ["Apesai sells many things. The patron can simply buy more Askavan ginger, or maybe some fancy concoction that the snake oilers are always hawking at..."]<OldInrahLine| she trails off, then squints at you, this time with a smile in her eyes, like she has thought of a brilliant idea. ["You know, for a very small fee - only a //dah// - Old Inrah will show you the best places to shop in Apesai."]<OldInrahLine|
+<br>
+    Where else but the Grand Exchange? You've seen it in the distance. But do you know how to get there?
+<br>
+    ---
+    <ol>
+        <li>($funcCheckGate: "\"Alright, I'll bite. Where would one buy some medicine on this rock? How do I get there?\"", "inv", "rial", 10, true, 100, "OldInrah Locales GE", "")
+<br>
+        On second thought...
+        ($funcNPCTopics: "An impatient guest is tapping you on your shoulder.", "\"We'll revisit this later. Goodbye, Koh-Inrah.\"")
+    </ol>
+]<!--end of knowApesaiGE check-->
+<!--else if know where GE is-->
+(else:)[
+---
+<ol>
+($funcNPCTopics: "She wants to leave it at that.", "\"Oh well, goodbye, Koh-Inrah.\"")
+</ol>
+]
+
+]<!--end of else if already bought ginger-->
+
+](secondTime|
+
+]<!--end child-->
+]<!--end parent-->
+
+<!--Determine if 1st time-->
+(if: ($funcTalkedTimesCheck: "sickTeacher") < 1)[(show: ?firstTime)]
+(else:)[(show: ?secondTime)]
+
+
+:: OldInrah Buy Ginger Accept
+{=
+(metadata:
+    "NPC", "OldInrah",
+    "title", "Bought Ginger from the Landlady",
+    "cardDesc", "It must have //some// use, right?",
+)
+
+$cssColumnParent[
+
+$cssColumnChild[
+	$cssBox[
+    	($funcImage: (passage: "npc.OldInrah")'s img)
+         $cssBoxItem[''(print: (passage:)'s title )''<br>(print: (passage:)'s cardDesc)]
+    ]
+]
+
+$cssColumnChild[
+
+    She almost seems surprised that you actually took the offer.
+<br>
+    ["Why, of course, it is yours."]<OldInrahLine|
+<br>
+    She signals for the maid, who hands the fist of ginger to you. It is surprisingly heavy.
+<br>
+    ["Take fine strips, and only a handful at a time. Stop if the stomach starts to burn. Wonderful with tea, too - that's what Old Inrah mostly uses it for."]<OldInrahLine|
+<br>
+    ---
+    (link: "Bag it, and thank her.")[\
+        ($funcGainLoss: "item.", "ginger", 1)\
+        ($funcOpinionGainLoss: "OldInrah", 1, "Sold you some \"medicine\".")
+        (goto: "OldInrah Buy Ginger Receive")\
+    ]
+
+]<!--child end-->
+]<!--parent end-->
+
+
+:: OldInrah Buy Ginger Receive
+{=
+(metadata:
+    "NPC", "OldInrah",
+    "title", "Bought Ginger from the Landlady",
+    "cardDesc", "It must have //some// use, right?",
+    "talked", (a: "gingerBought"),
+)
+
+$cssColumnParent[
+
+$cssColumnChild[
+	$cssBox[
+    	($funcImage: (passage: "npc.OldInrah")'s img)
+         $cssBoxItem[''(print: (passage:)'s title )''<br>(print: (passage:)'s cardDesc)]
+    ]
+]
+
+$cssColumnChild[
+    [
+        (if: $char's OldInrah's energy's 1st > 0)["Thank you, dear patron. Use it well. And no refunds. Now, is there anything else?"]
+        (else:)["The dear patron should go to their teacher.Old Inrah still has more guests to see. They might have stomach problems of their own."]
+    ]<OldInrahLine|
+<br>
+        ---
+        <ol>
+        ($funcNPCTopics: "Old Inrah eyes an impatient guest behind you.", "\"Thank you anyway, Koh-Inrah. Goodbye.\"")
+        </ol>
+
+]<!--child end-->
+]<!--parent end-->
+
+
+:: OldInrah Buy Ginger Decline
+{=
+(metadata:
+    "NPC", "OldInrah",
+    "title", "Declined Ginger from the Landlady",
+    "cardDesc", "You knew better. People will be trying to part you from your rials out here.",
+)
+
+$cssColumnParent[
+
+$cssColumnChild[
+	$cssBox[
+    	($funcImage: (passage: "npc.OldInrah")'s img)
+         $cssBoxItem[''(print: (passage:)'s title )''<br>(print: (passage:)'s cardDesc)]
+    ]
+]
+
+$cssColumnChild[
+
+["Tsk, have it your way then,"]<OldInrahLine| the old woman says as she strips a piece from the ginger and unceremoniously drops it into her tea pot. ["More for this old lady."]<OldInrahLine|
+
+<br>
+---
+<ol>
+($funcNPCTopics: "Old Inrah is already waving over the next guest.", "\"Thank you anyway, Koh-Inrah. Goodbye.\"")
+</ol>
+
+
+]<!--child end-->
+]<!--parent end-->

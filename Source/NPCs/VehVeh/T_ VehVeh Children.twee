@@ -1,0 +1,53 @@
+:: T: VehVeh Children [topic] {"position":"6400,1175","size":"100,100"}
+{=
+
+(storylet: when
+(passage:) contains "NPC"
+and $char's VehVeh's opinion's 2nd > 20
+and $char's VehVeh's location is "The Grand Exchange"
+and $char's player's timerCooldown does not contain "T: VehVeh Children"
+)
+
+(urgency: 1)
+(metadata:
+"NPC", "VehVeh",
+"title", "Chatting with Veh-Veh",
+"topic", "Veh-Veh, who //are// these children?",
+"topicDetail", "Askavans - from their fair hair, gray eyes, and copper skin - and each with a davehmar's sash.",
+"cooldown", 1,
+"talked", (a: "nativeChildren",),
+"addCode", [],
+)
+
+$cssColumnParent[
+
+$cssColumnChild[
+	$cssBox[
+    	($funcImage: (passage: "S: VehVeh Market")'s img)
+         $cssBoxItem[''(print: (passage:)'s title )''<br>(print: (passage:)'s topicDetail)]
+    ]
+]
+
+$cssColumnChild[
+
+$cssDesc[''You: //(print: (passage:)'s topic)//'']
+<br>
+
+(A moment of rest...)
+<br>
+["Yeah, these are my... fellow students. The davehmars think the native children will benefit from spending time with an imperial "lady"."]<VehVehLine|
+<br>
+["I told them that I could barely remember the imperium, but they insisted that it was every citizen's duties to bring up the peoples of the fringes."]<VehVehLine|
+<br>
+["Which is funny, because when they don't have chores for me, I might as well be just another Askavan."]<VehVehLine|
+<br>
+["I told them I wasn't really a lady either. Both my parents were merchants. But no, suddenly everyone's an expert on my lineage. Can you believe it?"]<VehVehLine|
+<br>
+["Ugh, I complain a lot, but I do care about them, you know? Boarding here all together, far away from their tribes... Sometimes, seems like I'm the only one who cares."]<VehVehLine|
+<br>
+---
+<ol>
+($funcNPCTopics: "Before she has a chance to finish that thought, one of the children has already broke something. Veh-Veh rushes off.", "That sucks, Veh-Veh. Hope you hold it together.")
+</ol>
+]<!--end child-->
+]<!--end parent-->

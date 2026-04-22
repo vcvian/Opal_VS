@@ -1,0 +1,56 @@
+:: Shopping Day 1b {"position":"3875,2300","size":"100,100"}
+{=
+
+(metadata:
+"currency", "rial",
+"title", "Dry Food Warehouse",
+"cardDesc", "Essential (and perhaps only) nutrition for pilgrims, caravaneers, sailors, and one journeying magus.",
+)
+
+
+$cssColumnParent[
+
+$cssColumnChild[
+	$cssBox[
+    	($funcImage: (passage: "S: Shopping Day 1")'s img)
+         $cssBoxItem[''(print: (passage:)'s title )''<br>(print: (passage:)'s cardDesc)]
+    ]
+]
+
+$cssColumnChild[
+
+Salted fish from nearby Rokhab, goat jerky from Sabzam upriver, water-grains from Zirab, glazed pastries with Yavanid names you cannot pronounce - they're all here, all the things to keep yourself fed while on the road.
+<br>
+How long will your jounrey be? How big is your purse?
+
+]<!--end child-->
+]<!--end parent 1-->
+
+---
+
+$cssColumnParent[
+
+<!--Very important! If the passage is a merchant, then where player might buy or sell things, then _priceMod must be defined. The formula can get more complex later on to account for faction attitudes, weather, and various other modifiers-->
+(set: _priceModBuy to 3)
+(set: _priceModSell to .5)
+
+$cssColumnChild[
+(Market info here)
+<br>
+$cssDesc[The Grand Exchange only accepts ''(print: (passage:)'s currency)'' - by order of the Ministry of Funds. But you can always sell your other currencies here, if you like being ripped off.
+<br>
+You currently have ($funcCheckExists: $char's player's inv, (passage:)'s currency, 0) (print: (passage:)'s currency).]
+]<!--end child, begin another-->
+
+$cssColumnChild[
+<ol>
+Something for the road...
+<li>($funcMultiBuySell: "buy", "supplies", (passage:)'s currency, _priceModBuy)
+<br>
+Actually, if anything, you might even have too much...
+<li>($funcMultiBuySell: "sell", "supplies", (passage:)'s currency, _priceModSell)
+<br>Or...
+<li>[[Never mind.|S: Shopping Day 1]]
+</ol>
+]<!--end child-->
+]<!--end parent 2-->

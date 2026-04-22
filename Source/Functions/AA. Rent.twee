@@ -1,0 +1,63 @@
+:: AA. Rent [startup] {"position":"1925,3750","size":"100,100"}
+{=
+
+<!--Pay rent-->
+
+(set: $funcPayRent to (macro: [(out:)[\
+	<!--Identify currency and rent amount-->\
+	(set: _stay to (passage: $place's stay))\
+	(set: _currencyName to _stay's currency)\
+	(set: _rent to _stay's rent)\
+	(set: _currencyDM to (passage: "item." + _currencyName))\
+	(set: _dialog to [])\
+	(set: _confirm to "")\
+    (set: _rentLog1 to "")\
+    (set: _rentLog2 to "")\
+	\
+	<!--Check inventory-->\
+	(set: _canPay to false)\
+	(if: $char's player's inv contains _currencyName)[\
+		(if: $char's player's inv's _currencyName >= _rent)[\
+			(set: _canPay to true)\
+		]\
+	]\
+	\
+	<!--if can pay-->
+	(if: _canPay is true)[\
+		(set: $char's player's inv's _currencyName to it -_rent)\
+		(if: $char's player's inv's _currencyName <= 0)[\
+			(move: $char's player's inv's _currencyName into _trash)\
+		]\
+		\
+		(set: _dialog to [The price of existing has been sought. <br> $cssDesc[(if: $place's traveling is false)[Staying in ''(print: $place's stay)''](else:)[While traveling, it] costs you ''_rent (print: _currencyDM's id)'' every day. New total: (if: $char's player's inv contains _currencyName)[(print: $char's player's inv's _currencyName)](else:)[0].] ])\
+		(set: _confirm to "✓")\
+		\
+        (set: _newTotal to "")\
+        (if: $char's player's inv contains _currencyName)[(set: _newTotal to (str: $char's player's inv's _currencyName))]\
+        (else:)[(set: _newTotal to (str: 0))]
+        \
+		(set: $log to it + (a: "''" + (str: $place's stay) + ":'' (if: $place's traveling is false)[(color:red+orange)[Rent paid: ]](else:)[(color:red+orange)[Consumed ]]" + (str:_rent) + " " + (str:_currencyDM's id) + "($funcLogTip: \"item.\",\"" + (str: _currencyName) + "\")" + ". " + (str: _newTotal) + " left." ))\
+	]\
+	<!--if cannot pay-->\
+	(elseif: _canPay is false)[\
+		(if: _currencyDM contains "brokeEffect")[\
+        	\
+            (set: _rentLog1 to "")\
+            (set: _rentLog2 to "")\
+            (if: (passage: $place's stay)'s currency is not "supplies")[(set: _rentLog1 to "(color:red)[Unable to pay rent.]")(set: _rentLog2 to "It costs " + (str: _rent) + " " + (str:_currencyDM's id) + "($funcLogTip: \"item.\",\"" + (str: _currencyName) + "\")" + " every day to stay at " + (str: $place's stay) + ".")] 
+            (else:)[(set: _rentLog1 to "(color:red)[Starving.]")(set: _rentLog2 to "It costs " + (str: _rent) + " " + (str:_currencyDM's id) + "($funcLogTip: \"item.\",\"" + (str: _currencyName) + "\")" + " every day to survive out here.")]\
+            \
+			(set: $log to it + (a: "''" + (str: $place's stay) + ":'' " +  (str: _rentLog1) + " " + (str: _rentLog2)  ))\
+            (print: _currencyDM's brokeEffect)\
+			(set: _dialog to [_rentLog1 <br> $cssDesc[_rentLog2]])\
+			(set: _confirm to "Oh no...")\
+		]\
+		(else:)[\
+			(set: _dialog to [ERROR! Missing consequence for going broke on (print: _currencyDM's id). Need a "brokeEffect".])\
+			(set: _confirm to "WIP")\
+		]\
+	]\
+	\
+	<!--Output dialog box-->
+	($funcNoti: "rent", _dialog, _confirm)\
+]]))

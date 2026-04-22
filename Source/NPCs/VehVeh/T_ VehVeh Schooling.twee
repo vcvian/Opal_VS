@@ -1,0 +1,76 @@
+:: T: VehVeh Schooling [topic] {"position":"6400,1650","size":"100,100"}
+{=
+
+(storylet: when
+(passage:) contains "NPC"
+and $char's VehVeh's opinion's 2nd > 20
+and $char's VehVeh's location is "Apesai Lighthouse"
+and $char's player's timerCooldown does not contain "T: VehVeh Schooling"
+)
+
+(metadata:
+"NPC", "VehVeh",
+"title", "Chatting with Veh-Veh",
+"topic", "How's being an apprentice here in Apesai?",
+"topicDetail", "Apesai - and the whole of Askava, for that matter - isn't exactly known for its magical education.",
+"cooldown", 1,
+"talked", (a: "schoolingApesai", "absentPrincipal", "studentLab",),
+"addCode", [\
+	(if: ($funcTalkedTimesCheck: "schoolingApesai") <= 3)[\
+    	($funcOpinionGainLoss: "VehVeh", 1, "Veh-Veh brightens up when she talks about her studies.")\
+        ]\
+],
+)
+
+$cssColumnParent[
+
+$cssColumnChild[
+	$cssBox[
+    	($funcImage: (passage: "S: VehVeh")'s img)
+         $cssBoxItem[''(print: (passage:)'s title )''<br>(print: (passage:)'s topicDetail)]
+    ]
+]
+
+$cssColumnChild[
+
+$cssDesc[''You: //(print: (passage:)'s topic)//'']
+<br>
+
+(if: ($funcTalkedTimesCheck: "schoolingApesai") < 1)[\
+["You know, it's not as bad as people make it out to be..."]<VehVehLine|
+<br>
+(talk about facilities, labs, or the lack thereof...)
+<br>
+["... Except, the principal is gone though."]<VehVehLine|
+]
+
+(elseif: ($funcTalkedTimesCheck: "schoolingApesai") < 2)[\
+["Well, I'm working on something..."]<VehVehLine| she says, a wistful smile comes and goes.
+<br>
+["But that's been put on pause, since the principal - my mentor - has been gone. I was using his lab, too, but he's taken the key with him. The student lab isn't cutting it."]<VehVehLine|
+]
+
+(elseif: ($funcTalkedTimesCheck: "schoolingApesai") < 3)[\
+["You keep asking me that. I image that it must be strange for you, to go from a full-fledged university to this no-where of a place."]<VehVehLine|
+<br>
+["To me, it's more about what you can make of yourself, and less what the place can do for you. It's a lesson one can't help but learn, living in Askava."]<VehVehLine|
+<br>
+["Oh, what am I talking about? Compared to the mainland, this island is a dream."]<VehVehLine|
+]
+
+(else:)[\
+["Heh, it's good that someone still cares about my education. But I think it'll be a better use of both our time if I get on with my studies instead of just talking about it."]<VehVehLine|
+<br>
+["Thank you, though. I'll be sure to let you know if I ever come across anything that could be of interest to you. Maybe we can compare notes? And if you finish your Sacred Opal, perhaps you'd write me a letter of recommendation?"]<VehVehLine|
+]
+
+<br>
+---
+<ol>
+(if: ($funcTalkedTimesCheck: "schoolingApesai") <= 3)[($funcNPCTopics: "Veh-Veh seems like she has more to say on the matter, but she's done talking for the day.", "Glad to have talked to a fellow student, Veh-Veh. Bye.")]
+
+(else:)[($funcNPCTopics: "Veh-Veh giggles and starts to collect her books.", "Sure. //If//. Goodbye, Veh-Veh.")]
+</ol>
+
+]<!--end child-->
+]<!--end parent-->
