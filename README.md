@@ -1,6 +1,6 @@
 # What Is This?
 
-*Sacred Opal* is an in-development text-based Twine game (Harlowe 3.3.9), coded in Visual Studio Code and complied using Tweego.
+*Sacred Opal* is an in-development Twine game (Harlowe 3.3.9), written with Visual Studio Code and complied using Tweego.
 
 # How to Play?
 
