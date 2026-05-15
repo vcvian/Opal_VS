@@ -9,7 +9,7 @@ and ($funcCheckExists: $place's events, "studentDebate", "inactive") is "active"
 and ($funcCheckExists: $char's player's quests, "studentDebate", "") is not "active"
 )
 (urgency: 2)
-(metadata: "title", "A Streetside Argument", "cardDesc", "A man and a woman are theatrically arguing. And they're taking turns to speak?", "img", "Assets/Portraits/Event_Argue_1.png",)
+(metadata: "title", "A Streetside Argument", "cardDesc", "A pair of street urchins are theatrically arguing. And they're taking turns to speak?", "img", "Assets/Portraits/Event_Argue_1.png",)
 
 $cssColumnParent[
 
@@ -33,7 +33,7 @@ $cssColumnChild[
 
 <li>($funcQuestUpdateLink: "Debate? You'll have to be there.", "studentDebate", "active", "Is it curiosity? Competitiveness? Or nostalgia for your apprentice days?", "Either way, you go see what the hubbub is about.", [], "Apesai Lighthouse",)
 
-<li>($funcQuestUpdateLink: "Forget it. Debates are for kids.", "studentDebate", "active", "\"Kids\" It wasn't only a few years ago that you were an apprentice, just like them.", "A few years can mean a lot to a magus.", [], $place's sublocation,)
+<li>($funcQuestUpdateLink: "Forget it. Debates are for Children.", "studentDebate", "active", "\"Children\" It wasn't only a few years ago that you were an apprentice, just like them.", "A few years can mean a lot to a magus.", [], $place's sublocation,)
 
 </ol>
 ]<!--end child-->

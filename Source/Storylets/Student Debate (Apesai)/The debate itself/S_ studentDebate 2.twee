@@ -21,8 +21,17 @@ $cssColumnChild[
 
 $cssColumnChild[
 
-<!--time check-->
-(set: _debateDaysLeft to ($funcCheckExists: $place's eventDuration, "studentDebate", 0))
+<!--must initialize temp var-->
+(set: _debateDaysLeft to 0)
+<!--code.studentDebate outputs
+_debateDaysLeft
+_contributeX
+_contributeY
+_advantage
+_victor
+_whim
+-->
+(display: "code.studentDebate")
 
 (A large crowd of Apesai citizens are spilling out to the sidewalk, trying to listen in...)
 <br>

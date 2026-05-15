@@ -1,9 +1,8 @@
-:: studentDebate 2X {"position":"5525,1875","size":"100,100"}
-{=
+:: studentDebate none {"position":"5775,1875","size":"100,100"}
 
 (metadata:
 "title", "The Student Debate",
-"cardDesc", "Helped out side X",
+"cardDesc", "Staying neutral.",
 )
 
 $cssColumnParent[
@@ -16,7 +15,7 @@ $cssColumnChild[
 ]
 
 $cssColumnChild[
-
+    
 <!--must initialize temp var-->
 (set: _debateDaysLeft to 0)
 <!--code.studentDebate outputs
@@ -29,22 +28,22 @@ _whim
 -->
 (display: "code.studentDebate")
 
-(if: _debateDaysLeft is 4)[Side X, Topic A...]
+(if: _debateDaysLeft is 4)[Neutral, Topic A...]
 
-(elseif: _debateDaysLeft is 3)[Side X, Topic B...]
+(elseif: _debateDaysLeft is 3)[Neutral, Topic B...]
 
-(elseif: _debateDaysLeft is 2)[	Side X, Topic C...]
+(elseif: _debateDaysLeft is 2)[Neutral, Topic C...]
 
-(elseif: _debateDaysLeft is 1)[Side X, Topic D...]
+(elseif: _debateDaysLeft is 1)[Neutral, Topic D...]
 
 <br>
 ---
+
 (set: _endDebateDayText to "")
 (if: _debateDaysLeft <= 1)[(set: _endDebateDayText to "Thus, the debates conclude.")]
-(else:)[(set: _endDebateDayText to "End the day with a thought about side X.")]
+(else:)[(set: _endDebateDayText to "That's it for today.")]
 
 (link: _endDebateDayText)[{
-	($funcGainLoss: "att.", "studentDebateX", 1)\
     (if: _debateDaysLeft <= 1)[(goto: "studentDebate 2 END")]
     <!--^ if last day, goes to a concluding passage instead of ending the day-->
     (dialog: [The debate will continue tomorrow. Do come back to the lighthouse for more.])

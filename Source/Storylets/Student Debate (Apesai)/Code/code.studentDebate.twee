@@ -1,0 +1,64 @@
+:: code.studentDebate
+{=
+
+<!--Use (display:), outputs
+_debateDaysLeft
+_contributeX
+_contributeY
+_advantage
+_victor
+_whim
+-->
+
+<!--time check (output _debateDaysLeft)-->
+(set: _debateDaysLeft to ($funcCheckExists: $place's eventDuration, "studentDebate", 0))
+
+<!--contribution (output _contributeX and _contributeY)-->
+(set: _contributeX to false)
+(set: _contributeY to false)
+(if: ($funcCheckExists: $char's player's att, "studentDebateX", 0) > 0)[(set: _contributeX to true)]
+(if: ($funcCheckExists: $char's player's att, "studentDebateY", 0) > 0)[(set: _contributeY to true)]
+
+<!--advantage (output _advantage, a number, positive means Y advantage, and <= 0 means X advantage)-->
+(set: _advantage to 0)
+(set: _advantage to ($funcCheckExists: $char's player's att, "studentDebateY", 0) - ($funcCheckExists: $char's player's att, "studentDebateX", 0))
+
+<!--who wins? (output _victor, a semi-random outcome biased towards X)-->
+(set: _victor to "")
+(set: _chanceYWins to 0)
+(set: _diceDebate to $dice)
+
+(set: _chanceYWins to (cond:
+    _advantage <= -4, 0,
+    _advantage is -3, 5,
+    _advantage is -2, 10,
+    _advantage is -1, 20,
+    _advantage is 0, 30,
+    _advantage is 1, 40,
+    _advantage is 2, 60,
+    _advantage is 3, 80,
+    _advantage >= 4, 100,
+    40
+))
+
+(if: _diceDebate <= _chanceYWins)[(set: _victor to "Y")]
+(else:)[(set: _victor to "X")]
+
+<!--did the judge overrule the advantage? (output _whim)-->
+(set: _whim to false)
+(if: _victor is "X" and _advantage > 0)[(set: _whim to true)]
+(if: _victor is "Y" and _advantage <= 0)[(set: _whim to true)]
+
+:: code.studentDebateReset
+
+<!--produces _resetDebate. Erases all tracker att-->
+(set: _resetDebate to [{
+    <!--check X-->
+    (set: _reset to ($funcCheckExists: $char's player's att, "studentDebateX", 0))
+    <!--Erase X-->
+	($funcGainLoss: "att.", "studentDebateX", -_reset)
+    <!--check Y-->
+    (set: _reset to ($funcCheckExists: $char's player's att, "studentDebateY", 0))
+    <!--Erase Y-->
+	($funcGainLoss: "att.", "studentDebateY", -_reset)
+}])

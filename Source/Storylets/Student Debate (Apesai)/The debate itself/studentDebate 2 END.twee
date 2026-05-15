@@ -16,49 +16,58 @@ $cssColumnChild[
 ]
 
 $cssColumnChild[
-
-<!--time check-->
-(set: _debateDaysLeft to ($funcCheckExists: $place's eventDuration, "studentDebate", 0))
-<!--progress check-->
-(set: _debateProgress to ($funcCheckExists: $char's player's att, "studentDebateY", 0) > ($funcCheckExists: $char's player's att, "studentDebateX", 0))
-
-<!--who wins?-->
+<!--must initialize temp var-->
 (set: _victor to "")
-(if: _debateProgress is true)[(set: _victor to "Y")]
-(else:)[(set: _victor to "X")]
-<!--player contributed?-->
-(set: _helpedX to ($funcCheckExists: $char's player's att, "studentDebateX", 0) > 1)
-(set: _helpedY to ($funcCheckExists: $char's player's att, "studentDebateY", 0) > 0)
+(set: _contributeX to false)
+(set: _contributeY to false)
+(set: _whim to false)
+(set: _resetDebate to [])
+<!--code.studentDebate outputs
+_debateDaysLeft
+_contributeX
+_contributeY
+_advantage
+_victor
+_whim
+-->
+(display: "code.studentDebate")
 
-<!--inserted into final links. If the player misses the final day, on the next day, there will be an interrupt storylet that performs this reset-->
-(set: _resetDebate to [\
-    <!--Reset progress att-->\
-    (set: _reset to ($funcCheckExists: $char's player's att, "studentDebateX", 0))\
-	($funcGainLoss: "att.", "studentDebateX", -_reset)\
-    (set: _reset to ($funcCheckExists: $char's player's att, "studentDebateY", 0))\
-	($funcGainLoss: "att.", "studentDebateY", -_reset)\
-])
+<!--code.studentDebateReset outputs _resetDebate codeblock-->
+(display: "code.studentDebateReset")
+
 
 Announcement:
 <br>
 
 <!--Victor-->
-(if: _victor is "Y")[\
+(if: _victor is "Y")[
 Side Y victory.
-]
+<br>
+(if: _whim)[The judge made an arbitrary ruling. No fair!]
+(else:)[All fair here.]
+]<!--end of side Y victory-->
 
-(else:)[\
-Side X victory.
-]
+(else:)[Side X victory.
+<br>
+(if: _whim)[The judge made an arbitrary ruling. No fair!]
+(else:)[All fair here.]
+]<!--end of side X victory-->
 
 <br>
 
 <!--Contribution-->
-(if: _helpedX and _victor is "X")[Side X thanks you.]
+(if: _victor is "X")[
+	(if: _contributeX)[Side X thanks you, mention reward.]
+	(elseif: _contributeY)[Side Y thanks you for helping out anyway, even though they didn't win.]
+	(else:)[Neither side acknowledges you, since you didn't sufficiently help either of them.]
+]
 
-(elseif: _helpedY and and _victor is "Y")[Side Y thanks you.]
+(if: _victor is "Y")[
+	(if: _contributeY)[Side Y thanks you, promises reward.]
+	(elseif: _contributeX)[Side X admonishes you for not trying harder.]
+	(else:)[Neither side acknowledges you, since you didn't sufficiently help either of them.]
+]
 
-(else:)[Neither side acknowledges you, since you didn't sufficiently help either of them.]
 
 
 <br>
@@ -73,20 +82,20 @@ Side X victory.
 (if: _madeBet)[(set: _gotoNext to "S: studentDebate (Bookie After)")]
 
 <!--If Y victory-->
-(if: _victor is "Y")[\
-	($funcQuestUpdateLink: "Side Y Victory.", "studentDebate", "completed", "Yaay, you go Y! (But it'll restart)", "Side Y notification.", [\
-		(if: _helpedY)[(dialog: [Side Y reward.])]\
-        (if: _madeBet is false)[_resetDebate]\
-], _gotoNext,)\
-]<!--end if Y-->
+(if: _victor is "Y")[{
+	($funcQuestUpdateLink: "Side Y Victory.", "studentDebate", "completed", "Yaay, you go Y! (But it'll restart)", "Side Y notification.", [{
+		(if: _contributeY)[(dialog: [Side Y reward.])]
+        (if: _madeBet is false)[_resetDebate]
+	}], _gotoNext,)
+}]<!--end if Y-->
 
 <!--If X victory-->
-(else:)[\
-	($funcQuestUpdateLink: "Side X Victory.", "studentDebate", "completed", "Glory to side X! (But it'll restart)", "Side X notification.", [\
-		(if: _helpedX)[(dialog: [Side X reward.])]\
-        (if: _madeBet is false)[_resetDebate]\
-], _gotoNext,)\
-]<!--end if X-->
+(else:)[{
+	($funcQuestUpdateLink: "Side X Victory.", "studentDebate", "completed", "Glory to side X! (But it'll restart)", "Side X notification.", [{
+		(if: _contributeX)[(dialog: [Side X reward.])]
+        (if: _madeBet is false)[_resetDebate]
+	}], _gotoNext,)
+}]<!--end if X-->
 
 ]<!--end child-->
 ]<!--end parent-->

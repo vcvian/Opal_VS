@@ -18,40 +18,55 @@ $cssColumnChild[
 
 $cssColumnChild[
 
-<!--time check-->
-(set: _debateDaysLeft to ($funcCheckExists: $place's eventDuration, "studentDebate", 0))
-<!--progress check-->
-(set: _debateProgress to ($funcCheckExists: $char's player's att, "studentDebateY", 0) > ($funcCheckExists: $char's player's att, "studentDebateX", 0))
 
-(if: _debateDaysLeft is 4)[\
-	Topic A...
+<!--must initialize temp var-->
+(set: _debateDaysLeft to 0)
+(set: _advantage to 0)
+(set: _sideXText to "")
+(set: _sideYText to "")
+<!--code.studentDebate outputs
+_debateDaysLeft
+_contributeX
+_contributeY
+_advantage
+_victor
+_whim
+-->
+(display: "code.studentDebate")
+
+(if: _debateDaysLeft is 4)[Topic A...
+(set: _sideXText to "Side X's argument on topic A")
+(set: _sideYText to "Side Y's argument on topic A")
 ]
 
-(elseif: _debateDaysLeft is 3)[\
-	Topic B...
+(elseif: _debateDaysLeft is 3)[Topic B...
+(set: _sideXText to "Side X's argument on topic B")
+(set: _sideYText to "Side Y's argument on topic B")
 ]
 
-(elseif: _debateDaysLeft is 2)[\
-	Topic C...
+(elseif: _debateDaysLeft is 2)[Topic C...
+(set: _sideXText to "Side X's argument on topic C")
+(set: _sideYText to "Side Y's argument on topic C")
 ]
 
-(elseif: _debateDaysLeft is 1)[\
-	Topic D...
+(elseif: _debateDaysLeft is 1)[Topic D...
+(set: _sideXText to "Side X's argument on topic D")
+(set: _sideYText to "Side Y's argument on topic D")
 ]
 
 <br>
 (They notice you can call out to you to be their referee/tiebreaker (where are all the teachers?). Prompt to pick side...)
 <br>
-$cssDesc[\
-	(if: _debateProgress is true)[Side Y currently has the advantage.]\
-    (else:)[Side X currently has the advantage.]\
-]
+$cssDesc[{
+	(if: _advantage > 0)[Side Y currently has the advantage.]
+    (else:)[Side X currently has the advantage.]
+}]
 <br>
 ---
 <ol>
-<li>[[Pick side X->studentDebate 2X]]
-<li>[[Pick side Y->studentDebate 2Y]]
-<li>[[Pick no side->studentDebate noneA]]
+<li>(link: _sideXText)[(goto: "studentDebate 2X")]
+<li>(link: _sideYText)[(goto: "studentDebate 2Y")]
+<li>(link: "Pick no side.")[(goto: "studentDebate none")]
 </ol>
 
 ]<!--end child-->
