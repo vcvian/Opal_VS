@@ -1,0 +1,42 @@
+:: S: studentDebate (Swinder) [storylet]
+{=
+(storylet: when
+$place's location is "Apesai"
+and $place's sublocation is "Apesai Lighthouse"
+and ($funcCheckExists: $place's events, "studentDebate", "inactive") is "active"
+and ($funcCheckExists: $char's player's att, "repApesaiSwindler", 0) is > 0
+)
+
+(exclusivity: 1)
+(urgency: 2)
+(metadata: "title", "An Academic Wager", "cardDesc", "A man is calling on people to place bets on the debate, calling on anyone but you.", "img", "Assets/Portraits/Event_Argue_1.png",)
+
+$cssColumnParent[
+
+$cssColumnChild[
+	$cssBox[
+    	($funcImage: (passage: "S: studentDebate (Betting)")'s img)
+         $cssBoxItem[''(print: (passage:)'s title )''<br>(print: (passage:)'s cardDesc)]
+    ]
+]
+
+$cssColumnChild[
+
+(Fool me once...)
+
+<br>
+
+(Instructions to clear reputation)
+
+<br>
+---
+<ol>
+<li>~~Place a bet on the debate's outcome.~~ $cssDesc[(The bookie is refusing to do business with you because you currently have ''($funcCheckExists: $char's player's att, "repApesaiSwindler", 0) (print: (passage: "att.repApesaiSwindler")'s id)''.)]
+<li>(link: "Never mind.")[$funcBack]
+</ol>
+
+
+
+
+]<!--end child-->
+]<!--end parent-->

@@ -50,7 +50,7 @@ _whim
 (if: _victor is "Y" and _advantage <= 0)[(set: _whim to true)]
 
 :: code.studentDebateReset
-
+{=
 <!--produces _resetDebate. Erases all tracker att-->
 (set: _resetDebate to [{
     <!--check X-->
@@ -62,3 +62,15 @@ _whim
     <!--Erase Y-->
 	($funcGainLoss: "att.", "studentDebateY", -_reset)
 }])
+
+:: code.studentDebateCheat
+{=
+<!--determines whether the player has cheated (output _cheated)-->
+
+(set: _cheated to false)
+
+(set: _helped to false)
+(if: (($funcCheckExists: $char's player's att, "studentDebateY", 0) + ($funcCheckExists: $char's player's att, "studentDebateX", 0)) >= 2)[(set: _helped to true)]
+
+(if: _victor is "X" and ($funcCheckExists: $char's player's inv, "betTicketX", 0) > 0 and _helped)[(set: _cheated to true)]
+(if: _victor is "Y" and ($funcCheckExists: $char's player's inv, "betTicketY", 0) > 0 and _helped)[(set: _cheated to true)]

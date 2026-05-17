@@ -9,7 +9,7 @@
 </head>
 <body>
 <tw-story><noscript><tw-noscript>JavaScript needs to be enabled to play Opal.</tw-noscript></noscript></tw-story>
-<!-- UUID://B7CA1AB8-D586-46A4-8186-D10662A25374// --><tw-storydata name="Opal" startnode="258" creator="Tweego" creator-version="2.1.1+81d1d71" ifid="B7CA1AB8-D586-46A4-8186-D10662A25374" zoom="0.3" format="Harlowe" format-version="3.3.9" options="" hidden><style role="stylesheet" id="twine-user-stylesheet" type="text/twine-css">tw-story {
+<!-- UUID://B7CA1AB8-D586-46A4-8186-D10662A25374// --><tw-storydata name="Opal" startnode="260" creator="Tweego" creator-version="2.1.1+81d1d71" ifid="B7CA1AB8-D586-46A4-8186-D10662A25374" zoom="0.3" format="Harlowe" format-version="3.3.9" options="" hidden><style role="stylesheet" id="twine-user-stylesheet" type="text/twine-css">tw-story {
   font-size: 1.0rem;
   align-items: center;
 }
@@ -49,7 +49,7 @@ hr {
   background: -moz-linear-gradient(to right, transparent, white, transparent); /* For older Firefox browsers */
   background: -o-linear-gradient(to right, transparent, white, transparent); /* For older Opera browsers */
   margin: 30px 0; /* Adds some spacing above and below */
-}</style><script role="script" id="twine-user-script" type="text/twine-javascript"></script><tw-tag name="effect" color="yellow"></tw-tag><tw-tag name="footer" color="yellow"></tw-tag><tw-tag name="header" color="yellow"></tw-tag><tw-tag name="static-storage" color="yellow"></tw-tag><tw-tag name="stay" color="yellow"></tw-tag><tw-tag name="test" color="blue"></tw-tag><tw-tag name="UI" color="orange"></tw-tag><tw-tag name="book" color="yellow"></tw-tag><tw-tag name="topic" color="purple"></tw-tag><tw-tag name="traveling" color="purple"></tw-tag><tw-tag name="sublocation" color="green"></tw-tag><tw-tag name="startup" color="orange"></tw-tag><tw-tag name="storylet" color="blue"></tw-tag><tw-passagedata pid="1" name="f.Apesai" tags="book" position="1875,1100" size="100,100">{=
+}</style><script role="script" id="twine-user-script" type="text/twine-javascript"></script><tw-tag name="header" color="yellow"></tw-tag><tw-tag name="stay" color="yellow"></tw-tag><tw-tag name="storylet" color="blue"></tw-tag><tw-tag name="test" color="blue"></tw-tag><tw-tag name="topic" color="purple"></tw-tag><tw-tag name="book" color="yellow"></tw-tag><tw-tag name="effect" color="yellow"></tw-tag><tw-tag name="footer" color="yellow"></tw-tag><tw-tag name="sublocation" color="green"></tw-tag><tw-tag name="traveling" color="purple"></tw-tag><tw-tag name="UI" color="orange"></tw-tag><tw-tag name="startup" color="orange"></tw-tag><tw-tag name="static-storage" color="yellow"></tw-tag><tw-passagedata pid="1" name="f.Apesai" tags="book" position="1875,1100" size="100,100">{=
 
 (dialog: [(box:&quot;X&quot;, 7)[\
 Apesai is the provincial capital of Askava.
@@ -6062,15 +6062,15 @@ $cssColumnChild[
     &quot;key&quot;, (a: &quot;social&quot;, ),
     &quot;value&quot;, (a: 1, 0, 0, 0, 0, 0),
     &quot;img&quot;, &quot;&quot;,
-    &quot;desc&quot;, [],
-    &quot;tip&quot;, [],
-    &quot;gainText&quot;, [],
+    &quot;desc&quot;, [Whispers have spread across Apesai of a fresh-off-the-boat magus who is not forthright with money, theirs and others&#39;.],
+    &quot;tip&quot;, [Being known as a swindler makes people more wary of you, but there are those who are looking for just the sort.],
+    &quot;gainText&quot;, [The people you have offended, wittingly or not, know many others. They will hear of your ill dealings.],
     &quot;gainEffect&quot;, [\
     	(for: each _char, ...(data-names: $char))[\
         	(if: _char is not &quot;player&quot;)[($funcOpinionCalc: _char, false)]\
         ]\
     ],
-    &quot;lossText&quot;, [],
+    &quot;lossText&quot;, [It was only a misunderstanding. You didn&#39;t //mean// to scam anyone out of their money. The good people of Apesai are no strangers to financial confusions, and they ought to forgive and forget.],
     &quot;lossEffect&quot;, [\
     	(for: each _char, ...(data-names: $char))[\
         	(if: _char is not &quot;player&quot;)[($funcOpinionCalc: _char, false)]\
@@ -8983,29 +8983,17 @@ $cssColumnChild[
 
 $cssColumnChild[
 
-&lt;!--progress check--&gt;
-(set: _debateProgress to ($funcCheckExists: $char&#39;s player&#39;s att, &quot;studentDebateY&quot;, 0) &gt; ($funcCheckExists: $char&#39;s player&#39;s att, &quot;studentDebateX&quot;, 0))
-
-&lt;!--who wins?--&gt;
+&lt;!--calculate debate result--&gt;
 (set: _victor to &quot;&quot;)
-(if: _debateProgress is true)[(set: _victor to &quot;Y&quot;)]
-(else:)[(set: _victor to &quot;X&quot;)]
+(display: &quot;code.studentDebate&quot;)
 
-&lt;!--inserted into final links. If the player misses the final day, on the next day, there will be an interrupt storylet that performs this reset--&gt;
-(set: _resetDebate to [\
-    &lt;!--Reset progress att--&gt;\
-    (set: _reset to ($funcCheckExists: $char&#39;s player&#39;s att, &quot;studentDebateX&quot;, 0))\
-	($funcGainLoss: &quot;att.&quot;, &quot;studentDebateX&quot;, -_reset)\
-    (set: _reset to ($funcCheckExists: $char&#39;s player&#39;s att, &quot;studentDebateY&quot;, 0))\
-	($funcGainLoss: &quot;att.&quot;, &quot;studentDebateY&quot;, -_reset)\
-])
+&lt;!--code to reset debate--&gt;
+(set: _resetDebate to [])
+(display: &quot;code.studentDebateReset&quot;)
 
-&lt;!--cheated--&gt;
+&lt;!--calculate _cheated--&gt;
 (set: _cheated to false)
-(set: _helped to false)
-(if: (($funcCheckExists: $char&#39;s player&#39;s att, &quot;studentDebateY&quot;, 0) + ($funcCheckExists: $char&#39;s player&#39;s att, &quot;studentDebateX&quot;, 0)) &gt;= 2)[(set: _helped to true)]
-(if: _victor is &quot;X&quot; and ($funcCheckExists: $char&#39;s player&#39;s inv, &quot;betTicketX&quot;, 0) &gt; 0 and _helped)[(set: _cheated to true)]
-(if: _victor is &quot;Y&quot; and ($funcCheckExists: $char&#39;s player&#39;s inv, &quot;betTicketY&quot;, 0) &gt; 0 and _helped)[(set: _cheated to true)]
+(display: &quot;code.studentDebateCheat&quot;)
 
 &lt;!--Passage text begins--&gt;
 (You run into the bookie. This may occur at the end of the last debate or back at stay.)
@@ -9030,7 +9018,7 @@ $cssColumnChild[
 (if: _cheated)[
 &lt;ol&gt;
 
-&lt;li&gt;(link: &quot;Forfeit all of your stakes. No harm, no foul.&quot;)[{
+&lt;li&gt;(link: &quot;Forfeit all of your stakes. Discard all of your tickets. No harm, no foul.&quot;)[{
     (set: _loss to ($funcCheckExists: $char&#39;s player&#39;s inv, &quot;betTicketX&quot;, 0))
     (if: _loss &gt; 0)[($funcGainLoss: &quot;item.&quot;, &quot;betTicketX&quot;, -_loss)]
     (set: _loss to ($funcCheckExists: $char&#39;s player&#39;s inv, &quot;betTicketY&quot;, 0))
@@ -9063,14 +9051,14 @@ Cash out your winnings...
 (if: _victor is &quot;X&quot;)[
 &lt;li&gt;($funcMultiBuySell: &quot;sell&quot;, &quot;betTicketX&quot;, &quot;rial&quot;, _priceMod)&lt;/li&gt;
 (set: _loss to ($funcCheckExists: $char&#39;s player&#39;s inv, &quot;betTicketY&quot;, 0))
-(if: _loss &gt; 0)[&lt;li&gt;(link: &quot;Rip up the non-winning tickets&quot;)[($funcGainLoss: &quot;item.&quot;, &quot;betTicketY&quot;, -_loss)(redirect: (passage:)&#39;s name)]]&lt;/li&gt;
+(if: _loss &gt; 0)[&lt;li&gt;(link: &quot;Discard the non-winning tickets.&quot;)[($funcGainLoss: &quot;item.&quot;, &quot;betTicketY&quot;, -_loss)(redirect: (passage:)&#39;s name)]]&lt;/li&gt;
 ]
 
 &lt;!--if Y wins--&gt;
 (if: _victor is &quot;Y&quot;)[
 &lt;li&gt;($funcMultiBuySell: &quot;sell&quot;, &quot;betTicketY&quot;, &quot;rial&quot;, _priceMod)&lt;/li&gt;
 (set: _loss to ($funcCheckExists: $char&#39;s player&#39;s inv, &quot;betTicketX&quot;, 0))
-(if: _loss &gt; 0)[&lt;li&gt;(link: &quot;Rip up the non-winning tickets&quot;)[($funcGainLoss: &quot;item.&quot;, &quot;betTicketX&quot;, -_loss)(redirect: (passage:)&#39;s name)]]&lt;/li&gt;
+(if: _loss &gt; 0)[&lt;li&gt;(link: &quot;Discard the non-winning tickets.&quot;)[($funcGainLoss: &quot;item.&quot;, &quot;betTicketX&quot;, -_loss)(redirect: (passage:)&#39;s name)]]&lt;/li&gt;
 ]
 
 &lt;li&gt;~~Shake the bookie&#39;s hand and be done with him.~~ $cssDesc[(Expend all of your tickets first.)]&lt;/li&gt;
@@ -9107,29 +9095,20 @@ $cssColumnChild[
 
 $cssColumnChild[
 
-&lt;!--progress check--&gt;
-(set: _debateProgress to ($funcCheckExists: $char&#39;s player&#39;s att, &quot;studentDebateY&quot;, 0) &gt; ($funcCheckExists: $char&#39;s player&#39;s att, &quot;studentDebateX&quot;, 0))
-
-&lt;!--who wins?--&gt;
+&lt;!--calculate debate result--&gt;
 (set: _victor to &quot;&quot;)
-(if: _debateProgress is true)[(set: _victor to &quot;Y&quot;)]
-(else:)[(set: _victor to &quot;X&quot;)]
+(display: &quot;code.studentDebate&quot;)
 
-&lt;!--inserted into final links. If the player misses the final day, on the next day, there will be an interrupt storylet that performs this reset--&gt;
-(set: _resetDebate to [\
-    &lt;!--Reset progress att--&gt;\
-    (set: _reset to ($funcCheckExists: $char&#39;s player&#39;s att, &quot;studentDebateX&quot;, 0))\
-	($funcGainLoss: &quot;att.&quot;, &quot;studentDebateX&quot;, -_reset)\
-    (set: _reset to ($funcCheckExists: $char&#39;s player&#39;s att, &quot;studentDebateY&quot;, 0))\
-	($funcGainLoss: &quot;att.&quot;, &quot;studentDebateY&quot;, -_reset)\
-])
+&lt;!--code to reset debate--&gt;
+(set: _resetDebate to [])
+(display: &quot;code.studentDebateReset&quot;)
 
 &lt;!--Passage text begins--&gt;
 &quot;Hope you&#39;ve learned your lesson. It&#39;s been good doing business with you. Looking forward to more.&quot;
 &lt;br&gt;
 ---
 
-&lt;!--determine where to go next depending on context (sublocation)--&gt;
+&lt;!--determine where to go next depending on context (sublocation). Day ends if you&#39;re meeting the bookie at the end of the last debate day (you&#39;re at the Lighthouse). Day DOES NOT end when you&#39;re at home (the next day, when you&#39;ve missed out)..--&gt;
 (set: _gotoNext to $place&#39;s sublocation)
 (if: $place&#39;s sublocation is &quot;Apesai Lighthouse&quot;)[(set: _gotoNext to &quot;mockDay&quot;)]
 
@@ -9139,7 +9118,7 @@ $cssColumnChild[
 ]&lt;!--end child--&gt;
 ]&lt;!--end parent--&gt;</tw-passagedata><tw-passagedata pid="237" name="studentDebate (Cheated Swindler)" tags="" position="850,2975" size="100,100">{=
 
-(metadata: &quot;title&quot;, &quot;A Shameful Earning&quot;, &quot;cardDesc&quot;, &quot;&quot;)
+(metadata: &quot;title&quot;, &quot;A Shameful Recuperation&quot;, &quot;cardDesc&quot;, &quot;You are allowed a meager return at the loss of both money and reputation.&quot;)
 
 $cssColumnParent[
 
@@ -9152,24 +9131,15 @@ $cssColumnChild[
 
 $cssColumnChild[
 
-&lt;!--progress check--&gt;
-(set: _debateProgress to ($funcCheckExists: $char&#39;s player&#39;s att, &quot;studentDebateY&quot;, 0) &gt; ($funcCheckExists: $char&#39;s player&#39;s att, &quot;studentDebateX&quot;, 0))
-
-&lt;!--who wins?--&gt;
+&lt;!--calculate debate result--&gt;
 (set: _victor to &quot;&quot;)
-(if: _debateProgress is true)[(set: _victor to &quot;Y&quot;)]
-(else:)[(set: _victor to &quot;X&quot;)]
+(display: &quot;code.studentDebate&quot;)
 
-&lt;!--inserted into final links. If the player misses the final day, on the next day, there will be an interrupt storylet that performs this reset--&gt;
-(set: _resetDebate to [\
-    &lt;!--Reset progress att--&gt;\
-    (set: _reset to ($funcCheckExists: $char&#39;s player&#39;s att, &quot;studentDebateX&quot;, 0))\
-	($funcGainLoss: &quot;att.&quot;, &quot;studentDebateX&quot;, -_reset)\
-    (set: _reset to ($funcCheckExists: $char&#39;s player&#39;s att, &quot;studentDebateY&quot;, 0))\
-	($funcGainLoss: &quot;att.&quot;, &quot;studentDebateY&quot;, -_reset)\
-])
+&lt;!--code to reset debate--&gt;
+(set: _resetDebate to [])
+(display: &quot;code.studentDebateReset&quot;)
 
-&lt;!--still got tickets to cash in?--&gt;
+&lt;!--still got tickets to cash in? (need checks because after selling them, the passage resets and should show different text acknowleding that you&#39;ve sold all of your tickets)--&gt;
 (set: _stillGotTickets to false)
 (if: (($funcCheckExists: $char&#39;s player&#39;s inv, &quot;betTicketX&quot;, 0) &gt; 0 or ($funcCheckExists: $char&#39;s player&#39;s inv, &quot;betTicketY&quot;, 0) &gt; 0))[(set: _stillGotTickets to true)]
 
@@ -9179,7 +9149,7 @@ $cssColumnChild[
 &quot;Give me those tickets. Come on, come get your //&#39;hard-earned&#39;// money, you cheat.&quot;
 &lt;br&gt;
 
-&lt;!--FOMO--&gt;
+&lt;!--FOMO tip text--&gt;
 $cssDesc[
 (if: _victor is &quot;X&quot; and ($funcCheckExists: $char&#39;s player&#39;s inv, &quot;betTicketX&quot;, 0) &gt; 0)[Since X was the victor, and you have ($funcCheckExists: $char&#39;s player&#39;s inv, &quot;betTicketX&quot;, 0) (print: (passage: &quot;item.betTicketX&quot;)&#39;s id), you would have gained &#39;&#39;(round: ($funcCheckExists: $char&#39;s player&#39;s inv, &quot;betTicketX&quot;, 0) * 17) rial&#39;&#39;, but your earnings are halved.]
 (elseif: _victor is &quot;Y&quot; and ($funcCheckExists: $char&#39;s player&#39;s inv, &quot;betTicketY&quot;, 0) &gt; 0)[Since Y was the victor, and you have ($funcCheckExists: $char&#39;s player&#39;s inv, &quot;betTicketY&quot;, 0) (print: (passage: &quot;item.betTicketY&quot;)&#39;s id), you would have gained &#39;&#39;(round: ($funcCheckExists: $char&#39;s player&#39;s inv, &quot;betTicketY&quot;, 0) * 30) rial&#39;&#39;, but your earnings are halved.]
@@ -9218,7 +9188,7 @@ Cash out your winnings...
 (if: _victor is &quot;Y&quot;)[
 &lt;li&gt;($funcMultiBuySell: &quot;sell&quot;, &quot;betTicketY&quot;, &quot;rial&quot;, _priceMod)&lt;/li&gt;
 (set: _loss to ($funcCheckExists: $char&#39;s player&#39;s inv, &quot;betTicketX&quot;, 0))
-(if: _loss &gt; 0)[&lt;li&gt;(link: &quot;Rip up the non-winning ticket&quot;)[($funcGainLoss: &quot;item.&quot;, &quot;betTicketX&quot;, -_loss)(redirect: (passage:)&#39;s name)]]&lt;/li&gt;
+(if: _loss &gt; 0)[&lt;li&gt;(link: &quot;Discard the non-winning ticket&quot;)[($funcGainLoss: &quot;item.&quot;, &quot;betTicketX&quot;, -_loss)(redirect: (passage:)&#39;s name)]]&lt;/li&gt;
 ]
 
 &lt;li&gt;~~Shake the bookie&#39;s hand and be done with him.~~ $cssDesc[(He&#39;s making you &quot;cash out&quot; the tickets first.)]&lt;/li&gt;
@@ -9247,6 +9217,7 @@ Cash out your winnings...
 $place&#39;s location is &quot;Apesai&quot;
 and $place&#39;s sublocation is &quot;Apesai Lighthouse&quot;
 and ($funcCheckExists: $place&#39;s events, &quot;studentDebate&quot;, &quot;inactive&quot;) is &quot;active&quot;
+and ($funcCheckExists: $char&#39;s player&#39;s att, &quot;repApesaiSwindler&quot;, 0) is &lt;= 0
 )
 (exclusivity: 1)
 (urgency: 2)
@@ -9300,7 +9271,7 @@ $cssColumnParent[
 
 $cssColumnChild[
 	$cssBox[
-    	($funcImage: (passage: &quot;event.studentDebate&quot;)&#39;s img)
+    	($funcImage: (passage: &quot;S: studentDebate (Betting)&quot;)&#39;s img)
          $cssBoxItem[&#39;&#39;(print: (passage:)&#39;s title )&#39;&#39;&lt;br&gt;(print: (passage:)&#39;s cardDesc)]
     ]
 ]
@@ -9327,7 +9298,7 @@ $cssColumnParent[
 
 $cssColumnChild[
 	$cssBox[
-    	($funcImage: (passage: &quot;event.studentDebate&quot;)&#39;s img)
+    	($funcImage: (passage: &quot;S: studentDebate (Betting)&quot;)&#39;s img)
          $cssBoxItem[&#39;&#39;(print: (passage:)&#39;s title )&#39;&#39;&lt;br&gt;(print: (passage:)&#39;s cardDesc)]
     ]
 ]
@@ -9378,7 +9349,47 @@ You choose to bet on...
 }]&lt;/li&gt;
 &lt;/ol&gt;
 ]&lt;!--end child--&gt;
-]&lt;!--end parent--&gt;</tw-passagedata><tw-passagedata pid="241" name="code.studentDebate" tags="" position="100,3100" size="100,100">{=
+]&lt;!--end parent--&gt;</tw-passagedata><tw-passagedata pid="241" name="S: studentDebate (Swinder)" tags="storylet" position="100,3100" size="100,100">{=
+(storylet: when
+$place&#39;s location is &quot;Apesai&quot;
+and $place&#39;s sublocation is &quot;Apesai Lighthouse&quot;
+and ($funcCheckExists: $place&#39;s events, &quot;studentDebate&quot;, &quot;inactive&quot;) is &quot;active&quot;
+and ($funcCheckExists: $char&#39;s player&#39;s att, &quot;repApesaiSwindler&quot;, 0) is &gt; 0
+)
+
+(exclusivity: 1)
+(urgency: 2)
+(metadata: &quot;title&quot;, &quot;An Academic Wager&quot;, &quot;cardDesc&quot;, &quot;A man is calling on people to place bets on the debate, calling on anyone but you.&quot;, &quot;img&quot;, &quot;Assets/Portraits/Event_Argue_1.png&quot;,)
+
+$cssColumnParent[
+
+$cssColumnChild[
+	$cssBox[
+    	($funcImage: (passage: &quot;S: studentDebate (Betting)&quot;)&#39;s img)
+         $cssBoxItem[&#39;&#39;(print: (passage:)&#39;s title )&#39;&#39;&lt;br&gt;(print: (passage:)&#39;s cardDesc)]
+    ]
+]
+
+$cssColumnChild[
+
+(Fool me once...)
+
+&lt;br&gt;
+
+(Instructions to clear reputation)
+
+&lt;br&gt;
+---
+&lt;ol&gt;
+&lt;li&gt;~~Place a bet on the debate&#39;s outcome.~~ $cssDesc[(The bookie is refusing to do business with you because you currently have &#39;&#39;($funcCheckExists: $char&#39;s player&#39;s att, &quot;repApesaiSwindler&quot;, 0) (print: (passage: &quot;att.repApesaiSwindler&quot;)&#39;s id)&#39;&#39;.)]
+&lt;li&gt;(link: &quot;Never mind.&quot;)[$funcBack]
+&lt;/ol&gt;
+
+
+
+
+]&lt;!--end child--&gt;
+]&lt;!--end parent--&gt;</tw-passagedata><tw-passagedata pid="242" name="code.studentDebate" tags="" position="225,3100" size="100,100">{=
 
 &lt;!--Use (display:), outputs
 _debateDaysLeft
@@ -9426,7 +9437,8 @@ _whim
 &lt;!--did the judge overrule the advantage? (output _whim)--&gt;
 (set: _whim to false)
 (if: _victor is &quot;X&quot; and _advantage &gt; 0)[(set: _whim to true)]
-(if: _victor is &quot;Y&quot; and _advantage &lt;= 0)[(set: _whim to true)]</tw-passagedata><tw-passagedata pid="242" name="code.studentDebateReset" tags="" position="225,3100" size="100,100">&lt;!--produces _resetDebate. Erases all tracker att--&gt;
+(if: _victor is &quot;Y&quot; and _advantage &lt;= 0)[(set: _whim to true)]</tw-passagedata><tw-passagedata pid="243" name="code.studentDebateReset" tags="" position="350,3100" size="100,100">{=
+&lt;!--produces _resetDebate. Erases all tracker att--&gt;
 (set: _resetDebate to [{
     &lt;!--check X--&gt;
     (set: _reset to ($funcCheckExists: $char&#39;s player&#39;s att, &quot;studentDebateX&quot;, 0))
@@ -9436,7 +9448,16 @@ _whim
     (set: _reset to ($funcCheckExists: $char&#39;s player&#39;s att, &quot;studentDebateY&quot;, 0))
     &lt;!--Erase Y--&gt;
 	($funcGainLoss: &quot;att.&quot;, &quot;studentDebateY&quot;, -_reset)
-}])</tw-passagedata><tw-passagedata pid="243" name="S: studentDebate 1c" tags="storylet" position="350,3100" size="100,100">{=
+}])</tw-passagedata><tw-passagedata pid="244" name="code.studentDebateCheat" tags="" position="475,3100" size="100,100">{=
+&lt;!--determines whether the player has cheated (output _cheated)--&gt;
+
+(set: _cheated to false)
+
+(set: _helped to false)
+(if: (($funcCheckExists: $char&#39;s player&#39;s att, &quot;studentDebateY&quot;, 0) + ($funcCheckExists: $char&#39;s player&#39;s att, &quot;studentDebateX&quot;, 0)) &gt;= 2)[(set: _helped to true)]
+
+(if: _victor is &quot;X&quot; and ($funcCheckExists: $char&#39;s player&#39;s inv, &quot;betTicketX&quot;, 0) &gt; 0 and _helped)[(set: _cheated to true)]
+(if: _victor is &quot;Y&quot; and ($funcCheckExists: $char&#39;s player&#39;s inv, &quot;betTicketY&quot;, 0) &gt; 0 and _helped)[(set: _cheated to true)]</tw-passagedata><tw-passagedata pid="245" name="S: studentDebate 1c" tags="storylet" position="600,3100" size="100,100">{=
 
 (storylet: when
 $place&#39;s location is &quot;Apesai&quot;
@@ -9471,7 +9492,7 @@ $cssColumnChild[
 &lt;/ol&gt;
 
 ]&lt;!--end child--&gt;
-]&lt;!--end parent--&gt;</tw-passagedata><tw-passagedata pid="244" name="studentDebate 1d" tags="" position="475,3100" size="100,100">(metadata:
+]&lt;!--end parent--&gt;</tw-passagedata><tw-passagedata pid="246" name="studentDebate 1d" tags="" position="725,3100" size="100,100">(metadata:
 &quot;title&quot;, &quot;Commotion Near the Lighthouse&quot;,
 &quot;cardDesc&quot;, &quot;&quot;,
 )
@@ -9497,7 +9518,7 @@ $cssColumnChild[
 &lt;li&gt;(link: &quot;Walk away. You&#39;ll return once everyone is tired of this farce.&quot;)[(goto: &quot;Apesai Lighthouse&quot;)]
 &lt;ol&gt;
 ]&lt;!--end child--&gt;
-]&lt;!--end parent--&gt;</tw-passagedata><tw-passagedata pid="245" name="studentDebate 1e" tags="" position="600,3100" size="100,100">(metadata:
+]&lt;!--end parent--&gt;</tw-passagedata><tw-passagedata pid="247" name="studentDebate 1e" tags="" position="850,3100" size="100,100">(metadata:
 &quot;title&quot;, &quot;Commotion Near the Lighthouse&quot;,
 &quot;cardDesc&quot;, &quot;&quot;,
 )
@@ -9523,7 +9544,7 @@ $cssColumnChild[
 &lt;/ol&gt;
 
 ]&lt;!--end child--&gt;
-]&lt;!--end parent--&gt;</tw-passagedata><tw-passagedata pid="246" name="S: studentDebate 1" tags="storylet" position="5450,1575" size="100,100">{=
+]&lt;!--end parent--&gt;</tw-passagedata><tw-passagedata pid="248" name="S: studentDebate 1" tags="storylet" position="5450,1575" size="100,100">{=
 
 (storylet: when
 $place&#39;s location is &quot;Apesai&quot;
@@ -9561,7 +9582,7 @@ $cssColumnChild[
 
 &lt;/ol&gt;
 ]&lt;!--end child--&gt;
-]&lt;!--end parent--&gt;</tw-passagedata><tw-passagedata pid="247" name="studentDebate 1a" tags="" position="5450,1700" size="100,100">{=
+]&lt;!--end parent--&gt;</tw-passagedata><tw-passagedata pid="249" name="studentDebate 1a" tags="" position="5450,1700" size="100,100">{=
 
 (metadata:
 &quot;title&quot;, &quot;A Streetside Argument&quot;,
@@ -9592,7 +9613,7 @@ $cssDesc[The debate will take place through out several days.]
 &lt;/ol&gt;
 
 ]&lt;!--end child--&gt;
-]&lt;!--end parent--&gt;</tw-passagedata><tw-passagedata pid="248" name="S: VehVeh Debate" tags="storylet" position="5750,1575" size="100,100">{=
+]&lt;!--end parent--&gt;</tw-passagedata><tw-passagedata pid="250" name="S: VehVeh Debate" tags="storylet" position="5750,1575" size="100,100">{=
 
 (storylet: when
 $char&#39;s VehVeh&#39;s alive is true
@@ -9632,7 +9653,7 @@ She&#39;s uncharacteristically warlike...
 
 &lt;!--The topic storylet function reads the current passage&#39;s NPC--&gt;
 ]&lt;!--end child--&gt;
-]&lt;!--end parent--&gt;</tw-passagedata><tw-passagedata pid="249" name="S: studentDebate (Labs)" tags="storylet" position="5150,1575" size="100,100">{=
+]&lt;!--end parent--&gt;</tw-passagedata><tw-passagedata pid="251" name="S: studentDebate (Labs)" tags="storylet" position="5150,1575" size="100,100">{=
 
 (storylet: when
 $place&#39;s sublocation is &quot;Apesai Lighthouse&quot;
@@ -9662,7 +9683,7 @@ $cssColumnChild[
 
 &lt;/ol&gt;
 ]&lt;!--end child--&gt;
-]&lt;!--end parent--&gt;</tw-passagedata><tw-passagedata pid="250" name="S: studentDebate (Clear)" tags="storylet" position="1225,3100" size="100,100">{=
+]&lt;!--end parent--&gt;</tw-passagedata><tw-passagedata pid="252" name="S: studentDebate (Clear)" tags="storylet" position="225,3225" size="100,100">{=
 (storylet: when
 $place&#39;s sublocation is $place&#39;s stay
 and $place&#39;s traveling is false
@@ -9713,7 +9734,7 @@ $cssColumnChild[
 ($funcQuestUpdateLink: &quot;Good for them.&quot;, &quot;studentDebate&quot;, &quot;inactive&quot;, &quot;The students of Apesai have grown tired of being at each other&#39;s throats, for now. But it seems inevitable that, some time in the future, they will relitigate their disagreements.&quot;, &quot;Debate rarely resolves anything.&quot;, [_resetDebate], $place&#39;s sublocation)
 
 ]&lt;!--end child--&gt;
-]&lt;!--end parent--&gt;</tw-passagedata><tw-passagedata pid="251" name="studentDebate VehVeh" tags="" position="5750,1700" size="100,100">{=
+]&lt;!--end parent--&gt;</tw-passagedata><tw-passagedata pid="253" name="studentDebate VehVeh" tags="" position="5750,1700" size="100,100">{=
 
 (metadata:
 &quot;title&quot;, &quot;Veh-Veh the Apprentice&quot;,
@@ -9738,7 +9759,7 @@ MY side is right, of course, you dolt!
 &lt;li&gt;(link: &quot;Ok thanks for the insight, Veh-Veh.&quot;)[$funcBack]
 &lt;/ol&gt;
 ]&lt;!--end child--&gt;
-]&lt;!--end parent--&gt;</tw-passagedata><tw-passagedata pid="252" name="S: studentDebate 2" tags="storylet" position="5575,1625" size="100,100">{=
+]&lt;!--end parent--&gt;</tw-passagedata><tw-passagedata pid="254" name="S: studentDebate 2" tags="storylet" position="5575,1625" size="100,100">{=
 
 (storylet: when
 $place&#39;s sublocation is &quot;Apesai Lighthouse&quot;
@@ -9785,7 +9806,7 @@ $cssDesc[(if: _debateDaysLeft is 1)[The debate is nearing its conclusion. Will y
 
 &lt;/ol&gt;
 ]&lt;!--end child--&gt;
-]&lt;!--end parent--&gt;</tw-passagedata><tw-passagedata pid="253" name="studentDebate 2 END" tags="" position="5575,2000" size="100,100">{=
+]&lt;!--end parent--&gt;</tw-passagedata><tw-passagedata pid="255" name="studentDebate 2 END" tags="" position="5575,2000" size="100,100">{=
 
 (metadata:
 &quot;title&quot;, &quot;The Student Debate&quot;,
@@ -9884,7 +9905,7 @@ Side Y victory.
 }]&lt;!--end if X--&gt;
 
 ]&lt;!--end child--&gt;
-]&lt;!--end parent--&gt;</tw-passagedata><tw-passagedata pid="254" name="studentDebate 2X" tags="" position="5525,1875" size="100,100">{=
+]&lt;!--end parent--&gt;</tw-passagedata><tw-passagedata pid="256" name="studentDebate 2X" tags="" position="5525,1875" size="100,100">{=
 
 (metadata:
 &quot;title&quot;, &quot;The Student Debate&quot;,
@@ -9937,7 +9958,7 @@ _whim
 }]
 
 ]&lt;!--end child--&gt;
-]&lt;!--end parent--&gt;</tw-passagedata><tw-passagedata pid="255" name="studentDebate 2Y" tags="" position="5650,1875" size="100,100">{=
+]&lt;!--end parent--&gt;</tw-passagedata><tw-passagedata pid="257" name="studentDebate 2Y" tags="" position="5650,1875" size="100,100">{=
 
 (metadata:
 &quot;title&quot;, &quot;The Student Debate&quot;,
@@ -9990,7 +10011,7 @@ _whim
 }]
 
 ]&lt;!--end child--&gt;
-]&lt;!--end parent--&gt;</tw-passagedata><tw-passagedata pid="256" name="studentDebate 2a" tags="" position="5575,1750" size="100,100">{=
+]&lt;!--end parent--&gt;</tw-passagedata><tw-passagedata pid="258" name="studentDebate 2a" tags="" position="5575,1750" size="100,100">{=
 
 (metadata:
 &quot;title&quot;, &quot;The Debate&quot;,
@@ -10061,7 +10082,7 @@ $cssDesc[{
 &lt;/ol&gt;
 
 ]&lt;!--end child--&gt;
-]&lt;!--end parent--&gt;</tw-passagedata><tw-passagedata pid="257" name="studentDebate none" tags="" position="5775,1875" size="100,100">(metadata:
+]&lt;!--end parent--&gt;</tw-passagedata><tw-passagedata pid="259" name="studentDebate none" tags="" position="5775,1875" size="100,100">(metadata:
 &quot;title&quot;, &quot;The Student Debate&quot;,
 &quot;cardDesc&quot;, &quot;Staying neutral.&quot;,
 )
@@ -10112,7 +10133,7 @@ _whim
 }]
 
 ]&lt;!--end child--&gt;
-]&lt;!--end parent--&gt;</tw-passagedata><tw-passagedata pid="258" name="Pre-Test (NEW)" tags="" position="825,3350" size="100,100">{=
+]&lt;!--end parent--&gt;</tw-passagedata><tw-passagedata pid="260" name="Pre-Test (NEW)" tags="" position="825,3350" size="100,100">{=
 
 $cssColumnParent[
 
@@ -10147,7 +10168,7 @@ $cssColumnChild[
 &lt;li&gt;[[Test L]] $cssDesc[(Events)]
 
 ]&lt;!--child end--&gt;
-]&lt;!--parent end--&gt;</tw-passagedata><tw-passagedata pid="259" name="Test A" tags="" position="1000,3350" size="100,100">{=
+]&lt;!--parent end--&gt;</tw-passagedata><tw-passagedata pid="261" name="Test A" tags="" position="1000,3350" size="100,100">{=
 
 (metadata: &quot;title&quot;, &quot;Test A (item basics)&quot;)
 
@@ -10194,7 +10215,7 @@ $cssColumnChild[
 Tests for `($funcCheckExists:)` macro, which takes (1) a datamap and (2) the name of a key that may or may not exists --&gt; outputs the value of that key if it exists. Otherwise outputs nothing:
 &lt;li&gt;sickTeacher quest: ($funcCheckExists: $char&#39;s player&#39;s quests, &quot;sickTeacher&quot;, &quot;&quot;)
 &lt;li&gt;Ginger: ($funcCheckExists: $char&#39;s player&#39;s inv, &quot;ginger&quot;, 0)
-&lt;li&gt;vigorous attribute: ($funcCheckExists: $char&#39;s player&#39;s att, &quot;vigorous&quot;, 0)</tw-passagedata><tw-passagedata pid="260" name="Test B" tags="" position="1000,3475" size="100,100">(metadata: &quot;title&quot;, &quot;Test B (buying &amp; selling)&quot;)
+&lt;li&gt;vigorous attribute: ($funcCheckExists: $char&#39;s player&#39;s att, &quot;vigorous&quot;, 0)</tw-passagedata><tw-passagedata pid="262" name="Test B" tags="" position="1000,3475" size="100,100">(metadata: &quot;title&quot;, &quot;Test B (buying &amp; selling)&quot;)
 
 (set: _priceModBuy to 2)
 (set: _priceModSell to .5)
@@ -10232,7 +10253,7 @@ Tests for `($funcCheckExists:)` macro, which takes (1) a datamap and (2) the nam
 
 &lt;br&gt;
 &#39;&#39;Player Inventory&#39;&#39;
-(print: $char&#39;s player&#39;s inv)</tw-passagedata><tw-passagedata pid="261" name="Test C" tags="" position="1000,3600" size="100,100">(metadata: &quot;title&quot;, &quot;Test C (elementalizing)&quot;)
+(print: $char&#39;s player&#39;s inv)</tw-passagedata><tw-passagedata pid="263" name="Test C" tags="" position="1000,3600" size="100,100">(metadata: &quot;title&quot;, &quot;Test C (elementalizing)&quot;)
 
 [[⇦ BACK-&gt;Pre-Test (NEW)]]
 &lt;ul&gt;
@@ -10258,7 +10279,7 @@ Based on inventory &amp; only ingredients (use this in game) &lt;br&gt;
 (print: $char&#39;s player&#39;s inv)
 &lt;br&gt;
 &#39;&#39;Player Attributes&#39;&#39;
-(print: $char&#39;s player&#39;s att)</tw-passagedata><tw-passagedata pid="262" name="Z. Test Conditions" tags="startup" position="550,3350" size="100,100">&lt;!----&gt;</tw-passagedata><tw-passagedata pid="263" name="Experimental Lab" tags="" position="1150,3875" size="100,100">{=
+(print: $char&#39;s player&#39;s att)</tw-passagedata><tw-passagedata pid="264" name="Z. Test Conditions" tags="startup" position="550,3350" size="100,100">&lt;!----&gt;</tw-passagedata><tw-passagedata pid="265" name="Experimental Lab" tags="" position="1150,3875" size="100,100">{=
 (metadata: 
 &quot;title&quot;, &quot;Experimental Lab (Test)&quot;,
 &quot;level&quot;, 3,
@@ -10275,7 +10296,7 @@ Based on inventory &amp; only ingredients (use this in game) &lt;br&gt;
 &lt;h3&gt;(print: (passage:)&#39;s title)&lt;/h3&gt;
 
 &lt;br&gt;
- ($funcVehzin: &quot;Test D&quot;)</tw-passagedata><tw-passagedata pid="264" name="Professional Lab" tags="" position="1150,3775" size="100,100">{=
+ ($funcVehzin: &quot;Test D&quot;)</tw-passagedata><tw-passagedata pid="266" name="Professional Lab" tags="" position="1150,3775" size="100,100">{=
 (metadata: 
 &quot;title&quot;, &quot;Professional Lab (Test)&quot;,
 &quot;level&quot;, 2,
@@ -10292,7 +10313,7 @@ Based on inventory &amp; only ingredients (use this in game) &lt;br&gt;
 &lt;h3&gt;(print: (passage:)&#39;s title)&lt;/h3&gt;
 
 &lt;br&gt;
- ($funcVehzin: &quot;Test D&quot;)</tw-passagedata><tw-passagedata pid="265" name="Simple Lab" tags="" position="1150,3675" size="100,100">{=
+ ($funcVehzin: &quot;Test D&quot;)</tw-passagedata><tw-passagedata pid="267" name="Simple Lab" tags="" position="1150,3675" size="100,100">{=
 
 (metadata: 
 &quot;title&quot;, &quot;Simple Lab (Test)&quot;,
@@ -10310,7 +10331,7 @@ Based on inventory &amp; only ingredients (use this in game) &lt;br&gt;
 &lt;h3&gt;(print: (passage:)&#39;s title)&lt;/h3&gt;
 
 &lt;br&gt;
- ($funcVehzin: &quot;Test D&quot;)</tw-passagedata><tw-passagedata pid="266" name="Test D" tags="" position="1000,3725" size="100,100">(metadata: &quot;title&quot;, &quot;Test D (synthesis labs)&quot;)
+ ($funcVehzin: &quot;Test D&quot;)</tw-passagedata><tw-passagedata pid="268" name="Test D" tags="" position="1000,3725" size="100,100">(metadata: &quot;title&quot;, &quot;Test D (synthesis labs)&quot;)
 
 [[⇦ BACK-&gt;Pre-Test (NEW)]]
 
@@ -10334,7 +10355,7 @@ Based on inventory &amp; only ingredients (use this in game) &lt;br&gt;
 
 (set: _result to (str:_b) + &quot; is &quot; + (str: _compare) + &quot; &quot; + (str: _a) + &quot;.&quot;)
 
-_result--&gt;</tw-passagedata><tw-passagedata pid="267" name="Test E" tags="" position="1000,4050" size="100,100">{=
+_result--&gt;</tw-passagedata><tw-passagedata pid="269" name="Test E" tags="" position="1000,4050" size="100,100">{=
 
 (metadata: &quot;title&quot;, &quot;Test E (time, place &amp; weather)&quot;)
 
@@ -10364,15 +10385,15 @@ Current location: (print: $place&#39;s sublocation), (print: $place&#39;s locati
 Staying at: (print: $place&#39;s stay).
 &lt;br&gt;
 The weather in (print: $place&#39;s location) is &#39;&#39;(print: $place&#39;s weather)&#39;&#39;:
-($funcWeatherBox:)</tw-passagedata><tw-passagedata pid="268" name="Test F Failure" tags="" position="1150,4250" size="100,100">{=
+($funcWeatherBox:)</tw-passagedata><tw-passagedata pid="270" name="Test F Failure" tags="" position="1150,4250" size="100,100">{=
 
 Uh oh, failure...
 &lt;br&gt;
-[[Back to Test F-&gt;Test F]]</tw-passagedata><tw-passagedata pid="269" name="Test F Success" tags="" position="1150,4175" size="100,100">{=
+[[Back to Test F-&gt;Test F]]</tw-passagedata><tw-passagedata pid="271" name="Test F Success" tags="" position="1150,4175" size="100,100">{=
 
 SUCCESS!
 &lt;br&gt;
-[[Back to Test F-&gt;Test F]]</tw-passagedata><tw-passagedata pid="270" name="Test F" tags="" position="1000,4200" size="100,100">{=
+[[Back to Test F-&gt;Test F]]</tw-passagedata><tw-passagedata pid="272" name="Test F" tags="" position="1000,4200" size="100,100">{=
 
 (metadata: &quot;title&quot;, &quot;Test F (checks &amp; gates)&quot;)
 
@@ -10391,38 +10412,38 @@ Check attribute without spending:
 &lt;br&gt;
 Pure luck:
 &lt;li&gt;($funcLuckGate: &quot;Try your luck&quot;, 70, &quot;Test F Success&quot;, &quot;Test F Failure&quot;)
-&lt;/ul&gt;</tw-passagedata><tw-passagedata pid="271" name="Test G Apply" tags="" position="700,4400" size="100,100">(metadata: &quot;title&quot;, &quot;Test G Applying for Permit&quot;,)
+&lt;/ul&gt;</tw-passagedata><tw-passagedata pid="273" name="Test G Apply" tags="" position="700,4400" size="100,100">(metadata: &quot;title&quot;, &quot;Test G Applying for Permit&quot;,)
 
 You submit your papers and were told to wait.
 &lt;br&gt;
 ---
 
-($funcQuestUpdateLink: &quot;You leave the immigration hall.&quot;, &quot;permitAskava&quot;, &quot;active&quot;, &quot;Your papers are submitted. It&#39;ll take a while. Try to keep yourself busy in the mean time.&quot;, &quot;Bureaucracies are the same everywhere - back home and here also.&quot;, [($funcAddTimer: &quot;permitAskava&quot;, &quot;wait&quot;)], &quot;Test G&quot;,)</tw-passagedata><tw-passagedata pid="272" name="Test G Essay Done" tags="" position="1375,4825" size="100,100">(metadata: &quot;title&quot;, &quot;Turn in Essay&quot;,)
+($funcQuestUpdateLink: &quot;You leave the immigration hall.&quot;, &quot;permitAskava&quot;, &quot;active&quot;, &quot;Your papers are submitted. It&#39;ll take a while. Try to keep yourself busy in the mean time.&quot;, &quot;Bureaucracies are the same everywhere - back home and here also.&quot;, [($funcAddTimer: &quot;permitAskava&quot;, &quot;wait&quot;)], &quot;Test G&quot;,)</tw-passagedata><tw-passagedata pid="274" name="Test G Essay Done" tags="" position="1375,4825" size="100,100">(metadata: &quot;title&quot;, &quot;Turn in Essay&quot;,)
  You turn it in on time!
  &lt;br&gt;
  $cssDesc[The deadline countdown should disappear now.]
  &lt;br&gt;
  ---
- ($funcQuestUpdateLink: &quot;Great job!&quot;, &quot;urgentAssignment&quot;, &quot;completed&quot;, &quot;You&#39;ve turned in your essay on time.&quot;, &quot;Phew!&quot;, [($funcRemoveTimer: &quot;urgentAssignment&quot;, &quot;deadline&quot;)], &quot;Test G&quot;)</tw-passagedata><tw-passagedata pid="273" name="Test G Essay Fail" tags="" position="1325,4775" size="100,100">(metadata: &quot;title&quot;, &quot;Essay Regress&quot;,)
+ ($funcQuestUpdateLink: &quot;Great job!&quot;, &quot;urgentAssignment&quot;, &quot;completed&quot;, &quot;You&#39;ve turned in your essay on time.&quot;, &quot;Phew!&quot;, [($funcRemoveTimer: &quot;urgentAssignment&quot;, &quot;deadline&quot;)], &quot;Test G&quot;)</tw-passagedata><tw-passagedata pid="275" name="Test G Essay Fail" tags="" position="1325,4775" size="100,100">(metadata: &quot;title&quot;, &quot;Essay Regress&quot;,)
 Oh no, you&#39;ve somehow made it worse!
 &lt;br&gt;
 ---
 (link-rerun: &quot;Scrap that! You&#39;ll try again tomorrow.&quot;)[\
 	(if: $char&#39;s player&#39;s att contains &quot;urgentAssignment&quot;)[($funcGainLoss: &quot;att.&quot;, &quot;urgentAssignment&quot;, -1)]\
     $funcDone
-]</tw-passagedata><tw-passagedata pid="274" name="Test G Essay Progress" tags="" position="1275,4725" size="100,100">(metadata: &quot;title&quot;, &quot;Essay Progress&quot;,)
+]</tw-passagedata><tw-passagedata pid="276" name="Test G Essay Progress" tags="" position="1275,4725" size="100,100">(metadata: &quot;title&quot;, &quot;Essay Progress&quot;,)
 Yes, little by little!
 &lt;br&gt;
 ---
 (link-rerun: &quot;Word by word.&quot;)[\
 	($funcGainLoss: &quot;att.&quot;, &quot;urgentAssignment&quot;, 1)\
     $funcDone
-]</tw-passagedata><tw-passagedata pid="275" name="Test G Failure" tags="" position="1275,4525" size="100,100">(metadata: &quot;title&quot;, &quot;Test G Dead Teacher&quot;,)
+]</tw-passagedata><tw-passagedata pid="277" name="Test G Failure" tags="" position="1275,4525" size="100,100">(metadata: &quot;title&quot;, &quot;Test G Dead Teacher&quot;,)
 
 Oh no! He&#39;s... Oh no!
 &lt;br&gt;
 ---
-($funcQuestUpdateLink: &quot;Fail the Fluxy Teacher Quest&quot;, &quot;sickTeacher&quot;, &quot;failed&quot;, &quot;He&#39;s... dead?&quot;, &quot;Can a magus even die?&quot;, [(set: $char&#39;s teacher&#39;s alive to false)], &quot;Test G&quot;)</tw-passagedata><tw-passagedata pid="276" name="Test G Receive" tags="" position="650,4475" size="100,100">(metadata: &quot;title&quot;, &quot;Test G Receive Permit&quot;,)
+($funcQuestUpdateLink: &quot;Fail the Fluxy Teacher Quest&quot;, &quot;sickTeacher&quot;, &quot;failed&quot;, &quot;He&#39;s... dead?&quot;, &quot;Can a magus even die?&quot;, [(set: $char&#39;s teacher&#39;s alive to false)], &quot;Test G&quot;)</tw-passagedata><tw-passagedata pid="278" name="Test G Receive" tags="" position="650,4475" size="100,100">(metadata: &quot;title&quot;, &quot;Test G Receive Permit&quot;,)
 
 The clerk hands you your permit.
 &lt;br&gt;
@@ -10433,7 +10454,7 @@ The clerk hands you your permit.
 ($funcQuestUpdateLink: &quot;You leave the immigration hall.&quot;, &quot;permitAskava&quot;, &quot;completed&quot;, &quot;It is done. You can finally leave this island and enter Askava proper.&quot;, &quot;Where your residency can begin in earnest.&quot;, [\
 	($funcGainLoss: &quot;item.&quot;, &quot;permitAskava&quot;, 1)\
 	($funcRemoveTimer: &quot;permitAskava&quot;, &quot;wait&quot;)\
-], &quot;Test G&quot;,)</tw-passagedata><tw-passagedata pid="277" name="Test G Sample Storylet 1" tags="test" position="1150,4375" size="100,100">{=
+], &quot;Test G&quot;,)</tw-passagedata><tw-passagedata pid="279" name="Test G Sample Storylet 1" tags="test" position="1150,4375" size="100,100">{=
 
 (storylet: when
 (passage:)&#39;s name is &quot;Test G&quot;
@@ -10446,7 +10467,7 @@ Oh no, your teacher is sick!
 &lt;br&gt;
 ---
 ($funcQuestUpdateLink: &quot;Begin the Fluxy Teacher Quest&quot;, &quot;sickTeacher&quot;, &quot;active&quot;, &quot;You found your teacher with his butt glued to the latrine. Nothing a little healing tonic can&#39;t help with.&quot;, &quot;You know what to do, right?&quot;, [], &quot;Test G&quot;)
-&lt;!--[[Test G]]--&gt;</tw-passagedata><tw-passagedata pid="278" name="Test G Sample Storylet 2" tags="test" position="1150,4500" size="100,100">{=
+&lt;!--[[Test G]]--&gt;</tw-passagedata><tw-passagedata pid="280" name="Test G Sample Storylet 2" tags="test" position="1150,4500" size="100,100">{=
 
 (storylet: when
 (passage:)&#39;s name is &quot;Test G&quot;
@@ -10464,7 +10485,7 @@ Oh no, your teacher is sick!
 &lt;li&gt;[[Never mind-&gt;Test G]]
 &lt;/ol&gt;
 
-&lt;!--[[Test G Success]][[Test G Failure]]--&gt;</tw-passagedata><tw-passagedata pid="279" name="Test G Sample Storylet 4" tags="test" position="1150,4650" size="100,100">{=
+&lt;!--[[Test G Success]][[Test G Failure]]--&gt;</tw-passagedata><tw-passagedata pid="281" name="Test G Sample Storylet 4" tags="test" position="1150,4650" size="100,100">{=
 
 (storylet: when
 (passage:)&#39;s name is &quot;Test G&quot;
@@ -10482,7 +10503,7 @@ $cssDesc[This is an example of a timed quest, where the quest auto-fails.]
 &lt;ol&gt;
 &lt;li&gt;($funcQuestUpdateLink: &quot;Time to get to it!&quot;, &quot;urgentAssignment&quot;, &quot;active&quot;, &quot;You begin your assignment. Time is limited.&quot;, &quot;No reason to dwadle.&quot;, [($funcAddTimer: &quot;urgentAssignment&quot;, &quot;deadline&quot;)], &quot;Test G&quot;)
 &lt;li&gt;[[Never mind-&gt;Test G]]
-&lt;/ol&gt;</tw-passagedata><tw-passagedata pid="280" name="Test G Sample Storylet 5" tags="test" position="1150,4775" size="100,100">{=
+&lt;/ol&gt;</tw-passagedata><tw-passagedata pid="282" name="Test G Sample Storylet 5" tags="test" position="1150,4775" size="100,100">{=
 
 (storylet: when
 (passage:)&#39;s name is &quot;Test G&quot;
@@ -10504,7 +10525,7 @@ $cssDesc[Contribute temp values for the quest.]
 &lt;li&gt;($funcCheckGate: &quot;Turn in what you have&quot;, &quot;att&quot;, &quot;urgentAssignment&quot;, 2, true, 100, &quot;Test G Essay Done&quot;, &quot;&quot;)&lt;!--Only [[Test G Essay Done]] exists due to 100% success chance--&gt;
 
 &lt;li&gt;[[Never mind-&gt;Test G]]
-&lt;/ol&gt;</tw-passagedata><tw-passagedata pid="281" name="Test G Sample Storylet 6" tags="test" position="1150,4900" size="100,100">{=
+&lt;/ol&gt;</tw-passagedata><tw-passagedata pid="283" name="Test G Sample Storylet 6" tags="test" position="1150,4900" size="100,100">{=
 
 (storylet: when
 (passage:)&#39;s name is &quot;Test G&quot;
@@ -10524,7 +10545,7 @@ $cssDesc[This storylet should only appear once after you&#39;ve failed the quest
 	($funcGainLoss: &quot;att.&quot;, &quot;urgentAssignment&quot;, -_reset)\
     ($funcRemoveTimer: &quot;urgentAssignment&quot;, &quot;deadline&quot;)\
     (goto: &quot;Test G&quot;)\
-    ]&lt;!--[[Test G]]--&gt;</tw-passagedata><tw-passagedata pid="282" name="Test G Sample Storylet 7" tags="test" position="825,4450" size="100,100">{=
+    ]&lt;!--[[Test G]]--&gt;</tw-passagedata><tw-passagedata pid="284" name="Test G Sample Storylet 7" tags="test" position="825,4450" size="100,100">{=
 
 (storylet: when
 (passage:)&#39;s name is &quot;Test G&quot;
@@ -10553,12 +10574,12 @@ In the meantime, you&#39;re just the same as everyone else here: peasants, labor
     (else:)[&lt;li&gt;~~Receive your permit.~~ $cssDesc[(Your entry application is being processed.)]]
 ]
 &lt;li&gt;[[Never mind-&gt;Test G]]
-&lt;/ol&gt;</tw-passagedata><tw-passagedata pid="283" name="Test G Success" tags="" position="1275,4400" size="100,100">(metadata: &quot;title&quot;, &quot;Test G Healed Teacher&quot;,)
+&lt;/ol&gt;</tw-passagedata><tw-passagedata pid="285" name="Test G Success" tags="" position="1275,4400" size="100,100">(metadata: &quot;title&quot;, &quot;Test G Healed Teacher&quot;,)
 
 Yay!, He&#39;s feeling better!
 &lt;br&gt;
 ---
-($funcQuestUpdateLink: &quot;Complete the Fluxy Teacher Quest&quot;, &quot;sickTeacher&quot;, &quot;completed&quot;, &quot;You gave your teacher his medicine. He&#39;s feeling better now.&quot;, &quot;We can get going, finally.&quot;, [], &quot;Test G&quot;)</tw-passagedata><tw-passagedata pid="284" name="Test G" tags="" position="975,4650" size="100,100">{=
+($funcQuestUpdateLink: &quot;Complete the Fluxy Teacher Quest&quot;, &quot;sickTeacher&quot;, &quot;completed&quot;, &quot;You gave your teacher his medicine. He&#39;s feeling better now.&quot;, &quot;We can get going, finally.&quot;, [], &quot;Test G&quot;)</tw-passagedata><tw-passagedata pid="286" name="Test G" tags="" position="975,4650" size="100,100">{=
 
 (metadata: &quot;title&quot;, &quot;Test G (quests)&quot;)
 
@@ -10579,7 +10600,7 @@ Yay!, He&#39;s feeling better!
 	&lt;li&gt;(link-rerun: _testStory&#39;s title)[(goto: _testStory&#39;s name)]\
 ]\
 
-&lt;/ul&gt;</tw-passagedata><tw-passagedata pid="285" name="Test H PickStay" tags="" position="1125,5200" size="100,100">{=
+&lt;/ul&gt;</tw-passagedata><tw-passagedata pid="287" name="Test H PickStay" tags="" position="1125,5200" size="100,100">{=
 (metadata: &quot;title&quot;, &quot;Picking a Place to Stay at Rokhab (test)&quot;)
 
 You&#39;re thinking about where to stay.
@@ -10587,7 +10608,7 @@ You&#39;re thinking about where to stay.
 &lt;br&gt;
 ---
 &lt;li&gt;($funcPickStay: &quot;Stay at the caravanserai, where all the traders and travelers do.&quot;, &quot;Rokhab Caravanserai&quot;)
-&lt;li&gt;($funcPickStay: &quot;Slum it in an alleyway, between the warehouses and the dock.&quot;, &quot;Rokhab Vagrant Camp&quot;)</tw-passagedata><tw-passagedata pid="286" name="Test H Rokhab" tags="test" position="1125,5075" size="100,100">{=
+&lt;li&gt;($funcPickStay: &quot;Slum it in an alleyway, between the warehouses and the dock.&quot;, &quot;Rokhab Vagrant Camp&quot;)</tw-passagedata><tw-passagedata pid="288" name="Test H Rokhab" tags="test" position="1125,5075" size="100,100">{=
 
 (storylet: when
 (passage:)&#39;s name is &quot;Traveling&quot;
@@ -10604,7 +10625,7 @@ You&#39;ve arrived in Rokhab. Disembark?
 &lt;ol&gt;
 &lt;li&gt;($funcArrive: &quot;Get settled in Rokhab&quot;, &quot;Test H PickStay&quot;)&lt;!--[[Test H PickStay]]--&gt;
 &lt;li&gt;(link-rerun: &quot;Not yet&quot;)[(goto: &quot;Traveling&quot;)]
-&lt;/ol&gt;</tw-passagedata><tw-passagedata pid="287" name="Test H" tags="" position="975,5100" size="100,100">{=
+&lt;/ol&gt;</tw-passagedata><tw-passagedata pid="289" name="Test H" tags="" position="975,5100" size="100,100">{=
 
 (metadata: &quot;title&quot;, &quot;Test H (traveling)&quot;)
 
@@ -10624,7 +10645,7 @@ Now, let&#39;s travel from here ((print: $place&#39;s location)) to...
 &lt;li&gt;($funcDepart: &quot;The fishing village of Rokhab.&quot;, &quot;Rokhab&quot;)
 &lt;li&gt;($funcDepart: &quot;The ruins of Navveh.&quot;, &quot;Navveh&quot;)
 &lt;li&gt;($funcDepart: &quot;The mysterious land known only as &#39;test location&#39;.&quot;, &quot;test&quot;)
-&lt;/ul&gt;</tw-passagedata><tw-passagedata pid="288" name="Test I" tags="" position="975,5400" size="100,100">{=
+&lt;/ul&gt;</tw-passagedata><tw-passagedata pid="290" name="Test I" tags="" position="975,5400" size="100,100">{=
 
 (metadata: &quot;title&quot;, &quot;Test I (navigating sublocations)&quot;)
 
@@ -10643,7 +10664,7 @@ Sublocations in Apesai:
 Set knowledge:
 &lt;li&gt;(link-rerun: &quot;I know where the Lighthouse is.&quot;)[($funcGainLoss: &quot;att.&quot;, &quot;knowApesaiLighthouse&quot;, 1, )(redirect: (passage:)&#39;s name)]
 &lt;li&gt;(link-rerun: &quot;I learn a bit about the Yavanid quarter.&quot;)[($funcGainLoss: &quot;att.&quot;, &quot;knowApesaiPleasure&quot;, 1, )(redirect: (passage:)&#39;s name)]
-&lt;/ul&gt;</tw-passagedata><tw-passagedata pid="289" name="Test J" tags="" position="975,5550" size="100,100">{=
+&lt;/ul&gt;</tw-passagedata><tw-passagedata pid="291" name="Test J" tags="" position="975,5550" size="100,100">{=
 
 (metadata: &quot;title&quot;, &quot;Test J (NPCs)&quot;)
 
@@ -10693,15 +10714,15 @@ Set knowledge:
         &lt;br&gt;
     ]\
 ]]
-&lt;/details&gt;</tw-passagedata><tw-passagedata pid="290" name="Test K Fail" tags="" position="1100,5800" size="100,100">{=
+&lt;/details&gt;</tw-passagedata><tw-passagedata pid="292" name="Test K Fail" tags="" position="1100,5800" size="100,100">{=
 
 Failure! But you still lost your wounds!? How?
 &lt;br&gt;
-(link: &quot;Back&quot;)[(goto: &quot;Test K&quot;)]</tw-passagedata><tw-passagedata pid="291" name="Test K Success" tags="" position="1100,5675" size="100,100">{=
+(link: &quot;Back&quot;)[(goto: &quot;Test K&quot;)]</tw-passagedata><tw-passagedata pid="293" name="Test K Success" tags="" position="1100,5675" size="100,100">{=
 
 Yay, you lost your wounds!
 &lt;br&gt;
-(link: &quot;Back&quot;)[(goto: &quot;Test K&quot;)]</tw-passagedata><tw-passagedata pid="292" name="Test K" tags="" position="975,5725" size="100,100">{=
+(link: &quot;Back&quot;)[(goto: &quot;Test K&quot;)]</tw-passagedata><tw-passagedata pid="294" name="Test K" tags="" position="975,5725" size="100,100">{=
 
 (metadata: &quot;title&quot;, &quot;Test K (Temps)&quot;)
 
@@ -10724,7 +10745,7 @@ Yay, you lost your wounds!
 
 &lt;li&gt;($funcCheckGate: &quot;Check for 2 wounds&quot;, &quot;temp&quot;, &quot;wound&quot;, 2, true, 50, &quot;Test K Success&quot;, &quot;Test K Fail&quot;)
 
-&lt;/ol&gt;</tw-passagedata><tw-passagedata pid="293" name="Test L" tags="" position="350,3725" size="100,100">(metadata: &quot;title&quot;, &quot;Test L (buying &amp; selling)&quot;)
+&lt;/ol&gt;</tw-passagedata><tw-passagedata pid="295" name="Test L" tags="" position="600,3725" size="100,100">(metadata: &quot;title&quot;, &quot;Test L (buying &amp; selling)&quot;)
 
 {=
 

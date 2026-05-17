@@ -6,15 +6,15 @@
     "key", (a: "social", ),
     "value", (a: 1, 0, 0, 0, 0, 0),
     "img", "",
-    "desc", [],
-    "tip", [],
-    "gainText", [],
+    "desc", [Whispers have spread across Apesai of a fresh-off-the-boat magus who is not forthright with money, theirs and others'.],
+    "tip", [Being known as a swindler makes people more wary of you, but there are those who are looking for just the sort.],
+    "gainText", [The people you have offended, wittingly or not, know many others. They will hear of your ill dealings.],
     "gainEffect", [\
     	(for: each _char, ...(data-names: $char))[\
         	(if: _char is not "player")[($funcOpinionCalc: _char, false)]\
         ]\
     ],
-    "lossText", [],
+    "lossText", [It was only a misunderstanding. You didn't //mean// to scam anyone out of their money. The good people of Apesai are no strangers to financial confusions, and they ought to forgive and forget.],
     "lossEffect", [\
     	(for: each _char, ...(data-names: $char))[\
         	(if: _char is not "player")[($funcOpinionCalc: _char, false)]\

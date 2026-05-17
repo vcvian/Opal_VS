@@ -4,6 +4,7 @@
 $place's location is "Apesai"
 and $place's sublocation is "Apesai Lighthouse"
 and ($funcCheckExists: $place's events, "studentDebate", "inactive") is "active"
+and ($funcCheckExists: $char's player's att, "repApesaiSwindler", 0) is <= 0
 )
 (exclusivity: 1)
 (urgency: 2)
@@ -61,7 +62,7 @@ $cssColumnParent[
 
 $cssColumnChild[
 	$cssBox[
-    	($funcImage: (passage: "event.studentDebate")'s img)
+    	($funcImage: (passage: "S: studentDebate (Betting)")'s img)
          $cssBoxItem[''(print: (passage:)'s title )''<br>(print: (passage:)'s cardDesc)]
     ]
 ]
@@ -91,7 +92,7 @@ $cssColumnParent[
 
 $cssColumnChild[
 	$cssBox[
-    	($funcImage: (passage: "event.studentDebate")'s img)
+    	($funcImage: (passage: "S: studentDebate (Betting)")'s img)
          $cssBoxItem[''(print: (passage:)'s title )''<br>(print: (passage:)'s cardDesc)]
     ]
 ]
@@ -143,3 +144,4 @@ You choose to bet on...
 </ol>
 ]<!--end child-->
 ]<!--end parent-->
+
