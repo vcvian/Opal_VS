@@ -10,6 +10,12 @@
     "tip", [This document permits you a one-time passage from Apesai into mainland Askava, collected at either of the 3 major shores: Rokhab, Navveh, or Zirab. Valid once.],
     "gainText", [After some trouble, you are finally granted a permit into Askava.],
     "lossText", [You are loath to part with the precious papyrus, mostly because it will be bother to get another one if you ever make another trip from the island into the mainland.],
-    "content", [],
+    "content", [
+(Permit content)
+<br>
+---
+(link: "Put the permit away.")[(goto: $readingNav's before)]
+<!--end of content-->
+    ],
 
 )

@@ -15,7 +15,7 @@ and ($funcCheckExists: $place's events, "studentDebate", "inactive") is "active"
 "NPC", "VehVeh",
 "title", "Veh-Veh the Apprentice",
 "cardDesc", "Veh-Veh has picked her side of the fight.",
-"img", "D:/GHE/Site/VCV(html)/Opal/Assets/Portraits/Girl_1.png", 
+"img", "Assets/Portraits/Girl_1.png", 
 )
 
 
@@ -33,7 +33,7 @@ She's uncharacteristically warlike...
 <br>
 ---
 <ol>
-<li>[[Talk to her about the debate. Which side is right? -> studentDebate VehVeh]]
+<li>(link: "Talk to her about the debate. Which side is right?")[(goto: "studentDebate VehVeh")]
 <li>(link: "Never mind.")[$funcBack]
 </ol>
 

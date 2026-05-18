@@ -40,3 +40,21 @@ hr {
   background: -o-linear-gradient(to right, transparent, white, transparent); /* For older Opera browsers */
   margin: 30px 0; /* Adds some spacing above and below */
 }
+
+.rainbow {
+  background-image: linear-gradient(to right, violet, indigo, blue, green, yellow, orange, red, violet);
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  display: inline-block;
+  animation: moveRainbowRight 5s linear infinite;
+}
+
+@keyframes moveRainbowRight {
+  0% {
+    background-position: 200% center;
+  }
+  100% {
+    background-position: 0% center;
+  }
+}

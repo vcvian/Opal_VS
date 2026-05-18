@@ -16,6 +16,8 @@ $cssColumnChild[
 (link: "Restart game")[(restart:)]
 <br>
 (link-rerun: "End day (mock)")[(goto: "mockDay")]
+<br>
+
 ]<!--end child-->
 
 $cssColumnChild[
@@ -32,6 +34,7 @@ $cssColumnChild[
 <li>[[Test J]] $cssDesc[(NPCs)]
 <li>[[Test K]] $cssDesc[(Temporary conditions and impressions)]
 <li>[[Test L]] $cssDesc[(Events)]
+<li>[[Test M]] $cssDesc[(Reading books)]
 
 ]<!--child end-->
 ]<!--parent end-->

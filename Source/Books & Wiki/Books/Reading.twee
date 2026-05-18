@@ -1,0 +1,33 @@
+:: Reading
+
+(metadata:
+    "title", "Reading",
+)
+
+<!--load full book DM-->
+(set: _bookDM to (passage: "item." + (str: $readingNav's reading)))
+
+$cssColumnParent[
+
+$cssColumnChild[
+
+    (css: "font-size: 70%")[
+        $cssColumnChild[(link: "⇦ Never mind.")[(goto: $readingNav's before)]]
+        $cssColumnChild[(link: "↺ Start over.")[(redirect: (passage:)'s name)]]
+    ]
+
+	$cssBox[
+    	($funcImage: _bookDM's img)
+         $cssBoxItem[''Reading: //(print: _bookDM's id)//''
+         <br>(print: _bookDM's desc)
+         <br>$cssDesc[	↪	(print: _bookDM's tip)]
+         (if: _bookDM's key contains "long")[<br>$cssDesc[	↪	⧗ This is a longer document. It may take an entire day or more to fully absorb it.]]]
+    ]
+]
+
+$cssColumnChild[
+
+(print: _bookDM's content)
+
+]<!--child end-->
+]<!--parent end-->

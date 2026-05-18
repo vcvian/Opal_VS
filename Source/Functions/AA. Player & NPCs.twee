@@ -19,7 +19,7 @@
 
 "quests", (dm:),
 
-"craftFormula", (a: "healingTonic", "sample1","sample2","sample3"),
+"craftFormula", (a:),
 
 "timerCraft", (dm:),
 "timerCooldown", (dm:),

@@ -16,6 +16,7 @@
         "questTimer", true,
         "NPC", true,
         "dice", true,
+        "arcane", true,
     	)
 ))
 

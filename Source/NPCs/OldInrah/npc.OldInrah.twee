@@ -8,6 +8,7 @@
 "color", #c7a069,
 "opinionBonus", (dm:
 	"repFamilyBizGood", 2,
+	"repApesaiSwindler", -10,
 ),
 "travelItinerary", (dm:
 	"default", (dm:

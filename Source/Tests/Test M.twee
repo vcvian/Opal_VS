@@ -1,0 +1,66 @@
+:: Test M
+(metadata: "title", "Test M (reading books)")
+
+{=
+
+[[⇦ BACK->Pre-Test (NEW)]]
+<br>
+
+$cssColumnParent[
+
+<!--add/remove from inventory-->
+$cssColumnChild[
+''Manipulate Inventory''
+
+<ol>
+(for: each _book, ...(passages: where its name contains "item."))[{
+    (if: _book contains "key")[
+        (if: _book's key contains "document")[
+            (set: _bookName to (trimmed: "item.",_book's name))
+            (set: _bookDM to (passage: "item." + _bookName))
+            (set: _currentInventory to ($funcCheckExists: $char's player's inv, _bookName, 0))
+
+            ''(print: _book's id)''
+<br>
+            <li>(link-rerun: "Gain 1 //(print: _bookDM's id)//")[($funcGainLoss: "item.", _bookName, 1)(redirect: (passage:)'s name)]
+            <li>(link-rerun: "Lose all //(print: _bookDM's id)//")[($funcGainLoss: "item.", _bookName, -_currentInventory)(redirect: (passage:)'s name)]              
+        ]
+    ]
+}]
+</ol>
+
+
+''Inventory''
+<br>
+(print: $char's player's inv)
+
+]<!--end of child-->
+
+<!--book lists-->
+$cssColumnChild[
+''Arbitrary List''
+<br>$cssDesc[This list was manually coded.]
+<ol>
+<li>($funcRead: "healingTonicBook", (passage:)'s name)
+<li>($funcRead: "permitAskava", (passage:)'s name)
+</ol>
+
+<br>
+''Procedural List''
+<br>$cssDesc[This list was generated from the player's inventory.]
+
+<ol>
+(for: each _itemName, ...(datanames: $char's player's inv))[{
+    <!--load item's DM-->
+    (set: _itemDM to (passage: "item." + _itemName))
+    <!--loop-->
+    (if: _itemDM contains "key")[
+        (if: _itemDM's key contains "document")[
+            <li>($funcRead: _itemName, (passage:)'s name)             
+        ]
+    ]
+}]
+</ol>
+
+]<!--end child-->
+]<!--end parent-->

@@ -19,13 +19,14 @@ However, as the game goes on, a confident player might find the messages repetit
 	"currency", "''Money:'' $cssDesc[A medium of exchange, used in most major markets.]",
 	"element", "''Element:'' $cssDesc[The building blocks of magic.]",
 	"attribute", "''Attribute:'' $cssDesc[What is it about you?]",
-	"condition", "''Temporary Condition:'' $cssDesc[Effects that temporarily affects you.]",
+	"condition", "''Temporary Condition:'' $cssDesc[Things that temporarily affects you.]",
 	"conTick", "''Condition's Tick:'' $cssDesc[Daily effects from having a condition.]",
 	"craftTimer", "''Synthesis Timer:'' $cssDesc[Making things take time; this is when it's done.]",
 	"quest", "''Story:'' $cssDesc[When an on-going story is updated. (Due to technical issues, this toggle does not work yet).]",
 	"questTimer", "''Story Timer:'' $cssDesc[Some stories are timed. (Due to technical issues, this toggle does not work yet).]",
     "NPC", "''People:'' $cssDesc[You'll meet notable people, and their opinion matters. You'll want to be informed if that changes.]",
     "dice", "''Dice rolls:'' $cssDesc[Some times, you'll have to take a risk, upon success or failure, you'll be notified.]",
+	"arcane", "''Arcane Knowledge:'' $cssDesc[Learning the workings of magic.]",
 ))
 
 <ul>

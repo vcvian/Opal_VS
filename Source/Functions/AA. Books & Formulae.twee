@@ -1,0 +1,79 @@
+:: AA.  Books & Formulae [startup]
+{=
+<!--Macros related to books and reading-->
+
+(set: $readingNav to (dm:
+    "before", "",
+    "reading", "",
+    "after", "",
+))
+
+<!--function will:
+    1. Takes book name (w/o "item.") as argument.
+    2. Creates link to book "content" page ("Reading" passage).
+    3. Link saves the "before" (declare arguments).
+    4. Automatically determines the "after" based on the DM's "long" key.
+    4. Indicates if book will take whole day to read.
+    -->
+(set: $funcRead to (macro: str-type _bookName, str-type _before, [(out:)[{
+    <!--Load full book DM-->
+    (set: _bookDM to (passage: "item." + _bookName))
+    (set: _bookID to (str: _bookDM's id))
+
+    <!--long? Or can read in a day?-->
+    (set: _long to false)
+    (if: _bookDM's key contains "long")[(set: _long to true)]
+
+    <!--Create link-->
+    Read //(link-rerun: _bookID)[
+        <!--Reload full book DM-->
+        (set: _bookDM to (passage: "item." + _bookName))
+    
+        <!--saves to $readingNav-->
+        (set: $readingNav's before to _before)
+        (set: $readingNav's reading to _bookName)
+
+        (if: _long)[(set: $readingNav's after to "mockDay")]
+        (else:)[(set: $readingNav's after to _before)]
+
+        <!--then goto-->
+        (goto: "Reading")
+    ]<!--end of link-->
+    //<!--end of italicize book's name-->
+    
+    <!--long text warning-->
+    (if: _long)[<br>$cssDesc[(⧗ Longer document: Takes a whole day or more to read.)]]
+
+}]]))
+
+(set: $funcLearnFormula to (macro: str-type _itemName, [(out:)[{
+    <!--Load item's full DM-->
+    (set: _itemDM to (passage: "item." + _itemName))
+
+    <!--Check if formula is already known-->
+    (set: _alreadyKnow to false)
+    (if: $char's player's craftFormula contains _itemName)[(set: _alreadyKnow to true)]
+
+    <!--if not known, then add, then notify-->
+    (unless: _alreadyKnow)[
+        <!--add-->
+        (set: $char's player's craftFormula to it + (a: _itemName))
+        
+        <!--determine level readout-->
+        (set: _level to "")
+        (if: _itemDM's level is 1)[(set: _level to "simple")]
+        (elseif: _itemDM's level is 2)[(set: _level to "complex")]
+        (elseif: _itemDM's level is 3)[(set: _level to "exotic")]
+
+        <!--Notify-->
+        ($funcNoti: "arcane", [''<span class="rainbow">Learned new formula:</span>'' <br> You now know how to synthesize ''(print: _itemDM's id)''. <br> $cssDesc[(Have|need at least: ($funcElementHaveNeed: _itemName, 1) Requires a ''_level'' workstation or better.)] <br>
+---
+        <br> ''(print: _itemDM's id)'' <br> (print: _itemDM's desc) <br> $cssDesc[(print: _itemDM's tip)]], "✓")
+        <!--end of notification-->
+
+        <!--log-->
+        (set: $log to it + (a: "''" + (str: (passage:)'s title) + "'': " + "<span class=\"rainbow\">Learned new formula</span>" + " for ''" + (str: _itemDM's id) + "'' ($funcLogTip: \"item.\",\"" + (str:_itemName) + "\"). Requires a ''" + (str: _level) + "'' workstation or better."))
+        <!--end of log-->
+
+    ]<!--end of already know + adding + notifying-->
+}]]))
