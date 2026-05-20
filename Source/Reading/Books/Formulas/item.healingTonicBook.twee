@@ -2,7 +2,7 @@
 {=
 (metadata: 
 	"id", [A Student's First Medicine],
-    "key", (a: "document", "long",),
+    "key", (a: "document", "book", "long",),
     "value", (a: 40, 0, 0, 0, 0, 20,),
     "img", "https://images.fallenlondon.com/icons/book.png",
     "desc", [This thin monograph, published by the Sisua University Press, contains the instructions to synthesize a liquid suspension of Gor, widely sold as a catch-all medicine. The text is written plainly but assumes that the reader has access to a modern vehzin-powered laboratory. It is probably meant to be a reference book for apprentice magi.],
@@ -113,7 +113,7 @@ Large-scale, industrial workshops will use a slightly different ratio, but for t
 ](8|
 
 
-[`[...]` Next, having assembled all of your ingredients, we will revise a few basic safety procedures related to elementalizing equipment, or "extractors" as it is called in the western schools, or "destructors" if you are studying in the south - an unfortunate name.
+[`[...]` Next, having assembled all of your ingredients, we will revise a few basic safety procedures related to elementalysis equipment, or "extractors" as it is called in the western schools, or "destructors" if you are studying in the south - an unfortunate name.
 <br>
 The key take-away, as your teachers would surely have drilled into you by now, is to ''never extract what you cannot afford to contain''.
 <br>
@@ -132,7 +132,9 @@ However, with proper oversight from a lab instructor, this will never `[...]`
 <br>
 After, in the appendix, the more conscientious student will find a few "tips" to avoid damaging your school's - no doubt, very expensive - laboratory equipment. `[...]`
 <br>
-$cssDesc[(The rest of the book is instructive, and you breeze through it. Of course you do; you're no apprentice! Then again, even a master needs a reminder once in a while. You commit the procedure to memory. When faced with a magic workstation, you'll know what to do.)]
+$cssDesc[The rest of the book is instructive, and you breeze through it. Of course you do; you're no apprentice! Then again, even a master needs a reminder once in a while.
+<br>
+You commit the procedure to memory. When faced with a magic workstation, you'll know what to do.]
 <br>
 ($funcInnerConvo: (dm:
     "<!--A-->Finish reading this book.", "doneReading",

@@ -25,9 +25,14 @@ $cssColumnChild[
 ]]
 ---
 <ol>
-<li>(if: ($funcCheckExists: $char's player's inv, "supplies", 0) > 0 or (passage: $place's stay)'s currency is not "supplies")[[[Rest, without aid.->Heal 1a]]](else:)[~~Rest, without aid~~ $cssDesc[(Won't work. You're too hungry. Find some ''(print: (passage: "item.supplies")'s id)'' or find proper lodging.)]]
+<li>(if: ($funcCheckExists: $char's player's inv, "supplies", 0) > 0 or (passage: $place's stay)'s currency is not "supplies")[[[Rest, without aid.->Heal 1a]]]
+
+(else:)[~~Rest, without aid~~ $cssDesc[(Won't work. You're too hungry. Find some ''(print: (passage: "item.supplies")'s id)'' or find proper lodging.)]]
+
 <li>($funcCheckGate: "Drink a medicinal tonic, then rest.", "inv", "healingTonic", 1, true, 100, "Heal 1b", "")
+
 <li>(link: "No, there are other things to do. You'll be fine.")[$funcBack]
+
 </ol>
 ]<!--end child-->
 ]<!--end parent-->

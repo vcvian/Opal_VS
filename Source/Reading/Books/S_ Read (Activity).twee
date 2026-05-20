@@ -1,0 +1,48 @@
+:: S: Reading (Activity) [storylet]
+{=
+
+(storylet: when
+(passage:)'s name is $place's stay
+)
+(metadata:
+"title", "Read Something",
+"cardDesc", "Studying textbooks, reading letters, examining documents - a scholar's favorite pastime.",
+"img", "https://images.fallenlondon.com/icons/book.png",
+)
+(urgency: -1)
+
+
+$cssColumnParent[
+
+$cssColumnChild[
+
+    (css: "font-size: 70%")[
+        $cssColumnChild[(link: "⇦ Never mind.")[(goto: $place's sublocation)]]
+    ]
+
+	$cssBox[
+    	($funcImage: (passage:)'s img)
+         $cssBoxItem[''(print: (passage:)'s title )''<br>(print: (passage:)'s cardDesc)]
+    ]
+]
+
+$cssColumnChild[
+
+(storylet introduction)
+<br>
+$cssDesc[(gameplay tips)]
+<br>
+---
+
+<!--No need to build a list. Just feed the entire inventory to $funcReadingList, and it will automatically filter out non-documents-->
+
+($funcReadingList: (datanames: $char's player's inv))
+
+
+<ol>
+<br>Actually...
+<li>(link: "Never mind.")[(goto: $place's sublocation)]
+</ol>
+
+]<!--end child-->
+]<!--end parent-->

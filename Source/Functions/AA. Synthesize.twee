@@ -151,7 +151,7 @@ Ex: 2|1 At, 0|1 Ab, 2|3 Gor, 0|2 Rokh, 0|0 Zam -->
 			]\
 				(if: _atMost > 10 and 10 <= (passage:)'s max)[(set: _manyOptions to it + (a: (str: _atMost)))]\
 			<!--Dialog-->\
-			(dialog: bind _value, "What amount of ''(print: _itemDM's id)'' do you wish to create? <br> $cssDesc[(print: _itemDM's tip) <ul style=\"line-height: 1.5\"><li>To synthesize 1 of this, you have|need at least: ($funcElementHaveNeed: _itemName, 1) You have enough to make _atMost. <li>This workstation can synthesize a ''maximum of (plural: (passage:)'s max, \"unit\")'' each run. <li> Each run will burn ''(print: (passage:)'s fuelCost) (print: (passage:\"item.vehzin\")'s id)''. <li>Regardless of amount, this workstation will automatically run for ''(plural: (passage:)'s duration, \"day\")'' before finishing. <li>Only 1 kind of thing can be made per run, per workstation.</ul>]", ..._manyOptions)\
+			(dialog: bind _value, "What amount of ''(print: _itemDM's id)'' do you wish to create? <br> $cssDesc[(print: _itemDM's tip) <ul style=\"line-height: 1.5\"><li>To synthesize 1 of this, you have|need at least: ($funcElementHaveNeed: _itemName, 1) You have enough to make _atMost. <li>This workstation can synthesize a ''maximum of (plural: (passage:)'s max, \"unit\")'' each run. <li> Each run, this workstation will burn ''(print: (passage:)'s fuelCost) (print: (passage:\"item.vehzin\")'s id)''. <li>Regardless of amount, this workstation will automatically run for ''(plural: (passage:)'s duration, \"day\")'' before finishing. <li>Only 1 kind of thing can be made per run, per workstation.</ul>]", ..._manyOptions)\
 			\
 			(set: _value to (num: _value))\
 			⇝ ($funcJobAdd: _itemName, _value)\
@@ -166,7 +166,7 @@ Ex: 2|1 At, 0|1 Ab, 2|3 Gor, 0|2 Rokh, 0|0 Zam -->
 	(set: _itemDM to (passage: "item." + _itemName))\
 	<!--Confirm link-->\
 	(color:yellow+orange)[(link-rerun: "Confirm: Create _value (print: _itemDM's id)?")[\
-		<!--Spend vehzin cost (always costs 1)-->\
+		<!--Spend vehzin cost (per passage's fuelCost)-->\
         ($funcGainLoss: "item.", "vehzin", -(passage:)'s fuelCost)\
         <!--Spend elements-->\
 		(set: _index to (a: 2,3,4,5,6,))\
@@ -318,7 +318,9 @@ Ex: 2|1 At, 0|1 Ab, 2|3 Gor, 0|2 Rokh, 0|0 Zam -->
 	<li>(link-rerun: "Exit (print: (passage:)'s title).")[\
 		(if: _justFueled is true)[(display: "code.labPowerDown")]\
         (goto:_exit)\
-	] [$cssDesc[(if: _busy is true)[(Let the magic do its thing.)]]]<exitText|\
+	] []<exitText|
+	\
+	(replace: ?exitText)[$cssDesc[(if: _busy is true)[(Let the magic do its thing.)]]]\
     \
     <!--replace exit tip text if done-->\
     (if: _busy is true)[\

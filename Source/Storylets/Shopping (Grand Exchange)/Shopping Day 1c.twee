@@ -10,6 +10,11 @@
 $cssColumnParent[
 
 $cssColumnChild[
+
+    (css: "font-size: 70%")[
+        $cssColumnChild[(link: "⇦ Never mind.")[(goto: "S: Shopping Day 1")]]
+     ]
+
 	$cssBox[
     	($funcImage: (passage: "S: Shopping Day 1")'s img)
          $cssBoxItem[''(print: (passage:)'s title )''<br>(print: (passage:)'s cardDesc)]
@@ -50,7 +55,7 @@ Browsing... <br>
 ]<!--end loop-->
 <br>
 Or...
-<li>[[Never mind.|S: Shopping Day 1]]
+<li>(link: "Never mind.")[(goto: "S: Shopping Day 1")]
 </ol>
 ]<!--end child-->
 ]<!--end parent 2-->

@@ -9,6 +9,9 @@
 <li>(link-rerun: "Gain 100 rials")[($funcGainLoss: "item.", "rial", 100)(replace: ?inv)[(print: $char's player's inv)]]
 <li>(link-rerun: "Lose 100 rials")[($funcGainLoss: "item.", "rial", -100)(replace: ?inv)[(print: $char's player's inv)]]
 <br>
+<li>(link-rerun: "Gain 5 vehzin")[($funcGainLoss: "item.", "vehzin", 5)(replace: ?inv)[(print: $char's player's inv)]]
+<li>(link-rerun: "Lose 5 vehzin")[($funcGainLoss: "item.", "vehzin", -5)(replace: ?inv)[(print: $char's player's inv)]]
+<br>
 <li>(link-rerun: "Gain 2 tonics")[($funcGainLoss: "item.", "healingTonic", 2)(replace: ?inv)[(print: $char's player's inv)]]
 <li>(link-rerun: "Lose 2 tonics")[($funcGainLoss: "item.", "healingTonic", -2)(replace: ?inv)[(print: $char's player's inv)]]
 <li>(link-rerun: "Gain 2 supplies")[($funcGainLoss: "item.", "supplies", 2)(replace: ?inv)[(print: $char's player's inv)]]

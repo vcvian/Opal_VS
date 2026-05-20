@@ -1,4 +1,4 @@
-:: AA.  Books & Formulae [startup]
+:: AA. Books & Formulae [startup]
 {=
 <!--Macros related to books and reading-->
 
@@ -45,6 +45,129 @@
     (if: _long)[<br>$cssDesc[(⧗ Longer document: Takes a whole day or more to read.)]]
 
 }]]))
+
+<!--Build a reading list, then create reading links (via $funcRead)
+Types of document:
+1. book (for fun or to learn)
+2. map (explains the setting)
+3. legal (function as passes)
+4. note (trackers in quests or letters)
+-->
+(set: $funcReadingList to (macro: array-type _list, [(out:)[{
+    <!--initialize all sub-lists-->
+    (set: _listBook to (a:))
+    (set: _listMap to (a:))
+    (set: _listLegal to (a:))
+    (set: _listNote to (a:))
+
+    <!--Loop through main list-->
+    (for: each _bookName, ..._list)[
+        <!--load book's full DM-->
+        (set: _bookDM to (passage: "item." + _bookName))
+
+        <!--check if document-->
+        (set: _ifDocument to false)
+        (if: _bookDM contains "key")[
+            (if: _bookDM's key contains "document")[
+                (set: _ifDocument to true)
+            ]<!--if key contains document-->
+        ]<!--end of if has key, end of check if document-->
+
+        <!--if document, begin sorting into sub-lists-->
+        (if: _ifDocument)[
+
+            <!--add to _listBook-->
+            (if: _bookDM's key contains "book")[
+                (set: _listBook to it + (a: _bookName))
+            ]<!--end of add to _listBook-->
+
+            <!--add to _listMap-->
+            (if: _bookDM's key contains "map")[
+                (set: _listMap to it + (a: _bookName))
+            ]<!--end of add to _listMap-->
+
+            <!--add to _listLegal-->
+            (if: _bookDM's key contains "legal")[
+                (set: _listLegal to it + (a: _bookName))
+            ]<!--end of add to _listLegal-->
+
+            <!--add to _listNote-->
+            (if: _bookDM's key contains "note")[
+                (set: _listNote to it + (a: _bookName))
+            ]<!--end of add to _listNote-->
+
+        ]<!--end of building list (_ifDocument)-->
+    ]<!--end of main loop-->
+
+    <!--Create links-->
+    
+    <!--_listBook sub-list-->
+    (if: _listBook's length > 0)[
+        <details open>
+        <summary>''Books:'' $cssDesc[From thin pamphlets to weighty times, from sappy slop to dry academicism, they all have something to teach.]</summary>
+        <ol>
+        <!--loop-->
+        (for: each _nameBook, ..._listBook)[
+            <li>($funcRead: _nameBook, (passage:)'s name)
+        ]
+        <!--end of loop-->
+        </ol>
+        </details>
+    ]
+    <!--end of _listBook sub-list-->
+
+    <!--_listMap sub-list-->
+    (if: _listMap's length > 0)[
+        <details open>
+        <summary>''Maps & Atlases:'' $cssDesc[It is said that nothing is real until someone has described it.]</summary>
+        <ol>
+        <!--loop-->
+        (for: each _nameMap, ..._listMap)[
+            <li>($funcRead: _nameMap, (passage:)'s name)
+        ]
+        <!--end of loop-->
+        </ol>
+        </details>
+    ]
+    <!--end of _listMap sub-list-->
+
+    <!--_listLegal sub-list-->
+    (if: _listLegal's length > 0)[
+        <details open>
+        <summary>''Legal Papers:'' $cssDesc[Identifications, permits, contracts, vouchsafes, and anything with an official-looking seal.]</summary>
+        <ol>
+        <!--loop-->
+        (for: each _nameLegal, ..._listLegal)[
+            <li>($funcRead: _nameLegal, (passage:)'s name)
+        ]
+        <!--end of loop-->
+        </ol>
+        </details>
+    ]
+    <!--end of _listLegal sub-list-->
+
+    <!--_listNote sub-list-->
+    (if: _listNote's length > 0)[
+        <details open>
+        <summary>''Notes & Letters:'' $cssDesc[To others, to self, to inform, to remind, and sometimes, to warn.]</summary>
+        <ol>
+        <!--loop-->
+        (for: each _nameNote, ..._listNote)[
+            <li>($funcRead: _nameNote, (passage:)'s name)
+        ]
+        <!--end of loop-->
+        </ol>
+        </details>
+    ]
+    <!--end of _listNote sub-list-->
+
+    <!--No book-->
+    (if: _listBook's length <= 0 and _listMap's length <= 0 and _listLegal's length <= 0 and _listNote's length <= 0)[''Empty:'' $cssDesc[You currently do not have anything to read. What kind of scholar //are// you?]]
+
+    <!--end of link-creatiion-->
+}]]))
+
+
 
 (set: $funcLearnFormula to (macro: str-type _itemName, [(out:)[{
     <!--Load item's full DM-->

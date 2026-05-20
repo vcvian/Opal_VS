@@ -10,9 +10,23 @@
 "fuelCost", 1,
 )
 
+<!--Note: For all labs, the top back link involves code that goes at the beginning and end of the passage, wrapping around the main content. It's weird, but deal with it.-->
+
+<!--initialize _justFueled. This temp var is used by the ?topBackLink, but it only exists inside the scope of $funcVehzin, so it needs to be initialized here-->
+(set: _justFueled to false)
+
 $cssColumnParent[
 
 $cssColumnChild[
+
+     $cssColumnChild[
+          <!--replaced at the end, after $funcVenhzin has run-->
+          (css: "font-size: 70%")[
+               []<topBackLink|` `[]<exitText|
+               ]
+     ]
+     
+     
 	$cssBox[
     	($funcImage: (passage: "S: Lab 1")'s img)
          $cssBoxItem[''(print: (passage:)'s title )''<br>(print: (passage:)'s cardDesc)]
@@ -46,3 +60,11 @@ $cssColumnChild[
  
  ]<!--end child-->
  ]<!--end parent-->
+
+<!--Updates the top back link based on $funcVehzin output-->
+(replace: ?topBackLink)[
+     (link: "⇦ Exit the (print: (passage:)'s title).")[
+          (if: _justFueled is true)[(display: "code.labPowerDown")]
+          (goto: "S: Lab 1")
+     ]
+]

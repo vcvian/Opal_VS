@@ -3,7 +3,7 @@
 
 (metadata: 
 	"id", [Inrah's Map of the Nurrah Coastlands],
-    "key", (a: "document",),
+    "key", (a: "document", "map"),
     "value", (a: 1000, 50, 50, 20, 50, 100,),
     "img", "",
     "desc", [An intricate parchment map made by one "Nav-Inrah". It pays special attention in depicting the major settlements found in the Nurrah rostak of Askava, down to the streets and alleyways. Perhaps unsurprisingly, the wilderness is only sparsely rendered.],
