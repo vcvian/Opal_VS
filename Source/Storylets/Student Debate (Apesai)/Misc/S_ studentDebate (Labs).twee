@@ -7,7 +7,7 @@ and ($funcCheckExists: $place's events, "studentDebate", "inactive") is "active"
 and $char's player's att contains "accessLighthouseStudentLab"
 )
 (exclusivity: 1)
-(metadata: "title", "The Student Lab", "cardDesc", "Everyone's in the courtyard and hall. Who's running the labs?", "img", "https://fallenlondon.wiki/w/images/8/83/University.png",)
+(metadata: "title", "Apesai Student Lab", "cardDesc", "Everyone's in the courtyard and hall. Who's running the labs?", "img", "https://fallenlondon.wiki/w/images/8/83/University.png",)
 
 $cssColumnParent[
 

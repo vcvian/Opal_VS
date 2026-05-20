@@ -12,7 +12,7 @@ and $char's VehVeh's arc is 1
 (metadata:
 "NPC", "VehVeh",
 "title", "A Fellow Student?",
-"cardDesc", "Under the shadow of the lighthouse, a girl your age is lost between the pages of a tome.",
+"cardDesc", "Under the aurora of the lighthouse, a woman your age is lost between the pages of a tome.",
 "img", "Assets/Portraits/Girl_1.png", 
 )
 
@@ -27,12 +27,20 @@ $cssColumnChild[
 ]
 
 $cssColumnChild[
-(Description of Veh-Veh... But not engaged in convo yet...)
+Though you have not met her before, she is immediately familiar: Fine garb, albeit plain, and a five-pointed star adorns her cap.
+<br>
+She must be a senior apprentice, a magus-to-be, at most a year away from journeying like you.
+<br>
+For now, she is hunched over a bench under pavilion, trying her best to read her book despite the rainbow light intruding upon the page. Why not study inside?
+<br>
+Your question is quickly answered when you hear a boy screaming, another laughing, and then a splash. Juniors. They are ungovernable anywhere, especially out here in the marches.
+<br>
+She flips another page and bites her thumb, not noticing you yet.
 <br>
 ---
 <ol>
 
-<li>(link: "Ask her if this is where the davehmars are.")[\
+<li>(link: "Approach and ask if this is where the davehmars are.")[\
 	($funcNPCKnow: "VehVeh", "You've met Veh-Veh, an apprentice-magus. It's good to know another student here.")\
     (goto: "Meeting VehVeh 1a")\
 ]<!--[[Meeting VehVeh 1a]]-->
@@ -40,6 +48,5 @@ $cssColumnChild[
 <li>(link: "Leave her alone.")[$funcBack]
 </ol>
 
-<!--The topic storylet function reads the current passage's NPC-->
 ]<!--end child-->
 ]<!--end parent-->

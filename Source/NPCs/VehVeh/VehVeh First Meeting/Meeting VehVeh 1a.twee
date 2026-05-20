@@ -1,0 +1,196 @@
+:: Meeting VehVeh 1a {"position":"6150,1650","size":"100,100"}
+{=
+
+(metadata:
+"NPC", "VehVeh",
+"title", "Meeting Veh-Veh",
+"cardDesc", "It's good to know another student here, especially the friendly sort.",)
+
+$cssColumnParent[
+
+$cssColumnChild[
+	$cssBox[
+    	($funcImage: (passage: "npc.VehVeh")'s img)
+         $cssBoxItem[''(print: (passage:)'s title )''<br>(print: (passage:)'s cardDesc)]
+    ]
+]
+
+$cssColumnChild[
+<!--begin-->
+She looks up at you. Her eyes go wide.
+<br>
+["Oh wow. Are you..."]<VehVehLine|
+<br>
+($funcInnerConvo: (dm:
+     "<!--A-->\"A magus? Why, yes!\"", "1a",
+     "<!--B-->\"A visitor. I came from the heartlands.\"", "1b",
+))
+<br>
+
+<!--1a-->
+[
+["I could tell,"]<VehVehLine| she wiggles her finger at you, then settles on the star her forehead. You have one too. ["I meant... you're a //journeyman//. I've never actually met one before. Wow."]<VehVehLine|
+<br>
+You start to have the distinct feeling that you're being studied.
+<br>
+(show: ?1end)
+](1a|
+
+<!--1b-->
+[
+Back home, "heartland" strictly refers to the capital and its surrounds, but in Askava, "heartland" is a good enough term to say "not here".
+<br>
+["Of course, you're not a local,"]<VehVehLine| she cranes her head, studying you like you were a strange bird. ["There's so few magi on this island. I hardly get to meet anyone new."]<VehVehLine|
+<br>
+(show: ?1end)
+](1b|
+
+<!--1end-->
+[
+["Oh, I'm being rude. Sorry. I'm Vehk- I mean, I'm Veh-Veh. Please, call me Veh-Veh,"]<VehVehLine| she stands up and bows. ["Assistant at Apesai Davehkhan."]<VehVehLine|
+<br>
+($funcInnerConvo: (dm:
+     "<!--A-->\"An honor, Veh-Veh.\" Bow and introduce yourself.", "2b",
+     "<!--B-->\"'Davehkhan'? I wasn't aware that Apesai had a //university//.\"", "2a",
+))
+<br>
+](1end|
+
+<!--2a-->
+[
+["It doesn't. Ours isn't quite a 'university' yet, but well, there's no harm in being aspirational, right?"]<VehVehLine|
+<br>
+Informal teaching circles are everywhere, but only land grants by the emperor and assent from the collective davehmars will qualify a university.
+<br>
+["It's alright if you're not impressed. I've heard that imperial schools can get pretty... //fancy//,"]<VehVehLine| she flourishes with her fingers. ["Which school did you go to? Oh, sorry, I haven't even asked for your name!"]<VehVehLine|
+<br>
+($funcInnerConvo: (dm:
+     "<!--A-->\"It's alright, I'm...\" Introduce yourself.", "2b",
+))
+<br>
+](2a|
+
+<!--2b-->
+[
+You tell her who you are and where you graduated from.
+<br>
+["So '(print: $char's player's customName)' the journeyman,"]<VehVehLine| she mutters, repeating your words.
+<br>
+Yes, you're currently journeying for employment and studying to create a Sacred Opal, as all journeymen are tasked.
+<br>
+Veh-Veh nods and points to the top of the lighthouse, where the aurora is emanating from.
+<br>
+["//That's// a Sacred Opal. A whole big //motherlode// of it, making light all by itself without any fuel or machinery. Impressive, right?"]<VehVehLine|
+<br>
+She makes it sound as if she had anything to do with it herself.
+<br>
+($funcInnerConvo: (dm:
+     "<!--A-->\"Yes it is. Uhm, did you help make it or something?", "3a",
+     "<!--B-->\"Ah, if only I could grab it, run back home, and submit it as my graduating thesis.\"", "3b",
+     "<!--C-->\"If you study hard, you'll make one before I do.\"", "3c",
+))
+<br>
+](2b|
+
+<!--3a-->
+[
+Veh-Veh snorts and giggles.
+<br>
+["Haha, would I be here talking to you if that's something I could do?"]<VehVehLine| But then, she goes quiet. ["Well, it //is// a grandmaster's job to greet a journeyman if one ever comes around, so who knows?"]<VehVehLine|
+<br>
+She thumbs her book, seriously thinking about it.
+<br>
+(show:?3end)
+](3a|
+
+<!--3b-->
+[
+["Heh, funny. The children say the same thing when I tell them about how they'd have to journey,"]<VehVehLine| she says, barely concealing her judgment. ["Then, I tell them about the defense and proof process, and what happens to plagiarists, and they quickly give up the idea. Smart kids."]<VehVehLine|
+<br>
+You've seen a public "admonishment" of plagiarists once. It smelled awful. The Reclaimer Emperors are very much interested in //also// reclaiming the sanctity of academia, on top of all the former territories.
+<br>
+["But, you know, if someone //did// manage to steal and transport Apesai's Opal, then any council would be impressed enough to certify the thief. What a feat that would be..."]<VehVehLine|
+<br>
+($funcInnerConvo: (dm:
+     "<!--A-->\"Yeah, I suppose.", "3b1",
+     "<!--B-->\"That would be a dark day.\"", "3b2",
+))
+<br>
+](3b|
+
+<!--3b1-->
+[
+["But then, we'd have a boom in increasingly complex heists and a crisis of academic integrity. Oh, Veh-Veh, what have you done..."]<VehVehLine| she continues muttering, lost in hypotheticals.
+<br>
+(show:?3end)
+](3b1|
+
+<!--3b2-->
+[
+["Yes, well, it wouldn't be so bad. Most of the municipal lamps in Apesai run on vehzin anyway, and maybe we'd even get to see the night stars again, so..."]<VehVehLine| she continues muttering, lost in hypotheticals.
+<br>
+(show:?3end)
+](3b2|
+
+<!--3c-->
+[
+["Ha, what are you, my teacher?"]<VehVehLine| She clears her throat and composes herself. ["Sorry, I meant to say that my teachers all say the same thing, that I'd soon be a master. I know they want to encourage me. I've already done the imperial exam twice, but there hasn't been a decision on whether I'll journey yet. Are they afraid that they won't be able to find a new assistant? No, I shouldn't think ill of them."]<VehVehLine|
+<br>
+($funcInnerConvo: (dm:
+     "<!--A-->\"If you had a choice, hypothetically speaking, where would you go?", "3c1",
+     "<!--B-->\"I hope they find you a spot soon.\"", "3c2",
+))
+<br>
+](3c|
+
+<!--3c1-->
+[
+["Nudankhan, of course. Who wouldn't want to study in the 'Capital of Magic' if it's just a matter of hypotheticals?"]<VehVehLine| She sighs. ["Failing that, I suppose Sisua is fine, too. Then I'd become a hospitaler like my cousins. No, wait, that's only their school. There are other things to do in Sisua, right?"]<VehVehLine|
+<br>
+The more she goes on, the more she seems to run up against the limits of her knowledge of places outside of Askava, or even Apesai.
+<br>
+(show:?3end)
+](3c1|
+
+<!--3c2-->
+[
+["Or I can just get up and leave, right? There has been 'outsider masters' before, hasn't there? Not many, but not zero. I can travel to Nudankhan, or maybe Sisua, find my own mentors, then... Ugh, but the children - //someone// has to look after them, and what about traveling stipend? Without a school's sanction..."]<VehVehLine|
+<br>
+She stammers and fidgets with her book. You seem to have touched a sore spot.
+<br>
+(show:?3end)
+](3c2|
+
+<!--3end-->
+[
+["I'm sorry, I'm talking to myself again. Bad habit. So, journeyman, is there something I can help you with?"]<VehVehLine|
+<br>
+($funcInnerConvo: (dm:
+     "<!--A-->\"Yes, there is something I need to talk to a davehmar about.", "talk",
+     "<!--B-->\"No, I just wanted to say hello.\"", "exit",
+))
+<br>
+](3end|
+
+
+<!--talk-->
+[
+["Go ahead!"]<VehVehLine|
+<br>
+---
+<ol>
+($funcNPCTopics: "Veh-Veh seems distracted. You should leave her be for today.", "\"Actually, never mind. It's good to have met a fellow student, Veh-Veh. Bye.\"")
+</ol>
+](talk|
+
+<!--exit-->
+
+[
+["Alright, come by the lighthouse if you need anything, //if// I'm not downtown running errands, that is."]<VehVehLine|
+<br>
+---
+(link: "Sure, goodbye Veh-Veh. It's good to have met a fellow student.")[$funcBack]
+](exit|
+
+]<!--end child-->
+]<!--end parent-->

@@ -5,7 +5,7 @@
 $place's sublocation is "Apesai Lighthouse"
 and $char's player's att contains "accessLighthouseStudentLab"
 )
-(metadata: "title", "The Student Lab", "cardDesc", "The davehmars of Apesai keep an old alchemical lab.", "img", "https://fallenlondon.wiki/w/images/8/83/University.png",)
+(metadata: "title", "Apesai Student Lab", "cardDesc", "The davehmars of Apesai keep an old alchemical lab.", "img", "https://fallenlondon.wiki/w/images/8/83/University.png",)
 
 $cssColumnParent[
 

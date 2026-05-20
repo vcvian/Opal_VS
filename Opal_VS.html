@@ -67,7 +67,7 @@ hr {
   100% {
     background-position: 0% center;
   }
-}</style><script role="script" id="twine-user-script" type="text/twine-javascript"></script><tw-tag name="topic" color="purple"></tw-tag><tw-tag name="traveling" color="purple"></tw-tag><tw-tag name="book" color="yellow"></tw-tag><tw-tag name="footer" color="yellow"></tw-tag><tw-tag name="startup" color="orange"></tw-tag><tw-tag name="stay" color="yellow"></tw-tag><tw-tag name="storylet" color="blue"></tw-tag><tw-tag name="sublocation" color="green"></tw-tag><tw-tag name="UI" color="orange"></tw-tag><tw-tag name="effect" color="yellow"></tw-tag><tw-tag name="header" color="yellow"></tw-tag><tw-tag name="static-storage" color="yellow"></tw-tag><tw-tag name="test" color="blue"></tw-tag><tw-passagedata pid="1" name="AA. Books &amp; Formulae" tags="startup" position="100,100" size="100,100">{=
+}</style><script role="script" id="twine-user-script" type="text/twine-javascript"></script><tw-tag name="startup" color="orange"></tw-tag><tw-tag name="static-storage" color="yellow"></tw-tag><tw-tag name="stay" color="yellow"></tw-tag><tw-tag name="storylet" color="blue"></tw-tag><tw-tag name="sublocation" color="green"></tw-tag><tw-tag name="test" color="blue"></tw-tag><tw-tag name="effect" color="yellow"></tw-tag><tw-tag name="footer" color="yellow"></tw-tag><tw-tag name="traveling" color="purple"></tw-tag><tw-tag name="header" color="yellow"></tw-tag><tw-tag name="topic" color="purple"></tw-tag><tw-tag name="UI" color="orange"></tw-tag><tw-tag name="book" color="yellow"></tw-tag><tw-passagedata pid="1" name="AA. Books &amp; Formulae" tags="startup" position="100,100" size="100,100">{=
 &lt;!--Macros related to books and reading--&gt;
 
 (set: $readingNav to (dm:
@@ -534,7 +534,7 @@ Then, it multiplies that amount with the item&#39;s value and gives back the cor
 ]]))
 
 &lt;!--go back to last location. Mostly used to navigate out of storylet intro cards; if deeper in, use $sublocation as a goto destination.--&gt;
-(set: $funcBack to &quot;(redirect: $place&#39;s sublocation)&quot;)
+(set: $funcBack to &quot;(goto: $place&#39;s sublocation)&quot;)
 
 &lt;!--End a day, trigger end-of-day effects--&gt;
 (set: $funcDone to &quot;(redirect: \&quot;mockDay\&quot;)&quot;)
@@ -5355,80 +5355,7 @@ $cssColumnChild[
 &quot;arc&quot;, 1, &quot;travelMode&quot;, &quot;newlyArrived&quot;, &quot;travel&quot;, (a: 1, 4),
 ),
 
-))</tw-passagedata><tw-passagedata pid="104" name="Meeting VehVeh 1a" tags="" position="6150,1650" size="100,100">{=
-
-(metadata:
-&quot;NPC&quot;, &quot;VehVeh&quot;,
-&quot;title&quot;, &quot;Meeting Veh-Veh&quot;,
-&quot;cardDesc&quot;, &quot;&quot;,)
-
-$cssColumnParent[
-
-$cssColumnChild[
-	$cssBox[
-    	($funcImage: (passage: &quot;S: Meeting VehVeh&quot;)&#39;s img)
-         $cssBoxItem[&#39;&#39;(print: (passage:)&#39;s title )&#39;&#39;&lt;br&gt;(print: (passage:)&#39;s cardDesc)]
-    ]
-]
-
-$cssColumnChild[
-
-[&quot;Hi, I&#39;m Veh-Veh...&quot;]&lt;VehVehLine|
-&lt;br&gt;
-[&quot;You&#39;re a journeyman, and you&#39;ve come from... the imperium? Wow. Fancy.&quot;&quot;]&lt;VehVehLine|
-&lt;br&gt;
-[&quot;And your teacher is with you?&quot;]&lt;VehVehLine|
-
-&lt;br&gt;
----
-&lt;ol&gt;
-($funcNPCTopics: &quot;Veh-Veh seems distracted. You should leave her be for today.&quot;, &quot;It&#39;s good to have met a fellow student, Veh-Veh. Bye.&quot;)
-&lt;/ol&gt;
-]&lt;!--end child--&gt;
-]&lt;!--end parent--&gt;</tw-passagedata><tw-passagedata pid="105" name="S: Meeting VehVeh" tags="storylet" position="6150,1525" size="100,100">{=
-
-(storylet: when
-$char&#39;s VehVeh&#39;s alive is true
-and $char&#39;s VehVeh&#39;s know is false
-and $char&#39;s VehVeh&#39;s location is $place&#39;s sublocation and it is &quot;Apesai Lighthouse&quot;
-and $char&#39;s VehVeh&#39;s opinion&#39;s 2nd &gt; 20
-and $char&#39;s VehVeh&#39;s arc is 1
-)
-
-(metadata:
-&quot;NPC&quot;, &quot;VehVeh&quot;,
-&quot;title&quot;, &quot;A Fellow Student?&quot;,
-&quot;cardDesc&quot;, &quot;Under the shadow of the lighthouse, a girl your age is lost between the pages of a tome.&quot;,
-&quot;img&quot;, &quot;Assets/Portraits/Girl_1.png&quot;, 
-)
-
-
-$cssColumnParent[
-
-$cssColumnChild[
-	$cssBox[
-    	($funcImage: (passage:)&#39;s img)
-         $cssBoxItem[&#39;&#39;(print: (passage:)&#39;s title )&#39;&#39;&lt;br&gt;(print: (passage:)&#39;s cardDesc)]
-    ]
-]
-
-$cssColumnChild[
-(Description of Veh-Veh... But not engaged in convo yet...)
-&lt;br&gt;
----
-&lt;ol&gt;
-
-&lt;li&gt;(link: &quot;Ask her if this is where the davehmars are.&quot;)[\
-	($funcNPCKnow: &quot;VehVeh&quot;, &quot;You&#39;ve met Veh-Veh, an apprentice-magus. It&#39;s good to know another student here.&quot;)\
-    (goto: &quot;Meeting VehVeh 1a&quot;)\
-]&lt;!--[[Meeting VehVeh 1a]]--&gt;
-
-&lt;li&gt;(link: &quot;Leave her alone.&quot;)[$funcBack]
-&lt;/ol&gt;
-
-&lt;!--The topic storylet function reads the current passage&#39;s NPC--&gt;
-]&lt;!--end child--&gt;
-]&lt;!--end parent--&gt;</tw-passagedata><tw-passagedata pid="106" name="S: VehVeh Market" tags="storylet" position="6300,1300" size="100,100">{=
+))</tw-passagedata><tw-passagedata pid="104" name="S: VehVeh Market" tags="storylet" position="6300,1300" size="100,100">{=
 
 (storylet: when
 $char&#39;s VehVeh&#39;s alive is true
@@ -5473,7 +5400,7 @@ $cssColumnChild[
 &lt;!--The topic storylet function reads the current passage&#39;s NPC--&gt;
 
 ]&lt;!--end child--&gt;
-]&lt;!--end parent--&gt;</tw-passagedata><tw-passagedata pid="107" name="S: VehVeh" tags="storylet" position="6275,1525" size="100,100">{=
+]&lt;!--end parent--&gt;</tw-passagedata><tw-passagedata pid="105" name="S: VehVeh" tags="storylet" position="6275,1525" size="100,100">{=
 
 (storylet: when
 $char&#39;s VehVeh&#39;s alive is true
@@ -5517,7 +5444,7 @@ $cssColumnChild[
 
 &lt;!--The topic storylet function reads the current passage&#39;s NPC--&gt;
 ]&lt;!--end child--&gt;
-]&lt;!--end parent--&gt;</tw-passagedata><tw-passagedata pid="108" name="T: VehVeh Apesai" tags="topic" position="6750,1650" size="100,100">{=
+]&lt;!--end parent--&gt;</tw-passagedata><tw-passagedata pid="106" name="T: VehVeh Apesai" tags="topic" position="6750,1650" size="100,100">{=
 
 (storylet: when
 (passage:) contains &quot;NPC&quot;
@@ -5559,7 +5486,7 @@ Apesai... Getting around...
 &lt;/ol&gt;
 
 ]&lt;!--end child--&gt;
-]&lt;!--end parent--&gt;</tw-passagedata><tw-passagedata pid="109" name="T: VehVeh Children" tags="topic" position="6400,1175" size="100,100">{=
+]&lt;!--end parent--&gt;</tw-passagedata><tw-passagedata pid="107" name="T: VehVeh Children" tags="topic" position="6400,1175" size="100,100">{=
 
 (storylet: when
 (passage:) contains &quot;NPC&quot;
@@ -5610,7 +5537,7 @@ $cssDesc[&#39;&#39;You: //(print: (passage:)&#39;s topic)//&#39;&#39;]
 ($funcNPCTopics: &quot;Before she has a chance to finish that thought, one of the children has already broke something. Veh-Veh rushes off.&quot;, &quot;That sucks, Veh-Veh. Hope you hold it together.&quot;)
 &lt;/ol&gt;
 ]&lt;!--end child--&gt;
-]&lt;!--end parent--&gt;</tw-passagedata><tw-passagedata pid="110" name="T: VehVeh Crafting" tags="topic" position="7025,1650" size="100,100">{=
+]&lt;!--end parent--&gt;</tw-passagedata><tw-passagedata pid="108" name="T: VehVeh Crafting" tags="topic" position="7025,1650" size="100,100">{=
 
 (storylet: when
 (passage:) contains &quot;NPC&quot;
@@ -5664,7 +5591,7 @@ $cssDesc[The student lab - a tentative place for you to work your magic - is ins
 ($funcNPCTopics: &quot;Veh-Veh has told you much. Any more and it&#39;d seem like you don&#39;t know how to use a lab.&quot;, &quot;Thanks for the instructions, Veh-Veh. Bye.&quot;)
 &lt;/ol&gt;
 ]&lt;!--end child--&gt;
-]&lt;!--end parent--&gt;</tw-passagedata><tw-passagedata pid="111" name="T: VehVeh Fluxy Teacher" tags="topic" position="6900,1650" size="100,100">{=
+]&lt;!--end parent--&gt;</tw-passagedata><tw-passagedata pid="109" name="T: VehVeh Fluxy Teacher" tags="topic" position="6900,1650" size="100,100">{=
 
 (storylet: when
 (passage:) contains &quot;NPC&quot;
@@ -5719,7 +5646,7 @@ $cssDesc[The student lab - a tentative place for you to work your magic - is ins
 ($funcNPCTopics: &quot;Veh-Veh seems regretful for not doing more. Any more and you&#39;ll just make her feel worse.&quot;, &quot;You&#39;ve been of great help, Veh-Veh. Bye.&quot;)
 &lt;/ol&gt;
 ]&lt;!--end child--&gt;
-]&lt;!--end parent--&gt;</tw-passagedata><tw-passagedata pid="112" name="T: VehVeh Market" tags="topic" position="6525,1175" size="100,100">{=
+]&lt;!--end parent--&gt;</tw-passagedata><tw-passagedata pid="110" name="T: VehVeh Market" tags="topic" position="6525,1175" size="100,100">{=
 
 (storylet: when
 (passage:) contains &quot;NPC&quot;
@@ -5761,7 +5688,7 @@ $cssDesc[&#39;&#39;You: //(print: (passage:)&#39;s topic)//&#39;&#39;]
 &lt;/ol&gt;
 
 ]&lt;!--end child--&gt;
-]&lt;!--end parent--&gt;</tw-passagedata><tw-passagedata pid="113" name="T: VehVeh Principal" tags="topic" position="6625,1650" size="100,100">{=
+]&lt;!--end parent--&gt;</tw-passagedata><tw-passagedata pid="111" name="T: VehVeh Principal" tags="topic" position="6625,1650" size="100,100">{=
 
 (storylet: when
 (passage:) contains &quot;NPC&quot;
@@ -5820,7 +5747,7 @@ $cssDesc[&#39;&#39;You: //(print: (passage:)&#39;s topic)//&#39;&#39;]
 ]
 
 ]&lt;!--end child--&gt;
-]&lt;!--end parent--&gt;</tw-passagedata><tw-passagedata pid="114" name="T: VehVeh Schooling" tags="topic" position="6400,1650" size="100,100">{=
+]&lt;!--end parent--&gt;</tw-passagedata><tw-passagedata pid="112" name="T: VehVeh Schooling" tags="topic" position="6400,1650" size="100,100">{=
 
 (storylet: when
 (passage:) contains &quot;NPC&quot;
@@ -5894,7 +5821,7 @@ $cssDesc[&#39;&#39;You: //(print: (passage:)&#39;s topic)//&#39;&#39;]
 &lt;/ol&gt;
 
 ]&lt;!--end child--&gt;
-]&lt;!--end parent--&gt;</tw-passagedata><tw-passagedata pid="115" name="T: VehVeh Self" tags="topic" position="6275,1650" size="100,100">{=
+]&lt;!--end parent--&gt;</tw-passagedata><tw-passagedata pid="113" name="T: VehVeh Self" tags="topic" position="6275,1650" size="100,100">{=
 
 (storylet: when
 (passage:) contains &quot;NPC&quot;
@@ -5950,7 +5877,7 @@ Despite her hesitation, she continues.]
 &lt;/ol&gt;
 
 ]&lt;!--end child--&gt;
-]&lt;!--end parent--&gt;</tw-passagedata><tw-passagedata pid="116" name="T: VehVeh Teacher Healed" tags="topic" position="6900,1775" size="100,100">{=
+]&lt;!--end parent--&gt;</tw-passagedata><tw-passagedata pid="114" name="T: VehVeh Teacher Healed" tags="topic" position="6900,1775" size="100,100">{=
 
 (storylet: when
 (passage:) contains &quot;NPC&quot;
@@ -5996,6 +5923,250 @@ Oh well, if you&#39;re back, come visit the lighthouse some time.
 ---
 &lt;ol&gt;
 ($funcNPCTopics: &quot;Veh-Veh smiles and tilts her head, wondering if you expect a pat on the head.&quot;, &quot;Anyways, much gratitude, Veh-Veh. Bye.&quot;)
+&lt;/ol&gt;
+
+]&lt;!--end child--&gt;
+]&lt;!--end parent--&gt;</tw-passagedata><tw-passagedata pid="115" name="Meeting VehVeh 1a" tags="" position="6150,1650" size="100,100">{=
+
+(metadata:
+&quot;NPC&quot;, &quot;VehVeh&quot;,
+&quot;title&quot;, &quot;Meeting Veh-Veh&quot;,
+&quot;cardDesc&quot;, &quot;It&#39;s good to know another student here, especially the friendly sort.&quot;,)
+
+$cssColumnParent[
+
+$cssColumnChild[
+	$cssBox[
+    	($funcImage: (passage: &quot;npc.VehVeh&quot;)&#39;s img)
+         $cssBoxItem[&#39;&#39;(print: (passage:)&#39;s title )&#39;&#39;&lt;br&gt;(print: (passage:)&#39;s cardDesc)]
+    ]
+]
+
+$cssColumnChild[
+&lt;!--begin--&gt;
+She looks up at you. Her eyes go wide.
+&lt;br&gt;
+[&quot;Oh wow. Are you...&quot;]&lt;VehVehLine|
+&lt;br&gt;
+($funcInnerConvo: (dm:
+     &quot;&lt;!--A--&gt;\&quot;A magus? Why, yes!\&quot;&quot;, &quot;1a&quot;,
+     &quot;&lt;!--B--&gt;\&quot;A visitor. I came from the heartlands.\&quot;&quot;, &quot;1b&quot;,
+))
+&lt;br&gt;
+
+&lt;!--1a--&gt;
+[
+[&quot;I could tell,&quot;]&lt;VehVehLine| she wiggles her finger at you, then settles on the star her forehead. You have one too. [&quot;I meant... you&#39;re a //journeyman//. I&#39;ve never actually met one before. Wow.&quot;]&lt;VehVehLine|
+&lt;br&gt;
+You start to have the distinct feeling that you&#39;re being studied.
+&lt;br&gt;
+(show: ?1end)
+](1a|
+
+&lt;!--1b--&gt;
+[
+Back home, &quot;heartland&quot; strictly refers to the capital and its surrounds, but in Askava, &quot;heartland&quot; is a good enough term to say &quot;not here&quot;.
+&lt;br&gt;
+[&quot;Of course, you&#39;re not a local,&quot;]&lt;VehVehLine| she cranes her head, studying you like you were a strange bird. [&quot;There&#39;s so few magi on this island. I hardly get to meet anyone new.&quot;]&lt;VehVehLine|
+&lt;br&gt;
+(show: ?1end)
+](1b|
+
+&lt;!--1end--&gt;
+[
+[&quot;Oh, I&#39;m being rude. Sorry. I&#39;m Vehk- I mean, I&#39;m Veh-Veh. Please, call me Veh-Veh,&quot;]&lt;VehVehLine| she stands up and bows. [&quot;Assistant at Apesai Davehkhan.&quot;]&lt;VehVehLine|
+&lt;br&gt;
+($funcInnerConvo: (dm:
+     &quot;&lt;!--A--&gt;\&quot;An honor, Veh-Veh.\&quot; Bow and introduce yourself.&quot;, &quot;2b&quot;,
+     &quot;&lt;!--B--&gt;\&quot;&#39;Davehkhan&#39;? I wasn&#39;t aware that Apesai had a //university//.\&quot;&quot;, &quot;2a&quot;,
+))
+&lt;br&gt;
+](1end|
+
+&lt;!--2a--&gt;
+[
+[&quot;It doesn&#39;t. Ours isn&#39;t quite a &#39;university&#39; yet, but well, there&#39;s no harm in being aspirational, right?&quot;]&lt;VehVehLine|
+&lt;br&gt;
+Informal teaching circles are everywhere, but only land grants by the emperor and assent from the collective davehmars will qualify a university.
+&lt;br&gt;
+[&quot;It&#39;s alright if you&#39;re not impressed. I&#39;ve heard that imperial schools can get pretty... //fancy//,&quot;]&lt;VehVehLine| she flourishes with her fingers. [&quot;Which school did you go to? Oh, sorry, I haven&#39;t even asked for your name!&quot;]&lt;VehVehLine|
+&lt;br&gt;
+($funcInnerConvo: (dm:
+     &quot;&lt;!--A--&gt;\&quot;It&#39;s alright, I&#39;m...\&quot; Introduce yourself.&quot;, &quot;2b&quot;,
+))
+&lt;br&gt;
+](2a|
+
+&lt;!--2b--&gt;
+[
+You tell her who you are and where you graduated from.
+&lt;br&gt;
+[&quot;So &#39;(print: $char&#39;s player&#39;s customName)&#39; the journeyman,&quot;]&lt;VehVehLine| she mutters, repeating your words.
+&lt;br&gt;
+Yes, you&#39;re currently journeying for employment and studying to create a Sacred Opal, as all journeymen are tasked.
+&lt;br&gt;
+Veh-Veh nods and points to the top of the lighthouse, where the aurora is emanating from.
+&lt;br&gt;
+[&quot;//That&#39;s// a Sacred Opal. A whole big //motherlode// of it, making light all by itself without any fuel or machinery. Impressive, right?&quot;]&lt;VehVehLine|
+&lt;br&gt;
+She makes it sound as if she had anything to do with it herself.
+&lt;br&gt;
+($funcInnerConvo: (dm:
+     &quot;&lt;!--A--&gt;\&quot;Yes it is. Uhm, did you help make it or something?&quot;, &quot;3a&quot;,
+     &quot;&lt;!--B--&gt;\&quot;Ah, if only I could grab it, run back home, and submit it as my graduating thesis.\&quot;&quot;, &quot;3b&quot;,
+     &quot;&lt;!--C--&gt;\&quot;If you study hard, you&#39;ll make one before I do.\&quot;&quot;, &quot;3c&quot;,
+))
+&lt;br&gt;
+](2b|
+
+&lt;!--3a--&gt;
+[
+Veh-Veh snorts and giggles.
+&lt;br&gt;
+[&quot;Haha, would I be here talking to you if that&#39;s something I could do?&quot;]&lt;VehVehLine| But then, she goes quiet. [&quot;Well, it //is// a grandmaster&#39;s job to greet a journeyman if one ever comes around, so who knows?&quot;]&lt;VehVehLine|
+&lt;br&gt;
+She thumbs her book, seriously thinking about it.
+&lt;br&gt;
+(show:?3end)
+](3a|
+
+&lt;!--3b--&gt;
+[
+[&quot;Heh, funny. The children say the same thing when I tell them about how they&#39;d have to journey,&quot;]&lt;VehVehLine| she says, barely concealing her judgment. [&quot;Then, I tell them about the defense and proof process, and what happens to plagiarists, and they quickly give up the idea. Smart kids.&quot;]&lt;VehVehLine|
+&lt;br&gt;
+You&#39;ve seen a public &quot;admonishment&quot; of plagiarists once. It smelled awful. The Reclaimer Emperors are very much interested in //also// reclaiming the sanctity of academia, on top of all the former territories.
+&lt;br&gt;
+[&quot;But, you know, if someone //did// manage to steal and transport Apesai&#39;s Opal, then any council would be impressed enough to certify the thief. What a feat that would be...&quot;]&lt;VehVehLine|
+&lt;br&gt;
+($funcInnerConvo: (dm:
+     &quot;&lt;!--A--&gt;\&quot;Yeah, I suppose.&quot;, &quot;3b1&quot;,
+     &quot;&lt;!--B--&gt;\&quot;That would be a dark day.\&quot;&quot;, &quot;3b2&quot;,
+))
+&lt;br&gt;
+](3b|
+
+&lt;!--3b1--&gt;
+[
+[&quot;But then, we&#39;d have a boom in increasingly complex heists and a crisis of academic integrity. Oh, Veh-Veh, what have you done...&quot;]&lt;VehVehLine| she continues muttering, lost in hypotheticals.
+&lt;br&gt;
+(show:?3end)
+](3b1|
+
+&lt;!--3b2--&gt;
+[
+[&quot;Yes, well, it wouldn&#39;t be so bad. Most of the municipal lamps in Apesai run on vehzin anyway, and maybe we&#39;d even get to see the night stars again, so...&quot;]&lt;VehVehLine| she continues muttering, lost in hypotheticals.
+&lt;br&gt;
+(show:?3end)
+](3b2|
+
+&lt;!--3c--&gt;
+[
+[&quot;Ha, what are you, my teacher?&quot;]&lt;VehVehLine| She clears her throat and composes herself. [&quot;Sorry, I meant to say that my teachers all say the same thing, that I&#39;d soon be a master. I know they want to encourage me. I&#39;ve already done the imperial exam twice, but there hasn&#39;t been a decision on whether I&#39;ll journey yet. Are they afraid that they won&#39;t be able to find a new assistant? No, I shouldn&#39;t think ill of them.&quot;]&lt;VehVehLine|
+&lt;br&gt;
+($funcInnerConvo: (dm:
+     &quot;&lt;!--A--&gt;\&quot;If you had a choice, hypothetically speaking, where would you go?&quot;, &quot;3c1&quot;,
+     &quot;&lt;!--B--&gt;\&quot;I hope they find you a spot soon.\&quot;&quot;, &quot;3c2&quot;,
+))
+&lt;br&gt;
+](3c|
+
+&lt;!--3c1--&gt;
+[
+[&quot;Nudankhan, of course. Who wouldn&#39;t want to study in the &#39;Capital of Magic&#39; if it&#39;s just a matter of hypotheticals?&quot;]&lt;VehVehLine| She sighs. [&quot;Failing that, I suppose Sisua is fine, too. Then I&#39;d become a hospitaler like my cousins. No, wait, that&#39;s only their school. There are other things to do in Sisua, right?&quot;]&lt;VehVehLine|
+&lt;br&gt;
+The more she goes on, the more she seems to run up against the limits of her knowledge of places outside of Askava, or even Apesai.
+&lt;br&gt;
+(show:?3end)
+](3c1|
+
+&lt;!--3c2--&gt;
+[
+[&quot;Or I can just get up and leave, right? There has been &#39;outsider masters&#39; before, hasn&#39;t there? Not many, but not zero. I can travel to Nudankhan, or maybe Sisua, find my own mentors, then... Ugh, but the children - //someone// has to look after them, and what about traveling stipend? Without a school&#39;s sanction...&quot;]&lt;VehVehLine|
+&lt;br&gt;
+She stammers and fidgets with her book. You seem to have touched a sore spot.
+&lt;br&gt;
+(show:?3end)
+](3c2|
+
+&lt;!--3end--&gt;
+[
+[&quot;I&#39;m sorry, I&#39;m talking to myself again. Bad habit. So, journeyman, is there something I can help you with?&quot;]&lt;VehVehLine|
+&lt;br&gt;
+($funcInnerConvo: (dm:
+     &quot;&lt;!--A--&gt;\&quot;Yes, there is something I need to talk to a davehmar about.&quot;, &quot;talk&quot;,
+     &quot;&lt;!--B--&gt;\&quot;No, I just wanted to say hello.\&quot;&quot;, &quot;exit&quot;,
+))
+&lt;br&gt;
+](3end|
+
+
+&lt;!--talk--&gt;
+[
+[&quot;Go ahead!&quot;]&lt;VehVehLine|
+&lt;br&gt;
+---
+&lt;ol&gt;
+($funcNPCTopics: &quot;Veh-Veh seems distracted. You should leave her be for today.&quot;, &quot;\&quot;Actually, never mind. It&#39;s good to have met a fellow student, Veh-Veh. Bye.\&quot;&quot;)
+&lt;/ol&gt;
+](talk|
+
+&lt;!--exit--&gt;
+
+[
+[&quot;Alright, come by the lighthouse if you need anything, //if// I&#39;m not downtown running errands, that is.&quot;]&lt;VehVehLine|
+&lt;br&gt;
+---
+(link: &quot;Sure, goodbye Veh-Veh. It&#39;s good to have met a fellow student.&quot;)[$funcBack]
+](exit|
+
+]&lt;!--end child--&gt;
+]&lt;!--end parent--&gt;</tw-passagedata><tw-passagedata pid="116" name="S: Meeting VehVeh" tags="storylet" position="6150,1525" size="100,100">{=
+
+(storylet: when
+$char&#39;s VehVeh&#39;s alive is true
+and $char&#39;s VehVeh&#39;s know is false
+and $char&#39;s VehVeh&#39;s location is $place&#39;s sublocation and it is &quot;Apesai Lighthouse&quot;
+and $char&#39;s VehVeh&#39;s opinion&#39;s 2nd &gt; 20
+and $char&#39;s VehVeh&#39;s arc is 1
+)
+
+(metadata:
+&quot;NPC&quot;, &quot;VehVeh&quot;,
+&quot;title&quot;, &quot;A Fellow Student?&quot;,
+&quot;cardDesc&quot;, &quot;Under the aurora of the lighthouse, a woman your age is lost between the pages of a tome.&quot;,
+&quot;img&quot;, &quot;Assets/Portraits/Girl_1.png&quot;, 
+)
+
+
+$cssColumnParent[
+
+$cssColumnChild[
+	$cssBox[
+    	($funcImage: (passage:)&#39;s img)
+         $cssBoxItem[&#39;&#39;(print: (passage:)&#39;s title )&#39;&#39;&lt;br&gt;(print: (passage:)&#39;s cardDesc)]
+    ]
+]
+
+$cssColumnChild[
+Though you have not met her before, she is immediately familiar: Fine garb, albeit plain, and a five-pointed star adorns her cap.
+&lt;br&gt;
+She must be a senior apprentice, a magus-to-be, at most a year away from journeying like you.
+&lt;br&gt;
+For now, she is hunched over a bench under pavilion, trying her best to read her book despite the rainbow light intruding upon the page. Why not study inside?
+&lt;br&gt;
+Your question is quickly answered when you hear a boy screaming, another laughing, and then a splash. Juniors. They are ungovernable anywhere, especially out here in the marches.
+&lt;br&gt;
+She flips another page and bites her thumb, not noticing you yet.
+&lt;br&gt;
+---
+&lt;ol&gt;
+
+&lt;li&gt;(link: &quot;Approach and ask if this is where the davehmars are.&quot;)[\
+	($funcNPCKnow: &quot;VehVeh&quot;, &quot;You&#39;ve met Veh-Veh, an apprentice-magus. It&#39;s good to know another student here.&quot;)\
+    (goto: &quot;Meeting VehVeh 1a&quot;)\
+]&lt;!--[[Meeting VehVeh 1a]]--&gt;
+
+&lt;li&gt;(link: &quot;Leave her alone.&quot;)[$funcBack]
 &lt;/ol&gt;
 
 ]&lt;!--end child--&gt;
@@ -7316,7 +7487,7 @@ $time&#39;s week is 4,&quot;Charhet&quot;,
 &lt;!--entries &quot;tickText&quot; and &quot;tickEffect&quot; removed from this temp, since there is none, and we don&#39;t want to trigger an empty effect--&gt;</tw-passagedata><tw-passagedata pid="187" name="Apesai Student Lab" tags="" position="5075,1700" size="100,100">{=
 
 (metadata:
-&quot;title&quot;, &quot;The Student Lab&quot;,
+&quot;title&quot;, &quot;Apesai Student Lab&quot;,
 &quot;cardDesc&quot;, &quot;&quot;,
 &quot;level&quot;, 2,
 &quot;max&quot;, 4,
@@ -7384,7 +7555,7 @@ $cssColumnChild[
 ]</tw-passagedata><tw-passagedata pid="188" name="Lab 1b" tags="" position="4950,1700" size="100,100">{=
 
 (metadata:
-&quot;title&quot;, &quot;The Student Lab&quot;,
+&quot;title&quot;, &quot;Apesai Student Lab&quot;,
 &quot;cardDesc&quot;, &quot;&quot;,
 )
 
@@ -7419,7 +7590,7 @@ $cssDesc[Select ingredient, then amount, then confirm.]
 $place&#39;s sublocation is &quot;Apesai Lighthouse&quot;
 and $char&#39;s player&#39;s att contains &quot;accessLighthouseStudentLab&quot;
 )
-(metadata: &quot;title&quot;, &quot;The Student Lab&quot;, &quot;cardDesc&quot;, &quot;The davehmars of Apesai keep an old alchemical lab.&quot;, &quot;img&quot;, &quot;https://fallenlondon.wiki/w/images/8/83/University.png&quot;,)
+(metadata: &quot;title&quot;, &quot;Apesai Student Lab&quot;, &quot;cardDesc&quot;, &quot;The davehmars of Apesai keep an old alchemical lab.&quot;, &quot;img&quot;, &quot;https://fallenlondon.wiki/w/images/8/83/University.png&quot;,)
 
 $cssColumnParent[
 
@@ -10184,7 +10355,7 @@ and ($funcCheckExists: $place&#39;s events, &quot;studentDebate&quot;, &quot;ina
 and $char&#39;s player&#39;s att contains &quot;accessLighthouseStudentLab&quot;
 )
 (exclusivity: 1)
-(metadata: &quot;title&quot;, &quot;The Student Lab&quot;, &quot;cardDesc&quot;, &quot;Everyone&#39;s in the courtyard and hall. Who&#39;s running the labs?&quot;, &quot;img&quot;, &quot;https://fallenlondon.wiki/w/images/8/83/University.png&quot;,)
+(metadata: &quot;title&quot;, &quot;Apesai Student Lab&quot;, &quot;cardDesc&quot;, &quot;Everyone&#39;s in the courtyard and hall. Who&#39;s running the labs?&quot;, &quot;img&quot;, &quot;https://fallenlondon.wiki/w/images/8/83/University.png&quot;,)
 
 $cssColumnParent[
 
