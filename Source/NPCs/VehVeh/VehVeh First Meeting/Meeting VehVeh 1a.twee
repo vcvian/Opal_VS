@@ -22,14 +22,14 @@ She looks up at you. Her eyes go wide.
 ["Oh wow. Are you..."]<VehVehLine|
 <br>
 ($funcInnerConvo: (dm:
-     "<!--A-->\"A magus? Why, yes!\"", "1a",
+     "<!--A-->\"A magus? A //davehmar//? Why, yes!\"", "1a",
      "<!--B-->\"A visitor. I came from the heartlands.\"", "1b",
 ))
 <br>
 
 <!--1a-->
 [
-["I could tell,"]<VehVehLine| she wiggles her finger at you, then settles on the star her forehead. You have one too. ["I meant... you're a //journeyman//. I've never actually met one before. Wow."]<VehVehLine|
+["I could tell,"]<VehVehLine| she points to the star her forehead. You have one too. ["I meant... you're a //journeyman//. I've never actually met one before. Wow."]<VehVehLine|
 <br>
 You start to have the distinct feeling that you're being studied.
 <br>

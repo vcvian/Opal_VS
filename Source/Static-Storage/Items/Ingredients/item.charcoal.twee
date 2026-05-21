@@ -4,10 +4,10 @@
 (metadata: 
 	"id", [Sugar Charcoal],
     "key", (a: "ingredient",),
-    "value", (a: 6, 1, 0, 0, 0, 2),
+    "value", (a: 10, 0, 0, 0, 0, 4),
     "img", "",
-    "desc", [Once-sweet, now burnt and corroded.],
-    "tip", [A minor alchemical source of ''Zam'' and ''At''.],
+    "desc", [Once-sweet, now burnt and corroded. Sugar charcoal is popular with artificer-magi as a diamond precursor.],
+    "tip", [A minor alchemical source of ''Zam''.],
     "gainText", [Too pure and expensive for the common hearth.],
     "lossText", [Gone, but its shadow will remain.]
 
