@@ -1,0 +1,14 @@
+:: item.honeyreed [static-storage]
+{=
+
+(metadata: 
+	"id", [Honeyreed Finger],
+    "key", (a: "ingredient",),
+    "value", (a: 8, 2, 0, 0, 0, 1),
+    "img", "",
+    "desc", [A digit's length of the prized Yavanid honeyreed. It is chewed for its sweet juice or milled and boiled by the bushels to produce sugar.],
+    "tip", [A minor alchemical source of ''At''.],
+    "gainText", [One touch, and your hands are all sticky. Better dispense of it before you start to attract ants.],
+    "lossText", [You wipe your hands, but they are still sticky.]
+
+)

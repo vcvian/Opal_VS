@@ -1,0 +1,14 @@
+:: item.teaBag [static-storage]
+{=
+
+(metadata: 
+	"id", [A Pouch of Questionable Tea],
+    "key", (a: "ingredient",),
+    "value", (a: 7, 0, 0, 0, 1, 0),
+    "img", "",
+    "desc", [Leftover tea leaves of mixed origin, some from the Besarag foothills, some from further away in Yavana, some from a shop's floor, all collected in a cloth bag. In contrast, purer tea cakes often go for a fortune.],
+    "tip", [A minor alchemical source of ''Rokh''.],
+    "gainText", [The pouch weighs almost nothing. You wonder how much of that weight is actually tea, and how much of it just is grit and sand.],
+    "lossText", [When you pry apart the drawstrings, and //actual// tea leaves come out, you feel relieved.]
+
+)
