@@ -3,7 +3,7 @@
 {=
 
 (metadata: 
-	"id", [Access: Student Lab],
+	"id", [Access: Lighthouse's Student Lab],
     "key", (a: "access", "Apesai", ),
     "value", (a: 1, 0, 0, 0, 0, 0),
     "img", "",

@@ -1,0 +1,32 @@
+:: VehVeh Fluxy Teacher (End)
+
+(metadata:
+"NPC", "VehVeh",
+"title", "Regarding Your Ill Teacher",
+"topicDetail", "Veh-Veh has introduced you to her school's facilities. The rest is up to you.",
+)
+
+
+
+$cssColumnParent[
+
+$cssColumnChild[
+	$cssBox[
+    	($funcImage: (passage: "S: VehVeh")'s img)
+         $cssBoxItem[''(print: (passage:)'s title )''<br>(print: (passage:)'s topicDetail)]
+    ]
+]
+
+$cssColumnChild[
+
+
+["I hope your teacher gets better soon,"]<VehVehLine| she says. ["If- when he does, tell him to come by and visit our school. We receive new magi sometimes, but most of them are engineers, not... you know, davehmars. Well, you're one, but your teacher's a //master//, and that's- I'm just talking again, aren't I? Sorry. Is there anything else?"]<VehVehLine|
+
+<br>
+---
+<ol>
+($funcNPCTopics: "Veh-Veh has done enough for you today. You better make good of her help.", "You've been of great help, Veh-Veh. Bye.")
+</ol>
+
+]<!--end child-->
+]<!--end parent-->

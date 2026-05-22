@@ -9,7 +9,8 @@
 	(set: _char to (passage:)'s NPC)\
 	(for: each _topic, ...(open-storylets: where its tags contains "topic"))[\
     	(if: _topic's NPC is _char and $char's _char's energy's 1st > 0)[\
-			<li>(link-rerun: _topic's topic)[\
+			(set: _NPCTopicText to (str: _topic's topic))\
+			<li>(link-rerun: _NPCTopicText)[\
 				\
 				<!--add topic's keys into NPC's talked DM-->\
 				\

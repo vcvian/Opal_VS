@@ -1,0 +1,15 @@
+:: att.accessLighthouseLibrary [static-storage] 
+
+{=
+
+(metadata: 
+	"id", [Access: Lighthouse's Library],
+    "key", (a: "access", "Apesai", ),
+    "value", (a: 1, 0, 0, 0, 0, 0),
+    "img", "",
+    "desc", [],
+    "tip", [],
+    "gainText", [],
+    "lossText", [],
+
+)

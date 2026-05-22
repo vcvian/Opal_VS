@@ -1,0 +1,332 @@
+:: T: VehVeh Fluxy Teacher [topic] {"position":"6900,1650","size":"100,100"}
+{=
+
+(storylet: when
+(passage:) contains "NPC"
+and $char's VehVeh's opinion's 2nd > 20
+and ($funcCheckExists: $char's player's quests, "sickTeacher", "") is "active"
+and $char's player's timerCooldown does not contain "T: VehVeh Fluxy Teacher"
+)
+
+(urgency: 1)
+(metadata:
+"NPC", "VehVeh",
+"title", "Regarding Your Ill Teacher",
+"topic", [{
+     (if: ($funcTalkedTimesCheck: "sickTeacher") < 1)["I'm traveling with my teacher, and he's not feeling well. He needs help."]
+     (else:)["My teacher is still sick."]
+}],
+"topicDetail", "The Apesai school must have a spare tonic, or at least the equipment to make one.",
+"cooldown", 1,
+"talked", (a: "sickTeacher", "studentLab", "library"),
+"addCode", [],
+)
+
+$cssColumnParent[
+
+$cssColumnChild[
+	$cssBox[
+    	($funcImage: (passage: "S: VehVeh")'s img)
+         $cssBoxItem[''(print: (passage:)'s title )''<br>(print: (passage:)'s topicDetail)]
+    ]
+]
+
+$cssColumnChild[
+
+
+<!--initialize: already have access?-->
+(set: _alreadystudentLab to false)
+(set: _alreadyLibrary to false)
+
+(if: ($funcCheckExists: $char's player's att, "accessLighthouseStudentLab", 0) > 0)[
+          (set: _alreadystudentLab to true)
+]
+
+(if: ($funcCheckExists: $char's player's att, "accessLighthouseLibrary", 0) > 0)[
+     (set: _alreadyLibrary to true)
+]
+
+
+
+<!--topic line-->
+$cssDesc[''You: //(print: (passage:)'s topic)//'']
+<br>
+
+<!--first time-->
+(if: ($funcTalkedTimesCheck: "sickTeacher") < 1)[
+["Oh no, what's wrong with him?"]<VehVehLine|
+<br>
+Many things, but she does not need to know that.
+<br>
+($funcInnerConvo: (dm:
+     "<!--A-->\"He's been fluxy a few days before we arrived in Apesai.\"", "firstTime1",
+     "<!--B-->\"It's too... embarrassing to divulge.\"", "firstTime2",
+))
+<br>
+
+<!--firstTime1-->
+[
+["F- fluxy? And I assume you don't just mean..."]<VehVehLine| she points to her open mouth, making a gagging sound. ["Seasickness?"]<VehVehLine|
+<br>
+($funcInnerConvo: (dm:
+     "<!--A-->You shake your head regrettably.", "firstTime1a",
+))
+<br>
+](firstTime1|
+
+<!--firstTime1a-->
+[
+["Ah, so..."]<VehVehLine| she points at her backside.
+<br>
+You aren't sure why she feels the need to demonstrate the alternative. You just nod.
+<br>
+["Yup, that's common for long boat trips, too. 'An excess of //Ab//,'' some call it."]<VehVehLine|
+<br>
+($funcInnerConvo: (dm:
+     "\"<!--A-->You don't //happen// to double as the school physician, right?\"", "firstTime3",
+))
+<br>
+](firstTime1a|
+
+<!--firstTime2-->
+[
+["How bad is it? What day was the departure? Did he put up a ward in front of his cabin? Did he meditate on a rainy day?-"]<VehVehLine| She stops herself when she sees you not answering.
+<br>
+To save her out of her own bind, you settle with calling it a "disagreeable bowel".
+<br>
+["Ooh..."]<VehVehLine|
+<br>
+($funcInnerConvo: (dm:
+     "\"<!--A-->You don't //happen// to double as the school physician, right?\"", "firstTime3",
+))
+<br>
+](firstTime2|
+
+[
+["Me? Haha, no, no. We do have a hospitaler - well, close to one - but she's not on the island at the moment."]<VehVehLine|
+<br>
+Veh-Veh then mutters, ["I //do// double as an astrologian though."]<VehVehLine|
+<br>
+($funcInnerConvo: (dm:
+     "\"<!--A-->This hospitaler - do you know if she'll come back soon?\"", "firstTime3a",
+     "\"<!--B-->Astrology... would it help with, you know...\"", "firstTime3b",
+     "\"<!--C-->Is there medicine inside the school? Or at least a synthesis workstation?\"", "firstTime3c",
+))
+<br>
+](firstTime3|
+
+<!--firstTime3a-->
+[
+["No..."]<VehVehLine| she mutters. It seems to be an oft-asked question and an oft-given answer. ["But if your teacher is just having a bad stomach, then a Gor tonic is good enough. Our physician makes them all the time for the children when they're... um... You //do// know how to operate a synthesis workstation, yes? As in, unsupervised?"]<VehVehLine|
+<br>
+($funcInnerConvo: (dm:
+     "\"<!--A-->Of course! I'm already a journeyman.\"", "workstation1",
+     "\"<!--B-->Make my own? Don't you have any spare tonic? Must you make a guest from far away //work// for it?\"", "firstTime3c",
+))
+<br>
+](firstTime3a|
+
+<!--firstTime3b-->
+[
+["That's not what- I can help you pick the right time to travel if you want to avoid getting sick. But if you - well, your teacher, in this case - have already gotten sick, then..."]<VehVehLine|
+<br>
+You should have known this, being a graduate and all. But the truth is that the disciplines are numerous, and each of them claims to be able to do a thousand things.
+<br>
+["Beside, I'm more of a forensic astrology person,"]<VehVehLine| she adds.
+<br>
+($funcInnerConvo: (dm:
+     "\"<!--A-->What about medicine? The school has to have some stocked, yes?\"", "firstTime3c",
+))
+<br>
+](firstTime3b|
+
+<!--firstTime3c-->
+[
+["Sorry, there isn't any spare medicine left on account of our physician being away. We - well, //I// - make them as needed, but the coffer's locked, and everyone's coin purses are light,"]<VehVehLine| she sighs.` `
+
+(if: _alreadystudentLab is false)[["I can tell the attendants to let you into our lab though."]<VehVehLine|]
+(else:)["But, you know, the student lab is open to you if you don't mind rolling up your sleeves a bit."]<VehVehLine|
+
+<br>
+You are not sure what surprises you more - the fact that a school could have such a poor chemical inventory, or the fact that a senior apprentice can freely give a stranger access to their laboratory.
+<br>
+($funcInnerConvo: (dm:
+     "\"<!--A-->Yes, if it's no trouble, I'd like to use the lab please.\"", "workstation1",
+))
+<br>
+](firstTime3c|
+]<!--end of first time-->
+
+
+
+<!--second time onward-->
+(else:)[
+["Oh no, still? Have you made a Gor tonic yet? Have you given it to him?"]<VehVehLine|
+<br>
+($funcInnerConvo: (dm:
+     "\"<!--A-->Not yet.\"", "notYet",
+))
+<br>
+
+<!--notYet-->
+[
+["There you go! That's the problem, isn't it?"]<VehVehLine| She sounds almost relieved. ["First part to testing a hypothesis is, well, //testing// it."]<VehVehLine|
+<br>
+She says it slowly. This is clearly a teaching moment for her.
+<br>
+["Anyway, you know where the student lab is, don't you?"]<VehVehLine|
+<br>
+($funcInnerConvo: (dm:
+     "\"<!--B-->Yes, I still do,\" you say, feeling a bit silly. \"Thanks though.\"", "done",
+     "\"<!--A-->Could you remind me, please?\"", "workstation1",
+))
+<br>
+](notYet|
+
+]<!--end of second time onward-->
+
+<!--gainAccess sequence-->
+(if: _alreadystudentLab is false)[
+<!--workstation1-->
+[
+["Great! Go up about five floors, past the auditorium and the dorms, you'll see the door to our student lab. Can't miss it; there's a safety poster in front with big letters. I'll make sure those cranky attendants get the message."]<VehVehLine|
+<br>
+($funcInnerConvo: (dm:
+     "\"<!--A-->A //student// lab? You don't mean the one the children uses, do you?\"", "workstation2a",
+     "\"<!--B-->What if I need more advanced subtances?\"", "workstation2b",
+     "\"<!--C-->A student lab... great. I'll take what I can get. Thanks, Veh-Veh.\"", "workstation2c",
+))
+<br>
+](workstation1|
+
+<!--workstation2a-->
+[
+["Yes, the very one. Apprentices of all ages here use the same facilities,"]<VehVehLine| she sounds defensive.` `
+(show:?workstation3)
+](workstation2a|
+
+<!--workstation2b-->
+[
+["Then I suppose you'll need to take a hike down to the market for an actual apothecary. Apesai's got a Grand Exchange, you know,"]<VehVehLine| she says, slightly annoyed.` `
+(show:?workstation3)
+](workstation2b|
+
+<!--workstation2c-->
+[
+["Yeah... not the stuff that would impress a visitor from the heartlands, I know,"]<VehVehLine| she seems genuinely embarrassed.` `
+(show:?workstation3)
+](workstation2c|
+
+
+<!--workstation3-->
+[
+["Our only research-grade laboratory is in the very top floor, but the door's locked, and no-one has the key right now. It's a long story."]<VehVehLine|
+<br>
+Stranger and stranger.
+<br>
+["The student lab is perfectly fine if you're only making a couple of simple tonics or salves at a time. We've got an elementalysis table too, if you're wondering."]<VehVehLine|
+<br>
+($funcInnerConvo: (dm:
+     "\"<!--A-->And is there an ingredient storeroomn in there too?\"", "workstation4a",
+     "\"<!--B-->That's good to hear. Thank you. I'll figure it the rest out.\"", "workstation4b",
+))
+<br>
+](workstation3|
+
+<!--workstation4a-->
+[
+["No again, haha. If you keep asking, I'll keep disappointing. Well, actually, there is a larder where we keep ingredients, but we're down to our last few scraps right now, and the children still need them for their lessons."]<VehVehLine|
+<br>
+She points vaguely in the direction of the red steel domes some distance downhill and says, ["On the other hand, there's //everything// down there. Not for free though."]<VehVehLine|
+<br>
+($funcInnerConvo: (dm:
+     "\"<!--A-->Point taken.\"", "workstation4b",
+))
+<br>
+](workstation4a|
+
+<!--workstation4b-->
+[
+["Yes, and if you need to brush up on your alchemical formulas, do visit our library one floor above. The children love it, and- Oh, I didn't mean to say that you don't know how to, you know... Forget I said anything."]<VehVehLine|
+<br>
+($funcInnerConvo: (dm:
+     "\"<!--A-->...\"", "gainAccess",
+     "\"<!--A-->Done, already forgotten.\"", "gainAccess",
+     "\"<!--B-->No, that's actually quite helpful. Everyone needs revision from time to time.\"", "gainAccess",
+))
+<br>
+](workstation4b|
+
+<!--gainAccess-->
+[
+She thumbs the hem of her cape for a bit, not knowing what to say.
+<br>
+["Anyway, let me just..."]<VehVehLine| she holds up an amulet and whispers an incantation. Its colors shift. ["There you go. Up the stairs and walk straight in."]<VehVehLine|
+<br>
+$cssDesc[You can now access the ''student lab'' - a tentative place for you to work your magic - and ''library'' - where many useful books can be found - at the Apesai Lighthouse.]
+<br>
+---
+<br>
+(link: "Gratitude, Veh-Veh.")[{
+     ($funcTalked:)
+
+     <!--gain acces to lab-->
+     (if: _alreadystudentLab is false)[
+          ($funcGainLoss: "att.", "accessLighthouseStudentLab", 1)
+     ]
+
+     <!--gain access to library-->
+     (if: _alreadyLibrary is false)[
+          ($funcGainLoss: "att.", "accessLighthouseLibrary", 1)
+     ]
+     (goto: "VehVeh Fluxy Teacher (End)")
+}]
+
+](gainAccess|
+]<!--end of accessLighthouseStudentLab sequence (including workstation dialog)-->
+
+
+<!--already have accessLighthouseStudentLab-->
+(else:)[
+<!--workstation1 (alternative, but with same name)-->
+[
+["Sure, like I said: fifth floor - just walk straight in. I've already made sure that the attendants stand down,"]<VehVehLine| she says. ["If they don't, then I'll have to go find one of the teachers, and... And we'd have a bigger problem on our hands. //I'd// have a bigger problem on //my// hands."]<VehVehLine|
+<br>
+She's muttering to herself again.
+<br>
+($funcInnerConvo: (dm:
+     "\"<!--A-->And if I need a reference book? You know, just to check if formulas aren't different here in Askava?\"", "library",
+     "\"<!--B-->Gratitude, Veh-Veh.\"", "done",
+))
+<br>
+](workstation1|
+
+[
+You try your best to avoid sounding like you have forgotten the formulas.
+<br>
+["Aren't formulas... the same everywhere? That's why they're 'formulas', right?"]<VehVehLine| She tilts her head. ["Or maybe the formulas are the same, but there regional differences in what we call the products? Ah, still got a lot to learn. Library's a floor above the lab."]<VehVehLine|
+<br>
+($funcInnerConvo: (dm:
+     "\"<!--B-->Gratitude, Veh-Veh.\"", "done",
+))
+<br>
+](library|
+
+]<!--end of already have accessLighthouseStudentLab-->
+
+
+<!--done-->
+[
+<br>
+["Not a problem. Sorry to hear about your teacher. I wish I could do more to help."]<VehVehLine|
+<br>
+$cssDesc[You already have access the ''student lab'' - a tentative place for you to work your magic - and ''library'' - where many useful books can be found - at the Apesai Lighthouse.]
+<br>
+---
+<ol>
+($funcNPCTopics: "Veh-Veh seems regretful for not doing more. Any more, and you'll just make her feel worse.", "You've been of great help, Veh-Veh. Bye.")
+</ol>
+](done|
+
+]<!--end child-->
+]<!--end parent-->

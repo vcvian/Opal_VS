@@ -2,7 +2,7 @@
 {=
 
 (metadata: 
-	"id", [A Pouch of Questionable Tea],
+	"id", [Pouch of Questionable Tea],
     "key", (a: "ingredient",),
     "value", (a: 7, 0, 0, 0, 1, 0),
     "img", "",
