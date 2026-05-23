@@ -1,0 +1,228 @@
+:: T: VehVeh Crafting [topic] {"position":"7025,1650","size":"100,100"}
+{=
+
+(storylet: when
+(passage:) contains "NPC"
+and $char's VehVeh's opinion's 2nd > 20
+and $char's VehVeh's location is "Apesai Lighthouse"
+and $char's VehVeh's talked contains "studentLab"
+and $char's player's timerCooldown does not contain "T: VehVeh Crafting"
+)
+(urgency: 1)
+(metadata:
+"NPC", "VehVeh",
+"title", "Asking Veh-Veh About School Facilities",
+"topic", "\"How would a magus go about doing synthesis here in Apesai? Where are the magic workstations?\"",
+"topicDetail", "A magus without a synthesis lab is like a sculptor without a chisel.",
+"cooldown", 1,
+"talked", (a: "studentLab", "absentPrincipal",),
+"addCode", [],
+)
+
+$cssColumnParent[
+
+$cssColumnChild[
+	$cssBox[
+    	($funcImage: (passage: "S: VehVeh")'s img)
+         $cssBoxItem[''(print: (passage:)'s title )''<br>(print: (passage:)'s topicDetail)]
+    ]
+]
+
+$cssColumnChild[
+
+<!--initialize: already have access? sickTeacher?-->
+(set: _alreadystudentLab to false)
+(set: _alreadyLibrary to false)
+(set: _sickTeacher to false)
+(set: _sickTeacherMentioned to false)
+
+(if: ($funcCheckExists: $char's player's att, "accessLighthouseStudentLab", 0) > 0)[
+          (set: _alreadystudentLab to true)
+]
+
+(if: ($funcCheckExists: $char's player's att, "accessLighthouseLibrary", 0) > 0)[
+     (set: _alreadyLibrary to true)
+]
+
+(if: ($funcCheckExists: $char's player's quests, "sickTeacher", "") is "active")[
+     (set: _sickTeacher to true)
+]
+
+(if: ($funcTalkedTimesCheck: "sickTeacher") >= 1)[(set: _sickTeacherMentioned to true)]
+
+
+$cssDesc[''You: //(print: (passage:)'s topic)//'']
+<br>
+
+<!--not have access yet sequence-->
+(if: _alreadystudentLab is false)[
+["Right here, in the tower,"]<VehVehLine| she points vaguely at the lighthouse's midsection. ["Our school has a several synthesis arrays and elementalysis tables up on the fifth floor laboratory. Not the most sophisticated setup, but the staff do their best to ensure that the apprentices always have something to learn with. No education like the hands-on kind."]<VehVehLine|
+<br>
+She means the classroom models. For children.
+<br>
+($funcInnerConvo: (dm:
+     "<!--A-->\"Does the school have something more... professional?\"", "somethingMoreAdvanced",
+     "<!--B-->\"Alright, no problem. I think can work with that.\"", "canIUseIt",
+))
+<br>
+
+
+<!--somethingMoreAdvanced-->
+[
+["O- oh, you mean our research facilities?"]<VehVehLine| She suddenly sounds hesitant. ["Of course, silly me. I get so used to talking to prospective families. Yes, we do have research-grade equipment. And by 'we', I mean our principal does, in his office, but apprentices aren't allowed in."]<VehVehLine|
+<br>
+The principal would be the best-equipped scholar. That's the case in any school. But it is disappointing, and a little bit odd, that there is nothing in the middle for the young but serious magi.
+<br>
+($funcInnerConvo: (dm:
+     "<!--A-->\"Can I talk to your principal? He'd be accomodating towards visiting colleagues.\"", "talkToPrincipal",
+     "<!--B-->\"Alright, no problem. I can settle for the students' lab.\"", "canIUseIt",
+))
+<br>
+](somethingMoreAdvanced|
+
+
+<!--talkToPrincipal-->
+[
+["Erm... thing is, he's not here. Not at the moment,"]<VehVehLine| she crosses her arms. It seems that she has been trying not to broach that subject. ["For what it's worth, I hear the teachers say that once we get more funding from the governor, we can have fancier labs installed. Though we might have to rent a building across the street; the tower's already out of empty floors..."]<VehVehLine|
+<br>
+Veh-Veh is going off on a tangent again.
+<br>
+($funcInnerConvo: (dm:
+     "<!--B-->\"Alright, no problem. I can settle for the students' lab.\"", "canIUseIt",
+))
+<br>
+](talkToPrincipal|
+
+
+<!--canIUseIt-->
+[
+["Oh. OH! You want to //use// the lab. My mistake, I thought you were just asking - you know, out of curiosity,"]<VehVehLine| she fiddles with her clothes. ["What for, if you don't mind me asking?"]<VehVehLine|
+<br>
+
+<!--variable choices-->
+(set: _responsesWhatFor to (dm:
+     "<!--B-->\"Ha, a magus without a synthesis lab is like a sculptor without a chisel. It's better to know there's one wherever one goes.\"", "justBecause",
+))
+<!--add option if sickTeacher-->
+(if: _sickTeacher)[(set: _responsesWhatFor to it + (dm:
+     "<!--A-->\"I'm traveling with my teacher, and he's not feeling well.\"", "sickTeacher1",
+))]
+
+($funcInnerConvo: _responsesWhatFor)
+<br>
+](canIUseIt|
+
+
+<!--justBecause-->
+[
+Not to mention it will save quite a bit of money in the long run if one is self-sufficient, especially when one makes use of others' facilities. Yes, best not to mention that last part.
+<br>
+["Ooh, what a line! Let me write that down. I'll definitely be saying something like that once I start //my// journey,"]<VehVehLine| she chuckles, and she actually takes out a pocket note and reed pen, though you wouldn't know if she's instead writing that today, she met an entitled blowhard.
+<br>
+($funcInnerConvo: (dm:
+     "<!--A-->\"So... who do I talk to to get into the student lab?\"", "canUseLab",
+))
+<br>
+](justBecause|
+
+
+<!--canUseLab-->
+[
+["Me. I'll signal for the attendants to stand down. Just head up the tower, fifth floor. Can't miss the door with the big safety poster,]<VehVehLine| she motions with her hands what a door and a poster might look like, a habit you see in a few of your teachers.
+<br>
+($funcInnerConvo: (dm:
+     "<!--A-->\"Just like that?\"", "justLikeThat",
+     "<!--B-->\"You sure get to decide a lot for an assistant.\"", "justLikeThat",
+))
+<br>
+](canUseLab|
+
+<!--justLikeThat-->
+[
+And an ungraduated one at that.
+<br>
+["Yeah, normally, we don't let just anyone use our alchemical equipment, but you're not just //anyone//, right? So I don't see any harm in it. Plus, it's not like the children are using the machines to their full capacity anyhow. If the principal disagrees... well, he shouldn't have left me with so much responsibility. He'll get to reprimand me all he wants whenever he gets back."]<VehVehLine|
+<br>
+($funcInnerConvo: (dm:
+     "<!--A-->\"Thank you, Veh-Veh. Anything I need to know about the lab? Specifications? Quirks? Where the ingredient inventory is?\"", "anythingNeedToKnow",
+))
+<br>
+](justLikeThat|
+
+<!--anythingNeedToKnow-->
+[
+["Ingredients? Oof, that's where I'll have to disappoint. The coffer upstairs is locked, and the remaining teachers are down to buying individual roots at Grand Exchange prices with their own money. You'll have to do likewise."]<VehVehLine|
+<br>
+She seems to truly regret asking you to pay for your own ingredients.
+<br>
+["In any case, you're unlikely to run a production-sized batch here. With most classes still going, there's only ever two free arrays, max. And, they're fairly fuel-efficient. It won't bankrupt you, is what I'm trying to say."]<VehVehLine|
+<br>
+Perhaps not you, but the school seems to be going through austere times.
+<br>
+($funcInnerConvo: (dm:
+     "<!--A-->\"What about formula books? Just in case I need a reminder.\"", "formulaBooks",
+))
+<br>
+](anythingNeedToKnow|
+
+<!--formulaBooks-->
+[
+You haven't //forgotten// your formulas - is what you're hoping she gets.
+<br>
+["We have a library a floor above the lab. It's not the whole library, since the rest is upstairs, locked... I'm just repeating myself, aren't I? You get the gist of it. You won't find tomes on secret metaphysics or taxonomies of heresies or anything, but the basics are all there. Good enough for our junior apprentices."]<VehVehLine|
+<br>
+It's hard to imagine how older students like Veh-Veh are keeping themselves intellectually satiated in this veritable //desert//, to say nothing of the teachers.
+<br>
+($funcInnerConvo: (dm:
+     "<!--A-->\"Very well. Lab's on fifth floor; library's on sixth. I think I can find my way from here.\"", "gainAccess",
+))
+<br>
+](formulaBooks|
+
+<!--gainAccess-->
+[
+["Good, good. And the attendants - let me just..."]<VehVehLine| she holds up an amulet and whispers an incantation. Its colors shift. ["There you go. Up the stairs and walk straight in."]<VehVehLine|
+<br>
+$cssDesc[You can now access the ''student lab'' - a tentative place for you to work your magic - and ''library'' - where many useful books can be found - at the Apesai Lighthouse.]
+<br>
+["Oh, and one last thing: Since I couldn't help out more,"]<VehVehLine| she pulls from her coat pocket a small gut skin bag, the content inside glowing a faint red. ["Take my leftover vehzin. It's not a lot, but the student lab doesn't need much fuel either. Should be enough for a full synthesis cycle."]<VehVehLine|
+<br>
+$cssDesc[You also receive a ''(print: (passage: "item.vehzin")'s id)'' - standard fuel for many magical machineries.]
+<br>
+---
+(link: "\"This is a lot already. Gratitude, Veh-Veh.\"")[{
+     ($funcTalked:)
+     <!--receive vehzin-->
+     ($funcGainLoss: "item.", "vehzin", 1)
+
+     <!--gain acces to lab-->
+     (if: _alreadystudentLab is false)[
+          ($funcGainLoss: "att.", "accessLighthouseStudentLab", 1)
+     ]
+
+     <!--gain access to library-->
+     (if: _alreadyLibrary is false)[
+          ($funcGainLoss: "att.", "accessLighthouseLibrary", 1)
+     ]
+     (goto: "VehVeh Crafting (End)")
+}]
+](gainAccess|
+
+
+<!--sickTeacher1-->
+[](sickTeacher1|
+]<!--end of not have access yet sequence-->
+
+
+(else:)[]
+
+<!--done-->
+[
+---
+<ol>
+($funcNPCTopics: "Veh-Veh has told you much. Any more and it'd seem like you don't know how to use a lab.", "Thanks for the instructions, Veh-Veh. Bye.")
+</ol>
+](done|
+
+]<!--end child-->
+]<!--end parent-->

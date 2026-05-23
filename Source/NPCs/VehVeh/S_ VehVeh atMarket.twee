@@ -1,4 +1,4 @@
-:: S: VehVeh Market [storylet] {"position":"6300,1300","size":"100,100"}
+:: S: VehVeh atMarket [storylet] {"position":"6300,1300","size":"100,100"}
 {=
 
 (storylet: when

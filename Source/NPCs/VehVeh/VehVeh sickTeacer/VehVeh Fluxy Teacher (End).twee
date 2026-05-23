@@ -3,7 +3,7 @@
 (metadata:
 "NPC", "VehVeh",
 "title", "Regarding Your Ill Teacher",
-"topicDetail", "Veh-Veh has introduced you to her school's facilities. The rest is up to you.",
+"topicDetail", "Veh-Veh has pointed you to the Apesai school's lab, where you might synthesize some medicine for your teacher. The rest is up to you.",
 )
 
 
@@ -19,13 +19,13 @@ $cssColumnChild[
 
 $cssColumnChild[
 
-
-["I hope your teacher gets better soon,"]<VehVehLine| she says. ["If- when he does, tell him to come by and visit our school. We receive new magi sometimes, but most of them are engineers, not... you know, davehmars. Well, you're one, but your teacher's a //master//, and that's- I'm just talking again, aren't I? Sorry. Is there anything else?"]<VehVehLine|
-
+["I hope your teacher gets better soon,"]<VehVehLine| she says. ["If- when he does, tell him to come by and visit our school. A few magi would stop by from time to time, but most of them are engineers, not... you know, davehmars. Well, you're one, but your teacher's a //master//. He's a master, right? Or am I- I'm just talking again, aren't I? Sorry. Is there anything else?"]<VehVehLine|
+<br>
+You nod. Your teacher is eager to get out of Apesai more than anything, but you don't have to mention that to Veh-Veh.
 <br>
 ---
 <ol>
-($funcNPCTopics: "Veh-Veh has done enough for you today. You better make good of her help.", "You've been of great help, Veh-Veh. Bye.")
+($funcNPCTopics: "She has done enough for you today. Better make good use of her help.", "Again, much gratitude, Veh-Veh. Goodbye.")
 </ol>
 
 ]<!--end child-->
