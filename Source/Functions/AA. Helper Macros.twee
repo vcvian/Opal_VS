@@ -12,3 +12,6 @@
 	(if: _pocket contains _thing)[(set: _out to _pocket's _thing)]\
 	(out-data: _out)\
 ]))
+
+<!--"stuff" datamap to track miscellaneous things. Meant to be deleted-->
+(set: $stuff to (dm:))

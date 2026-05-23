@@ -5,17 +5,21 @@
 (passage:) contains "NPC"
 and $char's VehVeh's opinion's 2nd > 20
 and $char's VehVeh's location is "Apesai Lighthouse"
-and $char's VehVeh's talked contains "studentLab"
 and $char's player's timerCooldown does not contain "T: VehVeh Crafting"
 )
-(urgency: 1)
+(urgency: .5)
 (metadata:
 "NPC", "VehVeh",
 "title", "Asking Veh-Veh About School Facilities",
-"topic", "\"How would a magus go about doing synthesis here in Apesai? Where are the magic workstations?\"",
+"topic", [{
+     (if: ($funcCheckExists: $char's player's att, "accessLighthouseStudentLab", 0) < 1)[
+          "How would a magus go about doing synthesis here in Apesai? Where are the magic workstations?"
+     ]
+     (else:)["Can you tell me about the school's synthesis lab again?"]
+}],
 "topicDetail", "A magus without a synthesis lab is like a sculptor without a chisel.",
 "cooldown", 1,
-"talked", (a: "studentLab", "absentPrincipal",),
+"talked", (a: "studentLab", "library", "absentPrincipal",),
 "addCode", [],
 )
 
@@ -35,6 +39,7 @@ $cssColumnChild[
 (set: _alreadyLibrary to false)
 (set: _sickTeacher to false)
 (set: _sickTeacherMentioned to false)
+(set: _againChoices to (dm:))
 
 (if: ($funcCheckExists: $char's player's att, "accessLighthouseStudentLab", 0) > 0)[
           (set: _alreadystudentLab to true)
@@ -88,7 +93,7 @@ The principal would be the best-equipped scholar. That's the case in any school.
 Veh-Veh is going off on a tangent again.
 <br>
 ($funcInnerConvo: (dm:
-     "<!--B-->\"Alright, no problem. I can settle for the students' lab.\"", "canIUseIt",
+     "<!--B-->\"Alright, no problem. I can settle for the students lab.\"", "canIUseIt",
 ))
 <br>
 ](talkToPrincipal|
@@ -101,7 +106,8 @@ Veh-Veh is going off on a tangent again.
 
 <!--variable choices-->
 (set: _responsesWhatFor to (dm:
-     "<!--B-->\"Ha, a magus without a synthesis lab is like a sculptor without a chisel. It's better to know there's one wherever one goes.\"", "justBecause",
+     "<!--B-->\"Alchemy, of course.\"", "alchemyOfCourse",
+     "<!--C-->\"Ha, a magus without a synthesis lab is like a sculptor without a chisel. It's better to know there's one wherever one goes.\"", "justBecause",
 ))
 <!--add option if sickTeacher-->
 (if: _sickTeacher)[(set: _responsesWhatFor to it + (dm:
@@ -112,6 +118,17 @@ Veh-Veh is going off on a tangent again.
 <br>
 ](canIUseIt|
 
+<!--alchemyOfCourse-->
+[
+["Duh, where is my head? Sorry, I wasn't expecting- It's just that visiting magi don't usually care for basic labs. They're all //imperial artificers// and //military alchemists//. You know, the picky type. They never stay for long."]<VehVehLine|
+<br>
+You, too, are bound elsewhere, as soon as you can find a way to get off this rock.
+<br>
+($funcInnerConvo: (dm:
+     "<!--A-->\"So... who do I talk to to get into the student lab?\"", "canUseLab",
+))
+<br>
+](alchemyOfCourse|
 
 <!--justBecause-->
 [
@@ -132,15 +149,13 @@ Not to mention it will save quite a bit of money in the long run if one is self-
 <br>
 ($funcInnerConvo: (dm:
      "<!--A-->\"Just like that?\"", "justLikeThat",
-     "<!--B-->\"You sure get to decide a lot for an assistant.\"", "justLikeThat",
+     "<!--B-->\"You sure get to decide a lot for an assistant.\" And an ungraduated one at that.", "justLikeThat",
 ))
 <br>
 ](canUseLab|
 
 <!--justLikeThat-->
 [
-And an ungraduated one at that.
-<br>
 ["Yeah, normally, we don't let just anyone use our alchemical equipment, but you're not just //anyone//, right? So I don't see any harm in it. Plus, it's not like the children are using the machines to their full capacity anyhow. If the principal disagrees... well, he shouldn't have left me with so much responsibility. He'll get to reprimand me all he wants whenever he gets back."]<VehVehLine|
 <br>
 ($funcInnerConvo: (dm:
@@ -191,7 +206,12 @@ $cssDesc[You also receive a ''(print: (passage: "item.vehzin")'s id)'' - standar
 <br>
 ---
 (link: "\"This is a lot already. Gratitude, Veh-Veh.\"")[{
+     
+     <!--registers all "talked" keys-->
      ($funcTalked:)
+     <!--put the crafting topic on cooldown-->
+     ($funcAddStoryletCooldown: (passage:)'s name)
+
      <!--receive vehzin-->
      ($funcGainLoss: "item.", "vehzin", 1)
 
@@ -210,11 +230,148 @@ $cssDesc[You also receive a ''(print: (passage: "item.vehzin")'s id)'' - standar
 
 
 <!--sickTeacher1-->
-[](sickTeacher1|
+[
+     <!--put the crafting topic on cooldown-->
+     ($funcAddStoryletCooldown: (passage:)'s name)
+     <!--goto-->
+     (goto: "T: VehVeh Fluxy Teacher")
+](sickTeacher1|
+
 ]<!--end of not have access yet sequence-->
 
 
-(else:)[]
+<!--already have access (either via the "crafting" or the "sickTeacher" topic)-->
+(else:)[
+["(either: "Sure, no problem.","Oh, did you forget?","You mean the student lab?", "You sure can.") It's on the fifth floor, up the spiral stairs. There //should// be a few free synthesis arrays. The elementalysis table is in the same room, too. (either: "Hope the attendants aren't giving you any trouble. They're sore due for repairs.", "It's not much, but it //is// the 'full package'. In a way.", "It's not the fastest, but it used to take a whole week to run a cycle.", "I just had everything re-tuned a couple of weeks back. No, more like a month.")"]<VehVehLine|
+
+<!--convo works a bit different because questions can be asked in any order.-->
+(set: $stuff to (dm:))
+(set: _currentDisplay to [])
+(set: $stuff to it + (dm: "againChoices", (dm:
+     "<!--A-->\"And if I need to go over some formulas, where should I look?\"", "againLibrary1",
+     "<!--B-->\"What about ingredients for elementalysis? Where might I find some?\"", "againIngredients1",
+     "<!--C-->\"If I want to cook up a few more batches, where might I find more fuel? \"", "againFuel1",
+     "<!--D-->\"I remember now. Thank you.\"", "againThanks",
+)))
+
+(set: _editChoices to (macro: str-type _deleteWhich, num-type _newNumber,[(out:)[{
+     <!--edit destination number-->
+     (for: each _question, ...(datanames: $stuff's againChoices))[
+          <!--edit-->
+          (unless: $stuff's againChoices's _question contains "Thanks")[
+               [(set: $stuff's againChoices's _question to (trimmed: digit, $stuff's againChoices's _question))
+               (set: $stuff's againChoices's _question to it + (str:_newNumber))]
+          ]
+          <!--delete-->
+          (if: _question contains _deleteWhich)[(move: $stuff's againChoices's _question into _trash)]
+     ]<!--end loop-->
+}]]))
+
+<br>
+($funcInnerConvo: $stuff's againChoices)
+<br>
+
+[
+(_editChoices: "formula",2)
+_againLibrary
+<br>
+($funcInnerConvo: $stuff's againChoices)
+<br>
+](againLibrary1|
+
+[
+(_editChoices: "ingredient",2)
+_againIngredients
+<br>
+($funcInnerConvo: $stuff's againChoices)
+<br>
+](againIngredients1|
+
+[
+(_editChoices: "fuel",2)
+_againFuel
+<br>
+($funcInnerConvo: $stuff's againChoices)
+<br>
+](againFuel1|
+
+[
+(_editChoices: "formula",3)
+_againLibrary
+<br>
+($funcInnerConvo: $stuff's againChoices)
+<br>
+](againLibrary2|
+
+[
+(_editChoices: "ingredient",3)
+_againIngredients
+<br>
+($funcInnerConvo: $stuff's againChoices)
+<br>
+](againIngredients2|
+
+[
+(_editChoices: "fuel",3)
+_againFuel
+<br>
+($funcInnerConvo: $stuff's againChoices)
+<br>
+](againFuel2|
+
+[
+(_editChoices: "formula",4)
+_againLibrary
+<br>
+($funcInnerConvo: $stuff's againChoices)
+<br>
+](againLibrary3|
+
+[
+(_editChoices: "ingredient",4)
+_againIngredients
+<br>
+($funcInnerConvo: $stuff's againChoices)
+<br>
+](againIngredients3|
+
+[
+(_editChoices: "fuel",4)
+_againFuel
+<br>
+($funcInnerConvo: $stuff's againChoices)
+<br>
+](againFuel3|
+
+
+<!--_againLibrary-->
+(set: _againLibrary to [{
+["If you need to consult a textbook, you can go one stair up to the library. It's mostly basic formulas and textbooks for the junior apprentices, but they're there."]<VehVehLine|
+}])
+
+<!--_againIngredients-->
+(set: _againIngredients to [{
+["Ingredients"]<VehVehLine|
+}])
+
+
+<!--againFuel-->
+(set: _againFuel to [{
+["Fuel"]<VehVehLine|
+}])
+
+
+[
+["Yeah, no problem!"]<VehVehLine|
+(move: $stuff's againChoices into _trash)
+(show: ?done)
+<br>
+
+
+](againThanks|
+
+]<!--end of already have access-->
+
 
 <!--done-->
 [

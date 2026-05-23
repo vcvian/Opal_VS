@@ -5,7 +5,7 @@
 
 ($funcUITopBar:)
 
-''Currently at $location''
+''Currently at (print: $place's location)''
 <br>
 <!--Player profile-->
 $cssBox[\

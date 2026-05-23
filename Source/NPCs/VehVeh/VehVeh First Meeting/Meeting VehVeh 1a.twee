@@ -166,7 +166,7 @@ She stammers and fidgets with her book. You seem to have touched a sore spot.
 ["I'm sorry, I'm talking to myself again. Bad habit. So, journeyman, is there something I can help you with?"]<VehVehLine|
 <br>
 ($funcInnerConvo: (dm:
-     "<!--A-->\"Yes, there is something I need to talk to a davehmar about.", "talk",
+     "<!--A-->\"Yes, there is something I need to talk to a davehmar about.\"", "talk",
      "<!--B-->\"No, I just wanted to say hello.\"", "exit",
 ))
 <br>

@@ -18,7 +18,7 @@ and $char's player's timerCooldown does not contain "T: VehVeh Fluxy Teacher"
 }],
 "topicDetail", "The Apesai school must have a spare tonic, or at least the equipment to make one.",
 "cooldown", 1,
-"talked", (a: "sickTeacher", "studentLab", "library"),
+"talked", (a: "sickTeacher", "studentLab", "library", "absentPrincipal",),
 "addCode", [],
 )
 
@@ -110,14 +110,14 @@ Veh-Veh then mutters, ["I //do// double as an astrologian though."]<VehVehLine|
 ($funcInnerConvo: (dm:
      "\"<!--A-->This hospitaler - do you know if she'll come back soon?\"", "firstTime3a",
      "\"<!--B-->Astrology... would it help with, you know...\"", "firstTime3b",
-     "\"<!--C-->Is there medicine inside the school? Or at least a synthesis workstation?\"", "firstTime3c",
+     "\"<!--C-->Is there medicine inside the tower?\"", "firstTime3c",
 ))
 <br>
 ](firstTime3|
 
 <!--firstTime3a-->
 [
-["No..."]<VehVehLine| she mutters. It seems to be an oft-asked question and an oft-given answer. ["But if your teacher is just having a bad stomach, then a Gor tonic is good enough. Our physician makes them all the time for the children when they're... um... You //do// know how to operate a synthesis workstation, yes? As in, unsupervised?"]<VehVehLine|
+["No, she's with the principal, they've gone off..."]<VehVehLine| she mutters. It seems to be an oft-asked question and an oft-given answer. ["Look, if your teacher is just having a bad stomach, then a Gor tonic is good enough. Our hospitaler makes them all the time for the children when they're... um... You //do// know how to operate a synthesis workstation, yes? As in, unsupervised?"]<VehVehLine|
 <br>
 ($funcInnerConvo: (dm:
      "\"<!--A-->Of course! I'm already a journeyman.\"", "workstation1",
@@ -142,7 +142,7 @@ You should have known this, being a graduate and all. But the truth is that the 
 
 <!--firstTime3c-->
 [
-["Sorry, there isn't any spare medicine left on account of our physician being away. We - well, //I// - make them as needed, but the coffer's locked, and everyone's coin purses are light,"]<VehVehLine| she sighs.` `
+["Sorry, there isn't any spare medicine left on account of our hospitaler being away. We - well, //I// - make them as needed, but the coffer's locked, and everyone's coin purses are light,"]<VehVehLine| she sighs.` `
 
 (if: _alreadystudentLab is false)[["I can tell the attendants to let you into our lab though."]<VehVehLine|]
 (else:)["But, you know, the student lab is open to you if you don't mind rolling up your sleeves a bit."]<VehVehLine|
@@ -193,7 +193,7 @@ She says it slowly. This is clearly a teaching moment for her.
 <br>
 ($funcInnerConvo: (dm:
      "\"<!--A-->A //student// lab? You don't mean the one the children uses, do you?\"", "workstation2a",
-     "\"<!--B-->What if I need more advanced subtances?\"", "workstation2b",
+     "\"<!--B-->What if I need to make more advanced subtances?\"", "workstation2b",
      "\"<!--C-->A student lab... sure. I'll take what I can get.\"", "workstation2c",
 ))
 <br>
@@ -226,8 +226,10 @@ Stranger and stranger.
 <br>
 ["The student lab is perfectly fine if you're only making a couple of simple tonics or salves at a time. We've got an elementalysis table too, if you're wondering."]<VehVehLine|
 <br>
+Machinery is one thing. There's also the matter of ingredients.
+<br>
 ($funcInnerConvo: (dm:
-     "\"<!--A-->And is there an ingredient storeroomn in there too?\"", "workstation4a",
+     "\"<!--A-->And is there an ingredient storeroom in there too?\"", "workstation4a",
      "\"<!--B-->That's good to hear. Thank you. I'll figure it the rest out.\"", "workstation4b",
 ))
 <br>
@@ -247,12 +249,12 @@ She points vaguely in the direction of the red steel domes some distance downhil
 
 <!--workstation4b-->
 [
-["Yes, and if you need to brush up on your alchemical formulas, do visit our library one floor above. The children love it, and- Oh, I didn't mean to say that you don't know how to, you know... Forget I said anything."]<VehVehLine|
+["Yes, and if you need to brush up on your alchemical formulas, do visit our library one floor above. The children love it, and- Oh, I don't mean to say that you don't know how to, you know... Forget I said anything."]<VehVehLine|
 <br>
 ($funcInnerConvo: (dm:
      "\"<!--A-->...\"", "gainAccess",
      "\"<!--A-->Done, already forgotten.\"", "gainAccess",
-     "\"<!--B-->No, that's actually quite helpful. Everyone needs revision from time to time.\"", "gainAccess",
+     "\"<!--B-->No, that's actually quite helpful. Libraries are great, and everyone needs revision from time to time.\"", "gainAccess",
 ))
 <br>
 ](workstation4b|
@@ -271,7 +273,11 @@ $cssDesc[You also receive a ''(print: (passage: "item.vehzin")'s id)'' - standar
 <br>
 ---
 (link: "\"This is a lot already. Gratitude, Veh-Veh.\"")[{
+     <!--registers all "talked" keys-->
      ($funcTalked:)
+     <!--put the crafting topic on cooldown-->
+     ($funcAddStoryletCooldown: (passage:)'s name)
+
      <!--receive vehzin-->
      ($funcGainLoss: "item.", "vehzin", 1)
 
@@ -295,7 +301,7 @@ $cssDesc[You also receive a ''(print: (passage: "item.vehzin")'s id)'' - standar
 (else:)[
 <!--workstation1 (alternative, but with same name)-->
 [
-["Sure, like I said: fifth floor - just walk straight in. I've already made sure that the attendants stand down,"]<VehVehLine| she says. ["If they don't, then I'll have to go find one of the teachers, and... And we'd have a bigger problem on our hands. //I'd// have a bigger problem on //my// hands."]<VehVehLine|
+["Sure, like I said: fifth floor - just walk straight in. I've already made sure that the attendants stand down,"]<VehVehLine| she says. ["If they don't, then I'll have to go find one of the associate teachers, and... And we'd have a bigger problem on our hands. //I'd// have a bigger problem on //my// hands."]<VehVehLine|
 <br>
 She's muttering to herself again.
 <br>

@@ -67,7 +67,7 @@ hr {
   100% {
     background-position: 0% center;
   }
-}</style><script role="script" id="twine-user-script" type="text/twine-javascript"></script><tw-tag name="book" color="yellow"></tw-tag><tw-tag name="header" color="yellow"></tw-tag><tw-tag name="startup" color="orange"></tw-tag><tw-tag name="static-storage" color="yellow"></tw-tag><tw-tag name="stay" color="yellow"></tw-tag><tw-tag name="storylet" color="blue"></tw-tag><tw-tag name="sublocation" color="green"></tw-tag><tw-tag name="test" color="blue"></tw-tag><tw-tag name="topic" color="purple"></tw-tag><tw-tag name="traveling" color="purple"></tw-tag><tw-tag name="UI" color="orange"></tw-tag><tw-tag name="effect" color="yellow"></tw-tag><tw-tag name="footer" color="yellow"></tw-tag><tw-passagedata pid="1" name="AA. Books &amp; Formulae" tags="startup" position="100,100" size="100,100">{=
+}</style><script role="script" id="twine-user-script" type="text/twine-javascript"></script><tw-tag name="header" color="yellow"></tw-tag><tw-tag name="startup" color="orange"></tw-tag><tw-tag name="static-storage" color="yellow"></tw-tag><tw-tag name="stay" color="yellow"></tw-tag><tw-tag name="storylet" color="blue"></tw-tag><tw-tag name="sublocation" color="green"></tw-tag><tw-tag name="UI" color="orange"></tw-tag><tw-tag name="book" color="yellow"></tw-tag><tw-tag name="traveling" color="purple"></tw-tag><tw-tag name="test" color="blue"></tw-tag><tw-tag name="topic" color="purple"></tw-tag><tw-tag name="effect" color="yellow"></tw-tag><tw-tag name="footer" color="yellow"></tw-tag><tw-passagedata pid="1" name="AA. Books &amp; Formulae" tags="startup" position="100,100" size="100,100">{=
 &lt;!--Macros related to books and reading--&gt;
 
 (set: $readingNav to (dm:
@@ -554,7 +554,10 @@ Then, it multiplies that amount with the item&#39;s value and gives back the cor
 (set: $funcCheckExists to (macro: any-type _pocket, str-type _thing, any-type _out,[\
 	(if: _pocket contains _thing)[(set: _out to _pocket&#39;s _thing)]\
 	(out-data: _out)\
-]))</tw-passagedata><tw-passagedata pid="8" name="AA. Know, Unlock, Nav" tags="startup" position="1450,5425" size="100,100">{=
+]))
+
+&lt;!--&quot;stuff&quot; datamap to track miscellaneous things. Meant to be deleted--&gt;
+(set: $stuff to (dm:))</tw-passagedata><tw-passagedata pid="8" name="AA. Know, Unlock, Nav" tags="startup" position="1450,5425" size="100,100">{=
 
 &lt;!--NPCs, sublocations, and many storylets are only unlocked if you have knowledge of them.
 
@@ -2865,7 +2868,7 @@ $cssDesc[It is &#39;&#39;(display:&quot;table.dayNames&quot;)&#39;&#39;, &#39;&#
 
 ($funcUITopBar:)
 
-&#39;&#39;Currently at $location&#39;&#39;
+&#39;&#39;Currently at (print: $place&#39;s location)&#39;&#39;
 &lt;br&gt;
 &lt;!--Player profile--&gt;
 $cssBox[\
@@ -5726,7 +5729,7 @@ and $char&#39;s player&#39;s timerCooldown does not contain &quot;T: VehVeh Self
 &quot;NPC&quot;, &quot;VehVeh&quot;,
 &quot;title&quot;, &quot;Chatting with Veh-Veh&quot;,
 &quot;topic&quot;, &quot;\&quot;Veh-Veh\&quot; - is that a nickname?&quot;,
-&quot;topicDetail&quot;, &quot;You can feel yourself cringe.&quot;,
+&quot;topicDetail&quot;, &quot;She is the chatty sort. Maybe she&#39;ll like talking about herself?&quot;,
 &quot;cooldown&quot;, 1,
 &quot;talked&quot;, (a: &quot;nameVehVeh&quot;, ),
 &quot;addCode&quot;, [\
@@ -5775,17 +5778,21 @@ Despite her hesitation, she continues.]
 (passage:) contains &quot;NPC&quot;
 and $char&#39;s VehVeh&#39;s opinion&#39;s 2nd &gt; 20
 and $char&#39;s VehVeh&#39;s location is &quot;Apesai Lighthouse&quot;
-and $char&#39;s VehVeh&#39;s talked contains &quot;studentLab&quot;
 and $char&#39;s player&#39;s timerCooldown does not contain &quot;T: VehVeh Crafting&quot;
 )
-(urgency: 1)
+(urgency: .5)
 (metadata:
 &quot;NPC&quot;, &quot;VehVeh&quot;,
 &quot;title&quot;, &quot;Asking Veh-Veh About School Facilities&quot;,
-&quot;topic&quot;, &quot;\&quot;How would a magus go about doing synthesis here in Apesai? Where are the magic workstations?\&quot;&quot;,
+&quot;topic&quot;, [{
+     (if: ($funcCheckExists: $char&#39;s player&#39;s att, &quot;accessLighthouseStudentLab&quot;, 0) &lt; 1)[
+          &quot;How would a magus go about doing synthesis here in Apesai? Where are the magic workstations?&quot;
+     ]
+     (else:)[&quot;Can you tell me about the school&#39;s synthesis lab again?&quot;]
+}],
 &quot;topicDetail&quot;, &quot;A magus without a synthesis lab is like a sculptor without a chisel.&quot;,
 &quot;cooldown&quot;, 1,
-&quot;talked&quot;, (a: &quot;studentLab&quot;, &quot;absentPrincipal&quot;,),
+&quot;talked&quot;, (a: &quot;studentLab&quot;, &quot;library&quot;, &quot;absentPrincipal&quot;,),
 &quot;addCode&quot;, [],
 )
 
@@ -5805,6 +5812,7 @@ $cssColumnChild[
 (set: _alreadyLibrary to false)
 (set: _sickTeacher to false)
 (set: _sickTeacherMentioned to false)
+(set: _againChoices to (dm:))
 
 (if: ($funcCheckExists: $char&#39;s player&#39;s att, &quot;accessLighthouseStudentLab&quot;, 0) &gt; 0)[
           (set: _alreadystudentLab to true)
@@ -5858,7 +5866,7 @@ The principal would be the best-equipped scholar. That&#39;s the case in any sch
 Veh-Veh is going off on a tangent again.
 &lt;br&gt;
 ($funcInnerConvo: (dm:
-     &quot;&lt;!--B--&gt;\&quot;Alright, no problem. I can settle for the students&#39; lab.\&quot;&quot;, &quot;canIUseIt&quot;,
+     &quot;&lt;!--B--&gt;\&quot;Alright, no problem. I can settle for the students lab.\&quot;&quot;, &quot;canIUseIt&quot;,
 ))
 &lt;br&gt;
 ](talkToPrincipal|
@@ -5871,7 +5879,8 @@ Veh-Veh is going off on a tangent again.
 
 &lt;!--variable choices--&gt;
 (set: _responsesWhatFor to (dm:
-     &quot;&lt;!--B--&gt;\&quot;Ha, a magus without a synthesis lab is like a sculptor without a chisel. It&#39;s better to know there&#39;s one wherever one goes.\&quot;&quot;, &quot;justBecause&quot;,
+     &quot;&lt;!--B--&gt;\&quot;Alchemy, of course.\&quot;&quot;, &quot;alchemyOfCourse&quot;,
+     &quot;&lt;!--C--&gt;\&quot;Ha, a magus without a synthesis lab is like a sculptor without a chisel. It&#39;s better to know there&#39;s one wherever one goes.\&quot;&quot;, &quot;justBecause&quot;,
 ))
 &lt;!--add option if sickTeacher--&gt;
 (if: _sickTeacher)[(set: _responsesWhatFor to it + (dm:
@@ -5882,6 +5891,17 @@ Veh-Veh is going off on a tangent again.
 &lt;br&gt;
 ](canIUseIt|
 
+&lt;!--alchemyOfCourse--&gt;
+[
+[&quot;Duh, where is my head? Sorry, I wasn&#39;t expecting- It&#39;s just that visiting magi don&#39;t usually care for basic labs. They&#39;re all //imperial artificers// and //military alchemists//. You know, the picky type. They never stay for long.&quot;]&lt;VehVehLine|
+&lt;br&gt;
+You, too, are bound elsewhere, as soon as you can find a way to get off this rock.
+&lt;br&gt;
+($funcInnerConvo: (dm:
+     &quot;&lt;!--A--&gt;\&quot;So... who do I talk to to get into the student lab?\&quot;&quot;, &quot;canUseLab&quot;,
+))
+&lt;br&gt;
+](alchemyOfCourse|
 
 &lt;!--justBecause--&gt;
 [
@@ -5902,15 +5922,13 @@ Not to mention it will save quite a bit of money in the long run if one is self-
 &lt;br&gt;
 ($funcInnerConvo: (dm:
      &quot;&lt;!--A--&gt;\&quot;Just like that?\&quot;&quot;, &quot;justLikeThat&quot;,
-     &quot;&lt;!--B--&gt;\&quot;You sure get to decide a lot for an assistant.\&quot;&quot;, &quot;justLikeThat&quot;,
+     &quot;&lt;!--B--&gt;\&quot;You sure get to decide a lot for an assistant.\&quot; And an ungraduated one at that.&quot;, &quot;justLikeThat&quot;,
 ))
 &lt;br&gt;
 ](canUseLab|
 
 &lt;!--justLikeThat--&gt;
 [
-And an ungraduated one at that.
-&lt;br&gt;
 [&quot;Yeah, normally, we don&#39;t let just anyone use our alchemical equipment, but you&#39;re not just //anyone//, right? So I don&#39;t see any harm in it. Plus, it&#39;s not like the children are using the machines to their full capacity anyhow. If the principal disagrees... well, he shouldn&#39;t have left me with so much responsibility. He&#39;ll get to reprimand me all he wants whenever he gets back.&quot;]&lt;VehVehLine|
 &lt;br&gt;
 ($funcInnerConvo: (dm:
@@ -5961,7 +5979,12 @@ $cssDesc[You also receive a &#39;&#39;(print: (passage: &quot;item.vehzin&quot;)
 &lt;br&gt;
 ---
 (link: &quot;\&quot;This is a lot already. Gratitude, Veh-Veh.\&quot;&quot;)[{
+     
+     &lt;!--registers all &quot;talked&quot; keys--&gt;
      ($funcTalked:)
+     &lt;!--put the crafting topic on cooldown--&gt;
+     ($funcAddStoryletCooldown: (passage:)&#39;s name)
+
      &lt;!--receive vehzin--&gt;
      ($funcGainLoss: &quot;item.&quot;, &quot;vehzin&quot;, 1)
 
@@ -5980,11 +6003,148 @@ $cssDesc[You also receive a &#39;&#39;(print: (passage: &quot;item.vehzin&quot;)
 
 
 &lt;!--sickTeacher1--&gt;
-[](sickTeacher1|
+[
+     &lt;!--put the crafting topic on cooldown--&gt;
+     ($funcAddStoryletCooldown: (passage:)&#39;s name)
+     &lt;!--goto--&gt;
+     (goto: &quot;T: VehVeh Fluxy Teacher&quot;)
+](sickTeacher1|
+
 ]&lt;!--end of not have access yet sequence--&gt;
 
 
-(else:)[]
+&lt;!--already have access (either via the &quot;crafting&quot; or the &quot;sickTeacher&quot; topic)--&gt;
+(else:)[
+[&quot;(either: &quot;Sure, no problem.&quot;,&quot;Oh, did you forget?&quot;,&quot;You mean the student lab?&quot;, &quot;You sure can.&quot;) It&#39;s on the fifth floor, up the spiral stairs. There //should// be a few free synthesis arrays. The elementalysis table is in the same room, too. (either: &quot;Hope the attendants aren&#39;t giving you any trouble. They&#39;re sore due for repairs.&quot;, &quot;It&#39;s not much, but it //is// the &#39;full package&#39;. In a way.&quot;, &quot;It&#39;s not the fastest, but it used to take a whole week to run a cycle.&quot;, &quot;I just had everything re-tuned a couple of weeks back. No, more like a month.&quot;)&quot;]&lt;VehVehLine|
+
+&lt;!--convo works a bit different because questions can be asked in any order.--&gt;
+(set: $stuff to (dm:))
+(set: _currentDisplay to [])
+(set: $stuff to it + (dm: &quot;againChoices&quot;, (dm:
+     &quot;&lt;!--A--&gt;\&quot;And if I need to go over some formulas, where should I look?\&quot;&quot;, &quot;againLibrary1&quot;,
+     &quot;&lt;!--B--&gt;\&quot;What about ingredients for elementalysis? Where might I find some?\&quot;&quot;, &quot;againIngredients1&quot;,
+     &quot;&lt;!--C--&gt;\&quot;If I want to cook up a few more batches, where might I find more fuel? \&quot;&quot;, &quot;againFuel1&quot;,
+     &quot;&lt;!--D--&gt;\&quot;I remember now. Thank you.\&quot;&quot;, &quot;againThanks&quot;,
+)))
+
+(set: _editChoices to (macro: str-type _deleteWhich, num-type _newNumber,[(out:)[{
+     &lt;!--edit destination number--&gt;
+     (for: each _question, ...(datanames: $stuff&#39;s againChoices))[
+          &lt;!--edit--&gt;
+          (unless: $stuff&#39;s againChoices&#39;s _question contains &quot;Thanks&quot;)[
+               [(set: $stuff&#39;s againChoices&#39;s _question to (trimmed: digit, $stuff&#39;s againChoices&#39;s _question))
+               (set: $stuff&#39;s againChoices&#39;s _question to it + (str:_newNumber))]
+          ]
+          &lt;!--delete--&gt;
+          (if: _question contains _deleteWhich)[(move: $stuff&#39;s againChoices&#39;s _question into _trash)]
+     ]&lt;!--end loop--&gt;
+}]]))
+
+&lt;br&gt;
+($funcInnerConvo: $stuff&#39;s againChoices)
+&lt;br&gt;
+
+[
+(_editChoices: &quot;formula&quot;,2)
+_againLibrary
+&lt;br&gt;
+($funcInnerConvo: $stuff&#39;s againChoices)
+&lt;br&gt;
+](againLibrary1|
+
+[
+(_editChoices: &quot;ingredient&quot;,2)
+_againIngredients
+&lt;br&gt;
+($funcInnerConvo: $stuff&#39;s againChoices)
+&lt;br&gt;
+](againIngredients1|
+
+[
+(_editChoices: &quot;fuel&quot;,2)
+_againFuel
+&lt;br&gt;
+($funcInnerConvo: $stuff&#39;s againChoices)
+&lt;br&gt;
+](againFuel1|
+
+[
+(_editChoices: &quot;formula&quot;,3)
+_againLibrary
+&lt;br&gt;
+($funcInnerConvo: $stuff&#39;s againChoices)
+&lt;br&gt;
+](againLibrary2|
+
+[
+(_editChoices: &quot;ingredient&quot;,3)
+_againIngredients
+&lt;br&gt;
+($funcInnerConvo: $stuff&#39;s againChoices)
+&lt;br&gt;
+](againIngredients2|
+
+[
+(_editChoices: &quot;fuel&quot;,3)
+_againFuel
+&lt;br&gt;
+($funcInnerConvo: $stuff&#39;s againChoices)
+&lt;br&gt;
+](againFuel2|
+
+[
+(_editChoices: &quot;formula&quot;,4)
+_againLibrary
+&lt;br&gt;
+($funcInnerConvo: $stuff&#39;s againChoices)
+&lt;br&gt;
+](againLibrary3|
+
+[
+(_editChoices: &quot;ingredient&quot;,4)
+_againIngredients
+&lt;br&gt;
+($funcInnerConvo: $stuff&#39;s againChoices)
+&lt;br&gt;
+](againIngredients3|
+
+[
+(_editChoices: &quot;fuel&quot;,4)
+_againFuel
+&lt;br&gt;
+($funcInnerConvo: $stuff&#39;s againChoices)
+&lt;br&gt;
+](againFuel3|
+
+
+&lt;!--_againLibrary--&gt;
+(set: _againLibrary to [{
+[&quot;If you need to consult a textbook, you can go one stair up to the library. It&#39;s mostly basic formulas and textbooks for the junior apprentices, but they&#39;re there.&quot;]&lt;VehVehLine|
+}])
+
+&lt;!--_againIngredients--&gt;
+(set: _againIngredients to [{
+[&quot;Ingredients&quot;]&lt;VehVehLine|
+}])
+
+
+&lt;!--againFuel--&gt;
+(set: _againFuel to [{
+[&quot;Fuel&quot;]&lt;VehVehLine|
+}])
+
+
+[
+[&quot;Yeah, no problem!&quot;]&lt;VehVehLine|
+(move: $stuff&#39;s againChoices into _trash)
+(show: ?done)
+&lt;br&gt;
+
+
+](againThanks|
+
+]&lt;!--end of already have access--&gt;
+
 
 &lt;!--done--&gt;
 [
@@ -6019,7 +6179,7 @@ $cssColumnChild[
 &lt;br&gt;
 Veh-Veh could have lorded it over you, had she wanted to. That&#39;s how it would have gone down in your university.
 &lt;br&gt;
-[&quot;So... anything else?&quot;]&lt;VehVehLine|
+[&quot;So, anything else?&quot;]&lt;VehVehLine|
 &lt;br&gt;
 ---
 &lt;ol&gt;
@@ -6194,7 +6354,7 @@ She stammers and fidgets with her book. You seem to have touched a sore spot.
 [&quot;I&#39;m sorry, I&#39;m talking to myself again. Bad habit. So, journeyman, is there something I can help you with?&quot;]&lt;VehVehLine|
 &lt;br&gt;
 ($funcInnerConvo: (dm:
-     &quot;&lt;!--A--&gt;\&quot;Yes, there is something I need to talk to a davehmar about.&quot;, &quot;talk&quot;,
+     &quot;&lt;!--A--&gt;\&quot;Yes, there is something I need to talk to a davehmar about.\&quot;&quot;, &quot;talk&quot;,
      &quot;&lt;!--B--&gt;\&quot;No, I just wanted to say hello.\&quot;&quot;, &quot;exit&quot;,
 ))
 &lt;br&gt;
@@ -6317,7 +6477,7 @@ and $char&#39;s player&#39;s timerCooldown does not contain &quot;T: VehVeh Flux
 }],
 &quot;topicDetail&quot;, &quot;The Apesai school must have a spare tonic, or at least the equipment to make one.&quot;,
 &quot;cooldown&quot;, 1,
-&quot;talked&quot;, (a: &quot;sickTeacher&quot;, &quot;studentLab&quot;, &quot;library&quot;),
+&quot;talked&quot;, (a: &quot;sickTeacher&quot;, &quot;studentLab&quot;, &quot;library&quot;, &quot;absentPrincipal&quot;,),
 &quot;addCode&quot;, [],
 )
 
@@ -6409,14 +6569,14 @@ Veh-Veh then mutters, [&quot;I //do// double as an astrologian though.&quot;]&lt
 ($funcInnerConvo: (dm:
      &quot;\&quot;&lt;!--A--&gt;This hospitaler - do you know if she&#39;ll come back soon?\&quot;&quot;, &quot;firstTime3a&quot;,
      &quot;\&quot;&lt;!--B--&gt;Astrology... would it help with, you know...\&quot;&quot;, &quot;firstTime3b&quot;,
-     &quot;\&quot;&lt;!--C--&gt;Is there medicine inside the school? Or at least a synthesis workstation?\&quot;&quot;, &quot;firstTime3c&quot;,
+     &quot;\&quot;&lt;!--C--&gt;Is there medicine inside the tower?\&quot;&quot;, &quot;firstTime3c&quot;,
 ))
 &lt;br&gt;
 ](firstTime3|
 
 &lt;!--firstTime3a--&gt;
 [
-[&quot;No...&quot;]&lt;VehVehLine| she mutters. It seems to be an oft-asked question and an oft-given answer. [&quot;But if your teacher is just having a bad stomach, then a Gor tonic is good enough. Our physician makes them all the time for the children when they&#39;re... um... You //do// know how to operate a synthesis workstation, yes? As in, unsupervised?&quot;]&lt;VehVehLine|
+[&quot;No, she&#39;s with the principal, they&#39;ve gone off...&quot;]&lt;VehVehLine| she mutters. It seems to be an oft-asked question and an oft-given answer. [&quot;Look, if your teacher is just having a bad stomach, then a Gor tonic is good enough. Our hospitaler makes them all the time for the children when they&#39;re... um... You //do// know how to operate a synthesis workstation, yes? As in, unsupervised?&quot;]&lt;VehVehLine|
 &lt;br&gt;
 ($funcInnerConvo: (dm:
      &quot;\&quot;&lt;!--A--&gt;Of course! I&#39;m already a journeyman.\&quot;&quot;, &quot;workstation1&quot;,
@@ -6441,7 +6601,7 @@ You should have known this, being a graduate and all. But the truth is that the 
 
 &lt;!--firstTime3c--&gt;
 [
-[&quot;Sorry, there isn&#39;t any spare medicine left on account of our physician being away. We - well, //I// - make them as needed, but the coffer&#39;s locked, and everyone&#39;s coin purses are light,&quot;]&lt;VehVehLine| she sighs.` `
+[&quot;Sorry, there isn&#39;t any spare medicine left on account of our hospitaler being away. We - well, //I// - make them as needed, but the coffer&#39;s locked, and everyone&#39;s coin purses are light,&quot;]&lt;VehVehLine| she sighs.` `
 
 (if: _alreadystudentLab is false)[[&quot;I can tell the attendants to let you into our lab though.&quot;]&lt;VehVehLine|]
 (else:)[&quot;But, you know, the student lab is open to you if you don&#39;t mind rolling up your sleeves a bit.&quot;]&lt;VehVehLine|
@@ -6492,7 +6652,7 @@ She says it slowly. This is clearly a teaching moment for her.
 &lt;br&gt;
 ($funcInnerConvo: (dm:
      &quot;\&quot;&lt;!--A--&gt;A //student// lab? You don&#39;t mean the one the children uses, do you?\&quot;&quot;, &quot;workstation2a&quot;,
-     &quot;\&quot;&lt;!--B--&gt;What if I need more advanced subtances?\&quot;&quot;, &quot;workstation2b&quot;,
+     &quot;\&quot;&lt;!--B--&gt;What if I need to make more advanced subtances?\&quot;&quot;, &quot;workstation2b&quot;,
      &quot;\&quot;&lt;!--C--&gt;A student lab... sure. I&#39;ll take what I can get.\&quot;&quot;, &quot;workstation2c&quot;,
 ))
 &lt;br&gt;
@@ -6525,8 +6685,10 @@ Stranger and stranger.
 &lt;br&gt;
 [&quot;The student lab is perfectly fine if you&#39;re only making a couple of simple tonics or salves at a time. We&#39;ve got an elementalysis table too, if you&#39;re wondering.&quot;]&lt;VehVehLine|
 &lt;br&gt;
+Machinery is one thing. There&#39;s also the matter of ingredients.
+&lt;br&gt;
 ($funcInnerConvo: (dm:
-     &quot;\&quot;&lt;!--A--&gt;And is there an ingredient storeroomn in there too?\&quot;&quot;, &quot;workstation4a&quot;,
+     &quot;\&quot;&lt;!--A--&gt;And is there an ingredient storeroom in there too?\&quot;&quot;, &quot;workstation4a&quot;,
      &quot;\&quot;&lt;!--B--&gt;That&#39;s good to hear. Thank you. I&#39;ll figure it the rest out.\&quot;&quot;, &quot;workstation4b&quot;,
 ))
 &lt;br&gt;
@@ -6546,12 +6708,12 @@ She points vaguely in the direction of the red steel domes some distance downhil
 
 &lt;!--workstation4b--&gt;
 [
-[&quot;Yes, and if you need to brush up on your alchemical formulas, do visit our library one floor above. The children love it, and- Oh, I didn&#39;t mean to say that you don&#39;t know how to, you know... Forget I said anything.&quot;]&lt;VehVehLine|
+[&quot;Yes, and if you need to brush up on your alchemical formulas, do visit our library one floor above. The children love it, and- Oh, I don&#39;t mean to say that you don&#39;t know how to, you know... Forget I said anything.&quot;]&lt;VehVehLine|
 &lt;br&gt;
 ($funcInnerConvo: (dm:
      &quot;\&quot;&lt;!--A--&gt;...\&quot;&quot;, &quot;gainAccess&quot;,
      &quot;\&quot;&lt;!--A--&gt;Done, already forgotten.\&quot;&quot;, &quot;gainAccess&quot;,
-     &quot;\&quot;&lt;!--B--&gt;No, that&#39;s actually quite helpful. Everyone needs revision from time to time.\&quot;&quot;, &quot;gainAccess&quot;,
+     &quot;\&quot;&lt;!--B--&gt;No, that&#39;s actually quite helpful. Libraries are great, and everyone needs revision from time to time.\&quot;&quot;, &quot;gainAccess&quot;,
 ))
 &lt;br&gt;
 ](workstation4b|
@@ -6570,7 +6732,11 @@ $cssDesc[You also receive a &#39;&#39;(print: (passage: &quot;item.vehzin&quot;)
 &lt;br&gt;
 ---
 (link: &quot;\&quot;This is a lot already. Gratitude, Veh-Veh.\&quot;&quot;)[{
+     &lt;!--registers all &quot;talked&quot; keys--&gt;
      ($funcTalked:)
+     &lt;!--put the crafting topic on cooldown--&gt;
+     ($funcAddStoryletCooldown: (passage:)&#39;s name)
+
      &lt;!--receive vehzin--&gt;
      ($funcGainLoss: &quot;item.&quot;, &quot;vehzin&quot;, 1)
 
@@ -6594,7 +6760,7 @@ $cssDesc[You also receive a &#39;&#39;(print: (passage: &quot;item.vehzin&quot;)
 (else:)[
 &lt;!--workstation1 (alternative, but with same name)--&gt;
 [
-[&quot;Sure, like I said: fifth floor - just walk straight in. I&#39;ve already made sure that the attendants stand down,&quot;]&lt;VehVehLine| she says. [&quot;If they don&#39;t, then I&#39;ll have to go find one of the teachers, and... And we&#39;d have a bigger problem on our hands. //I&#39;d// have a bigger problem on //my// hands.&quot;]&lt;VehVehLine|
+[&quot;Sure, like I said: fifth floor - just walk straight in. I&#39;ve already made sure that the attendants stand down,&quot;]&lt;VehVehLine| she says. [&quot;If they don&#39;t, then I&#39;ll have to go find one of the associate teachers, and... And we&#39;d have a bigger problem on our hands. //I&#39;d// have a bigger problem on //my// hands.&quot;]&lt;VehVehLine|
 &lt;br&gt;
 She&#39;s muttering to herself again.
 &lt;br&gt;
