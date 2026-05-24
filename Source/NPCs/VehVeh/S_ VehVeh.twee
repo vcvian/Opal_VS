@@ -14,10 +14,9 @@ and $char's VehVeh's arc is 1
 "convoHub", true,
 
 "title", "Veh-Veh the Apprentice",
-"cardDesc", "Mahveh-Vehkhan is studying under the Apesai davehmars.",
+"cardDesc", "At the lighthouse, you catch up with Veh-Veh, the senior apprentice who is also many other things out of necessity.",
 "img", "Assets/Portraits/Girl_1.png", 
 )
-
 
 $cssColumnParent[
 
@@ -30,17 +29,101 @@ $cssColumnChild[
 
 $cssColumnChild[
 
-(if: $char's VehVeh's energy's 1st > 0)[Veh-Veh says hi!...]
+<!--initialize temp vars-->
+<!--activity: hiding, meditating, gardening, studying-->
+(set: _activity to "studying")
+(if: $place's weather is "rainy")[(set: _activity to (cond:
+     $dice >= 50, "hiding", "meditating"
+))]
+(if: $place's weather is "stormy")[(set: _activity to "hiding")]
+(elseif: $place's weather is "overcast")[(set: _activity to (cond:
+     $dice >= 70, "gardening",
+     $dice >= 50, "meditating", "studying"
+))]
+(elseif: $place's weather is "foggy")[(set: _activity to (cond:
+     $dice >= 70, "gardening",
+     $dice >= 30, "meditating", "studying"
+))]
+(elseif: $place's weather is "windy")[(set: _activity to 
+(cond:
+     $dice >= 50, "gardening", "meditating"
+))]
+(elseif: $place's weather is "sunny")[(set: _activity to 
+(cond:
+     $dice >= 60, "hiding", "studying"
+))]
 
-(else:)[Veh-Veh is busy doing something. She waves at you but continues on her way...]
+
+<!--opinion thresholds-->
+(set: _opinion to "neutral")
+(if: $char's VehVeh's opinion's 2nd >= 40)[(set: _opinion to "very good")]
+(elseif: $char's VehVeh's opinion's 2nd >= 20)[(set: _opinion to "good")]
+(elseif: $char's VehVeh's opinion's 2nd >= 10)[(set: _opinion to "neutral")]
+(elseif: $char's VehVeh's opinion's 2nd >= 0)[(set: _opinion to "bad")]
+(else:)[(set: _opinion to "very bad")]
+
+<!--greetings-->
+(set: _greeting to "")
+(if: _opinion is "very good")[(set: _greeting to (either: "Friend, you've come,", "Hello! Come, come,", "I was just thinking about you,"))]
+(elseif: _opinion is "good")[(set: _greeting to (either: "Hello, //colleague//,", "Oh, hello there!", "Good seeing you again, journeyman,"))]
+(elseif: _opinion is "neutral")[(set: _greeting to (either: "Greetings,", "Good day,", "Journeyman,"))]
+(elseif: _opinion is "bad")[(set: _greeting to (either: "Oh, it's //you//,", "Yes? I am here,", "Hm,"))]
+(elseif: _opinion is "very bad")[(set: _greeting to (either: "It just //has// to be you,", "Are you lost? You seem lost,", "You're still here? By that, I mean Askava,"))]
+
+
+<!--main text content-->
+<!--if she's available-->
+(if: $char's VehVeh's energy's 1st > 0)[
+<!--weather-->
+(cond:
+     $place's weather is "rainy", "The rain has let up somewhat, but a stubborn drizzle still remains.",
+     $place's weather is "stormy", "Lightning flashes above the tower, and its red steel cladding momentarily blinds. The children have all fled inside.",
+     $place's weather is "overcast", "It is a mild day, and the junior apprentices are chasing each other in the school courtyard.",
+     $place's weather is "foggy", "You see shadows of apprentices in the fog, dispersing when they see you appear.",
+     $place's weather is "windy", "The trees in the school courtyard are swaying in the strong wind.",
+     $place's weather is "sunny", "It is an unreasonably hot day, and the children are lethargically moving to class.",
+     "The children gaze at the star on your cap."
+)
+` `
+(cond:
+     _activity is "hiding", "Heading inside the tower, you find Veh-Veh in the front hall, hiding from the weather.",
+     _activity is "meditating", "Presently, Veh-Veh is sitting under an old Keshan pavilion in the yard, sitting cross-legged and muttering an incantation.",
+     _activity is "gardening", "Going around the lighthouse, you find Veh-Veh in the back garden, tending to the vines.",
+     _activity is "studying", "Out in the yard, Veh-Veh is sitting on a stone bench, hunched over an open book, her reed pen moving incessantly on the margins.",
+)
+<br>
+["_greeting"]<VehVehLine| she says as you approach.
+
+<!--talk a lot more if opinion is good-->
+(if: _opinion is "good" or it is "very good")[["(cond:
+     _activity is "hiding", "How was your walk here? It's not great out there, is it? I'm just waiting until it gets more mild so I can run some errands. But please, stay for a while.",
+     _activity is "meditating", "I'm just meditating. This gazebo is the best spot right now, free from distractions. Oh, no, I didn't mean you. I'm done anyway.",
+     _activity is "gardening", "Please, stay and chat. The plants won't mind if I take a little break. Plus, it's not like they've been all that diligent themselves.",
+     _activity is "studying", "Oh, these? Assigned readings. The teachers - the full-timers, I mean - gave me a lot to do before they left. Probably afraid I'd get bored. Speaking of, I needed a break, so good timing.",
+)"]<VehVehLine|
+]<!--end of if good opinion-->
+
+]<!--end of if available-->
+
+<!--if she's busy/done talking-->
+(else:)[
+(cond:
+     _activity is "hiding", "Veh-Veh is still in the main hall, but she is busy handing out hats to a group of junior apprentices, on account of the weather. There's never a truly idle moment for her.",
+     _activity is "meditating", "Veh-Veh has resumed her meditation. A great amount of energy is emanating from the pavilion, indicating a rare level of concentration, rare even for you.",
+     _activity is "gardening", "Veh-Veh continues to trim the shrubs, till the soil, spread the bonemeal, haul the cabbages, and so on. One must wonder if all of these chores are getting in the way of her studying, or whether they are a part of it.",
+     _activity is "studying", "Veh-Veh is back at it again, transfixed to her note and her books. Back when you were still an apprentice, you studied hard, but not //this// hard. It can't be all that good for her spine.",
+)
+]<!--end of busy-->
 
 
 <br>
 ---
 <ol>
-($funcNPCTopics: "Veh-Veh seems busy. You should leave her be for today.", "Good to see you, Veh-Veh. Bye.")
+($funcNPCTopics: "Veh-Veh seems busy. You should leave her be for today.", (str: [{
+     (if: $char's VehVeh's energy's 1st > 0)["Actually, just wanted to check up on you. Goodbye, Veh-Veh, for now."]
+     (else:)["Maybe some other time."]
+     }]))
 </ol>
 
-<!--The topic storylet function reads the current passage's NPC-->
 ]<!--end child-->
 ]<!--end parent-->

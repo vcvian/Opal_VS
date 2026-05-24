@@ -67,7 +67,7 @@ hr {
   100% {
     background-position: 0% center;
   }
-}</style><script role="script" id="twine-user-script" type="text/twine-javascript"></script><tw-tag name="static-storage" color="yellow"></tw-tag><tw-tag name="stay" color="yellow"></tw-tag><tw-tag name="sublocation" color="green"></tw-tag><tw-tag name="traveling" color="purple"></tw-tag><tw-tag name="effect" color="yellow"></tw-tag><tw-tag name="footer" color="yellow"></tw-tag><tw-tag name="header" color="yellow"></tw-tag><tw-tag name="startup" color="orange"></tw-tag><tw-tag name="storylet" color="blue"></tw-tag><tw-tag name="test" color="blue"></tw-tag><tw-tag name="topic" color="purple"></tw-tag><tw-tag name="UI" color="orange"></tw-tag><tw-tag name="book" color="yellow"></tw-tag><tw-passagedata pid="1" name="AA. Books &amp; Formulae" tags="startup" position="100,100" size="100,100">{=
+}</style><script role="script" id="twine-user-script" type="text/twine-javascript"></script><tw-tag name="storylet" color="blue"></tw-tag><tw-tag name="test" color="blue"></tw-tag><tw-tag name="topic" color="purple"></tw-tag><tw-tag name="traveling" color="purple"></tw-tag><tw-tag name="startup" color="orange"></tw-tag><tw-tag name="static-storage" color="yellow"></tw-tag><tw-tag name="stay" color="yellow"></tw-tag><tw-tag name="footer" color="yellow"></tw-tag><tw-tag name="header" color="yellow"></tw-tag><tw-tag name="sublocation" color="green"></tw-tag><tw-tag name="UI" color="orange"></tw-tag><tw-tag name="book" color="yellow"></tw-tag><tw-tag name="effect" color="yellow"></tw-tag><tw-passagedata pid="1" name="AA. Books &amp; Formulae" tags="startup" position="100,100" size="100,100">{=
 &lt;!--Macros related to books and reading--&gt;
 
 (set: $readingNav to (dm:
@@ -5419,10 +5419,9 @@ and $char&#39;s VehVeh&#39;s arc is 1
 &quot;convoHub&quot;, true,
 
 &quot;title&quot;, &quot;Veh-Veh the Apprentice&quot;,
-&quot;cardDesc&quot;, &quot;Mahveh-Vehkhan is studying under the Apesai davehmars.&quot;,
+&quot;cardDesc&quot;, &quot;At the lighthouse, you catch up with Veh-Veh, the senior apprentice who is also many other things out of necessity.&quot;,
 &quot;img&quot;, &quot;Assets/Portraits/Girl_1.png&quot;, 
 )
-
 
 $cssColumnParent[
 
@@ -5435,18 +5434,102 @@ $cssColumnChild[
 
 $cssColumnChild[
 
-(if: $char&#39;s VehVeh&#39;s energy&#39;s 1st &gt; 0)[Veh-Veh says hi!...]
+&lt;!--initialize temp vars--&gt;
+&lt;!--activity: hiding, meditating, gardening, studying--&gt;
+(set: _activity to &quot;studying&quot;)
+(if: $place&#39;s weather is &quot;rainy&quot;)[(set: _activity to (cond:
+     $dice &gt;= 50, &quot;hiding&quot;, &quot;meditating&quot;
+))]
+(if: $place&#39;s weather is &quot;stormy&quot;)[(set: _activity to &quot;hiding&quot;)]
+(elseif: $place&#39;s weather is &quot;overcast&quot;)[(set: _activity to (cond:
+     $dice &gt;= 70, &quot;gardening&quot;,
+     $dice &gt;= 50, &quot;meditating&quot;, &quot;studying&quot;
+))]
+(elseif: $place&#39;s weather is &quot;foggy&quot;)[(set: _activity to (cond:
+     $dice &gt;= 70, &quot;gardening&quot;,
+     $dice &gt;= 30, &quot;meditating&quot;, &quot;studying&quot;
+))]
+(elseif: $place&#39;s weather is &quot;windy&quot;)[(set: _activity to 
+(cond:
+     $dice &gt;= 50, &quot;gardening&quot;, &quot;meditating&quot;
+))]
+(elseif: $place&#39;s weather is &quot;sunny&quot;)[(set: _activity to 
+(cond:
+     $dice &gt;= 60, &quot;hiding&quot;, &quot;studying&quot;
+))]
 
-(else:)[Veh-Veh is busy doing something. She waves at you but continues on her way...]
+
+&lt;!--opinion thresholds--&gt;
+(set: _opinion to &quot;neutral&quot;)
+(if: $char&#39;s VehVeh&#39;s opinion&#39;s 2nd &gt;= 40)[(set: _opinion to &quot;very good&quot;)]
+(elseif: $char&#39;s VehVeh&#39;s opinion&#39;s 2nd &gt;= 20)[(set: _opinion to &quot;good&quot;)]
+(elseif: $char&#39;s VehVeh&#39;s opinion&#39;s 2nd &gt;= 10)[(set: _opinion to &quot;neutral&quot;)]
+(elseif: $char&#39;s VehVeh&#39;s opinion&#39;s 2nd &gt;= 0)[(set: _opinion to &quot;bad&quot;)]
+(else:)[(set: _opinion to &quot;very bad&quot;)]
+
+&lt;!--greetings--&gt;
+(set: _greeting to &quot;&quot;)
+(if: _opinion is &quot;very good&quot;)[(set: _greeting to (either: &quot;Friend, you&#39;ve come,&quot;, &quot;Hello! Come, come,&quot;, &quot;I was just thinking about you,&quot;))]
+(elseif: _opinion is &quot;good&quot;)[(set: _greeting to (either: &quot;Hello, //colleague//,&quot;, &quot;Oh, hello there!&quot;, &quot;Good seeing you again, journeyman,&quot;))]
+(elseif: _opinion is &quot;neutral&quot;)[(set: _greeting to (either: &quot;Greetings,&quot;, &quot;Good day,&quot;, &quot;Journeyman,&quot;))]
+(elseif: _opinion is &quot;bad&quot;)[(set: _greeting to (either: &quot;Oh, it&#39;s //you//,&quot;, &quot;Yes? I am here,&quot;, &quot;Hm,&quot;))]
+(elseif: _opinion is &quot;very bad&quot;)[(set: _greeting to (either: &quot;It just //has// to be you,&quot;, &quot;Are you lost? You seem lost,&quot;, &quot;You&#39;re still here? By that, I mean Askava,&quot;))]
+
+
+&lt;!--main text content--&gt;
+&lt;!--if she&#39;s available--&gt;
+(if: $char&#39;s VehVeh&#39;s energy&#39;s 1st &gt; 0)[
+&lt;!--weather--&gt;
+(cond:
+     $place&#39;s weather is &quot;rainy&quot;, &quot;The rain has let up somewhat, but a stubborn drizzle still remains.&quot;,
+     $place&#39;s weather is &quot;stormy&quot;, &quot;Lightning flashes above the tower, and its red steel cladding momentarily blinds. The children have all fled inside.&quot;,
+     $place&#39;s weather is &quot;overcast&quot;, &quot;It is a mild day, and the junior apprentices are chasing each other in the school courtyard.&quot;,
+     $place&#39;s weather is &quot;foggy&quot;, &quot;You see shadows of apprentices in the fog, dispersing when they see you appear.&quot;,
+     $place&#39;s weather is &quot;windy&quot;, &quot;The trees in the school courtyard are swaying in the strong wind.&quot;,
+     $place&#39;s weather is &quot;sunny&quot;, &quot;It is an unreasonably hot day, and the children are lethargically moving to class.&quot;,
+     &quot;The children gaze at the star on your cap.&quot;
+)
+` `
+(cond:
+     _activity is &quot;hiding&quot;, &quot;Heading inside the tower, you find Veh-Veh in the front hall, hiding from the weather.&quot;,
+     _activity is &quot;meditating&quot;, &quot;Presently, Veh-Veh is sitting under an old Keshan pavilion in the yard, sitting cross-legged and muttering an incantation.&quot;,
+     _activity is &quot;gardening&quot;, &quot;Going around the lighthouse, you find Veh-Veh in the back garden, tending to the vines.&quot;,
+     _activity is &quot;studying&quot;, &quot;Out in the yard, Veh-Veh is sitting on a stone bench, hunched over an open book, her reed pen moving incessantly on the margins.&quot;,
+)
+&lt;br&gt;
+[&quot;_greeting&quot;]&lt;VehVehLine| she says as you approach.
+
+&lt;!--talk a lot more if opinion is good--&gt;
+(if: _opinion is &quot;good&quot; or it is &quot;very good&quot;)[[&quot;(cond:
+     _activity is &quot;hiding&quot;, &quot;How was your walk here? It&#39;s not great out there, is it? I&#39;m just waiting until it gets more mild so I can run some errands. But please, stay for a while.&quot;,
+     _activity is &quot;meditating&quot;, &quot;I&#39;m just meditating. This gazebo is the best spot right now, free from distractions. Oh, no, I didn&#39;t mean you. I&#39;m done anyway.&quot;,
+     _activity is &quot;gardening&quot;, &quot;Please, stay and chat. The plants won&#39;t mind if I take a little break. Plus, it&#39;s not like they&#39;ve been all that diligent themselves.&quot;,
+     _activity is &quot;studying&quot;, &quot;Oh, these? Assigned readings. The teachers - the full-timers, I mean - gave me a lot to do before they left. Probably afraid I&#39;d get bored. Speaking of, I needed a break, so good timing.&quot;,
+)&quot;]&lt;VehVehLine|
+]&lt;!--end of if good opinion--&gt;
+
+]&lt;!--end of if available--&gt;
+
+&lt;!--if she&#39;s busy/done talking--&gt;
+(else:)[
+(cond:
+     _activity is &quot;hiding&quot;, &quot;Veh-Veh is still in the main hall, but she is busy handing out hats to a group of junior apprentices, on account of the weather. There&#39;s never a truly idle moment for her.&quot;,
+     _activity is &quot;meditating&quot;, &quot;Veh-Veh has resumed her meditation. A great amount of energy is emanating from the pavilion, indicating a rare level of concentration, rare even for you.&quot;,
+     _activity is &quot;gardening&quot;, &quot;Veh-Veh continues to trim the shrubs, till the soil, spread the bonemeal, haul the cabbages, and so on. One must wonder if all of these chores are getting in the way of her studying, or whether they are a part of it.&quot;,
+     _activity is &quot;studying&quot;, &quot;Veh-Veh is back at it again, transfixed to her note and her books. Back when you were still an apprentice, you studied hard, but not //this// hard. It can&#39;t be all that good for her spine.&quot;,
+)
+]&lt;!--end of busy--&gt;
 
 
 &lt;br&gt;
 ---
 &lt;ol&gt;
-($funcNPCTopics: &quot;Veh-Veh seems busy. You should leave her be for today.&quot;, &quot;Good to see you, Veh-Veh. Bye.&quot;)
+($funcNPCTopics: &quot;Veh-Veh seems busy. You should leave her be for today.&quot;, (str: [{
+     (if: $char&#39;s VehVeh&#39;s energy&#39;s 1st &gt; 0)[&quot;Actually, just wanted to check up on you. Goodbye, Veh-Veh, for now.&quot;]
+     (else:)[&quot;Maybe some other time.&quot;]
+     }]))
 &lt;/ol&gt;
 
-&lt;!--The topic storylet function reads the current passage&#39;s NPC--&gt;
 ]&lt;!--end child--&gt;
 ]&lt;!--end parent--&gt;</tw-passagedata><tw-passagedata pid="106" name="T: VehVeh Apesai" tags="topic" position="6750,1650" size="100,100">{=
 
@@ -5833,7 +5916,7 @@ $cssDesc[&#39;&#39;You: //(print: (passage:)&#39;s topic)//&#39;&#39;]
 
 &lt;!--not have access yet sequence--&gt;
 (if: _alreadystudentLab is false)[
-[&quot;Right here, in the tower,&quot;]&lt;VehVehLine| she points vaguely at the lighthouse&#39;s midsection. [&quot;Our school has a several synthesis arrays and elementalysis tables up on the fifth floor laboratory. Not the most sophisticated setup, but the staff do their best to ensure that the apprentices always have something to learn with. No education like the hands-on kind.&quot;]&lt;VehVehLine|
+[&quot;Right here, in the tower,&quot;]&lt;VehVehLine| she points vaguely at the lighthouse&#39;s midsection. [&quot;Our school has several synthesis arrays and elementalysis tables up on the fifth floor laboratory. Not the most sophisticated setup, but the staff do their best to ensure that the apprentices always have something to learn with. No education like the hands-on kind.&quot;]&lt;VehVehLine|
 &lt;br&gt;
 She means the classroom models. For children.
 &lt;br&gt;
@@ -6014,7 +6097,8 @@ $cssDesc[You also receive a &#39;&#39;(print: (passage: &quot;item.vehzin&quot;)
 
 &lt;!--already have access (either via the &quot;crafting&quot; or the &quot;sickTeacher&quot; topic)--&gt;
 (else:)[
-[&quot;(either: &quot;Sure, no problem.&quot;,&quot;Oh, did you forget?&quot;,&quot;You mean the student lab?&quot;, &quot;You sure can.&quot;) It&#39;s on the fifth floor, up the spiral stairs. There //should// be a few free synthesis arrays. The elementalysis table is in the same room, too. (either: &quot;Hope the attendants aren&#39;t giving you any trouble. They&#39;re sore due for repairs.&quot;, &quot;It&#39;s not much, but it //is// the &#39;full package&#39;. In a way.&quot;, &quot;It&#39;s not the fastest, but it used to take a whole week to run a cycle.&quot;, &quot;I just had everything re-tuned a couple of weeks back. No, more like a month.&quot;)&quot;]&lt;VehVehLine|
+[&quot;(either: &quot;Sure, no problem.&quot;,&quot;Oh, did you forget?&quot;,&quot;You mean the student lab?&quot;, &quot;You sure can.&quot;) It&#39;s on the fifth floor, up the spiral stairs. There //should// be a few free synthesis arrays. The elementalysis table is in the same room, too. (either: &quot;Hope the attendants aren&#39;t giving you any trouble. They&#39;re sorely due for repairs.&quot;, &quot;It&#39;s not much, but it //is// the &#39;full package&#39;. In a way.&quot;, &quot;It&#39;s not the fastest, but it used to take a whole week to run a cycle.&quot;, &quot;I just had everything re-tuned a couple of weeks back. No, more like a month.&quot;)&quot;]&lt;VehVehLine|
+&lt;br&gt;
 
 &lt;!--convo works a bit different because questions can be asked in any order.--&gt;
 (set: $stuff to (dm:))
@@ -6133,14 +6217,16 @@ Something tells you she has less hope than she lets on, and a good magus rarely 
 &lt;br&gt;
 ($funcInnerConvo: (dm:
      &quot;&lt;!--A--&gt;\&quot;That&#39;s a shame.\&quot;&quot;, &quot;againFuelDone&quot;,
-     &quot;&lt;!--B--&gt;\&quot;I&#39;m sure there are more affordable sources of fuel.\&quot;&quot;, &quot;vehzinAlt&quot;,
+     &quot;&lt;!--B--&gt;\&quot;I&#39;m sure there are more affordable sources of fuel,\&quot; you say, full of meaning.&quot;, &quot;vehzinAlt&quot;,
 ))
 &lt;br&gt;
 ](getYourVehzin|
 
 &lt;!--vehzinAlt--&gt;
 [
-[&quot;Other than buying it straight from the highland clans in Barroz, anything else I can tell you will earn both of us an invitation to the governor&#39;s court - and not for employment either, haha,&quot;&quot;]&lt;VehVehLine| she laughs, then grimaces. [&quot;It&#39;s probably more lax where you&#39;re from, but here in Askava, the only thing more controlled than vehzin is farabek. Without the fuel trade, I don&#39;t think Askava would even //be// a dahak.&quot;]&lt;VehVehLine|
+[&quot;Other than buying it straight from the highland clans in Barroz, anything else I can tell you will earn both of us an invitation to the governor&#39;s court - and not for employment either, haha,&quot;]&lt;VehVehLine| she laughs, then clears her throat. [&quot;It&#39;s probably more lax where you&#39;re from, but here in Askava, the only thing more controlled than vehzin is farabek. Without the fuel trade, I don&#39;t think Askava would even //be// a dahak.&quot;]&lt;VehVehLine|
+&lt;br&gt;
+The unsaid words are loud: Stop asking.
 &lt;br&gt;
 ($funcInnerConvo: (dm:
      &quot;&lt;!--A--&gt;\&quot;Got it.\&quot;&quot;, &quot;againFuelDone&quot;,

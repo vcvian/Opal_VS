@@ -60,7 +60,7 @@ $cssDesc[''You: //(print: (passage:)'s topic)//'']
 
 <!--not have access yet sequence-->
 (if: _alreadystudentLab is false)[
-["Right here, in the tower,"]<VehVehLine| she points vaguely at the lighthouse's midsection. ["Our school has a several synthesis arrays and elementalysis tables up on the fifth floor laboratory. Not the most sophisticated setup, but the staff do their best to ensure that the apprentices always have something to learn with. No education like the hands-on kind."]<VehVehLine|
+["Right here, in the tower,"]<VehVehLine| she points vaguely at the lighthouse's midsection. ["Our school has several synthesis arrays and elementalysis tables up on the fifth floor laboratory. Not the most sophisticated setup, but the staff do their best to ensure that the apprentices always have something to learn with. No education like the hands-on kind."]<VehVehLine|
 <br>
 She means the classroom models. For children.
 <br>
@@ -241,7 +241,8 @@ $cssDesc[You also receive a ''(print: (passage: "item.vehzin")'s id)'' - standar
 
 <!--already have access (either via the "crafting" or the "sickTeacher" topic)-->
 (else:)[
-["(either: "Sure, no problem.","Oh, did you forget?","You mean the student lab?", "You sure can.") It's on the fifth floor, up the spiral stairs. There //should// be a few free synthesis arrays. The elementalysis table is in the same room, too. (either: "Hope the attendants aren't giving you any trouble. They're sore due for repairs.", "It's not much, but it //is// the 'full package'. In a way.", "It's not the fastest, but it used to take a whole week to run a cycle.", "I just had everything re-tuned a couple of weeks back. No, more like a month.")"]<VehVehLine|
+["(either: "Sure, no problem.","Oh, did you forget?","You mean the student lab?", "You sure can.") It's on the fifth floor, up the spiral stairs. There //should// be a few free synthesis arrays. The elementalysis table is in the same room, too. (either: "Hope the attendants aren't giving you any trouble. They're sorely due for repairs.", "It's not much, but it //is// the 'full package'. In a way.", "It's not the fastest, but it used to take a whole week to run a cycle.", "I just had everything re-tuned a couple of weeks back. No, more like a month.")"]<VehVehLine|
+<br>
 
 <!--convo works a bit different because questions can be asked in any order.-->
 (set: $stuff to (dm:))
@@ -360,14 +361,16 @@ Something tells you she has less hope than she lets on, and a good magus rarely 
 <br>
 ($funcInnerConvo: (dm:
      "<!--A-->\"That's a shame.\"", "againFuelDone",
-     "<!--B-->\"I'm sure there are more affordable sources of fuel.\"", "vehzinAlt",
+     "<!--B-->\"I'm sure there are more affordable sources of fuel,\" you say, full of meaning.", "vehzinAlt",
 ))
 <br>
 ](getYourVehzin|
 
 <!--vehzinAlt-->
 [
-["Other than buying it straight from the highland clans in Barroz, anything else I can tell you will earn both of us an invitation to the governor's court - and not for employment either, haha,""]<VehVehLine| she laughs, then grimaces. ["It's probably more lax where you're from, but here in Askava, the only thing more controlled than vehzin is farabek. Without the fuel trade, I don't think Askava would even //be// a dahak."]<VehVehLine|
+["Other than buying it straight from the highland clans in Barroz, anything else I can tell you will earn both of us an invitation to the governor's court - and not for employment either, haha,"]<VehVehLine| she laughs, then clears her throat. ["It's probably more lax where you're from, but here in Askava, the only thing more controlled than vehzin is farabek. Without the fuel trade, I don't think Askava would even //be// a dahak."]<VehVehLine|
+<br>
+The unsaid words are loud: Stop asking.
 <br>
 ($funcInnerConvo: (dm:
      "<!--A-->\"Got it.\"", "againFuelDone",
