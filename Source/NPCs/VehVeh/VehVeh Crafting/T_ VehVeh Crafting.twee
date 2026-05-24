@@ -39,7 +39,6 @@ $cssColumnChild[
 (set: _alreadyLibrary to false)
 (set: _sickTeacher to false)
 (set: _sickTeacherMentioned to false)
-(set: _againChoices to (dm:))
 
 (if: ($funcCheckExists: $char's player's att, "accessLighthouseStudentLab", 0) > 0)[
           (set: _alreadystudentLab to true)
@@ -246,124 +245,151 @@ $cssDesc[You also receive a ''(print: (passage: "item.vehzin")'s id)'' - standar
 
 <!--convo works a bit different because questions can be asked in any order.-->
 (set: $stuff to (dm:))
-(set: _currentDisplay to [])
+(set: $stuff to it + (dm: "number", 1))
 (set: $stuff to it + (dm: "againChoices", (dm:
-     "<!--A-->\"And if I need to go over some formulas, where should I look?\"", "againLibrary1",
-     "<!--B-->\"What about ingredients for elementalysis? Where might I find some?\"", "againIngredients1",
-     "<!--C-->\"If I want to cook up a few more batches, where might I find more fuel? \"", "againFuel1",
-     "<!--D-->\"I remember now. Thank you.\"", "againThanks",
+     "<!--A--><!--againLibrary-->\"And if I need to go over some formulas, where should I look?\"", "againLibrary" + (str: $stuff's number),
+     "<!--B--><!--againIngredients-->\"What about ingredients for elementalysis? Where might I find some?\"", "againIngredients" + (str: $stuff's number),
+     "<!--C--><!--againFuel-->\"Let's say I want to cook up more than a few batches, where do I get the fuel for that?\"", "againFuel" + (str: $stuff's number),
+     "<!--D-->\"That's it for the labs for now. Thank you.\"", "againThanks",
 )))
 
-(set: _editChoices to (macro: str-type _deleteWhich, num-type _newNumber,[(out:)[{
+<br>
+($funcInnerConvo: $stuff's againChoices)
+<br>
+
+(set: _editChoices to (macro: str-type _deleteWhich, [(out:)[{
+     <!--advance 1 number-->
+     (set: $stuff's number to it + 1)
      <!--edit destination number-->
      (for: each _question, ...(datanames: $stuff's againChoices))[
           <!--edit-->
           (unless: $stuff's againChoices's _question contains "Thanks")[
-               [(set: $stuff's againChoices's _question to (trimmed: digit, $stuff's againChoices's _question))
-               (set: $stuff's againChoices's _question to it + (str:_newNumber))]
+               (set: $stuff's againChoices to it + (dm: _question, (trimmed: digit, $stuff's againChoices's _question)))
+               (set: $stuff's againChoices's _question to it + (str:$stuff's number))
           ]
           <!--delete-->
           (if: _question contains _deleteWhich)[(move: $stuff's againChoices's _question into _trash)]
      ]<!--end loop-->
+     
+     <!--update-->
+     (set: $stuff's againChoices to $stuff's againChoices)
 }]]))
 
-<br>
-($funcInnerConvo: $stuff's againChoices)
-<br>
+(set: _talkHooks to (dm:
+     "againLibrary", "_againLibrary",
+     "againIngredients", "_againIngredients",
+     "againFuel", "_againFuel",
+))
 
-[
-(_editChoices: "formula",2)
-_againLibrary
-<br>
-($funcInnerConvo: $stuff's againChoices)
-<br>
-](againLibrary1|
-
-[
-(_editChoices: "ingredient",2)
-_againIngredients
-<br>
-($funcInnerConvo: $stuff's againChoices)
-<br>
-](againIngredients1|
-
-[
-(_editChoices: "fuel",2)
-_againFuel
-<br>
-($funcInnerConvo: $stuff's againChoices)
-<br>
-](againFuel1|
-
-[
-(_editChoices: "formula",3)
-_againLibrary
-<br>
-($funcInnerConvo: $stuff's againChoices)
-<br>
-](againLibrary2|
-
-[
-(_editChoices: "ingredient",3)
-_againIngredients
-<br>
-($funcInnerConvo: $stuff's againChoices)
-<br>
-](againIngredients2|
-
-[
-(_editChoices: "fuel",3)
-_againFuel
-<br>
-($funcInnerConvo: $stuff's againChoices)
-<br>
-](againFuel2|
-
-[
-(_editChoices: "formula",4)
-_againLibrary
-<br>
-($funcInnerConvo: $stuff's againChoices)
-<br>
-](againLibrary3|
-
-[
-(_editChoices: "ingredient",4)
-_againIngredients
-<br>
-($funcInnerConvo: $stuff's againChoices)
-<br>
-](againIngredients3|
-
-[
-(_editChoices: "fuel",4)
-_againFuel
-<br>
-($funcInnerConvo: $stuff's againChoices)
-<br>
-](againFuel3|
+<!--create hooks-->
+(for: each _round, ...(range: 1, (datanames: $stuff's againChoices)'s length - 1) )[
+     (for: each _talkChoice, ...(datanames: _talkHooks))[{
+          (hidden:)+(hook: _talkChoice + (str:_round))[
+          <!--perform edit-->
+          (_editChoices: _talkChoice)
+          <!--display text-->
+          (print: _talkHooks's _talkChoice)
+          ]<!--end hook-->
+     }]
+]
 
 
 <!--_againLibrary-->
 (set: _againLibrary to [{
-["If you need to consult a textbook, you can go one stair up to the library. It's mostly basic formulas and textbooks for the junior apprentices, but they're there."]<VehVehLine|
-}])
+["Then you'd want to go one floor up from the lab. That's where our library is. You can find basic formulas there, some textbooks for the junior apprentices too. (either: "No borrowing though. We don't have the personnel to chase you down. So... don't make us, haha.", "You won't find the latest journals in there though, not until we can start paying for subscriptions again.", "Nothing a graduate student like you hasn't come across, but they're there.", "Just be careful with them. They're old. Like, Second-Colony old.")"]<VehVehLine|
+<br>
+She thinks about it for a second before adding, ["There's also the Grand Exchange, if you're willing to pay... and willingly to sift through the drivel they sell."]<VehVehLine|
+<br>
+($funcInnerConvo: $stuff's againChoices)
+<br>
+}])<!--end of _againLibrary-->
 
 <!--_againIngredients-->
 (set: _againIngredients to [{
-["Ingredients"]<VehVehLine|
-}])
+["Same place as anyone does: The Grand Exchange downtown. (either: "Sorry, but what little we have left is for the children. Classes won't stop just because the principal and most of our faculties are gone.", "The markup can be high, but if you're just making something simple - which is what the student lab can manage anyhow - then a handful of roots and powder won't be too expensive.", "We ought to be more generous to visitors, but right now, even our associate staff have to pay for classroom materials out of pocket.")"]<VehVehLine|
+<br>
+($funcInnerConvo: (dm:
+     "<!--A-->\"Can you show me how to get to the Grand Exchange?\"", "toGrandExchange",
+     "<!--B-->\"Bring-your-own-ingredients. Got it.\"", "BYOI",
+))
+<br>
+
+<!--toGrandExchange-->
+[
+["Uh, sure, so you see those domes over there? So from here, you head down the hill, then when you see the big road, the one with the red obelisks, you take a right... Erm, or was it left?..."]<VehVehLine| she mutters to herself several conflicting directions, then gives up. ["This is embarrassing. I usually just zone out whenever I make my groceries run. You might need a professional guide. Or you can just take a stroll, or several, around town, you'll eventually end up there. Apesai's a beautiful city. Confusing, but beautiful."]<VehVehLine|
+<br>
+($funcInnerConvo: (dm:
+     "<!--B-->\"It's alright. I'll figure it out.\"", "BYOI",
+))
+<br>
+](toGrandExchange|
+
+<!--BYOI-->
+[
+["Yeah, sorry that I couldn't help out more. So, anything lab-related you want to ask me?"]<VehVehLine|
+<br>
+(show: ?againIngredientsDone)
+](BYOI|
+
+[
+<br>
+($funcInnerConvo: $stuff's againChoices)
+<br>
+](againIngredientsDone|
+
+}])<!--end of _againIngredients-->
 
 
 <!--againFuel-->
 (set: _againFuel to [{
-["Fuel"]<VehVehLine|
-}])
+["You mean loose vehzin? You can try visiting the supplies warehouses or magic shops down in the Grand Exchange, but retail prices can sometimes get unreasonable. The further you get away from the highland mines, the more expensive vehzin gets. And Apesai is pretty far south."]<VehVehLine|
+<br>
+The most common form of vehzin found in Apesai is a monolith packed for bulk export, worth a merchant's lifesaving, and quite unusable.
+<br>
+($funcInnerConvo: (dm:
+     "<!--A-->\"Then where do you get //your// vehzin?\"", "getYourVehzin",
+     "<!--B-->\"I'm sure there are more affordable sources of fuel.\"", "vehzinAlt",
+))
+<br>
+
+<!--getYourVehzin-->
+[
+["I grit my teeth and pay retail prices, of course. Once things get back to normal, the school will reimburse me. Hopefully. It's research expenditure after all."]<VehVehLine|
+<br>
+Something tells you she has less hope than she lets on, and a good magus rarely relies on hope alone.
+<br>
+($funcInnerConvo: (dm:
+     "<!--A-->\"That's a shame.\"", "againFuelDone",
+     "<!--B-->\"I'm sure there are more affordable sources of fuel.\"", "vehzinAlt",
+))
+<br>
+](getYourVehzin|
+
+<!--vehzinAlt-->
+[
+["Other than buying it straight from the highland clans in Barroz, anything else I can tell you will earn both of us an invitation to the governor's court - and not for employment either, haha,""]<VehVehLine| she laughs, then grimaces. ["It's probably more lax where you're from, but here in Askava, the only thing more controlled than vehzin is farabek. Without the fuel trade, I don't think Askava would even //be// a dahak."]<VehVehLine|
+<br>
+($funcInnerConvo: (dm:
+     "<!--A-->\"Got it.\"", "againFuelDone",
+))
+<br>
+](vehzinAlt|
+
+<!--againFuelDone-->
+[
+["I'm surprised you didn't bring your own, being a journeyman and everything,"]<VehVehLine| she then immediately covers her mouth. ["That was rude of me. Just ignore it, please."]<VehVehLine|
+<br>
+($funcInnerConvo: $stuff's againChoices)
+<br>
+](againFuelDone|
+
+}])<!--end of _againFuel-->
 
 
 [
-["Yeah, no problem!"]<VehVehLine|
-(move: $stuff's againChoices into _trash)
+["Yeah, no problem! I hope the lab suits your needs. What am I saying? Of course it doesn't... You get what I mean, right? Anyway, is there something else?"]<VehVehLine|
+<!--reset $stuff-->
+(set: $stuff to (dm:))
 (show: ?done)
 <br>
 

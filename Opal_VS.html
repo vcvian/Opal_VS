@@ -67,7 +67,7 @@ hr {
   100% {
     background-position: 0% center;
   }
-}</style><script role="script" id="twine-user-script" type="text/twine-javascript"></script><tw-tag name="header" color="yellow"></tw-tag><tw-tag name="startup" color="orange"></tw-tag><tw-tag name="static-storage" color="yellow"></tw-tag><tw-tag name="stay" color="yellow"></tw-tag><tw-tag name="storylet" color="blue"></tw-tag><tw-tag name="sublocation" color="green"></tw-tag><tw-tag name="UI" color="orange"></tw-tag><tw-tag name="book" color="yellow"></tw-tag><tw-tag name="traveling" color="purple"></tw-tag><tw-tag name="test" color="blue"></tw-tag><tw-tag name="topic" color="purple"></tw-tag><tw-tag name="effect" color="yellow"></tw-tag><tw-tag name="footer" color="yellow"></tw-tag><tw-passagedata pid="1" name="AA. Books &amp; Formulae" tags="startup" position="100,100" size="100,100">{=
+}</style><script role="script" id="twine-user-script" type="text/twine-javascript"></script><tw-tag name="static-storage" color="yellow"></tw-tag><tw-tag name="stay" color="yellow"></tw-tag><tw-tag name="sublocation" color="green"></tw-tag><tw-tag name="traveling" color="purple"></tw-tag><tw-tag name="effect" color="yellow"></tw-tag><tw-tag name="footer" color="yellow"></tw-tag><tw-tag name="header" color="yellow"></tw-tag><tw-tag name="startup" color="orange"></tw-tag><tw-tag name="storylet" color="blue"></tw-tag><tw-tag name="test" color="blue"></tw-tag><tw-tag name="topic" color="purple"></tw-tag><tw-tag name="UI" color="orange"></tw-tag><tw-tag name="book" color="yellow"></tw-tag><tw-passagedata pid="1" name="AA. Books &amp; Formulae" tags="startup" position="100,100" size="100,100">{=
 &lt;!--Macros related to books and reading--&gt;
 
 (set: $readingNav to (dm:
@@ -5812,7 +5812,6 @@ $cssColumnChild[
 (set: _alreadyLibrary to false)
 (set: _sickTeacher to false)
 (set: _sickTeacherMentioned to false)
-(set: _againChoices to (dm:))
 
 (if: ($funcCheckExists: $char&#39;s player&#39;s att, &quot;accessLighthouseStudentLab&quot;, 0) &gt; 0)[
           (set: _alreadystudentLab to true)
@@ -6019,124 +6018,151 @@ $cssDesc[You also receive a &#39;&#39;(print: (passage: &quot;item.vehzin&quot;)
 
 &lt;!--convo works a bit different because questions can be asked in any order.--&gt;
 (set: $stuff to (dm:))
-(set: _currentDisplay to [])
+(set: $stuff to it + (dm: &quot;number&quot;, 1))
 (set: $stuff to it + (dm: &quot;againChoices&quot;, (dm:
-     &quot;&lt;!--A--&gt;\&quot;And if I need to go over some formulas, where should I look?\&quot;&quot;, &quot;againLibrary1&quot;,
-     &quot;&lt;!--B--&gt;\&quot;What about ingredients for elementalysis? Where might I find some?\&quot;&quot;, &quot;againIngredients1&quot;,
-     &quot;&lt;!--C--&gt;\&quot;If I want to cook up a few more batches, where might I find more fuel? \&quot;&quot;, &quot;againFuel1&quot;,
-     &quot;&lt;!--D--&gt;\&quot;I remember now. Thank you.\&quot;&quot;, &quot;againThanks&quot;,
+     &quot;&lt;!--A--&gt;&lt;!--againLibrary--&gt;\&quot;And if I need to go over some formulas, where should I look?\&quot;&quot;, &quot;againLibrary&quot; + (str: $stuff&#39;s number),
+     &quot;&lt;!--B--&gt;&lt;!--againIngredients--&gt;\&quot;What about ingredients for elementalysis? Where might I find some?\&quot;&quot;, &quot;againIngredients&quot; + (str: $stuff&#39;s number),
+     &quot;&lt;!--C--&gt;&lt;!--againFuel--&gt;\&quot;Let&#39;s say I want to cook up more than a few batches, where do I get the fuel for that?\&quot;&quot;, &quot;againFuel&quot; + (str: $stuff&#39;s number),
+     &quot;&lt;!--D--&gt;\&quot;That&#39;s it for the labs for now. Thank you.\&quot;&quot;, &quot;againThanks&quot;,
 )))
 
-(set: _editChoices to (macro: str-type _deleteWhich, num-type _newNumber,[(out:)[{
+&lt;br&gt;
+($funcInnerConvo: $stuff&#39;s againChoices)
+&lt;br&gt;
+
+(set: _editChoices to (macro: str-type _deleteWhich, [(out:)[{
+     &lt;!--advance 1 number--&gt;
+     (set: $stuff&#39;s number to it + 1)
      &lt;!--edit destination number--&gt;
      (for: each _question, ...(datanames: $stuff&#39;s againChoices))[
           &lt;!--edit--&gt;
           (unless: $stuff&#39;s againChoices&#39;s _question contains &quot;Thanks&quot;)[
-               [(set: $stuff&#39;s againChoices&#39;s _question to (trimmed: digit, $stuff&#39;s againChoices&#39;s _question))
-               (set: $stuff&#39;s againChoices&#39;s _question to it + (str:_newNumber))]
+               (set: $stuff&#39;s againChoices to it + (dm: _question, (trimmed: digit, $stuff&#39;s againChoices&#39;s _question)))
+               (set: $stuff&#39;s againChoices&#39;s _question to it + (str:$stuff&#39;s number))
           ]
           &lt;!--delete--&gt;
           (if: _question contains _deleteWhich)[(move: $stuff&#39;s againChoices&#39;s _question into _trash)]
      ]&lt;!--end loop--&gt;
+     
+     &lt;!--update--&gt;
+     (set: $stuff&#39;s againChoices to $stuff&#39;s againChoices)
 }]]))
 
-&lt;br&gt;
-($funcInnerConvo: $stuff&#39;s againChoices)
-&lt;br&gt;
+(set: _talkHooks to (dm:
+     &quot;againLibrary&quot;, &quot;_againLibrary&quot;,
+     &quot;againIngredients&quot;, &quot;_againIngredients&quot;,
+     &quot;againFuel&quot;, &quot;_againFuel&quot;,
+))
 
-[
-(_editChoices: &quot;formula&quot;,2)
-_againLibrary
-&lt;br&gt;
-($funcInnerConvo: $stuff&#39;s againChoices)
-&lt;br&gt;
-](againLibrary1|
-
-[
-(_editChoices: &quot;ingredient&quot;,2)
-_againIngredients
-&lt;br&gt;
-($funcInnerConvo: $stuff&#39;s againChoices)
-&lt;br&gt;
-](againIngredients1|
-
-[
-(_editChoices: &quot;fuel&quot;,2)
-_againFuel
-&lt;br&gt;
-($funcInnerConvo: $stuff&#39;s againChoices)
-&lt;br&gt;
-](againFuel1|
-
-[
-(_editChoices: &quot;formula&quot;,3)
-_againLibrary
-&lt;br&gt;
-($funcInnerConvo: $stuff&#39;s againChoices)
-&lt;br&gt;
-](againLibrary2|
-
-[
-(_editChoices: &quot;ingredient&quot;,3)
-_againIngredients
-&lt;br&gt;
-($funcInnerConvo: $stuff&#39;s againChoices)
-&lt;br&gt;
-](againIngredients2|
-
-[
-(_editChoices: &quot;fuel&quot;,3)
-_againFuel
-&lt;br&gt;
-($funcInnerConvo: $stuff&#39;s againChoices)
-&lt;br&gt;
-](againFuel2|
-
-[
-(_editChoices: &quot;formula&quot;,4)
-_againLibrary
-&lt;br&gt;
-($funcInnerConvo: $stuff&#39;s againChoices)
-&lt;br&gt;
-](againLibrary3|
-
-[
-(_editChoices: &quot;ingredient&quot;,4)
-_againIngredients
-&lt;br&gt;
-($funcInnerConvo: $stuff&#39;s againChoices)
-&lt;br&gt;
-](againIngredients3|
-
-[
-(_editChoices: &quot;fuel&quot;,4)
-_againFuel
-&lt;br&gt;
-($funcInnerConvo: $stuff&#39;s againChoices)
-&lt;br&gt;
-](againFuel3|
+&lt;!--create hooks--&gt;
+(for: each _round, ...(range: 1, (datanames: $stuff&#39;s againChoices)&#39;s length - 1) )[
+     (for: each _talkChoice, ...(datanames: _talkHooks))[{
+          (hidden:)+(hook: _talkChoice + (str:_round))[
+          &lt;!--perform edit--&gt;
+          (_editChoices: _talkChoice)
+          &lt;!--display text--&gt;
+          (print: _talkHooks&#39;s _talkChoice)
+          ]&lt;!--end hook--&gt;
+     }]
+]
 
 
 &lt;!--_againLibrary--&gt;
 (set: _againLibrary to [{
-[&quot;If you need to consult a textbook, you can go one stair up to the library. It&#39;s mostly basic formulas and textbooks for the junior apprentices, but they&#39;re there.&quot;]&lt;VehVehLine|
-}])
+[&quot;Then you&#39;d want to go one floor up from the lab. That&#39;s where our library is. You can find basic formulas there, some textbooks for the junior apprentices too. (either: &quot;No borrowing though. We don&#39;t have the personnel to chase you down. So... don&#39;t make us, haha.&quot;, &quot;You won&#39;t find the latest journals in there though, not until we can start paying for subscriptions again.&quot;, &quot;Nothing a graduate student like you hasn&#39;t come across, but they&#39;re there.&quot;, &quot;Just be careful with them. They&#39;re old. Like, Second-Colony old.&quot;)&quot;]&lt;VehVehLine|
+&lt;br&gt;
+She thinks about it for a second before adding, [&quot;There&#39;s also the Grand Exchange, if you&#39;re willing to pay... and willingly to sift through the drivel they sell.&quot;]&lt;VehVehLine|
+&lt;br&gt;
+($funcInnerConvo: $stuff&#39;s againChoices)
+&lt;br&gt;
+}])&lt;!--end of _againLibrary--&gt;
 
 &lt;!--_againIngredients--&gt;
 (set: _againIngredients to [{
-[&quot;Ingredients&quot;]&lt;VehVehLine|
-}])
+[&quot;Same place as anyone does: The Grand Exchange downtown. (either: &quot;Sorry, but what little we have left is for the children. Classes won&#39;t stop just because the principal and most of our faculties are gone.&quot;, &quot;The markup can be high, but if you&#39;re just making something simple - which is what the student lab can manage anyhow - then a handful of roots and powder won&#39;t be too expensive.&quot;, &quot;We ought to be more generous to visitors, but right now, even our associate staff have to pay for classroom materials out of pocket.&quot;)&quot;]&lt;VehVehLine|
+&lt;br&gt;
+($funcInnerConvo: (dm:
+     &quot;&lt;!--A--&gt;\&quot;Can you show me how to get to the Grand Exchange?\&quot;&quot;, &quot;toGrandExchange&quot;,
+     &quot;&lt;!--B--&gt;\&quot;Bring-your-own-ingredients. Got it.\&quot;&quot;, &quot;BYOI&quot;,
+))
+&lt;br&gt;
+
+&lt;!--toGrandExchange--&gt;
+[
+[&quot;Uh, sure, so you see those domes over there? So from here, you head down the hill, then when you see the big road, the one with the red obelisks, you take a right... Erm, or was it left?...&quot;]&lt;VehVehLine| she mutters to herself several conflicting directions, then gives up. [&quot;This is embarrassing. I usually just zone out whenever I make my groceries run. You might need a professional guide. Or you can just take a stroll, or several, around town, you&#39;ll eventually end up there. Apesai&#39;s a beautiful city. Confusing, but beautiful.&quot;]&lt;VehVehLine|
+&lt;br&gt;
+($funcInnerConvo: (dm:
+     &quot;&lt;!--B--&gt;\&quot;It&#39;s alright. I&#39;ll figure it out.\&quot;&quot;, &quot;BYOI&quot;,
+))
+&lt;br&gt;
+](toGrandExchange|
+
+&lt;!--BYOI--&gt;
+[
+[&quot;Yeah, sorry that I couldn&#39;t help out more. So, anything lab-related you want to ask me?&quot;]&lt;VehVehLine|
+&lt;br&gt;
+(show: ?againIngredientsDone)
+](BYOI|
+
+[
+&lt;br&gt;
+($funcInnerConvo: $stuff&#39;s againChoices)
+&lt;br&gt;
+](againIngredientsDone|
+
+}])&lt;!--end of _againIngredients--&gt;
 
 
 &lt;!--againFuel--&gt;
 (set: _againFuel to [{
-[&quot;Fuel&quot;]&lt;VehVehLine|
-}])
+[&quot;You mean loose vehzin? You can try visiting the supplies warehouses or magic shops down in the Grand Exchange, but retail prices can sometimes get unreasonable. The further you get away from the highland mines, the more expensive vehzin gets. And Apesai is pretty far south.&quot;]&lt;VehVehLine|
+&lt;br&gt;
+The most common form of vehzin found in Apesai is a monolith packed for bulk export, worth a merchant&#39;s lifesaving, and quite unusable.
+&lt;br&gt;
+($funcInnerConvo: (dm:
+     &quot;&lt;!--A--&gt;\&quot;Then where do you get //your// vehzin?\&quot;&quot;, &quot;getYourVehzin&quot;,
+     &quot;&lt;!--B--&gt;\&quot;I&#39;m sure there are more affordable sources of fuel.\&quot;&quot;, &quot;vehzinAlt&quot;,
+))
+&lt;br&gt;
+
+&lt;!--getYourVehzin--&gt;
+[
+[&quot;I grit my teeth and pay retail prices, of course. Once things get back to normal, the school will reimburse me. Hopefully. It&#39;s research expenditure after all.&quot;]&lt;VehVehLine|
+&lt;br&gt;
+Something tells you she has less hope than she lets on, and a good magus rarely relies on hope alone.
+&lt;br&gt;
+($funcInnerConvo: (dm:
+     &quot;&lt;!--A--&gt;\&quot;That&#39;s a shame.\&quot;&quot;, &quot;againFuelDone&quot;,
+     &quot;&lt;!--B--&gt;\&quot;I&#39;m sure there are more affordable sources of fuel.\&quot;&quot;, &quot;vehzinAlt&quot;,
+))
+&lt;br&gt;
+](getYourVehzin|
+
+&lt;!--vehzinAlt--&gt;
+[
+[&quot;Other than buying it straight from the highland clans in Barroz, anything else I can tell you will earn both of us an invitation to the governor&#39;s court - and not for employment either, haha,&quot;&quot;]&lt;VehVehLine| she laughs, then grimaces. [&quot;It&#39;s probably more lax where you&#39;re from, but here in Askava, the only thing more controlled than vehzin is farabek. Without the fuel trade, I don&#39;t think Askava would even //be// a dahak.&quot;]&lt;VehVehLine|
+&lt;br&gt;
+($funcInnerConvo: (dm:
+     &quot;&lt;!--A--&gt;\&quot;Got it.\&quot;&quot;, &quot;againFuelDone&quot;,
+))
+&lt;br&gt;
+](vehzinAlt|
+
+&lt;!--againFuelDone--&gt;
+[
+[&quot;I&#39;m surprised you didn&#39;t bring your own, being a journeyman and everything,&quot;]&lt;VehVehLine| she then immediately covers her mouth. [&quot;That was rude of me. Just ignore it, please.&quot;]&lt;VehVehLine|
+&lt;br&gt;
+($funcInnerConvo: $stuff&#39;s againChoices)
+&lt;br&gt;
+](againFuelDone|
+
+}])&lt;!--end of _againFuel--&gt;
 
 
 [
-[&quot;Yeah, no problem!&quot;]&lt;VehVehLine|
-(move: $stuff&#39;s againChoices into _trash)
+[&quot;Yeah, no problem! I hope the lab suits your needs. What am I saying? Of course it doesn&#39;t... You get what I mean, right? Anyway, is there something else?&quot;]&lt;VehVehLine|
+&lt;!--reset $stuff--&gt;
+(set: $stuff to (dm:))
 (show: ?done)
 &lt;br&gt;
 
