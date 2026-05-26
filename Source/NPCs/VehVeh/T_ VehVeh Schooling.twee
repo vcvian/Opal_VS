@@ -10,16 +10,19 @@ and $char's player's timerCooldown does not contain "T: VehVeh Schooling"
 
 (metadata:
 "NPC", "VehVeh",
-"title", "Chatting with Veh-Veh",
-"topic", "How's being an apprentice here in Apesai?",
-"topicDetail", "Apesai - and the whole of Askava, for that matter - isn't exactly known for its magical education.",
+"title", "Asking Veh-Veh About Her Apprenticeship",
+"topic", [{
+	(if: ($funcTalkedTimesCheck: "schoolingApesai") < 1)[	"How's being an apprentice here in Apesai?"]
+	(else:)["I want to talk more about your education. What are you working on?"]
+}],
+"topicDetail", "Apesai - and the whole of Askava, for that matter - isn't exactly known for its magical education. Still, for an apprentice, that might as well be their whole world.",
 "cooldown", 1,
 "talked", (a: "schoolingApesai", "absentPrincipal", "studentLab",),
-"addCode", [\
-	(if: ($funcTalkedTimesCheck: "schoolingApesai") <= 3)[\
-    	($funcOpinionGainLoss: "VehVeh", 1, "Veh-Veh brightens up when she talks about her studies.")\
-        ]\
-],
+"addCode", [{
+	(if: ($funcTalkedTimesCheck: "schoolingApesai") <= 3)[
+    	($funcOpinionGainLoss: "VehVeh", 1, "Veh-Veh brightens up when she talks about her studies.")
+        ]
+}],
 )
 
 $cssColumnParent[
@@ -36,41 +39,201 @@ $cssColumnChild[
 $cssDesc[''You: //(print: (passage:)'s topic)//'']
 <br>
 
-(if: ($funcTalkedTimesCheck: "schoolingApesai") < 1)[\
-["You know, it's not as bad as people make it out to be..."]<VehVehLine|
-<br>
-(talk about facilities, labs, or the lack thereof...)
-<br>
-["... Except, the principal is gone though."]<VehVehLine|
-]
+<!--default busy-->
+(set: _busyText to "Veh-Veh seems like she has more to say on the matter, but she's done talking for the day.")
+<!--default goodbye-->
+(set: _goodbyeText to "\"Glad to have talked to a fellow student, Veh-Veh. Bye.\"")
 
-(elseif: ($funcTalkedTimesCheck: "schoolingApesai") < 2)[\
+<!--first time-->
+(if: ($funcTalkedTimesCheck: "schoolingApesai") < 1)[{
+
+["Are you asking about the apprenticeship program in general?"]<VehVehLine| She says, beaming. ["Or are you asking about mine, specifically?"]
+<br>
+($funcInnerConvo: (dm:
+	"<!--A-->\"You, specifically.\"", "youSpecifically",
+	"<!--B-->\"In general, I mean.\"", "inGeneral",
+))
+<br>
+
+<!--youSpecifically-->
+[
+["Oh, well, I'm hardly the representative case,"]<VehVehLine| she adjusts the star on her cap. ["//Technically//, I'm still an apprentice. A senior. Probably the oldest one here, though one can't tell with the native students, since not everyone has their papers or knows their birth year. I've already passed the imperial exams though. Early too."]<VehVehLine|
+<br>
+($funcInnerConvo: (dm:
+	"<!--A-->\"Impressive.\"", "impressive",
+	"<!--B-->\"But why are you still an apprentice?\"", "whyApprentice",
+))
+<br>
+](youSpecifically|
+
+<!--impressive-->
+[
+["Hehe, thank you."]<VehVehLine|
+<br>
+($funcInnerConvo: (dm:
+	"<!--A-->\"But why are you still an apprentice?\"", "whyApprentice",
+))
+<br>
+](impressive|
+
+<!--inGeneral-->
+[
+["There's a six-year universal program, mostly for the boarding children and the occasional non-magical professionals - merchants, engineers, and provincial clerks, anyone with the time and money,"]<VehVehLine| she explains. Sounds about the same where you're from. ["And after that, for whoever remains, there's another six-year specialist program. Which I'm //still// in, even though I've already passed the imperial exams."]<VehVehLine|
+<br>
+($funcInnerConvo: (dm:
+	"<!--A-->\"Still? Why haven't they let you journey yet?\"", "whyApprentice",
+))
+<br>
+](inGeneral|
+
+<!--whyApprentice-->
+[
+["I'm sure you know, but exams are only one requirement. The local davehkhan council - my teachers - decide the rest. I'm in my 'practicum period', they call it. Work-study assistantship. Added a capstone requirement on top of it too,"]<VehVehLine| she clicks her tongue.
+<br>
+How strange, these far provinces are. The moment you passed your exams, you were immediately eligible to journey. Only, you had no say in //where// you'd journey. Whereas you had only one option, Veh-Veh has none. 
+<br>
+["It's not that bad, truly,"]<VehVehLine| she quickly changes course. ["I have everything I need here: a laboratory, library, my own room with a view of the sea, a clean dining hall - though I prefer to eat in the garden - and oh, of course, the garden. Not everything is top-of-the-line, well maybe except the view, but the davehmars here //have// tried to cover everything."]<VehVehLine|
+<br>
+($funcInnerConvo: (dm:
+	"<!--A-->\"That sounds wonderful. You'll miss all of this if you journey.\"", "missAll",
+	"<!--B-->\"Are you sure journeying is for you? You'll have to rough it out there.\"", "roughingIt",
+))
+<br>
+](whyApprentice|
+
+<!--missAll-->
+[
+As you say this, you realize that you, too, miss the comforts of university life as well. Of //civilization//. The wild sun of Askava is not kind to anyone, especially an outsider like yourself.
+<br>
+["I suppose I //will// miss this. Never knew much else,"]<VehVehLine| Veh-Veh says, wistfully. ["But what's the point of schooling if you're not going to finish it, right? Can't be a kid forever."]<VehVehLine|
+<br>
+($funcInnerConvo: (dm:
+	"<!--A-->\"Plenty of magi never become masters.\"", "neverMaster",
+	"<!--B-->\"You're right. No point at all.\"", "noPoint",
+))
+<br>
+](missAll|
+
+<!--roughingIt-->
+[
+["Ha, //you// would know, I don't doubt it,"]<VehVehLine| Veh-Veh chuckles, a hint of bitterness. ["But how rougher can it get? I know that Askava isn't anything like the heartlands; it's barely Nurandahid. All the more reason for me to want to journey."]<VehVehLine|
+<br>
+Makes sense. To be a true magus, one needs practical immersion. Being immersed in these wild, arid lands means desiccation. Your assignment to Askava was, for all intents and purposes, career assassination.
+<br>
+["Plus, I've already spent twelve - no, thirteen - years of my life for this,"]<VehVehLine| she adds. ["What's the point of schooling if you're not going to finish it, right? Can't be a kid forever."]<VehVehLine|
+<br>
+($funcInnerConvo: (dm:
+	"<!--A-->\"Plenty of magi never become a master.\"", "neverMaster",
+	"<!--B-->\"You're right. No point at all.\"", "noPoint",
+))
+<br>
+](roughingIt|
+
+
+<!--neverMaster-->
+[
+Failed magi still find employment, usually as neighborhood teachers or maintenance workers. Others turn to parlour tricks and back-alley medicine. People don't call these types "magi", though.
+<br>
+["No, you're right,"]<VehVehLine| she says. There is a bitterness in that smile. ["But that's their business. I //do// plan on being a master."]<VehVehLine|
+<br>
+($funcInnerConvo: (dm:
+	"<!--A-->\"Got it.\"", "gotIt",
+))
+<br>
+](neverMaster|
+
+
+<!--noPoint-->
+[
+["Yep. thaaat's right!"]<VehVehLine| She says, more to herself than anything. ["No. point. at. all."]<VehVehLine|
+<br>
+($funcInnerConvo: (dm:
+	"<!--A-->\"Yeah.\"", "gotIt",
+))
+<br>
+](noPoint|
+
+<!--gotIt-->
+[
+Sensing a lull in the conversation, Veh-Veh snaps back to life, ["Ah, forget it. I'm complaining again. Let's pick this back up another time. You asked about my apprenticeship, but I haven't even told you about what I'm researching."]<VehVehLine|
+<br>
+($funcInnerConvo: (dm:
+	"<!--A-->\"You can just tell me now.\"", "tellNow",
+	"<!--B-->\"Alright, another time it is.\"", "anotherTime",
+))
+<br>
+](gotIt|
+
+[
+["Nah,"]<VehVehLine| she waves her hands, suddenly bashful. ["Next time."]<VehVehLine|
+<br>
+($funcInnerConvo: (dm:
+	"<!--A-->\"Alright, I'll respect that.\"", "anotherTime",
+))
+<br>
+](tellNow|
+
+<!--anotherTime-->
+[
+(if: $char's VehVeh's energy's 1st > 0)[["I just don't want to talk your ears off about my own business. You probably have other things you want to talk about. If so, go ahead."]<VehVehLine|(set: _goodbyeText to "\"That's alright. Glad to have talked to a fellow student, Veh-Veh. Bye.\"")]
+(else:)[["Yeah. Oh, speaking of research,"]<VehVehLine| she takes our her notebook, suddenly remembering something she has to do, which is a lot, judging by how packed the pages are. ["Sorry, I..."]<VehVehLine|(set: _goodbyeText to "\"It's alright. I've taken up enough of your time. Next time, Veh-Veh.\"")]
+<br>
+(show: ?done)
+](anotherTime|
+
+}]<!--end first time-->
+
+<!--second time-->
+(elseif: ($funcTalkedTimesCheck: "schoolingApesai") < 2)[{
+
+
+
+
 ["Well, I'm working on something..."]<VehVehLine| she says, a wistful smile comes and goes.
 <br>
 ["But that's been put on pause, since the principal - my mentor - has been gone. I was using his lab, too, but he's taken the key with him. The student lab isn't cutting it."]<VehVehLine|
-]
+<br>
 
-(elseif: ($funcTalkedTimesCheck: "schoolingApesai") < 3)[\
+<!--for testing purposes ONLY. Delete when done-->
+(link: "DONE")[(set: _goodbyeText to "\"TEST `_goodbyeText`.\"")(show:?done)]
+
+
+}]<!--end second time-->
+
+
+<!--third time-->
+(elseif: ($funcTalkedTimesCheck: "schoolingApesai") < 3)[{
 ["You keep asking me that. I image that it must be strange for you, to go from a full-fledged university to this no-where of a place."]<VehVehLine|
 <br>
 ["To me, it's more about what you can make of yourself, and less what the place can do for you. It's a lesson one can't help but learn, living in Askava."]<VehVehLine|
 <br>
 ["Oh, what am I talking about? Compared to the mainland, this island is a dream."]<VehVehLine|
-]
+<br>
 
-(else:)[\
+}]<!--end third time-->
+
+
+<!--fourth time-->
+(else:)[{
 ["Heh, it's good that someone still cares about my education. But I think it'll be a better use of both our time if I get on with my studies instead of just talking about it."]<VehVehLine|
 <br>
 ["Thank you, though. I'll be sure to let you know if I ever come across anything that could be of interest to you. Maybe we can compare notes? And if you finish your Sacred Opal, perhaps you'd write me a letter of recommendation?"]<VehVehLine|
-]
-
 <br>
+
+''Remember to add special goodbyes:'' "Veh-Veh giggles and starts to collect her books.", "Sure. //If//. Goodbye, Veh-Veh."
+
+
+}]<!--end fourth time-->
+
+
+
+<!--done-->
+[
 ---
 <ol>
-(if: ($funcTalkedTimesCheck: "schoolingApesai") <= 3)[($funcNPCTopics: "Veh-Veh seems like she has more to say on the matter, but she's done talking for the day.", "Glad to have talked to a fellow student, Veh-Veh. Bye.")]
-
-(else:)[($funcNPCTopics: "Veh-Veh giggles and starts to collect her books.", "Sure. //If//. Goodbye, Veh-Veh.")]
+($funcNPCTopics: _busyText, _goodbyeText)
 </ol>
+](done|
 
 ]<!--end child-->
 ]<!--end parent-->

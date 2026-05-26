@@ -11,7 +11,7 @@ and $char's player's timerCooldown does not contain "T: VehVeh Self"
 (metadata:
 "NPC", "VehVeh",
 "title", "Chatting with Veh-Veh",
-"topic", "\"Veh-Veh\" - is that a nickname?",
+"topic", "\"Veh-Veh\" - is that an Askavan name?",
 "topicDetail", "She is the chatty sort. Maybe she'll like talking about herself?",
 "cooldown", 1,
 "talked", (a: "nameVehVeh", ),

@@ -67,7 +67,7 @@ hr {
   100% {
     background-position: 0% center;
   }
-}</style><script role="script" id="twine-user-script" type="text/twine-javascript"></script><tw-tag name="storylet" color="blue"></tw-tag><tw-tag name="test" color="blue"></tw-tag><tw-tag name="topic" color="purple"></tw-tag><tw-tag name="traveling" color="purple"></tw-tag><tw-tag name="startup" color="orange"></tw-tag><tw-tag name="static-storage" color="yellow"></tw-tag><tw-tag name="stay" color="yellow"></tw-tag><tw-tag name="footer" color="yellow"></tw-tag><tw-tag name="header" color="yellow"></tw-tag><tw-tag name="sublocation" color="green"></tw-tag><tw-tag name="UI" color="orange"></tw-tag><tw-tag name="book" color="yellow"></tw-tag><tw-tag name="effect" color="yellow"></tw-tag><tw-passagedata pid="1" name="AA. Books &amp; Formulae" tags="startup" position="100,100" size="100,100">{=
+}</style><script role="script" id="twine-user-script" type="text/twine-javascript"></script><tw-tag name="UI" color="orange"></tw-tag><tw-tag name="book" color="yellow"></tw-tag><tw-tag name="effect" color="yellow"></tw-tag><tw-tag name="header" color="yellow"></tw-tag><tw-tag name="startup" color="orange"></tw-tag><tw-tag name="sublocation" color="green"></tw-tag><tw-tag name="traveling" color="purple"></tw-tag><tw-tag name="footer" color="yellow"></tw-tag><tw-tag name="static-storage" color="yellow"></tw-tag><tw-tag name="stay" color="yellow"></tw-tag><tw-tag name="storylet" color="blue"></tw-tag><tw-tag name="test" color="blue"></tw-tag><tw-tag name="topic" color="purple"></tw-tag><tw-passagedata pid="1" name="AA. Books &amp; Formulae" tags="startup" position="100,100" size="100,100">{=
 &lt;!--Macros related to books and reading--&gt;
 
 (set: $readingNav to (dm:
@@ -5365,7 +5365,6 @@ $cssColumnChild[
 $char&#39;s VehVeh&#39;s alive is true
 and $char&#39;s VehVeh&#39;s know is true
 and $char&#39;s VehVeh&#39;s location is $place&#39;s sublocation and it is &quot;The Grand Exchange&quot;
-and $char&#39;s VehVeh&#39;s opinion&#39;s 2nd &gt; 20
 and $char&#39;s VehVeh&#39;s arc is 1
 )
 
@@ -5410,7 +5409,6 @@ $cssColumnChild[
 $char&#39;s VehVeh&#39;s alive is true
 and $char&#39;s VehVeh&#39;s know is true
 and $char&#39;s VehVeh&#39;s location is $place&#39;s sublocation and it is &quot;Apesai Lighthouse&quot;
-and $char&#39;s VehVeh&#39;s opinion&#39;s 2nd &gt; 20
 and $char&#39;s VehVeh&#39;s arc is 1
 )
 
@@ -5535,7 +5533,7 @@ $cssColumnChild[
 
 (storylet: when
 (passage:) contains &quot;NPC&quot;
-and $char&#39;s VehVeh&#39;s opinion&#39;s 2nd &gt; 20
+and $char&#39;s VehVeh&#39;s opinion&#39;s 2nd &gt;= 10
 and ($char&#39;s VehVeh&#39;s location is &quot;Apesai Lighthouse&quot; or it is &quot;The Grand Exchange&quot;)
 and $char&#39;s player&#39;s timerCooldown does not contain &quot;T: VehVeh Apesai&quot;
 )
@@ -5577,7 +5575,7 @@ Apesai... Getting around...
 
 (storylet: when
 (passage:) contains &quot;NPC&quot;
-and $char&#39;s VehVeh&#39;s opinion&#39;s 2nd &gt; 20
+and $char&#39;s VehVeh&#39;s opinion&#39;s 2nd &gt;= 10
 and $char&#39;s VehVeh&#39;s location is &quot;The Grand Exchange&quot;
 and $char&#39;s player&#39;s timerCooldown does not contain &quot;T: VehVeh Children&quot;
 )
@@ -5628,7 +5626,7 @@ $cssDesc[&#39;&#39;You: //(print: (passage:)&#39;s topic)//&#39;&#39;]
 
 (storylet: when
 (passage:) contains &quot;NPC&quot;
-and $char&#39;s VehVeh&#39;s opinion&#39;s 2nd &gt; 20
+and $char&#39;s VehVeh&#39;s opinion&#39;s 2nd &gt;= 10
 and $char&#39;s VehVeh&#39;s location is &quot;The Grand Exchange&quot;
 and $char&#39;s player&#39;s timerCooldown does not contain &quot;T: VehVeh Market&quot;
 )
@@ -5736,16 +5734,19 @@ and $char&#39;s player&#39;s timerCooldown does not contain &quot;T: VehVeh Scho
 
 (metadata:
 &quot;NPC&quot;, &quot;VehVeh&quot;,
-&quot;title&quot;, &quot;Chatting with Veh-Veh&quot;,
-&quot;topic&quot;, &quot;How&#39;s being an apprentice here in Apesai?&quot;,
-&quot;topicDetail&quot;, &quot;Apesai - and the whole of Askava, for that matter - isn&#39;t exactly known for its magical education.&quot;,
+&quot;title&quot;, &quot;Asking Veh-Veh About Her Apprenticeship&quot;,
+&quot;topic&quot;, [{
+	(if: ($funcTalkedTimesCheck: &quot;schoolingApesai&quot;) &lt; 1)[	&quot;How&#39;s being an apprentice here in Apesai?&quot;]
+	(else:)[&quot;I want to talk more about your education. What are you working on?&quot;]
+}],
+&quot;topicDetail&quot;, &quot;Apesai - and the whole of Askava, for that matter - isn&#39;t exactly known for its magical education. Still, for an apprentice, that might as well be their whole world.&quot;,
 &quot;cooldown&quot;, 1,
 &quot;talked&quot;, (a: &quot;schoolingApesai&quot;, &quot;absentPrincipal&quot;, &quot;studentLab&quot;,),
-&quot;addCode&quot;, [\
-	(if: ($funcTalkedTimesCheck: &quot;schoolingApesai&quot;) &lt;= 3)[\
-    	($funcOpinionGainLoss: &quot;VehVeh&quot;, 1, &quot;Veh-Veh brightens up when she talks about her studies.&quot;)\
-        ]\
-],
+&quot;addCode&quot;, [{
+	(if: ($funcTalkedTimesCheck: &quot;schoolingApesai&quot;) &lt;= 3)[
+    	($funcOpinionGainLoss: &quot;VehVeh&quot;, 1, &quot;Veh-Veh brightens up when she talks about her studies.&quot;)
+        ]
+}],
 )
 
 $cssColumnParent[
@@ -5762,41 +5763,201 @@ $cssColumnChild[
 $cssDesc[&#39;&#39;You: //(print: (passage:)&#39;s topic)//&#39;&#39;]
 &lt;br&gt;
 
-(if: ($funcTalkedTimesCheck: &quot;schoolingApesai&quot;) &lt; 1)[\
-[&quot;You know, it&#39;s not as bad as people make it out to be...&quot;]&lt;VehVehLine|
-&lt;br&gt;
-(talk about facilities, labs, or the lack thereof...)
-&lt;br&gt;
-[&quot;... Except, the principal is gone though.&quot;]&lt;VehVehLine|
-]
+&lt;!--default busy--&gt;
+(set: _busyText to &quot;Veh-Veh seems like she has more to say on the matter, but she&#39;s done talking for the day.&quot;)
+&lt;!--default goodbye--&gt;
+(set: _goodbyeText to &quot;\&quot;Glad to have talked to a fellow student, Veh-Veh. Bye.\&quot;&quot;)
 
-(elseif: ($funcTalkedTimesCheck: &quot;schoolingApesai&quot;) &lt; 2)[\
+&lt;!--first time--&gt;
+(if: ($funcTalkedTimesCheck: &quot;schoolingApesai&quot;) &lt; 1)[{
+
+[&quot;Are you asking about the apprenticeship program in general?&quot;]&lt;VehVehLine| She says, beaming. [&quot;Or are you asking about mine, specifically?&quot;]
+&lt;br&gt;
+($funcInnerConvo: (dm:
+	&quot;&lt;!--A--&gt;\&quot;You, specifically.\&quot;&quot;, &quot;youSpecifically&quot;,
+	&quot;&lt;!--B--&gt;\&quot;In general, I mean.\&quot;&quot;, &quot;inGeneral&quot;,
+))
+&lt;br&gt;
+
+&lt;!--youSpecifically--&gt;
+[
+[&quot;Oh, well, I&#39;m hardly the representative case,&quot;]&lt;VehVehLine| she adjusts the star on her cap. [&quot;//Technically//, I&#39;m still an apprentice. A senior. Probably the oldest one here, though one can&#39;t tell with the native students, since not everyone has their papers or knows their birth year. I&#39;ve already passed the imperial exams though. Early too.&quot;]&lt;VehVehLine|
+&lt;br&gt;
+($funcInnerConvo: (dm:
+	&quot;&lt;!--A--&gt;\&quot;Impressive.\&quot;&quot;, &quot;impressive&quot;,
+	&quot;&lt;!--B--&gt;\&quot;But why are you still an apprentice?\&quot;&quot;, &quot;whyApprentice&quot;,
+))
+&lt;br&gt;
+](youSpecifically|
+
+&lt;!--impressive--&gt;
+[
+[&quot;Hehe, thank you.&quot;]&lt;VehVehLine|
+&lt;br&gt;
+($funcInnerConvo: (dm:
+	&quot;&lt;!--A--&gt;\&quot;But why are you still an apprentice?\&quot;&quot;, &quot;whyApprentice&quot;,
+))
+&lt;br&gt;
+](impressive|
+
+&lt;!--inGeneral--&gt;
+[
+[&quot;There&#39;s a six-year universal program, mostly for the boarding children and the occasional non-magical professionals - merchants, engineers, and provincial clerks, anyone with the time and money,&quot;]&lt;VehVehLine| she explains. Sounds about the same where you&#39;re from. [&quot;And after that, for whoever remains, there&#39;s another six-year specialist program. Which I&#39;m //still// in, even though I&#39;ve already passed the imperial exams.&quot;]&lt;VehVehLine|
+&lt;br&gt;
+($funcInnerConvo: (dm:
+	&quot;&lt;!--A--&gt;\&quot;Still? Why haven&#39;t they let you journey yet?\&quot;&quot;, &quot;whyApprentice&quot;,
+))
+&lt;br&gt;
+](inGeneral|
+
+&lt;!--whyApprentice--&gt;
+[
+[&quot;I&#39;m sure you know, but exams are only one requirement. The local davehkhan council - my teachers - decide the rest. I&#39;m in my &#39;practicum period&#39;, they call it. Work-study assistantship. Added a capstone requirement on top of it too,&quot;]&lt;VehVehLine| she clicks her tongue.
+&lt;br&gt;
+How strange, these far provinces are. The moment you passed your exams, you were immediately eligible to journey. Only, you had no say in //where// you&#39;d journey. Whereas you had only one option, Veh-Veh has none. 
+&lt;br&gt;
+[&quot;It&#39;s not that bad, truly,&quot;]&lt;VehVehLine| she quickly changes course. [&quot;I have everything I need here: a laboratory, library, my own room with a view of the sea, a clean dining hall - though I prefer to eat in the garden - and oh, of course, the garden. Not everything is top-of-the-line, well maybe except the view, but the davehmars here //have// tried to cover everything.&quot;]&lt;VehVehLine|
+&lt;br&gt;
+($funcInnerConvo: (dm:
+	&quot;&lt;!--A--&gt;\&quot;That sounds wonderful. You&#39;ll miss all of this if you journey.\&quot;&quot;, &quot;missAll&quot;,
+	&quot;&lt;!--B--&gt;\&quot;Are you sure journeying is for you? You&#39;ll have to rough it out there.\&quot;&quot;, &quot;roughingIt&quot;,
+))
+&lt;br&gt;
+](whyApprentice|
+
+&lt;!--missAll--&gt;
+[
+As you say this, you realize that you, too, miss the comforts of university life as well. Of //civilization//. The wild sun of Askava is not kind to anyone, especially an outsider like yourself.
+&lt;br&gt;
+[&quot;I suppose I //will// miss this. Never knew much else,&quot;]&lt;VehVehLine| Veh-Veh says, wistfully. [&quot;But what&#39;s the point of schooling if you&#39;re not going to finish it, right? Can&#39;t be a kid forever.&quot;]&lt;VehVehLine|
+&lt;br&gt;
+($funcInnerConvo: (dm:
+	&quot;&lt;!--A--&gt;\&quot;Plenty of magi never become masters.\&quot;&quot;, &quot;neverMaster&quot;,
+	&quot;&lt;!--B--&gt;\&quot;You&#39;re right. No point at all.\&quot;&quot;, &quot;noPoint&quot;,
+))
+&lt;br&gt;
+](missAll|
+
+&lt;!--roughingIt--&gt;
+[
+[&quot;Ha, //you// would know, I don&#39;t doubt it,&quot;]&lt;VehVehLine| Veh-Veh chuckles, a hint of bitterness. [&quot;But how rougher can it get? I know that Askava isn&#39;t anything like the heartlands; it&#39;s barely Nurandahid. All the more reason for me to want to journey.&quot;]&lt;VehVehLine|
+&lt;br&gt;
+Makes sense. To be a true magus, one needs practical immersion. Being immersed in these wild, arid lands means desiccation. Your assignment to Askava was, for all intents and purposes, career assassination.
+&lt;br&gt;
+[&quot;Plus, I&#39;ve already spent twelve - no, thirteen - years of my life for this,&quot;]&lt;VehVehLine| she adds. [&quot;What&#39;s the point of schooling if you&#39;re not going to finish it, right? Can&#39;t be a kid forever.&quot;]&lt;VehVehLine|
+&lt;br&gt;
+($funcInnerConvo: (dm:
+	&quot;&lt;!--A--&gt;\&quot;Plenty of magi never become a master.\&quot;&quot;, &quot;neverMaster&quot;,
+	&quot;&lt;!--B--&gt;\&quot;You&#39;re right. No point at all.\&quot;&quot;, &quot;noPoint&quot;,
+))
+&lt;br&gt;
+](roughingIt|
+
+
+&lt;!--neverMaster--&gt;
+[
+Failed magi still find employment, usually as neighborhood teachers or maintenance workers. Others turn to parlour tricks and back-alley medicine. People don&#39;t call these types &quot;magi&quot;, though.
+&lt;br&gt;
+[&quot;No, you&#39;re right,&quot;]&lt;VehVehLine| she says. There is a bitterness in that smile. [&quot;But that&#39;s their business. I //do// plan on being a master.&quot;]&lt;VehVehLine|
+&lt;br&gt;
+($funcInnerConvo: (dm:
+	&quot;&lt;!--A--&gt;\&quot;Got it.\&quot;&quot;, &quot;gotIt&quot;,
+))
+&lt;br&gt;
+](neverMaster|
+
+
+&lt;!--noPoint--&gt;
+[
+[&quot;Yep. thaaat&#39;s right!&quot;]&lt;VehVehLine| She says, more to herself than anything. [&quot;No. point. at. all.&quot;]&lt;VehVehLine|
+&lt;br&gt;
+($funcInnerConvo: (dm:
+	&quot;&lt;!--A--&gt;\&quot;Yeah.\&quot;&quot;, &quot;gotIt&quot;,
+))
+&lt;br&gt;
+](noPoint|
+
+&lt;!--gotIt--&gt;
+[
+Sensing a lull in the conversation, Veh-Veh snaps back to life, [&quot;Ah, forget it. I&#39;m complaining again. Let&#39;s pick this back up another time. You asked about my apprenticeship, but I haven&#39;t even told you about what I&#39;m researching.&quot;]&lt;VehVehLine|
+&lt;br&gt;
+($funcInnerConvo: (dm:
+	&quot;&lt;!--A--&gt;\&quot;You can just tell me now.\&quot;&quot;, &quot;tellNow&quot;,
+	&quot;&lt;!--B--&gt;\&quot;Alright, another time it is.\&quot;&quot;, &quot;anotherTime&quot;,
+))
+&lt;br&gt;
+](gotIt|
+
+[
+[&quot;Nah,&quot;]&lt;VehVehLine| she waves her hands, suddenly bashful. [&quot;Next time.&quot;]&lt;VehVehLine|
+&lt;br&gt;
+($funcInnerConvo: (dm:
+	&quot;&lt;!--A--&gt;\&quot;Alright, I&#39;ll respect that.\&quot;&quot;, &quot;anotherTime&quot;,
+))
+&lt;br&gt;
+](tellNow|
+
+&lt;!--anotherTime--&gt;
+[
+(if: $char&#39;s VehVeh&#39;s energy&#39;s 1st &gt; 0)[[&quot;I just don&#39;t want to talk your ears off about my own business. You probably have other things you want to talk about. If so, go ahead.&quot;]&lt;VehVehLine|(set: _goodbyeText to &quot;\&quot;That&#39;s alright. Glad to have talked to a fellow student, Veh-Veh. Bye.\&quot;&quot;)]
+(else:)[[&quot;Yeah. Oh, speaking of research,&quot;]&lt;VehVehLine| she takes our her notebook, suddenly remembering something she has to do, which is a lot, judging by how packed the pages are. [&quot;Sorry, I...&quot;]&lt;VehVehLine|(set: _goodbyeText to &quot;\&quot;It&#39;s alright. I&#39;ve taken up enough of your time. Next time, Veh-Veh.\&quot;&quot;)]
+&lt;br&gt;
+(show: ?done)
+](anotherTime|
+
+}]&lt;!--end first time--&gt;
+
+&lt;!--second time--&gt;
+(elseif: ($funcTalkedTimesCheck: &quot;schoolingApesai&quot;) &lt; 2)[{
+
+
+
+
 [&quot;Well, I&#39;m working on something...&quot;]&lt;VehVehLine| she says, a wistful smile comes and goes.
 &lt;br&gt;
 [&quot;But that&#39;s been put on pause, since the principal - my mentor - has been gone. I was using his lab, too, but he&#39;s taken the key with him. The student lab isn&#39;t cutting it.&quot;]&lt;VehVehLine|
-]
+&lt;br&gt;
 
-(elseif: ($funcTalkedTimesCheck: &quot;schoolingApesai&quot;) &lt; 3)[\
+&lt;!--for testing purposes ONLY. Delete when done--&gt;
+(link: &quot;DONE&quot;)[(set: _goodbyeText to &quot;\&quot;TEST `_goodbyeText`.\&quot;&quot;)(show:?done)]
+
+
+}]&lt;!--end second time--&gt;
+
+
+&lt;!--third time--&gt;
+(elseif: ($funcTalkedTimesCheck: &quot;schoolingApesai&quot;) &lt; 3)[{
 [&quot;You keep asking me that. I image that it must be strange for you, to go from a full-fledged university to this no-where of a place.&quot;]&lt;VehVehLine|
 &lt;br&gt;
 [&quot;To me, it&#39;s more about what you can make of yourself, and less what the place can do for you. It&#39;s a lesson one can&#39;t help but learn, living in Askava.&quot;]&lt;VehVehLine|
 &lt;br&gt;
 [&quot;Oh, what am I talking about? Compared to the mainland, this island is a dream.&quot;]&lt;VehVehLine|
-]
+&lt;br&gt;
 
-(else:)[\
+}]&lt;!--end third time--&gt;
+
+
+&lt;!--fourth time--&gt;
+(else:)[{
 [&quot;Heh, it&#39;s good that someone still cares about my education. But I think it&#39;ll be a better use of both our time if I get on with my studies instead of just talking about it.&quot;]&lt;VehVehLine|
 &lt;br&gt;
 [&quot;Thank you, though. I&#39;ll be sure to let you know if I ever come across anything that could be of interest to you. Maybe we can compare notes? And if you finish your Sacred Opal, perhaps you&#39;d write me a letter of recommendation?&quot;]&lt;VehVehLine|
-]
-
 &lt;br&gt;
+
+&#39;&#39;Remember to add special goodbyes:&#39;&#39; &quot;Veh-Veh giggles and starts to collect her books.&quot;, &quot;Sure. //If//. Goodbye, Veh-Veh.&quot;
+
+
+}]&lt;!--end fourth time--&gt;
+
+
+
+&lt;!--done--&gt;
+[
 ---
 &lt;ol&gt;
-(if: ($funcTalkedTimesCheck: &quot;schoolingApesai&quot;) &lt;= 3)[($funcNPCTopics: &quot;Veh-Veh seems like she has more to say on the matter, but she&#39;s done talking for the day.&quot;, &quot;Glad to have talked to a fellow student, Veh-Veh. Bye.&quot;)]
-
-(else:)[($funcNPCTopics: &quot;Veh-Veh giggles and starts to collect her books.&quot;, &quot;Sure. //If//. Goodbye, Veh-Veh.&quot;)]
+($funcNPCTopics: _busyText, _goodbyeText)
 &lt;/ol&gt;
+](done|
 
 ]&lt;!--end child--&gt;
 ]&lt;!--end parent--&gt;</tw-passagedata><tw-passagedata pid="111" name="T: VehVeh Self" tags="topic" position="6275,1650" size="100,100">{=
@@ -5811,7 +5972,7 @@ and $char&#39;s player&#39;s timerCooldown does not contain &quot;T: VehVeh Self
 (metadata:
 &quot;NPC&quot;, &quot;VehVeh&quot;,
 &quot;title&quot;, &quot;Chatting with Veh-Veh&quot;,
-&quot;topic&quot;, &quot;\&quot;Veh-Veh\&quot; - is that a nickname?&quot;,
+&quot;topic&quot;, &quot;\&quot;Veh-Veh\&quot; - is that an Askavan name?&quot;,
 &quot;topicDetail&quot;, &quot;She is the chatty sort. Maybe she&#39;ll like talking about herself?&quot;,
 &quot;cooldown&quot;, 1,
 &quot;talked&quot;, (a: &quot;nameVehVeh&quot;, ),
@@ -5859,7 +6020,7 @@ Despite her hesitation, she continues.]
 
 (storylet: when
 (passage:) contains &quot;NPC&quot;
-and $char&#39;s VehVeh&#39;s opinion&#39;s 2nd &gt; 20
+and $char&#39;s VehVeh&#39;s opinion&#39;s 2nd &gt;= 10
 and $char&#39;s VehVeh&#39;s location is &quot;Apesai Lighthouse&quot;
 and $char&#39;s player&#39;s timerCooldown does not contain &quot;T: VehVeh Crafting&quot;
 )
@@ -6574,7 +6735,7 @@ $cssColumnChild[
 
 (storylet: when
 (passage:) contains &quot;NPC&quot;
-and $char&#39;s VehVeh&#39;s opinion&#39;s 2nd &gt; 20
+and $char&#39;s VehVeh&#39;s opinion&#39;s 2nd &gt;= 10
 and ($funcCheckExists: $char&#39;s player&#39;s quests, &quot;sickTeacher&quot;, &quot;&quot;) is &quot;active&quot;
 and $char&#39;s player&#39;s timerCooldown does not contain &quot;T: VehVeh Fluxy Teacher&quot;
 )

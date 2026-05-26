@@ -3,7 +3,7 @@
 
 (storylet: when
 (passage:) contains "NPC"
-and $char's VehVeh's opinion's 2nd > 20
+and $char's VehVeh's opinion's 2nd >= 10
 and $char's VehVeh's location is "The Grand Exchange"
 and $char's player's timerCooldown does not contain "T: VehVeh Children"
 )
