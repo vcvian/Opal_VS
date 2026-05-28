@@ -315,7 +315,7 @@ She's muttering to herself again.
 [
 You try your best to avoid sounding like you have forgotten the formulas.
 <br>
-["Aren't formulas... the same everywhere? That's why they're 'formulas', right?"]<VehVehLine| She tilts her head. ["Or maybe the formulas are the same, but there regional differences in what we call the products? Ah, still got a lot to learn. Library's a floor above the lab."]<VehVehLine|
+["Aren't formulas... the same everywhere? That's why they're 'formulas', right?"]<VehVehLine| She tilts her head. ["Or maybe the formulas are the same, but there are regional differences in what we call the products? Ah, still got a lot to learn. Library's a floor above the lab."]<VehVehLine|
 <br>
 ($funcInnerConvo: (dm:
      "\"<!--B-->Gratitude, Veh-Veh.\"", "done",

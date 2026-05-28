@@ -1,0 +1,41 @@
+:: VehVeh Schooling (End)
+
+(metadata:
+"NPC", "VehVeh",
+"title", "Asking Veh-Veh About Her Apprenticeship",
+"topic", [{
+	(if: ($funcTalkedTimesCheck: "schoolingApesai") < 1)[	"How's being an apprentice here in Apesai?"]
+	(else:)["I want to talk more about your education. What are you working on?"]
+}],
+"topicDetail", "Apesai - and the whole of Askava, for that matter - isn't exactly known for its magical education. Still, for an apprentice, that might as well be their whole world.",
+"cooldown", 1,
+"talked", (a: "schoolingApesai", "absentPrincipal", "studentLab",),
+"addCode", [{
+	(if: ($funcTalkedTimesCheck: "schoolingApesai") <= 3)[
+    	($funcOpinionGainLoss: "VehVeh", 1, "Veh-Veh brightens up when she talks about her studies.")
+        ]
+}],
+)
+
+$cssColumnParent[
+
+$cssColumnChild[
+	$cssBox[
+    	($funcImage: (passage: "S: VehVeh")'s img)
+         $cssBoxItem[''(print: (passage:)'s title )''<br>(print: (passage:)'s topicDetail)]
+    ]
+]
+
+$cssColumnChild[
+
+(if: $char's VehVeh's energy's 1st > 0)[Veh-Veh waits a bit before asking, ["So, is there something //else// you wanted to talk about?"]<VehVehLine|]
+(else:)[["Actually, I probably need to get back work too,"]<VehVehLine| she points a thumb at some indeterminate thing behind her. ["Haha, see? If I just talk, I won't actually //do// anything."]<VehVehLine|]
+<br>
+---
+<ol>
+($funcNPCTopics: "Veh-Veh seems like she has more to say on the matter, but she's done talking for the day.", "\"For what it's worth, thanks for sharing, Veh-Veh. Goodbye.\"")
+</ol>
+
+
+]<!--end child-->
+]<!--end parent-->

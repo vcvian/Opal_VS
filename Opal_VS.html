@@ -9,7 +9,7 @@
 </head>
 <body>
 <tw-story><noscript><tw-noscript>JavaScript needs to be enabled to play Opal.</tw-noscript></noscript></tw-story>
-<!-- UUID://B7CA1AB8-D586-46A4-8186-D10662A25374// --><tw-storydata name="Opal" startnode="269" creator="Tweego" creator-version="2.1.1+81d1d71" ifid="B7CA1AB8-D586-46A4-8186-D10662A25374" zoom="0.3" format="Harlowe" format-version="3.3.9" options="" hidden><style role="stylesheet" id="twine-user-stylesheet" type="text/twine-css">tw-story {
+<!-- UUID://B7CA1AB8-D586-46A4-8186-D10662A25374// --><tw-storydata name="Opal" startnode="271" creator="Tweego" creator-version="2.1.1+81d1d71" ifid="B7CA1AB8-D586-46A4-8186-D10662A25374" zoom="0.3" format="Harlowe" format-version="3.3.9" options="" hidden><style role="stylesheet" id="twine-user-stylesheet" type="text/twine-css">tw-story {
   font-size: 1.0rem;
   align-items: center;
 }
@@ -67,7 +67,7 @@ hr {
   100% {
     background-position: 0% center;
   }
-}</style><script role="script" id="twine-user-script" type="text/twine-javascript"></script><tw-tag name="UI" color="orange"></tw-tag><tw-tag name="book" color="yellow"></tw-tag><tw-tag name="effect" color="yellow"></tw-tag><tw-tag name="header" color="yellow"></tw-tag><tw-tag name="startup" color="orange"></tw-tag><tw-tag name="sublocation" color="green"></tw-tag><tw-tag name="traveling" color="purple"></tw-tag><tw-tag name="footer" color="yellow"></tw-tag><tw-tag name="static-storage" color="yellow"></tw-tag><tw-tag name="stay" color="yellow"></tw-tag><tw-tag name="storylet" color="blue"></tw-tag><tw-tag name="test" color="blue"></tw-tag><tw-tag name="topic" color="purple"></tw-tag><tw-passagedata pid="1" name="AA. Books &amp; Formulae" tags="startup" position="100,100" size="100,100">{=
+}</style><script role="script" id="twine-user-script" type="text/twine-javascript"></script><tw-tag name="effect" color="yellow"></tw-tag><tw-tag name="startup" color="orange"></tw-tag><tw-tag name="static-storage" color="yellow"></tw-tag><tw-tag name="stay" color="yellow"></tw-tag><tw-tag name="storylet" color="blue"></tw-tag><tw-tag name="sublocation" color="green"></tw-tag><tw-tag name="traveling" color="purple"></tw-tag><tw-tag name="UI" color="orange"></tw-tag><tw-tag name="footer" color="yellow"></tw-tag><tw-tag name="header" color="yellow"></tw-tag><tw-tag name="test" color="blue"></tw-tag><tw-tag name="topic" color="purple"></tw-tag><tw-tag name="book" color="yellow"></tw-tag><tw-passagedata pid="1" name="AA. Books &amp; Formulae" tags="startup" position="100,100" size="100,100">{=
 &lt;!--Macros related to books and reading--&gt;
 
 (set: $readingNav to (dm:
@@ -5723,244 +5723,7 @@ $cssDesc[&#39;&#39;You: //(print: (passage:)&#39;s topic)//&#39;&#39;]
 ]
 
 ]&lt;!--end child--&gt;
-]&lt;!--end parent--&gt;</tw-passagedata><tw-passagedata pid="110" name="T: VehVeh Schooling" tags="topic" position="6400,1650" size="100,100">{=
-
-(storylet: when
-(passage:) contains &quot;NPC&quot;
-and $char&#39;s VehVeh&#39;s opinion&#39;s 2nd &gt; 20
-and $char&#39;s VehVeh&#39;s location is &quot;Apesai Lighthouse&quot;
-and $char&#39;s player&#39;s timerCooldown does not contain &quot;T: VehVeh Schooling&quot;
-)
-
-(metadata:
-&quot;NPC&quot;, &quot;VehVeh&quot;,
-&quot;title&quot;, &quot;Asking Veh-Veh About Her Apprenticeship&quot;,
-&quot;topic&quot;, [{
-	(if: ($funcTalkedTimesCheck: &quot;schoolingApesai&quot;) &lt; 1)[	&quot;How&#39;s being an apprentice here in Apesai?&quot;]
-	(else:)[&quot;I want to talk more about your education. What are you working on?&quot;]
-}],
-&quot;topicDetail&quot;, &quot;Apesai - and the whole of Askava, for that matter - isn&#39;t exactly known for its magical education. Still, for an apprentice, that might as well be their whole world.&quot;,
-&quot;cooldown&quot;, 1,
-&quot;talked&quot;, (a: &quot;schoolingApesai&quot;, &quot;absentPrincipal&quot;, &quot;studentLab&quot;,),
-&quot;addCode&quot;, [{
-	(if: ($funcTalkedTimesCheck: &quot;schoolingApesai&quot;) &lt;= 3)[
-    	($funcOpinionGainLoss: &quot;VehVeh&quot;, 1, &quot;Veh-Veh brightens up when she talks about her studies.&quot;)
-        ]
-}],
-)
-
-$cssColumnParent[
-
-$cssColumnChild[
-	$cssBox[
-    	($funcImage: (passage: &quot;S: VehVeh&quot;)&#39;s img)
-         $cssBoxItem[&#39;&#39;(print: (passage:)&#39;s title )&#39;&#39;&lt;br&gt;(print: (passage:)&#39;s topicDetail)]
-    ]
-]
-
-$cssColumnChild[
-
-$cssDesc[&#39;&#39;You: //(print: (passage:)&#39;s topic)//&#39;&#39;]
-&lt;br&gt;
-
-&lt;!--default busy--&gt;
-(set: _busyText to &quot;Veh-Veh seems like she has more to say on the matter, but she&#39;s done talking for the day.&quot;)
-&lt;!--default goodbye--&gt;
-(set: _goodbyeText to &quot;\&quot;Glad to have talked to a fellow student, Veh-Veh. Bye.\&quot;&quot;)
-
-&lt;!--first time--&gt;
-(if: ($funcTalkedTimesCheck: &quot;schoolingApesai&quot;) &lt; 1)[{
-
-[&quot;Are you asking about the apprenticeship program in general?&quot;]&lt;VehVehLine| She says, beaming. [&quot;Or are you asking about mine, specifically?&quot;]
-&lt;br&gt;
-($funcInnerConvo: (dm:
-	&quot;&lt;!--A--&gt;\&quot;You, specifically.\&quot;&quot;, &quot;youSpecifically&quot;,
-	&quot;&lt;!--B--&gt;\&quot;In general, I mean.\&quot;&quot;, &quot;inGeneral&quot;,
-))
-&lt;br&gt;
-
-&lt;!--youSpecifically--&gt;
-[
-[&quot;Oh, well, I&#39;m hardly the representative case,&quot;]&lt;VehVehLine| she adjusts the star on her cap. [&quot;//Technically//, I&#39;m still an apprentice. A senior. Probably the oldest one here, though one can&#39;t tell with the native students, since not everyone has their papers or knows their birth year. I&#39;ve already passed the imperial exams though. Early too.&quot;]&lt;VehVehLine|
-&lt;br&gt;
-($funcInnerConvo: (dm:
-	&quot;&lt;!--A--&gt;\&quot;Impressive.\&quot;&quot;, &quot;impressive&quot;,
-	&quot;&lt;!--B--&gt;\&quot;But why are you still an apprentice?\&quot;&quot;, &quot;whyApprentice&quot;,
-))
-&lt;br&gt;
-](youSpecifically|
-
-&lt;!--impressive--&gt;
-[
-[&quot;Hehe, thank you.&quot;]&lt;VehVehLine|
-&lt;br&gt;
-($funcInnerConvo: (dm:
-	&quot;&lt;!--A--&gt;\&quot;But why are you still an apprentice?\&quot;&quot;, &quot;whyApprentice&quot;,
-))
-&lt;br&gt;
-](impressive|
-
-&lt;!--inGeneral--&gt;
-[
-[&quot;There&#39;s a six-year universal program, mostly for the boarding children and the occasional non-magical professionals - merchants, engineers, and provincial clerks, anyone with the time and money,&quot;]&lt;VehVehLine| she explains. Sounds about the same where you&#39;re from. [&quot;And after that, for whoever remains, there&#39;s another six-year specialist program. Which I&#39;m //still// in, even though I&#39;ve already passed the imperial exams.&quot;]&lt;VehVehLine|
-&lt;br&gt;
-($funcInnerConvo: (dm:
-	&quot;&lt;!--A--&gt;\&quot;Still? Why haven&#39;t they let you journey yet?\&quot;&quot;, &quot;whyApprentice&quot;,
-))
-&lt;br&gt;
-](inGeneral|
-
-&lt;!--whyApprentice--&gt;
-[
-[&quot;I&#39;m sure you know, but exams are only one requirement. The local davehkhan council - my teachers - decide the rest. I&#39;m in my &#39;practicum period&#39;, they call it. Work-study assistantship. Added a capstone requirement on top of it too,&quot;]&lt;VehVehLine| she clicks her tongue.
-&lt;br&gt;
-How strange, these far provinces are. The moment you passed your exams, you were immediately eligible to journey. Only, you had no say in //where// you&#39;d journey. Whereas you had only one option, Veh-Veh has none. 
-&lt;br&gt;
-[&quot;It&#39;s not that bad, truly,&quot;]&lt;VehVehLine| she quickly changes course. [&quot;I have everything I need here: a laboratory, library, my own room with a view of the sea, a clean dining hall - though I prefer to eat in the garden - and oh, of course, the garden. Not everything is top-of-the-line, well maybe except the view, but the davehmars here //have// tried to cover everything.&quot;]&lt;VehVehLine|
-&lt;br&gt;
-($funcInnerConvo: (dm:
-	&quot;&lt;!--A--&gt;\&quot;That sounds wonderful. You&#39;ll miss all of this if you journey.\&quot;&quot;, &quot;missAll&quot;,
-	&quot;&lt;!--B--&gt;\&quot;Are you sure journeying is for you? You&#39;ll have to rough it out there.\&quot;&quot;, &quot;roughingIt&quot;,
-))
-&lt;br&gt;
-](whyApprentice|
-
-&lt;!--missAll--&gt;
-[
-As you say this, you realize that you, too, miss the comforts of university life as well. Of //civilization//. The wild sun of Askava is not kind to anyone, especially an outsider like yourself.
-&lt;br&gt;
-[&quot;I suppose I //will// miss this. Never knew much else,&quot;]&lt;VehVehLine| Veh-Veh says, wistfully. [&quot;But what&#39;s the point of schooling if you&#39;re not going to finish it, right? Can&#39;t be a kid forever.&quot;]&lt;VehVehLine|
-&lt;br&gt;
-($funcInnerConvo: (dm:
-	&quot;&lt;!--A--&gt;\&quot;Plenty of magi never become masters.\&quot;&quot;, &quot;neverMaster&quot;,
-	&quot;&lt;!--B--&gt;\&quot;You&#39;re right. No point at all.\&quot;&quot;, &quot;noPoint&quot;,
-))
-&lt;br&gt;
-](missAll|
-
-&lt;!--roughingIt--&gt;
-[
-[&quot;Ha, //you// would know, I don&#39;t doubt it,&quot;]&lt;VehVehLine| Veh-Veh chuckles, a hint of bitterness. [&quot;But how rougher can it get? I know that Askava isn&#39;t anything like the heartlands; it&#39;s barely Nurandahid. All the more reason for me to want to journey.&quot;]&lt;VehVehLine|
-&lt;br&gt;
-Makes sense. To be a true magus, one needs practical immersion. Being immersed in these wild, arid lands means desiccation. Your assignment to Askava was, for all intents and purposes, career assassination.
-&lt;br&gt;
-[&quot;Plus, I&#39;ve already spent twelve - no, thirteen - years of my life for this,&quot;]&lt;VehVehLine| she adds. [&quot;What&#39;s the point of schooling if you&#39;re not going to finish it, right? Can&#39;t be a kid forever.&quot;]&lt;VehVehLine|
-&lt;br&gt;
-($funcInnerConvo: (dm:
-	&quot;&lt;!--A--&gt;\&quot;Plenty of magi never become a master.\&quot;&quot;, &quot;neverMaster&quot;,
-	&quot;&lt;!--B--&gt;\&quot;You&#39;re right. No point at all.\&quot;&quot;, &quot;noPoint&quot;,
-))
-&lt;br&gt;
-](roughingIt|
-
-
-&lt;!--neverMaster--&gt;
-[
-Failed magi still find employment, usually as neighborhood teachers or maintenance workers. Others turn to parlour tricks and back-alley medicine. People don&#39;t call these types &quot;magi&quot;, though.
-&lt;br&gt;
-[&quot;No, you&#39;re right,&quot;]&lt;VehVehLine| she says. There is a bitterness in that smile. [&quot;But that&#39;s their business. I //do// plan on being a master.&quot;]&lt;VehVehLine|
-&lt;br&gt;
-($funcInnerConvo: (dm:
-	&quot;&lt;!--A--&gt;\&quot;Got it.\&quot;&quot;, &quot;gotIt&quot;,
-))
-&lt;br&gt;
-](neverMaster|
-
-
-&lt;!--noPoint--&gt;
-[
-[&quot;Yep. thaaat&#39;s right!&quot;]&lt;VehVehLine| She says, more to herself than anything. [&quot;No. point. at. all.&quot;]&lt;VehVehLine|
-&lt;br&gt;
-($funcInnerConvo: (dm:
-	&quot;&lt;!--A--&gt;\&quot;Yeah.\&quot;&quot;, &quot;gotIt&quot;,
-))
-&lt;br&gt;
-](noPoint|
-
-&lt;!--gotIt--&gt;
-[
-Sensing a lull in the conversation, Veh-Veh snaps back to life, [&quot;Ah, forget it. I&#39;m complaining again. Let&#39;s pick this back up another time. You asked about my apprenticeship, but I haven&#39;t even told you about what I&#39;m researching.&quot;]&lt;VehVehLine|
-&lt;br&gt;
-($funcInnerConvo: (dm:
-	&quot;&lt;!--A--&gt;\&quot;You can just tell me now.\&quot;&quot;, &quot;tellNow&quot;,
-	&quot;&lt;!--B--&gt;\&quot;Alright, another time it is.\&quot;&quot;, &quot;anotherTime&quot;,
-))
-&lt;br&gt;
-](gotIt|
-
-[
-[&quot;Nah,&quot;]&lt;VehVehLine| she waves her hands, suddenly bashful. [&quot;Next time.&quot;]&lt;VehVehLine|
-&lt;br&gt;
-($funcInnerConvo: (dm:
-	&quot;&lt;!--A--&gt;\&quot;Alright, I&#39;ll respect that.\&quot;&quot;, &quot;anotherTime&quot;,
-))
-&lt;br&gt;
-](tellNow|
-
-&lt;!--anotherTime--&gt;
-[
-(if: $char&#39;s VehVeh&#39;s energy&#39;s 1st &gt; 0)[[&quot;I just don&#39;t want to talk your ears off about my own business. You probably have other things you want to talk about. If so, go ahead.&quot;]&lt;VehVehLine|(set: _goodbyeText to &quot;\&quot;That&#39;s alright. Glad to have talked to a fellow student, Veh-Veh. Bye.\&quot;&quot;)]
-(else:)[[&quot;Yeah. Oh, speaking of research,&quot;]&lt;VehVehLine| she takes our her notebook, suddenly remembering something she has to do, which is a lot, judging by how packed the pages are. [&quot;Sorry, I...&quot;]&lt;VehVehLine|(set: _goodbyeText to &quot;\&quot;It&#39;s alright. I&#39;ve taken up enough of your time. Next time, Veh-Veh.\&quot;&quot;)]
-&lt;br&gt;
-(show: ?done)
-](anotherTime|
-
-}]&lt;!--end first time--&gt;
-
-&lt;!--second time--&gt;
-(elseif: ($funcTalkedTimesCheck: &quot;schoolingApesai&quot;) &lt; 2)[{
-
-
-
-
-[&quot;Well, I&#39;m working on something...&quot;]&lt;VehVehLine| she says, a wistful smile comes and goes.
-&lt;br&gt;
-[&quot;But that&#39;s been put on pause, since the principal - my mentor - has been gone. I was using his lab, too, but he&#39;s taken the key with him. The student lab isn&#39;t cutting it.&quot;]&lt;VehVehLine|
-&lt;br&gt;
-
-&lt;!--for testing purposes ONLY. Delete when done--&gt;
-(link: &quot;DONE&quot;)[(set: _goodbyeText to &quot;\&quot;TEST `_goodbyeText`.\&quot;&quot;)(show:?done)]
-
-
-}]&lt;!--end second time--&gt;
-
-
-&lt;!--third time--&gt;
-(elseif: ($funcTalkedTimesCheck: &quot;schoolingApesai&quot;) &lt; 3)[{
-[&quot;You keep asking me that. I image that it must be strange for you, to go from a full-fledged university to this no-where of a place.&quot;]&lt;VehVehLine|
-&lt;br&gt;
-[&quot;To me, it&#39;s more about what you can make of yourself, and less what the place can do for you. It&#39;s a lesson one can&#39;t help but learn, living in Askava.&quot;]&lt;VehVehLine|
-&lt;br&gt;
-[&quot;Oh, what am I talking about? Compared to the mainland, this island is a dream.&quot;]&lt;VehVehLine|
-&lt;br&gt;
-
-}]&lt;!--end third time--&gt;
-
-
-&lt;!--fourth time--&gt;
-(else:)[{
-[&quot;Heh, it&#39;s good that someone still cares about my education. But I think it&#39;ll be a better use of both our time if I get on with my studies instead of just talking about it.&quot;]&lt;VehVehLine|
-&lt;br&gt;
-[&quot;Thank you, though. I&#39;ll be sure to let you know if I ever come across anything that could be of interest to you. Maybe we can compare notes? And if you finish your Sacred Opal, perhaps you&#39;d write me a letter of recommendation?&quot;]&lt;VehVehLine|
-&lt;br&gt;
-
-&#39;&#39;Remember to add special goodbyes:&#39;&#39; &quot;Veh-Veh giggles and starts to collect her books.&quot;, &quot;Sure. //If//. Goodbye, Veh-Veh.&quot;
-
-
-}]&lt;!--end fourth time--&gt;
-
-
-
-&lt;!--done--&gt;
-[
----
-&lt;ol&gt;
-($funcNPCTopics: _busyText, _goodbyeText)
-&lt;/ol&gt;
-](done|
-
-]&lt;!--end child--&gt;
-]&lt;!--end parent--&gt;</tw-passagedata><tw-passagedata pid="111" name="T: VehVeh Self" tags="topic" position="6275,1650" size="100,100">{=
+]&lt;!--end parent--&gt;</tw-passagedata><tw-passagedata pid="110" name="T: VehVeh Self" tags="topic" position="6275,1650" size="100,100">{=
 
 (storylet: when
 (passage:) contains &quot;NPC&quot;
@@ -6016,7 +5779,7 @@ Despite her hesitation, she continues.]
 &lt;/ol&gt;
 
 ]&lt;!--end child--&gt;
-]&lt;!--end parent--&gt;</tw-passagedata><tw-passagedata pid="112" name="T: VehVeh Crafting" tags="topic" position="7025,1650" size="100,100">{=
+]&lt;!--end parent--&gt;</tw-passagedata><tw-passagedata pid="111" name="T: VehVeh Crafting" tags="topic" position="7025,1650" size="100,100">{=
 
 (storylet: when
 (passage:) contains &quot;NPC&quot;
@@ -6428,7 +6191,7 @@ The unsaid words are loud: Stop asking.
 ](done|
 
 ]&lt;!--end child--&gt;
-]&lt;!--end parent--&gt;</tw-passagedata><tw-passagedata pid="113" name="VehVeh Crafting (End)" tags="" position="350,1475" size="100,100">(metadata:
+]&lt;!--end parent--&gt;</tw-passagedata><tw-passagedata pid="112" name="VehVeh Crafting (End)" tags="" position="225,1475" size="100,100">(metadata:
 &quot;NPC&quot;, &quot;VehVeh&quot;,
 &quot;title&quot;, &quot;Asking Veh-Veh About School Facilities&quot;,
 &quot;topicDetail&quot;, &quot;Veh-Veh has introduced you to her school&#39;s facilities. They aren&#39;t much, but they are what you can make of them.&quot;,
@@ -6460,7 +6223,7 @@ Veh-Veh could have lorded it over you, had she wanted to. That&#39;s how it woul
 &lt;/ol&gt;
 
 ]&lt;!--end child--&gt;
-]&lt;!--end parent--&gt;</tw-passagedata><tw-passagedata pid="114" name="Meeting VehVeh 1a" tags="" position="6150,1650" size="100,100">{=
+]&lt;!--end parent--&gt;</tw-passagedata><tw-passagedata pid="113" name="Meeting VehVeh 1a" tags="" position="6150,1650" size="100,100">{=
 
 (metadata:
 &quot;NPC&quot;, &quot;VehVeh&quot;,
@@ -6653,7 +6416,7 @@ She stammers and fidgets with her book. You seem to have touched a sore spot.
 ](exit|
 
 ]&lt;!--end child--&gt;
-]&lt;!--end parent--&gt;</tw-passagedata><tw-passagedata pid="115" name="S: Meeting VehVeh" tags="storylet" position="6150,1525" size="100,100">{=
+]&lt;!--end parent--&gt;</tw-passagedata><tw-passagedata pid="114" name="S: Meeting VehVeh" tags="storylet" position="6150,1525" size="100,100">{=
 
 (storylet: when
 $char&#39;s VehVeh&#39;s alive is true
@@ -6703,7 +6466,7 @@ She flips another page and bites her thumb, not noticing you yet.
 &lt;/ol&gt;
 
 ]&lt;!--end child--&gt;
-]&lt;!--end parent--&gt;</tw-passagedata><tw-passagedata pid="116" name="VehVeh Principal 1a" tags="" position="6625,1775" size="100,100">{=
+]&lt;!--end parent--&gt;</tw-passagedata><tw-passagedata pid="115" name="VehVeh Principal 1a" tags="" position="6625,1775" size="100,100">{=
 
 (metadata:
 &quot;NPC&quot;, &quot;VehVeh&quot;,
@@ -6731,7 +6494,768 @@ $cssColumnChild[
 &lt;/ol&gt;
 
 ]&lt;!--end child--&gt;
-]&lt;!--end parent--&gt;</tw-passagedata><tw-passagedata pid="117" name="T: VehVeh Fluxy Teacher" tags="topic" position="6900,1650" size="100,100">{=
+]&lt;!--end parent--&gt;</tw-passagedata><tw-passagedata pid="116" name="T: VehVeh Schooling" tags="topic" position="6400,1650" size="100,100">{=
+
+(storylet: when
+(passage:) contains &quot;NPC&quot;
+and $char&#39;s VehVeh&#39;s opinion&#39;s 2nd &gt; 20
+and $char&#39;s VehVeh&#39;s location is &quot;Apesai Lighthouse&quot;
+and $char&#39;s player&#39;s timerCooldown does not contain &quot;T: VehVeh Schooling&quot;
+)
+
+(metadata:
+&quot;NPC&quot;, &quot;VehVeh&quot;,
+&quot;title&quot;, &quot;Asking Veh-Veh About Her Apprenticeship&quot;,
+&quot;topic&quot;, [{
+	(if: ($funcTalkedTimesCheck: &quot;schoolingApesai&quot;) &lt; 1)[	&quot;How&#39;s being an apprentice here in Apesai?&quot;]
+	(else:)[&quot;I want to talk more about your education. What are you working on?&quot;]
+}],
+&quot;topicDetail&quot;, &quot;Apesai - and the whole of Askava, for that matter - isn&#39;t exactly known for its magical education. Still, for an apprentice, that might as well be their whole world.&quot;,
+&quot;cooldown&quot;, 1,
+&quot;talked&quot;, (a: &quot;schoolingApesai&quot;, &quot;absentPrincipal&quot;, &quot;studentLab&quot;,),
+&quot;addCode&quot;, [{
+	(if: ($funcTalkedTimesCheck: &quot;schoolingApesai&quot;) &lt;= 3)[
+    	($funcOpinionGainLoss: &quot;VehVeh&quot;, 1, &quot;Veh-Veh brightens up when she talks about her studies.&quot;)
+        ]
+}],
+)
+
+$cssColumnParent[
+
+$cssColumnChild[
+	$cssBox[
+    	($funcImage: (passage: &quot;S: VehVeh&quot;)&#39;s img)
+         $cssBoxItem[&#39;&#39;(print: (passage:)&#39;s title )&#39;&#39;&lt;br&gt;(print: (passage:)&#39;s topicDetail)]
+    ]
+]
+
+$cssColumnChild[
+
+$cssDesc[&#39;&#39;You: //(print: (passage:)&#39;s topic)//&#39;&#39;]
+&lt;br&gt;
+
+&lt;!--default busy--&gt;
+(set: _busyText to &quot;Veh-Veh seems like she has more to say on the matter, but she&#39;s done talking for the day.&quot;)
+&lt;!--default goodbye--&gt;
+(set: _goodbyeText to &quot;\&quot;Glad to have talked to a fellow student, Veh-Veh. Bye.\&quot;&quot;)
+
+&lt;!--first time--&gt;
+(if: ($funcTalkedTimesCheck: &quot;schoolingApesai&quot;) &lt; 1)[{
+
+[&quot;Are you asking about the apprenticeship program in general?&quot;]&lt;VehVehLine| She says, beaming. [&quot;Or are you asking about mine, specifically?&quot;]
+&lt;br&gt;
+($funcInnerConvo: (dm:
+	&quot;&lt;!--A--&gt;\&quot;You, specifically.\&quot;&quot;, &quot;youSpecifically&quot;,
+	&quot;&lt;!--B--&gt;\&quot;In general, I mean.\&quot;&quot;, &quot;inGeneral&quot;,
+))
+&lt;br&gt;
+
+&lt;!--youSpecifically--&gt;
+[
+[&quot;Oh, well, I&#39;m hardly the representative case,&quot;]&lt;VehVehLine| she adjusts the star on her cap. [&quot;//Technically//, I&#39;m still an apprentice. A senior. Probably the oldest one here, though one can&#39;t tell with the native students, since not everyone has their papers or knows their birth year. I&#39;ve already passed the imperial exams though. Early too.&quot;]&lt;VehVehLine|
+&lt;br&gt;
+($funcInnerConvo: (dm:
+	&quot;&lt;!--A--&gt;\&quot;Impressive.\&quot;&quot;, &quot;impressive&quot;,
+	&quot;&lt;!--B--&gt;\&quot;But why are you still an apprentice?\&quot;&quot;, &quot;whyApprentice&quot;,
+))
+&lt;br&gt;
+](youSpecifically|
+
+&lt;!--impressive--&gt;
+[
+[&quot;Hehe, thank you.&quot;]&lt;VehVehLine|
+&lt;br&gt;
+($funcInnerConvo: (dm:
+	&quot;&lt;!--A--&gt;\&quot;But why are you still an apprentice?\&quot;&quot;, &quot;whyApprentice&quot;,
+))
+&lt;br&gt;
+](impressive|
+
+&lt;!--inGeneral--&gt;
+[
+[&quot;There&#39;s a six-year universal program, mostly for the boarding children and the occasional non-magical professionals - merchants, engineers, and provincial clerks, anyone with the time and money,&quot;]&lt;VehVehLine| she explains. Sounds about the same where you&#39;re from. [&quot;And after that, for whoever remains, there&#39;s another six-year specialist program. Which I&#39;m //still// in, even though I&#39;ve already passed the imperial exams.&quot;]&lt;VehVehLine|
+&lt;br&gt;
+($funcInnerConvo: (dm:
+	&quot;&lt;!--A--&gt;\&quot;Still? Why haven&#39;t they let you journey yet?\&quot;&quot;, &quot;whyApprentice&quot;,
+))
+&lt;br&gt;
+](inGeneral|
+
+&lt;!--whyApprentice--&gt;
+[
+[&quot;I&#39;m sure you know, but exams are only one requirement. The local davehkhan council - my teachers - decide the rest. I&#39;m in my &#39;practicum period&#39;, they call it. Work-study assistantship. Added a capstone requirement on top of it too. The principal said he&#39;d be my mentor, but then he went on leave. So, that&#39;s where I&#39;m at. Not sure what&#39;s next.&quot;]&lt;VehVehLine| she clicks her tongue.
+&lt;br&gt;
+How strange, these far provinces are. The moment you passed your exams, you were immediately eligible to journey. Only, you had no say in //where// you&#39;d journey. Whereas you had only one option, Veh-Veh has none. 
+&lt;br&gt;
+[&quot;It&#39;s not that bad, truly,&quot;]&lt;VehVehLine| she quickly changes course. [&quot;I have everything I need here: a laboratory, library, my own room with a view of the sea, my own telescope, a clean dining hall - though I prefer to eat in the garden - and oh, of course, the garden. Not everything is top-of-the-line, well maybe except the view, but the davehmars here //have// tried to cover everything.&quot;]&lt;VehVehLine|
+&lt;br&gt;
+($funcInnerConvo: (dm:
+	&quot;&lt;!--A--&gt;\&quot;That sounds wonderful. You&#39;ll miss all of this if you journey.\&quot;&quot;, &quot;missAll&quot;,
+	&quot;&lt;!--B--&gt;\&quot;Are you sure journeying is for you? You&#39;ll have to rough it out there.\&quot;&quot;, &quot;roughingIt&quot;,
+))
+&lt;br&gt;
+](whyApprentice|
+
+&lt;!--missAll--&gt;
+[
+As you say this, you realize that you, too, miss the comforts of university life as well. Of //civilization//. The wild sun of Askava is not kind to anyone, especially an outsider like yourself.
+&lt;br&gt;
+[&quot;I suppose I //will// miss this. Never knew much else,&quot;]&lt;VehVehLine| Veh-Veh says, wistfully. [&quot;But what&#39;s the point of schooling if you&#39;re not going to finish it, right? Can&#39;t be a kid forever.&quot;]&lt;VehVehLine|
+&lt;br&gt;
+($funcInnerConvo: (dm:
+	&quot;&lt;!--A--&gt;\&quot;Plenty of magi never become masters.\&quot;&quot;, &quot;neverMaster&quot;,
+	&quot;&lt;!--B--&gt;\&quot;You&#39;re right. No point at all.\&quot;&quot;, &quot;noPoint&quot;,
+))
+&lt;br&gt;
+](missAll|
+
+&lt;!--roughingIt--&gt;
+[
+[&quot;Ha, //you// would know, I don&#39;t doubt it,&quot;]&lt;VehVehLine| Veh-Veh chuckles, a hint of bitterness. [&quot;But how rougher can it get? I know that Askava isn&#39;t anything like the heartlands; it&#39;s barely Nurandahid. All the more reason for me to want to journey.&quot;]&lt;VehVehLine|
+&lt;br&gt;
+Makes sense. To be a true magus, one needs practical immersion. Being immersed in these wild, arid lands means desiccation. Your assignment to Askava was, for all intents and purposes, career assassination.
+&lt;br&gt;
+[&quot;Plus, I&#39;ve already spent twelve - no, thirteen - years of my life for this,&quot;]&lt;VehVehLine| she adds. [&quot;What&#39;s the point of schooling if you&#39;re not going to finish it, right? Can&#39;t be a kid forever.&quot;]&lt;VehVehLine|
+&lt;br&gt;
+($funcInnerConvo: (dm:
+	&quot;&lt;!--A--&gt;\&quot;Plenty of magi never become a master.\&quot;&quot;, &quot;neverMaster&quot;,
+	&quot;&lt;!--B--&gt;\&quot;You&#39;re right. No point at all.\&quot;&quot;, &quot;noPoint&quot;,
+))
+&lt;br&gt;
+](roughingIt|
+
+
+&lt;!--neverMaster--&gt;
+[
+Failed magi still find employment, usually as neighborhood teachers or maintenance workers. Others turn to parlour tricks and back-alley medicine. People don&#39;t call these types &quot;magi&quot;, though.
+&lt;br&gt;
+[&quot;No, you&#39;re right,&quot;]&lt;VehVehLine| she says. There is a bitterness in that smile. [&quot;But that&#39;s their business. I //do// plan on being a master.&quot;]&lt;VehVehLine|
+&lt;br&gt;
+($funcInnerConvo: (dm:
+	&quot;&lt;!--A--&gt;\&quot;Got it.\&quot;&quot;, &quot;gotIt&quot;,
+))
+&lt;br&gt;
+](neverMaster|
+
+
+&lt;!--noPoint--&gt;
+[
+[&quot;Yep. thaaat&#39;s right!&quot;]&lt;VehVehLine| She says, more to herself than anything. [&quot;No. point. at. all.&quot;]&lt;VehVehLine|
+&lt;br&gt;
+($funcInnerConvo: (dm:
+	&quot;&lt;!--A--&gt;\&quot;Yeah.\&quot;&quot;, &quot;gotIt&quot;,
+))
+&lt;br&gt;
+](noPoint|
+
+&lt;!--gotIt--&gt;
+[
+Sensing a lull in the conversation, Veh-Veh snaps back to life, [&quot;Ah, forget it. I&#39;m complaining again. Let&#39;s pick this back up another time. You asked about my apprenticeship, but I haven&#39;t even told you about what I&#39;m researching.&quot;]&lt;VehVehLine|
+&lt;br&gt;
+($funcInnerConvo: (dm:
+	&quot;&lt;!--A--&gt;\&quot;You can just tell me now.\&quot;&quot;, &quot;tellNow&quot;,
+	&quot;&lt;!--B--&gt;\&quot;Alright, another time it is.\&quot;&quot;, &quot;anotherTime&quot;,
+))
+&lt;br&gt;
+](gotIt|
+
+[
+[&quot;Nah,&quot;]&lt;VehVehLine| she waves her hands, suddenly bashful. [&quot;Next time.&quot;]&lt;VehVehLine|
+&lt;br&gt;
+($funcInnerConvo: (dm:
+	&quot;&lt;!--A--&gt;\&quot;Alright, I&#39;ll respect that.\&quot;&quot;, &quot;anotherTime&quot;,
+))
+&lt;br&gt;
+](tellNow|
+
+&lt;!--anotherTime--&gt;
+[
+(if: $char&#39;s VehVeh&#39;s energy&#39;s 1st &gt; 0)[[&quot;I just don&#39;t want to talk your ears off about my own business. You probably have other things you wanted to discuss. If so, go ahead.&quot;]&lt;VehVehLine|(set: _goodbyeText to &quot;\&quot;That&#39;s alright. Glad to have talked to a fellow student, Veh-Veh. Bye.\&quot;&quot;)]
+(else:)[[&quot;Yeah. Oh, speaking of research,&quot;]&lt;VehVehLine| she takes our her notebook, suddenly remembering something she has to do, which is a lot, judging by how packed the pages are. [&quot;Sorry, I...&quot;]&lt;VehVehLine|(set: _goodbyeText to &quot;\&quot;It&#39;s alright. I&#39;ve taken up enough of your time. Next time, Veh-Veh.\&quot;&quot;)]
+&lt;br&gt;
+(show: ?done)
+](anotherTime|
+
+}]&lt;!--end first time--&gt;
+
+&lt;!--second time--&gt;
+(elseif: ($funcTalkedTimesCheck: &quot;schoolingApesai&quot;) &lt; 2)[{
+
+The two of you talked briefly about her education in Apesai before but got lost in the weeds before getting to anything of substance.
+&lt;br&gt;
+[&quot;Oh that&#39;s right, my capstone research!&quot;]&lt;VehVehLine| Veh-Veh lights up, but just as quickly, the light fades. [&quot;I... I shouldn&#39;t be talking about plans that are going nowhere.&quot;]&lt;VehVehLine|
+&lt;br&gt;
+($funcInnerConvo: (dm:
+	&quot;&lt;!--A--&gt;\&quot;Why not? I thought you wanted to discuss it.\&quot;&quot;, &quot;whyNot&quot;,
+	&quot;&lt;!--B--&gt;\&quot;Trust me, from one scholar to another: Talking about it helps.\&quot;&quot;, &quot;talkingHelps&quot;,
+	&quot;&lt;!--C--&gt;\&quot;So what //can// you talk about?\&quot;&quot;, &quot;canTalk&quot;,
+))
+&lt;br&gt;
+
+&lt;!--whyNot--&gt;
+[
+[&quot;It&#39;s embarrassing. My enthusiasm gets ahead of me sometimes,&quot;]&lt;VehVehLine| she sighs. [&quot;But well, I brought it up before. Suppose it wouldn&#39;t hurt.&quot;]&lt;VehVehLine|
+&lt;br&gt;
+($funcInnerConvo: (dm:
+	&quot;&lt;!--A--&gt;\&quot;I&#39;m all ears.\&quot;&quot;, &quot;allEars&quot;,
+))
+&lt;br&gt;
+](whyNot|
+
+&lt;!--talkingHelps--&gt;
+[
+[&quot;But then if I talk about it too much, I might lose all motivation to keep going,&quot;]&lt;VehVehLine| she sighs. [&quot;But well, I brought it up before. Suppose I can talk //moderately// about it.&quot;]&lt;VehVehLine|
+&lt;br&gt;
+($funcInnerConvo: (dm:
+	&quot;&lt;!--A--&gt;\&quot;I&#39;m all ears.\&quot;&quot;, &quot;allEars&quot;,
+))
+&lt;br&gt;
+](talkingHelps|
+
+&lt;!--canTalk--&gt;
+[
+[&quot;I can tell about my specialization. Then again... I&#39;ll have to talk about the //what// and //why// of it,&quot;]&lt;VehVehLine| she sighs. [&quot;Oh well, I brought it up before. No use avoiding it. Forgive me if there are gaps in my knowledge, alright?&quot;]&lt;VehVehLine|
+&lt;br&gt;
+($funcInnerConvo: (dm:
+	&quot;&lt;!--A--&gt;\&quot;Alright.\&quot;&quot;, &quot;allEars&quot;,
+))
+&lt;br&gt;
+](canTalk|
+
+&lt;!--allEars--&gt;
+[
+[&quot;So, where do you think a person&#39;s //merit// comes from?&quot;]&lt;VehVehLine|
+&lt;br&gt;
+The conspiratorial way she asks reminds you of the first time the apprentices started asking each other where babies come from. 
+&lt;br&gt;
+[&quot;Or delinquency, malcontent, //loserdom// for that matter. What makes a person successful or a failure?&quot;]&lt;VehVehLine|
+&lt;br&gt;
+&lt;!--initialize opinion tracker--&gt;
+(set: $stuff to it + (dm: &quot;VehVehOpinionMod&quot;, 0))
+&lt;!--setup multiple options--&gt;
+(set: $stuff to it + (dm: &quot;whereMerit&quot;, (dm:
+	&quot;&lt;!--A--&gt;\&quot;It&#39;s simple: Hard work.\&quot;&quot;, &quot;hardWork&quot;,
+	&quot;&lt;!--B--&gt;\&quot;The wealth and stations of one&#39;s parents matter more than one might admit.\&quot;&quot;, &quot;parentsMatter&quot;,
+	&quot;&lt;!--C--&gt;\&quot;A lamp brightens and a mud pile stains: The types of company one keeps color one&#39;s potential.\&quot;&quot;, &quot;companyKeep&quot;,
+	&quot;&lt;!--D--&gt;\&quot;A positive outlook will cultivate good deeds, and so will a pessimistic outlook breed inaction.\&quot;&quot;, &quot;positiveOutlook&quot;,
+	&quot;&lt;!--E--&gt;\&quot;The Grace of one&#39;s society. A sick society breed sick individuals.\&quot;&quot;, &quot;societyGrace&quot;,
+)))
+&lt;!--Actual convo--&gt;
+($funcInnerConvo: $stuff&#39;s whereMerit + (dm:&quot;&lt;!--F--&gt;\&quot;I don&#39;t know. What?\&quot;&quot;, &quot;impatient1&quot;,))
+&lt;br&gt;
+](allEars|
+
+
+&lt;!--impatient1--&gt;
+[
+[&quot;What do you mean you don&#39;t know? Come now, humor me a little,&quot;]&lt;VehVehLine| Veh-Veh continues to insist. [&quot;Dialogues work way better than lectures, so I find.&quot;]&lt;VehVehLine| 
+&lt;br&gt;
+($funcInnerConvo: $stuff&#39;s whereMerit + (dm:&quot;&lt;!--1--&gt;\&quot;If you have something you want to tell me, just say it. Must you quiz me first?\&quot;&quot;, &quot;impatient2&quot;,))
+&lt;br&gt;
+](impatient1|
+
+&lt;!--impatient2--&gt;
+[
+[&quot;Oh...&quot;]&lt;VehVehLine| Veh-Veh is taken aback by your bluntness. [&quot;Yes, apologies.&quot;]&lt;VehVehLine|
+&lt;br&gt;
+&lt;!--hurt feelings--&gt;
+(set: $stuff&#39;s VehVehOpinionMod to it - 3)
+&lt;!--convo--&gt;
+($funcInnerConvo: (dm:&quot;&lt;!--A--&gt;\&quot;...\&quot;&quot;, &quot;researchTopic2&quot;,))
+&lt;br&gt;
+](impatient2|
+
+&lt;!--hardWork--&gt;
+[
+There is no substitute for hardwork, for //labor//. Assembling all the right ingredients is one thing, but without work, if only a spark, all the treasures of the world will stay inert and impotent.
+&lt;br&gt;
+[&quot;Certainly, yes, but that&#39;s not really answering my question, is it?&quot;]&lt;VehVehLine| Veh-Veh intonates her question and raises her eyebrow. Is she being... pedagogical? [&quot;Hard work is only //one// necessary condition, but it is hardly the origin point.
+&lt;br&gt;
+&quot;The stubborn tortoise might win the race, but no-one ever doubts that the hare //is// fast. Is that not the hare&#39;s merit? The hare can be made to work hard, but the tortoise cannot run any quicker than what its nature has determined.&quot;]&lt;VehVehLine|
+&lt;br&gt;
+($funcInnerConvo: (dm:
+	&quot;&lt;!--A--&gt;\&quot;So you believe that merit is a matter of innate ability? That is a metaphysical landmine, Veh-Veh.\&quot;&quot;, &quot;researchTopic&quot;,
+))
+&lt;br&gt;
+](hardWork|
+
+&lt;!--parentsMatter--&gt;
+[
+The aristocracy will always stand a better chance at having at least one of their ten, twelve, twenty scions attending a major university, appointed to one council or another, leading a battalion, being granted an estate, and so on, much more so than a merchant&#39;s child. And in turn, the merchant&#39;s child will have better odds than a peasant&#39;s child does, and so on.
+&lt;br&gt;
+[&quot;Close, yes, but why stop there?&quot;]&lt;VehVehLine| Veh-Veh smiles, trying to be encouraging. [&quot;If the circumstances of one&#39;s birth is a matter of luck, then what dice is rolled prior to that beginning? Surely, such a dice - metaphorical or otherwise - //is// the true origin point.&quot;]&lt;VehVehLine|
+&lt;br&gt;
+($funcInnerConvo: (dm:
+	&quot;&lt;!--A--&gt;\&quot;This is getting a bit too metaphysical for a serious scholar.\&quot;&quot;, &quot;researchTopic&quot;,
+))
+&lt;br&gt;
+](parentsMatter|
+
+&lt;!--companyKeep--&gt;
+[
+We are an amalgamation of everyone we have ever met, face-to-face or otherwise. We cannot help it if our friends give us bad advice, or if our teachers teach us the wrong lessons. However, we //are// able to curate who has our ears and hearts. Social hygiene is as much our own responsibility as personal hygiene is.
+&lt;br&gt;
+[&quot;Yes, and how do you suppose we select our company?&quot;]&lt;VehVehLine| She asks, but her smile indicates that she already has the answer. [&quot;Or rather, whichever method we use, we must have learned it from someone else. The younger one gets, thed less capable one is at making such choices.
+&lt;br&gt;
+&quot;Children are creatures of instinct and temperament. All of their friends are fair weather ones. It seems that something else more originary has already decided //for// them which way the winds will blow, and toward whom they will sway.&quot;]&lt;VehVehLine|
+&lt;br&gt;
+($funcInnerConvo: (dm:
+	&quot;&lt;!--A--&gt;\&quot;Are you talking about destiny? A serious scholar should not fall into the trap of metaphysics.\&quot;&quot;, &quot;researchTopic&quot;,
+))
+&lt;br&gt;
+](companyKeep|
+
+&lt;!--positiveOutlook--&gt;
+[
+If one believes that the Sun //will// rise tomorrow, that things //will// change for the better, that one //will// make it after all, it will neither change the movements of heavenly bodies, nor will life suddenly shift in one&#39;s favor. However, //not// believing in these things will guarantee that one does not act upon that which is within one&#39;s control. You once heard someone calling this axiom &quot;The Optimist&#39;s Wager&quot;. It&#39;s true: Only optimists gamble.
+&lt;br&gt;
+[&quot;Hmm, yes, optimists do tend to act in ways that accumulate merit, so claims some of the more, heh, //pedestrian// pamphlets out there,&quot;]&lt;VehVehLine| she chuckles. [&quot;But is it not the other way around? That people tend to become optimistic due to their success? Chicken or egg? A solely internal attribution will only take us in circles.
+&lt;br&gt;
+&quot;The way to break out of that circular logic is to identify an origin point that is truly outside of one&#39;s self. And I mean //truly// outside.&quot;]&lt;VehVehLine|
+&lt;br&gt;
+($funcInnerConvo: (dm:
+	&quot;&lt;!--A--&gt;\&quot;Why do I feel like you&#39;re not just talking about their immediate environment? You don&#39;t mean something metaphysical, do you?\&quot;&quot;, &quot;researchTopic&quot;,
+))
+&lt;br&gt;
+](positiveOutlook|
+
+&lt;!--societyGrace--&gt;
+[
+Society is the mold into which we fit. If the mold is crooked, then we can hardly be straight. Power corrupts, and poverty mangles. One&#39;s merit is less of a matter of personal virtue and much more a matter of victimhood - less of, more of, always some.
+&lt;br&gt;
+[&quot;Hmm, close. We might conversely say that a civilization&#39;s or culture&#39;s merit can rub off on its denizens,&quot;]&lt;VehVehLine| she says, not entirely convinced. [&quot;But I wonder, //where// does a civilization&#39;s merit come from? In the Grace of its emperor? But emperors, light blesses, are crowned by that society. Very circular.
+&lt;br&gt;
+&quot;The way to break out of that circular logic is to identify an origin point that is truly outside of the individual and their society. There is something like a law, only higher.&quot;]&lt;VehVehLine| 
+&lt;br&gt;
+($funcInnerConvo: (dm:
+	&quot;&lt;!--A--&gt;\&quot;I know where this is going. I&#39;ve sat in one too many metaphysics classes.\&quot;&quot;, &quot;researchTopic&quot;,
+))
+&lt;br&gt;
+](societyGrace|
+
+
+&lt;!--researchTopic--&gt;
+[
+[&quot;Oh no, no metaphysics at all. Rather, science,&quot;]&lt;VehVehLine| she says quite proudly.` `(show:?researchTopic2)
+](researchTopic|
+
+&lt;!--researchTopic2--&gt;
+[[&quot;Do you see the children around you?&quot;]&lt;VehVehLine|
+&lt;br&gt;
+&lt;!--clear $stuff&#39;s whereMerit--&gt;
+(move: $stuff&#39;s whereMerit into _trash)
+&lt;!--continue link--&gt;
+&lt;br&gt;
+($funcInnerConvo: (dm:
+	&quot;&lt;!--A--&gt;\&quot;I do.\&quot;&quot;, &quot;researchTopic3&quot;,
+))
+&lt;br&gt;
+](researchTopic2|
+
+&lt;!--researchTopic3--&gt;
+[It has been quite difficult not to notice the running, screaming, laughing junior apprentices around you. Some stop only momentarily stick out their tongues at you. Most of them have strikingly fair hair, from dirty-straw to silvery-white, and copper-red skin.
+&lt;br&gt;
+[&quot;Many teachers think they are a &#39;lost cause&#39;. Whenever there&#39;s a faculty meeting, at least one teacher will bring up how we ought to cut back on our recruitment drives since the school cannot afford to &#39;babysit&#39; the natives&#39; children, and most &#39;don&#39;t come to fruition&#39;. I fill in as the recorder whenever the attendants are broken, so I&#39;ve heard a lot of such talk,&quot;]&lt;VehVehLine| she sighs.
+&lt;br&gt;
+($funcInnerConvo: (dm:
+	&quot;\&quot;...\&quot;&quot;, &quot;researchTopic4&quot;,
+))
+&lt;br&gt;
+](researchTopic3|
+
+&lt;!--researchTopic4--&gt;
+[
+In your university, about one in every twenty students makes it all through their twelve years. Most of them drop out to help out with their family business, or to serve their parents&#39; courts, or to go on adventures. You can hardly imagine where these native children would go if they fail to graduate. Back to their villages out in the desert? Or to the Apesai streets?
+&lt;br&gt;
+Then, Veh-Veh turns to look at you and says, [&quot;For my capstone project, I&#39;d like to do something, you know, for the children. For the school, too, before I leave it.&quot;]&lt;VehVehLine|
+](researchTopic4|
+
+}]&lt;!--end of second time--&gt;
+
+
+
+&lt;!--third time--&gt;
+(elseif: ($funcTalkedTimesCheck: &quot;schoolingApesai&quot;) &lt; 3)[{
+[&quot;You keep asking me that. I image that it must be strange for you, to go from a full-fledged university to this no-where of a place.&quot;]&lt;VehVehLine|
+&lt;br&gt;
+[&quot;To me, it&#39;s more about what you can make of yourself, and less what the place can do for you. It&#39;s a lesson one can&#39;t help but learn, living in Askava.&quot;]&lt;VehVehLine|
+&lt;br&gt;
+[&quot;Oh, what am I talking about? Compared to the mainland, this island is a dream.&quot;]&lt;VehVehLine|
+&lt;br&gt;
+
+}]&lt;!--end third time--&gt;
+
+
+&lt;!--fourth time--&gt;
+(else:)[{
+[&quot;Heh, it&#39;s good that someone still cares about my education. But I think it&#39;ll be a better use of both our time if I get on with my studies instead of just talking about it.&quot;]&lt;VehVehLine|
+&lt;br&gt;
+[&quot;Thank you, though. I&#39;ll be sure to let you know if I ever come across anything that could be of interest to you. Maybe we can compare notes? And if you finish your Sacred Opal, perhaps you&#39;d write me a letter of recommendation?&quot;]&lt;VehVehLine|
+&lt;br&gt;
+
+&#39;&#39;Remember to add special goodbyes:&#39;&#39; &quot;Veh-Veh giggles and starts to collect her books.&quot;, &quot;Sure. //If//. Goodbye, Veh-Veh.&quot;
+
+
+}]&lt;!--end fourth time--&gt;
+
+
+
+&lt;!--done--&gt;
+[
+---
+&lt;ol&gt;
+($funcNPCTopics: _busyText, _goodbyeText)
+&lt;/ol&gt;
+](done|
+
+]&lt;!--end child--&gt;
+]&lt;!--end parent--&gt;</tw-passagedata><tw-passagedata pid="117" name="VehVeh Schooling (End)" tags="" position="850,1475" size="100,100">(metadata:
+&quot;NPC&quot;, &quot;VehVeh&quot;,
+&quot;title&quot;, &quot;Asking Veh-Veh About Her Apprenticeship&quot;,
+&quot;topic&quot;, [{
+	(if: ($funcTalkedTimesCheck: &quot;schoolingApesai&quot;) &lt; 1)[	&quot;How&#39;s being an apprentice here in Apesai?&quot;]
+	(else:)[&quot;I want to talk more about your education. What are you working on?&quot;]
+}],
+&quot;topicDetail&quot;, &quot;Apesai - and the whole of Askava, for that matter - isn&#39;t exactly known for its magical education. Still, for an apprentice, that might as well be their whole world.&quot;,
+&quot;cooldown&quot;, 1,
+&quot;talked&quot;, (a: &quot;schoolingApesai&quot;, &quot;absentPrincipal&quot;, &quot;studentLab&quot;,),
+&quot;addCode&quot;, [{
+	(if: ($funcTalkedTimesCheck: &quot;schoolingApesai&quot;) &lt;= 3)[
+    	($funcOpinionGainLoss: &quot;VehVeh&quot;, 1, &quot;Veh-Veh brightens up when she talks about her studies.&quot;)
+        ]
+}],
+)
+
+$cssColumnParent[
+
+$cssColumnChild[
+	$cssBox[
+    	($funcImage: (passage: &quot;S: VehVeh&quot;)&#39;s img)
+         $cssBoxItem[&#39;&#39;(print: (passage:)&#39;s title )&#39;&#39;&lt;br&gt;(print: (passage:)&#39;s topicDetail)]
+    ]
+]
+
+$cssColumnChild[
+
+(if: $char&#39;s VehVeh&#39;s energy&#39;s 1st &gt; 0)[Veh-Veh waits a bit before asking, [&quot;So, is there something //else// you wanted to talk about?&quot;]&lt;VehVehLine|]
+(else:)[[&quot;Actually, I probably need to get back work too,&quot;]&lt;VehVehLine| she points a thumb at some indeterminate thing behind her. [&quot;Haha, see? If I just talk, I won&#39;t actually //do// anything.&quot;]&lt;VehVehLine|]
+&lt;br&gt;
+---
+&lt;ol&gt;
+($funcNPCTopics: &quot;Veh-Veh seems like she has more to say on the matter, but she&#39;s done talking for the day.&quot;, &quot;\&quot;For what it&#39;s worth, thanks for sharing, Veh-Veh. Goodbye.\&quot;&quot;)
+&lt;/ol&gt;
+
+
+]&lt;!--end child--&gt;
+]&lt;!--end parent--&gt;</tw-passagedata><tw-passagedata pid="118" name="VehVeh Schooling (OLD second time)" tags="" position="975,1475" size="100,100">The two of you talked briefly about her education in Apesai before but got lost in the weeds before getting to anything of substance.
+&lt;br&gt;
+[&quot;Oh that&#39;s right, my capstone research!&quot;]&lt;VehVehLine| Veh-Veh lights up, but just as quickly, the light fades. [&quot;I... I shouldn&#39;t be talking about plans that are going nowhere.&quot;]&lt;VehVehLine|
+&lt;br&gt;
+($funcInnerConvo: (dm:
+	&quot;&lt;!--A--&gt;\&quot;Why not? I thought you wanted to discuss it.\&quot;&quot;, &quot;whyNot&quot;,
+	&quot;&lt;!--B--&gt;\&quot;Oh come on. Trust me, from one scholar to another: Talking about it helps.\&quot;&quot;, &quot;talkingHelps&quot;,
+	&quot;&lt;!--C--&gt;\&quot;So what //can// you talk about?\&quot;&quot;, &quot;canTalk&quot;,
+))
+&lt;br&gt;
+
+&lt;!--whyNot--&gt;
+[
+[&quot;It&#39;s embarrassing. My enthusiasm gets ahead of me sometimes,&quot;]&lt;VehVehLine| she sighs. [&quot;But well, I brought it up before. Suppose it wouldn&#39;t hurt.&quot;]&lt;VehVehLine|
+&lt;br&gt;
+($funcInnerConvo: (dm:
+	&quot;&lt;!--A--&gt;\&quot;I&#39;m all ears.\&quot;&quot;, &quot;allEars&quot;,
+))
+&lt;br&gt;
+](whyNot|
+
+&lt;!--talkingHelps--&gt;
+[
+[&quot;But then if I talk about it too much, I might lose all motivation to keep going,&quot;]&lt;VehVehLine| she sighs. [&quot;But well, I brought it up before. Suppose I can talk //moderately// about it.&quot;]&lt;VehVehLine|
+&lt;br&gt;
+($funcInnerConvo: (dm:
+	&quot;&lt;!--A--&gt;\&quot;I&#39;m all ears.\&quot;&quot;, &quot;allEars&quot;,
+))
+&lt;br&gt;
+](talkingHelps|
+
+&lt;!--canTalk--&gt;
+[
+[&quot;I can tell about my specialization. Then again... I&#39;ll have to talk about the //what// and //why// of it,&quot;]&lt;VehVehLine| she sighs. [&quot;Oh well, I brought it up before. No use avoiding it. Forgive me if there are gaps in my knowledge, alright?&quot;]&lt;VehVehLine|
+&lt;br&gt;
+($funcInnerConvo: (dm:
+	&quot;&lt;!--A--&gt;\&quot;Alright.\&quot;&quot;, &quot;allEars&quot;,
+))
+&lt;br&gt;
+](canTalk|
+
+&lt;!--allEars--&gt;
+[
+[&quot;So, you know //the Great Charlatan//?&quot;]&lt;VehVehLine|
+&lt;br&gt;
+($funcInnerConvo: (dm:
+	&quot;&lt;!--A--&gt;\&quot;The ancient, Third-Century rebel?\&quot;&quot;, &quot;charlatan&quot;,
+	&quot;&lt;!--B--&gt;\&quot;The Askavan secessionist?\&quot;&quot;, &quot;charlatan&quot;,
+	&quot;&lt;!--C--&gt;\&quot;The cultist who managed to brainwash imperial magi?\&quot;&quot;, &quot;charlatan&quot;,
+	&quot;&lt;!--D--&gt;\&quot;The one who was ultimately responsible for the destruction of the Navveh Crossing?\&quot;&quot;, &quot;charlatan&quot;,
+))
+&lt;br&gt;
+](allEars|
+
+&lt;!--charlatan--&gt;
+[
+The Great Charlatan was a native Askavan cultist living in the Third Century, during the tail-end what historians of Askava refer to as the &quot;First Colony Era&quot;.
+&lt;br&gt;
+(link: &quot;And...&quot;)[{The Charlatan&#39;s cult turned many Nurandahid magi in Apesai and Navveh into apostates, practicioners of false and dark superstitions.
+&lt;br&gt;
+(link: &quot;And...&quot;)[In the ensuing conflict, the cultists failed to secede from the empire, their leader was killed, and in a last, savage bid to win the war, the remaining apostates detonated a terrible magic upon the Navveh Crossing - the sole land route from the Nurandah heartlands into Askava, now no more.
+&lt;br&gt;
+(link: &quot;And finally...&quot;)[The resulting earthquake buried the old city of Navveh, closed the western gap in the Besarag, and plunged Askava into a dark age.
+&lt;br&gt;
+The region was not contacted again until the re-establishment of the Second Colony in Apesai, the sea being the only remaining way to access continental Askava.
+&lt;br&gt;
+So yes, you know the //Great Charlatan//.
+]]}]
+&lt;br&gt;
+[&quot;Yeah, //that// Charlatan,&quot;]&lt;VehVehLine| she says eagerly, too eager for the subject matter. [&quot;I&#39;m interested their magic.&quot;]&lt;VehVehLine|
+&lt;br&gt;
+You don&#39;t like where this is going.
+&lt;br&gt;
+($funcInnerConvo: (dm:
+	&quot;&lt;!--A--&gt;\&quot;I see... So are you some sort of historian?\&quot;&quot;, &quot;history&quot;,
+	&quot;&lt;!--B--&gt;\&quot;Umm... interested - from a ethical perspective? Like, human rights and magical abuses?\&quot;&quot;, &quot;ethical&quot;,
+	&quot;&lt;!--C--&gt;\&quot;Let me guess, anthropology! You&#39;re studying the various superstitions of malificers!\&quot;&quot;, &quot;anthropology&quot;,
+	&quot;&lt;!--D--&gt;\&quot;What //magic// could a nativist ideologue possibly have? Is this a round-about way to say you&#39;re a political scientist? \&quot;&quot;, &quot;polisci&quot;,
+	&quot;&lt;!--E--&gt;\&quot;...\&quot;&quot;, &quot;magicBrainwash&quot;,
+	
+))
+&lt;br&gt;
+&lt;!--initialize standard response to subsequent branches--&gt;
+(set: $stuff&#39;s ohNo to [{
+Oh no.
+&lt;br&gt;
+($funcInnerConvo: (dm:
+	&quot;&lt;!--A--&gt;\&quot;...\&quot;&quot;, &quot;magicBrainwash&quot;,	
+))
+&lt;br&gt;
+}])&lt;!--end of oh no--&gt;
+](charlatan|
+
+&lt;!--history--&gt;
+[
+[&quot;One can&#39;t ever avoid the past, but no, retelling it is not my main focus,&quot;]&lt;VehVehLine| she explains. [&quot;It&#39;s the magic itself that I&#39;m interested in. I&#39;m asking if it&#39;s possible to bring it to the present.&quot;]&lt;VehVehLine|
+&lt;br&gt;
+(print: $stuff&#39;s ohNo)
+](history|
+
+&lt;!--ethical--&gt;
+[
+[&quot;No, from a //magical// perspective. The ethical arguments against such practices are a given; every child in this tower knows of these. I want to understand the magic itself.&quot;]&lt;VehVehLine|
+&lt;br&gt;
+(print: $stuff&#39;s ohNo)
+](ethical|
+
+&lt;!--anthropology--&gt;
+[
+[&quot;Something like that, yes, though not so sociological. And just this one malificer. I want to know if what the Charlatan practiced was //only// superstition, or whether it could be replicated, like any science.&quot;]&lt;VehVehLine|
+&lt;br&gt;
+(print: $stuff&#39;s ohNo)
+](anthropology|
+
+&lt;!--polisci--&gt;
+[
+[&quot;Of course not! I might spend too much of my time stargazing, but I&#39;ll never be loony enough for //political science//. &#39;Science&#39;, heh, it mocks the name. No, I&#39;m interested in the actual //magical// science of the Charlatan&#39;s practices.&quot;]&lt;VehVehLine|
+&lt;br&gt;
+(print: $stuff&#39;s ohNo)
+](polisci|
+
+&lt;!--magicBrainwash--&gt;
+[
+[&quot;Don&#39;t look at me like that. This is serious scholarship,&quot;]&lt;VehVehLine| she insists with reddening cheeks. [&quot;I&#39;m training to be an astrologian. My specialty is //forensic dinvination//. I - well, several researchers before me - have this theory: The reason that the Charlatan managed to seduce - rather, //brainwash// - the First Colony magi was due to an uncommon source of power. Something to do with the alignment of celestial bodies over the Askavan sky. Perhaps they were born under a special sign, or their spells only worked on certain days.
+&lt;br&gt;
+&quot;Figuring this out is the first step to replicating the Charlatan&#39;s feat.&quot;]&lt;VehVehLine|
+&lt;br&gt;
+Indeed, it seems that Veh-Veh has spent too much time looking at the sky, and she is walking straight off a cliff. It is the davehmars&#39; policy to never discourage genuine curiosity. &quot;Never nip a budding flower,&quot; so they say. Strange things do grow out in the frontier.
+&lt;br&gt;
+But you can imagine why her mentor - the principal of the Apesai school - has left young Veh-Veh to languish and wither by herself.
+&lt;br&gt;
+&lt;!--clear $stuff--&gt;
+(move: $stuff&#39;s ohNo into _trash)
+&lt;!--initialize hurt tracker--&gt;
+(set: $stuff to it + (dm: &quot;VehVehOpinionMod&quot;, 0))
+&lt;!--options begin--&gt;
+($funcInnerConvo: (dm:
+	&quot;&lt;!--A--&gt;\&quot;... But //why//?\&quot;&quot;, &quot;butWhy&quot;,
+	&quot;&lt;!--B--&gt;\&quot;Yes, knowing how such attacks work can lead us to better defenses against such them.\&quot;&quot;, &quot;betterDefenses&quot;,
+	&quot;&lt;!--C--&gt;\&quot;Why stop there? Finding such an uncommon cause for magical talent might lead to a theory that changes our very conception of what makes a person talented.\&quot;&quot;, &quot;magicTheory&quot;,
+	&quot;&lt;!--D--&gt;\&quot;That&#39;s a nice theory, but it //is// known that it was all superstition, nothing magical. The magi were corrupted by their own accord.\&quot;&quot;, &quot;onlySuperstition&quot;,
+	&quot;&lt;!--E--&gt;\&quot;I don&#39;t think this is a good idea...\&quot;&quot;, &quot;badIdea&quot;,	
+))
+&lt;br&gt;
+](magicBrainwash|
+
+&lt;!--butWhy--&gt;
+[
+[&quot;Why? Inquiry is reason itself; must there be a reason //for// inquiry? There are so many reasons for it, but if you need one, then I&#39;ll give it to you,&quot;]&lt;VehVehLine| Veh-Veh says, uncharacteristically fiery.` `
+(set: $stuff&#39;s VehVehOpinionMod to it - 3)
+(show:?theKesh)
+](butWhy|
+
+&lt;!--betterDefenses--&gt;
+[
+[&quot;Yes! Exactly! That&#39;s what I&#39;ve been telling my mentor! But &#39;no&#39;, he says, &#39;any defense will //eventually// be offense&#39;. Ha, as if we can afford to wait around until the day comes,&quot;]&lt;VehVehLine| Veh-Veh says, exasperated.` `
+(set: $stuff&#39;s VehVehOpinionMod to it + 2)
+(show:?theKesh)
+](betterDefenses|
+
+&lt;!--magicTheory--&gt;
+[
+[&quot;You see it now! What becomes of a meritocratic society if we do not have a firm grasp on where talent comes from, no matter how unlikely or distasteful? And without talent, who&#39;s to say Nurandah won&#39;t be fractured again and again?&quot;]&lt;VehVehLine| Veh-Veh says, elated.` `
+(set: $stuff&#39;s VehVehOpinionMod to it + 3)
+(show:?theKesh)
+](magicTheory|
+
+&lt;!--onlySuperstition--&gt;
+[
+[&quot;So everyone says, but what if it //isn&#39;t// mere corruption? What if the magi were //made// to turn against their own homeland? What is known now might very well turn into falsehoods in the future. Pray that it doesn&#39;t but if it does...&quot;]&lt;VehVehLine| Veh-Veh sighs.` `
+(set: $stuff&#39;s VehVehOpinionMod to it - 1)
+(show:?theKesh)
+](onlySuperstition|
+
+&lt;!--badIdea--&gt;
+[
+It will attract the wrong kind of attention, and her career has barely even started.
+&lt;br&gt;
+[&quot;I //know// it is. That&#39;s why I thought better of telling you. But then, I changed my mind. Foolish me. I understand that there is a non-zero chance that I might have to explain this to an Interior officer, and I&#39;ve already prepared my case,&quot;]&lt;VehVehLine| Veh-Veh stops to take a gasp of air.` `
+(show:?theKesh)
+(set: $stuff&#39;s VehVehOpinionMod to it - 5)
+](badIdea|
+
+&lt;!--theKesh--&gt;
+[[&quot;If it turns out that the Charlatan wasn&#39;t just a one-off event, and some other actor - like //Kesh//, for example - figures this out before we do, then who knows how many more Charlatan&#39;s Rebellions we will see springing up all over the Seven Provinces.
+&lt;br&gt;
+&quot;Unlike us, the Keshans have no taboo against brainwashing. They won&#39;t just stop at our magi either. Why would they? The serpent cultists indoctrinate their children from the womb. If I am wrong, then it is only time wasted. But if I&#39;m right...&quot;]&lt;VehVehLine|
+&lt;br&gt;
+The shadow of the Kesh Empire looms over northern Askava, and their serpentine sheddings still dot the province&#39;s landscape, as far south as Apesai.
+&lt;br&gt;
+Historical revisionism, alleged forbidden magic, and now //politics//. It is quickly becoming too heady for you.
+&lt;br&gt;
+($funcInnerConvo: (dm:
+	&quot;&lt;!--A--&gt;\&quot;I see...\&quot;&quot;, &quot;iSee&quot;,	
+))
+&lt;br&gt;
+](theKesh|
+
+&lt;!--iSee--&gt;
+[
+[&quot;Yeah... Sorry. Didn&#39;t mean to give a speech. I&#39;ve been in my own head for so long that it&#39;s coming out all at once.&quot;]&lt;VehVehLine|
+&lt;br&gt;
+($funcInnerConvo: (dm:
+	&quot;&lt;!--A--&gt;\&quot;That&#39;s alright.\&quot;&quot;, &quot;thatsOK&quot;,
+	&quot;&lt;!--B--&gt;\&quot;I&#39;ve heard enough for now.\&quot;&quot;, &quot;heardEnough&quot;,
+	&quot;&lt;!--C--&gt;\&quot;So how does astrology factor into this?\&quot;&quot;, &quot;howDoesAstrology&quot;,
+))
+&lt;br&gt;
+](iSee|
+
+&lt;!--thatsOK--&gt;
+[
+It is an understandable and even familiar tendency for all young scholars - to talk too much.
+&lt;br&gt;
+[&quot;Yes. It //is// alright,&quot;]&lt;VehVehLine| she repeats, reassuring herself.
+&lt;br&gt;
+($funcInnerConvo: (dm:
+	&quot;&lt;!--A--&gt;\&quot;I&#39;m still listening.\&quot;&quot;, &quot;comeOn&quot;,
+	&quot;&lt;!--B--&gt;\&quot;We&#39;ll pick this back up next time?\&quot;&quot;, &quot;nextTime&quot;,
+))
+(set: $stuff&#39;s VehVehOpinionMod to it + 1)
+&lt;br&gt;
+](thatsOK|
+
+&lt;!--heardEnough--&gt;
+[
+It lands like a smack to her face.
+&lt;br&gt;
+[&quot;O- of course... Apologies.&quot;]&lt;VehVehLine|
+&lt;br&gt;
+Did you mean for it to be a slap?
+&lt;br&gt;
+($funcInnerConvo: (dm:
+	&quot;&lt;!--A--&gt;\&quot;Oh don&#39;t, I still want to hear more.\&quot;&quot;, &quot;comeOn&quot;,
+	&quot;&lt;!--B--&gt;\&quot;We will continue once I&#39;ve had time to digest it all. So, next time?\&quot;&quot;, &quot;nextTime&quot;,
+))
+(set: $stuff&#39;s VehVehOpinionMod to it - 2)
+&lt;br&gt;
+](heardEnough|
+
+&lt;!--howDoesAstrology--&gt;
+[
+[&quot;Ah, well, you see: If the stars&#39; alignment can bring about such an uncommon talent, then it&#39;s a matter of regressively... uhm... you know what? Never mind, I&#39;ve spoken enough about the matter for now.&quot;]&lt;VehVehLine|
+&lt;br&gt;
+($funcInnerConvo: (dm:
+	&quot;&lt;!--A--&gt;\&quot;Oh come on!\&quot;&quot;, &quot;comeOn&quot;,
+	&quot;&lt;!--B--&gt;\&quot;Next time it is?\&quot;&quot;, &quot;nextTime&quot;,
+))
+(set: $stuff&#39;s VehVehOpinionMod to it + 2)
+&lt;br&gt;
+](howDoesAstrology|
+
+&lt;!--comeOn--&gt;
+[
+[&quot;No,&quot;]&lt;VehVehLine| Veh-Veh shakes her head, turning away. [&quot;I&#39;d like to keep my dignity, please. Later.&quot;]&lt;VehVehLine|
+&lt;br&gt;
+&lt;!--link--&gt;
+($funcInnerConvo: (dm:
+	&quot;&lt;!--A--&gt;\&quot;Got it.\&quot;&quot;, &quot;preDone&quot;,
+))
+&lt;br&gt;
+](comeOn|
+
+&lt;!--nextTime--&gt;
+[
+[&quot;Yeah,&quot;]&lt;VehVehLine| Veh-Veh says, timid again. [&quot;Next time.&quot;]&lt;VehVehLine|
+&lt;br&gt;
+&lt;!--automatic done--&gt;
+(show:?preDone)
+](nextTime|
+
+
+&lt;!--preDone: Transitions to a special (end) passage because there needs to be an opinion impact (based on $stuff&#39;s VehVehOpinionMod), and the standard function for topic lists cannot do this--&gt;
+[
+&lt;!--initialize various temp vars that affect the ending link--&gt;
+(set: _willMod to false)
+(set: _endSchoolingLink to &quot;You kept up with her reasonably well.&quot;)
+(set: _VehVehOpinionModText to &quot;You received her ideas exactly how she thought you would.&quot;)
+(if: $stuff&#39;s VehVehOpinionMod is not 0)[
+	(set: _willMod to true)
+	(if: $stuff&#39;s VehVehOpinionMod &gt; 0)[
+		(set: _endSchoolingLink to &quot;There is a hint of a smile on Veh-Veh&#39;s lips, though she&#39;s trying to not seem so pleased with herself.&quot;)
+		(set: _VehVehOpinionModText to &quot;She is glad that you were fairly receptive of her research topic... to a point.&quot;)
+	]
+	(else:)[
+		(set: _endSchoolingLink to &quot;Is she... sulking? You sure hope she isn&#39;t.&quot;)
+		(set: _VehVehOpinionModText to &quot;Sharing one&#39;s ideas is a vulnerable thing. You weren&#39;t too nice about it.&quot;)
+	]
+]
+
+Veh-Veh is shifting from one foot to another. She obviously has much more to say, but not today.
+&lt;br&gt;
+---
+
+(link: _endSchoolingLink)[
+	&lt;!--registers all &quot;talked&quot; keys--&gt;
+     ($funcTalked:)
+     &lt;!--put the crafting topic on cooldown--&gt;
+     ($funcAddStoryletCooldown: (passage:)&#39;s name)
+	 &lt;!--modify opinion--&gt;
+	(if: _willMod)[($funcOpinionGainLoss: &quot;VehVeh&quot;, $stuff&#39;s VehVehOpinionMod, _VehVehOpinionModText)]
+	&lt;!--intensive conversation always drains her (only for this 2nd round)--&gt;
+	(set: $char&#39;s VehVeh&#39;s energy&#39;s 1st to 0)
+	&lt;!--clear $stuff--&gt;
+	(move: $stuff&#39;s VehVehOpinionMod into _trash)
+	&lt;!--goto end passage--&gt;
+	(goto: &quot;VehVeh Schooling (End)&quot;)
+]
+](preDone|</tw-passagedata><tw-passagedata pid="119" name="T: VehVeh Fluxy Teacher" tags="topic" position="6900,1650" size="100,100">{=
 
 (storylet: when
 (passage:) contains &quot;NPC&quot;
@@ -7047,7 +7571,7 @@ She&#39;s muttering to herself again.
 [
 You try your best to avoid sounding like you have forgotten the formulas.
 &lt;br&gt;
-[&quot;Aren&#39;t formulas... the same everywhere? That&#39;s why they&#39;re &#39;formulas&#39;, right?&quot;]&lt;VehVehLine| She tilts her head. [&quot;Or maybe the formulas are the same, but there regional differences in what we call the products? Ah, still got a lot to learn. Library&#39;s a floor above the lab.&quot;]&lt;VehVehLine|
+[&quot;Aren&#39;t formulas... the same everywhere? That&#39;s why they&#39;re &#39;formulas&#39;, right?&quot;]&lt;VehVehLine| She tilts her head. [&quot;Or maybe the formulas are the same, but there are regional differences in what we call the products? Ah, still got a lot to learn. Library&#39;s a floor above the lab.&quot;]&lt;VehVehLine|
 &lt;br&gt;
 ($funcInnerConvo: (dm:
      &quot;\&quot;&lt;!--B--&gt;Gratitude, Veh-Veh.\&quot;&quot;, &quot;done&quot;,
@@ -7072,7 +7596,7 @@ $cssDesc[You already have access the &#39;&#39;student lab&#39;&#39; - a tentati
 ](done|
 
 ]&lt;!--end child--&gt;
-]&lt;!--end parent--&gt;</tw-passagedata><tw-passagedata pid="118" name="T: VehVeh Teacher Healed" tags="topic" position="6900,1775" size="100,100">{=
+]&lt;!--end parent--&gt;</tw-passagedata><tw-passagedata pid="120" name="T: VehVeh Teacher Healed" tags="topic" position="6900,1775" size="100,100">{=
 
 (storylet: when
 (passage:) contains &quot;NPC&quot;
@@ -7121,7 +7645,7 @@ Oh well, if you&#39;re back, come visit the lighthouse some time.
 &lt;/ol&gt;
 
 ]&lt;!--end child--&gt;
-]&lt;!--end parent--&gt;</tw-passagedata><tw-passagedata pid="119" name="VehVeh Fluxy Teacher (End)" tags="" position="1100,1475" size="100,100">(metadata:
+]&lt;!--end parent--&gt;</tw-passagedata><tw-passagedata pid="121" name="VehVeh Fluxy Teacher (End)" tags="" position="100,1600" size="100,100">(metadata:
 &quot;NPC&quot;, &quot;VehVeh&quot;,
 &quot;title&quot;, &quot;Regarding Your Ill Teacher&quot;,
 &quot;topicDetail&quot;, &quot;Veh-Veh has pointed you to the Apesai school&#39;s lab, where you might synthesize some medicine for your teacher. The rest is up to you.&quot;,
@@ -7150,7 +7674,7 @@ You nod. Your teacher is eager to get out of Apesai more than anything, but you 
 &lt;/ol&gt;
 
 ]&lt;!--end child--&gt;
-]&lt;!--end parent--&gt;</tw-passagedata><tw-passagedata pid="120" name="npc.VehVeh" tags="startup static-storage" position="6025,1525" size="100,100">{=
+]&lt;!--end parent--&gt;</tw-passagedata><tw-passagedata pid="122" name="npc.VehVeh" tags="startup static-storage" position="6025,1525" size="100,100">{=
 
 (metadata:
 &quot;id&quot;, [Veh-Veh],
@@ -7193,7 +7717,7 @@ You nod. Your teacher is eager to get out of Apesai more than anything, but you 
 &quot;arc&quot;, 1, &quot;travelMode&quot;, &quot;fresh&quot;, &quot;travel&quot;, (a: 1, 4),
 ),
 
-))</tw-passagedata><tw-passagedata pid="121" name="item.healingTonicBook" tags="static-storage" position="100,1600" size="100,100">{=
+))</tw-passagedata><tw-passagedata pid="123" name="item.healingTonicBook" tags="static-storage" position="350,1600" size="100,100">{=
 (metadata: 
 	&quot;id&quot;, [A Student&#39;s First Medicine],
     &quot;key&quot;, (a: &quot;document&quot;, &quot;book&quot;, &quot;long&quot;,),
@@ -7367,7 +7891,7 @@ You commit the procedure to memory. When faced with a magic workstation, you&#39
 &lt;!--end of book content--&gt;
     }],
 
-)</tw-passagedata><tw-passagedata pid="122" name="Reading" tags="" position="225,1600" size="100,100">(metadata:
+)</tw-passagedata><tw-passagedata pid="124" name="Reading" tags="" position="475,1600" size="100,100">(metadata:
     &quot;title&quot;, &quot;Reading&quot;,
 )
 
@@ -7397,7 +7921,7 @@ $cssColumnChild[
 (print: _bookDM&#39;s content)
 
 ]&lt;!--child end--&gt;
-]&lt;!--parent end--&gt;</tw-passagedata><tw-passagedata pid="123" name="S: Reading (Activity)" tags="storylet" position="350,1600" size="100,100">{=
+]&lt;!--parent end--&gt;</tw-passagedata><tw-passagedata pid="125" name="S: Reading (Activity)" tags="storylet" position="600,1600" size="100,100">{=
 
 (storylet: when
 (passage:)&#39;s name is $place&#39;s stay
@@ -7443,7 +7967,7 @@ $cssDesc[(gameplay tips)]
 &lt;/ol&gt;
 
 ]&lt;!--end child--&gt;
-]&lt;!--end parent--&gt;</tw-passagedata><tw-passagedata pid="124" name="f.Apesai" tags="book" position="1875,1100" size="100,100">{=
+]&lt;!--end parent--&gt;</tw-passagedata><tw-passagedata pid="126" name="f.Apesai" tags="book" position="1875,1100" size="100,100">{=
 
 (dialog: [(box:&quot;X&quot;, 7)[\
 Apesai is the provincial capital of Askava.
@@ -7452,14 +7976,14 @@ Long text. Long text. Long text. Long text. Long text. Long text. Long text. Lon
 
 Long text. Long text. Long text. Long text. Long text. Long text. Long text. Long text. Long text. Long text. Long text. Long text. Long text. Long text. Long text. Long text. Long text. Long text. Long text. Long text. Long text. Long text. Long text. Long text. Long text. Long text. Long text. Long text. Long text. Long text. Long text. Long text. Long text. Long text. Long text. Long text. Long text. Long text. Long text. Long text.
 
-]], &quot;Duh~&quot;)</tw-passagedata><tw-passagedata pid="125" name="f.Askava" tags="book" position="1775,1100" size="100,100">{=
+]], &quot;Duh~&quot;)</tw-passagedata><tw-passagedata pid="127" name="f.Askava" tags="book" position="1775,1100" size="100,100">{=
 
 (dialog: [(box:&quot;X&quot;, 7)[\
 Askava is a province of the Nurandah Empire, one of seven.
 
 
 
-]], &quot;I knew that.&quot;)</tw-passagedata><tw-passagedata pid="126" name="att.accessInrahOddJobs" tags="static-storage" position="3100,1225" size="100,100">{=
+]], &quot;I knew that.&quot;)</tw-passagedata><tw-passagedata pid="128" name="att.accessInrahOddJobs" tags="static-storage" position="3100,1225" size="100,100">{=
 
 (metadata: 
 	&quot;id&quot;, [Access: Odd Jobs at The Pilgrim&#39;s Rest],
@@ -7471,7 +7995,7 @@ Askava is a province of the Nurandah Empire, one of seven.
     &quot;gainText&quot;, [A few words here, a nod there, and suddenly, the staff at the Pilgrim&#39;s Rest begins to see you as their own. To be more precise, someone they can order around.],
     &quot;lossText&quot;, [The cooks no longer welcomes you into their kitchen. The maids grow stiff and formal around you. You are a patron, and that&#39;s all you are.],
 
-)</tw-passagedata><tw-passagedata pid="127" name="att.accessLighthouseLibrary" tags="static-storage" position="850,1600" size="100,100">{=
+)</tw-passagedata><tw-passagedata pid="129" name="att.accessLighthouseLibrary" tags="static-storage" position="1100,1600" size="100,100">{=
 
 (metadata: 
 	&quot;id&quot;, [Access: Lighthouse&#39;s Library],
@@ -7483,7 +8007,7 @@ Askava is a province of the Nurandah Empire, one of seven.
     &quot;gainText&quot;, [],
     &quot;lossText&quot;, [],
 
-)</tw-passagedata><tw-passagedata pid="128" name="att.accessLighthouseStudentLab" tags="static-storage" position="975,1600" size="100,100">{=
+)</tw-passagedata><tw-passagedata pid="130" name="att.accessLighthouseStudentLab" tags="static-storage" position="1225,1600" size="100,100">{=
 
 (metadata: 
 	&quot;id&quot;, [Access: Lighthouse&#39;s Student Lab],
@@ -7495,7 +8019,7 @@ Askava is a province of the Nurandah Empire, one of seven.
     &quot;gainText&quot;, [],
     &quot;lossText&quot;, [],
 
-)</tw-passagedata><tw-passagedata pid="129" name="att.ab" tags="static-storage" position="1750,3225" size="100,100">{=
+)</tw-passagedata><tw-passagedata pid="131" name="att.ab" tags="static-storage" position="1750,3225" size="100,100">{=
 
 (metadata: 
 	&quot;id&quot;, [Ab],
@@ -7507,7 +8031,7 @@ Askava is a province of the Nurandah Empire, one of seven.
     &quot;gainText&quot;, [Sweat collects on your brows, and blood rushes through your veins.],
     &quot;lossText&quot;, [One thing leads to another.]
 
-)</tw-passagedata><tw-passagedata pid="130" name="att.at" tags="static-storage" position="1650,3225" size="100,100">{=
+)</tw-passagedata><tw-passagedata pid="132" name="att.at" tags="static-storage" position="1650,3225" size="100,100">{=
 
 (metadata: 
 	&quot;id&quot;, [At],
@@ -7519,7 +8043,7 @@ Askava is a province of the Nurandah Empire, one of seven.
     &quot;gainText&quot;, [Your inner potential flares.],
     &quot;lossText&quot;, [The inner fire sees expression and escapes you.]
 
-)</tw-passagedata><tw-passagedata pid="131" name="att.gor" tags="static-storage" position="1850,3225" size="100,100">{=
+)</tw-passagedata><tw-passagedata pid="133" name="att.gor" tags="static-storage" position="1850,3225" size="100,100">{=
 
 (metadata: 
 	&quot;id&quot;, [Gor],
@@ -7531,7 +8055,7 @@ Askava is a province of the Nurandah Empire, one of seven.
     &quot;gainText&quot;, [The pieces are falling into place. They are charged with anticipation.],
     &quot;lossText&quot;, [Destined discharge.]
 
-)</tw-passagedata><tw-passagedata pid="132" name="att.rokh" tags="static-storage" position="1650,3125" size="100,100">{=
+)</tw-passagedata><tw-passagedata pid="134" name="att.rokh" tags="static-storage" position="1650,3125" size="100,100">{=
 
 (metadata: 
 	&quot;id&quot;, [Rokh],
@@ -7543,7 +8067,7 @@ Askava is a province of the Nurandah Empire, one of seven.
     &quot;gainText&quot;, [Suddenly, things are much clearer.],
     &quot;lossText&quot;, [Sense sinks back into ambiguity.]
 
-)</tw-passagedata><tw-passagedata pid="133" name="att.zam" tags="static-storage" position="1750,3125" size="100,100">{=
+)</tw-passagedata><tw-passagedata pid="135" name="att.zam" tags="static-storage" position="1750,3125" size="100,100">{=
 
 (metadata: 
 	&quot;id&quot;, [Zam],
@@ -7555,7 +8079,7 @@ Askava is a province of the Nurandah Empire, one of seven.
     &quot;gainText&quot;, [Surety settles into you. Time seems to slow down.],
     &quot;lossText&quot;, [Thoughts take flight, and the world is less certain.]
 
-)</tw-passagedata><tw-passagedata pid="134" name="att.knowApesaiCourt" tags="static-storage" position="3125,1675" size="100,100">{=
+)</tw-passagedata><tw-passagedata pid="136" name="att.knowApesaiCourt" tags="static-storage" position="3125,1675" size="100,100">{=
 
 (metadata: 
 	&quot;id&quot;, [Knowledge: The Provincial Seat],
@@ -7567,7 +8091,7 @@ Askava is a province of the Nurandah Empire, one of seven.
     &quot;gainText&quot;, [],
     &quot;lossText&quot;, [],
 
-)</tw-passagedata><tw-passagedata pid="135" name="att.knowApesaiGE" tags="static-storage" position="3225,1575" size="100,100">{=
+)</tw-passagedata><tw-passagedata pid="137" name="att.knowApesaiGE" tags="static-storage" position="3225,1575" size="100,100">{=
 
 (metadata: 
 	&quot;id&quot;, [Knowledge: Apesai&#39;s Commerce],
@@ -7579,7 +8103,7 @@ Askava is a province of the Nurandah Empire, one of seven.
     &quot;gainText&quot;, [],
     &quot;lossText&quot;, [],
 
-)</tw-passagedata><tw-passagedata pid="136" name="att.knowApesaiLighthouse" tags="static-storage" position="3125,1575" size="100,100">{=
+)</tw-passagedata><tw-passagedata pid="138" name="att.knowApesaiLighthouse" tags="static-storage" position="3125,1575" size="100,100">{=
 
 (metadata: 
 	&quot;id&quot;, [Knowledge: Apesai&#39;s Lighthouse],
@@ -7591,7 +8115,7 @@ Askava is a province of the Nurandah Empire, one of seven.
     &quot;gainText&quot;, [Heading towards Apesai, its &#39;&#39;Lighthouse&#39;&#39; is the first thing one sees the horizon, but once one is inside the island-city, the hills and the alleys can be impenetrable. Still, if one turns left at this plaza... and takes that stairs... and follows the rainbow...],
     &quot;lossText&quot;, [],
 
-)</tw-passagedata><tw-passagedata pid="137" name="att.knowApesaiPleasure" tags="static-storage" position="3125,1775" size="100,100">{=
+)</tw-passagedata><tw-passagedata pid="139" name="att.knowApesaiPleasure" tags="static-storage" position="3125,1775" size="100,100">{=
 
 (metadata: 
 	&quot;id&quot;, [Knowledge: Yavanid Enclaves in Apesai],
@@ -7603,7 +8127,7 @@ Askava is a province of the Nurandah Empire, one of seven.
     &quot;gainText&quot;, [],
     &quot;lossText&quot;, []
 
-)</tw-passagedata><tw-passagedata pid="138" name="att.knowApesaiTraveler" tags="static-storage" position="3225,1675" size="100,100">{=
+)</tw-passagedata><tw-passagedata pid="140" name="att.knowApesaiTraveler" tags="static-storage" position="3225,1675" size="100,100">{=
 
 (metadata: 
 	&quot;id&quot;, [Knowledge: Adventuring in Apesai],
@@ -7615,7 +8139,7 @@ Askava is a province of the Nurandah Empire, one of seven.
     &quot;gainText&quot;, [],
     &quot;lossText&quot;, [],
 
-)</tw-passagedata><tw-passagedata pid="139" name="att.sickly" tags="static-storage" position="2100,3225" size="100,100">{=
+)</tw-passagedata><tw-passagedata pid="141" name="att.sickly" tags="static-storage" position="2100,3225" size="100,100">{=
 
 (metadata: 
 	&quot;id&quot;, [Body: Ill-Health],
@@ -7640,7 +8164,7 @@ Askava is a province of the Nurandah Empire, one of seven.
    	(set: $char&#39;s player&#39;s health&#39;s 2nd to it + (abs:_value))\
     ],
     
-)</tw-passagedata><tw-passagedata pid="140" name="att.vigorous" tags="static-storage" position="2000,3225" size="100,100">{=
+)</tw-passagedata><tw-passagedata pid="142" name="att.vigorous" tags="static-storage" position="2000,3225" size="100,100">{=
 
 (metadata: 
 	&quot;id&quot;, [Body: Vigorous],
@@ -7663,7 +8187,7 @@ Askava is a province of the Nurandah Empire, one of seven.
     &quot;lossEffect&quot;, [(print: (passage: &quot;att.vigorous&quot;)&#39;s gainEffect)],
     
 
-)</tw-passagedata><tw-passagedata pid="141" name="att.repApesaiSwindler" tags="static-storage" position="100,1850" size="100,100">{=
+)</tw-passagedata><tw-passagedata pid="143" name="att.repApesaiSwindler" tags="static-storage" position="350,1850" size="100,100">{=
 
 (metadata: 
 	&quot;id&quot;, [Infamy: Swindling in Apesai],
@@ -7684,7 +8208,7 @@ Askava is a province of the Nurandah Empire, one of seven.
         	(if: _char is not &quot;player&quot;)[($funcOpinionCalc: _char, false)]\
         ]\
     ],
-)</tw-passagedata><tw-passagedata pid="142" name="att.repDavehmarBad" tags="static-storage" position="2100,3125" size="100,100">{=
+)</tw-passagedata><tw-passagedata pid="144" name="att.repDavehmarBad" tags="static-storage" position="2100,3125" size="100,100">{=
 
 (metadata: 
 	&quot;id&quot;, [Infamy: Davehmars],
@@ -7705,7 +8229,7 @@ Askava is a province of the Nurandah Empire, one of seven.
         	(if: _char is not &quot;player&quot;)[($funcOpinionCalc: _char, false)]\
         ]\
     ],
-)</tw-passagedata><tw-passagedata pid="143" name="att.repDavehmarGood" tags="static-storage" position="2000,3125" size="100,100">{=
+)</tw-passagedata><tw-passagedata pid="145" name="att.repDavehmarGood" tags="static-storage" position="2000,3125" size="100,100">{=
 
 (metadata: 
 	&quot;id&quot;, [Goodwill: Davehmars],
@@ -7727,7 +8251,7 @@ Askava is a province of the Nurandah Empire, one of seven.
         ]\
     ],
 
-)</tw-passagedata><tw-passagedata pid="144" name="att.repFamilyBizGood" tags="static-storage" position="2625,1200" size="100,100">{=
+)</tw-passagedata><tw-passagedata pid="146" name="att.repFamilyBizGood" tags="static-storage" position="2625,1200" size="100,100">{=
 
 (metadata: 
 	&quot;id&quot;, [Favor: The Family Business],
@@ -7749,7 +8273,7 @@ Askava is a province of the Nurandah Empire, one of seven.
         ]\
     ],
 
-)</tw-passagedata><tw-passagedata pid="145" name="event.studentDebate" tags="static-storage" position="600,1850" size="100,100">{=
+)</tw-passagedata><tw-passagedata pid="147" name="event.studentDebate" tags="static-storage" position="850,1850" size="100,100">{=
 
 (metadata: 
 	&quot;id&quot;, [Situation: A Debate Among Half-Peers],
@@ -7770,7 +8294,7 @@ Askava is a province of the Nurandah Empire, one of seven.
     &quot;repeat&quot;, true, &quot;cooldown&quot;, (random: 35, 65),
     &quot;timed&quot;, true, &quot;duration&quot;, 4,
     &quot;startup&quot;, true,
-)</tw-passagedata><tw-passagedata pid="146" name="event.sample1" tags="static-storage" position="725,1850" size="100,100">(metadata:
+)</tw-passagedata><tw-passagedata pid="148" name="event.sample1" tags="static-storage" position="975,1850" size="100,100">(metadata:
     &quot;id&quot;, [Every other weekend],
     &quot;img&quot;, &quot;&quot;,
     &quot;desc&quot;, [],
@@ -7788,7 +8312,7 @@ Askava is a province of the Nurandah Empire, one of seven.
     &quot;repeat&quot;, true, &quot;cooldown&quot;, 9,
     &quot;timed&quot;, false, &quot;duration&quot;, 0,
     &quot;startup&quot;, true,
-)</tw-passagedata><tw-passagedata pid="147" name="event.sample2" tags="static-storage" position="850,1850" size="100,100">(metadata:
+)</tw-passagedata><tw-passagedata pid="149" name="event.sample2" tags="static-storage" position="1100,1850" size="100,100">(metadata:
     &quot;id&quot;, [Completely manual event],
     &quot;img&quot;, &quot;&quot;,
     &quot;desc&quot;, [],
@@ -7801,7 +8325,7 @@ Askava is a province of the Nurandah Empire, one of seven.
     &quot;repeat&quot;, false, &quot;cooldown&quot;, 0,
     &quot;timed&quot;, false, &quot;duration&quot;, 0,
     &quot;startup&quot;, false,
-)</tw-passagedata><tw-passagedata pid="148" name="event.sample3" tags="static-storage" position="975,1850" size="100,100">(metadata:
+)</tw-passagedata><tw-passagedata pid="150" name="event.sample3" tags="static-storage" position="1225,1850" size="100,100">(metadata:
     &quot;id&quot;, [Event that only happens once],
     &quot;img&quot;, &quot;&quot;,
     &quot;desc&quot;, [],
@@ -7819,7 +8343,7 @@ Askava is a province of the Nurandah Empire, one of seven.
     &quot;repeat&quot;, false, &quot;cooldown&quot;, 0,
     &quot;timed&quot;, true, &quot;duration&quot;, 7,
     &quot;startup&quot;, true,
-)</tw-passagedata><tw-passagedata pid="149" name="event.sample4" tags="static-storage" position="1100,1850" size="100,100">(metadata:
+)</tw-passagedata><tw-passagedata pid="151" name="event.sample4" tags="static-storage" position="100,1975" size="100,100">(metadata:
     &quot;id&quot;, [One-time event in Hashtvar (August) that is inactive at startup (without being deleted)],
     &quot;img&quot;, &quot;&quot;,
     &quot;desc&quot;, [],
@@ -7838,7 +8362,7 @@ Askava is a province of the Nurandah Empire, one of seven.
     &quot;repeat&quot;, false, &quot;cooldown&quot;, 0,
     &quot;timed&quot;, true, &quot;duration&quot;, 2,
     &quot;startup&quot;, true,
-)</tw-passagedata><tw-passagedata pid="150" name="event.sample5" tags="static-storage" position="1225,1850" size="100,100">(metadata:
+)</tw-passagedata><tw-passagedata pid="152" name="event.sample5" tags="static-storage" position="225,1975" size="100,100">(metadata:
     &quot;id&quot;, [Event that waits, automatically activates, and stays on],
     &quot;img&quot;, &quot;&quot;,
     &quot;desc&quot;, [],
@@ -7854,7 +8378,7 @@ Askava is a province of the Nurandah Empire, one of seven.
     &quot;repeat&quot;, false, &quot;cooldown&quot;, 0,
     &quot;timed&quot;, false, &quot;duration&quot;, 0,
     &quot;startup&quot;, false,
-)</tw-passagedata><tw-passagedata pid="151" name="item.healingTonic" tags="static-storage" position="2325,3375" size="100,100">&lt;!--Not to be displayed. Only metadata used--&gt;
+)</tw-passagedata><tw-passagedata pid="153" name="item.healingTonic" tags="static-storage" position="2325,3375" size="100,100">&lt;!--Not to be displayed. Only metadata used--&gt;
 
 (metadata:
 	&quot;id&quot;, [Healing Tonic],
@@ -7866,7 +8390,7 @@ Askava is a province of the Nurandah Empire, one of seven.
     &quot;tip&quot;, [A &#39;&#39;simple&#39;&#39; subtance. When resting, you can drink this to bolster your healing.],
     &quot;gainText&quot;, [You now hold in your hand a vial of rejuvinating tonic.],
     &quot;lossText&quot;, [Aand... gone.]
-)</tw-passagedata><tw-passagedata pid="152" name="item.sample1" tags="static-storage" position="2425,3375" size="100,100">&lt;!--Not to be displayed. Only metadata used--&gt;
+)</tw-passagedata><tw-passagedata pid="154" name="item.sample1" tags="static-storage" position="2425,3375" size="100,100">&lt;!--Not to be displayed. Only metadata used--&gt;
 
 (metadata:
 	&quot;id&quot;, [Sample item 1],
@@ -7878,7 +8402,7 @@ Askava is a province of the Nurandah Empire, one of seven.
     &quot;tip&quot;, [A &#39;&#39;simple&#39;&#39; subtance. Sample tip 1.],
     &quot;gainText&quot;, [Gain text 1.],
     &quot;lossText&quot;, [Loss text 1.]
-)</tw-passagedata><tw-passagedata pid="153" name="item.sample2" tags="static-storage" position="2525,3375" size="100,100">&lt;!--Not to be displayed. Only metadata used--&gt;
+)</tw-passagedata><tw-passagedata pid="155" name="item.sample2" tags="static-storage" position="2525,3375" size="100,100">&lt;!--Not to be displayed. Only metadata used--&gt;
 
 (metadata:
 	&quot;id&quot;, [Sample item 2],
@@ -7890,7 +8414,7 @@ Askava is a province of the Nurandah Empire, one of seven.
     &quot;tip&quot;, [A &#39;&#39;complex&#39;&#39; subtance. Sample tip 2.],
     &quot;gainText&quot;, [Gain text 2.],
     &quot;lossText&quot;, [Loss text 2.]
-)</tw-passagedata><tw-passagedata pid="154" name="item.sample3" tags="static-storage" position="2425,3475" size="100,100">&lt;!--Not to be displayed. Only metadata used--&gt;
+)</tw-passagedata><tw-passagedata pid="156" name="item.sample3" tags="static-storage" position="2425,3475" size="100,100">&lt;!--Not to be displayed. Only metadata used--&gt;
 
 (metadata:
 	&quot;id&quot;, [Sample item 3],
@@ -7902,7 +8426,7 @@ Askava is a province of the Nurandah Empire, one of seven.
     &quot;tip&quot;, [An &#39;&#39;exotic&#39;&#39; subtance. Sample tip 3.],
     &quot;gainText&quot;, [Gain text 3.],
     &quot;lossText&quot;, [Loss text 3.]
-)</tw-passagedata><tw-passagedata pid="155" name="item.charcoal" tags="static-storage" position="2950,3375" size="100,100">{=
+)</tw-passagedata><tw-passagedata pid="157" name="item.charcoal" tags="static-storage" position="2950,3375" size="100,100">{=
 
 (metadata: 
 	&quot;id&quot;, [Sugar Charcoal],
@@ -7914,7 +8438,7 @@ Askava is a province of the Nurandah Empire, one of seven.
     &quot;gainText&quot;, [Too pure and expensive for the common hearth.],
     &quot;lossText&quot;, [Gone, but its shadow will remain.]
 
-)</tw-passagedata><tw-passagedata pid="156" name="item.ginger" tags="static-storage" position="2750,3375" size="100,100">{=
+)</tw-passagedata><tw-passagedata pid="158" name="item.ginger" tags="static-storage" position="2750,3375" size="100,100">{=
 
 (metadata: 
 	&quot;id&quot;, [Askavan Ginger],
@@ -7926,7 +8450,7 @@ Askava is a province of the Nurandah Empire, one of seven.
     &quot;gainText&quot;, [Now everything in your bag is going to smell like it.],
     &quot;lossText&quot;, [Gone, but its scent lingers.]
 
-)</tw-passagedata><tw-passagedata pid="157" name="item.highAir" tags="static-storage" position="2750,3275" size="100,100">{=
+)</tw-passagedata><tw-passagedata pid="159" name="item.highAir" tags="static-storage" position="2750,3275" size="100,100">{=
 
 (metadata: 
 	&quot;id&quot;, [Vial of High Air],
@@ -7938,7 +8462,7 @@ Askava is a province of the Nurandah Empire, one of seven.
     &quot;gainText&quot;, [The vial now glows faintly purple in your bag.],
     &quot;lossText&quot;, [It is gone, like the storm that birthed it.]
 
-)</tw-passagedata><tw-passagedata pid="158" name="item.honeyreed" tags="static-storage" position="975,1975" size="100,100">{=
+)</tw-passagedata><tw-passagedata pid="160" name="item.honeyreed" tags="static-storage" position="1225,1975" size="100,100">{=
 
 (metadata: 
 	&quot;id&quot;, [Honeyreed Finger],
@@ -7950,7 +8474,7 @@ Askava is a province of the Nurandah Empire, one of seven.
     &quot;gainText&quot;, [One touch, and your hands are all sticky. Better dispense of it before you start to attract ants.],
     &quot;lossText&quot;, [You wipe your hands, but they are still sticky.]
 
-)</tw-passagedata><tw-passagedata pid="159" name="item.teaBag" tags="static-storage" position="1100,1975" size="100,100">{=
+)</tw-passagedata><tw-passagedata pid="161" name="item.teaBag" tags="static-storage" position="100,2100" size="100,100">{=
 
 (metadata: 
 	&quot;id&quot;, [Pouch of Questionable Tea],
@@ -7962,7 +8486,7 @@ Askava is a province of the Nurandah Empire, one of seven.
     &quot;gainText&quot;, [The pouch weighs almost nothing. You wonder how much of that weight is actually tea, and how much of it just is grit and sand.],
     &quot;lossText&quot;, [When you pry apart the drawstrings, and //actual// tea leaves come out, you feel relieved.]
 
-)</tw-passagedata><tw-passagedata pid="160" name="item.water" tags="static-storage" position="2850,3375" size="100,100">{=
+)</tw-passagedata><tw-passagedata pid="162" name="item.water" tags="static-storage" position="2850,3375" size="100,100">{=
 
 (metadata: 
 	&quot;id&quot;, [Sanctified Water],
@@ -7974,7 +8498,7 @@ Askava is a province of the Nurandah Empire, one of seven.
     &quot;gainText&quot;, [You keep the bottle sealed tight. If any of it gets on your skin, you&#39;ll be scratching for days.],
     &quot;lossText&quot;, [You&#39;re glad to carry less of the damnable liquid.]
 
-)</tw-passagedata><tw-passagedata pid="161" name="item.baseOpal" tags="static-storage" position="2100,3375" size="100,100">&lt;!--Not to be displayed. Only metadata used--&gt;
+)</tw-passagedata><tw-passagedata pid="163" name="item.baseOpal" tags="static-storage" position="2100,3375" size="100,100">&lt;!--Not to be displayed. Only metadata used--&gt;
 
 (metadata:
 	&quot;id&quot;, [Base Opal],
@@ -7984,7 +8508,7 @@ Askava is a province of the Nurandah Empire, one of seven.
     &quot;tip&quot;, [This is used to turn magic into solid artifacts.],
     &quot;gainText&quot;, [You have acquired a base opal. Keep it well.],
     &quot;lossText&quot;, [You part ways with the precious stone.]
-)</tw-passagedata><tw-passagedata pid="162" name="item.ghan" tags="static-storage" position="1750,3375" size="100,100">{=
+)</tw-passagedata><tw-passagedata pid="164" name="item.ghan" tags="static-storage" position="1750,3375" size="100,100">{=
 
 (metadata: 
 	&quot;id&quot;, [ghan],
@@ -7996,7 +8520,7 @@ Askava is a province of the Nurandah Empire, one of seven.
     &quot;gainText&quot;, [You string the gold knives together and hang them by your hip - like you&#39;ve seen the Yavanids do.],
     &quot;lossText&quot;, [Like all foreign currencies, these Yavanid knives are meant to be rid of. ]
 
-)</tw-passagedata><tw-passagedata pid="163" name="item.keshi" tags="static-storage" position="1850,3375" size="100,100">{=
+)</tw-passagedata><tw-passagedata pid="165" name="item.keshi" tags="static-storage" position="1850,3375" size="100,100">{=
 
 (metadata: 
 	&quot;id&quot;, [keshi],
@@ -8008,7 +8532,7 @@ Askava is a province of the Nurandah Empire, one of seven.
     &quot;gainText&quot;, [Just having these can put you under suspicion of being a spy for the Kesh Empire. But of course, Keshan spies use rials.],
     &quot;lossText&quot;, [The Keshan coins are more valuable melted down and forged into swords than they are as coins. But of course, if the Keshans had your economic genius, they&#39;d have won the war already.]
 
-)</tw-passagedata><tw-passagedata pid="164" name="item.pul" tags="static-storage" position="1850,3475" size="100,100">{=
+)</tw-passagedata><tw-passagedata pid="166" name="item.pul" tags="static-storage" position="1850,3475" size="100,100">{=
 
 (metadata: 
 	&quot;id&quot;, [pul],
@@ -8020,7 +8544,7 @@ Askava is a province of the Nurandah Empire, one of seven.
     &quot;gainText&quot;, [.],
     &quot;lossText&quot;, [.]
 
-)</tw-passagedata><tw-passagedata pid="165" name="item.rial" tags="static-storage" position="1650,3375" size="100,100">{=
+)</tw-passagedata><tw-passagedata pid="167" name="item.rial" tags="static-storage" position="1650,3375" size="100,100">{=
 
 (metadata: 
 	&quot;id&quot;, [rial],
@@ -8032,7 +8556,7 @@ Askava is a province of the Nurandah Empire, one of seven.
     &quot;gainText&quot;, [Rial makes the world go round and your coin purse heavier.],
     &quot;lossText&quot;, [Material possessions are an illusion - a wise magus once said - and you should be glad to part with them.]
 
-)</tw-passagedata><tw-passagedata pid="166" name="item.supplies" tags="static-storage" position="2000,3375" size="100,100">{=
+)</tw-passagedata><tw-passagedata pid="168" name="item.supplies" tags="static-storage" position="2000,3375" size="100,100">{=
 
 (metadata: 
 	&quot;id&quot;, [($funcIcon: &quot;supplies&quot;) Travel Supplies],
@@ -8048,7 +8572,7 @@ Askava is a province of the Nurandah Empire, one of seven.
     	(set: $log to it + (a: &quot;&#39;&#39;&quot; + (str: $place&#39;s stay) + &quot;:&#39;&#39; (color:red)[Lost 1 health] (&quot; + (str:$char&#39;s player&#39;s health&#39;s 1st) + &quot;/&quot; + (str:$char&#39;s player&#39;s health&#39;s 2nd) + &quot;) due to lack of supplies.&quot;))\
     ],
 
-)</tw-passagedata><tw-passagedata pid="167" name="item.vehzin" tags="static-storage" position="2000,3475" size="100,100">{=
+)</tw-passagedata><tw-passagedata pid="169" name="item.vehzin" tags="static-storage" position="2000,3475" size="100,100">{=
 
 (metadata: 
 	&quot;id&quot;, [Clump of Vehzin],
@@ -8060,7 +8584,7 @@ Askava is a province of the Nurandah Empire, one of seven.
     &quot;gainText&quot;, [],
     &quot;lossText&quot;, [],
 
-)</tw-passagedata><tw-passagedata pid="168" name="item.mapInrah" tags="static-storage" position="3775,1325" size="100,100">{=
+)</tw-passagedata><tw-passagedata pid="170" name="item.mapInrah" tags="static-storage" position="3775,1325" size="100,100">{=
 
 (metadata: 
 	&quot;id&quot;, [Inrah&#39;s Map of the Nurrah Coastlands],
@@ -8073,7 +8597,7 @@ Askava is a province of the Nurandah Empire, one of seven.
     &quot;lossText&quot;, [You&#39;ve lost Inrah&#39;s map. There are other ways to navigate the settlements of Nurrah rostak, but this map was something special.],
     &quot;content&quot;, [],
 
-)</tw-passagedata><tw-passagedata pid="169" name="item.permitAskava" tags="static-storage" position="4300,1925" size="100,100">{=
+)</tw-passagedata><tw-passagedata pid="171" name="item.permitAskava" tags="static-storage" position="4300,1925" size="100,100">{=
 
 (metadata: 
 	&quot;id&quot;, [Askava Entry Permit],
@@ -8092,7 +8616,7 @@ Askava is a province of the Nurandah Empire, one of seven.
 &lt;!--end of content--&gt;
     ],
 
-)</tw-passagedata><tw-passagedata pid="170" name="quest.absentPrincipal" tags="static-storage" position="6700,1825" size="100,100">{=
+)</tw-passagedata><tw-passagedata pid="172" name="quest.absentPrincipal" tags="static-storage" position="6700,1825" size="100,100">{=
 &lt;!--A long-haul quest with multiple ways to prime. Right now, the only way is hearing it from Veh-Veh--&gt;
 
 &lt;!--quests can be &quot;inactive&quot;, &quot;primed&quot;, &quot;active&quot;, &quot;completed&quot;, &quot;failed&quot;--&gt;
@@ -8113,7 +8637,7 @@ Askava is a province of the Nurandah Empire, one of seven.
 
 ))
 
-)</tw-passagedata><tw-passagedata pid="171" name="quest.permitAskava" tags="static-storage" position="4200,1800" size="100,100">{=
+)</tw-passagedata><tw-passagedata pid="173" name="quest.permitAskava" tags="static-storage" position="4200,1800" size="100,100">{=
 
 (metadata: 
 	&quot;id&quot;, [Task: Permit into Askava],
@@ -8132,14 +8656,14 @@ Askava is a province of the Nurandah Empire, one of seven.
     &quot;waitDoneLog&quot;, [Your Askava entry permit should be ready to be picked up at the &#39;&#39;Provincial Court&#39;&#39;.],
     
 )\
-&lt;!--Example of a quest that makes you wait--&gt;</tw-passagedata><tw-passagedata pid="172" name="quest.sickTeacher" tags="static-storage" position="2975,2500" size="100,100">{=
+&lt;!--Example of a quest that makes you wait--&gt;</tw-passagedata><tw-passagedata pid="174" name="quest.sickTeacher" tags="static-storage" position="2975,2500" size="100,100">{=
 
 (metadata: 
 	&quot;id&quot;, [Situation: A Fluxy Teacher],
     &quot;img&quot;, &quot;https://thefifthcity.wiki/w/images/b/bc/Bloodstain.png?20240509225948&quot;,
     &quot;desc&quot;, [Your teacher is sick and cannot travel. He needs his medicine.],
     &quot;tip&quot;, [],
-)</tw-passagedata><tw-passagedata pid="173" name="att.studentDebateX" tags="static-storage" position="5275,1800" size="100,100">{=
+)</tw-passagedata><tw-passagedata pid="175" name="att.studentDebateX" tags="static-storage" position="5275,1800" size="100,100">{=
 
 (metadata: 
 	&quot;id&quot;, [Debate: Side X Advantage],
@@ -8151,7 +8675,7 @@ Askava is a province of the Nurandah Empire, one of seven.
     &quot;gainText&quot;, [Side X grows smug.],
     &quot;lossText&quot;, [The thing about debate is that once it&#39;s done, all that&#39;s been discussed is flushed from the mind, and everything goes back to normal.]
 
-)</tw-passagedata><tw-passagedata pid="174" name="att.studentDebateY" tags="static-storage" position="5375,1800" size="100,100">{=
+)</tw-passagedata><tw-passagedata pid="176" name="att.studentDebateY" tags="static-storage" position="5375,1800" size="100,100">{=
 
 (metadata: 
 	&quot;id&quot;, [Debate: Side Y Advantage],
@@ -8163,7 +8687,7 @@ Askava is a province of the Nurandah Empire, one of seven.
     &quot;gainText&quot;, [Side Y celebrates their small wins.],
     &quot;lossText&quot;, [The thing about debate is that once it&#39;s done, all that&#39;s been discussed is flushed from the mind, and everything goes back to normal.]
 
-)</tw-passagedata><tw-passagedata pid="175" name="quest.studentDebate" tags="static-storage" position="5325,1700" size="100,100">{=
+)</tw-passagedata><tw-passagedata pid="177" name="quest.studentDebate" tags="static-storage" position="5325,1700" size="100,100">{=
 
 &lt;!--An example of a quest with (1) progress that the player affects; (2) auto-disappearing timer (and auto-resetting the quest);--&gt;
 
@@ -8204,7 +8728,7 @@ Askava is a province of the Nurandah Empire, one of seven.
     ($funcRemoveTimer: &quot;studentDebate&quot;, &quot;timer&quot;)\
 ],
 &quot;timerDoneLog&quot;, [The students of Apesai have grown tired of being at each other&#39;s throats, for now.],
---&gt;</tw-passagedata><tw-passagedata pid="176" name="quest.traveling" tags="static-storage traveling" position="1600,5100" size="100,100">{=
+--&gt;</tw-passagedata><tw-passagedata pid="178" name="quest.traveling" tags="static-storage traveling" position="1600,5100" size="100,100">{=
 (metadata: 
 	&quot;id&quot;, [Currently: Traveling],
     &quot;img&quot;, &quot;https://fallenlondon.wiki/w/images/f/f6/Ship3.png&quot;,
@@ -8227,7 +8751,7 @@ Askava is a province of the Nurandah Empire, one of seven.
     (set: $log&#39;s last to it + &quot;&#39;&#39;&quot; + (str: $place&#39;s travelingTo) + &quot;&#39;&#39;.&quot;)\
     ],
     &quot;timerDoneLog&quot;, [You&#39;ve arrived at ],
-)</tw-passagedata><tw-passagedata pid="177" name="att.urgentAssignment" tags="static-storage" position="1700,4675" size="100,100">{=
+)</tw-passagedata><tw-passagedata pid="179" name="att.urgentAssignment" tags="static-storage" position="1700,4675" size="100,100">{=
 
 (metadata: 
 	&quot;id&quot;, [Progress: Urgent Essay],
@@ -8239,7 +8763,7 @@ Askava is a province of the Nurandah Empire, one of seven.
     &quot;gainText&quot;, [You made progress with your essay,],
     &quot;lossText&quot;, [Gone, all that effort.]
 
-)</tw-passagedata><tw-passagedata pid="178" name="quest.urgentAssignment" tags="static-storage" position="1700,4575" size="100,100">{=
+)</tw-passagedata><tw-passagedata pid="180" name="quest.urgentAssignment" tags="static-storage" position="1700,4575" size="100,100">{=
 
 (metadata: 
 	&quot;id&quot;, [Urgent: An Assignment],
@@ -8258,7 +8782,7 @@ Askava is a province of the Nurandah Empire, one of seven.
     &quot;deadlineDoneLog&quot;, [Damn, out of time.],
     
 )\
-&lt;!--Example of a deadline quest that autofails when timer runs out. If succeed, remove timer. Notice how deadlineDesc is meant to be dynamic, but deadlineAddLog and deadlineAddDialog aren&#39;t. This is because only the deadlineDesc, which shows up in the UI, needs to countdown. Everything else, especially the deadlineAddLog, needs to stay static so that the longLog won&#39;t break.--&gt;</tw-passagedata><tw-passagedata pid="179" name="table.dayNames" tags="static-storage" position="1675,4050" size="100,100">{=\
+&lt;!--Example of a deadline quest that autofails when timer runs out. If succeed, remove timer. Notice how deadlineDesc is meant to be dynamic, but deadlineAddLog and deadlineAddDialog aren&#39;t. This is because only the deadlineDesc, which shows up in the UI, needs to countdown. Everything else, especially the deadlineAddLog, needs to stay static so that the longLog won&#39;t break.--&gt;</tw-passagedata><tw-passagedata pid="181" name="table.dayNames" tags="static-storage" position="1675,4050" size="100,100">{=\
 &lt;!--call with (display:), output day&#39;s name--&gt;\
 (cond:
 $time&#39;s day is 1,&quot;Khurruz&quot;,
@@ -8268,7 +8792,7 @@ $time&#39;s day is 4,&quot;Abruz&quot;,
 $time&#39;s day is 5,&quot;Gorruz&quot;,
 $time&#39;s day is 6,&quot;Rokhruz&quot;,
 $time&#39;s day is 7,&quot;Zamruz&quot;,
-)</tw-passagedata><tw-passagedata pid="180" name="table.monthNames" tags="static-storage" position="1625,3925" size="100,100">{=\
+)</tw-passagedata><tw-passagedata pid="182" name="table.monthNames" tags="static-storage" position="1625,3925" size="100,100">{=\
 &lt;!--call with (display:), output month&#39;s name--&gt;\
 (cond:
 $time&#39;s month is 1,&quot;Yekvar&quot;,
@@ -8283,14 +8807,14 @@ $time&#39;s month is 9,&quot;Nohvar&quot;,
 $time&#39;s month is 10,&quot;Dahvar&quot;,
 $time&#39;s month is 11,&quot;Dah-Yekvar&quot;,
 $time&#39;s month is 12,&quot;Dah-Duvar&quot;,
-)</tw-passagedata><tw-passagedata pid="181" name="table.weekNames" tags="static-storage" position="1650,4000" size="100,100">{=\
+)</tw-passagedata><tw-passagedata pid="183" name="table.weekNames" tags="static-storage" position="1650,4000" size="100,100">{=\
 &lt;!--call with (display:), output week&#39;s name--&gt;\
 (cond:
 $time&#39;s week is 1,&quot;Yekhet&quot;,
 $time&#39;s week is 2,&quot;Duhet&quot;,
 $time&#39;s week is 3,&quot;Serhet&quot;,
 $time&#39;s week is 4,&quot;Charhet&quot;,
-)</tw-passagedata><tw-passagedata pid="182" name="table.sublocationApesai" tags="static-storage" position="3100,2000" size="100,100">{=
+)</tw-passagedata><tw-passagedata pid="184" name="table.sublocationApesai" tags="static-storage" position="3100,2000" size="100,100">{=
 
 (set: _gettingAround to [The island-city of Apesai is labyrinthine - a product of centuries of demographic ebbs and flows, of development booms and near abandonment, of perhaps a scheme to personally overwhelm you with options:])
 
@@ -8301,7 +8825,7 @@ $time&#39;s week is 4,&quot;Charhet&quot;,
 &quot;The Traveler&#39;s Society (Apesai Branch)&quot;, (dm: &quot;knowApesaiTraveler&quot;, 1),
 &quot;The Pleasure Quarter&quot;, (dm: &quot;knowApesaiPleasure&quot;, 2),
 &quot;Apesai Wharf&quot;, (dm:),
-))</tw-passagedata><tw-passagedata pid="183" name="table.distances" tags="static-storage traveling" position="1725,5100" size="100,100">{=
+))</tw-passagedata><tw-passagedata pid="185" name="table.distances" tags="static-storage traveling" position="1725,5100" size="100,100">{=
 
 (metadata:
 
@@ -8316,7 +8840,7 @@ $time&#39;s week is 4,&quot;Charhet&quot;,
 
 &quot;Besarag|Sabzam&quot;, 9,
 
-)</tw-passagedata><tw-passagedata pid="184" name="table.travelText" tags="static-storage traveling" position="1850,5100" size="100,100">{=
+)</tw-passagedata><tw-passagedata pid="186" name="table.travelText" tags="static-storage traveling" position="1850,5100" size="100,100">{=
 
 (metadata:
 
@@ -8344,7 +8868,7 @@ $time&#39;s week is 4,&quot;Charhet&quot;,
 
 
 
-)</tw-passagedata><tw-passagedata pid="185" name="img.weather" tags="static-storage" position="1425,4175" size="100,100">{=
+)</tw-passagedata><tw-passagedata pid="187" name="img.weather" tags="static-storage" position="1425,4175" size="100,100">{=
 
 (set: _weatherImage to (dm:
 	&quot;rainy&quot;, &quot;Assets/Weather/weather_Rain.png&quot;,
@@ -8353,7 +8877,7 @@ $time&#39;s week is 4,&quot;Charhet&quot;,
 	&quot;foggy&quot;, &quot;Assets/Weather/weather_Foggy.png&quot;,
 	&quot;windy&quot;, &quot;Assets/Weather/weather_Windy.png&quot;,
 	&quot;sunny&quot;, &quot;Assets/Weather/weather_Sunny.png&quot;,
-))</tw-passagedata><tw-passagedata pid="186" name="table.weatherApesai" tags="static-storage" position="1650,4175" size="100,100">{=\
+))</tw-passagedata><tw-passagedata pid="188" name="table.weatherApesai" tags="static-storage" position="1650,4175" size="100,100">{=\
 &lt;!--Apesai weather data--&gt;\
 (set: _weatherData to (dm:
 	&quot;data&quot;, (dm:
@@ -8379,7 +8903,7 @@ $time&#39;s week is 4,&quot;Charhet&quot;,
 		&quot;windy&quot;, &quot;Sea wind is howling through the narrow streets. A guard tries to keep his helmet from blowing away, but the noble ladies, with their face veils and parasols, are faring much worse.&quot;,
 		&quot;sunny&quot;, &quot;The sun is out. Askava might lack in many things, but sunshine isn&#39;t it. You&#39;re lucky that the sea is all around you to cool things down. It gets much worse inland.&quot;,
 	),
-))</tw-passagedata><tw-passagedata pid="187" name="table.weatherTraveling" tags="static-storage traveling" position="1550,4175" size="100,100">{=
+))</tw-passagedata><tw-passagedata pid="189" name="table.weatherTraveling" tags="static-storage traveling" position="1550,4175" size="100,100">{=
 
 (set: _weatherTravelText to (dm:
 	&quot;rainy&quot;, &quot;Soft rain is falling, rapping against your waxed cloak. There is a leak somewhere. You can feel it.&quot;,
@@ -8388,7 +8912,7 @@ $time&#39;s week is 4,&quot;Charhet&quot;,
 	&quot;foggy&quot;, &quot;You cannot see much past this fog. But still, your journey continues.&quot;,
 	&quot;windy&quot;, &quot;The wind is howling. If you were any lighter, you&#39;d be blown away.&quot;,
 	&quot;sunny&quot;, &quot;Sun, sun, sun! The sun doesn&#39;t care if your skin stings or if your head spins.&quot;,
-))</tw-passagedata><tw-passagedata pid="188" name="temp.infection" tags="static-storage" position="3825,2500" size="100,100">(metadata:
+))</tw-passagedata><tw-passagedata pid="190" name="temp.infection" tags="static-storage" position="3825,2500" size="100,100">(metadata:
 &quot;id&quot;, [Infection],
 &quot;timer&quot;, 5,
 &quot;key&quot;, (a: &quot;condition&quot;, &quot;body&quot;,),
@@ -8412,7 +8936,7 @@ $time&#39;s week is 4,&quot;Charhet&quot;,
 &quot;lossText&quot;, [The swelling has stopped, and the pain subsided.],
 &quot;lossEffect&quot;, [],
 
-)</tw-passagedata><tw-passagedata pid="189" name="temp.magicHealing" tags="static-storage" position="3625,2500" size="100,100">(metadata:
+)</tw-passagedata><tw-passagedata pid="191" name="temp.magicHealing" tags="static-storage" position="3625,2500" size="100,100">(metadata:
 &quot;id&quot;, [Magical Healing],
 &quot;timer&quot;, 7,
 &quot;key&quot;, (a: &quot;condition&quot;, &quot;body&quot;,),
@@ -8431,7 +8955,7 @@ $time&#39;s week is 4,&quot;Charhet&quot;,
 &quot;lossText&quot;, [The unnatural healing has stopped - you can sense it.],
 &quot;lossEffect&quot;, [],
 
-)</tw-passagedata><tw-passagedata pid="190" name="temp.wound" tags="static-storage" position="3725,2500" size="100,100">(metadata:
+)</tw-passagedata><tw-passagedata pid="192" name="temp.wound" tags="static-storage" position="3725,2500" size="100,100">(metadata:
 &quot;id&quot;, [Wound],
 &quot;timer&quot;, 4,
 &quot;key&quot;, (a: &quot;condition&quot;, &quot;body&quot;,),
@@ -8455,7 +8979,7 @@ $time&#39;s week is 4,&quot;Charhet&quot;,
 &quot;lossText&quot;, [The wound has closed. Only an itch remains.],
 &quot;lossEffect&quot;, [],
 
-)</tw-passagedata><tw-passagedata pid="191" name="temp.impressionApesai" tags="static-storage" position="100,2475" size="100,100">{=
+)</tw-passagedata><tw-passagedata pid="193" name="temp.impressionApesai" tags="static-storage" position="350,2475" size="100,100">{=
 
 (metadata:
 &quot;id&quot;, [Impression: The Streets of Apesai],
@@ -8472,7 +8996,7 @@ $time&#39;s week is 4,&quot;Charhet&quot;,
 
 )
 
-&lt;!--entries &quot;tickText&quot; and &quot;tickEffect&quot; removed from this temp, since there is none, and we don&#39;t want to trigger an empty effect--&gt;</tw-passagedata><tw-passagedata pid="192" name="Apesai Student Lab" tags="" position="5075,1700" size="100,100">{=
+&lt;!--entries &quot;tickText&quot; and &quot;tickEffect&quot; removed from this temp, since there is none, and we don&#39;t want to trigger an empty effect--&gt;</tw-passagedata><tw-passagedata pid="194" name="Apesai Student Lab" tags="" position="5075,1700" size="100,100">{=
 
 (metadata:
 &quot;title&quot;, &quot;Apesai Student Lab&quot;,
@@ -8540,7 +9064,7 @@ $cssColumnChild[
           (if: _justFueled is true)[(display: &quot;code.labPowerDown&quot;)]
           (goto: &quot;S: Lab 1&quot;)
      ]
-]</tw-passagedata><tw-passagedata pid="193" name="Lab 1b" tags="" position="4950,1700" size="100,100">{=
+]</tw-passagedata><tw-passagedata pid="195" name="Lab 1b" tags="" position="4950,1700" size="100,100">{=
 
 (metadata:
 &quot;title&quot;, &quot;Apesai Student Lab&quot;,
@@ -8572,7 +9096,7 @@ $cssDesc[Select ingredient, then amount, then confirm.]
 &lt;li&gt;[[Go back|S: Lab 1]]
 &lt;/ol&gt;
 ]&lt;!--end child--&gt;
-]&lt;!--end parent--&gt;</tw-passagedata><tw-passagedata pid="194" name="S: Lab 1" tags="storylet" position="5025,1575" size="100,100">{=
+]&lt;!--end parent--&gt;</tw-passagedata><tw-passagedata pid="196" name="S: Lab 1" tags="storylet" position="5025,1575" size="100,100">{=
 
 (storylet: when
 $place&#39;s sublocation is &quot;Apesai Lighthouse&quot;
@@ -8601,7 +9125,7 @@ $cssDesc[Alchemical labs have special equipments for... well, alchemy.]
 &lt;li&gt;(link: &quot;Never mind.&quot;)[$funcBack]
 &lt;/ol&gt;
 ]&lt;!--end child--&gt;
-]&lt;!--end parent--&gt;</tw-passagedata><tw-passagedata pid="195" name="AskavaPermit 1a" tags="" position="4450,2025" size="100,100">{=
+]&lt;!--end parent--&gt;</tw-passagedata><tw-passagedata pid="197" name="AskavaPermit 1a" tags="" position="4450,2025" size="100,100">{=
 
 (metadata:
 &quot;title&quot;, &quot;The Hall of Immigration Affairs&quot;,
@@ -8651,7 +9175,7 @@ The clerk eyes the pile, sighs, and says, [&quot;However long it takes. Next!&qu
 ($funcQuestUpdateLink: &quot;You leave the immigration hall.&quot;, &quot;permitAskava&quot;, &quot;active&quot;, &quot;Your papers are submitted. It&#39;ll take a while. Try to keep yourself busy in the mean time.&quot;, &quot;Bureaucracies are the same everywhere - back home and here also.&quot;, [($funcAddTimer: &quot;permitAskava&quot;, &quot;wait&quot;)], &quot;mockDay&quot;,)
 
 ]&lt;!--end parent--&gt;
-]&lt;!--end child--&gt;</tw-passagedata><tw-passagedata pid="196" name="AskavaPermit 1b" tags="" position="4575,2025" size="100,100">{=
+]&lt;!--end child--&gt;</tw-passagedata><tw-passagedata pid="198" name="AskavaPermit 1b" tags="" position="4575,2025" size="100,100">{=
 
 (metadata:
 &quot;title&quot;, &quot;The Hall of Immigration Affairs&quot;,
@@ -8687,7 +9211,7 @@ You assure him that you&#39;re one of the good ones.
 ], &quot;mockDay&quot;,)
 
 ]&lt;!--end child--&gt;
-]&lt;!--end child--&gt;</tw-passagedata><tw-passagedata pid="197" name="S: AskavaPermit 1" tags="storylet" position="4500,1900" size="100,100">{=
+]&lt;!--end child--&gt;</tw-passagedata><tw-passagedata pid="199" name="S: AskavaPermit 1" tags="storylet" position="4500,1900" size="100,100">{=
 
 (storylet: when
 $place&#39;s sublocation is &quot;The Provincial Court of Askava&quot;
@@ -8723,7 +9247,7 @@ In the meantime, you&#39;re just the same as everyone else here: peasants, labor
 
 &lt;/ol&gt;
 ]&lt;!--end child--&gt;
-]&lt;!--end parent--&gt;</tw-passagedata><tw-passagedata pid="198" name="S: AskavaPermit CLOSED" tags="storylet" position="4625,1900" size="100,100">{=
+]&lt;!--end parent--&gt;</tw-passagedata><tw-passagedata pid="200" name="S: AskavaPermit CLOSED" tags="storylet" position="4625,1900" size="100,100">{=
 
 (storylet: when
 $place&#39;s sublocation is &quot;The Provincial Court of Askava&quot;
@@ -8756,7 +9280,7 @@ In other words, weekends.
 
 &lt;/ol&gt;
 ]&lt;!--end child--&gt;
-]&lt;!--end parent--&gt;</tw-passagedata><tw-passagedata pid="199" name="Blown Off Course 1a" tags="" position="4825,3675" size="100,100">{=
+]&lt;!--end parent--&gt;</tw-passagedata><tw-passagedata pid="201" name="Blown Off Course 1a" tags="" position="4825,3675" size="100,100">{=
 
 (metadata: &quot;title&quot;, &quot;Blown off Course&quot;)
 
@@ -8766,7 +9290,7 @@ In other words, weekends.
 (link: &quot;Dang it!&quot;)[
 	(set: $questTimer&#39;s traveling&#39;s timer to it + 1)
 	$funcDone\
-]</tw-passagedata><tw-passagedata pid="200" name="S: Blown Off Course" tags="storylet traveling" position="4825,3550" size="100,100">{=
+]</tw-passagedata><tw-passagedata pid="202" name="S: Blown Off Course" tags="storylet traveling" position="4825,3550" size="100,100">{=
 
 (storylet: when
 $place&#39;s traveling is true
@@ -8795,7 +9319,7 @@ and $char&#39;s player&#39;s timerCooldown does not contain &quot;S: Blown Off C
 ---
 &lt;ol&gt;
 &lt;li&gt;(link: &quot;Oh no... ⧗&quot;)[($funcAddStoryletCooldown: (passage:)&#39;s name)(goto: &quot;Blown Off Course 1a&quot;)]&lt;!--[[Blown Off Course 1a]]--&gt;
-&lt;ol&gt;</tw-passagedata><tw-passagedata pid="201" name="Exploring Apesai (Center)" tags="" position="100,2600" size="100,100">{=
+&lt;ol&gt;</tw-passagedata><tw-passagedata pid="203" name="Exploring Apesai (Center)" tags="" position="350,2600" size="100,100">{=
 (metadata:
 &quot;title&quot;, &quot;Following Apesai&#39;s Obelisks&quot;,
 &quot;cardDesc&quot;, &quot;They&#39;re leading you somewhere. But //where//?&quot;,
@@ -8965,7 +9489,7 @@ Keep walking, and ($funcLuckGate: &quot;you arrive at...&quot;, _chance, _near, 
 ](done|
 
 ]&lt;!--end child--&gt;
-]&lt;!--end parent--&gt;</tw-passagedata><tw-passagedata pid="202" name="Exploring Apesai (Down)" tags="" position="225,2600" size="100,100">{=
+]&lt;!--end parent--&gt;</tw-passagedata><tw-passagedata pid="204" name="Exploring Apesai (Down)" tags="" position="475,2600" size="100,100">{=
 (metadata:
 &quot;title&quot;, &quot;Weaving Through Apesai&#39;s Slums&quot;,
 &quot;cardDesc&quot;, &quot;For most, this is not a place they will go to unless they absolutely //have// to. For you, curiosity is its own reward.&quot;)
@@ -9154,7 +9678,7 @@ Eventually, ($funcLuckGate: &quot;you arrive at...&quot;, _chance, _near, &quot;
 ](done|
 
 ]&lt;!--end child--&gt;
-]&lt;!--end parent--&gt;</tw-passagedata><tw-passagedata pid="203" name="Exploring Apesai (Up)" tags="" position="350,2600" size="100,100">{=
+]&lt;!--end parent--&gt;</tw-passagedata><tw-passagedata pid="205" name="Exploring Apesai (Up)" tags="" position="600,2600" size="100,100">{=
 (metadata:
 &quot;title&quot;, &quot;Climbing Apesai&#39;s Upper Quarters&quot;,
 &quot;cardDesc&quot;, &quot;Grand things are often placed high above for others to see.&quot;,
@@ -9305,7 +9829,7 @@ After long climb through Apesai&#39;s mountainous upper quarters, ($funcLuckGate
 ](done|
 
 ]&lt;!--end child--&gt;
-]&lt;!--end parent--&gt;</tw-passagedata><tw-passagedata pid="204" name="S: Explore Apesai" tags="storylet" position="475,2600" size="100,100">{=
+]&lt;!--end parent--&gt;</tw-passagedata><tw-passagedata pid="206" name="S: Explore Apesai" tags="storylet" position="725,2600" size="100,100">{=
 (storylet: when
     $place&#39;s location is &quot;Apesai&quot;
     and $place&#39;s traveling is false
@@ -9375,7 +9899,7 @@ $cssDesc[Successfully exploring Apesai will open up many of the city&#39;s locat
 &lt;/ol&gt;
 
 ]&lt;!--end child--&gt;
-]&lt;!--end parent--&gt;</tw-passagedata><tw-passagedata pid="205" name="scene.exploreApesaiCenter1" tags="" position="600,2600" size="100,100">{=
+]&lt;!--end parent--&gt;</tw-passagedata><tw-passagedata pid="207" name="scene.exploreApesaiCenter1" tags="" position="850,2600" size="100,100">{=
 
 [
 All around you, the street is narrow, and the houses are tall. Each house is lined with projecting caged balconies, their metalwork intricate, their splendor blocking out your view of the sky, making it difficult to keep track of the cardinal directions.
@@ -9418,7 +9942,7 @@ It is the emperors&#39; wisdom that one ought to be convinced of wisdom, not for
 ](temple|
 
 (set: _show to (either: &quot;A&quot;,&quot;B&quot;,&quot;C&quot;,&quot;temple&quot;))
-(show: (hooks-named: _show))</tw-passagedata><tw-passagedata pid="206" name="scene.exploreApesaiCenter2" tags="" position="725,2600" size="100,100">{=
+(show: (hooks-named: _show))</tw-passagedata><tw-passagedata pid="208" name="scene.exploreApesaiCenter2" tags="" position="975,2600" size="100,100">{=
 
 [
 During your long walk, your mind starts to drift. You recall something your architecture teacher - whom you only attended a single year - has said:
@@ -9446,7 +9970,7 @@ Inland, of course. Harsh but vast, vast inland Askava. Your head fills with the 
 
 
 (set: _show to (either: &quot;D&quot;,&quot;E&quot;,&quot;F&quot;))
-(show: (hooks-named: _show))</tw-passagedata><tw-passagedata pid="207" name="scene.exploreApesaiDown1" tags="" position="850,2600" size="100,100">{=
+(show: (hooks-named: _show))</tw-passagedata><tw-passagedata pid="209" name="scene.exploreApesaiDown1" tags="" position="1100,2600" size="100,100">{=
 
 [
 As you trace the muddy alleys, careful to not let the hem of your robe get dirtied, you see children - some copper-skinned, some golden, and some paler, albeit sun-baked - running and rolling in the muck without a care.
@@ -9477,7 +10001,7 @@ Eventually, perhaps too soon, the ground will give way, and parts of the slums, 
 ](C|
 
 (set: _show to (either: &quot;A&quot;, &quot;B&quot;, &quot;C&quot;))
-(show: (hooks-named: _show))</tw-passagedata><tw-passagedata pid="208" name="scene.exploreApesaiDown2" tags="" position="975,2600" size="100,100">{=
+(show: (hooks-named: _show))</tw-passagedata><tw-passagedata pid="210" name="scene.exploreApesaiDown2" tags="" position="1225,2600" size="100,100">{=
 
 [
 [Deeper into the slums, the canals take up most of the width of the streets, which aren&#39;t very wide to begin with. The stench of canal water, coupled with a ubiquitous scent of perfume, is stinging your eyes. You try your best stick close to the houses, only occasionally crossing wooden bridges to get to the other side of the water.
@@ -9557,7 +10081,7 @@ There is not enough space in Apesai for all of them. Most will end up in some ru
 
 (if: _nearest is _nearPleasure)[(show: ?pleasureText)]
 (elseif: _nearest is _nearTraveler)[(show: ?travelerText)]
-(elseif: _nearest is _nearWharf)[(show: ?wharfText)]</tw-passagedata><tw-passagedata pid="209" name="scene.exploreApesaiFail" tags="" position="1100,2600" size="100,100">{=
+(elseif: _nearest is _nearWharf)[(show: ?wharfText)]</tw-passagedata><tw-passagedata pid="211" name="scene.exploreApesaiFail" tags="" position="100,2725" size="100,100">{=
 
 (metadata:
 &quot;title&quot;, &quot;Lost and Confused&quot;,
@@ -9611,7 +10135,7 @@ $cssDesc[You gain a temporary &#39;&#39;(print: (passage: &quot;temp.impressionA
 
 
 ]&lt;!--end child--&gt;
-]&lt;!--end parent--&gt;</tw-passagedata><tw-passagedata pid="210" name="scene.exploreApesaiLighthouse" tags="" position="1225,2600" size="100,100">{=
+]&lt;!--end parent--&gt;</tw-passagedata><tw-passagedata pid="212" name="scene.exploreApesaiLighthouse" tags="" position="225,2725" size="100,100">{=
 
 (metadata:
 &quot;title&quot;, &quot;Discovered the Apesai Lighthouse!&quot;,
@@ -9653,7 +10177,7 @@ $cssDesc[You gain &#39;&#39;(print: (passage: &quot;att.knowApesaiLighthouse&quo
 
 
 ]&lt;!--end child--&gt;
-]&lt;!--end parent--&gt;</tw-passagedata><tw-passagedata pid="211" name="scene.exploreApesaiGE" tags="" position="100,2725" size="100,100">{=
+]&lt;!--end parent--&gt;</tw-passagedata><tw-passagedata pid="213" name="scene.exploreApesaiGE" tags="" position="350,2725" size="100,100">{=
 
 (metadata:
 &quot;title&quot;, &quot;Discovered the Grand Exchange!&quot;,
@@ -9690,7 +10214,7 @@ $cssDesc[You gain &#39;&#39;(print: (passage: &quot;att.knowApesaiGE&quot;)&#39;
 
 
 ]&lt;!--end child--&gt;
-]&lt;!--end parent--&gt;</tw-passagedata><tw-passagedata pid="212" name="scene.exploreApesaiCourt" tags="" position="225,2725" size="100,100">{=
+]&lt;!--end parent--&gt;</tw-passagedata><tw-passagedata pid="214" name="scene.exploreApesaiCourt" tags="" position="475,2725" size="100,100">{=
 (metadata:
 &quot;title&quot;, &quot;Discovered the Provincial Court!&quot;,
 &quot;cardDesc&quot;, &quot;From this seat of power, the whole of Askava is administered.&quot;)
@@ -9728,7 +10252,7 @@ $cssDesc[You gain &#39;&#39;(print: (passage: &quot;att.knowApesaiCourt&quot;)&#
 ]
 
 ]&lt;!--end child--&gt;
-]&lt;!--end parent--&gt;</tw-passagedata><tw-passagedata pid="213" name="scene.exploreApesaiTraveler" tags="" position="350,2725" size="100,100">{=
+]&lt;!--end parent--&gt;</tw-passagedata><tw-passagedata pid="215" name="scene.exploreApesaiTraveler" tags="" position="600,2725" size="100,100">{=
 (metadata:
 &quot;title&quot;, &quot;Discovered the Traveler&#39;s Society!&quot;,
 &quot;cardDesc&quot;, &quot;Where there is opportunity, there is the Society. Its Apesai branch is larger than any that you&#39;ve ever seen.&quot;)
@@ -9763,7 +10287,7 @@ $cssDesc[You gain &#39;&#39;(print: (passage: &quot;att.knowApesaiTraveler&quot;
 ]
 
 ]&lt;!--end child--&gt;
-]&lt;!--end parent--&gt;</tw-passagedata><tw-passagedata pid="214" name="scene.exploreApesaiPleasure" tags="" position="475,2725" size="100,100">{=
+]&lt;!--end parent--&gt;</tw-passagedata><tw-passagedata pid="216" name="scene.exploreApesaiPleasure" tags="" position="725,2725" size="100,100">{=
 
 (metadata:
 &quot;title&quot;, &quot;Discovered a Strange Part of Apesai.&quot;,
@@ -9828,7 +10352,7 @@ $cssDesc[You gain &#39;&#39;1 more (print: (passage: &quot;att.knowApesaiPleasur
 
 
 ]&lt;!--end child--&gt;
-]&lt;!--end parent--&gt;</tw-passagedata><tw-passagedata pid="215" name="scene.exploreApesaiUp1" tags="" position="600,2725" size="100,100">{=
+]&lt;!--end parent--&gt;</tw-passagedata><tw-passagedata pid="217" name="scene.exploreApesaiUp1" tags="" position="850,2725" size="100,100">{=
 
 [At a glance, the Upper Apesai looks just like any heartland metropolis - shining tileworks everywhere, intricate mosaics and reliefs adorn every house, terrace palaces built on the side of mountains, and vivid rugs draping from high balconies, of which there are many.
 &lt;br&gt;
@@ -9845,7 +10369,7 @@ But from down here, in the crowded streets, one could hardly see the splendor.](
 Did it have to be middle-of-nowhere //Sabzam//? Mainland Askava is such a rough place.](C|
 
 (set: _show to (either: &quot;A&quot;,&quot;B&quot;,&quot;C&quot;))
-(show: (hooks-named: _show))</tw-passagedata><tw-passagedata pid="216" name="scene.exploreApesaiUp2" tags="" position="725,2725" size="100,100">{=
+(show: (hooks-named: _show))</tw-passagedata><tw-passagedata pid="218" name="scene.exploreApesaiUp2" tags="" position="975,2725" size="100,100">{=
 
 
 [Since Apesai was built on a steep slope, many buildings&#39; roofs become the next one&#39;s yard, or even its street.
@@ -9869,7 +10393,7 @@ Though you&#39;ve come across such drivel at home, it appears that light forms o
 Those guys are //way// more uptight than even your meanest teachers.](F|
 
 (set: _show to (either: &quot;D&quot;,&quot;E&quot;,&quot;F&quot;))
-(show: (hooks-named: _show))</tw-passagedata><tw-passagedata pid="217" name="Fishing 1a" tags="" position="5300,3675" size="100,100">{=
+(show: (hooks-named: _show))</tw-passagedata><tw-passagedata pid="219" name="Fishing 1a" tags="" position="5300,3675" size="100,100">{=
 
 (metadata: &quot;title&quot;, &quot;Casting a Line&quot;,
 &quot;cardDesc&quot;, &quot;The feathered lure bobs in the ocean waves.&quot;,
@@ -9906,7 +10430,7 @@ You cast the line into the water.
 ($funcLuckGate: &quot;Wait for them to bite.&quot;, _chance, &quot;Fishing 1b&quot;, &quot;Fishing 1c&quot;)
 
 ]&lt;!--end child--&gt;
-]&lt;!--end parent--&gt;</tw-passagedata><tw-passagedata pid="218" name="Fishing 1b" tags="" position="5175,3800" size="100,100">{=
+]&lt;!--end parent--&gt;</tw-passagedata><tw-passagedata pid="220" name="Fishing 1b" tags="" position="5175,3800" size="100,100">{=
 
 (metadata: &quot;title&quot;, &quot;Caught a Fish&quot;,
 &quot;cardDesc&quot;, &quot;Success! The ocean yields its delicious treasure.&quot;)
@@ -9930,7 +10454,7 @@ Yes! Now what do you do? Filet it? Cure it over embers? Sear it in a pan? So man
     $funcDone\
     ]
 ]&lt;!--end child--&gt;
-]&lt;!--end parent--&gt;</tw-passagedata><tw-passagedata pid="219" name="Fishing 1c" tags="" position="5300,3800" size="100,100">{=
+]&lt;!--end parent--&gt;</tw-passagedata><tw-passagedata pid="221" name="Fishing 1c" tags="" position="5300,3800" size="100,100">{=
 
 (metadata: &quot;title&quot;, &quot;Unsuccessfully Fished&quot;,
 &quot;cardDesc&quot;, &quot;You tried, and the fishes cared not for your effort.&quot;,
@@ -9954,7 +10478,7 @@ The hook dangles, now baitless.
 (link: &quot;Oh well.&quot;)[$funcDone]
 
 ]&lt;!--end child--&gt;
-]&lt;!--end parent--&gt;</tw-passagedata><tw-passagedata pid="220" name="S: Fishing (Nurrah)" tags="storylet traveling" position="5300,3550" size="100,100">{=
+]&lt;!--end parent--&gt;</tw-passagedata><tw-passagedata pid="222" name="S: Fishing (Nurrah)" tags="storylet traveling" position="5300,3550" size="100,100">{=
 
 (storylet: when
 $place&#39;s traveling is true
@@ -9989,7 +10513,7 @@ $cssColumnChild[
 &lt;/ol&gt;
 
 ]&lt;!--end child--&gt;
-]&lt;!--end parent--&gt;</tw-passagedata><tw-passagedata pid="221" name="Foraging 1a" tags="" position="5425,3675" size="100,100">{=
+]&lt;!--end parent--&gt;</tw-passagedata><tw-passagedata pid="223" name="Foraging 1a" tags="" position="5425,3675" size="100,100">{=
 
 (metadata:
     &quot;title&quot;, &quot;Foraging Along the Rokhrud&quot;,
@@ -10013,7 +10537,7 @@ $cssColumnChild[
 ($funcLuckGate: &quot;You find...&quot;, 40, &quot;Foraging 1b&quot;, &quot;Foraging 1c&quot;)
 
 ]&lt;!--end child--&gt;
-]&lt;!--end parent--&gt;</tw-passagedata><tw-passagedata pid="222" name="Foraging 1b" tags="" position="5425,3800" size="100,100">{=
+]&lt;!--end parent--&gt;</tw-passagedata><tw-passagedata pid="224" name="Foraging 1b" tags="" position="5425,3800" size="100,100">{=
 
 (metadata: &quot;title&quot;, &quot;Successful Forage&quot;,
 &quot;cardDesc&quot;, &quot;Bounty awaits those who dares, and you did dare.&quot;)
@@ -10036,7 +10560,7 @@ $cssColumnChild[
     $funcDone\
     ]
 ]&lt;!--end child--&gt;
-]&lt;!--end parent--&gt;</tw-passagedata><tw-passagedata pid="223" name="Foraging 1c" tags="" position="5550,3800" size="100,100">{=
+]&lt;!--end parent--&gt;</tw-passagedata><tw-passagedata pid="225" name="Foraging 1c" tags="" position="5550,3800" size="100,100">{=
 
 (metadata: &quot;title&quot;, &quot;Wasted Time in the Bushes&quot;,
 &quot;cardDesc&quot;, &quot;You&#39;ve got twigs in your hair and hook-seeds on your clothes.&quot;)
@@ -10056,7 +10580,7 @@ $cssColumnChild[
 ---
 (link: &quot;Oh well.&quot;)[$funcDone]
 ]&lt;!--end child--&gt;
-]&lt;!--end parent--&gt;</tw-passagedata><tw-passagedata pid="224" name="S: Foraging (Rokhrud)" tags="storylet traveling" position="5425,3550" size="100,100">{=
+]&lt;!--end parent--&gt;</tw-passagedata><tw-passagedata pid="226" name="S: Foraging (Rokhrud)" tags="storylet traveling" position="5425,3550" size="100,100">{=
 
 (storylet: when
 $place&#39;s traveling is true
@@ -10083,7 +10607,7 @@ $cssColumnChild[
 &lt;li&gt;(link: &quot;Never mind.&quot;)[$funcBack]
 &lt;ol&gt;
 ]&lt;!--end child--&gt;
-]&lt;!--end parent--&gt;</tw-passagedata><tw-passagedata pid="225" name="Heal 1a" tags="" position="3475,2625" size="100,100">{=
+]&lt;!--end parent--&gt;</tw-passagedata><tw-passagedata pid="227" name="Heal 1a" tags="" position="3475,2625" size="100,100">{=
 
 (metadata:
 &quot;title&quot;, &quot;Lied Down&quot;,
@@ -10114,7 +10638,7 @@ $cssColumnChild[
 ]
 &lt;!--Might add more effects into the above code if there are diseases--&gt;
 ]&lt;!--end child--&gt;
-]&lt;!--end parent--&gt;</tw-passagedata><tw-passagedata pid="226" name="Heal 1b" tags="" position="3575,2625" size="100,100">{=
+]&lt;!--end parent--&gt;</tw-passagedata><tw-passagedata pid="228" name="Heal 1b" tags="" position="3575,2625" size="100,100">{=
 
 (metadata:
 &quot;title&quot;, &quot;Medicated Rest&quot;,
@@ -10144,7 +10668,7 @@ $cssColumnChild[
 ]
 &lt;!--Might add more effects into the above code if there are diseases--&gt;
 ]&lt;!--end child--&gt;
-]&lt;!--end parent--&gt;</tw-passagedata><tw-passagedata pid="227" name="S: Heal" tags="storylet" position="3475,2500" size="100,100">{=
+]&lt;!--end parent--&gt;</tw-passagedata><tw-passagedata pid="229" name="S: Heal" tags="storylet" position="3475,2500" size="100,100">{=
 
 (storylet: when
 (passage:)&#39;s name is $place&#39;s stay
@@ -10180,21 +10704,21 @@ $cssColumnChild[
 
 &lt;/ol&gt;
 ]&lt;!--end child--&gt;
-]&lt;!--end parent--&gt;</tw-passagedata><tw-passagedata pid="228" name="Random Encounter 1a" tags="" position="4925,3675" size="100,100">{=
+]&lt;!--end parent--&gt;</tw-passagedata><tw-passagedata pid="230" name="Random Encounter 1a" tags="" position="4925,3675" size="100,100">{=
 
 (metadata: &quot;title&quot;, &quot;???&quot;)
 
 (windy...)
 &lt;br&gt;
 ---
-(link: &quot;Done.&quot;)[$funcDone]</tw-passagedata><tw-passagedata pid="229" name="Random Encounter 2a" tags="" position="5050,3675" size="100,100">{=
+(link: &quot;Done.&quot;)[$funcDone]</tw-passagedata><tw-passagedata pid="231" name="Random Encounter 2a" tags="" position="5050,3675" size="100,100">{=
 
 (metadata: &quot;title&quot;, &quot;???&quot;)
 
 (sunny...)
 &lt;br&gt;
 ---
-(link: &quot;Done.&quot;)[$funcDone]</tw-passagedata><tw-passagedata pid="230" name="S: Random Encounter 1" tags="storylet traveling" position="4925,3550" size="100,100">{=
+(link: &quot;Done.&quot;)[$funcDone]</tw-passagedata><tw-passagedata pid="232" name="S: Random Encounter 1" tags="storylet traveling" position="4925,3550" size="100,100">{=
 
 (storylet: when
 $place&#39;s traveling is true
@@ -10211,7 +10735,7 @@ and $char&#39;s player&#39;s timerCooldown does not contain &quot;S: Random Enco
 &lt;ol&gt;
 &lt;li&gt;(link: &quot;Windy event. ⧗&quot;)[($funcAddStoryletCooldown: (passage:)&#39;s name)(goto: &quot;Random Encounter 1a&quot;)]&lt;!--[[Random Encounter 1a]]--&gt;
 &lt;li&gt;(link: &quot;Never mind.&quot;)[$funcBack]
-&lt;ol&gt;</tw-passagedata><tw-passagedata pid="231" name="S: Random Encounter 2" tags="storylet traveling" position="5050,3550" size="100,100">{=
+&lt;ol&gt;</tw-passagedata><tw-passagedata pid="233" name="S: Random Encounter 2" tags="storylet traveling" position="5050,3550" size="100,100">{=
 
 (storylet: when
 $place&#39;s traveling is true
@@ -10228,7 +10752,7 @@ and $char&#39;s player&#39;s timerCooldown does not contain &quot;S: Random Enco
 &lt;ol&gt;
 &lt;li&gt;(link: &quot;Sunny event. ⧗&quot;)[($funcAddStoryletCooldown: (passage:)&#39;s name)(goto: &quot;Random Encounter 2a&quot;)]&lt;!--[[Random Encounter 2a]]--&gt;
 &lt;li&gt;(link: &quot;Never mind.&quot;)[$funcBack]
-&lt;ol&gt;</tw-passagedata><tw-passagedata pid="232" name="S: Shopping Day 1" tags="storylet" position="4000,2175" size="100,100">{=
+&lt;ol&gt;</tw-passagedata><tw-passagedata pid="234" name="S: Shopping Day 1" tags="storylet" position="4000,2175" size="100,100">{=
 
 (storylet: when
 $place&#39;s sublocation is &quot;The Grand Exchange&quot;
@@ -10286,7 +10810,7 @@ You end up at...
 --&gt;
 
 ]&lt;!--end child--&gt;
-]&lt;!--end parent--&gt;</tw-passagedata><tw-passagedata pid="233" name="Shopping Day 1b" tags="" position="3875,2300" size="100,100">{=
+]&lt;!--end parent--&gt;</tw-passagedata><tw-passagedata pid="235" name="Shopping Day 1b" tags="" position="3875,2300" size="100,100">{=
 
 (metadata:
 &quot;currency&quot;, &quot;rial&quot;,
@@ -10345,7 +10869,7 @@ Actually, if anything, you might even have too much...
 &lt;li&gt;(link: &quot;Never mind.&quot;)[(goto: &quot;S: Shopping Day 1&quot;)]
 &lt;/ol&gt;
 ]&lt;!--end child--&gt;
-]&lt;!--end parent 2--&gt;</tw-passagedata><tw-passagedata pid="234" name="Shopping Day 1c" tags="" position="3975,2300" size="100,100">{=
+]&lt;!--end parent 2--&gt;</tw-passagedata><tw-passagedata pid="236" name="Shopping Day 1c" tags="" position="3975,2300" size="100,100">{=
 
 (metadata:
 &quot;currency&quot;, &quot;rial&quot;,
@@ -10404,7 +10928,7 @@ Or...
 &lt;li&gt;(link: &quot;Never mind.&quot;)[(goto: &quot;S: Shopping Day 1&quot;)]
 &lt;/ol&gt;
 ]&lt;!--end child--&gt;
-]&lt;!--end parent 2--&gt;</tw-passagedata><tw-passagedata pid="235" name="Shopping Day 1d" tags="" position="4075,2300" size="100,100">{=
+]&lt;!--end parent 2--&gt;</tw-passagedata><tw-passagedata pid="237" name="Shopping Day 1d" tags="" position="4075,2300" size="100,100">{=
 
 (metadata:
 &quot;currency&quot;, &quot;rial&quot;,
@@ -10463,7 +10987,7 @@ Or...
 &lt;li&gt;(link: &quot;Never mind.&quot;)[(goto: &quot;S: Shopping Day 1&quot;)]
 &lt;/ol&gt;
 ]&lt;!--end child--&gt;
-]&lt;!--end parent--&gt;</tw-passagedata><tw-passagedata pid="236" name="Shopping Day 1e" tags="" position="4175,2300" size="100,100"></tw-passagedata><tw-passagedata pid="237" name="S: Sick Teacher 1" tags="storylet" position="3100,2500" size="100,100">{=
+]&lt;!--end parent--&gt;</tw-passagedata><tw-passagedata pid="238" name="Shopping Day 1e" tags="" position="4175,2300" size="100,100"></tw-passagedata><tw-passagedata pid="239" name="S: Sick Teacher 1" tags="storylet" position="3100,2500" size="100,100">{=
 
 (storylet: when
 $place&#39;s sublocation is $place&#39;s stay
@@ -10489,7 +11013,7 @@ $cssColumnChild[
 ---
 [[What the...|Sick Teacher 1a]]
 ]&lt;!--end child--&gt;
-]&lt;!--end parent--&gt;</tw-passagedata><tw-passagedata pid="238" name="S: Sick Teacher 2" tags="storylet" position="3225,2500" size="100,100">{=
+]&lt;!--end parent--&gt;</tw-passagedata><tw-passagedata pid="240" name="S: Sick Teacher 2" tags="storylet" position="3225,2500" size="100,100">{=
 
 (storylet: when
 $place&#39;s sublocation is $place&#39;s stay
@@ -10529,7 +11053,7 @@ $cssColumnChild[
 &lt;/ol&gt;
 &lt;!--[[Sick Teacher 2a]] and [[Sick Teacher 2b]]--&gt;
 ]&lt;!--end child--&gt;
-]&lt;!--end parent--&gt;</tw-passagedata><tw-passagedata pid="239" name="Sick Teacher 1a" tags="" position="3100,2625" size="100,100">{=
+]&lt;!--end parent--&gt;</tw-passagedata><tw-passagedata pid="241" name="Sick Teacher 1a" tags="" position="3100,2625" size="100,100">{=
 
 (metadata:
 &quot;title&quot;, &quot;Finding Your Teacher Sick&quot;,
@@ -10560,7 +11084,7 @@ $cssDesc[A &#39;&#39;Healing Tonic&#39;&#39; will do. It&#39;s helped you before
 &lt;/ol&gt;
 
 ]&lt;!--end child--&gt;
-]&lt;!--end parent--&gt;</tw-passagedata><tw-passagedata pid="240" name="Sick Teacher 2a" tags="" position="3225,2625" size="100,100">{=
+]&lt;!--end parent--&gt;</tw-passagedata><tw-passagedata pid="242" name="Sick Teacher 2a" tags="" position="3225,2625" size="100,100">{=
 
 (metadata:
 &quot;title&quot;, &quot;Medicating Your Teacher&quot;,
@@ -10589,7 +11113,7 @@ You tell him you&#39;re glad he&#39;s well.
 ---
 ($funcQuestUpdateLink: &quot;Uh...&quot;, &quot;sickTeacher&quot;, &quot;completed&quot;, &quot;Your teacher is good as new. You can finally start to leave this rock.&quot;, &quot;Finally!&quot;, [], $place&#39;s sublocation,)
 ]&lt;!--end child--&gt;
-]&lt;!--end parent--&gt;</tw-passagedata><tw-passagedata pid="241" name="Sick Teacher 2b" tags="" position="3325,2625" size="100,100">{=
+]&lt;!--end parent--&gt;</tw-passagedata><tw-passagedata pid="243" name="Sick Teacher 2b" tags="" position="3325,2625" size="100,100">{=
 
 (metadata:
     &quot;NPC&quot;, &quot;Teacher&quot;,
@@ -10621,7 +11145,7 @@ $cssColumnChild[
 ]
 
 ]&lt;!--end child--&gt;
-]&lt;!--end parent--&gt;</tw-passagedata><tw-passagedata pid="242" name="item.betTicketX" tags="static-storage" position="225,3100" size="100,100">(metadata: 
+]&lt;!--end parent--&gt;</tw-passagedata><tw-passagedata pid="244" name="item.betTicketX" tags="static-storage" position="475,3100" size="100,100">(metadata: 
 	&quot;id&quot;, [Betting Ticket (X)],
     &quot;key&quot;, (a: &quot;document&quot;, &quot;note&quot;),
     &quot;value&quot;, (a: 10, 0, 0, 0, 0, 20,),
@@ -10632,7 +11156,7 @@ $cssColumnChild[
     &quot;lossText&quot;, [Torn up, never to be acknowledged.],
     &quot;content&quot;, [],
 
-)</tw-passagedata><tw-passagedata pid="243" name="item.betTicketY" tags="static-storage" position="350,3100" size="100,100">(metadata: 
+)</tw-passagedata><tw-passagedata pid="245" name="item.betTicketY" tags="static-storage" position="600,3100" size="100,100">(metadata: 
 	&quot;id&quot;, [Betting Ticket (Y)],
     &quot;key&quot;, (a: &quot;document&quot;, &quot;note&quot;),
     &quot;value&quot;, (a: 10, 0, 0, 0, 0, 20,),
@@ -10643,7 +11167,7 @@ $cssColumnChild[
     &quot;lossText&quot;, [Torn up, never to be acknowledged.],
     &quot;content&quot;, [],
 
-)</tw-passagedata><tw-passagedata pid="244" name="S: studentDebate (Bookie After)" tags="storylet" position="475,3100" size="100,100">{=
+)</tw-passagedata><tw-passagedata pid="246" name="S: studentDebate (Bookie After)" tags="storylet" position="725,3100" size="100,100">{=
 (storylet: when
 $place&#39;s sublocation is $place&#39;s stay
 and $place&#39;s traveling is false
@@ -10762,7 +11286,7 @@ Cash out your winnings...
 ]&lt;!--end of uninvolved options--&gt;
 
 ]&lt;!--end child--&gt;
-]&lt;!--end parent--&gt;</tw-passagedata><tw-passagedata pid="245" name="studentDebate (Cheated Forfeit)" tags="" position="600,3100" size="100,100">{=
+]&lt;!--end parent--&gt;</tw-passagedata><tw-passagedata pid="247" name="studentDebate (Cheated Forfeit)" tags="" position="850,3100" size="100,100">{=
 
 (metadata: &quot;title&quot;, &quot;Forfeiting Winnings&quot;, &quot;cardDesc&quot;, &quot;&quot;)
 
@@ -10798,7 +11322,7 @@ $cssColumnChild[
 
 
 ]&lt;!--end child--&gt;
-]&lt;!--end parent--&gt;</tw-passagedata><tw-passagedata pid="246" name="studentDebate (Cheated Swindler)" tags="" position="725,3100" size="100,100">{=
+]&lt;!--end parent--&gt;</tw-passagedata><tw-passagedata pid="248" name="studentDebate (Cheated Swindler)" tags="" position="975,3100" size="100,100">{=
 
 (metadata: &quot;title&quot;, &quot;A Shameful Recuperation&quot;, &quot;cardDesc&quot;, &quot;You are allowed a meager return at the loss of both money and reputation.&quot;)
 
@@ -10894,7 +11418,7 @@ Cash out your winnings...
 
 
 ]&lt;!--end child--&gt;
-]&lt;!--end parent--&gt;</tw-passagedata><tw-passagedata pid="247" name="S: studentDebate (Betting)" tags="storylet" position="850,3100" size="100,100">{=
+]&lt;!--end parent--&gt;</tw-passagedata><tw-passagedata pid="249" name="S: studentDebate (Betting)" tags="storylet" position="1100,3100" size="100,100">{=
 (storylet: when
 $place&#39;s location is &quot;Apesai&quot;
 and $place&#39;s sublocation is &quot;Apesai Lighthouse&quot;
@@ -10942,7 +11466,7 @@ $cssColumnChild[
 &lt;/ol&gt;
 
 ]&lt;!--end child--&gt;
-]&lt;!--end parent--&gt;</tw-passagedata><tw-passagedata pid="248" name="studentDebate (Betting) (Explanation)" tags="" position="975,3100" size="100,100">{=
+]&lt;!--end parent--&gt;</tw-passagedata><tw-passagedata pid="250" name="studentDebate (Betting) (Explanation)" tags="" position="1225,3100" size="100,100">{=
 (metadata:
 &quot;title&quot;, &quot;An Academic Wager&quot;,
 &quot;cardDesc&quot;, &quot;&quot;,
@@ -10969,7 +11493,7 @@ $cssColumnChild[
 
 
 ]&lt;!--end child--&gt;
-]&lt;!--end parent--&gt;</tw-passagedata><tw-passagedata pid="249" name="studentDebate (Placing Bets)" tags="" position="1100,3100" size="100,100">{=
+]&lt;!--end parent--&gt;</tw-passagedata><tw-passagedata pid="251" name="studentDebate (Placing Bets)" tags="" position="100,3225" size="100,100">{=
 (metadata:
 &quot;title&quot;, &quot;Placing a Bet&quot;,
 &quot;cardDesc&quot;, &quot;&quot;,
@@ -11031,7 +11555,7 @@ You choose to bet on...
 }]&lt;/li&gt;
 &lt;/ol&gt;
 ]&lt;!--end child--&gt;
-]&lt;!--end parent--&gt;</tw-passagedata><tw-passagedata pid="250" name="S: studentDebate (Swinder)" tags="storylet" position="1225,3100" size="100,100">{=
+]&lt;!--end parent--&gt;</tw-passagedata><tw-passagedata pid="252" name="S: studentDebate (Swinder)" tags="storylet" position="225,3225" size="100,100">{=
 (storylet: when
 $place&#39;s location is &quot;Apesai&quot;
 and $place&#39;s sublocation is &quot;Apesai Lighthouse&quot;
@@ -11071,7 +11595,7 @@ $cssColumnChild[
 
 
 ]&lt;!--end child--&gt;
-]&lt;!--end parent--&gt;</tw-passagedata><tw-passagedata pid="251" name="code.studentDebate" tags="" position="100,3225" size="100,100">{=
+]&lt;!--end parent--&gt;</tw-passagedata><tw-passagedata pid="253" name="code.studentDebate" tags="" position="350,3225" size="100,100">{=
 
 &lt;!--Use (display:), outputs
 _debateDaysLeft
@@ -11119,7 +11643,7 @@ _whim
 &lt;!--did the judge overrule the advantage? (output _whim)--&gt;
 (set: _whim to false)
 (if: _victor is &quot;X&quot; and _advantage &gt; 0)[(set: _whim to true)]
-(if: _victor is &quot;Y&quot; and _advantage &lt;= 0)[(set: _whim to true)]</tw-passagedata><tw-passagedata pid="252" name="code.studentDebateReset" tags="" position="225,3225" size="100,100">{=
+(if: _victor is &quot;Y&quot; and _advantage &lt;= 0)[(set: _whim to true)]</tw-passagedata><tw-passagedata pid="254" name="code.studentDebateReset" tags="" position="475,3225" size="100,100">{=
 &lt;!--produces _resetDebate. Erases all tracker att--&gt;
 (set: _resetDebate to [{
     &lt;!--check X--&gt;
@@ -11130,7 +11654,7 @@ _whim
     (set: _reset to ($funcCheckExists: $char&#39;s player&#39;s att, &quot;studentDebateY&quot;, 0))
     &lt;!--Erase Y--&gt;
 	($funcGainLoss: &quot;att.&quot;, &quot;studentDebateY&quot;, -_reset)
-}])</tw-passagedata><tw-passagedata pid="253" name="code.studentDebateCheat" tags="" position="350,3225" size="100,100">{=
+}])</tw-passagedata><tw-passagedata pid="255" name="code.studentDebateCheat" tags="" position="600,3225" size="100,100">{=
 &lt;!--determines whether the player has cheated (output _cheated)--&gt;
 
 (set: _cheated to false)
@@ -11139,7 +11663,7 @@ _whim
 (if: (($funcCheckExists: $char&#39;s player&#39;s att, &quot;studentDebateY&quot;, 0) + ($funcCheckExists: $char&#39;s player&#39;s att, &quot;studentDebateX&quot;, 0)) &gt;= 2)[(set: _helped to true)]
 
 (if: _victor is &quot;X&quot; and ($funcCheckExists: $char&#39;s player&#39;s inv, &quot;betTicketX&quot;, 0) &gt; 0 and _helped)[(set: _cheated to true)]
-(if: _victor is &quot;Y&quot; and ($funcCheckExists: $char&#39;s player&#39;s inv, &quot;betTicketY&quot;, 0) &gt; 0 and _helped)[(set: _cheated to true)]</tw-passagedata><tw-passagedata pid="254" name="S: studentDebate 1c" tags="storylet" position="475,3225" size="100,100">{=
+(if: _victor is &quot;Y&quot; and ($funcCheckExists: $char&#39;s player&#39;s inv, &quot;betTicketY&quot;, 0) &gt; 0 and _helped)[(set: _cheated to true)]</tw-passagedata><tw-passagedata pid="256" name="S: studentDebate 1c" tags="storylet" position="725,3225" size="100,100">{=
 
 (storylet: when
 $place&#39;s location is &quot;Apesai&quot;
@@ -11174,7 +11698,7 @@ $cssColumnChild[
 &lt;/ol&gt;
 
 ]&lt;!--end child--&gt;
-]&lt;!--end parent--&gt;</tw-passagedata><tw-passagedata pid="255" name="studentDebate 1d" tags="" position="600,3225" size="100,100">(metadata:
+]&lt;!--end parent--&gt;</tw-passagedata><tw-passagedata pid="257" name="studentDebate 1d" tags="" position="850,3225" size="100,100">(metadata:
 &quot;title&quot;, &quot;Commotion Near the Lighthouse&quot;,
 &quot;cardDesc&quot;, &quot;&quot;,
 )
@@ -11200,7 +11724,7 @@ $cssColumnChild[
 &lt;li&gt;(link: &quot;Walk away. You&#39;ll return once everyone is tired of this farce.&quot;)[(goto: &quot;Apesai Lighthouse&quot;)]
 &lt;ol&gt;
 ]&lt;!--end child--&gt;
-]&lt;!--end parent--&gt;</tw-passagedata><tw-passagedata pid="256" name="studentDebate 1e" tags="" position="725,3225" size="100,100">(metadata:
+]&lt;!--end parent--&gt;</tw-passagedata><tw-passagedata pid="258" name="studentDebate 1e" tags="" position="975,3225" size="100,100">(metadata:
 &quot;title&quot;, &quot;Commotion Near the Lighthouse&quot;,
 &quot;cardDesc&quot;, &quot;&quot;,
 )
@@ -11226,7 +11750,7 @@ $cssColumnChild[
 &lt;/ol&gt;
 
 ]&lt;!--end child--&gt;
-]&lt;!--end parent--&gt;</tw-passagedata><tw-passagedata pid="257" name="S: studentDebate 1" tags="storylet" position="5450,1575" size="100,100">{=
+]&lt;!--end parent--&gt;</tw-passagedata><tw-passagedata pid="259" name="S: studentDebate 1" tags="storylet" position="5450,1575" size="100,100">{=
 
 (storylet: when
 $place&#39;s location is &quot;Apesai&quot;
@@ -11264,7 +11788,7 @@ $cssColumnChild[
 
 &lt;/ol&gt;
 ]&lt;!--end child--&gt;
-]&lt;!--end parent--&gt;</tw-passagedata><tw-passagedata pid="258" name="studentDebate 1a" tags="" position="5450,1700" size="100,100">{=
+]&lt;!--end parent--&gt;</tw-passagedata><tw-passagedata pid="260" name="studentDebate 1a" tags="" position="5450,1700" size="100,100">{=
 
 (metadata:
 &quot;title&quot;, &quot;A Streetside Argument&quot;,
@@ -11295,7 +11819,7 @@ $cssDesc[The debate will take place through out several days.]
 &lt;/ol&gt;
 
 ]&lt;!--end child--&gt;
-]&lt;!--end parent--&gt;</tw-passagedata><tw-passagedata pid="259" name="S: VehVeh Debate" tags="storylet" position="5750,1575" size="100,100">{=
+]&lt;!--end parent--&gt;</tw-passagedata><tw-passagedata pid="261" name="S: VehVeh Debate" tags="storylet" position="5750,1575" size="100,100">{=
 
 (storylet: when
 $char&#39;s VehVeh&#39;s alive is true
@@ -11335,7 +11859,7 @@ She&#39;s uncharacteristically warlike...
 
 &lt;!--The topic storylet function reads the current passage&#39;s NPC--&gt;
 ]&lt;!--end child--&gt;
-]&lt;!--end parent--&gt;</tw-passagedata><tw-passagedata pid="260" name="S: studentDebate (Labs)" tags="storylet" position="5150,1575" size="100,100">{=
+]&lt;!--end parent--&gt;</tw-passagedata><tw-passagedata pid="262" name="S: studentDebate (Labs)" tags="storylet" position="5150,1575" size="100,100">{=
 
 (storylet: when
 $place&#39;s sublocation is &quot;Apesai Lighthouse&quot;
@@ -11365,7 +11889,7 @@ $cssColumnChild[
 
 &lt;/ol&gt;
 ]&lt;!--end child--&gt;
-]&lt;!--end parent--&gt;</tw-passagedata><tw-passagedata pid="261" name="S: studentDebate (Clear)" tags="storylet" position="100,3350" size="100,100">{=
+]&lt;!--end parent--&gt;</tw-passagedata><tw-passagedata pid="263" name="S: studentDebate (Clear)" tags="storylet" position="350,3350" size="100,100">{=
 (storylet: when
 $place&#39;s sublocation is $place&#39;s stay
 and $place&#39;s traveling is false
@@ -11416,7 +11940,7 @@ $cssColumnChild[
 ($funcQuestUpdateLink: &quot;Good for them.&quot;, &quot;studentDebate&quot;, &quot;inactive&quot;, &quot;The students of Apesai have grown tired of being at each other&#39;s throats, for now. But it seems inevitable that, some time in the future, they will relitigate their disagreements.&quot;, &quot;Debate rarely resolves anything.&quot;, [_resetDebate], $place&#39;s sublocation)
 
 ]&lt;!--end child--&gt;
-]&lt;!--end parent--&gt;</tw-passagedata><tw-passagedata pid="262" name="studentDebate VehVeh" tags="" position="5750,1700" size="100,100">{=
+]&lt;!--end parent--&gt;</tw-passagedata><tw-passagedata pid="264" name="studentDebate VehVeh" tags="" position="5750,1700" size="100,100">{=
 
 (metadata:
 &quot;title&quot;, &quot;Veh-Veh the Apprentice&quot;,
@@ -11441,7 +11965,7 @@ MY side is right, of course, you dolt!
 &lt;li&gt;(link: &quot;Ok thanks for the insight, Veh-Veh.&quot;)[$funcBack]
 &lt;/ol&gt;
 ]&lt;!--end child--&gt;
-]&lt;!--end parent--&gt;</tw-passagedata><tw-passagedata pid="263" name="S: studentDebate 2" tags="storylet" position="5575,1625" size="100,100">{=
+]&lt;!--end parent--&gt;</tw-passagedata><tw-passagedata pid="265" name="S: studentDebate 2" tags="storylet" position="5575,1625" size="100,100">{=
 
 (storylet: when
 $place&#39;s sublocation is &quot;Apesai Lighthouse&quot;
@@ -11488,7 +12012,7 @@ $cssDesc[(if: _debateDaysLeft is 1)[The debate is nearing its conclusion. Will y
 
 &lt;/ol&gt;
 ]&lt;!--end child--&gt;
-]&lt;!--end parent--&gt;</tw-passagedata><tw-passagedata pid="264" name="studentDebate 2 END" tags="" position="5575,2000" size="100,100">{=
+]&lt;!--end parent--&gt;</tw-passagedata><tw-passagedata pid="266" name="studentDebate 2 END" tags="" position="5575,2000" size="100,100">{=
 
 (metadata:
 &quot;title&quot;, &quot;The Student Debate&quot;,
@@ -11587,7 +12111,7 @@ Side Y victory.
 }]&lt;!--end if X--&gt;
 
 ]&lt;!--end child--&gt;
-]&lt;!--end parent--&gt;</tw-passagedata><tw-passagedata pid="265" name="studentDebate 2X" tags="" position="5525,1875" size="100,100">{=
+]&lt;!--end parent--&gt;</tw-passagedata><tw-passagedata pid="267" name="studentDebate 2X" tags="" position="5525,1875" size="100,100">{=
 
 (metadata:
 &quot;title&quot;, &quot;The Student Debate&quot;,
@@ -11640,7 +12164,7 @@ _whim
 }]
 
 ]&lt;!--end child--&gt;
-]&lt;!--end parent--&gt;</tw-passagedata><tw-passagedata pid="266" name="studentDebate 2Y" tags="" position="5650,1875" size="100,100">{=
+]&lt;!--end parent--&gt;</tw-passagedata><tw-passagedata pid="268" name="studentDebate 2Y" tags="" position="5650,1875" size="100,100">{=
 
 (metadata:
 &quot;title&quot;, &quot;The Student Debate&quot;,
@@ -11693,7 +12217,7 @@ _whim
 }]
 
 ]&lt;!--end child--&gt;
-]&lt;!--end parent--&gt;</tw-passagedata><tw-passagedata pid="267" name="studentDebate 2a" tags="" position="5575,1750" size="100,100">{=
+]&lt;!--end parent--&gt;</tw-passagedata><tw-passagedata pid="269" name="studentDebate 2a" tags="" position="5575,1750" size="100,100">{=
 
 (metadata:
 &quot;title&quot;, &quot;The Debate&quot;,
@@ -11764,7 +12288,7 @@ $cssDesc[{
 &lt;/ol&gt;
 
 ]&lt;!--end child--&gt;
-]&lt;!--end parent--&gt;</tw-passagedata><tw-passagedata pid="268" name="studentDebate none" tags="" position="5775,1875" size="100,100">(metadata:
+]&lt;!--end parent--&gt;</tw-passagedata><tw-passagedata pid="270" name="studentDebate none" tags="" position="5775,1875" size="100,100">(metadata:
 &quot;title&quot;, &quot;The Student Debate&quot;,
 &quot;cardDesc&quot;, &quot;Staying neutral.&quot;,
 )
@@ -11815,7 +12339,7 @@ _whim
 }]
 
 ]&lt;!--end child--&gt;
-]&lt;!--end parent--&gt;</tw-passagedata><tw-passagedata pid="269" name="Pre-Test (NEW)" tags="" position="825,3350" size="100,100">{=
+]&lt;!--end parent--&gt;</tw-passagedata><tw-passagedata pid="271" name="Pre-Test (NEW)" tags="" position="825,3350" size="100,100">{=
 
 $cssColumnParent[
 
@@ -11853,7 +12377,7 @@ $cssColumnChild[
 &lt;li&gt;[[Test M]] $cssDesc[(Reading books)]
 
 ]&lt;!--child end--&gt;
-]&lt;!--parent end--&gt;</tw-passagedata><tw-passagedata pid="270" name="Test A" tags="" position="1000,3350" size="100,100">{=
+]&lt;!--parent end--&gt;</tw-passagedata><tw-passagedata pid="272" name="Test A" tags="" position="1000,3350" size="100,100">{=
 
 (metadata: &quot;title&quot;, &quot;Test A (item basics)&quot;)
 
@@ -11903,7 +12427,7 @@ $cssColumnChild[
 Tests for `($funcCheckExists:)` macro, which takes (1) a datamap and (2) the name of a key that may or may not exists --&gt; outputs the value of that key if it exists. Otherwise outputs nothing:
 &lt;li&gt;sickTeacher quest: ($funcCheckExists: $char&#39;s player&#39;s quests, &quot;sickTeacher&quot;, &quot;&quot;)
 &lt;li&gt;Ginger: ($funcCheckExists: $char&#39;s player&#39;s inv, &quot;ginger&quot;, 0)
-&lt;li&gt;vigorous attribute: ($funcCheckExists: $char&#39;s player&#39;s att, &quot;vigorous&quot;, 0)</tw-passagedata><tw-passagedata pid="271" name="Test B" tags="" position="1000,3475" size="100,100">(metadata: &quot;title&quot;, &quot;Test B (buying &amp; selling)&quot;)
+&lt;li&gt;vigorous attribute: ($funcCheckExists: $char&#39;s player&#39;s att, &quot;vigorous&quot;, 0)</tw-passagedata><tw-passagedata pid="273" name="Test B" tags="" position="1000,3475" size="100,100">(metadata: &quot;title&quot;, &quot;Test B (buying &amp; selling)&quot;)
 
 (set: _priceModBuy to 2)
 (set: _priceModSell to .5)
@@ -11941,7 +12465,7 @@ Tests for `($funcCheckExists:)` macro, which takes (1) a datamap and (2) the nam
 
 &lt;br&gt;
 &#39;&#39;Player Inventory&#39;&#39;
-(print: $char&#39;s player&#39;s inv)</tw-passagedata><tw-passagedata pid="272" name="Test C" tags="" position="1000,3600" size="100,100">(metadata: &quot;title&quot;, &quot;Test C (elementalizing)&quot;)
+(print: $char&#39;s player&#39;s inv)</tw-passagedata><tw-passagedata pid="274" name="Test C" tags="" position="1000,3600" size="100,100">(metadata: &quot;title&quot;, &quot;Test C (elementalizing)&quot;)
 
 [[⇦ BACK-&gt;Pre-Test (NEW)]]
 &lt;ul&gt;
@@ -11967,7 +12491,7 @@ Based on inventory &amp; only ingredients (use this in game) &lt;br&gt;
 (print: $char&#39;s player&#39;s inv)
 &lt;br&gt;
 &#39;&#39;Player Attributes&#39;&#39;
-(print: $char&#39;s player&#39;s att)</tw-passagedata><tw-passagedata pid="273" name="Z. Test Conditions" tags="startup" position="550,3350" size="100,100">&lt;!----&gt;</tw-passagedata><tw-passagedata pid="274" name="Experimental Lab" tags="" position="1150,3875" size="100,100">{=
+(print: $char&#39;s player&#39;s att)</tw-passagedata><tw-passagedata pid="275" name="Z. Test Conditions" tags="startup" position="550,3350" size="100,100">&lt;!----&gt;</tw-passagedata><tw-passagedata pid="276" name="Experimental Lab" tags="" position="1150,3875" size="100,100">{=
 (metadata: 
 &quot;title&quot;, &quot;Experimental Lab (Test)&quot;,
 &quot;level&quot;, 3,
@@ -11984,7 +12508,7 @@ Based on inventory &amp; only ingredients (use this in game) &lt;br&gt;
 &lt;h3&gt;(print: (passage:)&#39;s title)&lt;/h3&gt;
 
 &lt;br&gt;
- ($funcVehzin: &quot;Test D&quot;)</tw-passagedata><tw-passagedata pid="275" name="Professional Lab" tags="" position="1150,3775" size="100,100">{=
+ ($funcVehzin: &quot;Test D&quot;)</tw-passagedata><tw-passagedata pid="277" name="Professional Lab" tags="" position="1150,3775" size="100,100">{=
 (metadata: 
 &quot;title&quot;, &quot;Professional Lab (Test)&quot;,
 &quot;level&quot;, 2,
@@ -12001,7 +12525,7 @@ Based on inventory &amp; only ingredients (use this in game) &lt;br&gt;
 &lt;h3&gt;(print: (passage:)&#39;s title)&lt;/h3&gt;
 
 &lt;br&gt;
- ($funcVehzin: &quot;Test D&quot;)</tw-passagedata><tw-passagedata pid="276" name="Simple Lab" tags="" position="1150,3675" size="100,100">{=
+ ($funcVehzin: &quot;Test D&quot;)</tw-passagedata><tw-passagedata pid="278" name="Simple Lab" tags="" position="1150,3675" size="100,100">{=
 
 (metadata: 
 &quot;title&quot;, &quot;Simple Lab (Test)&quot;,
@@ -12019,7 +12543,7 @@ Based on inventory &amp; only ingredients (use this in game) &lt;br&gt;
 &lt;h3&gt;(print: (passage:)&#39;s title)&lt;/h3&gt;
 
 &lt;br&gt;
- ($funcVehzin: &quot;Test D&quot;)</tw-passagedata><tw-passagedata pid="277" name="Test D" tags="" position="1000,3725" size="100,100">(metadata: &quot;title&quot;, &quot;Test D (synthesis labs)&quot;)
+ ($funcVehzin: &quot;Test D&quot;)</tw-passagedata><tw-passagedata pid="279" name="Test D" tags="" position="1000,3725" size="100,100">(metadata: &quot;title&quot;, &quot;Test D (synthesis labs)&quot;)
 
 [[⇦ BACK-&gt;Pre-Test (NEW)]]
 
@@ -12043,7 +12567,7 @@ Based on inventory &amp; only ingredients (use this in game) &lt;br&gt;
 
 (set: _result to (str:_b) + &quot; is &quot; + (str: _compare) + &quot; &quot; + (str: _a) + &quot;.&quot;)
 
-_result--&gt;</tw-passagedata><tw-passagedata pid="278" name="Test E" tags="" position="1000,4050" size="100,100">{=
+_result--&gt;</tw-passagedata><tw-passagedata pid="280" name="Test E" tags="" position="1000,4050" size="100,100">{=
 
 (metadata: &quot;title&quot;, &quot;Test E (time, place &amp; weather)&quot;)
 
@@ -12073,15 +12597,15 @@ Current location: (print: $place&#39;s sublocation), (print: $place&#39;s locati
 Staying at: (print: $place&#39;s stay).
 &lt;br&gt;
 The weather in (print: $place&#39;s location) is &#39;&#39;(print: $place&#39;s weather)&#39;&#39;:
-($funcWeatherBox:)</tw-passagedata><tw-passagedata pid="279" name="Test F Failure" tags="" position="1150,4250" size="100,100">{=
+($funcWeatherBox:)</tw-passagedata><tw-passagedata pid="281" name="Test F Failure" tags="" position="1150,4250" size="100,100">{=
 
 Uh oh, failure...
 &lt;br&gt;
-[[Back to Test F-&gt;Test F]]</tw-passagedata><tw-passagedata pid="280" name="Test F Success" tags="" position="1150,4175" size="100,100">{=
+[[Back to Test F-&gt;Test F]]</tw-passagedata><tw-passagedata pid="282" name="Test F Success" tags="" position="1150,4175" size="100,100">{=
 
 SUCCESS!
 &lt;br&gt;
-[[Back to Test F-&gt;Test F]]</tw-passagedata><tw-passagedata pid="281" name="Test F" tags="" position="1000,4200" size="100,100">{=
+[[Back to Test F-&gt;Test F]]</tw-passagedata><tw-passagedata pid="283" name="Test F" tags="" position="1000,4200" size="100,100">{=
 
 (metadata: &quot;title&quot;, &quot;Test F (checks &amp; gates)&quot;)
 
@@ -12100,38 +12624,38 @@ Check attribute without spending:
 &lt;br&gt;
 Pure luck:
 &lt;li&gt;($funcLuckGate: &quot;Try your luck&quot;, 70, &quot;Test F Success&quot;, &quot;Test F Failure&quot;)
-&lt;/ul&gt;</tw-passagedata><tw-passagedata pid="282" name="Test G Apply" tags="" position="700,4400" size="100,100">(metadata: &quot;title&quot;, &quot;Test G Applying for Permit&quot;,)
+&lt;/ul&gt;</tw-passagedata><tw-passagedata pid="284" name="Test G Apply" tags="" position="700,4400" size="100,100">(metadata: &quot;title&quot;, &quot;Test G Applying for Permit&quot;,)
 
 You submit your papers and were told to wait.
 &lt;br&gt;
 ---
 
-($funcQuestUpdateLink: &quot;You leave the immigration hall.&quot;, &quot;permitAskava&quot;, &quot;active&quot;, &quot;Your papers are submitted. It&#39;ll take a while. Try to keep yourself busy in the mean time.&quot;, &quot;Bureaucracies are the same everywhere - back home and here also.&quot;, [($funcAddTimer: &quot;permitAskava&quot;, &quot;wait&quot;)], &quot;Test G&quot;,)</tw-passagedata><tw-passagedata pid="283" name="Test G Essay Done" tags="" position="1375,4825" size="100,100">(metadata: &quot;title&quot;, &quot;Turn in Essay&quot;,)
+($funcQuestUpdateLink: &quot;You leave the immigration hall.&quot;, &quot;permitAskava&quot;, &quot;active&quot;, &quot;Your papers are submitted. It&#39;ll take a while. Try to keep yourself busy in the mean time.&quot;, &quot;Bureaucracies are the same everywhere - back home and here also.&quot;, [($funcAddTimer: &quot;permitAskava&quot;, &quot;wait&quot;)], &quot;Test G&quot;,)</tw-passagedata><tw-passagedata pid="285" name="Test G Essay Done" tags="" position="1375,4825" size="100,100">(metadata: &quot;title&quot;, &quot;Turn in Essay&quot;,)
  You turn it in on time!
  &lt;br&gt;
  $cssDesc[The deadline countdown should disappear now.]
  &lt;br&gt;
  ---
- ($funcQuestUpdateLink: &quot;Great job!&quot;, &quot;urgentAssignment&quot;, &quot;completed&quot;, &quot;You&#39;ve turned in your essay on time.&quot;, &quot;Phew!&quot;, [($funcRemoveTimer: &quot;urgentAssignment&quot;, &quot;deadline&quot;)], &quot;Test G&quot;)</tw-passagedata><tw-passagedata pid="284" name="Test G Essay Fail" tags="" position="1325,4775" size="100,100">(metadata: &quot;title&quot;, &quot;Essay Regress&quot;,)
+ ($funcQuestUpdateLink: &quot;Great job!&quot;, &quot;urgentAssignment&quot;, &quot;completed&quot;, &quot;You&#39;ve turned in your essay on time.&quot;, &quot;Phew!&quot;, [($funcRemoveTimer: &quot;urgentAssignment&quot;, &quot;deadline&quot;)], &quot;Test G&quot;)</tw-passagedata><tw-passagedata pid="286" name="Test G Essay Fail" tags="" position="1325,4775" size="100,100">(metadata: &quot;title&quot;, &quot;Essay Regress&quot;,)
 Oh no, you&#39;ve somehow made it worse!
 &lt;br&gt;
 ---
 (link-rerun: &quot;Scrap that! You&#39;ll try again tomorrow.&quot;)[\
 	(if: $char&#39;s player&#39;s att contains &quot;urgentAssignment&quot;)[($funcGainLoss: &quot;att.&quot;, &quot;urgentAssignment&quot;, -1)]\
     $funcDone
-]</tw-passagedata><tw-passagedata pid="285" name="Test G Essay Progress" tags="" position="1275,4725" size="100,100">(metadata: &quot;title&quot;, &quot;Essay Progress&quot;,)
+]</tw-passagedata><tw-passagedata pid="287" name="Test G Essay Progress" tags="" position="1275,4725" size="100,100">(metadata: &quot;title&quot;, &quot;Essay Progress&quot;,)
 Yes, little by little!
 &lt;br&gt;
 ---
 (link-rerun: &quot;Word by word.&quot;)[\
 	($funcGainLoss: &quot;att.&quot;, &quot;urgentAssignment&quot;, 1)\
     $funcDone
-]</tw-passagedata><tw-passagedata pid="286" name="Test G Failure" tags="" position="1275,4525" size="100,100">(metadata: &quot;title&quot;, &quot;Test G Dead Teacher&quot;,)
+]</tw-passagedata><tw-passagedata pid="288" name="Test G Failure" tags="" position="1275,4525" size="100,100">(metadata: &quot;title&quot;, &quot;Test G Dead Teacher&quot;,)
 
 Oh no! He&#39;s... Oh no!
 &lt;br&gt;
 ---
-($funcQuestUpdateLink: &quot;Fail the Fluxy Teacher Quest&quot;, &quot;sickTeacher&quot;, &quot;failed&quot;, &quot;He&#39;s... dead?&quot;, &quot;Can a magus even die?&quot;, [(set: $char&#39;s teacher&#39;s alive to false)], &quot;Test G&quot;)</tw-passagedata><tw-passagedata pid="287" name="Test G Receive" tags="" position="650,4475" size="100,100">(metadata: &quot;title&quot;, &quot;Test G Receive Permit&quot;,)
+($funcQuestUpdateLink: &quot;Fail the Fluxy Teacher Quest&quot;, &quot;sickTeacher&quot;, &quot;failed&quot;, &quot;He&#39;s... dead?&quot;, &quot;Can a magus even die?&quot;, [(set: $char&#39;s teacher&#39;s alive to false)], &quot;Test G&quot;)</tw-passagedata><tw-passagedata pid="289" name="Test G Receive" tags="" position="650,4475" size="100,100">(metadata: &quot;title&quot;, &quot;Test G Receive Permit&quot;,)
 
 The clerk hands you your permit.
 &lt;br&gt;
@@ -12142,7 +12666,7 @@ The clerk hands you your permit.
 ($funcQuestUpdateLink: &quot;You leave the immigration hall.&quot;, &quot;permitAskava&quot;, &quot;completed&quot;, &quot;It is done. You can finally leave this island and enter Askava proper.&quot;, &quot;Where your residency can begin in earnest.&quot;, [\
 	($funcGainLoss: &quot;item.&quot;, &quot;permitAskava&quot;, 1)\
 	($funcRemoveTimer: &quot;permitAskava&quot;, &quot;wait&quot;)\
-], &quot;Test G&quot;,)</tw-passagedata><tw-passagedata pid="288" name="Test G Sample Storylet 1" tags="test" position="1150,4375" size="100,100">{=
+], &quot;Test G&quot;,)</tw-passagedata><tw-passagedata pid="290" name="Test G Sample Storylet 1" tags="test" position="1150,4375" size="100,100">{=
 
 (storylet: when
 (passage:)&#39;s name is &quot;Test G&quot;
@@ -12155,7 +12679,7 @@ Oh no, your teacher is sick!
 &lt;br&gt;
 ---
 ($funcQuestUpdateLink: &quot;Begin the Fluxy Teacher Quest&quot;, &quot;sickTeacher&quot;, &quot;active&quot;, &quot;You found your teacher with his butt glued to the latrine. Nothing a little healing tonic can&#39;t help with.&quot;, &quot;You know what to do, right?&quot;, [], &quot;Test G&quot;)
-&lt;!--[[Test G]]--&gt;</tw-passagedata><tw-passagedata pid="289" name="Test G Sample Storylet 2" tags="test" position="1150,4500" size="100,100">{=
+&lt;!--[[Test G]]--&gt;</tw-passagedata><tw-passagedata pid="291" name="Test G Sample Storylet 2" tags="test" position="1150,4500" size="100,100">{=
 
 (storylet: when
 (passage:)&#39;s name is &quot;Test G&quot;
@@ -12173,7 +12697,7 @@ Oh no, your teacher is sick!
 &lt;li&gt;[[Never mind-&gt;Test G]]
 &lt;/ol&gt;
 
-&lt;!--[[Test G Success]][[Test G Failure]]--&gt;</tw-passagedata><tw-passagedata pid="290" name="Test G Sample Storylet 4" tags="test" position="1150,4650" size="100,100">{=
+&lt;!--[[Test G Success]][[Test G Failure]]--&gt;</tw-passagedata><tw-passagedata pid="292" name="Test G Sample Storylet 4" tags="test" position="1150,4650" size="100,100">{=
 
 (storylet: when
 (passage:)&#39;s name is &quot;Test G&quot;
@@ -12191,7 +12715,7 @@ $cssDesc[This is an example of a timed quest, where the quest auto-fails.]
 &lt;ol&gt;
 &lt;li&gt;($funcQuestUpdateLink: &quot;Time to get to it!&quot;, &quot;urgentAssignment&quot;, &quot;active&quot;, &quot;You begin your assignment. Time is limited.&quot;, &quot;No reason to dwadle.&quot;, [($funcAddTimer: &quot;urgentAssignment&quot;, &quot;deadline&quot;)], &quot;Test G&quot;)
 &lt;li&gt;[[Never mind-&gt;Test G]]
-&lt;/ol&gt;</tw-passagedata><tw-passagedata pid="291" name="Test G Sample Storylet 5" tags="test" position="1150,4775" size="100,100">{=
+&lt;/ol&gt;</tw-passagedata><tw-passagedata pid="293" name="Test G Sample Storylet 5" tags="test" position="1150,4775" size="100,100">{=
 
 (storylet: when
 (passage:)&#39;s name is &quot;Test G&quot;
@@ -12213,7 +12737,7 @@ $cssDesc[Contribute temp values for the quest.]
 &lt;li&gt;($funcCheckGate: &quot;Turn in what you have&quot;, &quot;att&quot;, &quot;urgentAssignment&quot;, 2, true, 100, &quot;Test G Essay Done&quot;, &quot;&quot;)&lt;!--Only [[Test G Essay Done]] exists due to 100% success chance--&gt;
 
 &lt;li&gt;[[Never mind-&gt;Test G]]
-&lt;/ol&gt;</tw-passagedata><tw-passagedata pid="292" name="Test G Sample Storylet 6" tags="test" position="1150,4900" size="100,100">{=
+&lt;/ol&gt;</tw-passagedata><tw-passagedata pid="294" name="Test G Sample Storylet 6" tags="test" position="1150,4900" size="100,100">{=
 
 (storylet: when
 (passage:)&#39;s name is &quot;Test G&quot;
@@ -12233,7 +12757,7 @@ $cssDesc[This storylet should only appear once after you&#39;ve failed the quest
 	($funcGainLoss: &quot;att.&quot;, &quot;urgentAssignment&quot;, -_reset)\
     ($funcRemoveTimer: &quot;urgentAssignment&quot;, &quot;deadline&quot;)\
     (goto: &quot;Test G&quot;)\
-    ]&lt;!--[[Test G]]--&gt;</tw-passagedata><tw-passagedata pid="293" name="Test G Sample Storylet 7" tags="test" position="825,4450" size="100,100">{=
+    ]&lt;!--[[Test G]]--&gt;</tw-passagedata><tw-passagedata pid="295" name="Test G Sample Storylet 7" tags="test" position="825,4450" size="100,100">{=
 
 (storylet: when
 (passage:)&#39;s name is &quot;Test G&quot;
@@ -12262,12 +12786,12 @@ In the meantime, you&#39;re just the same as everyone else here: peasants, labor
     (else:)[&lt;li&gt;~~Receive your permit.~~ $cssDesc[(Your entry application is being processed.)]]
 ]
 &lt;li&gt;[[Never mind-&gt;Test G]]
-&lt;/ol&gt;</tw-passagedata><tw-passagedata pid="294" name="Test G Success" tags="" position="1275,4400" size="100,100">(metadata: &quot;title&quot;, &quot;Test G Healed Teacher&quot;,)
+&lt;/ol&gt;</tw-passagedata><tw-passagedata pid="296" name="Test G Success" tags="" position="1275,4400" size="100,100">(metadata: &quot;title&quot;, &quot;Test G Healed Teacher&quot;,)
 
 Yay!, He&#39;s feeling better!
 &lt;br&gt;
 ---
-($funcQuestUpdateLink: &quot;Complete the Fluxy Teacher Quest&quot;, &quot;sickTeacher&quot;, &quot;completed&quot;, &quot;You gave your teacher his medicine. He&#39;s feeling better now.&quot;, &quot;We can get going, finally.&quot;, [], &quot;Test G&quot;)</tw-passagedata><tw-passagedata pid="295" name="Test G" tags="" position="975,4650" size="100,100">{=
+($funcQuestUpdateLink: &quot;Complete the Fluxy Teacher Quest&quot;, &quot;sickTeacher&quot;, &quot;completed&quot;, &quot;You gave your teacher his medicine. He&#39;s feeling better now.&quot;, &quot;We can get going, finally.&quot;, [], &quot;Test G&quot;)</tw-passagedata><tw-passagedata pid="297" name="Test G" tags="" position="975,4650" size="100,100">{=
 
 (metadata: &quot;title&quot;, &quot;Test G (quests)&quot;)
 
@@ -12288,7 +12812,7 @@ Yay!, He&#39;s feeling better!
 	&lt;li&gt;(link-rerun: _testStory&#39;s title)[(goto: _testStory&#39;s name)]\
 ]\
 
-&lt;/ul&gt;</tw-passagedata><tw-passagedata pid="296" name="Test H PickStay" tags="" position="1125,5200" size="100,100">{=
+&lt;/ul&gt;</tw-passagedata><tw-passagedata pid="298" name="Test H PickStay" tags="" position="1125,5200" size="100,100">{=
 (metadata: &quot;title&quot;, &quot;Picking a Place to Stay at Rokhab (test)&quot;)
 
 You&#39;re thinking about where to stay.
@@ -12296,7 +12820,7 @@ You&#39;re thinking about where to stay.
 &lt;br&gt;
 ---
 &lt;li&gt;($funcPickStay: &quot;Stay at the caravanserai, where all the traders and travelers do.&quot;, &quot;Rokhab Caravanserai&quot;)
-&lt;li&gt;($funcPickStay: &quot;Slum it in an alleyway, between the warehouses and the dock.&quot;, &quot;Rokhab Vagrant Camp&quot;)</tw-passagedata><tw-passagedata pid="297" name="Test H Rokhab" tags="test" position="1125,5075" size="100,100">{=
+&lt;li&gt;($funcPickStay: &quot;Slum it in an alleyway, between the warehouses and the dock.&quot;, &quot;Rokhab Vagrant Camp&quot;)</tw-passagedata><tw-passagedata pid="299" name="Test H Rokhab" tags="test" position="1125,5075" size="100,100">{=
 
 (storylet: when
 (passage:)&#39;s name is &quot;Traveling&quot;
@@ -12313,7 +12837,7 @@ You&#39;ve arrived in Rokhab. Disembark?
 &lt;ol&gt;
 &lt;li&gt;($funcArrive: &quot;Get settled in Rokhab&quot;, &quot;Test H PickStay&quot;)&lt;!--[[Test H PickStay]]--&gt;
 &lt;li&gt;(link-rerun: &quot;Not yet&quot;)[(goto: &quot;Traveling&quot;)]
-&lt;/ol&gt;</tw-passagedata><tw-passagedata pid="298" name="Test H" tags="" position="975,5100" size="100,100">{=
+&lt;/ol&gt;</tw-passagedata><tw-passagedata pid="300" name="Test H" tags="" position="975,5100" size="100,100">{=
 
 (metadata: &quot;title&quot;, &quot;Test H (traveling)&quot;)
 
@@ -12333,7 +12857,7 @@ Now, let&#39;s travel from here ((print: $place&#39;s location)) to...
 &lt;li&gt;($funcDepart: &quot;The fishing village of Rokhab.&quot;, &quot;Rokhab&quot;)
 &lt;li&gt;($funcDepart: &quot;The ruins of Navveh.&quot;, &quot;Navveh&quot;)
 &lt;li&gt;($funcDepart: &quot;The mysterious land known only as &#39;test location&#39;.&quot;, &quot;test&quot;)
-&lt;/ul&gt;</tw-passagedata><tw-passagedata pid="299" name="Test I" tags="" position="975,5400" size="100,100">{=
+&lt;/ul&gt;</tw-passagedata><tw-passagedata pid="301" name="Test I" tags="" position="975,5400" size="100,100">{=
 
 (metadata: &quot;title&quot;, &quot;Test I (navigating sublocations)&quot;)
 
@@ -12352,7 +12876,7 @@ Sublocations in Apesai:
 Set knowledge:
 &lt;li&gt;(link-rerun: &quot;I know where the Lighthouse is.&quot;)[($funcGainLoss: &quot;att.&quot;, &quot;knowApesaiLighthouse&quot;, 1, )(redirect: (passage:)&#39;s name)]
 &lt;li&gt;(link-rerun: &quot;I learn a bit about the Yavanid quarter.&quot;)[($funcGainLoss: &quot;att.&quot;, &quot;knowApesaiPleasure&quot;, 1, )(redirect: (passage:)&#39;s name)]
-&lt;/ul&gt;</tw-passagedata><tw-passagedata pid="300" name="Test J" tags="" position="975,5550" size="100,100">{=
+&lt;/ul&gt;</tw-passagedata><tw-passagedata pid="302" name="Test J" tags="" position="975,5550" size="100,100">{=
 
 (metadata: &quot;title&quot;, &quot;Test J (NPCs)&quot;)
 
@@ -12402,15 +12926,15 @@ Set knowledge:
         &lt;br&gt;
     ]\
 ]]
-&lt;/details&gt;</tw-passagedata><tw-passagedata pid="301" name="Test K Fail" tags="" position="1100,5800" size="100,100">{=
+&lt;/details&gt;</tw-passagedata><tw-passagedata pid="303" name="Test K Fail" tags="" position="1100,5800" size="100,100">{=
 
 Failure! But you still lost your wounds!? How?
 &lt;br&gt;
-(link: &quot;Back&quot;)[(goto: &quot;Test K&quot;)]</tw-passagedata><tw-passagedata pid="302" name="Test K Success" tags="" position="1100,5675" size="100,100">{=
+(link: &quot;Back&quot;)[(goto: &quot;Test K&quot;)]</tw-passagedata><tw-passagedata pid="304" name="Test K Success" tags="" position="1100,5675" size="100,100">{=
 
 Yay, you lost your wounds!
 &lt;br&gt;
-(link: &quot;Back&quot;)[(goto: &quot;Test K&quot;)]</tw-passagedata><tw-passagedata pid="303" name="Test K" tags="" position="975,5725" size="100,100">{=
+(link: &quot;Back&quot;)[(goto: &quot;Test K&quot;)]</tw-passagedata><tw-passagedata pid="305" name="Test K" tags="" position="975,5725" size="100,100">{=
 
 (metadata: &quot;title&quot;, &quot;Test K (Temps)&quot;)
 
@@ -12433,7 +12957,7 @@ Yay, you lost your wounds!
 
 &lt;li&gt;($funcCheckGate: &quot;Check for 2 wounds&quot;, &quot;temp&quot;, &quot;wound&quot;, 2, true, 50, &quot;Test K Success&quot;, &quot;Test K Fail&quot;)
 
-&lt;/ol&gt;</tw-passagedata><tw-passagedata pid="304" name="Test L" tags="" position="475,3850" size="100,100">(metadata: &quot;title&quot;, &quot;Test L (events)&quot;)
+&lt;/ol&gt;</tw-passagedata><tw-passagedata pid="306" name="Test L" tags="" position="725,3850" size="100,100">(metadata: &quot;title&quot;, &quot;Test L (events)&quot;)
 
 {=
 
@@ -12480,7 +13004,7 @@ $cssColumnChild[
 
 
 ]&lt;!--end child--&gt;
-]&lt;!--end parent--&gt;</tw-passagedata><tw-passagedata pid="305" name="Test M" tags="" position="600,3850" size="100,100">(metadata: &quot;title&quot;, &quot;Test M (reading books)&quot;)
+]&lt;!--end parent--&gt;</tw-passagedata><tw-passagedata pid="307" name="Test M" tags="" position="850,3850" size="100,100">(metadata: &quot;title&quot;, &quot;Test M (reading books)&quot;)
 
 {=
 
