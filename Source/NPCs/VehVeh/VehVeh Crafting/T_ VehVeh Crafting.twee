@@ -258,6 +258,7 @@ $cssDesc[You also receive a ''(print: (passage: "item.vehzin")'s id)'' - standar
 ($funcInnerConvo: $stuff's againChoices)
 <br>
 
+<!--code that eliminates an option and advance the hook name-->
 (set: _editChoices to (macro: str-type _deleteWhich, [(out:)[{
      <!--advance 1 number-->
      (set: $stuff's number to it + 1)

@@ -183,6 +183,7 @@ Sensing a lull in the conversation, Veh-Veh snaps back to life, ["Ah, forget it.
 
 }]<!--end first time-->
 
+
 <!--second time-->
 (elseif: ($funcTalkedTimesCheck: "schoolingApesai") < 2)[{
 
@@ -229,151 +230,181 @@ The two of you talked briefly about her education in Apesai before but got lost 
 
 <!--allEars-->
 [
-["So, where do you think a person's //merit// comes from?"]<VehVehLine|
+["Do you see the children around you?"]<VehVehLine|
 <br>
-The conspiratorial way she asks reminds you of the first time the apprentices started asking each other where babies come from. 
-<br>
-["Or delinquency, malcontent, //loserdom// for that matter. What makes a person successful or a failure?"]<VehVehLine|
-<br>
-<!--initialize opinion tracker-->
-(set: $stuff to it + (dm: "VehVehOpinionMod", 0))
-<!--setup multiple options-->
-(set: $stuff to it + (dm: "whereMerit", (dm:
-	"<!--A-->\"It's simple: Hard work.\"", "hardWork",
-	"<!--B-->\"The wealth and stations of one's parents matter more than one might admit.\"", "parentsMatter",
-	"<!--C-->\"A lamp brightens and a mud pile stains: The types of company one keeps color one's potential.\"", "companyKeep",
-	"<!--D-->\"A positive outlook will cultivate good deeds, and so will a pessimistic outlook breed inaction.\"", "positiveOutlook",
-	"<!--E-->\"The Grace of one's society. A sick society breed sick individuals.\"", "societyGrace",
-)))
-<!--Actual convo-->
-($funcInnerConvo: $stuff's whereMerit + (dm:"<!--F-->\"I don't know. What?\"", "impatient1",))
+<!--continue link-->
+($funcInnerConvo: (dm:
+	"<!--A-->\"I do.\"", "iDo",
+	"<!--B-->\"Hard not to.\"", "iDo",
+	"<!--C-->\"What about them?\"", "iDo",
+))
 <br>
 ](allEars|
 
-
-<!--impatient1-->
-[
-["What do you mean you don't know? Come now, humor me a little,"]<VehVehLine| Veh-Veh continues to insist. ["Dialogues work way better than lectures, so I find."]<VehVehLine| 
+<!--iDo-->
+[It has been quite difficult not to notice the running, screaming, laughing junior apprentices around you. Some stop only momentarily stick out their tongues at Veh-Veh. Most of them have strikingly fair hair, from dirty-straw to silvery-white, and copper-red skin.
 <br>
-($funcInnerConvo: $stuff's whereMerit + (dm:"<!--1-->\"If you have something you want to tell me, just say it. Must you quiz me first?\"", "impatient2",))
-<br>
-](impatient1|
-
-<!--impatient2-->
-[
-["Oh..."]<VehVehLine| Veh-Veh is taken aback by your bluntness. ["Yes, apologies."]<VehVehLine|
-<br>
-<!--hurt feelings-->
-(set: $stuff's VehVehOpinionMod to it - 3)
-<!--convo-->
-($funcInnerConvo: (dm:"<!--A-->\"...\"", "researchTopic2",))
-<br>
-](impatient2|
-
-<!--hardWork-->
-[
-There is no substitute for hardwork, for //labor//. Assembling all the right ingredients is one thing, but without work, if only a spark, all the treasures of the world will stay inert and impotent.
-<br>
-["Certainly, yes, but that's not really answering my question, is it?"]<VehVehLine| Veh-Veh intonates her question and raises her eyebrow. Is she being... pedagogical? ["Hard work is only //one// necessary condition, but it is hardly the origin point.
-<br>
-"The stubborn tortoise might win the race, but no-one ever doubts that the hare //is// fast. Is that not the hare's merit? The hare can be made to work hard, but the tortoise cannot run any quicker than what its nature has determined."]<VehVehLine|
+["Many teachers think they are a 'lost cause'. Whenever there's a faculty meeting, at least one teacher will bring up how we ought to suspend our recruitment drives since the school cannot afford to 'babysit' the natives' children, and most 'don't come to fruition'. I fill in as the recorder whenever the attendants are broken, so I've heard a lot of such talk,"]<VehVehLine| she sighs.
 <br>
 ($funcInnerConvo: (dm:
-	"<!--A-->\"So you believe that merit is a matter of innate ability? That is a metaphysical landmine, Veh-Veh.\"", "researchTopic",
+	"<!--A-->\"It's not the children's fault that their betters cannot adequately serve them.\"", "notFault",
+	"<!--B-->\"Do you not think your teachers have a point? A magus's training is not for everyone.\"", "notForEveryone",
+	"<!--C-->\"The Apesai school is strained, and they can only save so many children.\"", "saveSoMany",
 ))
 <br>
-](hardWork|
+](iDo|
 
-<!--parentsMatter-->
+<!--notFault-->
 [
-The aristocracy will always stand a better chance at having at least one of their ten, twelve, twenty scions attending a major university, appointed to one council or another, leading a battalion, being granted an estate, and so on, much more so than a merchant's child. And in turn, the merchant's child will have better odds than a peasant's child does, and so on.
-<br>
-["Close, yes, but why stop there?"]<VehVehLine| Veh-Veh smiles, trying to be encouraging. ["If the circumstances of one's birth is a matter of luck, then what dice is rolled prior to that beginning? Surely, such a dice - metaphorical or otherwise - //is// the true origin point."]<VehVehLine|
+["It's not anyone's fault, and not my teachers' fault either,"]<VehVehLine| she says, quite defensively. ["The sad reality is that there is only so many rial to go around, so many mouths to feed, to clothe, to shelter. I don't blame them if they want the best to receive the best, but I will blame them for not trying."]<VehVehLine|
 <br>
 ($funcInnerConvo: (dm:
-	"<!--A-->\"This is getting a bit too metaphysical for a serious scholar.\"", "researchTopic",
+	"\"I see...\"", "iSee",
 ))
 <br>
-](parentsMatter|
+](notFault|
 
-<!--companyKeep-->
+<!--notForEveryone-->
 [
-We are an amalgamation of everyone we have ever met, face-to-face or otherwise. We cannot help it if our friends give us bad advice, or if our teachers teach us the wrong lessons. However, we //are// able to curate who has our ears and hearts. Social hygiene is as much our own responsibility as personal hygiene is.
-<br>
-["Yes, and how do you suppose we select our company?"]<VehVehLine| She asks, but her smile indicates that she already has the answer. ["Or rather, whichever method we use, we must have learned it from someone else. The younger one gets, thed less capable one is at making such choices.
-<br>
-"Children are creatures of instinct and temperament. All of their friends are fair weather ones. It seems that something else more originary has already decided //for// them which way the winds will blow, and toward whom they will sway."]<VehVehLine|
+["It's true, but for //whom//? The scions of nobility? They can afford tutors anyway. Why have a school out in the frontier if we're not giving the people here the best chance for a future? Just think about how many bright and promising Askavan children will lose out if we stop our recruitment drive. I know it's not the school's fault, but it shouldn't come to that."]<VehVehLine|
 <br>
 ($funcInnerConvo: (dm:
-	"<!--A-->\"Are you talking about destiny? A serious scholar should not fall into the trap of metaphysics.\"", "researchTopic",
+	"\"I suppose...\"", "iSee",
 ))
 <br>
-](companyKeep|
+](notForEveryone|
 
-<!--positiveOutlook-->
+<!--saveSoMany-->
 [
-If one believes that the Sun //will// rise tomorrow, that things //will// change for the better, that one //will// make it after all, it will neither change the movements of heavenly bodies, nor will life suddenly shift in one's favor. However, //not// believing in these things will guarantee that one does not act upon that which is within one's control. You once heard someone calling this axiom "The Optimist's Wager". It's true: Only optimists gamble.
-<br>
-["Hmm, yes, optimists do tend to act in ways that accumulate merit, so claims some of the more, heh, //pedestrian// pamphlets out there,"]<VehVehLine| she chuckles. ["But is it not the other way around? That people tend to become optimistic due to their success? Chicken or egg? A solely internal attribution will only take us in circles.
-<br>
-"The way to break out of that circular logic is to identify an origin point that is truly outside of one's self. And I mean //truly// outside."]<VehVehLine|
+["Yes, that is the pragmatic way of seeing things, and I agree. It's not the school's fault, but I cannot help but feel like we - and by that, I mean us imperials - are losing sight of our mission here. Aren't we supposed bring enlightenment? Stars are not so stingy with their light, so why must we? Is Askava not //a// dahak of the Greatest Empire to Ever Exist? I sympathize with having to be selective, but it's unthinkable to suspend the program altogether."]<VehVehLine|
 <br>
 ($funcInnerConvo: (dm:
-	"<!--A-->\"Why do I feel like you're not just talking about their immediate environment? You don't mean something metaphysical, do you?\"", "researchTopic",
+	"\"I suppose...\"", "iSee",
 ))
 <br>
-](positiveOutlook|
+](saveSoMany|
 
-<!--societyGrace-->
+<!--iSee-->
 [
-Society is the mold into which we fit. If the mold is crooked, then we can hardly be straight. Power corrupts, and poverty mangles. One's merit is less of a matter of personal virtue and much more a matter of victimhood - less of, more of, always some.
+In your university, only one in every five students makes it all the way through their twelve years. The remaining majority drop out to help out with their family business, or to serve their parents' courts, or to go on adventures. You can hardly imagine where these native children would go if they fail to graduate. Back to their villages out in the desert? Or to the Apesai streets?
 <br>
-["Hmm, close. We might conversely say that a civilization's or culture's merit can rub off on its denizens,"]<VehVehLine| she says, not entirely convinced. ["But I wonder, //where// does a civilization's merit come from? In the Grace of its emperor? But emperors, light blesses, are crowned by that society. Very circular.
-<br>
-"The way to break out of that circular logic is to identify an origin point that is truly outside of the individual and their society. There is something like a law, only higher."]<VehVehLine| 
+Then, Veh-Veh turns to look at you and says, ["For my capstone project, I'd like to do something about the matter. For the children and the school, before I leave it."]<VehVehLine|
 <br>
 ($funcInnerConvo: (dm:
-	"<!--A-->\"I know where this is going. I've sat in one too many metaphysics classes.\"", "researchTopic",
+	"<!--A-->\"And what would that be?\"", "researchProject",
 ))
 <br>
-](societyGrace|
+](iSee|
 
-
-<!--researchTopic-->
+<!--researchProject-->
 [
-["Oh no, no metaphysics at all. Rather, science,"]<VehVehLine| she says quite proudly.` `(show:?researchTopic2)
-](researchTopic|
+["A better way to detect talent. Better selection pool, so that the school can make the most out of its resources,"]<VehVehLine| she explains. ["I'm training to be an astrologian - a eudaimonian one. Divination has been used as a form of early aptitude screening in major universities. It's an obvious and necessary procedure."]<VehVehLine|
+<br>
+If you are not mistaken, divination had a role in your own admittance many years ago, although the administrators will never tell their students that.
+<br>
+<!--initialize $stuff's number-->
+(set: $stuff to it + (dm: "number", 1))
+<!--initialize convo options-->
+(set: $stuff to it + (dm: "proposalQuestions", (dm:
+	"<!--A-->\"Shouldn't the Apesai school already have something like that?\"", "alreadyHave" + (str:$stuff's number),
+	"<!--B-->\"And what does this project entail?\"", "herPlan" + (str:$stuff's number),
+	"<!--C-->\"Have you proposed this to the school council?\"", "proposeCouncil" + (str:$stuff's number),
+	"<!--D-->\"Screenings, selections... Shouldn't a school with a civlizing mission be for all natives? This doesn't sound very inclusive.\"", "notInclusive" + (str:$stuff's number),
+	"<!--E-->\"That's nice, Veh-Veh. I bid you good luck with that project.\"", "bidLuck",
+)))
+($funcInnerConvo: $stuff's proposalQuestions)
+<br>
 
-<!--researchTopic2-->
-[["Do you see the children around you?"]<VehVehLine|
-<br>
-<!--clear $stuff's whereMerit-->
-(move: $stuff's whereMerit into _trash)
-<!--continue link-->
-<br>
-($funcInnerConvo: (dm:
-	"<!--A-->\"I do.\"", "researchTopic3",
+<!--code that eliminates an option and advance the hook name-->
+(set: _editChoices to (macro: str-type _deleteWhich, [(out:)[{
+	<!--advance 1 number-->
+	(set: $stuff's number to it + 1)
+	<!--edit destination number-->
+	(for: each _question, ...(datanames: $stuff's proposalQuestions))[
+		<!--edit-->
+		(unless: $stuff's proposalQuestions's _question contains "bidLuck")[
+			(set: $stuff's proposalQuestions to it + (dm: _question, (trimmed: digit, $stuff's proposalQuestions's _question)))
+			(set: $stuff's proposalQuestions's _question to it + (str: $stuff's number))
+		]
+		<!--delete-->
+		(if: $stuff's proposalQuestions's _question contains _deleteWhich)[(move: $stuff's proposalQuestions's _question into _trash)]
+	]<!--end loop-->
+	<!--update-->
+    (set: $stuff's proposalQuestions to $stuff's proposalQuestions)
+}]]))
+
+(set: _talkHooks to (dm:
+     "alreadyHave", "_alreadyHave",
+     "herPlan", "_herPlan",
+	 "proposeCouncil", "_proposeCouncil",
+	 "notInclusive", "_notInclusive",
 ))
-<br>
-](researchTopic2|
 
-<!--researchTopic3-->
-[It has been quite difficult not to notice the running, screaming, laughing junior apprentices around you. Some stop only momentarily stick out their tongues at you. Most of them have strikingly fair hair, from dirty-straw to silvery-white, and copper-red skin.
-<br>
-["Many teachers think they are a 'lost cause'. Whenever there's a faculty meeting, at least one teacher will bring up how we ought to cut back on our recruitment drives since the school cannot afford to 'babysit' the natives' children, and most 'don't come to fruition'. I fill in as the recorder whenever the attendants are broken, so I've heard a lot of such talk,"]<VehVehLine| she sighs.
-<br>
-($funcInnerConvo: (dm:
-	"\"...\"", "researchTopic4",
-))
-<br>
-](researchTopic3|
+<!--create hooks-->
+(for: each _round, ...(range: 1, (datanames: $stuff's proposalQuestions)'s length - 1) )[
+     (for: each _talkChoice, ...(datanames: _talkHooks))[{
+          (hidden:)+(hook: _talkChoice + (str:_round))[
+          <!--perform edit-->
+          (_editChoices: _talkChoice)
+          <!--display text-->
+          (print: _talkHooks's _talkChoice)
+          ]<!--end hook-->
+     }]
+]
 
-<!--researchTopic4-->
+<!--alreadyHave-->
+(set: _alreadyHave to [{
+["We used to, according to the older faculties. But that was so long ago; I'm talking //Second-Colony// long. When Kesh took over Apesai, they stole a lot from the tower. Destroyed them, likely. We don't even have a record of the native clans. Everything must be built again from scratch. I think of it as me doing my part in the Reclamation."]<VehVehLine|
+<br>
+($funcInnerConvo: $stuff's proposalQuestions)
+<br>
+}])<!--end alreadyHave-->
+
+
+<!--herPlan-->
+(set: _herPlan to [{
+["Oh, let's see... I should begin by building a genealogy of the clans of Askava - we need to know who is where first. And then, there's the matter of a local sky chart, including comets. All the imported stuff is out of date. And then... Oh, the more I talk about it, the more the list grows."]<VehVehLine|
+<br>
+($funcInnerConvo: $stuff's proposalQuestions)
+<br>
+}])<!--end herPlan-->
+
+
+<!--proposeCouncil-->
+(set: _proposeCouncil to [{
+["I have. In fact, it was the principal - my mentor - who have put me onto this track. I only had a vague idea at first, but he thought it'd be best if I did this prior to journeying. Though he's no astrologer, school matters are very much //his// domain. It's only fitting that the assistant - me - picks up the work. One stone for two birds, I suppose. He also happened to be the chairman of the council, so no-one else challenged my proposal."]<VehVehLine|
+<br>
+($funcInnerConvo: $stuff's proposalQuestions)
+<br>
+}])<!--end proposeCouncil-->
+
+
+<!--notInclusive-->
+(set: _notInclusive to [{
+["Oh, I know that,"]<VehVehLine| she says, crossing her arms. ["But the way I see it, the children needs a place that best fits them also. It is of little value to confine a child here if they would do better elsewhere. Plus, having a school here is already a gaint step in including the faraway peoples of Askava into Nurandah. We have to start somewhere, and that somewhere should be the very best first. It'll buy the school some time, recognition, and funding to be... charitable later."]<VehVehLine|
+<br>
+($funcInnerConvo: $stuff's proposalQuestions)
+<br>
+}])<!--end notInclusive-->
+
+](researchProject|
+
+
+<!--bidLuck-->
 [
-In your university, about one in every twenty students makes it all through their twelve years. Most of them drop out to help out with their family business, or to serve their parents' courts, or to go on adventures. You can hardly imagine where these native children would go if they fail to graduate. Back to their villages out in the desert? Or to the Apesai streets?
+["Thank you,"]<VehVehLine| Veh-Veh chuckles. ["I'll need all the luck I can get. Who knows, maybe it'll be a good stepping stone into my journeying later... Although, I don't see how this stuff can end up producing a Sacred Opal. Some disciplines are just at a disadvantage, I suppose. Oh, I should stop worrying! I always get so far ahead of myself."]<VehVehLine|
 <br>
-Then, Veh-Veh turns to look at you and says, ["For my capstone project, I'd like to do something, you know, for the children. For the school, too, before I leave it."]<VehVehLine|
-](researchTopic4|
+She buries her face in her hands, clearly unable to stop thinking.
+<br>
+(if: $char's VehVeh's energy's 1st > 0)[["Maybe I shouldn't say much more until I've actually done something. Anyways, is there something //else// you wanted to talk about?"]<VehVehLine|]
+(else:)[["Actually, I probably need to get back work too,"]<VehVehLine| she points a thumb at some indeterminate thing behind her. ["Haha, see? If I just talk, I won't actually //do// anything."]<VehVehLine|]
+<!--clear $stuff-->
+(set: $stuff to (dm:))
+(set: _busyText to "Veh-Veh seems like she has more to say on the matter, but she's done talking for the day.")
+(set: _goodbyeText to "\"For what it's worth, thanks for sharing, Veh-Veh. Goodbye.\"")
+(show:?done)
+<br>
+](bidLuck|
 
 }]<!--end of second time-->
 
