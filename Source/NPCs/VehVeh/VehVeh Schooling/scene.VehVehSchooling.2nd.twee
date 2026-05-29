@@ -1,0 +1,222 @@
+:: scene.VehVehSchooling.2nd
+
+{=
+
+The two of you talked briefly about her education in Apesai before but got lost in the weeds before getting to anything of substance.
+<br>
+["Oh that's right, my capstone research!"]<VehVehLine| Veh-Veh lights up, but just as quickly, the light fades. ["I... I shouldn't be talking about plans that are going nowhere."]<VehVehLine|
+<br>
+($funcInnerConvo: (dm:
+	"<!--A-->\"Why not? I thought you wanted to discuss it.\"", "whyNot",
+	"<!--B-->\"Trust me, from one scholar to another: Talking about it helps.\"", "talkingHelps",
+	"<!--C-->\"So what //can// you talk about?\"", "canTalk",
+))
+<br>
+
+<!--whyNot-->
+[
+["It's embarrassing. My enthusiasm gets ahead of me sometimes,"]<VehVehLine| she sighs. ["But well, I brought it up before. Suppose it wouldn't hurt."]<VehVehLine|
+<br>
+($funcInnerConvo: (dm:
+	"<!--A-->\"I'm all ears.\"", "allEars",
+))
+<br>
+](whyNot|
+
+<!--talkingHelps-->
+[
+["But then if I talk about it too much, I might lose all motivation to keep going,"]<VehVehLine| she sighs. ["But well, I brought it up before. Suppose I can talk //moderately// about it."]<VehVehLine|
+<br>
+($funcInnerConvo: (dm:
+	"<!--A-->\"I'm all ears.\"", "allEars",
+))
+<br>
+](talkingHelps|
+
+<!--canTalk-->
+[
+["I can tell about my specialization. Then again... I'll have to talk about the //what// and //why// of it,"]<VehVehLine| she sighs. ["Oh well, I brought it up before. No use avoiding it. Forgive me if there are gaps in my knowledge, alright?"]<VehVehLine|
+<br>
+($funcInnerConvo: (dm:
+	"<!--A-->\"Alright.\"", "allEars",
+))
+<br>
+](canTalk|
+
+<!--allEars-->
+[
+["Do you see the children around you?"]<VehVehLine|
+<br>
+<!--continue link-->
+($funcInnerConvo: (dm:
+	"<!--A-->\"I do.\"", "iDo",
+	"<!--B-->\"Hard not to.\"", "iDo",
+	"<!--C-->\"What about them?\"", "iDo",
+))
+<br>
+](allEars|
+
+<!--iDo-->
+[It has been quite difficult not to notice the running, screaming, laughing junior apprentices around you. Some stop only momentarily stick out their tongues at Veh-Veh. Most of them have strikingly fair hair, from dirty-straw to silvery-white, and copper-red skin.
+<br>
+["Many teachers think they are a 'lost cause'. Whenever there's a faculty meeting, at least one teacher will bring up how we ought to suspend our recruitment drives since the school cannot afford to 'babysit' the natives' children, and most 'don't come to fruition'. I fill in as the recorder whenever the attendants are broken, so I've heard a lot of such talk,"]<VehVehLine| she sighs.
+<br>
+($funcInnerConvo: (dm:
+	"<!--A-->\"It's not the children's fault that their betters cannot adequately serve them.\"", "notFault",
+	"<!--B-->\"Do you not think your teachers have a point? A magus's training is not for everyone.\"", "notForEveryone",
+	"<!--C-->\"The Apesai school is strained, and they can only save so many children.\"", "saveSoMany",
+))
+<br>
+](iDo|
+
+<!--notFault-->
+[
+["It's not anyone's fault, and not my teachers' fault either,"]<VehVehLine| she says, quite defensively. ["The sad reality is that there is only so many rial to go around, so many mouths to feed, to clothe, to shelter. I don't blame them if they want the best to receive the best, but I will blame them for not trying."]<VehVehLine|
+<br>
+($funcInnerConvo: (dm:
+	"\"I see...\"", "iSee",
+))
+<br>
+](notFault|
+
+<!--notForEveryone-->
+[
+["It's true, but for //whom//? The scions of nobility? They can afford tutors anyway. Why have a school out in the frontier if we're not giving the people here the best chance for a future? Just think about how many bright and promising Askavan children will lose out if we stop our recruitment drive. I know it's not the school's fault, but it shouldn't come to that."]<VehVehLine|
+<br>
+($funcInnerConvo: (dm:
+	"\"I suppose...\"", "iSee",
+))
+<br>
+](notForEveryone|
+
+<!--saveSoMany-->
+[
+["Yes, that is the pragmatic way of seeing things, and I agree. It's not the school's fault, but I cannot help but feel like we - and by that, I mean us imperials - are losing sight of our mission here. Aren't we supposed bring enlightenment? Stars are not so stingy with their light, so why must we? Is Askava not //a// dahak of the Greatest Empire to Ever Exist? I sympathize with having to be selective, but it's unthinkable to suspend the program altogether."]<VehVehLine|
+<br>
+($funcInnerConvo: (dm:
+	"\"I suppose...\"", "iSee",
+))
+<br>
+](saveSoMany|
+
+<!--iSee-->
+[
+In your university, only one in every five students makes it all the way through their twelve years. The remaining majority drop out to help out with their family business, or to serve their parents' courts, or to go on adventures. You can hardly imagine where these native children would go if they fail to graduate. Back to their villages out in the desert? Or to the Apesai streets?
+<br>
+Then, Veh-Veh turns to look at you and says, ["For my capstone project, I'd like to do something about the matter. For the children and the school, before I leave it."]<VehVehLine|
+<br>
+($funcInnerConvo: (dm:
+	"<!--A-->\"And what would that be?\"", "researchProject",
+))
+<br>
+](iSee|
+
+<!--researchProject-->
+[
+["A better way to detect talent. Better selection pool, so that the school can make the most out of its resources,"]<VehVehLine| she explains. ["I'm training to be an astrologian - a eudaimonian one. Divination has been used as a form of early aptitude screening in major universities. It's an obvious and necessary procedure."]<VehVehLine|
+<br>
+If you are not mistaken, divination had a role in your own admittance many years ago, although the administrators will never tell their students that.
+<br>
+<!--initialize $stuff's number-->
+(set: $stuff to it + (dm: "number", 1))
+<!--initialize convo options-->
+(set: $stuff to it + (dm: "proposalQuestions", (dm:
+	"<!--A-->\"Shouldn't the Apesai school already have something like that?\"", "alreadyHave" + (str:$stuff's number),
+	"<!--B-->\"And what does this project entail?\"", "herPlan" + (str:$stuff's number),
+	"<!--C-->\"Have you proposed this to the school council?\"", "proposeCouncil" + (str:$stuff's number),
+	"<!--D-->\"Screenings, selections... Shouldn't a school with a civlizing mission be for all natives? This doesn't sound very inclusive.\"", "notInclusive" + (str:$stuff's number),
+	"<!--E-->\"That's nice, Veh-Veh. I bid you good luck with that project.\"", "bidLuck",
+)))
+($funcInnerConvo: $stuff's proposalQuestions)
+<br>
+
+<!--code that eliminates an option and advance the hook name-->
+(set: _editChoices to (macro: str-type _deleteWhich, [(out:)[{
+	<!--advance 1 number-->
+	(set: $stuff's number to it + 1)
+	<!--edit destination number-->
+	(for: each _question, ...(datanames: $stuff's proposalQuestions))[
+		<!--edit-->
+		(unless: $stuff's proposalQuestions's _question contains "bidLuck")[
+			(set: $stuff's proposalQuestions to it + (dm: _question, (trimmed: digit, $stuff's proposalQuestions's _question)))
+			(set: $stuff's proposalQuestions's _question to it + (str: $stuff's number))
+		]
+		<!--delete-->
+		(if: $stuff's proposalQuestions's _question contains _deleteWhich)[(move: $stuff's proposalQuestions's _question into _trash)]
+	]<!--end loop-->
+	<!--update-->
+    (set: $stuff's proposalQuestions to $stuff's proposalQuestions)
+}]]))
+
+(set: _talkHooks to (dm:
+     "alreadyHave", "_alreadyHave",
+     "herPlan", "_herPlan",
+	 "proposeCouncil", "_proposeCouncil",
+	 "notInclusive", "_notInclusive",
+))
+
+<!--create hooks-->
+(for: each _round, ...(range: 1, (datanames: $stuff's proposalQuestions)'s length - 1) )[
+     (for: each _talkChoice, ...(datanames: _talkHooks))[{
+          (hidden:)+(hook: _talkChoice + (str:_round))[
+          <!--perform edit-->
+          (_editChoices: _talkChoice)
+          <!--display text-->
+          (print: _talkHooks's _talkChoice)
+          ]<!--end hook-->
+     }]
+]
+
+<!--alreadyHave-->
+(set: _alreadyHave to [{
+["We used to, according to the older faculties. But that was so long ago; I'm talking //Second-Colony// long. When Kesh took over Apesai, they stole a lot from the tower. Destroyed them, likely. We don't even have a record of the native clans. Everything must be built again from scratch. I think of it as me doing my part in the Reclamation."]<VehVehLine|
+<br>
+($funcInnerConvo: $stuff's proposalQuestions)
+<br>
+}])<!--end alreadyHave-->
+
+
+<!--herPlan-->
+(set: _herPlan to [{
+["Oh, let's see... I should begin by building a genealogy of the clans of Askava - we need to know who is where first. And then, there's the matter of a local sky chart, including comets. All the imported stuff is out of date. And then... Oh, the more I talk about it, the more the list grows."]<VehVehLine|
+<br>
+($funcInnerConvo: $stuff's proposalQuestions)
+<br>
+}])<!--end herPlan-->
+
+
+<!--proposeCouncil-->
+(set: _proposeCouncil to [{
+["I have. In fact, it was the principal - my mentor - who have put me onto this track. I only had a vague idea at first, but he thought it'd be best if I did this prior to journeying. Though he's no astrologer, school matters are very much //his// domain. It's only fitting that the assistant - me - picks up the work. One stone for two birds, I suppose. He also happened to be the chairman of the council, so no-one else challenged my proposal."]<VehVehLine|
+<br>
+($funcInnerConvo: $stuff's proposalQuestions)
+<br>
+}])<!--end proposeCouncil-->
+
+
+<!--notInclusive-->
+(set: _notInclusive to [{
+["Oh, I know that,"]<VehVehLine| she says, crossing her arms. ["But the way I see it, the children needs a place that best fits them also. It is of little value to confine a child here if they would do better elsewhere. Plus, having a school here is already a gaint step in including the faraway peoples of Askava into Nurandah. We have to start somewhere, and that somewhere should be the very best first. It'll buy the school some time, recognition, and funding to be... charitable later."]<VehVehLine|
+<br>
+($funcInnerConvo: $stuff's proposalQuestions)
+<br>
+}])<!--end notInclusive-->
+
+](researchProject|
+
+
+<!--bidLuck-->
+[
+["Thank you,"]<VehVehLine| Veh-Veh chuckles. ["I'll need all the luck I can get. Who knows, maybe it'll be a good stepping stone into my journeying later... Although, I don't see how this stuff can end up producing a Sacred Opal. Some disciplines are just at a disadvantage, I suppose. Oh, I should stop worrying! I always get so far ahead of myself."]<VehVehLine|
+<br>
+She buries her face in her hands, clearly unable to stop thinking.
+<br>
+(if: $char's VehVeh's energy's 1st > 0)[["Maybe I shouldn't say much more until I've actually done something. Anyways, is there something //else// you wanted to talk about?"]<VehVehLine|]
+(else:)[["Actually, I probably need to get back work too,"]<VehVehLine| she points a thumb at some indeterminate thing behind her. ["Haha, see? If I just talk, I won't actually //do// anything."]<VehVehLine|]
+<!--clear $stuff-->
+(set: $stuff to (dm:))
+(set: _busyText to "Veh-Veh is anxious about getting back to work.")
+(set: _goodbyeText to "\"For what it's worth, thanks for sharing, Veh-Veh. Goodbye.\"")
+(show:?done)
+<br>
+](bidLuck|

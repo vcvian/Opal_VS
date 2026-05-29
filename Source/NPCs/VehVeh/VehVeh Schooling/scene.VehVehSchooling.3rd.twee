@@ -1,0 +1,225 @@
+:: scene.VehVehSchooling.3rd
+{=
+
+Last time, Veh-Veh shared that she was looking into ways to use divination to improve the school's recruitment method and cut down on... misses.
+<br>
+["Oh, that? Uhm, I must disappoint you, but there hasn't been any significant progress. I'm still caught up between my chores and the classes that I'm filling in for my teachers,"]<VehVehLine| she sighs. ["However, I'm glad //someone// still remembers, heh."]<VehVehLine|
+<br>
+($funcInnerConvo: (dm:
+	"<!--A-->\"Of course I remember.\"", "ofCourseRemember",
+	"<!--B-->\"That's a shame. Couldn't you get some of the other senior apprentices to help out?\"", "otherApprentices",
+))
+<br>
+
+<!--ofCourseRemember-->
+[
+["Not a matter of course as you'd like to think,"]<VehVehLine| she chuckles, full of irony. ["Maybe it's irrational, but I have this worry that when when my teachers return, and they will have forgotten all about this little project they assigned me."]<VehVehLine|
+<br>
+($funcInnerConvo: (dm:
+	"<!--A-->\"I don't know about irrational, but it's at least unfounded.\"", "atLeastUnfounded",
+    "<!--B-->\"It's that bad, huh?\"", "thatBad",
+))
+<br>
+](ofCourseRemember|
+
+
+<!--atLeastUnfounded-->
+[
+["Is it though? I once thought I'd graduate early, but then, look at me now,"]<VehVehLine| she points to her forehead, where the apprentice's star still sits.
+<br>
+($funcInnerConvo: (dm:
+	"<!--A-->\"It'll get better. You'll go far.\"", "veryQuaint",
+    "<!--B-->\"...\"", "veryQuaint",
+))
+<br>
+](atLeastUnfounded|
+
+
+<!--thatBad-->
+[
+["Sometimes, yeah,"]<VehVehLine| she adjusts her cap and clears her throat. ["They care. They really do. It's just my mind, not necessarily how the teachers are. I hope."]<VehVehLine|
+<br>
+($funcInnerConvo: (dm:
+	"<!--A-->\"You //should// hope. Mind makes matter - don't forget.\"", "mindMakesMatter",
+    "<!--B-->\"It's not your fault that you're made to feel this way.\"", "notYourFault",
+))
+<br>
+](thatBad|
+
+
+<!--mindMakesMatter-->
+[
+["Yeah, every child knows that... Still, circumstances can make a mind."]<VehVehLine|
+<br>
+($funcInnerConvo: (dm:
+	"<!--A-->\"Just trying to help.\"", "veryQuaint",
+    "<!--B-->\"...\"", "veryQuaint",
+))
+<br>
+](mindMakesMatter|
+
+
+<!--notYourFault-->
+[
+["Being able to blame someone else doesn't make it any less of a problem for me, though."]<VehVehLine|
+<br>
+($funcInnerConvo: (dm:
+	"<!--A-->\"I suppose...\"", "veryQuaint",
+    "<!--B-->\"Just trying to help.\"", "veryQuaint",
+))
+<br>
+](notYourFault|
+
+
+<!--otherApprentices-->
+[
+["//Those// guys? Pff! No, actually, I should be fair. After me, the next oldest full-time apprentice is fifteen. And he doesn't speak Nurango all that well, so I prefer to just leave him be."]<VehVehLine|
+<br>
+($funcInnerConvo: (dm:
+	"<!--B-->\"And what about the part-timers?\"", "partTimers",
+    "<!--A-->\"A native, I see. Oh well, just trying to think of ideas.\"", "veryQuaint",
+))
+<br> 
+](otherApprentices|
+
+
+<!--partTimers-->
+[
+["Ah, those can get old. Really old. They're mostly wealthy imperial patrons who show up for the odd classes, mostly on laws and commerce. They can hardly be asked to do homework, let alone chores. Their tuition is a good source of revenue, and some of them //are// nice, but... well..."]<VehVehLine| she trails off.
+<br>
+($funcInnerConvo: (dm:
+	"<!--A-->\"I understand.\"", "veryQuaint",
+))
+<br>
+](partTimers|
+
+
+<!--veryQuaint-->
+[
+["Please don't think I'm being ungrateful. I know you're thinking of ways to help, but I can't help but feel like this is all very quaint to you. It must be. What a contrast it makes, going from a full-fledged university in the heartlands to this... nowhere of a place."]<VehVehLine|
+<br>
+($funcInnerConvo: (dm:
+	"<!--A-->\"Don't be so harsh.\"", "soHarsh",
+    "<!--B-->\"There's value in quaintness.\"", "valueQuaintness",
+    "<!--C-->\"Yeah, I admit: it is a little unfamiliar to me.\"", "unfamiliarToMe",
+))
+<br>
+](veryQuaint|
+
+
+<!--soHarsh-->
+[
+["It's just an observation, and an objective one, too. Sure, I //am// a bit embarrassed that I'm unable to offer a guest little more than complaints, but I'm also at peace with what Askava is, flaws and all,"]<VehVehLine| she says with a smile, this time with no irony.
+<br>
+($funcInnerConvo: (dm:
+	"<!--A-->\"That's good to hear.\"", "lessonAskava",
+    "<!--B-->\"It's wise of you to say that.\"", "lessonAskava",
+))
+<br>
+](soHarsh|
+
+
+<!--valueQuaintness-->
+[
+["There sure is, and that's what I'm trying to learn also. It's this quaintness that I'll miss when I begin my journey in the heartlands,"]<VehVehLine| she says, looking out into the ocean, westward.
+<br>
+($funcInnerConvo: (dm:
+	"<!--A-->\"There's value in all kinds of things.\"", "lessonAskava",
+    "<!--B-->\"If you could make it here, you can make it anywhere.\"", "lessonAskava",
+))
+<br>
+](valueQuaintness|
+
+
+<!--unfamiliarToMe-->
+[
+["Indeed, and yet, here you still are. Unfamiliarity won't strike us down like lightning. Instead, it's like mist: It'll seep into you,"]<VehVehLine| she says with a shudder. ["One can get used to all kinds of things."]<VehVehLine|
+<br>
+You get the feeling that she is talking about herself rather than you.
+<br>
+($funcInnerConvo: (dm:
+	"<!--A-->\"Right.\"", "lessonAskava",
+    "<!--B-->\"And I suppose I'll have to get used to this place.\"", "lessonAskava",
+))
+<br>
+](unfamiliarToMe|
+
+
+<!--lessonAskava-->
+[
+["One way to put it is that it's much more about what you can make of yourself and less what the place can do for you,"]<VehVehLine| she says wistfully. ["Out here in the frontiers, everyone's responsibilities are doubled. So are my teachers', so are mine. We do what we can with what we have. It's a lesson one can't help but learn, living in Askava."]<VehVehLine|
+<br>
+($funcInnerConvo: (dm:
+	"<!--A-->\"A magus must always be resourceful.\"", "beResourceful",
+    "<!--B-->\"I'll try to take it to heart.\"", "toHeart",
+    "<!--C-->\"And that's why we shouldn't overindulge in complaining.\"", "inComplaining",
+))
+<br>
+](lessonAskava|
+
+
+<!--beResourceful-->
+[
+["Oh!"]<VehVehLine| She turns to you, bright-eyed. ["The davehmars told me exactly this when I first moved here to Apesai. I remember now! It's probably because I've always been a complainer, even as a child."]<VehVehLine|
+<br>
+As she thinks about it, Veh-Veh gets progressively pinker and more giggly.
+(show:?whoKidding)
+<br>
+](beResourceful|
+
+
+<!--toHeart-->
+[
+["Oh, erm, was I out of line? I didn't mean to lecture you, journeyman,"]<VehVehLine| she stammers. ["I was only reflecting, for myself. Though I wasn't originally from Askava, I've spent most of my life here. But it has taken me this long to get used to it."]<VehVehLine|
+<br>
+She mulls her own words over, and having digested what she has said, she snickers.
+(show:?whoKidding)
+<br>
+](toHeart|
+
+
+<!--inComplaining-->
+[
+["Yes, that's what I meant, in so many words,"]<VehVehLine| she says sheepishly. ["I used to think that I was very unfortunate to have to move here. But now that I am no longer child, and I no longer remember the heartlands, I'm finding that Askava's hardships to be manageable after all."]<VehVehLine|
+<br>
+She gives it some thought, shakes her head, and snickers.
+(show:?whoKidding)
+<br>
+](inComplaining|
+
+
+<!--whoKidding-->
+[
+["Who am I kidding? I'm in //Apesai//, for crying out loud. Oh Veh-Veh, you have no idea how lucky you are; at least you still have water to drink. This island is like a dream compared to mainland Askava."]<VehVehLine|
+<br>
+Veh-Veh can afford to laugh about it. It is you who will have to endure the mainland.
+<br>
+($funcInnerConvo: (dm:
+	"<!--A-->\"You're right, Veh-Veh.\"", "preDone",
+    "<!--B-->\"Yes, laugh, why don't you.\"", "preDone",
+    "<!--C-->\"...\"", "preDone",
+))
+<br>
+](whoKidding|
+
+
+<!--preDone-->
+[
+["Heh, you asked me about my research, but I just go on and on about my worries. Thank you for listening.` `
+(if: $char's VehVeh's energy's 1st > 0)[
+But enough of that. Let's change the subject.
+<!--set goodbye text-->
+(set: _goodbyeText to "\"Actually, I only wanted to check up on you. Until next time, Veh-Veh. Goodbye.\"")
+]
+(else:)[
+Now, if you don't mind, I really need to get some work done. It is whatever we make of ourselves, right?
+<!--set goodbye text-->
+(set: _goodbyeText to "\"Right. Goodbye, Veh-Veh.\"")
+]
+"]<VehVehLine|
+<!--set busy text-->
+(set: _busyText to "Veh-Veh is anxious about getting back to work.")
+<!--show end-->
+(show: ?done)
+<br>
+](preDone|
