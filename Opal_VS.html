@@ -67,7 +67,7 @@ hr {
   100% {
     background-position: 0% center;
   }
-}</style><script role="script" id="twine-user-script" type="text/twine-javascript"></script><tw-tag name="static-storage" color="yellow"></tw-tag><tw-tag name="storylet" color="blue"></tw-tag><tw-tag name="sublocation" color="green"></tw-tag><tw-tag name="test" color="blue"></tw-tag><tw-tag name="UI" color="orange"></tw-tag><tw-tag name="book" color="yellow"></tw-tag><tw-tag name="footer" color="yellow"></tw-tag><tw-tag name="header" color="yellow"></tw-tag><tw-tag name="traveling" color="purple"></tw-tag><tw-tag name="effect" color="yellow"></tw-tag><tw-tag name="startup" color="orange"></tw-tag><tw-tag name="stay" color="yellow"></tw-tag><tw-tag name="topic" color="purple"></tw-tag><tw-passagedata pid="1" name="AA. Books, Reading &amp; Formulae" tags="startup" position="100,100" size="100,100">{=
+}</style><script role="script" id="twine-user-script" type="text/twine-javascript"></script><tw-tag name="UI" color="orange"></tw-tag><tw-tag name="effect" color="yellow"></tw-tag><tw-tag name="footer" color="yellow"></tw-tag><tw-tag name="header" color="yellow"></tw-tag><tw-tag name="startup" color="orange"></tw-tag><tw-tag name="static-storage" color="yellow"></tw-tag><tw-tag name="test" color="blue"></tw-tag><tw-tag name="topic" color="purple"></tw-tag><tw-tag name="book" color="yellow"></tw-tag><tw-tag name="stay" color="yellow"></tw-tag><tw-tag name="storylet" color="blue"></tw-tag><tw-tag name="sublocation" color="green"></tw-tag><tw-tag name="traveling" color="purple"></tw-tag><tw-passagedata pid="1" name="AA. Books, Reading &amp; Formulae" tags="startup" position="100,100" size="100,100">{=
 &lt;!--Macros related to books and reading--&gt;
 
 (set: $readingNav to (dm:
@@ -7797,12 +7797,12 @@ You commit the procedure to memory. When faced with a magic workstation, you&#39
 
 )</tw-passagedata><tw-passagedata pid="125" name="item.SacredOpalListBook" tags="static-storage" position="600,1600" size="100,100">{=
 (metadata: 
-	&quot;id&quot;, [The Many Sacred Opals and Their Creators],
+	&quot;id&quot;, [The Many Sacred Opals and Their Brilliant Creators],
     &quot;key&quot;, (a: &quot;document&quot;, &quot;book&quot;,),
     &quot;value&quot;, (a: 20, 0, 0, 0, 0, 20,),
     &quot;img&quot;, &quot;https://fallenlondon.wiki/w/images/3/33/Bookbrown.png&quot;,
     &quot;desc&quot;, [A record of the most notable achievements in magical science within the last ten centuries of Nurandah, published by the Bakho University Press. Will your name be in such a book one day?],
-    &quot;tip&quot;, [For some inspirations.],
+    &quot;tip&quot;, [Envy is a form of leisure.],
     &quot;gainText&quot;, [You are sure that you have come across some version of this book before. Books like this can be found on the shelves of every university city, both a source of motivation and envy for all budding magi.],
     &quot;lossText&quot;, [As you part ways with the book, you tell yourself that your name will be listed in the next edition, or the next, or the next.],
     &quot;content&quot;, [{
@@ -7910,9 +7910,7 @@ _e
 &lt;br&gt;
 ],
 
-[&lt;!--4--&gt;
-
-],
+[4],
 
 [5],
 
@@ -7924,10 +7922,13 @@ _e
 
 [9],
 
+[10],
+
 ))
 
+
 [
-(if: $stuff contains &quot;currentEntry&quot;)[(print: $stuff&#39;s currentEntry)]
+(if: $stuff contains &quot;readingOrder&quot;)[(print: _SacredOpal&#39;s ($stuff&#39;s readingOrder&#39;s ($stuff&#39;s readingTurn)))]
 (else:)[$cssDesc[Flip through the book to read the entries.]]
 ]&lt;currentEntry|
 
@@ -7936,14 +7937,27 @@ _e
 ---
 &lt;ol&gt;
 &lt;li&gt;(link-rerun: &quot;Flip to a random entry.&quot;)[{
-    &lt;!--all this code is to make sure that the next random entry isn&#39;t the same as the current one--&gt;
-    &lt;!--initialize $stuff&#39;s currentEntry--&gt;
-    (if: $stuff does not contain &quot;currentEntry&quot;)[(set: $stuff to it + (dm: &quot;currentEntry&quot;, []))]
-    &lt;!--pick next item--&gt;
-    (set: _reading to _SacredOpal)
-    (set: _reading to it - (a: $stuff&#39;s currentEntry))
-    (set: $stuff&#39;s currentEntry to _reading&#39;s random)
-    (replace: ?currentEntry)[{(print: $stuff&#39;s currentEntry)}]
+    &lt;!--all this code is to make sure: (1) At the beginning, there is a randomized but static reading order. (2) Flipping the pages proceed through that order. (3) The book remembers and displays the correct entry even after opening/closing some game menus.--&gt;
+    &lt;!--initialize $stuff (only happens once when begin reading)--&gt;
+    (if: $stuff does not contain &quot;readingOrder&quot;)[{
+        &lt;!--$stuff&#39;s readingOrder--&gt;
+        (set: $stuff&#39;s readingOrder to (shuffled: ...(range: 1, _SacredOpal&#39;s length)))
+        &lt;!--$stuff&#39;s readingTurn--&gt;
+        (set: $stuff&#39;s readingTurn to 0)
+    }]
+    &lt;!--cycle through readingOrder--&gt;
+    (set: $stuff&#39;s readingTurn to it + 1)
+    (if: $stuff&#39;s readingTurn &gt; _SacredOpal&#39;s length)[(set: $stuff&#39;s readingTurn to 1)]
+    &lt;!--print content--&gt;
+    (replace: ?currentEntry)[{(print: _SacredOpal&#39;s ($stuff&#39;s readingOrder&#39;s ($stuff&#39;s readingTurn)))}]
+    &lt;!--scroll up to page&#39;s top--&gt;
+    &lt;script&gt;window.scrollTo(0,0)&lt;/script&gt;
+}]
+&lt;li&gt;(link: &quot;Read the preface again.&quot;)[{
+    &lt;!--clear $stuff--&gt;
+    (set: $stuff to (dm:))
+    &lt;!--refresh--&gt;
+    (redirect: (passage:)&#39;s name)
 }]
 &lt;li&gt;(link: &quot;Put the book away.&quot;)[{
     &lt;!--clear $stuff--&gt;

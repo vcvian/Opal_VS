@@ -1,12 +1,12 @@
 :: item.SacredOpalListBook [static-storage]
 {=
 (metadata: 
-	"id", [The Many Sacred Opals and Their Creators],
+	"id", [The Many Sacred Opals and Their Brilliant Creators],
     "key", (a: "document", "book",),
     "value", (a: 20, 0, 0, 0, 0, 20,),
     "img", "https://fallenlondon.wiki/w/images/3/33/Bookbrown.png",
     "desc", [A record of the most notable achievements in magical science within the last ten centuries of Nurandah, published by the Bakho University Press. Will your name be in such a book one day?],
-    "tip", [For some inspirations.],
+    "tip", [Envy is a form of leisure.],
     "gainText", [You are sure that you have come across some version of this book before. Books like this can be found on the shelves of every university city, both a source of motivation and envy for all budding magi.],
     "lossText", [As you part ways with the book, you tell yourself that your name will be listed in the next edition, or the next, or the next.],
     "content", [{
@@ -114,9 +114,7 @@ _e
 <br>
 ],
 
-[<!--4-->
-
-],
+[4],
 
 [5],
 
@@ -128,10 +126,13 @@ _e
 
 [9],
 
+[10],
+
 ))
 
+
 [
-(if: $stuff contains "currentEntry")[(print: $stuff's currentEntry)]
+(if: $stuff contains "readingOrder")[(print: _SacredOpal's ($stuff's readingOrder's ($stuff's readingTurn)))]
 (else:)[$cssDesc[Flip through the book to read the entries.]]
 ]<currentEntry|
 
@@ -140,14 +141,27 @@ _e
 ---
 <ol>
 <li>(link-rerun: "Flip to a random entry.")[{
-    <!--all this code is to make sure that the next random entry isn't the same as the current one-->
-    <!--initialize $stuff's currentEntry-->
-    (if: $stuff does not contain "currentEntry")[(set: $stuff to it + (dm: "currentEntry", []))]
-    <!--pick next item-->
-    (set: _reading to _SacredOpal)
-    (set: _reading to it - (a: $stuff's currentEntry))
-    (set: $stuff's currentEntry to _reading's random)
-    (replace: ?currentEntry)[{(print: $stuff's currentEntry)}]
+    <!--all this code is to make sure: (1) At the beginning, there is a randomized but static reading order. (2) Flipping the pages proceed through that order. (3) The book remembers and displays the correct entry even after opening/closing some game menus.-->
+    <!--initialize $stuff (only happens once when begin reading)-->
+    (if: $stuff does not contain "readingOrder")[{
+        <!--$stuff's readingOrder-->
+        (set: $stuff's readingOrder to (shuffled: ...(range: 1, _SacredOpal's length)))
+        <!--$stuff's readingTurn-->
+        (set: $stuff's readingTurn to 0)
+    }]
+    <!--cycle through readingOrder-->
+    (set: $stuff's readingTurn to it + 1)
+    (if: $stuff's readingTurn > _SacredOpal's length)[(set: $stuff's readingTurn to 1)]
+    <!--print content-->
+    (replace: ?currentEntry)[{(print: _SacredOpal's ($stuff's readingOrder's ($stuff's readingTurn)))}]
+    <!--scroll up to page's top-->
+    <script>window.scrollTo(0,0)</script>
+}]
+<li>(link: "Read the preface again.")[{
+    <!--clear $stuff-->
+    (set: $stuff to (dm:))
+    <!--refresh-->
+    (redirect: (passage:)'s name)
 }]
 <li>(link: "Put the book away.")[{
     <!--clear $stuff-->
