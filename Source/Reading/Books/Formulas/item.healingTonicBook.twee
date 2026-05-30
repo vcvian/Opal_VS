@@ -5,7 +5,7 @@
     "key", (a: "document", "book", "long",),
     "value", (a: 40, 0, 0, 0, 0, 20,),
     "img", "https://images.fallenlondon.com/icons/book.png",
-    "desc", [This thin monograph, published by the Sisua University Press, contains the instructions to synthesize a liquid suspension of Gor, widely sold as a catch-all medicine. The text is written plainly but assumes that the reader has access to a modern vehzin-powered laboratory. It is probably meant to be a reference book for apprentice magi.],
+    "desc", [This brief compendium, published by the Sisua University Press, contains the instructions to synthesize a liquid suspension of Gor, widely sold as a catch-all medicine. The text is written plainly but assumes that the reader has access to a modern vehzin-powered laboratory. It is probably meant to be a reference book for apprentice magi.],
     "tip", [Study this text to learn the formula for ''(print: (passage: "item.healingTonic")'s id)''($funcLogTip:"item.","healingTonic").],
     "gainText", [You obtain a book - less of a tract and more of a thick pamphlet. Its cover bears the trademark of the Sisua University Press and the universal symbol for elemental Gor, also recognized as a symbol for health.],
     "lossText", [As you part ways with the book, you tell yourself that basic healing tonics are child's play. You - already a graduate - can fare well enough by yourself.],

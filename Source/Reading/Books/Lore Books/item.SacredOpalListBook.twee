@@ -1,0 +1,162 @@
+:: item.SacredOpalListBook [static-storage]
+{=
+(metadata: 
+	"id", [The Many Sacred Opals and Their Creators],
+    "key", (a: "document", "book",),
+    "value", (a: 20, 0, 0, 0, 0, 20,),
+    "img", "https://fallenlondon.wiki/w/images/3/33/Bookbrown.png",
+    "desc", [A record of the most notable achievements in magical science within the last ten centuries of Nurandah, published by the Bakho University Press. Will your name be in such a book one day?],
+    "tip", [For some inspirations.],
+    "gainText", [You are sure that you have come across some version of this book before. Books like this can be found on the shelves of every university city, both a source of motivation and envy for all budding magi.],
+    "lossText", [As you part ways with the book, you tell yourself that your name will be listed in the next edition, or the next, or the next.],
+    "content", [{
+
+<!--elipses-->
+(set: _e to [$cssDesc[`[...]`]])
+
+(set: _SacredOpal to (a:
+[<!--1-->
+In the year 665 AD, ''Farrah of House Mavkhan'', journeying with certification from ''Arokhsar University of Mahzana'', successfully synthesized and defended her first Sacred Opal at the age of twenty nine, earning her the recognition as "master" among her peers.
+<br>
+_e
+<br>
+Having amassed a small fortune, along with a small loan from her mercantile relatives, Farrah-Mavkhan was able to mobilize a force of a fifty alchemists and artificers, paid anywhere from thirty to eighty rials per day's work.
+<br>
+_e
+<br>
+Each collaborator was assigned their own narrow spectrum of the Sacred Opal to synthesize, working side-by-side for two years in a rental warehouse to assemble Farrah-Mavkhan's Sacred Opal.
+<br>
+_e
+<br>
+Five of the original fifty perished in the process - two from laboratory accidents, two from health complications relating to excessive elemental exposure, and one from old age. Still, the team expanded, and by the end, there were close to a hundred collaborators.
+<br>
+_e
+<br>
+Farrah-Mavkhan was not the first to theorize an industrialized approach to Sacred Opal synthesis, but she was the first to put it into practice at such a scale.
+<br>
+_e
+<br>
+Although her model was shown to be economically unsustainable - with the initial capital and subsequent labor cost far exceeding the contemporary relative value of a Sacred Opal - it was an important step in the eventual emergence of modern-day large-scale magical production.
+<br>
+_e
+<br>
+A motion was adopted to limit subsequent journeymen from submitting Sacred Opal which they did not synthesize by themselves, although what constitutes "by themselves" is still a subject of much debate.
+<br>
+_e
+],
+
+[<!--2-->
+In the year 540 AD, ''Sasar of House Nuran'', elector-prince of then-autonomous Esora, journeying with certification from the ''Illustrious Esora Davehkhan'', successfully synthesized and defended his first Sacred Opal at the age of fifty five, earning him the recognition as "master" among his peers.
+<br>
+_e
+<br>
+Already a generous patron before entering academia, Sasar-Nuran was much welcomed by a faction of loyalist davehmar, who shared with him a wish to restore the historical bond between Esora and Nurandah.
+<br>
+_e
+<br>
+Sasar-Nuran worked tirelessly to prove the superiority of imperial technology, which he - a newcomer to magic - used to win a wager against and to humiliate Esora Davehkhan's sovereigntist provost by producing a Sacred Opal before the latter did.
+<br>
+_e
+<br>
+Although the magical technique Sasar-Nuran employed were not considered breakthrough in Nurandah at the time, and it was revealed a century later that he was covertly receiving considerable help from imperial advisors, this stunt proved pivotal in tipping the stalemate in Esora's loyalists-versus-sovereigntists debate.
+<br>
+_e
+<br>
+Now master, Sasar-Nuran and his loyalist faction spent the next two decades consolidating power among the local davehmars, gaining a majority in Esora's electoral college, and bringing the once-independent territory back into Nurandah's fold.
+<br>
+_e
+<br>
+For his deeds, Sasar-Nuran was awarded an honorary chair in the imperial council of ministers. He oversaw the purge of sovereigntists in Esora's academies, including his alma mater.
+<br>
+_e
+],
+
+[<!--3-->
+In the year 767 AD, ''Marsit of South Zagash'', better known by his mononym ''Marsit'', journeying with certification from the ''Zagash School of Engineering Sciences'', successfully synthesized and defended his first Sacred Opal at the age of seventeen, earning him the recognition as "master" among his peers.
+<br>
+_e
+<br>
+Born under the Red Sign, Marsit developed a rare affinity to vehzin, earning him the nickname of "Red Steel Charmer" and a reputation as a local child prodigy. Still, his early life was beset by poverty, which forced him to survive as a wandering tinkerer-for-hire.
+<br>
+_e
+<br>
+Eventually, Marsit caught the attention of a wealthy aristocrat, who used his influence to urge the Zagash School of Engineering Sciences admit the young boy, promising to sponsor the entirety of Marsit's tuition with the condition that Marsit must complete his apprenticeship in five years instead of the standard twelve. Otherwise, the sponsorship would turn into debt.
+<br>
+_e
+<br>
+Two years into his apprenticeship, Marsit was already developing an original design of a last-stage Opal assembler made entirely out recycled parts from discarded school equipment.
+<br>
+_e
+<br>
+Although Marsit initially wanted to keep the project a secret, paranoid that the administrators would claim his invention for themselves, his dormmates eventually convinced him to publicize the invention.
+<br>
+_e
+<br>
+The Zagash School's council, under much scrutiny, agreed to recognize Marsit's machine - the so-called "junk synthesizer" which managed to produce around five grains of Sacred Opal before burning out - and to award him a deferred master's degree, since Marsit was not yet a journeyman. It would take him another four years to complete his apprenticeship and claim his title.
+<br>
+_e
+<br>
+In order to pay off his debt, Marsit joined his former sponsor's workshop. There, he further refined his machine, far surpassing his initial submission. The workshop increased its profits and scale exponentially within a few years, partly due to this proprietary cost-saving technology, partly due to Marsit's celebritydom.
+<br>
+_e
+<br>
+When Marsit passed away from a vehzin poisoning, aged thirty two, a will in his name emerged, indicating his wish to transfer all of his research notes and savings, though the latter amounted to only around three hundred rials, to his employer and once-sponsor.
+<br>
+_e
+<br>
+During the social reforms following the Grand Exchange's Mutiny, many private enterprises were dissolved and brought under direct imperial control. Among these was Marsit's former employer.
+<br>
+_e
+<br>
+As a result, details of Marsit's later inventions was disseminated among the wider scientific community, sparking an "arms race" to see who could produce the least costly Opal-capable synthesizer.
+<br>
+_e
+<br>
+],
+
+[<!--4-->
+
+],
+
+[5],
+
+[6],
+
+[7],
+
+[8],
+
+[9],
+
+))
+
+[
+(if: $stuff contains "currentEntry")[(print: $stuff's currentEntry)]
+(else:)[$cssDesc[Flip through the book to read the entries.]]
+]<currentEntry|
+
+[
+<br>
+---
+<ol>
+<li>(link-rerun: "Flip to a random entry.")[{
+    <!--all this code is to make sure that the next random entry isn't the same as the current one-->
+    <!--initialize $stuff's currentEntry-->
+    (if: $stuff does not contain "currentEntry")[(set: $stuff to it + (dm: "currentEntry", []))]
+    <!--pick next item-->
+    (set: _reading to _SacredOpal)
+    (set: _reading to it - (a: $stuff's currentEntry))
+    (set: $stuff's currentEntry to _reading's random)
+    (replace: ?currentEntry)[{(print: $stuff's currentEntry)}]
+}]
+<li>(link: "Put the book away.")[{
+    <!--clear $stuff-->
+    (set: $stuff to (dm:))
+    <!--goto-->
+    (goto: $readingNav's before)}]
+</ol>
+]<quitReading|
+
+}],
+
+)

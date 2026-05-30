@@ -12,8 +12,19 @@ $cssColumnParent[
 $cssColumnChild[
 
     (css: "font-size: 70%")[
-        $cssColumnChild[(link: "⇦ Never mind.")[(goto: $readingNav's before)]]
-        $cssColumnChild[(link: "↺ Start over.")[(redirect: (passage:)'s name)]]
+        <!--back link-->
+        $cssColumnChild[(link: "⇦ Never mind.")[
+            <!--clear $stuff, just in case the book uses it as a bookmark-->
+            (set: $stuff to (dm:))
+            <!--goto-->
+            (goto: $readingNav's before)
+        ]]
+        $cssColumnChild[(link: "↺ Start over.")[
+            <!--clear $stuff, just in case the book uses it as a bookmark-->
+            (set: $stuff to (dm:))
+            <!--refresh page-->
+            (redirect: (passage:)'s name)
+        ]]
     ]
 
 	$cssBox[
