@@ -3,7 +3,7 @@
 (metadata: 
 	"id", [The Many Sacred Opals and Their Brilliant Creators],
     "key", (a: "document", "book",),
-    "value", (a: 20, 0, 0, 0, 0, 20,),
+    "value", (a: 40, 0, 0, 0, 0, 20,),
     "img", "https://fallenlondon.wiki/w/images/3/33/Bookbrown.png",
     "desc", [A record of the most notable achievements in magical science within the last ten centuries of Nurandah, published by the Bakho University Press. Will your name be in such a book one day?],
     "tip", [Envy is a form of leisure.],
@@ -28,7 +28,7 @@ Each collaborator was assigned their own narrow spectrum of the Sacred Opal to s
 <br>
 _e
 <br>
-Five of the original fifty perished in the process - two from laboratory accidents, two from health complications relating to excessive elemental exposure, and one from old age. Still, the team expanded, and by the end, there were close to a hundred collaborators.
+Five of the original fifty perished in the process - two from laboratory accidents, two from health complications relating to excessive elemental exposure, and one from old age. Still, the project expanded, and by the end, there were close to a hundred collaborators.
 <br>
 _e
 <br>
@@ -130,10 +130,34 @@ _e
 
 ))
 
-
+<!--?currentEntry: Where the book's content is displayed-->
 [
+<!--if reading has initialized (indicated by $stuff having a "readingorder")-->
 (if: $stuff contains "readingOrder")[(print: _SacredOpal's ($stuff's readingOrder's ($stuff's readingTurn)))]
-(else:)[$cssDesc[Flip through the book to read the entries.]]
+
+<!--else, preface-->
+(else:)[{
+''Preface''
+<br>
+The Khur-a-Mah, the Sun-and-Moon, the Matter-Of-All-Things, the Magic Stone: the Sacred Opal has many names, just as it does many lights and many miraculous possbilities.
+<br>
+The Opal is at once the highest achievement in magic and also a stepping stone to heights yet greater. This seeming paradox is reflected in its composition: The greatest wonder of the natural world is that it exists, that all primeaval constituent parts - At, Ab, Gor, Rokh, and Zam - were what they were, prior to their coalescence into all phenomena.
+<br>
+By whichever means, when a magus produces a Sacred Opal, they also demonstrate that they were able to grasp the essential state of the universe, and from this first principle, they are fully ready to venture into any frontier, model any phenomena, and produce any object, for there is nothing that is not of this world. The magus is then a //master//.
+<br>
+However, much like how a literate person is in theory capable of writing down every notion that ever was or ever will be but will not, the master magus is only in theory capable of comprehending and producing anything, but in actuality, they will not.
+<br>
+As the many biographies in this book will demonstrate, perhaps the only frontier we have yet to conquer is the human flaw itself - lapses in judgment, gaps in wisdom, poor luck, old age, ill health, and death - which prevent a magus from achieving the true omnipotence that the Sacred Opals they produce promise.
+<br>
+But with each life, as brief as it is in cosmic time, collective humanity moves ever closer to the true bounty which the natural world yet holds. Each attempt lays down a stone on our cobbled road to the stars.
+<br>
+This book will recount some of our most notable forerunners and the achievements which have inducted them into the ranks of masters.
+<br>
+Some may go on to greater heights after their first Sacred Opal - which are not the subject of this book - and some are merely content with the title, but each of them represents a moment where humanity rediscovers the universe, over and over, in humanity's flawed and human ways, of which there are as many as an Opal's light.
+<br>
+<!--lore note: producing the Sacred Opal is like creating a Turing-complete machine - a goal that does not do much by itself but opens up many possibilities.-->
+$cssDesc[Flip through the book to read the entries.]}
+]<!--end else (at preface)-->
 ]<currentEntry|
 
 [

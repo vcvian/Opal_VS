@@ -67,7 +67,7 @@ hr {
   100% {
     background-position: 0% center;
   }
-}</style><script role="script" id="twine-user-script" type="text/twine-javascript"></script><tw-tag name="UI" color="orange"></tw-tag><tw-tag name="effect" color="yellow"></tw-tag><tw-tag name="footer" color="yellow"></tw-tag><tw-tag name="header" color="yellow"></tw-tag><tw-tag name="startup" color="orange"></tw-tag><tw-tag name="static-storage" color="yellow"></tw-tag><tw-tag name="test" color="blue"></tw-tag><tw-tag name="topic" color="purple"></tw-tag><tw-tag name="book" color="yellow"></tw-tag><tw-tag name="stay" color="yellow"></tw-tag><tw-tag name="storylet" color="blue"></tw-tag><tw-tag name="sublocation" color="green"></tw-tag><tw-tag name="traveling" color="purple"></tw-tag><tw-passagedata pid="1" name="AA. Books, Reading &amp; Formulae" tags="startup" position="100,100" size="100,100">{=
+}</style><script role="script" id="twine-user-script" type="text/twine-javascript"></script><tw-tag name="stay" color="yellow"></tw-tag><tw-tag name="storylet" color="blue"></tw-tag><tw-tag name="sublocation" color="green"></tw-tag><tw-tag name="test" color="blue"></tw-tag><tw-tag name="topic" color="purple"></tw-tag><tw-tag name="header" color="yellow"></tw-tag><tw-tag name="startup" color="orange"></tw-tag><tw-tag name="static-storage" color="yellow"></tw-tag><tw-tag name="traveling" color="purple"></tw-tag><tw-tag name="footer" color="yellow"></tw-tag><tw-tag name="UI" color="orange"></tw-tag><tw-tag name="book" color="yellow"></tw-tag><tw-tag name="effect" color="yellow"></tw-tag><tw-passagedata pid="1" name="AA. Books, Reading &amp; Formulae" tags="startup" position="100,100" size="100,100">{=
 &lt;!--Macros related to books and reading--&gt;
 
 (set: $readingNav to (dm:
@@ -7799,7 +7799,7 @@ You commit the procedure to memory. When faced with a magic workstation, you&#39
 (metadata: 
 	&quot;id&quot;, [The Many Sacred Opals and Their Brilliant Creators],
     &quot;key&quot;, (a: &quot;document&quot;, &quot;book&quot;,),
-    &quot;value&quot;, (a: 20, 0, 0, 0, 0, 20,),
+    &quot;value&quot;, (a: 40, 0, 0, 0, 0, 20,),
     &quot;img&quot;, &quot;https://fallenlondon.wiki/w/images/3/33/Bookbrown.png&quot;,
     &quot;desc&quot;, [A record of the most notable achievements in magical science within the last ten centuries of Nurandah, published by the Bakho University Press. Will your name be in such a book one day?],
     &quot;tip&quot;, [Envy is a form of leisure.],
@@ -7824,7 +7824,7 @@ Each collaborator was assigned their own narrow spectrum of the Sacred Opal to s
 &lt;br&gt;
 _e
 &lt;br&gt;
-Five of the original fifty perished in the process - two from laboratory accidents, two from health complications relating to excessive elemental exposure, and one from old age. Still, the team expanded, and by the end, there were close to a hundred collaborators.
+Five of the original fifty perished in the process - two from laboratory accidents, two from health complications relating to excessive elemental exposure, and one from old age. Still, the project expanded, and by the end, there were close to a hundred collaborators.
 &lt;br&gt;
 _e
 &lt;br&gt;
@@ -7926,10 +7926,34 @@ _e
 
 ))
 
-
+&lt;!--?currentEntry: Where the book&#39;s content is displayed--&gt;
 [
+&lt;!--if reading has initialized (indicated by $stuff having a &quot;readingorder&quot;)--&gt;
 (if: $stuff contains &quot;readingOrder&quot;)[(print: _SacredOpal&#39;s ($stuff&#39;s readingOrder&#39;s ($stuff&#39;s readingTurn)))]
-(else:)[$cssDesc[Flip through the book to read the entries.]]
+
+&lt;!--else, preface--&gt;
+(else:)[{
+&#39;&#39;Preface&#39;&#39;
+&lt;br&gt;
+The Khur-a-Mah, the Sun-and-Moon, the Matter-Of-All-Things, the Magic Stone: the Sacred Opal has many names, just as it does many lights and many miraculous possbilities.
+&lt;br&gt;
+The Opal is at once the highest achievement in magic and also a stepping stone to heights yet greater. This seeming paradox is reflected in its composition: The greatest wonder of the natural world is that it exists, that all primeaval constituent parts - At, Ab, Gor, Rokh, and Zam - were what they were, prior to their coalescence into all phenomena.
+&lt;br&gt;
+By whichever means, when a magus produces a Sacred Opal, they also demonstrate that they were able to grasp the essential state of the universe, and from this first principle, they are fully ready to venture into any frontier, model any phenomena, and produce any object, for there is nothing that is not of this world. The magus is then a //master//.
+&lt;br&gt;
+However, much like how a literate person is in theory capable of writing down every notion that ever was or ever will be but will not, the master magus is only in theory capable of comprehending and producing anything, but in actuality, they will not.
+&lt;br&gt;
+As the many biographies in this book will demonstrate, perhaps the only frontier we have yet to conquer is the human flaw itself - lapses in judgment, gaps in wisdom, poor luck, old age, ill health, and death - which prevent a magus from achieving the true omnipotence that the Sacred Opals they produce promise.
+&lt;br&gt;
+But with each life, as brief as it is in cosmic time, collective humanity moves ever closer to the true bounty which the natural world yet holds. Each attempt lays down a stone on our cobbled road to the stars.
+&lt;br&gt;
+This book will recount some of our most notable forerunners and the achievements which have inducted them into the ranks of masters.
+&lt;br&gt;
+Some may go on to greater heights after their first Sacred Opal - which are not the subject of this book - and some are merely content with the title, but each of them represents a moment where humanity rediscovers the universe, over and over, in humanity&#39;s flawed and human ways, of which there are as many as an Opal&#39;s light.
+&lt;br&gt;
+&lt;!--lore note: producing the Sacred Opal is like creating a Turing-complete machine - a goal that does not do much by itself but opens up many possibilities.--&gt;
+$cssDesc[Flip through the book to read the entries.]}
+]&lt;!--end else (at preface)--&gt;
 ]&lt;currentEntry|
 
 [
