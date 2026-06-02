@@ -1,0 +1,47 @@
+:: scene.VehVehSchooling.4th
+{=
+
+This time around, Veh-Veh just chuckles.
+<br>
+["Heh, it's good that //someone// still cares about my education. But I think it'll be a better use of both our time if I actually make some progress first before I talk about it."]<VehVehLine|
+<br>
+($funcInnerConvo: (dm:
+    "<!--A-->\"Sure. Action first, words later.\"", "actionFirst",
+    "<!--B-->\"Not trying to pressure you. Just checking up, that's all.\"", "justChecking",
+))
+<br>
+
+
+<!--actionFirst-->
+[
+["Right,"]<VehVehLine| she fidgets.` `
+(show: ?preDone)
+](actionFirst|
+
+
+<!--justChecking-->
+[
+["And I appreciate it. Really, I do, but..."]<VehVehLine| she trails off.` `
+(show: ?preDone)
+](justChecking|
+
+
+<!--preDone-->
+[
+<!--if still have energy-->
+(if: $char's VehVeh's energy's 1st > 0)[
+["Well, we don't have to //not// talk. But something else, maybe?"]<VehVehLine|
+(set: _goodbyeText to "\"Actually, it's better if I let you get on with it. See you later, Veh-Veh.\"")
+(show: ?done)
+]<!--end of still have energy-->
+<!--no energy-->
+(else:)[
+["Thank you, though. I'll be sure to let you know if I ever come across anything that could be of interest to you. Maybe we can compare notes?"]<VehVehLine|
+(set: _busyText to "Veh-Veh seems anxious to get back to work.")
+(set: _goodbyeText to "\"Sure, Veh-Veh. See you later.\"")
+(show: ?done)
+]<!--end of no energy-->
+](preDone|
+
+
+<br>

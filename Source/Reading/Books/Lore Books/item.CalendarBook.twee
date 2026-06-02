@@ -1,0 +1,171 @@
+:: item.CalendarBook [static-storage]
+{=
+(metadata: 
+	"id", [Our Calendar Decoded! Essential Astrology for the Layman (with Warning)],
+    "key", (a: "document", "book",),
+    "value", (a: 20, 0, 0, 0, 0, 20,),
+    "img", "https://fallenlondon.wiki/w/images/3/30/Bookpurple.png",
+    "desc", [A pamphlet published by "The Neighborhood Astrologian & Co.", which is forced by law to print with a foreword by the Esora Guild of Astrologians denouncing the ensuing content as pseudoscience - as if the exclamation in the title didn't already give that away.],
+    "tip", [At least the book doesn't misspell the names of days, weeks, and months.],
+    "gainText", [You now hold in your hand what is technically "suppressed literature", much in the same way poison mushrooms are a "forbidden fruit": naturally shunned out of good sense, not a fruit, and surprisingly ubiquitous.],
+    "lossText", [You part ways with the pamphlet. Could have kept it and used it as a shim for a wobbly table.],
+    "content", [{
+<!--content begins-->
+
+<!--elipses-->
+(set: _e to [$cssDesc[`[...]`]])
+
+(set: _foreword to [{
+''LIGHT BLESSES NURANDAH''
+<br>
+''Subject: WARNING From the Esora Guild of Astrologians''
+<br>
+Pursuant to order dah-haft of the Esora dahak Provincial Court in  on Rokhruz, Charhet, Servar, year 995.
+<br>
+From the Esora Guild of Astrologians (henceforth "Guild"),
+<br>
+To all perusers and curious citizens,
+<br>
+Be WARNED that this material you are holding is of the poorest scientific rigor and driven by the most dubious of motivations, and reading it any further will poison not only your mind but also the respected discipline of astrology.
+<br>
+If you have not purchased the material, you should think better than to do so. If you have already made such a mistake, then you should discard it promptly.
+<br>
+By order of the court, the Guild is compelled to acknowledge that it is not punishable under any charge, administrative, civil, or criminal, to either sell, purchase, or possess this material. However, citizens must educate themselves on the following points:
+<br>
+One, the Guild, as does the wider scientific consensus, rejects astrological determinism. Instead, it is the  diathesis-stress model that is the endorsed view - such has been the case since the year 505 AD with the conclusion of the Nudankhan Convention of Diviners and the publication of the Sixth Nudankhan Creed. Citizens must educate themselves on this.
+<br>
+Two, the Guild, as does the wider scientific consensus, rejects the Koh Model of the Heavenly Bodies, which is the astronomical framework underlying all descriptions of the planets, stars, and the constellations they form. A five-degree eastward shift was adopted in 459 AD with the publication of the first edition of //Be-Sit Be-Var//, and there are subsequent, albeit minor adjustments in the centuries after that. Citizens must educate themselves on this.
+<br>
+Three, the Guild, as does the wider scientific consensus, rejects the identification of the body-called-Tar as a body comparable to the remainders of the set. Similarly, Mah and Khur must have special and primary respect in any worthy system of divination. The demotion of Tar - the Great Charlatan - has been adopted since 201 AD with the publication of the Third Nudankhan Creed, and the primacy of Khur and Mah has been the bedrock of divination in Nurandah culture prior to year zero. Citizens must educate themselves on this.
+<br>
+$cssDesc[The foreword goes on like this for another twelve points, taking up nearly half of the pamphlet's total page count, until finally ending with a seal from the Esora Guild of Astrologians.]
+}])<!--end of foreword-->
+
+
+(set: _days to [{
+''Days of the Week''
+<br>
+"As above, so below", so has Grand Magus Beser, mythic founder of the magical sciences, carved onto his Emerald Tablet.
+<br>
+Whether you are an insatiable lover, a hot-headed buffoon, a naggy mother, or dour as a willow is all determined at the moment of your birth by the stars which you were born under. It is such a shock that the stars that most affect who you become are also the closest? 
+<br>
+Consider that there are seven days per week, corresponding to the five temperaments and two personality types.
+<br>
+The first two days of the week are named after the two brightest celestial bodies - the Sun and Moon, and whichever day you are born on or the closest to, that is the basic template of your being:
+<ol>
+<li>''Khurruz:'' Sun-day, first day of the week, rising like the dawn, eager for a new day, burning and overwhelming at times. You are a "Khurmar" by your affinity to the Sun.
+<li>''Mahruz:'' Moon-day, second day of the week, stable and contemplative, content and loyal. You are a "Mahmar" by tour affinity to the Moon.
+</ol>
+Next, the remaining five days will determine your temperament - imagine that they are the flesh that is placed upon the skeleton of your personality, Sun or Moon. Whichever one you are born on or are the closest to will form the way you respond emotionally to the world, and those you are born distant from will be your lacks:
+<ol start="3">
+<li>''Atruz:'' Fire-day, third day of the week, affinity to the red planet At, full of potential, creative, curious, open to new experiences, lacking which will make you a creature of routine.
+<li>''Abruz:'' Water-day, fourth day of the week, affinity to the liquid-silver planet Ab, a steady flow, reliable, timely, conscientious, lacking which will make you stagnant and sloppy.
+<li>''Gorruz:'' Storm-day, fifth day of the week, affinity to the ever-swirling planet Gor, bristling with life and energy, reaching out, pulling in, the center of excitement, lacking which will make you tire of company.
+<li>''Rokhruz:'' Light-day, sixth day of the week, affinity to father-planet Rokh, warm and enlightening, helpful, compassionate, trusting, lacking which will make you disagreeable and a thorn. 
+<li>''Zamruz:'' Earth-day, last day of the week, affinity to our own planet Zam, stoic and sure, not easily moved and not easily stopped, lacking which will make you irritable and inconsistent.
+</ol>
+As elegant and self-evident as the heavens' arrangement for your fate might be, you might still find yourself asking: "What about the planet Zin - the metal mistress? Or cold Yakh and its brother Dary? Or the faraway and lonesome Tar?" To that, the answer is simple. _e
+}])<!--end of foreword-->
+
+
+(set: _weeks to [{
+''Weeks of the Month''
+<br>
+The Moon is the closest heavenly body to Zam - our Earth, and so the Moon will take precedence in our count, with the Sun its shadow. Thus, for Mahmars, the fates assigned are affirmed, and for Khurmars, the fates are negated or reversed.
+<br>
+In accordance to phases of the Moon, there are four weeks per month, so that each month is comprised of twenty-eight days.
+<br>
+We count the weeks upon our fingers:
+<ol>
+<li>''Yekhet:'' First-week, New Moon upon the thumb, Hun-bar-At, darkness-over-fire, herald of a new beginning. Inverse is the crier of the dead.
+<li>''Duhet:'' Second-week, Waxing Moon upon the index, Ab-be-Ab, water-as-itself, inheritor of progress. Inverse is the returning old guard.
+<li>''Serhet:'' Third-week, Full Moon upon the long, Rokh-da-Gor, light-of-course, rightful ruler. Inverse is the pretender.
+<li>''Charhet:'' Fourth-week, waning Moon upon the ring, Zam-an-Hun, grounded-and-still, forgiving judge. Inverse is the winged fury.
+</ol>
+Which leaves the little one - the rare (and some may say impossible) panhet, or the fifth week of Tar, or the Late Moon, or Hun-be-Hun, pure darkness, the hermit with an unwelcome message. Inverse is the reclaimer.
+<br>
+Whereas the day defines your granular person, your week is the archetype, or your role towards others, which you embody. The grain forms the dune, and the dune forms the desert, and the desert _e
+
+}])<!--end of foreword-->
+
+
+(set: _months to [{
+''Months of the Year''
+<br>
+There are twelve months in a year, each of which corresponds to one major celestial constellation, or rather a thirty-degree sector of the heavens, which the Sun moves across through out the year.
+<br>
+Like molds for the wet clay of one's infant temperaments and roles of youth, the far constellations are governors of one's adult life and shapers of one's service to society, professional or otherwise.
+<br>
+The months and their signs are:
+<ol>
+<li>''Yekvar:'' First-month, the Red Sign, a smith that is their own forge.
+<li>''Duvar:'' Second-month, the Sign of the Mistress, an advisor and conspirator.
+<li>''Servar:'' Third-month, the Sign of the Triplet, a crossroad, a changer, and a unifier.
+<li>''Charvar:'' Fourth-month, the Invetiable Sign, a humble caretaker of last resorts.
+<li>''Panvar:'' Fifth-month, the Sign of the Cat, an actor.
+<li>''Shesvar:'' Sixth-month, the Pure Sign, a careful steward.
+<li>''Haftvar:'' Seventh-month, the Just Sign, a respected orator.
+<li>''Hashtvar:'' Eighth-month, the Sign of the Assassin, a tormentor.
+<li>''Nohvar:'' Ninth-month, the Sign of the Conqueror, a traveler seeking a home.
+<li>''Dahvar:'' Tenth-month, the Sign of the Eater, a tireless and dour equalizer.
+<li>''Dah-Yekvar:'' Eleventh-month, the Fountain Sign, a person from the future.
+<li>''Dah-Duvar:'' Twelfth-month, the Sign of the Swimmer, the artist drowning in sentimentality.
+</ol>
+Obviously, this is all very abstract, and many other factors may interact before a concrete divination can be drawn, which you will discover in the many tables found in the rest of this opus.
+<br>
+However, it is important for you proceed with confidence and with the knowledge that there are certain sections of population, who calls themselves "experts", who have every incentives to hide such wisdom from you. Chief of these incentives is that of money. They wish to hoard their virtues and charge you a precious rial for it. But as you can plainly see: Such wisdoms can come at a very low price, both on the coin purse and on the mind! It is so simple, even a child _e
+}])<!--end of foreword-->
+
+<!--content displayed here-->
+[
+(if: $stuff does not contain "currentCalendarBook")[_foreword]
+(else:)[(print: $stuff's "currentCalendarBook")]
+]<bookContent|
+
+<br>
+---
+<ol>
+
+<!--standard code for all links-->
+(set: _updateContent to [{
+    <!--replace content-->
+    (replace: ?bookContent)[(print: $stuff's currentCalendarBook)]
+    <!--scroll up to page's top-->
+    <script>window.scrollTo(0,0)</script>
+}])
+
+
+<li>(link-rerun: "Turn to the \"Days\" section")[{
+    <!--set current content-->
+    (set: $stuff's currentCalendarBook to _days)
+    _updateContent
+}]
+<li>(link-rerun: "Turn to the \"Weeks\" section")[{
+    <!--set current content-->
+    (set: $stuff's currentCalendarBook to _weeks)
+    _updateContent
+}]
+<li>(link-rerun: "Turn to the \"Months\" section")[{
+    <!--set current content-->
+    (set: $stuff's currentCalendarBook to _months)
+    _updateContent
+}]
+<li>(link-rerun: "Read the foreword again.")[{
+    <!--set current content-->
+    (set: $stuff's currentCalendarBook to _foreword)
+    <!--replace content-->
+    _updateContent
+}]
+<li>(link-rerun: "Put the pamphlet away.")[{
+    <!--clear $stuff-->
+    (set: $stuff to (dm:))
+    <!--goto-->
+    (goto: $readingNav's before)
+}]
+<ol>
+
+
+
+<!--content ends-->
+    }],
+)

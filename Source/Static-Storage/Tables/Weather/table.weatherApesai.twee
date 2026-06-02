@@ -18,7 +18,7 @@
 	),
     
     	"text", (dm:
-		"rainy", "Rain - twinkling like an opal's many lights - is a rare sight in continental Askava. But this isn't quite Askava yet. This is Apesai Island.",
+		"rainy", "Rain - twinkling like an Opal's many lights - is a rare sight in continental Askava. But this isn't quite Askava yet. This is Apesai Island.",
 		"stormy", "A storm is battering the lighthouse, and waves are shaking the ships below. Pilgrims and merchants huddle under shop awnings, which are ubiquitous.",
 		"overcast", "A shadow hangs over Apesai, but the aurora from the lighthouse chases the gloom away and basks the clouds in undulating rainbows.",
 		"foggy", "It is a hazy day in Apesai. The streets, already mazelike, have become almost impossible to navigate, and just as hard to not slip on the wet cobblestone.",

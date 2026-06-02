@@ -4,6 +4,7 @@
 (metadata:
 "NPC", "VehVeh",
 "title", "Chatting with Veh-Veh",
+"talked", (a: "absentPrincipal", "absentPrincipalExplained"),
 "topicDetail", "",
 )
 

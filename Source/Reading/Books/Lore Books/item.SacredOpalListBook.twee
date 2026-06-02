@@ -1,11 +1,11 @@
 :: item.SacredOpalListBook [static-storage]
 {=
 (metadata: 
-	"id", [The Many Sacred Opals and Their Brilliant Creators],
+	"id", [The Many Sacred Opals and Their Human Creators],
     "key", (a: "document", "book",),
-    "value", (a: 40, 0, 0, 0, 0, 20,),
+    "value", (a: 70, 0, 0, 0, 0, 20,),
     "img", "https://fallenlondon.wiki/w/images/3/33/Bookbrown.png",
-    "desc", [A record of the most notable achievements in magical science within the last ten centuries of Nurandah, published by the Bakho University Press. Will your name be in such a book one day?],
+    "desc", [A hefty record of the most notable achievements in magical science within the last ten centuries of Nurandah, published by the Bakho University Press. Will your name be in such a book one day?],
     "tip", [Envy is a form of leisure.],
     "gainText", [You are sure that you have come across some version of this book before. Books like this can be found on the shelves of every university city, both a source of motivation and envy for all budding magi.],
     "lossText", [As you part ways with the book, you tell yourself that your name will be listed in the next edition, or the next, or the next.],
@@ -210,7 +210,7 @@ Atras-Vehkhan immediately succumbed to complex elemental sickness, falling on th
 <br>
 _e
 <br>
-In the hallway, his fellow researchers began reading aloud Atras-Vehkhan defense, which he had prepared prior to the demonstration along with answers for two hundred possible questions from the judges.
+In the hallway, his fellow researchers began reading aloud Atras-Vehkhan's defense, which he had prepared prior to the demonstration along with answers for two hundred possible questions from the judges.
 <br>
 _e
 <br>
@@ -227,16 +227,6 @@ Atras-Vehkhan's body was interred in a mausoleum located in faraway Askava inste
 _e
 <br>
 ],
-
-[6],
-
-[7],
-
-[8],
-
-[9],
-
-[10],
 
 ))
 

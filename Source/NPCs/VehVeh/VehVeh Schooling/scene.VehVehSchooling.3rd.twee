@@ -113,7 +113,7 @@ Last time, Veh-Veh shared that she was looking into ways to use divination to im
 <br>
 ($funcInnerConvo: (dm:
 	"<!--A-->\"That's good to hear.\"", "lessonAskava",
-    "<!--B-->\"It's wise of you to say that.\"", "lessonAskava",
+    "<!--B-->\"We all need to cope somehow.\"", "lessonAskava",
 ))
 <br>
 ](soHarsh|
@@ -218,7 +218,7 @@ Now, if you don't mind, I really need to get some work done. It is whatever we m
 ]
 "]<VehVehLine|
 <!--set busy text-->
-(set: _busyText to "Veh-Veh is anxious about getting back to work.")
+(set: _busyText to "Veh-Veh is anxious to back to work.")
 <!--show end-->
 (show: ?done)
 <br>

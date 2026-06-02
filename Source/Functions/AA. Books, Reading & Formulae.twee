@@ -104,7 +104,7 @@ Types of document:
     <!--_listBook sub-list-->
     (if: _listBook's length > 0)[
         <details open>
-        <summary>''Books:'' $cssDesc[From thin pamphlets to weighty times, from sappy slop to dry academicism, they all have something to teach.]</summary>
+        <summary>''Books:'' $cssDesc[From thin pamphlets to weighty tomes, from sappy slop to dry academicism, they all have something to teach.]</summary>
         <ol>
         <!--loop-->
         (for: each _nameBook, ..._listBook)[

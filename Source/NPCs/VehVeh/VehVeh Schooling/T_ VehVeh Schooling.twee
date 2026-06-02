@@ -64,16 +64,9 @@ $cssDesc[''You: //(print: (passage:)'s topic)//'']
 }]<!--end third time-->
 
 
-<!--fourth time-->
+<!--fourth time onward-->
 (else:)[{
-["Heh, it's good that someone still cares about my education. But I think it'll be a better use of both our time if I get on with my studies instead of just talking about it."]<VehVehLine|
-<br>
-["Thank you, though. I'll be sure to let you know if I ever come across anything that could be of interest to you. Maybe we can compare notes? And if you finish your Sacred Opal, perhaps you'd write me a letter of recommendation?"]<VehVehLine|
-<br>
-
-''Remember to add special goodbyes:'' "Veh-Veh giggles and starts to collect her books.", "Sure. //If//. Goodbye, Veh-Veh."
-
-
+(display: "scene.VehVehSchooling.4th")
 }]<!--end fourth time-->
 
 

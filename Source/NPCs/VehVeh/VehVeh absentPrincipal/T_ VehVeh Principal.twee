@@ -17,7 +17,7 @@ and $char's player's timerCooldown does not contain "T: VehVeh Principal"
 "topic", "Wait, you said that the principal is... gone?",
 "topicDetail", "A school without a principal.",
 "cooldown", 1,
-"talked", (a: "absentPrincipal",),
+"talked", (a: "absentPrincipal", "absentPrincipalExplained"),
 "addCode", [],
 )
 
@@ -35,7 +35,7 @@ $cssColumnChild[
 $cssDesc[''You: //(print: (passage:)'s topic)//'']
 <br>
 
-(if: ($funcTalkedTimesCheck: "absentPrincipal") is 0)[
+(if: ($funcTalkedTimesCheck: "absentPrincipalExplained") is 0)[
 ["Yup, it sucks. He's off for the frontlines. Said it's going to be his breakthrough of the century..."]<VehVehLine|
 ]
 
@@ -43,7 +43,7 @@ $cssDesc[''You: //(print: (passage:)'s topic)//'']
 
 <br>
 ---
-(if: ($funcTalkedTimesCheck: "absentPrincipal") is 0)[\
+(if: ($funcTalkedTimesCheck: "absentPrincipalExplained") is 0)[\
 	(link: "Interesting...")[\
     	($funcQuestUpdate: "absentPrincipal", "primed", "", "")\
         ($funcAddStoryletCooldown: (passage:)'s name)\
