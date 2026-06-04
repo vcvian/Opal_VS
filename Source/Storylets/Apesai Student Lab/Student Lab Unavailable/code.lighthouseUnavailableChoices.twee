@@ -4,75 +4,126 @@
 <!--initialize $stuff, if it doesn't contain tracker.-->
 (if: $stuff does not contain "lighthouseTracker")[{
     (set: $stuff's lighthouseTracker to 4)
+    (set: $stuff's lighthouseTrackerA to 4)
+    (set: $stuff's lighthouseTrackerB to 4)
+    (set: $stuff's lighthouseTrackerC to 4)
+    (set: $stuff's lighthouseTrackerD to 4)
     (set: $stuff's lighthouseDice to (random: 1,3))
 }]
 
 
 <!--set texts for links-->
-
-(if: $stuff's lighthouseTracker is 4)[{
+<!--initialize temp vars for link text-->
 (set: _linkTextStudents to "")
 (set: _linkTextTeachers to "")
 (set: _linkTextWander to "")
 (set: _linkTextNevermind to "")
-}]<!--end 4-->
 
-(elseif: $stuff's lighthouseTracker is 3)[{
-(set: _linkTextStudents to "")
-(set: _linkTextTeachers to "")
-(set: _linkTextWander to "")
-(set: _linkTextNevermind to "")
-}]<!--end 3-->
-
-(elseif: $stuff's lighthouseTracker is 2)[{
-(set: _linkTextStudents to "")
-(set: _linkTextTeachers to "")
-(set: _linkTextWander to "")
-(set: _linkTextNevermind to "")
-}]<!--end 3-->
-
-(elseif: $stuff's lighthouseTracker is 1)[{
-(set: _linkTextStudents to "")
-(set: _linkTextTeachers to "")
-(set: _linkTextWander to "")
-(set: _linkTextNevermind to "")
-}]<!--end 3-->
-
+<!--Tracker A: students-->
+(if: $stuff's lighthouseTrackerA is 4)[{
+(set: _linkTextStudents to "One of these junior apprentices might be able to tell you something.")
+}]
+(elseif: $stuff's lighthouseTrackerA is 3)[{
+(set: _linkTextStudents to "Perhaps another student will know better than the last.")
+}]
+(elseif: $stuff's lighthouseTrackerA is 2)[{
+(set: _linkTextStudents to "Grab a random kid. One of them has to know //something//.")
+}]
 (else:)[{
-(set: _linkTextNevermind to "")
-}]<!--end 3-->
+(set: _linkTextStudents to "You'll just be wasting your time.")
+}]
+<!--tracker A-->
+
+<!--Tracker B: teachers-->
+(if: $stuff's lighthouseTrackerB is 4)[{
+(set: _linkTextTeachers to "Peek inside a classroom, where teachers often are.")
+}]
+(elseif: $stuff's lighthouseTrackerB is 3)[{
+(set: _linkTextTeachers to "That last teacher was less than welcoming, but the next one might not be so.")
+}]
+(elseif: $stuff's lighthouseTrackerB is 2)[{
+(set: _linkTextTeachers to "The adults so far are not helpful, but you still decide to try your luck once more.")
+}]
+(else:)[{
+(set: _linkTextTeachers to "Cold reception from the adults. It seems they have too much on their plates.")
+}]
+<!--tracker B-->
+
+<!--Tracker C: wander-->
+(if: $stuff's lighthouseTrackerC is 4)[{
+(set: _linkTextWander to "Wander by yourself. It's just another school.")
+}]
+(elseif: $stuff's lighthouseTrackerC is 3)[{
+(set: _linkTextWander to "Wander some more. Your feet will take you where you need to be.")
+}]
+(elseif: $stuff's lighthouseTrackerC is 2)[{
+(set: _linkTextWander to "You're getting tired of getting blocked everywhere you go, but still, you decide to wander some more.")
+}]
+(else:)[{
+(set: _linkTextWander to "One closed door after another. Is this how the school of Apesai treats all of their guests?")
+}]
+<!--tracker C-->
+
+
+<!--nevermind text-->
+(if: $stuff's lighthouseTracker is 4)[{
+    (set: _linkTextNevermind to "Actually, never mind.")
+}]
+(elseif: $stuff's lighthouseTracker is 3)[{
+    (set: _linkTextNevermind to "Never mind, head back out again.")
+}]
+(elseif: $stuff's lighthouseTracker is 2)[{
+    (set: _linkTextNevermind to "Never mind. Someone proper should be showing you around instead.")
+}]
+(elseif: $stuff's lighthouseTracker is 1)[{
+    (set: _linkTextNevermind to "Never mind, this isn't working.")
+}]
+(else:)[{
+    (set: _linkTextNevermind to "Never mind, this is hopeless.")
+}]
 
 
 <ol>
-
-<!--choices only show if tracker > 0-->
-(if: $stuff's lighthouseTracker > 0)[{
-
-<li>(link: "Catch one of the junior apprentices in the hallway.")[{
+<!--If tracker A > 1-->
+(if: $stuff's lighthouseTrackerA > 1)[<li>(link: _linkTextStudents)[{
+    <!--tick down trackers-->
+    (set: $stuff's lighthouseTracker to it -1)
+    (set: $stuff's lighthouseTrackerA to it -1)
     <!--cast dice-->
     (set: $stuff's lighthouseDice to (random: 1,3))
     <!--goto-->
     (goto: "Lab 1 (unavailable students)")
 }]
+]<!--end of tracker A > 1-->
+(else:)[<li> ~~Ask a student.~~ $cssDesc[(_linkTextStudents)]]
 
-<li>(link: "Peek inside one of the classrooms, hoping to see a teacher.")[{
+<!--If tracker B > 1-->
+(if: $stuff's lighthouseTrackerB > 1)[<li>(link: _linkTextTeachers)[{
+    <!--tick down trackers-->
+    (set: $stuff's lighthouseTracker to it -1)
+    (set: $stuff's lighthouseTrackerB to it -1)
     <!--cast dice-->
     (set: $stuff's lighthouseDice to (random: 1,3))
     <!--goto-->
     (goto: "Lab 1 (unavailable teachers)")
 }]
+]<!--end of tracker B > 1-->
+(else:)[<li> ~~Find a teacher.~~ $cssDesc[(_linkTextTeachers)]]
 
-<li>(link: "Climb up the stairs. Wander by yourself.")[{
+<!--If tracker C > 1-->
+(if: $stuff's lighthouseTrackerC > 1)[<li>(link: _linkTextWander)[{
+    <!--tick down trackers-->
+    (set: $stuff's lighthouseTracker to it -1)
+    (set: $stuff's lighthouseTrackerC to it -1)
     <!--cast dice-->
     (set: $stuff's lighthouseDice to (random: 1,3))
     <!--goto-->
     (goto: "Lab 1 (unavailable wander)")
 }]
+]<!--end of tracker C > 1-->
+(else:)[<li> ~~Wander around by yourself.~~ $cssDesc[(_linkTextWander)]]
 
-}]<!--end of if tracker > 0-->
-
-
-<li>(link: "Never mind.")[{
+<li>(link: _linkTextNevermind)[{
     <!--clear $stuff-->
     (set: $stuff to (dm:))
     <!--back-->

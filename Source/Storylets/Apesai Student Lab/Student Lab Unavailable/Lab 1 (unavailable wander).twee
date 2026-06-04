@@ -1,0 +1,44 @@
+:: Lab 1 (unavailable wander)
+
+(metadata:
+"title", "Wandering the Apesai School",
+"cardDesc", "Will anyone be able to help you?",
+"img", "",
+)
+
+$cssColumnParent[
+
+$cssColumnChild[
+	$cssBox[
+    	($funcImage: (passage: "S: Lab 1 (unavailable)")'s img)
+         $cssBoxItem[''(print: (passage:)'s title )''<br>(print: (passage:)'s cardDesc)]
+    ]
+]
+
+$cssColumnChild[
+
+
+<!--3-->
+(if: $stuff's lighthouseTrackerC is 3)[{
+4->3
+}]<!--end of 3-->
+
+
+<!--2-->
+(elseif: $stuff's lighthouseTrackerC is 2)[{
+3->2
+}]<!--end of 2-->
+
+
+<!--1-->
+(elseif: $stuff's lighthouseTrackerC is 1)[{
+2->1
+}]<!--end of 1-->
+
+<br>
+---
+<!--run code for dynamic choices, using $stuff as tracker-->
+(display: "code.lighthouseUnavailableChoices")
+
+]<!--end child-->
+]<!--end parent-->

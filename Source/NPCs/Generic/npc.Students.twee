@@ -1,0 +1,22 @@
+:: npc.Student1 [static-storage]
+{=
+(metadata:
+"id", "Native Student",
+"color", #9a6e60,
+)
+
+
+:: npc.Student2 [static-storage]
+{=
+(metadata:
+"id", "Apesai Student",
+"color", #829277,
+)
+
+
+:: npc.Student3 [static-storage]
+{=
+(metadata:
+"id", "Imperial Student",
+"color", #7d7792,
+)
