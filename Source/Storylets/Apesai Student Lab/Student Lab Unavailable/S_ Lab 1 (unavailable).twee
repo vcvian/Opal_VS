@@ -1,0 +1,66 @@
+:: S: Lab 1 (unavailable) [storylet]
+{=
+
+(storylet: when
+$place's sublocation is "Apesai Lighthouse"
+and $char's player's att does not contain "accessLighthouseStudentLab"
+)
+
+(metadata:
+"title", "Wander Into the Tower",
+"cardDesc", "Perhaps the davehmars will welcome one of its own and let you use their facilities?",
+"img", "https://fallenlondon.wiki/w/images/8/83/University.png",
+)
+
+$cssColumnParent[
+
+$cssColumnChild[
+	$cssBox[
+    	($funcImage: (passage:)'s img)
+         $cssBoxItem[''(print: (passage:)'s title )''<br>(print: (passage:)'s cardDesc)]
+    ]
+]
+
+$cssColumnChild[
+
+You cross the courtyard, dodging of children chasing each other, sidestepping more than a few mysterious spills, and enter the Lighthouse's main hall.
+<br>
+Is this meant to be a school? It certainly was not built to be one, judging by how cramped everything is on the inside. The place looks more like the private research tower of some ancient magus, who only meant to house themself and maybe a dozen more of their retinue.
+<br>
+On the other hand, you're losing count of how many apprentices there are here.
+<br>
+Still, their presence implies that there are also adult davehmars, magical equipment, and anything that a traveling magus like yourself may need.
+<br>
+Someone ought to be able to show you around properly.
+<br>
+---
+
+<!--run code for dynamic choices, using $stuff as tracker-->
+(display: "code.lighthouseUnavailableChoices")
+
+]<!--end child-->
+]<!--end parent-->
+
+
+:: Lab 1 (unavailable students)
+
+(metadata:
+"title", "Catching a Junior Apprentice",
+"cardDesc", "Will they be able to help you?",
+"img", "",
+)
+
+$cssColumnParent[
+
+$cssColumnChild[
+	$cssBox[
+    	($funcImage: (passage: "S: Lab 1 (unavailable)")'s img)
+         $cssBoxItem[''(print: (passage:)'s title )''<br>(print: (passage:)'s cardDesc)]
+    ]
+]
+
+$cssColumnChild[
+
+
+]<!--end child-->
+]<!--end parent-->

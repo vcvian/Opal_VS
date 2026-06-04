@@ -1,0 +1,83 @@
+:: code.lighthouseUnavailableChoices
+{=
+
+<!--initialize $stuff, if it doesn't contain tracker.-->
+(if: $stuff does not contain "lighthouseTracker")[{
+    (set: $stuff's lighthouseTracker to 4)
+    (set: $stuff's lighthouseDice to (random: 1,3))
+}]
+
+
+<!--set texts for links-->
+
+(if: $stuff's lighthouseTracker is 4)[{
+(set: _linkTextStudents to "")
+(set: _linkTextTeachers to "")
+(set: _linkTextWander to "")
+(set: _linkTextNevermind to "")
+}]<!--end 4-->
+
+(elseif: $stuff's lighthouseTracker is 3)[{
+(set: _linkTextStudents to "")
+(set: _linkTextTeachers to "")
+(set: _linkTextWander to "")
+(set: _linkTextNevermind to "")
+}]<!--end 3-->
+
+(elseif: $stuff's lighthouseTracker is 2)[{
+(set: _linkTextStudents to "")
+(set: _linkTextTeachers to "")
+(set: _linkTextWander to "")
+(set: _linkTextNevermind to "")
+}]<!--end 3-->
+
+(elseif: $stuff's lighthouseTracker is 1)[{
+(set: _linkTextStudents to "")
+(set: _linkTextTeachers to "")
+(set: _linkTextWander to "")
+(set: _linkTextNevermind to "")
+}]<!--end 3-->
+
+(else:)[{
+(set: _linkTextNevermind to "")
+}]<!--end 3-->
+
+
+<ol>
+
+<!--choices only show if tracker > 0-->
+(if: $stuff's lighthouseTracker > 0)[{
+
+<li>(link: "Catch one of the junior apprentices in the hallway.")[{
+    <!--cast dice-->
+    (set: $stuff's lighthouseDice to (random: 1,3))
+    <!--goto-->
+    (goto: "Lab 1 (unavailable students)")
+}]
+
+<li>(link: "Peek inside one of the classrooms, hoping to see a teacher.")[{
+    <!--cast dice-->
+    (set: $stuff's lighthouseDice to (random: 1,3))
+    <!--goto-->
+    (goto: "Lab 1 (unavailable teachers)")
+}]
+
+<li>(link: "Climb up the stairs. Wander by yourself.")[{
+    <!--cast dice-->
+    (set: $stuff's lighthouseDice to (random: 1,3))
+    <!--goto-->
+    (goto: "Lab 1 (unavailable wander)")
+}]
+
+}]<!--end of if tracker > 0-->
+
+
+<li>(link: "Never mind.")[{
+    <!--clear $stuff-->
+    (set: $stuff to (dm:))
+    <!--back-->
+    $funcBack
+}]
+
+
+</ol>
