@@ -17,22 +17,72 @@ $cssColumnChild[
 
 $cssColumnChild[
 
-<!--3-->
-(if: $stuff's lighthouseTrackerB is 3)[{
-4->3
-}]<!--end of 3-->
+<!--randomize speaker based on $stuff's lighthouseDice (so that it only randomizes when clicking through a passage but not upon dipping in and out of menus)-->
+(set: _speaker to (cond:
+$stuff's lighthouseDice is 1, 1,
+$stuff's lighthouseDice is 2, 2,
+$stuff's lighthouseDice is 3, 3, 1
+))
+<!--enchant speaker lines-->
+($funcNPCSpeakManual: "genericTeacher" + (str:_speaker))
+<!--hook name-->
+(set: _line to (hook: "genericTeacher" + (str:_speaker) + "Line"))
+
+<!--content begins-->
+
+<!--opening paragraph based on tracker B-->
+(cond:
+$stuff's lighthouseTrackerB is 3, [{
+You walk along the round hallway until you can hear the tell-tale sounds of a class taking place, which you can be sure that a knowing, responsible davehmar is currently occupying that room.
+<br>
+You peek inside, hoping to have your questions answered, but alas...
+}],
+$stuff's lighthouseTrackerB is 2, [{
+Going up a floor or so, you find yourself in a smaller classroom, with half the class standing since there are not enough chairs.
+<br>
+Parting the crowd, you approach the one who most look like a teacher.
+}],
+$stuff's lighthouseTrackerB is 1, [{
+Frustrated, but undefeated, you barge into yet another random classroom, where everyone's eyes suddenly turn towards you.
+}],
+)
+<br>
 
 
-<!--2-->
-(elseif: $stuff's lighthouseTrackerB is 2)[{
-3->2
-}]<!--end of 2-->
+<!--npc reply based on dice-->
+(cond:
+_speaker is 1, [{
+_line["(either: "You're late for class, apprentice! Stand in the back! Oh, you're not an apprentice? Or have the davehmars returned? You're no davehmar that //I// know of. Argh, I don't get paid enough for this. Get out, please.", "Excuse me, you're not in my class. Can I help you? You're trying to find your way around the school? Do I //look// like a tour guide? Go talk to whomever recruited you. Tsk, these davehmars really don't vet well enough.", "I'm sorry, are you lost? Kind of? Well that's too bad. Veh-Veh. Veh-Veh! Now where is that girl? Never mind. You. Get out of my class.", "You know, I'm only part-timing here. I don't get paid enough to be the school guide. Now, if you don't mind, I have a class to get back to. Please leave.", "'Show you around the school'? No. Now, class, as I was saying, before being so rudely interrupted...",)"]
+<br>
+(either: "You quickly make yourself scarce, not before noticing that the 'teacher' is still wearing his stained leather apron instead of a davehmar's garb. Must be a local artificer or alchemist filling in for the davehmars.", "The woman looks more like a pronvicial clerk than a teacher, what with her service veil and everything. It is not strange that local professionals moonlight for classes such as law or commerce. And these types usually get paid by commission and do not have time for idle chit-chat, intellectual or otherwise.", "You flee the scene, catching a glimpse of what is on the board: Manners, incantations, and offerings. The adjuncts for these classes are far more concerned with recruiting for their ritualist order than to serve the students of their employers.", "Tense, as all part-timers are. You leave her be, wondering why the davehmars of Apesai employ so many adjuncts. And speaking of, where are the senior davehmars?",)
+}],
+_speaker is 2, [{
+_line["(either: "I see. You've come from far away and want to be shown around. I apologize, but I cannot help you. As you can see, I still have class, and the next one after that, and- you get the picture. The davehmars pay me by the period, so I only have so much time to teach these children.", "Apprentice, did I miss you on my roll call? No? Oh, then you're in the wrong class. You should check back with the davehmars. Or rather, their assistant for now. I'm only an adjunct, and I can barely keep track of my own students. Apologies.", "School facilities? I don't even know if a guest lecturer like myself is allowed into their lab, let alone a student. You're not a student? You're a //journeyman//? Good on you. I never became a journeyman, so I always wonder what that's like. Oops, excuse me. One of the children needs me.", "Show you around? I don't work here, sorry. I mean, I do, but not officially. I'm just filling in for a friend. But you should talk to someone from the school. Where are they? I don't know.", "Oh, let me just call- Veh-Veh? Oh, Veh-Veh? She's just around here somewhere. Hope she's not off to the Exchange. You should look for her yourself. Apologies, but I need to get back to my class.", "I am no davehmar, but I can divine that you will have better luck asking someone else. I'm only here every other week. My actual office is down in the wharf.")"]
+<br>
+(either: "Disappointed, you leave the room. The lecture returns: Divination in commerce - theories and practices. You feel a pang of nostalgia for your apprentice days. Now, you are far away from your classroom, trying to survive Askava. At least you don't ever have to take another divination class again.", "You say your goodbye and leave, wondering where 'your people' are. These teachers are magi, true, but they are not davehmars, and they seem to only barely know more about the tower than you do.", "As you leave, you catch a glimpse of the chalkboard, which features criss-crossing charts and equations. It all seem a little too complicated and a little too simple at the same time. But who are you to question the pedagogy of some faraway provincial city?", "You leave, wondering if you'll run into a //proper// davehmar, instead of these temporary hires. The make the Apesai Lighthouse seem no different from a village school.")
+}],
+_speaker is 3, [{
+_line["(either: "No, apprentice, I am not at liberty to introduce you to the tower, since it is neither my responsibility, nor is it my school, in a manner of speaking. The davehmars begged me to teach the occasional class, and so I do.", "Lost? Go speak to what's-her-name. Have some initiative, apprentice. Tch, they really do let just about //anyone// wander into this place.", "Go elsewhere, student. I'm sure someone is already assigned to be the dogsbody of the school. That someone is not me. I'm here by invitation of the principal, and only twice a month.", "Who are you? You're not one of my students. Oh, you wish to be shown around the school? Why did you think an in-progress class was the best place to ask that? Think, apprentice. Use that head of yours. And use it elsewhere. I need to get back to my lecture.", "Oh my, are you lost? Well, I cannot say I know all the nooks and crannies of this tower. It is a rather large tower, and I am not one for stairs. Thank the light I am not a full-timer here.",)"]
+<br>
+(either: "Many magi find it much more lucrative to be tutors and advisors for wealthy households, and they take on the same affects as their employers. To those they want to impress, they present themselves as davehmars, but whenever called upon to act like a davehmar, they will say that they are only a humble household magi. These types are invariably irritating.", "As of late, it has become more fashionable for aristocrats to send their children to universities, since managing their parents' finances is an entire profession. When the family goes under, these types end up teaching in village schools, which Apesai might be considered as one. Disappointed, you leave this one be.", "Her chin is held high, and her Sanurango accent is forced, trying to sound like a noble. If she was indeed nobility, why is she teaching in Apesai of all places, and part-timing at that?", "Unhelpful and haughty - the aristocrat cannot help but be themselves despite how much education they have received. You leave this one be.", "You cannot seem to find the davehmar's star upon this man's fine velvet headwrap, nor on his silk cloak, nor on his crocodile-leather shoes. Disappointed, you leave the classroom.", "This woman reminds you so much of your Statecraft instructor. Not only was she a davehmar, she was also an aristocrat to boot - a noxious mixture. She hated you, as though she was born to do so.",)
+}],
+)
 
+<br>
+<!--closing paragraph based on tracker B-->
+(cond:
+$stuff's lighthouseTrackerB is 3, [{
+You wonder if you might have more luck trying something else. Not everyone knows their own school inside out.
+}],
+$stuff's lighthouseTrackerB is 2, [{
+Whereas your university had ten towers, this is only one. And yet, no-one seems to be able to help you. Why?
+}],
+$stuff's lighthouseTrackerB is 1, [{
+You expected a welcome, but you received only apathy. If they did not wish to overwork, they should not have admitted so many students.
+}],
+)
 
-<!--1-->
-(elseif: $stuff's lighthouseTrackerB is 1)[{
-2->1
-}]<!--end of 1-->
+<!--content end-->
 
 <br>
 ---

@@ -37,6 +37,8 @@ $cssDesc[''You: //(print: (passage:)'s topic)//'']
 
 (if: ($funcTalkedTimesCheck: "absentPrincipalExplained") is 0)[
 ["Yup, it sucks. He's off for the frontlines. Said it's going to be his breakthrough of the century..."]<VehVehLine|
+<br>
+Mention TEMP TEACHERS!
 ]
 
 (else:)[What's more to say, man? It's a bummer. But I expect nothing less from an elder demahvars... You don't get to be that way by lacking in ambition...]

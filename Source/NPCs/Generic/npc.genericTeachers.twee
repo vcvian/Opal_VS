@@ -1,0 +1,22 @@
+:: npc.genericTeacher1 [static-storage]
+{=
+(metadata:
+"id", "Cranky Teacher",
+"color", #e9a395,
+)
+
+
+:: npc.genericTeacher2 [static-storage]
+{=
+(metadata:
+"id", "Nice Teacher",
+"color", #a8d9cd,
+)
+
+
+:: npc.genericTeacher3 [static-storage]
+{=
+(metadata:
+"id", "Haughty Teacher",
+"color", #daa8d4,
+)

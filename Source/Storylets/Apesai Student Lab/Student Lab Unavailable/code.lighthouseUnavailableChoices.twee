@@ -27,7 +27,7 @@
 (set: _linkTextStudents to "Perhaps another student will know better than the last.")
 }]
 (elseif: $stuff's lighthouseTrackerA is 2)[{
-(set: _linkTextStudents to "Grab a random kid. One of them has to know //something//.")
+(set: _linkTextStudents to "Grab a random student. One of them has to know //something//.")
 }]
 (else:)[{
 (set: _linkTextStudents to "You'll just be wasting your time.")

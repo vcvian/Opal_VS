@@ -2,7 +2,7 @@
 {=
 (metadata:
 "id", "Native Student",
-"color", #9a6e60,
+"color", #977a72,
 )
 
 
@@ -18,5 +18,5 @@
 {=
 (metadata:
 "id", "Imperial Student",
-"color", #7d7792,
+"color", #9893c3,
 )

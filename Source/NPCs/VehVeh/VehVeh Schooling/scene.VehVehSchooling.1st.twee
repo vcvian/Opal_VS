@@ -1,7 +1,7 @@
 :: scene.VehVehSchooling.1st
 {=
 
-["Are you asking about the apprenticeship program in general?"]<VehVehLine| She says, beaming. ["Or are you asking about mine, specifically?"]
+["Are you asking about the apprenticeship program in general?"]<VehVehLine| She says, beaming. ["Or are you asking about mine, specifically?"]<VehVehLine|
 <br>
 ($funcInnerConvo: (dm:
 	"<!--A-->\"You, specifically.\"", "youSpecifically",
