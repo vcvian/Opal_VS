@@ -24,9 +24,9 @@ $stuff's lighthouseDice is 2, 2,
 $stuff's lighthouseDice is 3, 3, 1
 ))
 <!--enchant speaker lines-->
-($funcNPCSpeakManual: "Student" + (str:_speaker))
+($funcNPCSpeakManual: "genericStudent" + (str:_speaker))
 <!--hook name-->
-(set: _line to (hook: "Student" + (str:_speaker) + "Line"))
+(set: _line to (hook: "genericStudent" + (str:_speaker) + "Line"))
 
 
 <!--content begins-->
@@ -37,7 +37,7 @@ $stuff's lighthouseTrackerA is 3, [{
 You hail a group of students, and they immediately disperse, leaving the slowest or perhaps the boldest among them to face you down.
 }],
 $stuff's lighthouseTrackerA is 2, [{
-Trying again, you catch up with another student. This one is carrying a heavy stack of books, who startled when at your approach, almost dropping the books and crushing your feet.
+Trying again, you catch up with another student. This one is carrying a heavy stack of books, who startled at your approach, almost dropping the books and crushing your feet.
 }],
 $stuff's lighthouseTrackerA is 1, [{
 Like an snakecat in ambush, you wait in a corner of the hallway, until you hear the footsteps. You appear, quicker than they can run. Well, quicker than at least one of them.
@@ -53,7 +53,7 @@ _line["(either: "Du-don't know. N-new to Apesai. A-ask big s-sister.", "Library?
 (either: "The student before you is a small child with terracotta skin - a native, one of many, and a little bit too young for school. One must wonder if the davehmars here are having a hard time finding readier students.", "His Nurango sentences are curt, utilitarian. You wonder if it is a pattern from his Askavan tongue, or if the native students actually speak in poetry when alone with one another.", "The apprentice keeps fixing her cap and gown, trying to get all of her thick, silver hair underneath the wraps, clearly unfamiliar with Nurandah clothing.", "You've never met a native Askavan before, but now that you're in the very capital of the dahak, they seem to be unavoidable. This student is just one of many.", "An Askavan, one of many. You wonder if this school was originally meant to board native students, and the others - imperials - were merely an afterthought.", "This apprentice could barely speak Nurango. You wonder how lessons would proceed, and how much the students could absorb if every other student was like this one.")
 }],
 _speaker is 2, [{
-_line["(either: "Erm, the lab? I'm not sure if I should... Who //are// you? I'm not sure strangers should be wandering around. You should talk to one of the teachers.", "Is this a school? Yes, it is. Why are you asking? Uh, listen, I better get to class. I'm already as late as it is.", "I just enrolled last month. I want to help, but truth is, I still ask the assistant where the washroom is, so...", "You should try the assistant. She does everything around here. I'd like to help, but I've got some chores right now. Sorry.", "You want to use the school facilities? Why, aren't you studying here? You're not? Oh. Then you should talk to someone else about that. I don't control the attendants, sorry.")"]
+_line["(either: "Erm, the lab? I don't know if I should... Who //are// you? I'm not sure strangers should be wandering around. You should talk to one of the teachers.", "Is this a school? Yes, it is. Why are you asking? Uh, listen, I better get to class. I'm already as late as it is.", "I just enrolled last month. I want to help, but truth is, I still ask the assistant where the washroom is, so...", "You should try the assistant. She does everything around here. I'd like to help, but I've got some chores right now. Sorry.", "You want to use the school facilities? Why, aren't you studying here? You're not? Oh. Then you should talk to someone else about that. I don't control the attendants, sorry.")"]
 <br>
 (either: "The apprentice is wearing a blue-and-white sash - the colors of the Reclaimers. Her parents are probably living in a frontier settlement in the deserts to the north. She has it far better than them.", "This student is wearing a gold knife on one of his ears. Is he a Yavanid? Or is he merely copying the neighborhood minstrel? Hard to tell where tradition ends and fashion begins in a place as mixed as Apesai.", "With both black hair of Nurandah and copper skin of Askava, it is difficult to place this student's ethnicity. But perhaps the classic descriptions you've learned from textbooks have not accounted for centuries of co-existence.", "This one is an imperial - you can be sure from her dark hair and pale features. However, you are less sure if she has only recently arrived since the Reclamation, or if her family has had roots here since the Second, or even First Colony Era.", "He is sufficiently well-spoken, albeit with an accent. Must be from an old family here in Askava, going back to the Second, or even First Colony Era.")
 }],

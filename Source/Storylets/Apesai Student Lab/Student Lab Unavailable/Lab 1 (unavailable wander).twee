@@ -17,23 +17,83 @@ $cssColumnChild[
 
 $cssColumnChild[
 
+<!--randomize speaker based on $stuff's lighthouseDice (so that it only randomizes when clicking through a passage but not upon dipping in and out of menus)-->
+(set: _speaker to (cond:
+$stuff's lighthouseTrackerC is 1, 1,
+$stuff's lighthouseTrackerC is 2, 2,
+$stuff's lighthouseTrackerC is 3, 3, 1
+))
+<!--enchant speaker lines-->
+($funcNPCSpeakManual: "genericAttendant" + (str:_speaker))
+<!--hook name-->
+(set: _line to (hook: "genericAttendant" + (str:_speaker) + "Line"))
+
+<!--content begins-->
+
 
 <!--3-->
 (if: $stuff's lighthouseTrackerC is 3)[{
-4->3
+<!--opening line-->
+If the Apesai Lighthouse is indeed a school, you should be able to find some of magical facilities - anything that will allow you to make use of your skills as a magus.
+<br>
+So you begin wandering around the tower. But since it is a tower, you inevitably end up where you started. And so, there is nowhere to go but up that spiral stair.
+<br>
+After climbing several flights, you find yourself standing in front of a room with all the hallmarks of a laboratory: Large metal door, armed with nullifying seals, safety posters pasted all over, and guarded by a squat, spider-like construct of red steel: an attendant.
+<br>
+<!--attendant line-->
+_line["Not... lab time... return... to your... class... student..."] it speaks with the recording of an old man's voice, perhaps that of a davehmars teaching here.
+<br>
+<!--closing line-->
+Negotiating with it will be as productive as negotiating with a door. There is no intelligence inside its housing, but there are many arms that are perfectly capable of deterring you.
+<br>
+Perhaps there is someone that can help you, or at least a door less guarded.
 }]<!--end of 3-->
 
 
 <!--2-->
 (elseif: $stuff's lighthouseTrackerC is 2)[{
-3->2
+<!--opening line-->
+Leaving the supposed lab behind, you continue climbing up the stairs, hoping to see anything of use or to run into anyone who might help you out.
+<br>
+When you get to the next floor, the door before you is wide open, leading to a large hall with rows after rows of bookshelves lining its walls, and there are apprentices inside.
+<br>
+But as you enter the hall, another attendant scampers in front of you, blocking your way with its metal body. You step right, and it steps right. You step left, and so it does.
+<br>
+<!--attendant line-->
+_line["Oh, rats, how do I do this?... Hello? Is this thing on? It is? Greetings, visitor! You're at the Apesai Davehkhan's library. Please contact a school representative and make sure you have the appropriate clearance,"] it says, this time with a young woman's voice. You cannot believe that they whoever did the recording left it like that.
+<br>
+<!--closing line-->
+The apprentices inside have noticed the commotion, but when you call out to them and wave them over, they retreat into the maze of bookshelves, laughing, making a ruckus. There doesn't seem to be any librarian here.
+<br>
+_line["Please contact a school representative and make sure you have the appropriate clearance,"] the attendant repeats, striking a pose that you think is supposed to be intimidating.
+<br>
+Not wanting to make a scene, you turn and leave through the big door.
 }]<!--end of 2-->
 
 
 <!--1-->
 (elseif: $stuff's lighthouseTrackerC is 1)[{
-2->1
+<!--opening line-->
+Making your way back down a few floors, you decide to look around, hoping against all hope that there is something that you've missed.
+<br>
+You cross another large, hall, one with a big stage. This would be where students gather every Mahruz to listen to the principal speak, if this school is anything like yours.
+<br>
+Making your way into one of the side doors, you enter what appears to be the student dorm. Otherwise, it would be strange for a classroom to have so many bunk beds.
+<br>  
+<!--attendant line-->
+_line["Alert! Alert!"] Says the crackling voice of some matron, which is quickly approaching you from some unseen corner with a flurry of metallic tapping. _line["Children in danger! Alert! Alert!"]
+<br>
+You flee the scene before the attendant finds you, feeling oddly guilty that you did not take a leisurely stroll out like an innocent person would.
+<br>
+<!--closing line-->
+This is no use. You've spent twelve years inside of a school which you can call your own, and you have forgotten what it feels like to be an outsider. This experience has been an unpleasant reminder.
 }]<!--end of 1-->
+
+
+
+
+<!--content ends-->
+
 
 <br>
 ---

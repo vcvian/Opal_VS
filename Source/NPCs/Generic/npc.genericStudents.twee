@@ -1,4 +1,4 @@
-:: npc.Student1 [static-storage]
+:: npc.genericStudent1 [static-storage]
 {=
 (metadata:
 "id", "Native Student",
@@ -6,7 +6,7 @@
 )
 
 
-:: npc.Student2 [static-storage]
+:: npc.genericStudent2 [static-storage]
 {=
 (metadata:
 "id", "Apesai Student",
@@ -14,7 +14,7 @@
 )
 
 
-:: npc.Student3 [static-storage]
+:: npc.genericStudent3 [static-storage]
 {=
 (metadata:
 "id", "Imperial Student",

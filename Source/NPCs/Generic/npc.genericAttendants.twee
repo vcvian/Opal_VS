@@ -1,0 +1,22 @@
+:: npc.genericAttendant1 [static-storage]
+{=
+(metadata:
+"id", "Lab Attendant",
+"color", #cde5d3,
+)
+
+
+:: npc.genericAttendant2 [static-storage]
+{=
+(metadata:
+"id", "Library Attendant",
+"color", #decdde,
+)
+
+
+:: npc.genericAttendant3 [static-storage]
+{=
+(metadata:
+"id", "Barracks Attendant",
+"color", #d1dbe0,
+)
