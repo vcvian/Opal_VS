@@ -3,7 +3,7 @@
 
 (metadata:
 "title", "Apesai Student Lab",
-"cardDesc", "",
+"cardDesc", "Synthesis is almost synonymous with alchemy and magic, since it is the most widely applicable discipline. Even a place as dysfunctional as the Apesai Lighthouse must have a synthesis setup.",
 "level", 1,
 "max", 2,
 "duration", 3,
@@ -44,14 +44,18 @@ $cssColumnChild[
 (set: _line to (hook: "genericAttendant1Line"))
 
 <!--logic shorthands-->
-(set: _busy to false)
-(if: $char's player's timerCraft contains (passage: "Apesai Student Lab")'s name)[(set: _busy to true)]
+(set: _jobBusy to false)
+(set: _jobDone to false)
+(if: $char's player's timerCraft contains (passage:)'s name)[
+     (set: _jobBusy to true)
+     (if: $char's player's timerCraft's ((passage:)'s name)'s 3rd <= 0)[(set: _jobDone to true)]
+]
 
 <!--not busy-->
-(if: _busy is false)[
+(if: _jobBusy is false)[
 It is not so accurate to say that you are standing in front of a synthesis workstation. Rather, you are inside it. A modern alchemical lab - even ones as small and basic as this one - is always a marvel, easily taking up an entire room, with its pipes running inside the walls, and its engines lying beneath the floor.
 <br>
-Presently, there are a couple of synthesis arrays - looking like ribcages made of red steel - that are either not reserved or disassembled for maintenance. Their fuel receptacles are open and waiting.
+Presently, there are a couple of free synthesis arrays - looking like ribcages made of red steel - that are neither reserved nor disassembled for maintenance. Their fuel receptacles are open and waiting.
 <br>
 _line["(either: "What... shall we make... today?", "What product... do you have... in mind?", "Davehmar, what lesson... have you planned... for the students?", "A demonstration... for the apprentices...", "Adjunct... have you brought... fuel? Have you... the right elements?")"]
 <br>
@@ -64,16 +68,27 @@ After an order is confirmed, the workstation will take a certain amount of days 
 ]
 ]<!--end of if not busy-->
 
-<!--if busy-->
-(else:)[
+<!--if busy but not done-->
+(elseif: _jobBusy is true and _jobDone is false)[
 _line["(either: "Patience, apprentices...", "Observe, but do not touch...", "The laboratory is... active... Exercise caution...", "Apprentices... take note... of these procedures...") This batch will be done... in (plural: $char's player's timerCraft's "Apesai Student Lab"'s 3rd, "more day")..."] says the attendant as its spider arms launch into a flurry, orchestrating the magic inside of the synthesis equipment in accordance with your instructions, which you have delivered in the form of incantations.
 <br>
 Once, this work would have been performed by a squad of junior magi. But that was centuries ago. Now, most modern setups can run fairly reliably by themselves, given enough fuel and that the initial rituals have been performed correctly.
 <br>
 Through a yellowed view port, you can see your product forming inside of the machine's belly.
+]<!--end of if busy but not done-->
+
+(else:)[
+The student lab is humming lowly, a running on the very last bit of vehzin fume still remaining in its pipes. Fortunately, the synthesis is already done. Your product has been dispensed and put aside.
+<br>
+_line["(either: "Take it... hopefully, the apprentices... have been paying attention...", "You should congratulate... the apprentices... encourage them...", "The demonstration... is complete...")"] says the attendant, its many spider arms finally at rest.
+<br>
+Though you know that it only moves according to the magic you have imparted, you cannot help but feel thankful for the thing's effort, and a bit sorry for it also.
+<br>
+It's probably because of its old-man voice.
+<br>
+<!--tip text-->
+$cssDesc[Claim your product.]
 ]
-
-
 
 
 ]<!--end child (prose)-->
@@ -87,6 +102,19 @@ $cssColumnParent[
 <!--read out-->
 $cssColumnChild[
 
+<!--current job-->
+''(print: (passage:)'s title)'' is` `
+(if: $char's player's timerCraft contains (passage:)'s name)[{
+    <!--if done-->
+    (if: $char's player's timerCraft's ((passage:)'s name)'s 3rd <= 0)[done synthesizing ''(print:  $char's player's timerCraft's ((passage:)'s name)'s 2nd) (print: (passage: "item." + $char's player's timerCraft's ((passage:)'s name)'s 1st)'s id)''.]
+    <!--if not done-->
+    (else:)[currently synthesizing ''(print:  $char's player's timerCraft's ((passage:)'s name)'s 2nd) (print: (passage: "item." + $char's player's timerCraft's ((passage:)'s name)'s 1st)'s id)''. (plural: $char's player's timerCraft's ((passage:)'s name)'s 3rd, "day") left.]
+}]
+(else:)[not making anything.]
+
+<br>
+
+$cssDesc[
 <!--level-->
 (set: _levelName to (cond:
      (passage:)'s level is 1, "simple",
@@ -106,15 +134,13 @@ $cssColumnChild[
 </ul>
 
 <!--specs-->
-Each time this workstation runs:
+Each time it runs, this workstation:
 <ul>
 <li>Can synthesize ''at most (plural: (passage:)'s max, "unit")'' of a single type of product.
 <li>Will cost ''(print: (passage:)'s fuelCost) (print: (passage: "item.vehzin")'s id)'' to start a run.
 <li>Will take ''(plural: (passage:)'s duration, "day")'' to finish a run.
 </ul>
 
-
-<br>
 <!--element readout-->
 (set: _self to $char's player's att)
 You have absorbed and are currently holding these elements:
@@ -128,10 +154,10 @@ You have absorbed and are currently holding these elements:
 </ul>
 
 ]<!--end of readout-->
-
+]<!--end of readout $cssDesc-->
 
 <!--vehzin-->
-$cssColumnChild[''Synthesis Actions''
+$cssColumnChild[
 ($funcVehzin: (passage:)'s parent)
 ]<!--end child (vehzin)-->
 

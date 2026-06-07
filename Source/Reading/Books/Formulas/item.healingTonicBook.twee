@@ -10,7 +10,11 @@
     "gainText", [You obtain a book - less of a tract and more of a thick pamphlet. Its cover bears the trademark of the Sisua University Press and the universal symbol for elemental Gor, also recognized as a symbol for health.],
     "lossText", [As you part ways with the book, you tell yourself that basic healing tonics are child's play. You - already a graduate - can fare well enough by yourself.],
     "content", [{
-If you are studying under a capable and responsible teacher, such as those currently serving under the Sisua School, you may no doubt have already been instructed in the steps of making a simple //suspension of Gor// within the first few years of your academic journey. `[...]`
+
+<!--elipses-->
+(set: _e to [$cssDesc[`[...]`]])
+
+If you are studying under a capable and responsible teacher, such as those currently serving under the Sisua School, you may no doubt have already been instructed in the steps of making a simple //suspension of Gor// within the first few years of your academic journey. _e
 <br>
 ($funcInnerConvo: (dm:
     "<!--A-->Continue reading...", "1",
@@ -19,7 +23,7 @@ If you are studying under a capable and responsible teacher, such as those curre
 ))
 <br>
 
-[`[...]` After all, such procedures are the bedrock of alchemy, to say nothing of the science of magic: Knowing how to make a basic substance will lead one down a long and very rewarding road. It requires all of the same skills and knowledge one might make use of when synthesizing even the most complex materials, including the Sacred Opal, which the author of this text wishes for all of her readers to one day achieve. `[...]`
+[_e After all, such procedures are the bedrock of alchemy, to say nothing of the science of magic: Knowing how to make a basic substance will lead one down a long and very rewarding road. It requires all of the same skills and knowledge one might make use of when synthesizing even the most complex materials, including the Sacred Opal, which the author of this text wishes for all of her readers to one day achieve. _e
 <br>
 ($funcInnerConvo: (dm:
     "<!--A-->Continue reading...", "2",
@@ -29,9 +33,9 @@ If you are studying under a capable and responsible teacher, such as those curre
 <br>
 ](1|
 
-[`[...]` But, if you are one of the desperate few who have found themselves in need of aid because your teachers is somehow unavailable (perhaps the imperial examinations are coming up, and all of the other students, who have not been paying attetnion in class, are keeping your teacher busy), then this little book is for you.
+[_e But, if you are one of the desperate few who have found themselves in need of aid because your teachers is somehow unavailable (perhaps the imperial examinations are coming up, and all of the other students, who have not been paying attetnion in class, are keeping your teacher busy), then this little book is for you.
 <br>
-First, what is called a "healing tonic" is actually `[...]`
+First, what is called a "healing tonic" is actually _e
 <br>
 ($funcInnerConvo: (dm:
     "<!--A-->Continue reading...", "3",
@@ -41,9 +45,9 @@ First, what is called a "healing tonic" is actually `[...]`
 <br>
 ](2|
 
-[`[...]` Making basic healing aids is one of the most common examination tasks. While such substances will not cure a flu or bring the dead back to life (that would be highly illegal), it is a much needed relief and supplement in any family's pantry. A magus who fails to become a master can always fall back on working in synthesis workshops at the back of apothecaries. There is no shame in this.
+[_e Making basic healing aids is one of the most common examination tasks. While such substances will not cure a flu or bring the dead back to life (that would be highly illegal), it is a much needed relief and supplement in any family's pantry. A magus who fails to become a master can always fall back on working in synthesis workshops at the back of apothecaries. There is no shame in this.
 <br>
-In fact, yours truly has `[...]`
+In fact, yours truly has _e
 <br>
 ($funcInnerConvo: (dm:
     "<!--A-->Continue reading...", "4",
@@ -53,9 +57,9 @@ In fact, yours truly has `[...]`
 <br>
 ](3|
 
-[`[...]` ''Gor'', often called "elemental storm" (a misnomer, in this author's belief), is the principle of quickening, of inevitable time, and of dissolution and chaos. When applied to the body, it hastens our natural capacity for healing.
+[_e ''Gor'', often called "elemental storm" (a misnomer, in this author's belief), is the principle of quickening, of inevitable time, and of dissolution and chaos. When applied to the body, it hastens our natural capacity for healing.
 <br>
-A theory of Gor was first theorized in `[...]`
+A theory of Gor was first theorized in _e
 <br>
 ($funcInnerConvo: (dm:
     "<!--A-->Continue reading...", "5",
@@ -65,9 +69,9 @@ A theory of Gor was first theorized in `[...]`
 <br>
 ](4|
 
-[`[...]` Gor is often found in commonplace kitchen ingredients, namely the hotter spices found in our Nurandahid diet, but especially the imported roots of the eastern marches - the so-called "Askavan ginger" (another misnomer, but that is for another book to argue). Those in the frigid north tend to substitute leaves of the mint family for roots, a less productive source.
+[_e Gor is often found in commonplace kitchen ingredients, namely the hotter spices found in our Nurandahid diet, but especially the imported roots of the eastern marches - the so-called "Askavan ginger" (another misnomer, but that is for another book to argue). Those in the frigid north tend to substitute leaves of the mint family for roots, a less productive source.
 <br>
-The extraction of Gor requires that the source be elementalized `[...]`
+The extraction of Gor requires that the source be elementalized _e
 <br>
 ($funcInnerConvo: (dm:
     "<!--A-->Continue reading...", "6",
@@ -77,9 +81,9 @@ The extraction of Gor requires that the source be elementalized `[...]`
 <br>
 ](5|
 
-[`[...]` However, like any form of chaos, Gor alone is as likely to hurt - by way of hemorrhage or even cancer - as it is to heal. As such, in order for our product to be of any medicinal value, it must be tempered with a stabilizing agent: Some small amount of ''Zam''.
+[_e However, like any form of chaos, Gor alone is as likely to hurt - by way of hemorrhage or even cancer - as it is to heal. As such, in order for our product to be of any medicinal value, it must be tempered with a stabilizing agent: Some small amount of ''Zam''.
 <br>
-Visit your nearest charcoal pits if diamond dust is outside of your budget. Whatever you use, pay attention to its purity, otherwise `[...]`
+Visit your nearest charcoal pits if diamond dust is outside of your budget. Whatever you use, pay attention to its purity, otherwise _e
 <br>
 ($funcInnerConvo: (dm:
     "<!--A-->Continue reading...", "7",
@@ -89,9 +93,9 @@ Visit your nearest charcoal pits if diamond dust is outside of your budget. What
 <br>
 ](6|
 
-[`[...]` Finally, for the product to be agreeable to human digestion and circulatory system - in other words, to make it "bioavailable" - we must suspend it in a liquid that is one part ''Ab'' (yes, that is why it is called a "suspension"). Without which, the medicine will only pass in our stool - an irritating experience in more ways than one. Your school ought to supply you with sanctified water as part of a standard laboratory.
+[_e Finally, for the product to be agreeable to human digestion and circulatory system - in other words, to make it "bioavailable" - we must suspend it in a liquid that is one part ''Ab'' (yes, that is why it is called a "suspension"). Without which, the medicine will only pass in our stool - an irritating experience in more ways than one. Your school ought to supply you with sanctified water as part of a standard laboratory.
 <br>
-There is something to be said about using alcohol as a base, but `[...]`
+There is something to be said about using alcohol as a base, but _e
 <br>
 ($funcInnerConvo: (dm:
     "<!--A-->Continue reading...", "8",
@@ -100,9 +104,9 @@ There is something to be said about using alcohol as a base, but `[...]`
 <br>
 ](7|
 
-[`[...]` So, a quick-and-easy formula might be: ''One molar part Ab, two molar parts Gor, and one molar part Zam.''.
+[_e So, a quick-and-easy formula might be: ''One molar part Ab, two molar parts Gor, and one molar part Zam.''.
 <br>
-Large-scale, industrial workshops will use a slightly different ratio, but for the purposes of learning and examinations, the above has served many generations of apprentices. `[...]`
+Large-scale, industrial workshops will use a slightly different ratio, but for the purposes of learning and examinations, the above has served many generations of apprentices. _e
 <br>
 ($funcInnerConvo: (dm:
     "<!--A-->Continue reading...", "9",
@@ -113,13 +117,13 @@ Large-scale, industrial workshops will use a slightly different ratio, but for t
 ](8|
 
 
-[`[...]` Next, having assembled all of your ingredients, we will revise a few basic safety procedures related to elementalysis equipment, or "extractors" as it is called in the western schools, or "destructors" if you are studying in the south - an unfortunate name.
+[_e Next, having assembled all of your ingredients, we will revise a few basic safety procedures related to elementalysis equipment, or "extractors" as it is called in the western schools, or "destructors" if you are studying in the south - an unfortunate name.
 <br>
 The key take-away, as your teachers would surely have drilled into you by now, is to ''never extract what you cannot afford to contain''.
 <br>
 Great bodily and psychic harm awaits those without the proper training (if you are holding the elements in your mind, or "doing it raw" as many apprentices call it) or adequate containment vessels.
 <br>
-However, with proper oversight from a lab instructor, this will never `[...]`
+However, with proper oversight from a lab instructor, this will never _e
 <br>
 ($funcInnerConvo: (dm:
     "<!--A-->Continue to the procedures...", "10",
@@ -128,9 +132,9 @@ However, with proper oversight from a lab instructor, this will never `[...]`
 <br>
 ](9|
 
-[`[...]` And now, for the truly challenging stuff: We will go over the synthesis procedure, along with some incantations to guard against contaminating and spoiling your Gor suspension.
+[_e And now, for the truly challenging stuff: We will go over the synthesis procedure, along with some incantations to guard against contaminating and spoiling your Gor suspension.
 <br>
-After, in the appendix, the more conscientious student will find a few "tips" to avoid damaging your school's - no doubt, very expensive - laboratory equipment. `[...]`
+After, in the appendix, the more conscientious student will find a few "tips" to avoid damaging your school's - no doubt, very expensive - laboratory equipment. _e
 <br>
 $cssDesc[The rest of the book is instructive, and you breeze through it. Of course you do; you're no apprentice! Then again, even a master needs a reminder once in a while.
 <br>

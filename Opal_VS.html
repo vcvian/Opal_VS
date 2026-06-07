@@ -71,7 +71,7 @@ hr {
   100% {
     background-position: 0% center;
   }
-}</style><script role="script" id="twine-user-script" type="text/twine-javascript"></script><tw-tag name="book" color="yellow"></tw-tag><tw-tag name="effect" color="yellow"></tw-tag><tw-tag name="footer" color="yellow"></tw-tag><tw-tag name="static-storage" color="yellow"></tw-tag><tw-tag name="stay" color="yellow"></tw-tag><tw-tag name="topic" color="purple"></tw-tag><tw-tag name="UI" color="orange"></tw-tag><tw-tag name="startup" color="orange"></tw-tag><tw-tag name="storylet" color="blue"></tw-tag><tw-tag name="sublocation" color="green"></tw-tag><tw-tag name="test" color="blue"></tw-tag><tw-tag name="traveling" color="purple"></tw-tag><tw-tag name="header" color="yellow"></tw-tag><tw-passagedata pid="1" name="AA. Books, Reading &amp; Formulae" tags="startup" position="100,100" size="100,100">{=
+}</style><script role="script" id="twine-user-script" type="text/twine-javascript"></script><tw-tag name="UI" color="orange"></tw-tag><tw-tag name="effect" color="yellow"></tw-tag><tw-tag name="startup" color="orange"></tw-tag><tw-tag name="static-storage" color="yellow"></tw-tag><tw-tag name="test" color="blue"></tw-tag><tw-tag name="topic" color="purple"></tw-tag><tw-tag name="book" color="yellow"></tw-tag><tw-tag name="footer" color="yellow"></tw-tag><tw-tag name="header" color="yellow"></tw-tag><tw-tag name="stay" color="yellow"></tw-tag><tw-tag name="storylet" color="blue"></tw-tag><tw-tag name="sublocation" color="green"></tw-tag><tw-tag name="traveling" color="purple"></tw-tag><tw-passagedata pid="1" name="AA. Books, Reading &amp; Formulae" tags="startup" position="100,100" size="100,100">{=
 &lt;!--Macros related to books and reading--&gt;
 
 (set: $readingNav to (dm:
@@ -1485,7 +1485,7 @@ Ex: 2|1 At, 0|1 Ab, 2|3 Gor, 0|2 Rokh, 0|0 Zam --&gt;
 			⇝ ($funcJobAdd: _itemName, _value)\
 		] ($funcLogTip: &quot;item.&quot;, _itemName) $cssDesc[(To make 1 unit of this, you have|need ($funcElementHaveNeed: _itemName, 1))]\
 	]\
-	(else:)[~~Synthesize (print: _itemDM&#39;s id)~~ ($funcLogTip: &quot;item.&quot;, _itemName) $cssDesc[(Workstation busy synthesizing (print: _currentJob&#39;s 2nd) (print: (passage: &quot;item.&quot; + _currentJob&#39;s 1st)&#39;s id). (plural: _currentJob&#39;s 3rd, &quot;day&quot;) left.)]]\
+	(else:)[~~Synthesize (print: _itemDM&#39;s id)~~ ($funcLogTip: &quot;item.&quot;, _itemName) $cssDesc[(Workstation is synthesizing (print: _currentJob&#39;s 2nd) (print: (passage: &quot;item.&quot; + _currentJob&#39;s 1st)&#39;s id). (if: _currentJob&#39;s 3rd &gt; 0)[(plural: _currentJob&#39;s 3rd, &quot;day&quot;) left.](else:)[It is already done.])]]\
 ]]))
 
 &lt;!--Add job into $char&#39;s player&#39;s timerCraft--&gt;
@@ -1595,6 +1595,10 @@ Ex: 2|1 At, 0|1 Ab, 2|3 Gor, 0|2 Rokh, 0|0 Zam --&gt;
 	(if: $char&#39;s player&#39;s timerCraft contains (passage:)&#39;s name)[(set: _busy to true)]\
 	\
 	&lt;!--Create a startup link--&gt;\
+	&#39;&#39;Workstation status: [
+		(if: _busy)[&lt;span class=&quot;rainbow&quot;&gt;ACTIVE&lt;/span&gt;]
+		(else:)[DORMANT]
+		]&lt;workstationStatus|&#39;&#39;
 	&lt;ol&gt;
 	(if: _haveVehzin is true and _busy is false)[\
 		|startup&gt;[\
@@ -1602,6 +1606,7 @@ Ex: 2|1 At, 0|1 Ab, 2|3 Gor, 0|2 Rokh, 0|0 Zam --&gt;
 				(set: _justFueled to true)\
                 (show: ?running)\
                 (replace: ?exitText)[$cssDesc[(And reclaim the fuel.)]]\
+				(replace: ?workstationStatus)[&lt;span class=&quot;rainbow&quot;&gt;ACTIVE&lt;/span&gt;]\
 				(replace: ?startup)[\
 					&lt;li&gt;~~Power up the workstation.~~ $cssDesc[(It is up and running.)]
 					&lt;li&gt;(link: &quot;Reclaim fuel.&quot;)[\
@@ -7713,7 +7718,11 @@ You nod. Your teacher is eager to get out of Apesai more than anything, but you 
     &quot;gainText&quot;, [You obtain a book - less of a tract and more of a thick pamphlet. Its cover bears the trademark of the Sisua University Press and the universal symbol for elemental Gor, also recognized as a symbol for health.],
     &quot;lossText&quot;, [As you part ways with the book, you tell yourself that basic healing tonics are child&#39;s play. You - already a graduate - can fare well enough by yourself.],
     &quot;content&quot;, [{
-If you are studying under a capable and responsible teacher, such as those currently serving under the Sisua School, you may no doubt have already been instructed in the steps of making a simple //suspension of Gor// within the first few years of your academic journey. `[...]`
+
+&lt;!--elipses--&gt;
+(set: _e to [$cssDesc[`[...]`]])
+
+If you are studying under a capable and responsible teacher, such as those currently serving under the Sisua School, you may no doubt have already been instructed in the steps of making a simple //suspension of Gor// within the first few years of your academic journey. _e
 &lt;br&gt;
 ($funcInnerConvo: (dm:
     &quot;&lt;!--A--&gt;Continue reading...&quot;, &quot;1&quot;,
@@ -7722,7 +7731,7 @@ If you are studying under a capable and responsible teacher, such as those curre
 ))
 &lt;br&gt;
 
-[`[...]` After all, such procedures are the bedrock of alchemy, to say nothing of the science of magic: Knowing how to make a basic substance will lead one down a long and very rewarding road. It requires all of the same skills and knowledge one might make use of when synthesizing even the most complex materials, including the Sacred Opal, which the author of this text wishes for all of her readers to one day achieve. `[...]`
+[_e After all, such procedures are the bedrock of alchemy, to say nothing of the science of magic: Knowing how to make a basic substance will lead one down a long and very rewarding road. It requires all of the same skills and knowledge one might make use of when synthesizing even the most complex materials, including the Sacred Opal, which the author of this text wishes for all of her readers to one day achieve. _e
 &lt;br&gt;
 ($funcInnerConvo: (dm:
     &quot;&lt;!--A--&gt;Continue reading...&quot;, &quot;2&quot;,
@@ -7732,9 +7741,9 @@ If you are studying under a capable and responsible teacher, such as those curre
 &lt;br&gt;
 ](1|
 
-[`[...]` But, if you are one of the desperate few who have found themselves in need of aid because your teachers is somehow unavailable (perhaps the imperial examinations are coming up, and all of the other students, who have not been paying attetnion in class, are keeping your teacher busy), then this little book is for you.
+[_e But, if you are one of the desperate few who have found themselves in need of aid because your teachers is somehow unavailable (perhaps the imperial examinations are coming up, and all of the other students, who have not been paying attetnion in class, are keeping your teacher busy), then this little book is for you.
 &lt;br&gt;
-First, what is called a &quot;healing tonic&quot; is actually `[...]`
+First, what is called a &quot;healing tonic&quot; is actually _e
 &lt;br&gt;
 ($funcInnerConvo: (dm:
     &quot;&lt;!--A--&gt;Continue reading...&quot;, &quot;3&quot;,
@@ -7744,9 +7753,9 @@ First, what is called a &quot;healing tonic&quot; is actually `[...]`
 &lt;br&gt;
 ](2|
 
-[`[...]` Making basic healing aids is one of the most common examination tasks. While such substances will not cure a flu or bring the dead back to life (that would be highly illegal), it is a much needed relief and supplement in any family&#39;s pantry. A magus who fails to become a master can always fall back on working in synthesis workshops at the back of apothecaries. There is no shame in this.
+[_e Making basic healing aids is one of the most common examination tasks. While such substances will not cure a flu or bring the dead back to life (that would be highly illegal), it is a much needed relief and supplement in any family&#39;s pantry. A magus who fails to become a master can always fall back on working in synthesis workshops at the back of apothecaries. There is no shame in this.
 &lt;br&gt;
-In fact, yours truly has `[...]`
+In fact, yours truly has _e
 &lt;br&gt;
 ($funcInnerConvo: (dm:
     &quot;&lt;!--A--&gt;Continue reading...&quot;, &quot;4&quot;,
@@ -7756,9 +7765,9 @@ In fact, yours truly has `[...]`
 &lt;br&gt;
 ](3|
 
-[`[...]` &#39;&#39;Gor&#39;&#39;, often called &quot;elemental storm&quot; (a misnomer, in this author&#39;s belief), is the principle of quickening, of inevitable time, and of dissolution and chaos. When applied to the body, it hastens our natural capacity for healing.
+[_e &#39;&#39;Gor&#39;&#39;, often called &quot;elemental storm&quot; (a misnomer, in this author&#39;s belief), is the principle of quickening, of inevitable time, and of dissolution and chaos. When applied to the body, it hastens our natural capacity for healing.
 &lt;br&gt;
-A theory of Gor was first theorized in `[...]`
+A theory of Gor was first theorized in _e
 &lt;br&gt;
 ($funcInnerConvo: (dm:
     &quot;&lt;!--A--&gt;Continue reading...&quot;, &quot;5&quot;,
@@ -7768,9 +7777,9 @@ A theory of Gor was first theorized in `[...]`
 &lt;br&gt;
 ](4|
 
-[`[...]` Gor is often found in commonplace kitchen ingredients, namely the hotter spices found in our Nurandahid diet, but especially the imported roots of the eastern marches - the so-called &quot;Askavan ginger&quot; (another misnomer, but that is for another book to argue). Those in the frigid north tend to substitute leaves of the mint family for roots, a less productive source.
+[_e Gor is often found in commonplace kitchen ingredients, namely the hotter spices found in our Nurandahid diet, but especially the imported roots of the eastern marches - the so-called &quot;Askavan ginger&quot; (another misnomer, but that is for another book to argue). Those in the frigid north tend to substitute leaves of the mint family for roots, a less productive source.
 &lt;br&gt;
-The extraction of Gor requires that the source be elementalized `[...]`
+The extraction of Gor requires that the source be elementalized _e
 &lt;br&gt;
 ($funcInnerConvo: (dm:
     &quot;&lt;!--A--&gt;Continue reading...&quot;, &quot;6&quot;,
@@ -7780,9 +7789,9 @@ The extraction of Gor requires that the source be elementalized `[...]`
 &lt;br&gt;
 ](5|
 
-[`[...]` However, like any form of chaos, Gor alone is as likely to hurt - by way of hemorrhage or even cancer - as it is to heal. As such, in order for our product to be of any medicinal value, it must be tempered with a stabilizing agent: Some small amount of &#39;&#39;Zam&#39;&#39;.
+[_e However, like any form of chaos, Gor alone is as likely to hurt - by way of hemorrhage or even cancer - as it is to heal. As such, in order for our product to be of any medicinal value, it must be tempered with a stabilizing agent: Some small amount of &#39;&#39;Zam&#39;&#39;.
 &lt;br&gt;
-Visit your nearest charcoal pits if diamond dust is outside of your budget. Whatever you use, pay attention to its purity, otherwise `[...]`
+Visit your nearest charcoal pits if diamond dust is outside of your budget. Whatever you use, pay attention to its purity, otherwise _e
 &lt;br&gt;
 ($funcInnerConvo: (dm:
     &quot;&lt;!--A--&gt;Continue reading...&quot;, &quot;7&quot;,
@@ -7792,9 +7801,9 @@ Visit your nearest charcoal pits if diamond dust is outside of your budget. What
 &lt;br&gt;
 ](6|
 
-[`[...]` Finally, for the product to be agreeable to human digestion and circulatory system - in other words, to make it &quot;bioavailable&quot; - we must suspend it in a liquid that is one part &#39;&#39;Ab&#39;&#39; (yes, that is why it is called a &quot;suspension&quot;). Without which, the medicine will only pass in our stool - an irritating experience in more ways than one. Your school ought to supply you with sanctified water as part of a standard laboratory.
+[_e Finally, for the product to be agreeable to human digestion and circulatory system - in other words, to make it &quot;bioavailable&quot; - we must suspend it in a liquid that is one part &#39;&#39;Ab&#39;&#39; (yes, that is why it is called a &quot;suspension&quot;). Without which, the medicine will only pass in our stool - an irritating experience in more ways than one. Your school ought to supply you with sanctified water as part of a standard laboratory.
 &lt;br&gt;
-There is something to be said about using alcohol as a base, but `[...]`
+There is something to be said about using alcohol as a base, but _e
 &lt;br&gt;
 ($funcInnerConvo: (dm:
     &quot;&lt;!--A--&gt;Continue reading...&quot;, &quot;8&quot;,
@@ -7803,9 +7812,9 @@ There is something to be said about using alcohol as a base, but `[...]`
 &lt;br&gt;
 ](7|
 
-[`[...]` So, a quick-and-easy formula might be: &#39;&#39;One molar part Ab, two molar parts Gor, and one molar part Zam.&#39;&#39;.
+[_e So, a quick-and-easy formula might be: &#39;&#39;One molar part Ab, two molar parts Gor, and one molar part Zam.&#39;&#39;.
 &lt;br&gt;
-Large-scale, industrial workshops will use a slightly different ratio, but for the purposes of learning and examinations, the above has served many generations of apprentices. `[...]`
+Large-scale, industrial workshops will use a slightly different ratio, but for the purposes of learning and examinations, the above has served many generations of apprentices. _e
 &lt;br&gt;
 ($funcInnerConvo: (dm:
     &quot;&lt;!--A--&gt;Continue reading...&quot;, &quot;9&quot;,
@@ -7816,13 +7825,13 @@ Large-scale, industrial workshops will use a slightly different ratio, but for t
 ](8|
 
 
-[`[...]` Next, having assembled all of your ingredients, we will revise a few basic safety procedures related to elementalysis equipment, or &quot;extractors&quot; as it is called in the western schools, or &quot;destructors&quot; if you are studying in the south - an unfortunate name.
+[_e Next, having assembled all of your ingredients, we will revise a few basic safety procedures related to elementalysis equipment, or &quot;extractors&quot; as it is called in the western schools, or &quot;destructors&quot; if you are studying in the south - an unfortunate name.
 &lt;br&gt;
 The key take-away, as your teachers would surely have drilled into you by now, is to &#39;&#39;never extract what you cannot afford to contain&#39;&#39;.
 &lt;br&gt;
 Great bodily and psychic harm awaits those without the proper training (if you are holding the elements in your mind, or &quot;doing it raw&quot; as many apprentices call it) or adequate containment vessels.
 &lt;br&gt;
-However, with proper oversight from a lab instructor, this will never `[...]`
+However, with proper oversight from a lab instructor, this will never _e
 &lt;br&gt;
 ($funcInnerConvo: (dm:
     &quot;&lt;!--A--&gt;Continue to the procedures...&quot;, &quot;10&quot;,
@@ -7831,9 +7840,9 @@ However, with proper oversight from a lab instructor, this will never `[...]`
 &lt;br&gt;
 ](9|
 
-[`[...]` And now, for the truly challenging stuff: We will go over the synthesis procedure, along with some incantations to guard against contaminating and spoiling your Gor suspension.
+[_e And now, for the truly challenging stuff: We will go over the synthesis procedure, along with some incantations to guard against contaminating and spoiling your Gor suspension.
 &lt;br&gt;
-After, in the appendix, the more conscientious student will find a few &quot;tips&quot; to avoid damaging your school&#39;s - no doubt, very expensive - laboratory equipment. `[...]`
+After, in the appendix, the more conscientious student will find a few &quot;tips&quot; to avoid damaging your school&#39;s - no doubt, very expensive - laboratory equipment. _e
 &lt;br&gt;
 $cssDesc[The rest of the book is instructive, and you breeze through it. Of course you do; you&#39;re no apprentice! Then again, even a master needs a reminder once in a while.
 &lt;br&gt;
@@ -9467,7 +9476,7 @@ $time&#39;s week is 4,&quot;Charhet&quot;,
 
 (metadata:
 &quot;title&quot;, &quot;Apesai Student Lab&quot;,
-&quot;cardDesc&quot;, &quot;&quot;,
+&quot;cardDesc&quot;, &quot;Synthesis is almost synonymous with alchemy and magic, since it is the most widely applicable discipline. Even a place as dysfunctional as the Apesai Lighthouse must have a synthesis setup.&quot;,
 &quot;level&quot;, 1,
 &quot;max&quot;, 2,
 &quot;duration&quot;, 3,
@@ -9508,14 +9517,18 @@ $cssColumnChild[
 (set: _line to (hook: &quot;genericAttendant1Line&quot;))
 
 &lt;!--logic shorthands--&gt;
-(set: _busy to false)
-(if: $char&#39;s player&#39;s timerCraft contains (passage: &quot;Apesai Student Lab&quot;)&#39;s name)[(set: _busy to true)]
+(set: _jobBusy to false)
+(set: _jobDone to false)
+(if: $char&#39;s player&#39;s timerCraft contains (passage:)&#39;s name)[
+     (set: _jobBusy to true)
+     (if: $char&#39;s player&#39;s timerCraft&#39;s ((passage:)&#39;s name)&#39;s 3rd &lt;= 0)[(set: _jobDone to true)]
+]
 
 &lt;!--not busy--&gt;
-(if: _busy is false)[
+(if: _jobBusy is false)[
 It is not so accurate to say that you are standing in front of a synthesis workstation. Rather, you are inside it. A modern alchemical lab - even ones as small and basic as this one - is always a marvel, easily taking up an entire room, with its pipes running inside the walls, and its engines lying beneath the floor.
 &lt;br&gt;
-Presently, there are a couple of synthesis arrays - looking like ribcages made of red steel - that are either not reserved or disassembled for maintenance. Their fuel receptacles are open and waiting.
+Presently, there are a couple of free synthesis arrays - looking like ribcages made of red steel - that are neither reserved nor disassembled for maintenance. Their fuel receptacles are open and waiting.
 &lt;br&gt;
 _line[&quot;(either: &quot;What... shall we make... today?&quot;, &quot;What product... do you have... in mind?&quot;, &quot;Davehmar, what lesson... have you planned... for the students?&quot;, &quot;A demonstration... for the apprentices...&quot;, &quot;Adjunct... have you brought... fuel? Have you... the right elements?&quot;)&quot;]
 &lt;br&gt;
@@ -9528,16 +9541,27 @@ After an order is confirmed, the workstation will take a certain amount of days 
 ]
 ]&lt;!--end of if not busy--&gt;
 
-&lt;!--if busy--&gt;
-(else:)[
+&lt;!--if busy but not done--&gt;
+(elseif: _jobBusy is true and _jobDone is false)[
 _line[&quot;(either: &quot;Patience, apprentices...&quot;, &quot;Observe, but do not touch...&quot;, &quot;The laboratory is... active... Exercise caution...&quot;, &quot;Apprentices... take note... of these procedures...&quot;) This batch will be done... in (plural: $char&#39;s player&#39;s timerCraft&#39;s &quot;Apesai Student Lab&quot;&#39;s 3rd, &quot;more day&quot;)...&quot;] says the attendant as its spider arms launch into a flurry, orchestrating the magic inside of the synthesis equipment in accordance with your instructions, which you have delivered in the form of incantations.
 &lt;br&gt;
 Once, this work would have been performed by a squad of junior magi. But that was centuries ago. Now, most modern setups can run fairly reliably by themselves, given enough fuel and that the initial rituals have been performed correctly.
 &lt;br&gt;
 Through a yellowed view port, you can see your product forming inside of the machine&#39;s belly.
+]&lt;!--end of if busy but not done--&gt;
+
+(else:)[
+The student lab is humming lowly, a running on the very last bit of vehzin fume still remaining in its pipes. Fortunately, the synthesis is already done. Your product has been dispensed and put aside.
+&lt;br&gt;
+_line[&quot;(either: &quot;Take it... hopefully, the apprentices... have been paying attention...&quot;, &quot;You should congratulate... the apprentices... encourage them...&quot;, &quot;The demonstration... is complete...&quot;)&quot;] says the attendant, its many spider arms finally at rest.
+&lt;br&gt;
+Though you know that it only moves according to the magic you have imparted, you cannot help but feel thankful for the thing&#39;s effort, and a bit sorry for it also.
+&lt;br&gt;
+It&#39;s probably because of its old-man voice.
+&lt;br&gt;
+&lt;!--tip text--&gt;
+$cssDesc[Claim your product.]
 ]
-
-
 
 
 ]&lt;!--end child (prose)--&gt;
@@ -9551,6 +9575,19 @@ $cssColumnParent[
 &lt;!--read out--&gt;
 $cssColumnChild[
 
+&lt;!--current job--&gt;
+&#39;&#39;(print: (passage:)&#39;s title)&#39;&#39; is` `
+(if: $char&#39;s player&#39;s timerCraft contains (passage:)&#39;s name)[{
+    &lt;!--if done--&gt;
+    (if: $char&#39;s player&#39;s timerCraft&#39;s ((passage:)&#39;s name)&#39;s 3rd &lt;= 0)[done synthesizing &#39;&#39;(print:  $char&#39;s player&#39;s timerCraft&#39;s ((passage:)&#39;s name)&#39;s 2nd) (print: (passage: &quot;item.&quot; + $char&#39;s player&#39;s timerCraft&#39;s ((passage:)&#39;s name)&#39;s 1st)&#39;s id)&#39;&#39;.]
+    &lt;!--if not done--&gt;
+    (else:)[currently synthesizing &#39;&#39;(print:  $char&#39;s player&#39;s timerCraft&#39;s ((passage:)&#39;s name)&#39;s 2nd) (print: (passage: &quot;item.&quot; + $char&#39;s player&#39;s timerCraft&#39;s ((passage:)&#39;s name)&#39;s 1st)&#39;s id)&#39;&#39;. (plural: $char&#39;s player&#39;s timerCraft&#39;s ((passage:)&#39;s name)&#39;s 3rd, &quot;day&quot;) left.]
+}]
+(else:)[not making anything.]
+
+&lt;br&gt;
+
+$cssDesc[
 &lt;!--level--&gt;
 (set: _levelName to (cond:
      (passage:)&#39;s level is 1, &quot;simple&quot;,
@@ -9570,15 +9607,13 @@ $cssColumnChild[
 &lt;/ul&gt;
 
 &lt;!--specs--&gt;
-Each time this workstation runs:
+Each time it runs, this workstation:
 &lt;ul&gt;
 &lt;li&gt;Can synthesize &#39;&#39;at most (plural: (passage:)&#39;s max, &quot;unit&quot;)&#39;&#39; of a single type of product.
 &lt;li&gt;Will cost &#39;&#39;(print: (passage:)&#39;s fuelCost) (print: (passage: &quot;item.vehzin&quot;)&#39;s id)&#39;&#39; to start a run.
 &lt;li&gt;Will take &#39;&#39;(plural: (passage:)&#39;s duration, &quot;day&quot;)&#39;&#39; to finish a run.
 &lt;/ul&gt;
 
-
-&lt;br&gt;
 &lt;!--element readout--&gt;
 (set: _self to $char&#39;s player&#39;s att)
 You have absorbed and are currently holding these elements:
@@ -9592,10 +9627,10 @@ You have absorbed and are currently holding these elements:
 &lt;/ul&gt;
 
 ]&lt;!--end of readout--&gt;
-
+]&lt;!--end of readout $cssDesc--&gt;
 
 &lt;!--vehzin--&gt;
-$cssColumnChild[&#39;&#39;Synthesis Actions&#39;&#39;
+$cssColumnChild[
 ($funcVehzin: (passage:)&#39;s parent)
 ]&lt;!--end child (vehzin)--&gt;
 
@@ -9654,7 +9689,8 @@ $cssColumnParent[
 &lt;!--Readout &amp; tips--&gt;
 $cssColumnChild[
 &lt;!--element readout--&gt;
-(set: _self to $char&#39;s player&#39;s att)
+
+$cssDesc[(set: _self to $char&#39;s player&#39;s att)
 You have absorbed and are currently holding these elements:
 
 &lt;ul&gt;
@@ -9664,6 +9700,8 @@ You have absorbed and are currently holding these elements:
 &lt;li&gt;($funcCheckExists: _self, &quot;rokh&quot;,0) (print: (passage: &quot;att.rokh&quot;)&#39;s id)
 &lt;li&gt;($funcCheckExists: _self, &quot;zam&quot;,0) (print: (passage: &quot;att.zam&quot;)&#39;s id)
 &lt;/ul&gt;
+]&lt;!--end of $cssDesc--&gt;
+
 
 ]&lt;!--end child (readouts &amp; tips)--&gt;
 
@@ -9718,11 +9756,15 @@ $cssColumnChild[
 
 &lt;!--logic shorthands--&gt;
 (set: _attend to $stuff&#39;s attendantReady)
-(set: _busy to false)
-(if: $char&#39;s player&#39;s timerCraft contains (passage: &quot;Apesai Student Lab&quot;)&#39;s name)[(set: _busy to true)]
+(set: _jobBusy to false)
+(set: _jobDone to false)
+(if: $char&#39;s player&#39;s timerCraft contains (passage: &quot;Apesai Student Lab&quot;)&#39;s name)[{
+     (set: _jobBusy to true)
+     (if: $char&#39;s player&#39;s timerCraft&#39;s ((passage: &quot;Apesai Student Lab&quot;)&#39;s name)&#39;s 3rd &lt;= 0)[(set: _jobDone to true)]
+}]
 
 &lt;!--if entering lab for the first time--&gt;
-(if: _attend is false and _busy is false)[
+(if: _attend is false and _jobBusy is false and _jobDone is false)[
 _line[&quot;(either: &quot;Welcome to class... davehmar... get your students in their seats... and we will get started,&quot;, &quot;Davehmar... welcome... allow me help you...&quot;, &quot;Adjunct, welcome... Apesai Davehkhan&#39;s ... laboratory,&quot;, &quot;Class period... has started... allow me to help,&quot;)&quot;] says the spider-like attendant in an old man&#39;s pre-recorded voice, though it is hard to tell if the garbling is from the machine&#39;s age or the man&#39;s.
 &lt;br&gt;
 This laboratory is nothing like what you had in your own university back home. Everything is older, fewer, and less. But this is not home, and neither is it a true university. This is the frontiers. You will make due, just as these magi have for centuries.
@@ -9730,19 +9772,23 @@ This laboratory is nothing like what you had in your own university back home. E
 _line[&quot;(either: &quot;What... shall we do... today?&quot;, &quot;What is... the agenda... today?&quot;, &quot;Make yourself... comfortable... Now, what... shall we do... today?&quot;, &quot;What does... the davehmar need... today?&quot;)&quot;] The attendant asks as it climbs atop the magical machinery, then finally finding a nook shaped exactly like its round body, it settles snugly inside and unfurl from its hidden compartments a dozen thin, agile arms. _line[&quot;Elementalysis?... Or synthesis?&quot;]
 ]&lt;!--end of if $stuff&#39;s attendantReady is false--&gt;
 
-&lt;!--if entering lab for the first time, but it is busy--&gt;
-(elseif: _attend is false and _busy is true)[
+&lt;!--if entering lab for the first time, but it is busy but not done yet--&gt;
+(elseif: _attend is false and _jobBusy is true and _jobDone is false)[
 _line[&quot;(either: &quot;You&#39;ve returned, davehmar...&quot;, &quot;Welcome back...&quot;, &quot;Again, so soon...&quot;)&quot;] the attendant says, still fused to the synthesis machine, its many service appendages tirelessly working various dials and levers. The lab is glowing with a heatless light, slowly burning through the vehzin, which now courses through its metal veins.
 &lt;br&gt;
 _line[&quot;(either: &quot;Unfortunately, your order... is not yet complete...&quot;, &quot;Your previous batch... is still synthesizing...&quot;, &quot;Job in progress...&quot;) Should be done in... (plural: $char&#39;s player&#39;s timerCraft&#39;s &quot;Apesai Student Lab&quot;&#39;s 3rd, &quot;day&quot;)... For now, you can still use... elemantalysis table...&quot;]
 ]&lt;!--end of if entering lab for the first time, but it is busy--&gt;
 
 
-&lt;!--if lab is busy, and attendant is already inside machine--&gt;
-(elseif: _attend is true and _busy is true)[
+&lt;!--if lab is busy, and attendant is already inside machine but not done yet--&gt;
+(elseif: _attend is true and _jobBusy is true and _jobDone is false)[
 _line[&quot;(either: &quot;The synthesis job... is still in progress...&quot;, &quot;Your order... is being made...&quot;, &quot;All we can do now... is wait...&quot;,) Should be done in... (plural: $char&#39;s player&#39;s timerCraft&#39;s &quot;Apesai Student Lab&quot;&#39;s 3rd, &quot;day&quot;)...&quot;] says the attendant while its many service arms juggle a dozen canisters and vials. The synthesis machine churns and glows intermittently, digesting the magic you have fed it, gestating something new.
 ]&lt;!--end of if lab is busy, and attendant is already inside machine--&gt;
 
+&lt;!--if already done synthesizing--&gt;
+(elseif: _jobBusy is true and _jobDone is true)[
+_line[&quot;(either: &quot;Good, you&#39;re back... The synthesis is... complete...&quot;, &quot;Good news, everyone... the synthesis is... a success...&quot;, &quot;The synthesis... is done... claim your product, davehmar...&quot;)&quot;] the attendant says from its nest atop the machine, finally stopped moving. You might be mistaken, but the thing sounds //satisfied//.
+]&lt;!--end of if already done synthesizing--&gt;
 
 &lt;!--else, not busy, but attendant is already inside machine--&gt;
 (else:)[
@@ -9762,7 +9808,8 @@ $cssDesc[Magical labs have specialized equipment that allows you to &#39;&#39;el
 }]
 
 (set: _synthesisText to &quot;Synthesize a substance.&quot;)
-(if: _busy)[(set: _synthesisText to &quot;Check up on your on-going synthesis job.&quot;)]
+(if: _jobBusy is true and _jobDone is false)[(set: _synthesisText to &quot;Check up on your on-going synthesis job.&quot;)]
+(elseif: _jobDone is true)[(set: _synthesisText to &quot;Go claim your finished product.&quot;)]
 
 &lt;li&gt;(link: _synthesisText)[{
      (set: $stuff&#39;s attendantReady to true)

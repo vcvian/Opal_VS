@@ -157,7 +157,7 @@ Ex: 2|1 At, 0|1 Ab, 2|3 Gor, 0|2 Rokh, 0|0 Zam -->
 			⇝ ($funcJobAdd: _itemName, _value)\
 		] ($funcLogTip: "item.", _itemName) $cssDesc[(To make 1 unit of this, you have|need ($funcElementHaveNeed: _itemName, 1))]\
 	]\
-	(else:)[~~Synthesize (print: _itemDM's id)~~ ($funcLogTip: "item.", _itemName) $cssDesc[(Workstation busy synthesizing (print: _currentJob's 2nd) (print: (passage: "item." + _currentJob's 1st)'s id). (plural: _currentJob's 3rd, "day") left.)]]\
+	(else:)[~~Synthesize (print: _itemDM's id)~~ ($funcLogTip: "item.", _itemName) $cssDesc[(Workstation is synthesizing (print: _currentJob's 2nd) (print: (passage: "item." + _currentJob's 1st)'s id). (if: _currentJob's 3rd > 0)[(plural: _currentJob's 3rd, "day") left.](else:)[It is already done.])]]\
 ]]))
 
 <!--Add job into $char's player's timerCraft-->
@@ -267,6 +267,10 @@ Ex: 2|1 At, 0|1 Ab, 2|3 Gor, 0|2 Rokh, 0|0 Zam -->
 	(if: $char's player's timerCraft contains (passage:)'s name)[(set: _busy to true)]\
 	\
 	<!--Create a startup link-->\
+	''Workstation status: [
+		(if: _busy)[<span class="rainbow">ACTIVE</span>]
+		(else:)[DORMANT]
+		]<workstationStatus|''
 	<ol>
 	(if: _haveVehzin is true and _busy is false)[\
 		|startup>[\
@@ -274,6 +278,7 @@ Ex: 2|1 At, 0|1 Ab, 2|3 Gor, 0|2 Rokh, 0|0 Zam -->
 				(set: _justFueled to true)\
                 (show: ?running)\
                 (replace: ?exitText)[$cssDesc[(And reclaim the fuel.)]]\
+				(replace: ?workstationStatus)[<span class="rainbow">ACTIVE</span>]\
 				(replace: ?startup)[\
 					<li>~~Power up the workstation.~~ $cssDesc[(It is up and running.)]
 					<li>(link: "Reclaim fuel.")[\
