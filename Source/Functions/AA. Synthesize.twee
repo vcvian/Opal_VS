@@ -254,7 +254,7 @@ Ex: 2|1 At, 0|1 Ab, 2|3 Gor, 0|2 Rokh, 0|0 Zam -->
 ]]))
 
 <!--start up a lab with a vehzin-->
-(set: $funcVehzin to (macro: str-type _exit, [(out:)[\
+(set: $funcVehzin to (macro: str-type _exit, [(out:)[{
 	<!--initialize-->\
     (set: _justFueled to false)\
     \
@@ -331,4 +331,4 @@ Ex: 2|1 At, 0|1 Ab, 2|3 Gor, 0|2 Rokh, 0|0 Zam -->
 	]\
     \
 	</ol>
-]]))
+}]]))

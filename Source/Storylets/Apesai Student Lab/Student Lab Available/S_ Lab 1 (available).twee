@@ -22,20 +22,65 @@ $cssColumnChild[
 ($funcNPCSpeakManual: "genericAttendant1")
 (set: _line to (hook: "genericAttendant1Line"))
 
-_line["Welcome to class... davehmar... get your students in their seats... and we will get started,"] says the lab attendant, its pre-recorded line garbled with wear.
+<!--initialize $stuff (to track whether the attendant is already in position)-->
+(if: $stuff does not contain "attendantReady")[(set: $stuff's attendantReady to false)]
+
+<!--logic shorthands-->
+(set: _attend to $stuff's attendantReady)
+(set: _busy to false)
+(if: $char's player's timerCraft contains (passage: "Apesai Student Lab")'s name)[(set: _busy to true)]
+
+<!--if entering lab for the first time-->
+(if: _attend is false and _busy is false)[
+_line["(either: "Welcome to class... davehmar... get your students in their seats... and we will get started,", "Davehmar... welcome... allow me help you...", "Adjunct, welcome... Apesai Davehkhan's ... laboratory,", "Class period... has started... allow me to help,")"] says the spider-like attendant in an old man's pre-recorded voice, though it is hard to tell if the garbling is from the machine's age or the man's.
 <br>
 This laboratory is nothing like what you had in your own university back home. Everything is older, fewer, and less. But this is not home, and neither is it a true university. This is the frontiers. You will make due, just as these magi have for centuries.
 <br>
-_line["What... shall we do... today?""] The attendant asks as it climbs atop the magical machinery, then finally finding a nook shaped exactly like its round body, it settles snugly inside and unfurl from its hidden compartments a dozen thin, agile arms. _line["Some elementalysis?... Or synthesis?..."]
+_line["(either: "What... shall we do... today?", "What is... the agenda... today?", "Make yourself... comfortable... Now, what... shall we do... today?", "What does... the davehmar need... today?")"] The attendant asks as it climbs atop the magical machinery, then finally finding a nook shaped exactly like its round body, it settles snugly inside and unfurl from its hidden compartments a dozen thin, agile arms. _line["Elementalysis?... Or synthesis?"]
+]<!--end of if $stuff's attendantReady is false-->
+
+<!--if entering lab for the first time, but it is busy-->
+(elseif: _attend is false and _busy is true)[
+_line["(either: "You've returned, davehmar...", "Welcome back...", "Again, so soon...")"] the attendant says, still fused to the synthesis machine, its many service appendages tirelessly working various dials and levers. The lab is glowing with a heatless light, slowly burning through the vehzin, which now courses through its metal veins.
+<br>
+_line["(either: "Unfortunately, your order... is not yet complete...", "Your previous batch... is still synthesizing...", "Job in progress...") Should be done in... (plural: $char's player's timerCraft's "Apesai Student Lab"'s 3rd, "day")... For now, you can still use... elemantalysis table..."]
+]<!--end of if entering lab for the first time, but it is busy-->
+
+
+<!--if lab is busy, and attendant is already inside machine-->
+(elseif: _attend is true and _busy is true)[
+_line["(either: "The synthesis job... is still in progress...", "Your order... is being made...", "All we can do now... is wait...",) Should be done in... (plural: $char's player's timerCraft's "Apesai Student Lab"'s 3rd, "day")..."] says the attendant while its many service arms juggle a dozen canisters and vials. The synthesis machine churns and glows intermittently, digesting the magic you have fed it, gestating something new.
+]<!--end of if lab is busy, and attendant is already inside machine-->
+
+
+<!--else, not busy, but attendant is already inside machine-->
+(else:)[
+_line["(either: "What else... shall we do?", "What else... would the davehmar... like to do?", "How else... might I be of service?")"] The attendant asks without expecting an answer, which it has no concept of, and neither does it know what a question is. These are simply audio prompts that the Apesai magi have pre-recorded. _line["Shall we do some elementalysis?... Or synthesis?"]
+]<!--end of if $stuff's attendantReady is true-->
+
 <br>
 <!--gameplay tip-->
-$cssDesc[Magical labs have specialized equipment that allows you to ''elementalize'' - destroying and absorbing the elemental value of alchemical ingredients - or ''synthesize'' - creating substances from said elements.]
+$cssDesc[Magical labs have specialized equipment that allows you to ''elementalize'' - destroying alchemical ingredients and absorbing their elemental content - or ''synthesize'' - creating substances from said elements.]
+
 <br>
 ---
 <ol>
-<li>(link: "Elementalize your ingredients.")[(goto: "Lab 1b")]
-<li>(link: "Synthesize a substance.")[(goto: "Apesai Student Lab")]
-<li>(link: "Never mind.")[$funcBack]
+<li>(link: "Elementalize your ingredients.")[{
+     (set: $stuff's attendantReady to true)
+     (goto: "Lab 1b")
+}]
+
+(set: _synthesisText to "Synthesize a substance.")
+(if: _busy)[(set: _synthesisText to "Check up on your on-going synthesis job.")]
+
+<li>(link: _synthesisText)[{
+     (set: $stuff's attendantReady to true)
+     (goto: "Apesai Student Lab")
+}]
+<li>(link: "Leave the lab.")[{
+     (set: $stuff to (dm:))
+     $funcBack
+}]
 </ol>
 ]<!--end child-->
 ]<!--end parent-->

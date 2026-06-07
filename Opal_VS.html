@@ -71,7 +71,7 @@ hr {
   100% {
     background-position: 0% center;
   }
-}</style><script role="script" id="twine-user-script" type="text/twine-javascript"></script><tw-tag name="test" color="blue"></tw-tag><tw-tag name="topic" color="purple"></tw-tag><tw-tag name="footer" color="yellow"></tw-tag><tw-tag name="book" color="yellow"></tw-tag><tw-tag name="effect" color="yellow"></tw-tag><tw-tag name="header" color="yellow"></tw-tag><tw-tag name="startup" color="orange"></tw-tag><tw-tag name="static-storage" color="yellow"></tw-tag><tw-tag name="stay" color="yellow"></tw-tag><tw-tag name="storylet" color="blue"></tw-tag><tw-tag name="UI" color="orange"></tw-tag><tw-tag name="traveling" color="purple"></tw-tag><tw-tag name="sublocation" color="green"></tw-tag><tw-passagedata pid="1" name="AA. Books, Reading &amp; Formulae" tags="startup" position="100,100" size="100,100">{=
+}</style><script role="script" id="twine-user-script" type="text/twine-javascript"></script><tw-tag name="book" color="yellow"></tw-tag><tw-tag name="effect" color="yellow"></tw-tag><tw-tag name="footer" color="yellow"></tw-tag><tw-tag name="static-storage" color="yellow"></tw-tag><tw-tag name="stay" color="yellow"></tw-tag><tw-tag name="topic" color="purple"></tw-tag><tw-tag name="UI" color="orange"></tw-tag><tw-tag name="startup" color="orange"></tw-tag><tw-tag name="storylet" color="blue"></tw-tag><tw-tag name="sublocation" color="green"></tw-tag><tw-tag name="test" color="blue"></tw-tag><tw-tag name="traveling" color="purple"></tw-tag><tw-tag name="header" color="yellow"></tw-tag><tw-passagedata pid="1" name="AA. Books, Reading &amp; Formulae" tags="startup" position="100,100" size="100,100">{=
 &lt;!--Macros related to books and reading--&gt;
 
 (set: $readingNav to (dm:
@@ -1582,7 +1582,7 @@ Ex: 2|1 At, 0|1 Ab, 2|3 Gor, 0|2 Rokh, 0|0 Zam --&gt;
 ]]))
 
 &lt;!--start up a lab with a vehzin--&gt;
-(set: $funcVehzin to (macro: str-type _exit, [(out:)[\
+(set: $funcVehzin to (macro: str-type _exit, [(out:)[{
 	&lt;!--initialize--&gt;\
     (set: _justFueled to false)\
     \
@@ -1659,7 +1659,7 @@ Ex: 2|1 At, 0|1 Ab, 2|3 Gor, 0|2 Rokh, 0|0 Zam --&gt;
 	]\
     \
 	&lt;/ol&gt;
-]]))</tw-passagedata><tw-passagedata pid="18" name="AA. Temporaries" tags="startup" position="1450,5750" size="100,100">&lt;!--GainLoss temporary conditions; uses the same $funcNotifyAndLog as items and att; compatible with $funcCheckGate--&gt;
+}]]))</tw-passagedata><tw-passagedata pid="18" name="AA. Temporaries" tags="startup" position="1450,5750" size="100,100">&lt;!--GainLoss temporary conditions; uses the same $funcNotifyAndLog as items and att; compatible with $funcCheckGate--&gt;
 (set: $funcTempGainLoss to (macro: str-type _temp, num-type _value, [(out:)[\
 	&lt;!--Load the temp DM--&gt;\
 	(set: _tempDM to (passage: &quot;temp.&quot; + _temp))\
@@ -9480,8 +9480,10 @@ $time&#39;s week is 4,&quot;Charhet&quot;,
 &lt;!--initialize _justFueled. This temp var is used by the ?topBackLink, but it only exists inside the scope of $funcVehzin, so it needs to be initialized here--&gt;
 (set: _justFueled to false)
 
+&lt;!--description section--&gt;
 $cssColumnParent[
 
+&lt;!--card--&gt;
 $cssColumnChild[
 
      $cssColumnChild[
@@ -9496,36 +9498,108 @@ $cssColumnChild[
     	($funcImage: (passage: (passage:)&#39;s parent)&#39;s img)
          $cssBoxItem[&#39;&#39;(print: (passage:)&#39;s title )&#39;&#39;&lt;br&gt;(print: (passage:)&#39;s cardDesc)]
     ]
-]
+]&lt;!--end of card--&gt;
 
+&lt;!--prose--&gt;
 $cssColumnChild[
 
-Vials, burners, pots, and pans - they&#39;re all here.
+&lt;!--format attendant lines--&gt;
+($funcNPCSpeakManual: &quot;genericAttendant1&quot;)
+(set: _line to (hook: &quot;genericAttendant1Line&quot;))
+
+&lt;!--logic shorthands--&gt;
+(set: _busy to false)
+(if: $char&#39;s player&#39;s timerCraft contains (passage: &quot;Apesai Student Lab&quot;)&#39;s name)[(set: _busy to true)]
+
+&lt;!--not busy--&gt;
+(if: _busy is false)[
+It is not so accurate to say that you are standing in front of a synthesis workstation. Rather, you are inside it. A modern alchemical lab - even ones as small and basic as this one - is always a marvel, easily taking up an entire room, with its pipes running inside the walls, and its engines lying beneath the floor.
 &lt;br&gt;
-But you&#39;ll have to bring the ingredients yourself or buy them from the market. The students here are already resorting to combing the beach and scouring the pantry. They&#39;re not in a giving mood.
+Presently, there are a couple of synthesis arrays - looking like ribcages made of red steel - that are either not reserved or disassembled for maintenance. Their fuel receptacles are open and waiting.
 &lt;br&gt;
-What shall you make today?
-]&lt;!--end child--&gt;
-]&lt;!--end parent--&gt;
+_line[&quot;(either: &quot;What... shall we make... today?&quot;, &quot;What product... do you have... in mind?&quot;, &quot;Davehmar, what lesson... have you planned... for the students?&quot;, &quot;A demonstration... for the apprentices...&quot;, &quot;Adjunct... have you brought... fuel? Have you... the right elements?&quot;)&quot;]
+&lt;br&gt;
+&lt;!--gameplay tip--&gt;
+$cssDesc[&#39;&#39;To synthesize:&#39;&#39; Power up the workstation, pick a product (that you know the formula of), pick amount to be made, and confirm.
+&lt;br&gt;
+Granted, you must already have enough &#39;&#39;fuel&#39;&#39;, have sufficient &#39;&#39;elements&#39;&#39;, and know the &#39;&#39;formula&#39;&#39; for what you want to make, and the product&#39;s &#39;&#39;complexity&#39;&#39; cannot exceed the workstation&#39;s capabilities.
+&lt;br&gt;
+After an order is confirmed, the workstation will take a certain amount of days of autonomous work, after which you can claim the product. A run can be canceled prematurely, but neither fuel nor elements will be refunded.
+]
+]&lt;!--end of if not busy--&gt;
+
+&lt;!--if busy--&gt;
+(else:)[
+_line[&quot;(either: &quot;Patience, apprentices...&quot;, &quot;Observe, but do not touch...&quot;, &quot;The laboratory is... active... Exercise caution...&quot;, &quot;Apprentices... take note... of these procedures...&quot;) This batch will be done... in (plural: $char&#39;s player&#39;s timerCraft&#39;s &quot;Apesai Student Lab&quot;&#39;s 3rd, &quot;more day&quot;)...&quot;] says the attendant as its spider arms launch into a flurry, orchestrating the magic inside of the synthesis equipment in accordance with your instructions, which you have delivered in the form of incantations.
+&lt;br&gt;
+Once, this work would have been performed by a squad of junior magi. But that was centuries ago. Now, most modern setups can run fairly reliably by themselves, given enough fuel and that the initial rituals have been performed correctly.
+&lt;br&gt;
+Through a yellowed view port, you can see your product forming inside of the machine&#39;s belly.
+]
+
+
+
+
+]&lt;!--end child (prose)--&gt;
+]&lt;!--end parent (description section)--&gt;
 
 ---
+
+&lt;!--interactive section--&gt;
 $cssColumnParent[
 
+&lt;!--read out--&gt;
 $cssColumnChild[
-Lab info.
+
+&lt;!--level--&gt;
+(set: _levelName to (cond:
+     (passage:)&#39;s level is 1, &quot;simple&quot;,
+     (passage:)&#39;s level is 2, &quot;complex&quot;,
+     (passage:)&#39;s level is 3, &quot;exotic&quot;,
+))
+(set: _levelCheckMark to (macro: num-type _level, [(out:)[{
+     (if: _level &lt;= (passage:)&#39;s level)[(color:green)[✓]]
+     (else:)[(color:red)[✗]]
+}]]))
+
+&#39;&#39;(print: (passage:)&#39;s title)&#39;&#39; is a &#39;&#39;_levelName&#39;&#39; workstation. It is capable of synthesizing products that are:
+&lt;ul&gt;
+&lt;li&gt;Simple (_levelCheckMark: 1)
+&lt;li&gt;Complex (_levelCheckMark: 2)
+&lt;li&gt;Exotic (_levelCheckMark: 3)
+&lt;/ul&gt;
+
+&lt;!--specs--&gt;
+Each time this workstation runs:
+&lt;ul&gt;
+&lt;li&gt;Can synthesize &#39;&#39;at most (plural: (passage:)&#39;s max, &quot;unit&quot;)&#39;&#39; of a single type of product.
+&lt;li&gt;Will cost &#39;&#39;(print: (passage:)&#39;s fuelCost) (print: (passage: &quot;item.vehzin&quot;)&#39;s id)&#39;&#39; to start a run.
+&lt;li&gt;Will take &#39;&#39;(plural: (passage:)&#39;s duration, &quot;day&quot;)&#39;&#39; to finish a run.
+&lt;/ul&gt;
+
+
 &lt;br&gt;
-(set: _self to $char&#39;s player&#39;s att)\
-You&#39;ve absorbed and are currently holding these elements: ($funcCheckExists: _self, &quot;at&quot;,0) At, ($funcCheckExists: _self, &quot;ab&quot;,0) Ab, ($funcCheckExists: _self, &quot;gor&quot;,0) Gor, ($funcCheckExists: _self, &quot;rokh&quot;,0) Rokh, ($funcCheckExists: _self, &quot;zam&quot;,0) Zam.\
-]
+&lt;!--element readout--&gt;
+(set: _self to $char&#39;s player&#39;s att)
+You have absorbed and are currently holding these elements:
+
+&lt;ul&gt;
+&lt;li&gt;($funcCheckExists: _self, &quot;at&quot;,0) (print: (passage: &quot;att.at&quot;)&#39;s id)
+&lt;li&gt;($funcCheckExists: _self, &quot;ab&quot;,0) (print: (passage: &quot;att.ab&quot;)&#39;s id)
+&lt;li&gt;($funcCheckExists: _self, &quot;gor&quot;,0) (print: (passage: &quot;att.gor&quot;)&#39;s id)
+&lt;li&gt;($funcCheckExists: _self, &quot;rokh&quot;,0) (print: (passage: &quot;att.rokh&quot;)&#39;s id)
+&lt;li&gt;($funcCheckExists: _self, &quot;zam&quot;,0) (print: (passage: &quot;att.zam&quot;)&#39;s id)
+&lt;/ul&gt;
+
+]&lt;!--end of readout--&gt;
 
 
-$cssColumnChild[
-
+&lt;!--vehzin--&gt;
+$cssColumnChild[&#39;&#39;Synthesis Actions&#39;&#39;
 ($funcVehzin: (passage:)&#39;s parent)
+]&lt;!--end child (vehzin)--&gt;
 
-
-]&lt;!--end child--&gt;
-]&lt;!--end parent--&gt;
+]&lt;!--end parent (interactive section)--&gt;
 
 &lt;!--Updates the top back link based on $funcVehzin output--&gt;
 (replace: ?topBackLink)[
@@ -9537,7 +9611,7 @@ $cssColumnChild[
 
 (metadata:
 &quot;title&quot;, &quot;Apesai Student Lab&quot;,
-&quot;cardDesc&quot;, &quot;&quot;,
+&quot;cardDesc&quot;, &quot;Like a good essay, alchemy involves elementalysis first and synthesis second, just as a measured analysis will yield sufficient evidence for a sound conclusion.&quot;,
 &quot;parent&quot;, &quot;S: Lab 1&quot;,
 )
 
@@ -9556,9 +9630,19 @@ $cssColumnChild[
 ]&lt;!--end of child (card)--&gt;
 
 $cssColumnChild[
-elementalysis equipment
+
+&lt;!--format attendant lines--&gt;
+($funcNPCSpeakManual: &quot;genericAttendant1&quot;)
+(set: _line to (hook: &quot;genericAttendant1Line&quot;))
+
+You approach the elementalysis table. In the middle, an array of emitters, like scorpions&#39; tails, point into a wide funnel.
 &lt;br&gt;
-Considering what to destroy...
+The surface of the funnel is stained with pearlescent patina - leftover elements exposed to air and materializing into Opal dust - formed from long years of use and, most likely, infrequent scrubbing.
+&lt;br&gt;
+_line[&quot;(either: &quot;Maintain... three steps away before... extraction begins...&quot;, &quot;Remember to... not look directly... at the light...&quot;, &quot;Never absorb... more... than what you... can hold...&quot;, &quot;Ensure... any apprentice with you... keep their hands off... the emitters...&quot;)&quot;] blares the spider-like attendant from its nest of magic metal.
+&lt;br&gt;
+&lt;!--gameplay tip--&gt;
+$cssDesc[&#39;&#39;To elementalize:&#39;&#39; Choose an ingredient to destroy, then choose the amount, then confirm.]
 ]&lt;!--end of child (prose)--&gt;
 ]&lt;!--end parent (descriptive section)--&gt;
 
@@ -9571,18 +9655,37 @@ $cssColumnParent[
 $cssColumnChild[
 &lt;!--element readout--&gt;
 (set: _self to $char&#39;s player&#39;s att)
-$cssDesc[You have absorbed and are currently holding these elements: ($funcCheckExists: _self, &quot;at&quot;,0) At, ($funcCheckExists: _self, &quot;ab&quot;,0) Ab, ($funcCheckExists: _self, &quot;gor&quot;,0) Gor, ($funcCheckExists: _self, &quot;rokh&quot;,0) Rokh, ($funcCheckExists: _self, &quot;zam&quot;,0) Zam.]
-&lt;br&gt;
-&lt;!--gameplay tip--&gt;
-$cssDesc[Select ingredient, then amount, then confirm.]
+You have absorbed and are currently holding these elements:
+
+&lt;ul&gt;
+&lt;li&gt;($funcCheckExists: _self, &quot;at&quot;,0) (print: (passage: &quot;att.at&quot;)&#39;s id)
+&lt;li&gt;($funcCheckExists: _self, &quot;ab&quot;,0) (print: (passage: &quot;att.ab&quot;)&#39;s id)
+&lt;li&gt;($funcCheckExists: _self, &quot;gor&quot;,0) (print: (passage: &quot;att.gor&quot;)&#39;s id)
+&lt;li&gt;($funcCheckExists: _self, &quot;rokh&quot;,0) (print: (passage: &quot;att.rokh&quot;)&#39;s id)
+&lt;li&gt;($funcCheckExists: _self, &quot;zam&quot;,0) (print: (passage: &quot;att.zam&quot;)&#39;s id)
+&lt;/ul&gt;
+
 ]&lt;!--end child (readouts &amp; tips)--&gt;
 
 &lt;!--Menu/links--&gt;
 $cssColumnChild[
 &lt;ol&gt;
-(for: each _ingredient, ...(data-names: $char&#39;s player&#39;s inv))[\
-	(if: (passage: &quot;item.&quot; + _ingredient)&#39;s key contains &quot;ingredient&quot;)[&lt;li&gt;($funcMultiElementalize: _ingredient) &lt;br&gt;$cssDesc[`	`↪` ` (print: (passage: &quot;item.&quot; + _ingredient)&#39;s tip)]]\
-]\
+
+&lt;!--First, build a list of ingredients--&gt;
+(set: _ingredientList to (a:))
+(for: each _ingredient, ...(data-names: $char&#39;s player&#39;s inv))[{
+	(if: (passage: &quot;item.&quot; + _ingredient)&#39;s key contains &quot;ingredient&quot;)[(set: _ingredientList to it + (a: _ingredient))]
+}]&lt;!--end loop that builds ingredients--&gt;
+&lt;!--then, check if the list is &gt; 0; if so, then generate links--&gt;
+(if: _ingredientList&#39;s length is 0)[~~Elementalize an ingredient.~~ $cssDesc[(You currently do not have any ingredient compatible with this elementalysis table.)]&lt;br&gt;]&lt;!--end if empty list--&gt;
+(else:)[{
+	(for: each _ingredient, ..._ingredientList)[{
+		&lt;li&gt;($funcMultiElementalize: _ingredient) &lt;br&gt;$cssDesc[`	`↪` ` (print: (passage: &quot;item.&quot; + _ingredient)&#39;s tip)]
+	}]&lt;!--end loop--&gt;
+}]&lt;!---end else (generate links)--&gt;
+
+
+
 &lt;br&gt; Or...
 &lt;li&gt;(link: &quot;Do something else with the lab.&quot;)[(goto: (passage:)&#39;s parent)]
 &lt;/ol&gt;
@@ -9610,20 +9713,65 @@ $cssColumnChild[
 ($funcNPCSpeakManual: &quot;genericAttendant1&quot;)
 (set: _line to (hook: &quot;genericAttendant1Line&quot;))
 
-_line[&quot;Welcome to class... davehmar... get your students in their seats... and we will get started,&quot;] says the lab attendant, its pre-recorded line garbled with wear.
+&lt;!--initialize $stuff (to track whether the attendant is already in position)--&gt;
+(if: $stuff does not contain &quot;attendantReady&quot;)[(set: $stuff&#39;s attendantReady to false)]
+
+&lt;!--logic shorthands--&gt;
+(set: _attend to $stuff&#39;s attendantReady)
+(set: _busy to false)
+(if: $char&#39;s player&#39;s timerCraft contains (passage: &quot;Apesai Student Lab&quot;)&#39;s name)[(set: _busy to true)]
+
+&lt;!--if entering lab for the first time--&gt;
+(if: _attend is false and _busy is false)[
+_line[&quot;(either: &quot;Welcome to class... davehmar... get your students in their seats... and we will get started,&quot;, &quot;Davehmar... welcome... allow me help you...&quot;, &quot;Adjunct, welcome... Apesai Davehkhan&#39;s ... laboratory,&quot;, &quot;Class period... has started... allow me to help,&quot;)&quot;] says the spider-like attendant in an old man&#39;s pre-recorded voice, though it is hard to tell if the garbling is from the machine&#39;s age or the man&#39;s.
 &lt;br&gt;
 This laboratory is nothing like what you had in your own university back home. Everything is older, fewer, and less. But this is not home, and neither is it a true university. This is the frontiers. You will make due, just as these magi have for centuries.
 &lt;br&gt;
-_line[&quot;What... shall we do... today?&quot;&quot;] The attendant asks as it climbs atop the magical machinery, then finally finding a nook shaped exactly like its round body, it settles snugly inside and unfurl from its hidden compartments a dozen thin, agile arms. _line[&quot;Some elementalysis?... Or synthesis?...&quot;]
+_line[&quot;(either: &quot;What... shall we do... today?&quot;, &quot;What is... the agenda... today?&quot;, &quot;Make yourself... comfortable... Now, what... shall we do... today?&quot;, &quot;What does... the davehmar need... today?&quot;)&quot;] The attendant asks as it climbs atop the magical machinery, then finally finding a nook shaped exactly like its round body, it settles snugly inside and unfurl from its hidden compartments a dozen thin, agile arms. _line[&quot;Elementalysis?... Or synthesis?&quot;]
+]&lt;!--end of if $stuff&#39;s attendantReady is false--&gt;
+
+&lt;!--if entering lab for the first time, but it is busy--&gt;
+(elseif: _attend is false and _busy is true)[
+_line[&quot;(either: &quot;You&#39;ve returned, davehmar...&quot;, &quot;Welcome back...&quot;, &quot;Again, so soon...&quot;)&quot;] the attendant says, still fused to the synthesis machine, its many service appendages tirelessly working various dials and levers. The lab is glowing with a heatless light, slowly burning through the vehzin, which now courses through its metal veins.
+&lt;br&gt;
+_line[&quot;(either: &quot;Unfortunately, your order... is not yet complete...&quot;, &quot;Your previous batch... is still synthesizing...&quot;, &quot;Job in progress...&quot;) Should be done in... (plural: $char&#39;s player&#39;s timerCraft&#39;s &quot;Apesai Student Lab&quot;&#39;s 3rd, &quot;day&quot;)... For now, you can still use... elemantalysis table...&quot;]
+]&lt;!--end of if entering lab for the first time, but it is busy--&gt;
+
+
+&lt;!--if lab is busy, and attendant is already inside machine--&gt;
+(elseif: _attend is true and _busy is true)[
+_line[&quot;(either: &quot;The synthesis job... is still in progress...&quot;, &quot;Your order... is being made...&quot;, &quot;All we can do now... is wait...&quot;,) Should be done in... (plural: $char&#39;s player&#39;s timerCraft&#39;s &quot;Apesai Student Lab&quot;&#39;s 3rd, &quot;day&quot;)...&quot;] says the attendant while its many service arms juggle a dozen canisters and vials. The synthesis machine churns and glows intermittently, digesting the magic you have fed it, gestating something new.
+]&lt;!--end of if lab is busy, and attendant is already inside machine--&gt;
+
+
+&lt;!--else, not busy, but attendant is already inside machine--&gt;
+(else:)[
+_line[&quot;(either: &quot;What else... shall we do?&quot;, &quot;What else... would the davehmar... like to do?&quot;, &quot;How else... might I be of service?&quot;)&quot;] The attendant asks without expecting an answer, which it has no concept of, and neither does it know what a question is. These are simply audio prompts that the Apesai magi have pre-recorded. _line[&quot;Shall we do some elementalysis?... Or synthesis?&quot;]
+]&lt;!--end of if $stuff&#39;s attendantReady is true--&gt;
+
 &lt;br&gt;
 &lt;!--gameplay tip--&gt;
-$cssDesc[Magical labs have specialized equipment that allows you to &#39;&#39;elementalize&#39;&#39; - destroying and absorbing the elemental value of alchemical ingredients - or &#39;&#39;synthesize&#39;&#39; - creating substances from said elements.]
+$cssDesc[Magical labs have specialized equipment that allows you to &#39;&#39;elementalize&#39;&#39; - destroying alchemical ingredients and absorbing their elemental content - or &#39;&#39;synthesize&#39;&#39; - creating substances from said elements.]
+
 &lt;br&gt;
 ---
 &lt;ol&gt;
-&lt;li&gt;(link: &quot;Elementalize your ingredients.&quot;)[(goto: &quot;Lab 1b&quot;)]
-&lt;li&gt;(link: &quot;Synthesize a substance.&quot;)[(goto: &quot;Apesai Student Lab&quot;)]
-&lt;li&gt;(link: &quot;Never mind.&quot;)[$funcBack]
+&lt;li&gt;(link: &quot;Elementalize your ingredients.&quot;)[{
+     (set: $stuff&#39;s attendantReady to true)
+     (goto: &quot;Lab 1b&quot;)
+}]
+
+(set: _synthesisText to &quot;Synthesize a substance.&quot;)
+(if: _busy)[(set: _synthesisText to &quot;Check up on your on-going synthesis job.&quot;)]
+
+&lt;li&gt;(link: _synthesisText)[{
+     (set: $stuff&#39;s attendantReady to true)
+     (goto: &quot;Apesai Student Lab&quot;)
+}]
+&lt;li&gt;(link: &quot;Leave the lab.&quot;)[{
+     (set: $stuff to (dm:))
+     $funcBack
+}]
 &lt;/ol&gt;
 ]&lt;!--end child--&gt;
 ]&lt;!--end parent--&gt;</tw-passagedata><tw-passagedata pid="210" name="Lab 1 (unavailable students)" tags="" position="1225,2600" size="100,100">(metadata:

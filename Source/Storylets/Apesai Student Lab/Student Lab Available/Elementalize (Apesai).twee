@@ -3,7 +3,7 @@
 
 (metadata:
 "title", "Apesai Student Lab",
-"cardDesc", "",
+"cardDesc", "Like a good essay, alchemy involves elementalysis first and synthesis second, just as a measured analysis will yield sufficient evidence for a sound conclusion.",
 "parent", "S: Lab 1",
 )
 
@@ -22,9 +22,19 @@ $cssColumnChild[
 ]<!--end of child (card)-->
 
 $cssColumnChild[
-elementalysis equipment
+
+<!--format attendant lines-->
+($funcNPCSpeakManual: "genericAttendant1")
+(set: _line to (hook: "genericAttendant1Line"))
+
+You approach the elementalysis table. In the middle, an array of emitters, like scorpions' tails, point into a wide funnel.
 <br>
-Considering what to destroy...
+The surface of the funnel is stained with pearlescent patina - leftover elements exposed to air and materializing into Opal dust - formed from long years of use and, most likely, infrequent scrubbing.
+<br>
+_line["(either: "Maintain... three steps away before... extraction begins...", "Remember to... not look directly... at the light...", "Never absorb... more... than what you... can hold...", "Ensure... any apprentice with you... keep their hands off... the emitters...")"] blares the spider-like attendant from its nest of magic metal.
+<br>
+<!--gameplay tip-->
+$cssDesc[''To elementalize:'' Choose an ingredient to destroy, then choose the amount, then confirm.]
 ]<!--end of child (prose)-->
 ]<!--end parent (descriptive section)-->
 
@@ -37,18 +47,37 @@ $cssColumnParent[
 $cssColumnChild[
 <!--element readout-->
 (set: _self to $char's player's att)
-$cssDesc[You have absorbed and are currently holding these elements: ($funcCheckExists: _self, "at",0) At, ($funcCheckExists: _self, "ab",0) Ab, ($funcCheckExists: _self, "gor",0) Gor, ($funcCheckExists: _self, "rokh",0) Rokh, ($funcCheckExists: _self, "zam",0) Zam.]
-<br>
-<!--gameplay tip-->
-$cssDesc[Select ingredient, then amount, then confirm.]
+You have absorbed and are currently holding these elements:
+
+<ul>
+<li>($funcCheckExists: _self, "at",0) (print: (passage: "att.at")'s id)
+<li>($funcCheckExists: _self, "ab",0) (print: (passage: "att.ab")'s id)
+<li>($funcCheckExists: _self, "gor",0) (print: (passage: "att.gor")'s id)
+<li>($funcCheckExists: _self, "rokh",0) (print: (passage: "att.rokh")'s id)
+<li>($funcCheckExists: _self, "zam",0) (print: (passage: "att.zam")'s id)
+</ul>
+
 ]<!--end child (readouts & tips)-->
 
 <!--Menu/links-->
 $cssColumnChild[
 <ol>
-(for: each _ingredient, ...(data-names: $char's player's inv))[\
-	(if: (passage: "item." + _ingredient)'s key contains "ingredient")[<li>($funcMultiElementalize: _ingredient) <br>$cssDesc[`	`↪` ` (print: (passage: "item." + _ingredient)'s tip)]]\
-]\
+
+<!--First, build a list of ingredients-->
+(set: _ingredientList to (a:))
+(for: each _ingredient, ...(data-names: $char's player's inv))[{
+	(if: (passage: "item." + _ingredient)'s key contains "ingredient")[(set: _ingredientList to it + (a: _ingredient))]
+}]<!--end loop that builds ingredients-->
+<!--then, check if the list is > 0; if so, then generate links-->
+(if: _ingredientList's length is 0)[~~Elementalize an ingredient.~~ $cssDesc[(You currently do not have any ingredient compatible with this elementalysis table.)]<br>]<!--end if empty list-->
+(else:)[{
+	(for: each _ingredient, ..._ingredientList)[{
+		<li>($funcMultiElementalize: _ingredient) <br>$cssDesc[`	`↪` ` (print: (passage: "item." + _ingredient)'s tip)]
+	}]<!--end loop-->
+}]<!---end else (generate links)-->
+
+
+
 <br> Or...
 <li>(link: "Do something else with the lab.")[(goto: (passage:)'s parent)]
 </ol>

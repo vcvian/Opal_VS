@@ -16,8 +16,10 @@
 <!--initialize _justFueled. This temp var is used by the ?topBackLink, but it only exists inside the scope of $funcVehzin, so it needs to be initialized here-->
 (set: _justFueled to false)
 
+<!--description section-->
 $cssColumnParent[
 
+<!--card-->
 $cssColumnChild[
 
      $cssColumnChild[
@@ -32,36 +34,108 @@ $cssColumnChild[
     	($funcImage: (passage: (passage:)'s parent)'s img)
          $cssBoxItem[''(print: (passage:)'s title )''<br>(print: (passage:)'s cardDesc)]
     ]
-]
+]<!--end of card-->
 
+<!--prose-->
 $cssColumnChild[
 
-Vials, burners, pots, and pans - they're all here.
+<!--format attendant lines-->
+($funcNPCSpeakManual: "genericAttendant1")
+(set: _line to (hook: "genericAttendant1Line"))
+
+<!--logic shorthands-->
+(set: _busy to false)
+(if: $char's player's timerCraft contains (passage: "Apesai Student Lab")'s name)[(set: _busy to true)]
+
+<!--not busy-->
+(if: _busy is false)[
+It is not so accurate to say that you are standing in front of a synthesis workstation. Rather, you are inside it. A modern alchemical lab - even ones as small and basic as this one - is always a marvel, easily taking up an entire room, with its pipes running inside the walls, and its engines lying beneath the floor.
 <br>
-But you'll have to bring the ingredients yourself or buy them from the market. The students here are already resorting to combing the beach and scouring the pantry. They're not in a giving mood.
+Presently, there are a couple of synthesis arrays - looking like ribcages made of red steel - that are either not reserved or disassembled for maintenance. Their fuel receptacles are open and waiting.
 <br>
-What shall you make today?
-]<!--end child-->
-]<!--end parent-->
+_line["(either: "What... shall we make... today?", "What product... do you have... in mind?", "Davehmar, what lesson... have you planned... for the students?", "A demonstration... for the apprentices...", "Adjunct... have you brought... fuel? Have you... the right elements?")"]
+<br>
+<!--gameplay tip-->
+$cssDesc[''To synthesize:'' Power up the workstation, pick a product (that you know the formula of), pick amount to be made, and confirm.
+<br>
+Granted, you must already have enough ''fuel'', have sufficient ''elements'', and know the ''formula'' for what you want to make, and the product's ''complexity'' cannot exceed the workstation's capabilities.
+<br>
+After an order is confirmed, the workstation will take a certain amount of days of autonomous work, after which you can claim the product. A run can be canceled prematurely, but neither fuel nor elements will be refunded.
+]
+]<!--end of if not busy-->
+
+<!--if busy-->
+(else:)[
+_line["(either: "Patience, apprentices...", "Observe, but do not touch...", "The laboratory is... active... Exercise caution...", "Apprentices... take note... of these procedures...") This batch will be done... in (plural: $char's player's timerCraft's "Apesai Student Lab"'s 3rd, "more day")..."] says the attendant as its spider arms launch into a flurry, orchestrating the magic inside of the synthesis equipment in accordance with your instructions, which you have delivered in the form of incantations.
+<br>
+Once, this work would have been performed by a squad of junior magi. But that was centuries ago. Now, most modern setups can run fairly reliably by themselves, given enough fuel and that the initial rituals have been performed correctly.
+<br>
+Through a yellowed view port, you can see your product forming inside of the machine's belly.
+]
+
+
+
+
+]<!--end child (prose)-->
+]<!--end parent (description section)-->
 
 ---
+
+<!--interactive section-->
 $cssColumnParent[
 
+<!--read out-->
 $cssColumnChild[
-Lab info.
+
+<!--level-->
+(set: _levelName to (cond:
+     (passage:)'s level is 1, "simple",
+     (passage:)'s level is 2, "complex",
+     (passage:)'s level is 3, "exotic",
+))
+(set: _levelCheckMark to (macro: num-type _level, [(out:)[{
+     (if: _level <= (passage:)'s level)[(color:green)[✓]]
+     (else:)[(color:red)[✗]]
+}]]))
+
+''(print: (passage:)'s title)'' is a ''_levelName'' workstation. It is capable of synthesizing products that are:
+<ul>
+<li>Simple (_levelCheckMark: 1)
+<li>Complex (_levelCheckMark: 2)
+<li>Exotic (_levelCheckMark: 3)
+</ul>
+
+<!--specs-->
+Each time this workstation runs:
+<ul>
+<li>Can synthesize ''at most (plural: (passage:)'s max, "unit")'' of a single type of product.
+<li>Will cost ''(print: (passage:)'s fuelCost) (print: (passage: "item.vehzin")'s id)'' to start a run.
+<li>Will take ''(plural: (passage:)'s duration, "day")'' to finish a run.
+</ul>
+
+
 <br>
-(set: _self to $char's player's att)\
-You've absorbed and are currently holding these elements: ($funcCheckExists: _self, "at",0) At, ($funcCheckExists: _self, "ab",0) Ab, ($funcCheckExists: _self, "gor",0) Gor, ($funcCheckExists: _self, "rokh",0) Rokh, ($funcCheckExists: _self, "zam",0) Zam.\
-]
+<!--element readout-->
+(set: _self to $char's player's att)
+You have absorbed and are currently holding these elements:
+
+<ul>
+<li>($funcCheckExists: _self, "at",0) (print: (passage: "att.at")'s id)
+<li>($funcCheckExists: _self, "ab",0) (print: (passage: "att.ab")'s id)
+<li>($funcCheckExists: _self, "gor",0) (print: (passage: "att.gor")'s id)
+<li>($funcCheckExists: _self, "rokh",0) (print: (passage: "att.rokh")'s id)
+<li>($funcCheckExists: _self, "zam",0) (print: (passage: "att.zam")'s id)
+</ul>
+
+]<!--end of readout-->
 
 
-$cssColumnChild[
-
+<!--vehzin-->
+$cssColumnChild[''Synthesis Actions''
 ($funcVehzin: (passage:)'s parent)
+]<!--end child (vehzin)-->
 
-
-]<!--end child-->
-]<!--end parent-->
+]<!--end parent (interactive section)-->
 
 <!--Updates the top back link based on $funcVehzin output-->
 (replace: ?topBackLink)[
