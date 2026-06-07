@@ -8,6 +8,7 @@
 "max", 2,
 "duration", 3,
 "fuelCost", 1,
+"parent", "S: Lab 1",
 )
 
 <!--Note: For all labs, the top back link involves code that goes at the beginning and end of the passage, wrapping around the main content. It's weird, but deal with it.-->
@@ -28,7 +29,7 @@ $cssColumnChild[
      
      
 	$cssBox[
-    	($funcImage: (passage: "S: Lab 1")'s img)
+    	($funcImage: (passage: (passage:)'s parent)'s img)
          $cssBoxItem[''(print: (passage:)'s title )''<br>(print: (passage:)'s cardDesc)]
     ]
 ]
@@ -56,15 +57,16 @@ You've absorbed and are currently holding these elements: ($funcCheckExists: _se
 
 $cssColumnChild[
 
- ($funcVehzin: "S: Lab 1")
- 
- ]<!--end child-->
- ]<!--end parent-->
+($funcVehzin: (passage:)'s parent)
+
+
+]<!--end child-->
+]<!--end parent-->
 
 <!--Updates the top back link based on $funcVehzin output-->
 (replace: ?topBackLink)[
-     (link: "⇦ Exit the (print: (passage:)'s title).")[
+     (link: "⇦ Do something else.")[
           (if: _justFueled is true)[(display: "code.labPowerDown")]
-          (goto: "S: Lab 1")
+          (goto: (passage:)'s parent)
      ]
 ]

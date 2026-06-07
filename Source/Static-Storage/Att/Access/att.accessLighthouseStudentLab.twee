@@ -7,9 +7,9 @@
     "key", (a: "access", "Apesai", ),
     "value", (a: 1, 0, 0, 0, 0, 0),
     "img", "",
-    "desc", [],
-    "tip", [],
-    "gainText", [],
-    "lossText", [],
+    "desc", [The student lab of the Apesai school is sufficient for educational purposes and not much more.],
+    "tip", [Grants you permission to use the Apesai Lighthouse's student lab.],
+    "gainText", [The attendants guarding the student lab on the fifth floor will recognize you as a guest and let you through.],
+    "lossText", [Your permission to use the Apesai school's student lab has been revoked.],
 
 )

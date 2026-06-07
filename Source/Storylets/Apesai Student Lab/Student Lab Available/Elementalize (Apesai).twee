@@ -1,0 +1,56 @@
+:: Lab 1b {"position":"4950,1700","size":"100,100"}
+{=
+
+(metadata:
+"title", "Apesai Student Lab",
+"cardDesc", "",
+"parent", "S: Lab 1",
+)
+
+<!--descriptive section-->
+$cssColumnParent[
+
+$cssColumnChild[
+
+	<!--back link-->
+	(css: "font-size: 70%")[(link: "⇦ Do something else.")[(goto: (passage:)'s parent)]]
+
+	$cssBox[
+    	($funcImage: (passage: (passage:)'s parent)'s img)
+         $cssBoxItem[''(print: (passage:)'s title )''<br>(print: (passage:)'s cardDesc)]
+    ]
+]<!--end of child (card)-->
+
+$cssColumnChild[
+elementalysis equipment
+<br>
+Considering what to destroy...
+]<!--end of child (prose)-->
+]<!--end parent (descriptive section)-->
+
+<br>
+---
+
+<!--interactive section-->
+$cssColumnParent[
+<!--Readout & tips-->
+$cssColumnChild[
+<!--element readout-->
+(set: _self to $char's player's att)
+$cssDesc[You have absorbed and are currently holding these elements: ($funcCheckExists: _self, "at",0) At, ($funcCheckExists: _self, "ab",0) Ab, ($funcCheckExists: _self, "gor",0) Gor, ($funcCheckExists: _self, "rokh",0) Rokh, ($funcCheckExists: _self, "zam",0) Zam.]
+<br>
+<!--gameplay tip-->
+$cssDesc[Select ingredient, then amount, then confirm.]
+]<!--end child (readouts & tips)-->
+
+<!--Menu/links-->
+$cssColumnChild[
+<ol>
+(for: each _ingredient, ...(data-names: $char's player's inv))[\
+	(if: (passage: "item." + _ingredient)'s key contains "ingredient")[<li>($funcMultiElementalize: _ingredient) <br>$cssDesc[`	`↪` ` (print: (passage: "item." + _ingredient)'s tip)]]\
+]\
+<br> Or...
+<li>(link: "Do something else with the lab.")[(goto: (passage:)'s parent)]
+</ol>
+]<!--end child (menu/links)-->
+]<!--end parent (interactive section)-->

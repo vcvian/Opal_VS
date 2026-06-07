@@ -315,7 +315,7 @@ Ex: 2|1 At, 0|1 Ab, 2|3 Gor, 0|2 Rokh, 0|0 Zam -->
     \
 	<!--back link-->\
 	Or...
-	<li>(link-rerun: "Exit (print: (passage:)'s title).")[\
+	<li>(link-rerun: "Do something else.")[\
 		(if: _justFueled is true)[(display: "code.labPowerDown")]\
         (goto:_exit)\
 	] []<exitText|

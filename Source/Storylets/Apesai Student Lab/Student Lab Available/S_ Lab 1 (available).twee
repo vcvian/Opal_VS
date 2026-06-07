@@ -1,0 +1,41 @@
+:: S: Lab 1 [storylet] {"position":"5025,1575","size":"100,100"}
+{=
+
+(storylet: when
+$place's sublocation is "Apesai Lighthouse"
+and $char's player's att contains "accessLighthouseStudentLab"
+)
+(metadata: "title", "Apesai Student Lab", "cardDesc", "On the lighthouse's fifth floor, the davehmars of Apesai maintain an old alchemical lab for their classes. You might make use of it.", "img", "https://fallenlondon.wiki/w/images/8/83/University.png",)
+
+$cssColumnParent[
+
+$cssColumnChild[
+	$cssBox[
+    	($funcImage: (passage:)'s img)
+         $cssBoxItem[''(print: (passage:)'s title )''<br>(print: (passage:)'s cardDesc)]
+    ]
+]
+
+$cssColumnChild[
+
+<!--format attendant lines-->
+($funcNPCSpeakManual: "genericAttendant1")
+(set: _line to (hook: "genericAttendant1Line"))
+
+_line["Welcome to class... davehmar... get your students in their seats... and we will get started,"] says the lab attendant, its pre-recorded line garbled with wear.
+<br>
+This laboratory is nothing like what you had in your own university back home. Everything is older, fewer, and less. But this is not home, and neither is it a true university. This is the frontiers. You will make due, just as these magi have for centuries.
+<br>
+_line["What... shall we do... today?""] The attendant asks as it climbs atop the magical machinery, then finally finding a nook shaped exactly like its round body, it settles snugly inside and unfurl from its hidden compartments a dozen thin, agile arms. _line["Some elementalysis?... Or synthesis?..."]
+<br>
+<!--gameplay tip-->
+$cssDesc[Magical labs have specialized equipment that allows you to ''elementalize'' - destroying and absorbing the elemental value of alchemical ingredients - or ''synthesize'' - creating substances from said elements.]
+<br>
+---
+<ol>
+<li>(link: "Elementalize your ingredients.")[(goto: "Lab 1b")]
+<li>(link: "Synthesize a substance.")[(goto: "Apesai Student Lab")]
+<li>(link: "Never mind.")[$funcBack]
+</ol>
+]<!--end child-->
+]<!--end parent-->

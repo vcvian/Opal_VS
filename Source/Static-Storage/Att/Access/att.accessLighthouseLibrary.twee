@@ -7,9 +7,9 @@
     "key", (a: "access", "Apesai", ),
     "value", (a: 1, 0, 0, 0, 0, 0),
     "img", "",
-    "desc", [],
-    "tip", [],
-    "gainText", [],
-    "lossText", [],
+    "desc", [All davehkhans hoard books, scrolls, and whichever medium wisdom is transcribed. The Apesai School's sixth floor is a small part of that hoard. ],
+    "tip", [Grants you permission to peruse the Apesai Lighthouse's library.],
+    "gainText", [The Apesai Lighthouse's sixth-floor library is made available to you, giving you the same access as any apprentice here, which is not a lot.],
+    "lossText", [Your permission to use the Apesai school's sixth-floor library has been revoked.],
 
 )

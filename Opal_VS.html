@@ -71,7 +71,7 @@ hr {
   100% {
     background-position: 0% center;
   }
-}</style><script role="script" id="twine-user-script" type="text/twine-javascript"></script><tw-tag name="storylet" color="blue"></tw-tag><tw-tag name="test" color="blue"></tw-tag><tw-tag name="traveling" color="purple"></tw-tag><tw-tag name="book" color="yellow"></tw-tag><tw-tag name="effect" color="yellow"></tw-tag><tw-tag name="footer" color="yellow"></tw-tag><tw-tag name="header" color="yellow"></tw-tag><tw-tag name="sublocation" color="green"></tw-tag><tw-tag name="topic" color="purple"></tw-tag><tw-tag name="UI" color="orange"></tw-tag><tw-tag name="startup" color="orange"></tw-tag><tw-tag name="static-storage" color="yellow"></tw-tag><tw-tag name="stay" color="yellow"></tw-tag><tw-passagedata pid="1" name="AA. Books, Reading &amp; Formulae" tags="startup" position="100,100" size="100,100">{=
+}</style><script role="script" id="twine-user-script" type="text/twine-javascript"></script><tw-tag name="test" color="blue"></tw-tag><tw-tag name="topic" color="purple"></tw-tag><tw-tag name="footer" color="yellow"></tw-tag><tw-tag name="book" color="yellow"></tw-tag><tw-tag name="effect" color="yellow"></tw-tag><tw-tag name="header" color="yellow"></tw-tag><tw-tag name="startup" color="orange"></tw-tag><tw-tag name="static-storage" color="yellow"></tw-tag><tw-tag name="stay" color="yellow"></tw-tag><tw-tag name="storylet" color="blue"></tw-tag><tw-tag name="UI" color="orange"></tw-tag><tw-tag name="traveling" color="purple"></tw-tag><tw-tag name="sublocation" color="green"></tw-tag><tw-passagedata pid="1" name="AA. Books, Reading &amp; Formulae" tags="startup" position="100,100" size="100,100">{=
 &lt;!--Macros related to books and reading--&gt;
 
 (set: $readingNav to (dm:
@@ -1643,7 +1643,7 @@ Ex: 2|1 At, 0|1 Ab, 2|3 Gor, 0|2 Rokh, 0|0 Zam --&gt;
     \
 	&lt;!--back link--&gt;\
 	Or...
-	&lt;li&gt;(link-rerun: &quot;Exit (print: (passage:)&#39;s title).&quot;)[\
+	&lt;li&gt;(link-rerun: &quot;Do something else.&quot;)[\
 		(if: _justFueled is true)[(display: &quot;code.labPowerDown&quot;)]\
         (goto:_exit)\
 	] []&lt;exitText|
@@ -8469,10 +8469,10 @@ Askava is a province of the Nurandah Empire, one of seven.
     &quot;key&quot;, (a: &quot;access&quot;, &quot;Apesai&quot;, ),
     &quot;value&quot;, (a: 1, 0, 0, 0, 0, 0),
     &quot;img&quot;, &quot;&quot;,
-    &quot;desc&quot;, [],
-    &quot;tip&quot;, [],
-    &quot;gainText&quot;, [],
-    &quot;lossText&quot;, [],
+    &quot;desc&quot;, [All davehkhans hoard books, scrolls, and whichever medium wisdom is transcribed. The Apesai School&#39;s sixth floor is a small part of that hoard. ],
+    &quot;tip&quot;, [Grants you permission to peruse the Apesai Lighthouse&#39;s library.],
+    &quot;gainText&quot;, [The Apesai Lighthouse&#39;s sixth-floor library is made available to you, giving you the same access as any apprentice here, which is not a lot.],
+    &quot;lossText&quot;, [Your permission to use the Apesai school&#39;s sixth-floor library has been revoked.],
 
 )</tw-passagedata><tw-passagedata pid="143" name="att.accessLighthouseStudentLab" tags="static-storage" position="350,1850" size="100,100">{=
 
@@ -8481,10 +8481,10 @@ Askava is a province of the Nurandah Empire, one of seven.
     &quot;key&quot;, (a: &quot;access&quot;, &quot;Apesai&quot;, ),
     &quot;value&quot;, (a: 1, 0, 0, 0, 0, 0),
     &quot;img&quot;, &quot;&quot;,
-    &quot;desc&quot;, [],
-    &quot;tip&quot;, [],
-    &quot;gainText&quot;, [],
-    &quot;lossText&quot;, [],
+    &quot;desc&quot;, [The student lab of the Apesai school is sufficient for educational purposes and not much more.],
+    &quot;tip&quot;, [Grants you permission to use the Apesai Lighthouse&#39;s student lab.],
+    &quot;gainText&quot;, [The attendants guarding the student lab on the fifth floor will recognize you as a guest and let you through.],
+    &quot;lossText&quot;, [Your permission to use the Apesai school&#39;s student lab has been revoked.],
 
 )</tw-passagedata><tw-passagedata pid="144" name="att.ab" tags="static-storage" position="1750,3225" size="100,100">{=
 
@@ -9472,6 +9472,7 @@ $time&#39;s week is 4,&quot;Charhet&quot;,
 &quot;max&quot;, 2,
 &quot;duration&quot;, 3,
 &quot;fuelCost&quot;, 1,
+&quot;parent&quot;, &quot;S: Lab 1&quot;,
 )
 
 &lt;!--Note: For all labs, the top back link involves code that goes at the beginning and end of the passage, wrapping around the main content. It&#39;s weird, but deal with it.--&gt;
@@ -9492,7 +9493,7 @@ $cssColumnChild[
      
      
 	$cssBox[
-    	($funcImage: (passage: &quot;S: Lab 1&quot;)&#39;s img)
+    	($funcImage: (passage: (passage:)&#39;s parent)&#39;s img)
          $cssBoxItem[&#39;&#39;(print: (passage:)&#39;s title )&#39;&#39;&lt;br&gt;(print: (passage:)&#39;s cardDesc)]
     ]
 ]
@@ -9520,56 +9521,79 @@ You&#39;ve absorbed and are currently holding these elements: ($funcCheckExists:
 
 $cssColumnChild[
 
- ($funcVehzin: &quot;S: Lab 1&quot;)
- 
- ]&lt;!--end child--&gt;
- ]&lt;!--end parent--&gt;
+($funcVehzin: (passage:)&#39;s parent)
+
+
+]&lt;!--end child--&gt;
+]&lt;!--end parent--&gt;
 
 &lt;!--Updates the top back link based on $funcVehzin output--&gt;
 (replace: ?topBackLink)[
-     (link: &quot;⇦ Exit the (print: (passage:)&#39;s title).&quot;)[
+     (link: &quot;⇦ Do something else.&quot;)[
           (if: _justFueled is true)[(display: &quot;code.labPowerDown&quot;)]
-          (goto: &quot;S: Lab 1&quot;)
+          (goto: (passage:)&#39;s parent)
      ]
 ]</tw-passagedata><tw-passagedata pid="208" name="Lab 1b" tags="" position="4950,1700" size="100,100">{=
 
 (metadata:
 &quot;title&quot;, &quot;Apesai Student Lab&quot;,
 &quot;cardDesc&quot;, &quot;&quot;,
+&quot;parent&quot;, &quot;S: Lab 1&quot;,
 )
 
+&lt;!--descriptive section--&gt;
 $cssColumnParent[
 
 $cssColumnChild[
+
+	&lt;!--back link--&gt;
+	(css: &quot;font-size: 70%&quot;)[(link: &quot;⇦ Do something else.&quot;)[(goto: (passage:)&#39;s parent)]]
+
 	$cssBox[
-    	($funcImage: (passage: &quot;S: Lab 1&quot;)&#39;s img)
+    	($funcImage: (passage: (passage:)&#39;s parent)&#39;s img)
          $cssBoxItem[&#39;&#39;(print: (passage:)&#39;s title )&#39;&#39;&lt;br&gt;(print: (passage:)&#39;s cardDesc)]
     ]
-]
+]&lt;!--end of child (card)--&gt;
 
 $cssColumnChild[
 elementalysis equipment
 &lt;br&gt;
 Considering what to destroy...
-&lt;br&gt;
-$cssDesc[Select ingredient, then amount, then confirm.]
+]&lt;!--end of child (prose)--&gt;
+]&lt;!--end parent (descriptive section)--&gt;
+
 &lt;br&gt;
 ---
+
+&lt;!--interactive section--&gt;
+$cssColumnParent[
+&lt;!--Readout &amp; tips--&gt;
+$cssColumnChild[
+&lt;!--element readout--&gt;
+(set: _self to $char&#39;s player&#39;s att)
+$cssDesc[You have absorbed and are currently holding these elements: ($funcCheckExists: _self, &quot;at&quot;,0) At, ($funcCheckExists: _self, &quot;ab&quot;,0) Ab, ($funcCheckExists: _self, &quot;gor&quot;,0) Gor, ($funcCheckExists: _self, &quot;rokh&quot;,0) Rokh, ($funcCheckExists: _self, &quot;zam&quot;,0) Zam.]
+&lt;br&gt;
+&lt;!--gameplay tip--&gt;
+$cssDesc[Select ingredient, then amount, then confirm.]
+]&lt;!--end child (readouts &amp; tips)--&gt;
+
+&lt;!--Menu/links--&gt;
+$cssColumnChild[
 &lt;ol&gt;
 (for: each _ingredient, ...(data-names: $char&#39;s player&#39;s inv))[\
-	(if: (passage: &quot;item.&quot; + _ingredient)&#39;s key contains &quot;ingredient&quot;)[&lt;li&gt;($funcMultiElementalize: _ingredient)]\
+	(if: (passage: &quot;item.&quot; + _ingredient)&#39;s key contains &quot;ingredient&quot;)[&lt;li&gt;($funcMultiElementalize: _ingredient) &lt;br&gt;$cssDesc[`	`↪` ` (print: (passage: &quot;item.&quot; + _ingredient)&#39;s tip)]]\
 ]\
 &lt;br&gt; Or...
-&lt;li&gt;[[Go back|S: Lab 1]]
+&lt;li&gt;(link: &quot;Do something else with the lab.&quot;)[(goto: (passage:)&#39;s parent)]
 &lt;/ol&gt;
-]&lt;!--end child--&gt;
-]&lt;!--end parent--&gt;</tw-passagedata><tw-passagedata pid="209" name="S: Lab 1" tags="storylet" position="5025,1575" size="100,100">{=
+]&lt;!--end child (menu/links)--&gt;
+]&lt;!--end parent (interactive section)--&gt;</tw-passagedata><tw-passagedata pid="209" name="S: Lab 1" tags="storylet" position="5025,1575" size="100,100">{=
 
 (storylet: when
 $place&#39;s sublocation is &quot;Apesai Lighthouse&quot;
 and $char&#39;s player&#39;s att contains &quot;accessLighthouseStudentLab&quot;
 )
-(metadata: &quot;title&quot;, &quot;Apesai Student Lab&quot;, &quot;cardDesc&quot;, &quot;The davehmars of Apesai keep an old alchemical lab.&quot;, &quot;img&quot;, &quot;https://fallenlondon.wiki/w/images/8/83/University.png&quot;,)
+(metadata: &quot;title&quot;, &quot;Apesai Student Lab&quot;, &quot;cardDesc&quot;, &quot;On the lighthouse&#39;s fifth floor, the davehmars of Apesai maintain an old alchemical lab for their classes. You might make use of it.&quot;, &quot;img&quot;, &quot;https://fallenlondon.wiki/w/images/8/83/University.png&quot;,)
 
 $cssColumnParent[
 
@@ -9581,14 +9605,24 @@ $cssColumnChild[
 ]
 
 $cssColumnChild[
-It&#39;s nothing like what you had back in the academy at home. But this is not home. This is the frontiers. You&#39;ll make due, just as these magi have, for a hundred years now.
+
+&lt;!--format attendant lines--&gt;
+($funcNPCSpeakManual: &quot;genericAttendant1&quot;)
+(set: _line to (hook: &quot;genericAttendant1Line&quot;))
+
+_line[&quot;Welcome to class... davehmar... get your students in their seats... and we will get started,&quot;] says the lab attendant, its pre-recorded line garbled with wear.
 &lt;br&gt;
-$cssDesc[Alchemical labs have special equipments for... well, alchemy.]
+This laboratory is nothing like what you had in your own university back home. Everything is older, fewer, and less. But this is not home, and neither is it a true university. This is the frontiers. You will make due, just as these magi have for centuries.
+&lt;br&gt;
+_line[&quot;What... shall we do... today?&quot;&quot;] The attendant asks as it climbs atop the magical machinery, then finally finding a nook shaped exactly like its round body, it settles snugly inside and unfurl from its hidden compartments a dozen thin, agile arms. _line[&quot;Some elementalysis?... Or synthesis?...&quot;]
+&lt;br&gt;
+&lt;!--gameplay tip--&gt;
+$cssDesc[Magical labs have specialized equipment that allows you to &#39;&#39;elementalize&#39;&#39; - destroying and absorbing the elemental value of alchemical ingredients - or &#39;&#39;synthesize&#39;&#39; - creating substances from said elements.]
 &lt;br&gt;
 ---
 &lt;ol&gt;
-&lt;li&gt;[[Elementalize your ingredients|Lab 1b]]
-&lt;li&gt;[[Create a substance|Apesai Student Lab]]
+&lt;li&gt;(link: &quot;Elementalize your ingredients.&quot;)[(goto: &quot;Lab 1b&quot;)]
+&lt;li&gt;(link: &quot;Synthesize a substance.&quot;)[(goto: &quot;Apesai Student Lab&quot;)]
 &lt;li&gt;(link: &quot;Never mind.&quot;)[$funcBack]
 &lt;/ol&gt;
 ]&lt;!--end child--&gt;
