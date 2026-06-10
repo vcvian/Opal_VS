@@ -1,0 +1,43 @@
+:: code.labSpecsReadout
+{=
+
+
+''(print: (passage:)'s title)'' is` `
+(if: $char's player's timerCraft contains (passage:)'s name)[{
+    <!--if done-->
+    (if: $char's player's timerCraft's ((passage:)'s name)'s 3rd <= 0)[done synthesizing ''(print:  $char's player's timerCraft's ((passage:)'s name)'s 2nd) (print: (passage: "item." + $char's player's timerCraft's ((passage:)'s name)'s 1st)'s id)''.]
+    <!--if not done-->
+    (else:)[currently synthesizing ''(print:  $char's player's timerCraft's ((passage:)'s name)'s 2nd) (print: (passage: "item." + $char's player's timerCraft's ((passage:)'s name)'s 1st)'s id)''. (plural: $char's player's timerCraft's ((passage:)'s name)'s 3rd, "day") left.]
+}]
+(else:)[not making anything.]
+
+<br>
+
+$cssDesc[
+<!--level-->
+(set: _levelName to (cond:
+     (passage:)'s level is 1, "simple",
+     (passage:)'s level is 2, "complex",
+     (passage:)'s level is 3, "exotic",
+))
+(set: _levelCheckMark to (macro: num-type _level, [(out:)[{
+     (if: _level <= (passage:)'s level)[(color:green)[✓]]
+     (else:)[(color:red)[✗]]
+}]]))
+
+''(print: (passage:)'s title)'' is a ''_levelName'' workstation. It is capable of synthesizing products that are:
+<ul>
+<li>Simple (_levelCheckMark: 1)
+<li>Complex (_levelCheckMark: 2)
+<li>Exotic (_levelCheckMark: 3)
+</ul>
+
+<!--specs-->
+Each time it runs, this workstation:
+<ul>
+<li>Can synthesize ''at most (plural: (passage:)'s max, "unit")'' of a single type of product.
+<li>Will cost ''(print: (passage:)'s fuelCost) (print: (passage: "item.vehzin")'s id)'' to start a run.
+<li>Will take ''(plural: (passage:)'s duration, "day")'' to finish a run.
+</ul>
+
+]<!--end of $cssDesc-->

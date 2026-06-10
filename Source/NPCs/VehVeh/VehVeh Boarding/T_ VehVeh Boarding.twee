@@ -1,0 +1,225 @@
+:: T: VehVeh Boarding [topic]
+{=
+
+(storylet: when
+(passage:) contains "NPC"
+and $char's VehVeh's opinion's 2nd > 20
+and $char's VehVeh's location is "Apesai Lighthouse"
+and $char's player's timerCooldown does not contain "T: VehVeh Boarding"
+and $place's stay is not "Apesai Lighthouse"
+)
+
+
+(metadata:
+"NPC", "VehVeh",
+"title", "Asking Veh-Veh About Boarding in the Tower",
+"topic", [{
+    (if: ($funcTalkedTimesCheck: "boarding") < 1)["I'm currently renting, but I'd like to avoid that if possible. Perhaps there is a spare bed in the tower?"]
+    (else:)["I know I've already asked, but I really need boarding. Perhaps you could be convinced to let me stay?"]
+}],
+"topicDetail", "It is only reasonable to expect a place of learning to host a visiting scholar. Without rent. That's the point of asking.",
+"cooldown", 1,
+"talked", (a: "boarding", "absentPrincipal"),
+"addCode", [{
+    (if: ($funcTalkedTimesCheck: "boarding") >= 1)[
+    	($funcOpinionGainLoss: "VehVeh", -1, "It is trouble enough to have to take care of the juniors. Veh-Veh does not appreciate you making it harder than it already is.")
+        ]
+}]
+)
+
+$cssColumnParent[
+
+$cssColumnChild[
+	$cssBox[
+    	($funcImage: (passage: "S: VehVeh")'s img)
+         $cssBoxItem[''(print: (passage:)'s title )''<br>(print: (passage:)'s topicDetail)]
+    ]
+]
+
+$cssColumnChild[
+
+<!--set up default busy and goodbye text-->
+(set: _busyText to "Veh-Veh does not seem all that talkative anymore. You should make yourself scarce for now.")
+(set: _goodbyeText to "Alright, it was worth a try. Thank you, Veh-Veh, and goodbye.")
+
+<!--VehVehLine short hand-->
+(set: _line to (hook: "VehVehLine"))
+
+
+$cssDesc[''You: //(print: (passage:)'s topic)//'']
+<br>
+
+<!--main content begins-->
+
+<!--if first time-->
+(if: ($funcTalkedTimesCheck: "boarding") < 1)[{
+It should not be such a strange thing to ask. Your own university has hosted many journeymen, especially when they may be convinced to return as a teacher there once they become masters. It //should//, but Veh-Veh is fidgeting.
+<br>
+_line["Erm... I don't know if I can help you with that."]
+<br>
+($funcInnerConvo: (dm:
+     "<!--A-->\"Oh, why not?\"", "whyNot",
+     "<!--B-->\"I know it's not for a senior apprentice to decide, but is there someone I can talk to about it?\"", "talkSomeone",
+     "<!--C-->\"Never mind, got it.\"", "gotIt",
+))
+<br>
+
+
+<!--whyNot-->
+[
+_line["Because - and it's embarrassing to admit - but we have no space left for guests. At least not down here on the floors that aren't locked. I'm the only apprentice with her own room, but even that is only a nook in the storeroom."]
+<br>
+That much is plain to see. The so-called "school" is only one tower - albeit a large one - and a few sheds around the courtyard.
+<br>
+($funcInnerConvo: (dm:
+     "<!--A-->\"I don't need my own room. I can stay in one of the bunk beds alongside everyone else.\"", "bunkBed",
+     "<!--B-->\"I'm sure if I can talk to someone in charge, they'll figure something else.\"", "talkSomeone",
+))
+<br>
+](whyNot|
+
+
+<!--bunkBed-->
+[
+_line["That's reason number two: it's not a good idea to mix the guests with our juniors. They can be too excitable, and guests are... well, if you'd forgive me, but I alone can't vet everyone."]
+<br>
+What she means is that it is not safe for adults to be sharing quarters with the children.
+<br>
+($funcInnerConvo: (dm:
+    "<!--A-->\"You alone? Is there no-one who can confirm my vouchsafe?\"", "talkSomeone",
+    "<!--B-->\"I see. Of course, I understand.\"", "gotIt",
+))
+<br>
+](bunkBed|
+
+
+<!--talkSomeone-->
+[
+_line["Well, you're looking at that someone,"] she says, not very proud of it. _line["But my hands are tied. I have no real power or responsibility. To be exact, I have very little of the former and a lot of the latter. Sorry, but I can't just arrange you a room, even if you have a vouchsafe. It's not safe to have guests staying overnight without supervision. You'll have to wait for one of the teachers to come back from their expedition."]
+<br>
+($funcInnerConvo: (dm:
+    "<!--A-->\"But I've seen other adults around. Teachers. Don't they have any say in this matter?\"", "otherAdult",
+    "<!--B-->\"Expedition? Where are they going?\"", "whereGoing",
+))
+<br>
+](talkSomeone|
+
+
+<!--gotIt-->
+[
+_line["Yes, it's unfortunate. The one time we have a guest, we cannot offer much hospitality. The teachers - they've left me with the keys to the dorms, but I have no idea what the protocols are for boarding guests. Things are kind of frozen right now... So, I better play it safe. You know, for the children. Maybe you can try again after some of the teachers has come back from their expedition."]
+<br>
+($funcInnerConvo: (dm:
+    "<!--A-->\"Try again when? I won't be in Apesai much longer.\"", "muchLonger",
+    "<!--B-->\"Expedition? Where are they going?\"", "whereGoing",
+    "<!--C-->\"I'm quite sure I've seen other adults - teachers - around the school.\"", "otherAdult",
+))
+<br>
+](gotIt|
+
+<!--muchLonger-->
+[
+_line["It is fortunate, then, that you won't have to pay rent much longer,"] she says. You're not sure if it was meant to be a jab, not when she actually sounds relieved for you. _line["As for when, I keep asking myself that every day."]
+<br>
+($funcInnerConvo: (dm:
+    "<!--A-->\"Where have the teachers gone?\"", "whereGoing",
+    "<!--B-->\"What about the adults I see around. Aren't they teachers?\"", "otherAdult",
+))
+<br>
+](muchLonger|
+
+
+<!--otherAdult-->
+[
+_line["Most of them are either adjuncts or part-time clerks. We're borrowing a few of them from the governor's office - and other places too - to fill in for the absences. And to keep the school running. They don't like to get involved in school operations beyond what they've been paid for,"] she shudders, as if unable to believe the state of things. _line["Please don't ask me about the details; I'm just told to make sure the replacements show up. The regular davehmars have all gone with our principal into the mainland."]
+<br>
+($funcInnerConvo: (dm:
+    "<!--A-->\"I see...\"", "preDone",
+))
+<br>
+](otherAdult|
+
+
+<!--whereGoing-->
+[
+_line["Into the mainland. That's where the principal is headed for. They do send back a letter every other week to check up on us - and to make sure that the governor is sending adjuncts and part-timers like he'd promised. But other than that, they don't say where they're headed exactly. The return address keeps getting further and further..."] she trails off.
+<br>
+($funcInnerConvo: (dm:
+    "<!--A-->\"I see...\"", "preDone",
+))
+<br>
+](whereGoing|
+
+
+<!--preDone-->
+[
+_line["Yes, apologies,"] Veh-Veh mutters.` `
+(if: $char's VehVeh's energy's 1st > 0)[_line["But I'm sure there's something else I can help you with."]]
+(else:)[_line["Now, if there's nothing else..."]]
+
+(show: ?done)
+<br>
+](preDone|
+
+
+}]<!--end of first time-->
+
+<!--if second time onward-->
+(else:)[{
+
+_line["Oh... this again? Well, I //want// to, but..."]
+<br>
+Whether she genuinely wants to or not is out of the question - is what she is desperately trying to say to you without being rude.
+<br>
+($funcInnerConvo: (dm:
+    "<!--A-->\"Perhaps I can stay in your room and sleep on the floor?\"", "yourRoom",
+    "<!--B-->\"Apologies, I won't push the issue again.\"", "pushIssue",
+))
+<br>
+
+<!--yourRoom-->
+[
+_line["Haha, good one,"] she laughs heartily, believing that it was a joke. _line["But believe me: There is not enough floorspace for you to sleep on, let alone stash your belonging. But jokes aside, the problem is with having a guest staying overnight anywhere in the tower, period, not just the dorms. It is simply not safe for the children, and I am not in a position to make any exception."]
+<br>
+($funcInnerConvo: (dm:
+    "<!--A-->\"Of course, I understand that.\"", "pushIssue",
+))
+<br>
+](yourRoom|
+
+
+<!--pushIssue-->
+[
+_line["Yes, and I must apologize also, journeyman. I wish I could do more. If you don't plan on staying in Apesai for long, I'm sure you can afford a few nights' rent meanwhile."]
+<br>
+($funcInnerConvo: (dm:
+    "<!--A-->\"Yes...\"", "preDone2",
+))
+<br>
+](pushIssue|
+
+
+<!--preDone2-->
+[
+_line["I'll let you know if anything changes,"] Veh-Veh says.` `
+(if: $char's VehVeh's energy's 1st > 0)[_line["But for now, let's talk about something else."]]
+(else:)[_line["Now, if you'll excuse me..."]]
+
+(show: ?done)
+<br>
+](preDone2|
+
+}]<!--end of second time onward-->
+
+<!--end of conversation-->
+
+<!--done-->
+[
+---
+<ol>
+($funcNPCTopics: _busyText, _goodbyeText)
+</ol>
+](done|
+
+]<!--end child-->
+]<!--end parent-->

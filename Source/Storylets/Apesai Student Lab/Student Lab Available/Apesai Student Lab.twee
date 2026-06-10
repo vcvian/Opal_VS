@@ -3,7 +3,7 @@
 
 (metadata:
 "title", "Apesai Student Lab",
-"cardDesc", "Synthesis is almost synonymous with alchemy and magic, since it is the most widely applicable discipline. Even a place as dysfunctional as the Apesai Lighthouse must have a synthesis setup.",
+"cardDesc", "Synthesis is almost synonymous with alchemy and magic, since it is the most widely applicable discipline. So, even a place as dysfunctional as the Apesai Lighthouse must have a synthesis setup.",
 "level", 1,
 "max", 2,
 "duration", 3,
@@ -103,58 +103,13 @@ $cssColumnParent[
 $cssColumnChild[
 
 <!--current job-->
-''(print: (passage:)'s title)'' is` `
-(if: $char's player's timerCraft contains (passage:)'s name)[{
-    <!--if done-->
-    (if: $char's player's timerCraft's ((passage:)'s name)'s 3rd <= 0)[done synthesizing ''(print:  $char's player's timerCraft's ((passage:)'s name)'s 2nd) (print: (passage: "item." + $char's player's timerCraft's ((passage:)'s name)'s 1st)'s id)''.]
-    <!--if not done-->
-    (else:)[currently synthesizing ''(print:  $char's player's timerCraft's ((passage:)'s name)'s 2nd) (print: (passage: "item." + $char's player's timerCraft's ((passage:)'s name)'s 1st)'s id)''. (plural: $char's player's timerCraft's ((passage:)'s name)'s 3rd, "day") left.]
-}]
-(else:)[not making anything.]
-
-<br>
-
-$cssDesc[
-<!--level-->
-(set: _levelName to (cond:
-     (passage:)'s level is 1, "simple",
-     (passage:)'s level is 2, "complex",
-     (passage:)'s level is 3, "exotic",
-))
-(set: _levelCheckMark to (macro: num-type _level, [(out:)[{
-     (if: _level <= (passage:)'s level)[(color:green)[✓]]
-     (else:)[(color:red)[✗]]
-}]]))
-
-''(print: (passage:)'s title)'' is a ''_levelName'' workstation. It is capable of synthesizing products that are:
-<ul>
-<li>Simple (_levelCheckMark: 1)
-<li>Complex (_levelCheckMark: 2)
-<li>Exotic (_levelCheckMark: 3)
-</ul>
-
-<!--specs-->
-Each time it runs, this workstation:
-<ul>
-<li>Can synthesize ''at most (plural: (passage:)'s max, "unit")'' of a single type of product.
-<li>Will cost ''(print: (passage:)'s fuelCost) (print: (passage: "item.vehzin")'s id)'' to start a run.
-<li>Will take ''(plural: (passage:)'s duration, "day")'' to finish a run.
-</ul>
+(display: "code.labSpecsReadout")
 
 <!--element readout-->
-(set: _self to $char's player's att)
-You have absorbed and are currently holding these elements:
+(display: "code.elementReadout")
 
-<ul>
-<li>($funcCheckExists: _self, "at",0) (print: (passage: "att.at")'s id)
-<li>($funcCheckExists: _self, "ab",0) (print: (passage: "att.ab")'s id)
-<li>($funcCheckExists: _self, "gor",0) (print: (passage: "att.gor")'s id)
-<li>($funcCheckExists: _self, "rokh",0) (print: (passage: "att.rokh")'s id)
-<li>($funcCheckExists: _self, "zam",0) (print: (passage: "att.zam")'s id)
-</ul>
 
-]<!--end of readout-->
-]<!--end of readout $cssDesc-->
+]<!--end of child (readout)-->
 
 <!--vehzin-->
 $cssColumnChild[

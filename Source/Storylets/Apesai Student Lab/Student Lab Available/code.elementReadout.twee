@@ -1,0 +1,14 @@
+:: code.elementReadout
+{=
+$cssDesc[(set: _self to $char's player's att)
+You have absorbed and are currently holding these elements:
+
+<ul>
+<li>($funcCheckExists: _self, "at",0) (print: (passage: "att.at")'s id)
+<li>($funcCheckExists: _self, "ab",0) (print: (passage: "att.ab")'s id)
+<li>($funcCheckExists: _self, "gor",0) (print: (passage: "att.gor")'s id)
+<li>($funcCheckExists: _self, "rokh",0) (print: (passage: "att.rokh")'s id)
+<li>($funcCheckExists: _self, "zam",0) (print: (passage: "att.zam")'s id)
+</ul>
+
+]<!--end of $cssDesc-->
