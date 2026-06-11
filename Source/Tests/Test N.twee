@@ -1,0 +1,45 @@
+:: Test N
+
+{=
+
+(metadata: "title", "Test N (spindle convo)")
+
+[[⇦ BACK->Pre-Test (NEW)]]
+
+<br>
+The `($funcSpindleConvo:)` macro has 3 modes, each producing different exitLink behaviors. Please select them:
+(set: _mode to 0)
+<br>
+($funcInnerConvo: (dm:
+    "1 - exitLink appears at the beginning.", "mode1",
+    "2 - exitLink appears after 1 turn.", "mode2",
+    "3 - exitLink appears when all choices have been exhausted.", "mode3",
+))
+<br>
+
+|mode1)[(set:_mode to 1)(show:?convo)]
+|mode2)[(set:_mode to 2)(show:?convo)]
+|mode3)[(set:_mode to 3)(show:?convo)]
+
+|convo)[($funcSpindleConvo: (dm:
+    "<!--A-->\"Hello!\"", "hello",
+    "<!--B-->\"How goes it?\"", "howGoes",
+    "<!--C-->\"What's the weather like?\"", "fineDay",
+    "<!--D-->\"I'm done with small talk\"", "exitLink",
+), _mode)]
+
+
+(set: _hello to [{Ni hao fine shyte.}])
+(set: _howGoes to [{It's fine, I guess.}])
+(set: _fineDay to [{It's (print: $place's weather).}])
+(set: _exitLink to [{Yeah, alright.
+<br>
+($funcInnerConvo: (dm:
+    "How about a game of chess?", "chess"
+))
+<br>
+}])
+
+[Sounds good.
+<br>
+(link: "↺ Start over")[(redirect: (passage:)'s name)]](chess|

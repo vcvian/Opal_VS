@@ -106,3 +106,98 @@
         ]<!--end of looping-->\
 	]<choicesBlock|\
 ]]))
+
+<!--"Spindle convo" - a subtype of innerconvo that can be selected in any order (content must be set up outside of convo)
+Modes are:
+	1. exitLink appears right at the beginning.
+	2. exitLink appears after the 1st round
+	3. exitLink appears after everything is exhausted
+
+-->
+<!--the code itself. Note the special "exitLink"-->
+(set: $funcSpindleConvo to (macro: dm-type _convoChoices, num-type _mode, [(out:)[{
+	<!--initialize tempHolding-->
+	(set: $stuff's tempHolding to (dm:))
+	<!--initialize _turnNumber-->
+	(set: _turnNumber to 1)
+	<!--set $stuff's convoChoices (must use global variable because temp vars cannot be edited out of scope)-->
+	(set: $stuff's convoChoices to _convoChoices)
+	<!--initialize choices (set their turns to 1)-->
+	(for: each _choice, ...(datanames: $stuff's convoChoices))[{
+		(set: $stuff's convoChoices's _choice to it + (str:_turnNumber))
+	}]
+
+	<!--unless _mode is 1, take out the exitLink-->
+	(unless: _mode is 1)[{
+		(for: each _choice, ...(datanames: $stuff's convoChoices))[{
+			<!--selectively remove the exitLink-->
+			(if: $stuff's convoChoices's _choice contains "exitLink")[(set: $stuff's tempHolding to (dm: _choice, $stuff's convoChoices's _choice))(move: $stuff's convoChoices's _choice into _trash)]
+		}]<!--end of looping through all dialog choice-->
+	}]<!--end of unless _mode is 1-->
+
+	<!--display first round of choice-links-->
+	($funcInnerConvo: $stuff's convoChoices)
+
+	<!--add exitLink back in if _mode is 2-->
+	(if: _mode is 2)[(set: $stuff's convoChoices to it + $stuff's tempHolding)]
+
+	<!--temp macro that eliminates an option and advance the hook name-->
+	(set: _editChoices to (macro: str-type _deleteWhich, [(out:)[{
+		<!--advance 1 number-->
+		(set: _turnNumber to it + 1)
+		<!--edit destination number-->
+		(for: each _choice, ...(datanames: $stuff's convoChoices))[
+			<!--edit-->
+			(set: $stuff's convoChoices to it + (dm: _choice, (trimmed: digit, $stuff's convoChoices's _choice)))
+			(set: $stuff's convoChoices's _choice to it + (str: _turnNumber))
+
+			<!--delete-->
+			(if: $stuff's convoChoices's _choice contains _deleteWhich)[(move: $stuff's convoChoices's _choice into _trash)]
+		]<!--end loop-->
+	}]]))
+
+	<!--Create _talkHooks, which pairs hookname with similarly named temp var (where dialog content will be stored)-->
+	(set: _talkHooks to (dm:))
+	(for: each _hookName, ...(dm-values: $stuff's convoChoices))[{
+		(set: _talkHooks to it + (dm: (trimmed: digit, _hookName), "_" + (trimmed: digit, _hookName)))
+	}]<!--end of _talkHooks creation loop-->
+	<!--add the exitLink pairing back in if _mode 3-->
+	(if: _mode is 3)[(set: _talkHooks to it + (dm: "exitLink", "_exitLink"))]
+
+	<!--generate all hidden hooks-->
+	(for: each _turn, ...(range: 1, (datanames: _talkHooks)'s length))[{
+		(for: each _talkChoice, ...(datanames: _talkHooks))[{
+			<!--make a content hook-->
+			(hidden:)+(hook:_talkChoice + (str:_turn))[{
+				<!--perform edit, remove _talkChoice from all choices-->
+				(_editChoices: _talkChoice)
+				<!--display content from temp var (defined outside of this macro)-->
+				(print: _talkHooks's _talkChoice)
+				<!--add exitLink back in if _mode 3-->
+				(if: _mode is 3)[{
+					(if: _turn is (datanames: _talkHooks)'s length - 1)[{
+						<!--add a number back into that exitLink's hookname bc it's been missing out on the action-->
+						(for: each _holding, ...(datanames: $stuff's tempHolding))[{
+							(set: $stuff's tempHolding's _holding to (trimmed: digit, $stuff's tempHolding's _holding))
+							(set: $stuff's tempHolding's _holding to it + (str:(datanames: _talkHooks)'s length))
+						}]
+						<!--then add it back in-->
+						(set: $stuff's convoChoices to it + $stuff's tempHolding)
+					}]
+				}]
+<!--only display if not exit link-->
+(unless: _talkChoice contains "exitLink")[{
+<br>
+($funcInnerConvo: $stuff's convoChoices)
+<br>
+}]
+<!--else, if it is exitLink, then clear $stuff-->
+(else:)[{
+	(move: $stuff's convoChoices into _trash)
+	(move: $stuff's tempHolding into _trash)
+	}]
+			}]<!--end of content hook-->
+		}]<!--end of looping through all the standard choice names-->
+	}]<!-- end of generating hidden loops-->
+
+}]]))

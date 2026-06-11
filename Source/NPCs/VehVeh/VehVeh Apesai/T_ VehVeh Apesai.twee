@@ -1,0 +1,95 @@
+:: T: VehVeh Apesai [topic] {"position":"6750,1650","size":"100,100"}
+{=
+
+(storylet: when
+(passage:) contains "NPC"
+and $char's VehVeh's opinion's 2nd >= 10
+and ($char's VehVeh's location is "Apesai Lighthouse" or it is "The Grand Exchange")
+and $char's player's timerCooldown does not contain "T: VehVeh Apesai"
+)
+
+(metadata:
+"NPC", "VehVeh",
+"title", "Asking Veh-Veh About Apesai",
+"topic", "\"I want to ask you something about this island-city.\"",
+"topicDetail", "What's there to do, to see on this rock, how to get off of it, and so on.",
+"cooldown", 1,
+"talked", (a:),
+"addCode", [],
+)
+
+$cssColumnParent[
+
+$cssColumnChild[
+	$cssBox[
+    	($funcImage: (passage: "S: VehVeh")'s img)
+         $cssBoxItem[''(print: (passage:)'s title )''<br>(print: (passage:)'s topicDetail)]
+    ]
+]
+
+$cssColumnChild[
+
+<!--VehVehLine short hand-->
+(set: _line to (hook: "VehVehLine"))
+
+
+$cssDesc[''You: //(print: (passage:)'s topic)//'']
+<br>
+
+<!--main content begins-->
+
+_line["Why, of course! I'm not the best tour guide - barely get out of the lighthouse - but I'll help however I can. What do you want to know?"]
+
+<br>
+<!--"spindle" convo, mode 2 (exit only after at least 1 turn)-->
+($funcSpindleConvo: (dm:
+     "<!--A-->\"Tell me about Apesai - generally.\"", "generalApesai",
+     "<!--B-->\"Where might I buy some supplies?\"", "marketApesai",
+     "<!--C-->\"How might a magus make some money in this city?\"", "jobApesai",
+     "<!--D-->\"What is there to see, to //do//?\"", "doApesai",
+     "<!--E-->\"How does one leave the island?\"", "leaveApesai",
+     "<!--F-->\"Actually, that's all for now.\"", "exitLink",
+), 2)
+<br>
+
+
+<!--_generalApesai-->
+(set: _generalApesai to [{
+_line["Just... //generally//? Heh, that's not so different from asking a fish to describe water. I've lived on this island nearly my whole life, and I can't much remember the imperial heartlands to compare; I was tiny when I left.."]
+}])
+
+
+<!--_marketApesai-->
+(set: _marketApesai to [{}])
+
+
+<!--_jobApesai-->
+(set: _jobApesai to [{}])
+
+
+<!--_doApesai-->
+(set: _doApesai to [{}])
+
+
+<!--_leaveApesai-->
+(set: _leaveApesai to [{}])
+
+
+<!--_exitLink-->
+(set: _exitLink to [{}])
+
+
+<!--main content ends-->
+
+|done)[
+<!--clear $stuff-->
+(set: $stuff to (dm:))
+<br>
+---
+<ol>
+($funcNPCTopics: "Veh-Veh trails off. The mind can draw blanks when one is too familiar with the place.", "Thanks anyway, Veh-Veh. Bye.")
+</ol>
+]<!--end done-->
+
+]<!--end child-->
+]<!--end parent-->

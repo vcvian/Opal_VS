@@ -71,7 +71,7 @@ hr {
   100% {
     background-position: 0% center;
   }
-}</style><script role="script" id="twine-user-script" type="text/twine-javascript"></script><tw-tag name="UI" color="orange"></tw-tag><tw-tag name="book" color="yellow"></tw-tag><tw-tag name="stay" color="yellow"></tw-tag><tw-tag name="storylet" color="blue"></tw-tag><tw-tag name="topic" color="purple"></tw-tag><tw-tag name="traveling" color="purple"></tw-tag><tw-tag name="test" color="blue"></tw-tag><tw-tag name="effect" color="yellow"></tw-tag><tw-tag name="footer" color="yellow"></tw-tag><tw-tag name="header" color="yellow"></tw-tag><tw-tag name="startup" color="orange"></tw-tag><tw-tag name="static-storage" color="yellow"></tw-tag><tw-tag name="sublocation" color="green"></tw-tag><tw-passagedata pid="1" name="AA. Books, Reading &amp; Formulae" tags="startup" position="100,100" size="100,100">{=
+}</style><script role="script" id="twine-user-script" type="text/twine-javascript"></script><tw-tag name="static-storage" color="yellow"></tw-tag><tw-tag name="stay" color="yellow"></tw-tag><tw-tag name="storylet" color="blue"></tw-tag><tw-tag name="UI" color="orange"></tw-tag><tw-tag name="book" color="yellow"></tw-tag><tw-tag name="effect" color="yellow"></tw-tag><tw-tag name="footer" color="yellow"></tw-tag><tw-tag name="header" color="yellow"></tw-tag><tw-tag name="test" color="blue"></tw-tag><tw-tag name="traveling" color="purple"></tw-tag><tw-tag name="startup" color="orange"></tw-tag><tw-tag name="sublocation" color="green"></tw-tag><tw-tag name="topic" color="purple"></tw-tag><tw-passagedata pid="1" name="AA. Books, Reading &amp; Formulae" tags="startup" position="100,100" size="100,100">{=
 &lt;!--Macros related to books and reading--&gt;
 
 (set: $readingNav to (dm:
@@ -876,7 +876,102 @@ Fourth, it runs the buy/sell macro, passing into it the appropriate arguments.--
 		&lt;/ol&gt;\
         ]&lt;!--end of looping--&gt;\
 	]&lt;choicesBlock|\
-]]))</tw-passagedata><tw-passagedata pid="11" name="AA. NPC Macros" tags="startup" position="1450,5550" size="100,100">{=
+]]))
+
+&lt;!--&quot;Spindle convo&quot; - a subtype of innerconvo that can be selected in any order (content must be set up outside of convo)
+Modes are:
+	1. exitLink appears right at the beginning.
+	2. exitLink appears after the 1st round
+	3. exitLink appears after everything is exhausted
+
+--&gt;
+&lt;!--the code itself. Note the special &quot;exitLink&quot;--&gt;
+(set: $funcSpindleConvo to (macro: dm-type _convoChoices, num-type _mode, [(out:)[{
+	&lt;!--initialize tempHolding--&gt;
+	(set: $stuff&#39;s tempHolding to (dm:))
+	&lt;!--initialize _turnNumber--&gt;
+	(set: _turnNumber to 1)
+	&lt;!--set $stuff&#39;s convoChoices (must use global variable because temp vars cannot be edited out of scope)--&gt;
+	(set: $stuff&#39;s convoChoices to _convoChoices)
+	&lt;!--initialize choices (set their turns to 1)--&gt;
+	(for: each _choice, ...(datanames: $stuff&#39;s convoChoices))[{
+		(set: $stuff&#39;s convoChoices&#39;s _choice to it + (str:_turnNumber))
+	}]
+
+	&lt;!--unless _mode is 1, take out the exitLink--&gt;
+	(unless: _mode is 1)[{
+		(for: each _choice, ...(datanames: $stuff&#39;s convoChoices))[{
+			&lt;!--selectively remove the exitLink--&gt;
+			(if: $stuff&#39;s convoChoices&#39;s _choice contains &quot;exitLink&quot;)[(set: $stuff&#39;s tempHolding to (dm: _choice, $stuff&#39;s convoChoices&#39;s _choice))(move: $stuff&#39;s convoChoices&#39;s _choice into _trash)]
+		}]&lt;!--end of looping through all dialog choice--&gt;
+	}]&lt;!--end of unless _mode is 1--&gt;
+
+	&lt;!--display first round of choice-links--&gt;
+	($funcInnerConvo: $stuff&#39;s convoChoices)
+
+	&lt;!--add exitLink back in if _mode is 2--&gt;
+	(if: _mode is 2)[(set: $stuff&#39;s convoChoices to it + $stuff&#39;s tempHolding)]
+
+	&lt;!--temp macro that eliminates an option and advance the hook name--&gt;
+	(set: _editChoices to (macro: str-type _deleteWhich, [(out:)[{
+		&lt;!--advance 1 number--&gt;
+		(set: _turnNumber to it + 1)
+		&lt;!--edit destination number--&gt;
+		(for: each _choice, ...(datanames: $stuff&#39;s convoChoices))[
+			&lt;!--edit--&gt;
+			(set: $stuff&#39;s convoChoices to it + (dm: _choice, (trimmed: digit, $stuff&#39;s convoChoices&#39;s _choice)))
+			(set: $stuff&#39;s convoChoices&#39;s _choice to it + (str: _turnNumber))
+
+			&lt;!--delete--&gt;
+			(if: $stuff&#39;s convoChoices&#39;s _choice contains _deleteWhich)[(move: $stuff&#39;s convoChoices&#39;s _choice into _trash)]
+		]&lt;!--end loop--&gt;
+	}]]))
+
+	&lt;!--Create _talkHooks, which pairs hookname with similarly named temp var (where dialog content will be stored)--&gt;
+	(set: _talkHooks to (dm:))
+	(for: each _hookName, ...(dm-values: $stuff&#39;s convoChoices))[{
+		(set: _talkHooks to it + (dm: (trimmed: digit, _hookName), &quot;_&quot; + (trimmed: digit, _hookName)))
+	}]&lt;!--end of _talkHooks creation loop--&gt;
+	&lt;!--add the exitLink pairing back in if _mode 3--&gt;
+	(if: _mode is 3)[(set: _talkHooks to it + (dm: &quot;exitLink&quot;, &quot;_exitLink&quot;))]
+
+	&lt;!--generate all hidden hooks--&gt;
+	(for: each _turn, ...(range: 1, (datanames: _talkHooks)&#39;s length))[{
+		(for: each _talkChoice, ...(datanames: _talkHooks))[{
+			&lt;!--make a content hook--&gt;
+			(hidden:)+(hook:_talkChoice + (str:_turn))[{
+				&lt;!--perform edit, remove _talkChoice from all choices--&gt;
+				(_editChoices: _talkChoice)
+				&lt;!--display content from temp var (defined outside of this macro)--&gt;
+				(print: _talkHooks&#39;s _talkChoice)
+				&lt;!--add exitLink back in if _mode 3--&gt;
+				(if: _mode is 3)[{
+					(if: _turn is (datanames: _talkHooks)&#39;s length - 1)[{
+						&lt;!--add a number back into that exitLink&#39;s hookname bc it&#39;s been missing out on the action--&gt;
+						(for: each _holding, ...(datanames: $stuff&#39;s tempHolding))[{
+							(set: $stuff&#39;s tempHolding&#39;s _holding to (trimmed: digit, $stuff&#39;s tempHolding&#39;s _holding))
+							(set: $stuff&#39;s tempHolding&#39;s _holding to it + (str:(datanames: _talkHooks)&#39;s length))
+						}]
+						&lt;!--then add it back in--&gt;
+						(set: $stuff&#39;s convoChoices to it + $stuff&#39;s tempHolding)
+					}]
+				}]
+&lt;!--only display if not exit link--&gt;
+(unless: _talkChoice contains &quot;exitLink&quot;)[{
+&lt;br&gt;
+($funcInnerConvo: $stuff&#39;s convoChoices)
+&lt;br&gt;
+}]
+&lt;!--else, if it is exitLink, then clear $stuff--&gt;
+(else:)[{
+	(move: $stuff&#39;s convoChoices into _trash)
+	(move: $stuff&#39;s tempHolding into _trash)
+	}]
+			}]&lt;!--end of content hook--&gt;
+		}]&lt;!--end of looping through all the standard choice names--&gt;
+	}]&lt;!-- end of generating hidden loops--&gt;
+
+}]]))</tw-passagedata><tw-passagedata pid="11" name="AA. NPC Macros" tags="startup" position="1450,5550" size="100,100">{=
 
 &lt;!--Update NPCs (energy, opinion, etc.)--&gt;
 (set: $funcUpdateNPC to (macro: [(out:)[\
@@ -5574,49 +5669,7 @@ $cssColumnChild[
 &lt;/ol&gt;
 
 ]&lt;!--end child--&gt;
-]&lt;!--end parent--&gt;</tw-passagedata><tw-passagedata pid="115" name="T: VehVeh Apesai" tags="topic" position="6750,1650" size="100,100">{=
-
-(storylet: when
-(passage:) contains &quot;NPC&quot;
-and $char&#39;s VehVeh&#39;s opinion&#39;s 2nd &gt;= 10
-and ($char&#39;s VehVeh&#39;s location is &quot;Apesai Lighthouse&quot; or it is &quot;The Grand Exchange&quot;)
-and $char&#39;s player&#39;s timerCooldown does not contain &quot;T: VehVeh Apesai&quot;
-)
-
-(metadata:
-&quot;NPC&quot;, &quot;VehVeh&quot;,
-&quot;title&quot;, &quot;Chatting with Veh-Veh&quot;,
-&quot;topic&quot;, &quot;Ask her about this island-city.&quot;,
-&quot;topicDetail&quot;, &quot;What&#39;s there to do, to see on this rock, how to get off of it, etc.&quot;,
-&quot;cooldown&quot;, 1,
-&quot;talked&quot;, (a:),
-&quot;addCode&quot;, [],
-)
-
-$cssColumnParent[
-
-$cssColumnChild[
-	$cssBox[
-    	($funcImage: (passage: &quot;S: VehVeh&quot;)&#39;s img)
-         $cssBoxItem[&#39;&#39;(print: (passage:)&#39;s title )&#39;&#39;&lt;br&gt;(print: (passage:)&#39;s topicDetail)]
-    ]
-]
-
-$cssColumnChild[
-
-$cssDesc[&#39;&#39;You: //(print: (passage:)&#39;s topic)//&#39;&#39;]
-&lt;br&gt;
-
-Apesai... Getting around...
-
-&lt;br&gt;
----
-&lt;ol&gt;
-($funcNPCTopics: &quot;Veh-Veh trails off. The mind can draw blanks when one is too familiar with the place.&quot;, &quot;Thanks anyway, Veh-Veh. Bye.&quot;)
-&lt;/ol&gt;
-
-]&lt;!--end child--&gt;
-]&lt;!--end parent--&gt;</tw-passagedata><tw-passagedata pid="116" name="T: VehVeh Children" tags="topic" position="6400,1175" size="100,100">{=
+]&lt;!--end parent--&gt;</tw-passagedata><tw-passagedata pid="115" name="T: VehVeh Children" tags="topic" position="6400,1175" size="100,100">{=
 
 (storylet: when
 (passage:) contains &quot;NPC&quot;
@@ -5667,7 +5720,7 @@ $cssDesc[&#39;&#39;You: //(print: (passage:)&#39;s topic)//&#39;&#39;]
 ($funcNPCTopics: &quot;Before she has a chance to finish that thought, one of the children has already broke something. Veh-Veh rushes off.&quot;, &quot;That sucks, Veh-Veh. Hope you hold it together.&quot;)
 &lt;/ol&gt;
 ]&lt;!--end child--&gt;
-]&lt;!--end parent--&gt;</tw-passagedata><tw-passagedata pid="117" name="T: VehVeh Market" tags="topic" position="6525,1175" size="100,100">{=
+]&lt;!--end parent--&gt;</tw-passagedata><tw-passagedata pid="116" name="T: VehVeh Market" tags="topic" position="6525,1175" size="100,100">{=
 
 (storylet: when
 (passage:) contains &quot;NPC&quot;
@@ -5709,7 +5762,7 @@ $cssDesc[&#39;&#39;You: //(print: (passage:)&#39;s topic)//&#39;&#39;]
 &lt;/ol&gt;
 
 ]&lt;!--end child--&gt;
-]&lt;!--end parent--&gt;</tw-passagedata><tw-passagedata pid="118" name="T: VehVeh Self" tags="topic" position="6275,1650" size="100,100">{=
+]&lt;!--end parent--&gt;</tw-passagedata><tw-passagedata pid="117" name="T: VehVeh Self" tags="topic" position="6275,1650" size="100,100">{=
 
 (storylet: when
 (passage:) contains &quot;NPC&quot;
@@ -5763,6 +5816,99 @@ Despite her hesitation, she continues.]
 &lt;ol&gt;
 ($funcNPCTopics: &quot;Veh-Veh is beginning to gaze back at her book. She&#39;s done talking for the day.&quot;, &quot;Thanks for sharing, Veh-Veh. Bye.&quot;)
 &lt;/ol&gt;
+
+]&lt;!--end child--&gt;
+]&lt;!--end parent--&gt;</tw-passagedata><tw-passagedata pid="118" name="T: VehVeh Apesai" tags="topic" position="6750,1650" size="100,100">{=
+
+(storylet: when
+(passage:) contains &quot;NPC&quot;
+and $char&#39;s VehVeh&#39;s opinion&#39;s 2nd &gt;= 10
+and ($char&#39;s VehVeh&#39;s location is &quot;Apesai Lighthouse&quot; or it is &quot;The Grand Exchange&quot;)
+and $char&#39;s player&#39;s timerCooldown does not contain &quot;T: VehVeh Apesai&quot;
+)
+
+(metadata:
+&quot;NPC&quot;, &quot;VehVeh&quot;,
+&quot;title&quot;, &quot;Asking Veh-Veh About Apesai&quot;,
+&quot;topic&quot;, &quot;\&quot;I want to ask you something about this island-city.\&quot;&quot;,
+&quot;topicDetail&quot;, &quot;What&#39;s there to do, to see on this rock, how to get off of it, and so on.&quot;,
+&quot;cooldown&quot;, 1,
+&quot;talked&quot;, (a:),
+&quot;addCode&quot;, [],
+)
+
+$cssColumnParent[
+
+$cssColumnChild[
+	$cssBox[
+    	($funcImage: (passage: &quot;S: VehVeh&quot;)&#39;s img)
+         $cssBoxItem[&#39;&#39;(print: (passage:)&#39;s title )&#39;&#39;&lt;br&gt;(print: (passage:)&#39;s topicDetail)]
+    ]
+]
+
+$cssColumnChild[
+
+&lt;!--VehVehLine short hand--&gt;
+(set: _line to (hook: &quot;VehVehLine&quot;))
+
+
+$cssDesc[&#39;&#39;You: //(print: (passage:)&#39;s topic)//&#39;&#39;]
+&lt;br&gt;
+
+&lt;!--main content begins--&gt;
+
+_line[&quot;Why, of course! I&#39;m not the best tour guide - barely get out of the lighthouse - but I&#39;ll help however I can. What do you want to know?&quot;]
+
+&lt;br&gt;
+&lt;!--&quot;spindle&quot; convo, mode 2 (exit only after at least 1 turn)--&gt;
+($funcSpindleConvo: (dm:
+     &quot;&lt;!--A--&gt;\&quot;Tell me about Apesai - generally.\&quot;&quot;, &quot;generalApesai&quot;,
+     &quot;&lt;!--B--&gt;\&quot;Where might I buy some supplies?\&quot;&quot;, &quot;marketApesai&quot;,
+     &quot;&lt;!--C--&gt;\&quot;How might a magus make some money in this city?\&quot;&quot;, &quot;jobApesai&quot;,
+     &quot;&lt;!--D--&gt;\&quot;What is there to see, to //do//?\&quot;&quot;, &quot;doApesai&quot;,
+     &quot;&lt;!--E--&gt;\&quot;How does one leave the island?\&quot;&quot;, &quot;leaveApesai&quot;,
+     &quot;&lt;!--F--&gt;\&quot;Actually, that&#39;s all for now.\&quot;&quot;, &quot;exitLink&quot;,
+), 2)
+&lt;br&gt;
+
+
+&lt;!--_generalApesai--&gt;
+(set: _generalApesai to [{
+_line[&quot;Just... //generally//? Heh, that&#39;s not so different from asking a fish to describe water. I&#39;ve lived on this island nearly my whole life, and I can&#39;t much remember the imperial heartlands to compare; I was tiny when I left..&quot;]
+}])
+
+
+&lt;!--_marketApesai--&gt;
+(set: _marketApesai to [{}])
+
+
+&lt;!--_jobApesai--&gt;
+(set: _jobApesai to [{}])
+
+
+&lt;!--_doApesai--&gt;
+(set: _doApesai to [{}])
+
+
+&lt;!--_leaveApesai--&gt;
+(set: _leaveApesai to [{}])
+
+
+&lt;!--_exitLink--&gt;
+(set: _exitLink to [{}])
+
+
+&lt;!--main content ends--&gt;
+
+|done)[
+&lt;!--clear $stuff--&gt;
+(set: $stuff to (dm:))
+&lt;br&gt;
+---
+&lt;ol&gt;
+($funcNPCTopics: &quot;Veh-Veh trails off. The mind can draw blanks when one is too familiar with the place.&quot;, &quot;Thanks anyway, Veh-Veh. Bye.&quot;)
+&lt;/ol&gt;
+]&lt;!--end done--&gt;
 
 ]&lt;!--end child--&gt;
 ]&lt;!--end parent--&gt;</tw-passagedata><tw-passagedata pid="119" name="T: VehVeh Boarding" tags="topic" position="1100,1475" size="100,100">{=
@@ -13743,6 +13889,7 @@ $cssColumnChild[
 &lt;li&gt;[[Test K]] $cssDesc[(Temporary conditions and impressions)]
 &lt;li&gt;[[Test L]] $cssDesc[(Events)]
 &lt;li&gt;[[Test M]] $cssDesc[(Reading books)]
+&lt;li&gt;[[Test N]] $cssDesc[(Spindle convo)]
 
 ]&lt;!--child end--&gt;
 ]&lt;!--parent end--&gt;</tw-passagedata><tw-passagedata pid="293" name="Test A" tags="" position="1000,3350" size="100,100">{=
@@ -14436,7 +14583,49 @@ $cssColumnChild[
 &lt;/ol&gt;
 
 ]&lt;!--end child--&gt;
-]&lt;!--end parent--&gt;</tw-passagedata></tw-storydata>
+]&lt;!--end parent--&gt;</tw-passagedata><tw-passagedata pid="329" name="Test N" tags="" position="1100,4100" size="100,100">{=
+
+(metadata: &quot;title&quot;, &quot;Test N (spindle convo)&quot;)
+
+[[⇦ BACK-&gt;Pre-Test (NEW)]]
+
+&lt;br&gt;
+The `($funcSpindleConvo:)` macro has 3 modes, each producing different exitLink behaviors. Please select them:
+(set: _mode to 0)
+&lt;br&gt;
+($funcInnerConvo: (dm:
+    &quot;1 - exitLink appears at the beginning.&quot;, &quot;mode1&quot;,
+    &quot;2 - exitLink appears after 1 turn.&quot;, &quot;mode2&quot;,
+    &quot;3 - exitLink appears when all choices have been exhausted.&quot;, &quot;mode3&quot;,
+))
+&lt;br&gt;
+
+|mode1)[(set:_mode to 1)(show:?convo)]
+|mode2)[(set:_mode to 2)(show:?convo)]
+|mode3)[(set:_mode to 3)(show:?convo)]
+
+|convo)[($funcSpindleConvo: (dm:
+    &quot;&lt;!--A--&gt;\&quot;Hello!\&quot;&quot;, &quot;hello&quot;,
+    &quot;&lt;!--B--&gt;\&quot;How goes it?\&quot;&quot;, &quot;howGoes&quot;,
+    &quot;&lt;!--C--&gt;\&quot;What&#39;s the weather like?\&quot;&quot;, &quot;fineDay&quot;,
+    &quot;&lt;!--D--&gt;\&quot;I&#39;m done with small talk\&quot;&quot;, &quot;exitLink&quot;,
+), _mode)]
+
+
+(set: _hello to [{Ni hao fine shyte.}])
+(set: _howGoes to [{It&#39;s fine, I guess.}])
+(set: _fineDay to [{It&#39;s (print: $place&#39;s weather).}])
+(set: _exitLink to [{Yeah, alright.
+&lt;br&gt;
+($funcInnerConvo: (dm:
+    &quot;How about a game of chess?&quot;, &quot;chess&quot;
+))
+&lt;br&gt;
+}])
+
+[Sounds good.
+&lt;br&gt;
+(link: &quot;↺ Start over&quot;)[(redirect: (passage:)&#39;s name)]](chess|</tw-passagedata></tw-storydata>
 <script title="Twine engine code" data-main="harlowe">(function(){"use strict";
 var require,define;!function(){var e={},r={};require=function(i){var n=e[i];return n&&(r[i]=n[1].apply(void 0,n[0].map(require)),e[i]=void 0),r[i]},(define=function(r,i,n){if("function"==typeof r)return r();e[r]=[i,n]}).amd=!0}();/*!
  * https://github.com/paulmillr/es6-shim
