@@ -55,7 +55,7 @@ _line["Why, of course! I'm not the best tour guide - barely get out of the light
 
 <!--_generalApesai-->
 (set: _generalApesai to [{
-_line["Just... //generally//? Heh, that's not so different from asking a fish to describe water. I've lived on this island nearly my whole life, and I can't much remember the imperial heartlands to compare; I was tiny when I left.."]
+_line["Just... //generally//? Heh, that's not so different from asking a fish to describe water. I've lived on this island nearly my whole life, and I can't much remember the imperial heartlands to compare; I was tiny when I left."]
 }])
 
 
