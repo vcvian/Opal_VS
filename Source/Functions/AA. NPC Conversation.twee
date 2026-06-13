@@ -135,8 +135,10 @@ Modes are:
 		}]<!--end of looping through all dialog choice-->
 	}]<!--end of unless _mode is 1-->
 
-	<!--display first round of choice-links-->
-	($funcInnerConvo: $stuff's convoChoices)
+<!--display first round of choice-links-->
+<br>
+($funcInnerConvo: $stuff's convoChoices)
+<br>
 
 	<!--add exitLink back in if _mode is 2-->
 	(if: _mode is 2)[(set: $stuff's convoChoices to it + $stuff's tempHolding)]
@@ -185,17 +187,12 @@ Modes are:
 						(set: $stuff's convoChoices to it + $stuff's tempHolding)
 					}]
 				}]
-<!--only display if not exit link-->
-(unless: _talkChoice contains "exitLink")[{
-<br>
-($funcInnerConvo: $stuff's convoChoices)
-<br>
-}]
-<!--else, if it is exitLink, then clear $stuff-->
-(else:)[{
-	(move: $stuff's convoChoices into _trash)
-	(move: $stuff's tempHolding into _trash)
-	}]
+
+				<!--if it's the exitLink, then clear out $stuff-->
+				(if: _talkChoice contains "exitLink")[{
+					(move: $stuff's convoChoices into _trash)
+					(move: $stuff's tempHolding into _trash)
+				}]
 			}]<!--end of content hook-->
 		}]<!--end of looping through all the standard choice names-->
 	}]<!-- end of generating hidden loops-->

@@ -21,17 +21,38 @@ The `($funcSpindleConvo:)` macro has 3 modes, each producing different exitLink 
 |mode2)[(set:_mode to 2)(show:?convo)]
 |mode3)[(set:_mode to 3)(show:?convo)]
 
-|convo)[($funcSpindleConvo: (dm:
-    "<!--A-->\"Hello!\"", "hello",
-    "<!--B-->\"How goes it?\"", "howGoes",
-    "<!--C-->\"What's the weather like?\"", "fineDay",
-    "<!--D-->\"I'm done with small talk\"", "exitLink",
-), _mode)]
+|convo)[
+    (set: $stuff's convoChoices to (dm:
+        "<!--A-->\"Hello!\"", "hello",
+        "<!--B-->\"How goes it?\"", "howGoes",
+        "<!--C-->\"What's the weather like?\"", "fineDay",
+        "<!--D-->\"I'm done with small talk\"", "exitLink",
+    ))
+    ($funcSpindleConvo: $stuff's convoChoices, _mode)
+]
 
 
-(set: _hello to [{Ni hao fine shyte.}])
-(set: _howGoes to [{It's fine, I guess.}])
-(set: _fineDay to [{It's (print: $place's weather).}])
+(set: _hello to [{
+Hi there, friend.
+<br>
+($funcInnerConvo: $stuff's convoChoices)
+<br>
+}])
+
+(set: _howGoes to [{
+It's fine, I guess.
+<br>
+($funcInnerConvo: $stuff's convoChoices)
+<br>
+}])
+
+(set: _fineDay to [{
+It's (print: $place's weather).
+<br>
+($funcInnerConvo: $stuff's convoChoices)
+<br>
+}])
+
 (set: _exitLink to [{Yeah, alright.
 <br>
 ($funcInnerConvo: (dm:

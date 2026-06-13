@@ -1,0 +1,106 @@
+:: convo.VehVeh.generalApesai
+{=
+
+<!--_generalApesai-->
+
+_line["Just... //generally//? Heh, that's not so different from asking a fish to describe water. I've lived on this island nearly my whole life. Can't even remember the Nurandah heartlands enough to compare; I was tiny when I left. So, I don't know where to begin."]
+<br>
+($funcInnerConvo: (dm:
+	"<!--A-->\"I'm sure there's //something// you can say. What comes first to your mind?\"", "theresSomething",
+	"<!--B-->\"Nearly your whole life? Are you not Askavan?\"", "notAskavan",
+	"<!--C-->\"We can talk about something more specific if you want.\"", "generalApesaiMoreSpecific",
+))
+<br>
+
+<!--theresSomething-->[
+Veh-Veh looks over the bustling city below and out to the ocean, grasping for some word.
+<br>
+_line["Well, for one, it's crowded. No surprise there - Apesai stands in the middle of several civilizations, melting pot and all. Ships that crosses the Nurrah Sea all dock in our port.
+<br>
+"I say 'no surprise', but many first-time travelers are still shocked to see a //proper// city here. Most imagine deserts and uninhabitable mountains whenever they think about Askava. They're not wrong. Apesai just happens to be the exception."]
+<br>
+($funcInnerConvo: (dm:
+	"<!--A-->\"I've seen bigger cities.\"", "seenBigger",
+	"<!--B-->\"Must be exiciting living in the world's crossroad.\"", "mustBeExciting",
+	"<!--C-->\"Actually, I have something more specific in mind.\"", "generalApesaiMoreSpecific",
+))
+<br>
+](theresSomething|
+
+<!--notAskavan-->
+[
+_line["O- of course I am!"] she scoffs, then realizes your meaning. _line["Oh, you mean if my family is //from// here. Then no. We were from Sisua dahak - very much heartlanders. I came here when I was four, maybe five. But I //am// Askavan. Just not, you know..."]
+<br>
+She says, gesturing at the pale face - an uncommon hue given the Askavan Sun.
+<br>
+_line["These days, 'Askavans' can come in many different colors - sort of like an Opal, if you think about it. All in one, Khur-a-Mah, light blesses Nurandah and so on - you know the drill. Apesai //is// the crossroad of several civilizations, after all. It's nothing like the inner Askava."]
+<br>
+She points to the wharf below, where all manners of sails and flags are billowing in the wind.
+<br>
+($funcInnerConvo: (dm:
+	"<!--A-->\"Where are the rest of your family?\"", "restOfFamily",
+	"<!--B-->\"Must be exiciting living in the world's crossroad.\"", "mustBeExciting",
+	"<!--C-->\"Actually, I have something more specific in mind.\"", "generalApesaiMoreSpecific",
+))
+<br>
+](notAskavan|
+
+
+<!--seenBigger-->[
+_line["Oh, I'm sure of that. You're from the heartlands, after all,"] she chuckles. _line["And I'm hoping to also see much bigger once I start journeying. Who know, maybe Apesai will seem so small in retrospect."]
+<br>
+As Veh-Veh starts to slip into melancholy, she quickly brushes it aside.
+<br>
+_line["Never mind that. I just end up talking about myself whenever I don't have much to say. Maybe if you ask something more specific..."]
+<br>
+($funcInnerConvo: (dm:
+	"<!--A-->\"Alright.\"", "generalApesaiPreDone",
+))
+<br>
+](seenBigger|
+
+<!--mustBeExciting-->[
+_line["I suppose it //would// be exciting if I get to see more of the city, haha,"] she laughs bitterly. _line["Most of the time, I'm either holed up in the tower or shoving through the crowd down in the Exchange. Can't help but feel much of Apesai's richness is lost on me."]
+<br>
+As Veh-Veh starts to slip into melancholy, she quickly brushes it aside.
+<br>
+_line["Never mind that. I just end up talking about myself whenever I don't have much to say. Maybe if you ask something more specific..."]
+<br>
+($funcInnerConvo: (dm:
+	"<!--A-->\"Alright.\"", "generalApesaiPreDone",
+))
+<br>
+](mustBeExciting|
+
+<!--restOfFamily-->
+[
+_line["They're... around. Most of us never left Sisua, but my parents are here. I still see them from time to time."]
+<br>
+Veh-Veh fidgets with her robe a bit before changing the subject.
+<br>
+_line["Oh, but you are asking me about the city. I just end up talking about myself whenever I don't have much to say. Maybe if you ask something more specific..."]
+<br>
+($funcInnerConvo: (dm:
+	"<!--A-->\"Alright.\"", "generalApesaiPreDone",
+))
+<br>
+](restOfFamily|
+
+
+<!--generalApesaiMoreSpecific-->[
+_line["Yes,"] she says, relieved. _line["That's better for me anyhow."]
+(show: ?generalApesaiDone)
+](generalApesaiMoreSpecific|
+
+
+<!--generalApesaiPreDone-->[
+_line["(either: "All ears.", "Go ahead.", "Yes, sorry.")"]
+(show: ?generalApesaiDone)
+](generalApesaiPreDone|
+
+
+<!--generalApesaiDone-->[
+<br>
+($funcInnerConvo: $stuff's convoChoices)
+<br>
+](generalApesaiDone|
