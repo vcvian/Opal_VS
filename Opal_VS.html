@@ -71,7 +71,7 @@ hr {
   100% {
     background-position: 0% center;
   }
-}</style><script role="script" id="twine-user-script" type="text/twine-javascript"></script><tw-tag name="traveling" color="purple"></tw-tag><tw-tag name="book" color="yellow"></tw-tag><tw-tag name="header" color="yellow"></tw-tag><tw-tag name="static-storage" color="yellow"></tw-tag><tw-tag name="stay" color="yellow"></tw-tag><tw-tag name="storylet" color="blue"></tw-tag><tw-tag name="test" color="blue"></tw-tag><tw-tag name="topic" color="purple"></tw-tag><tw-tag name="UI" color="orange"></tw-tag><tw-tag name="effect" color="yellow"></tw-tag><tw-tag name="footer" color="yellow"></tw-tag><tw-tag name="startup" color="orange"></tw-tag><tw-tag name="sublocation" color="green"></tw-tag><tw-passagedata pid="1" name="AA. Books, Reading &amp; Formulae" tags="startup" position="100,100" size="100,100">{=
+}</style><script role="script" id="twine-user-script" type="text/twine-javascript"></script><tw-tag name="footer" color="yellow"></tw-tag><tw-tag name="startup" color="orange"></tw-tag><tw-tag name="sublocation" color="green"></tw-tag><tw-tag name="test" color="blue"></tw-tag><tw-tag name="topic" color="purple"></tw-tag><tw-tag name="UI" color="orange"></tw-tag><tw-tag name="book" color="yellow"></tw-tag><tw-tag name="effect" color="yellow"></tw-tag><tw-tag name="traveling" color="purple"></tw-tag><tw-tag name="storylet" color="blue"></tw-tag><tw-tag name="header" color="yellow"></tw-tag><tw-tag name="static-storage" color="yellow"></tw-tag><tw-tag name="stay" color="yellow"></tw-tag><tw-passagedata pid="1" name="AA. Books, Reading &amp; Formulae" tags="startup" position="100,100" size="100,100">{=
 &lt;!--Macros related to books and reading--&gt;
 
 (set: $readingNav to (dm:
@@ -5820,7 +5820,7 @@ Despite her hesitation, she continues.]
 (storylet: when
 (passage:) contains &quot;NPC&quot;
 and $char&#39;s VehVeh&#39;s opinion&#39;s 2nd &gt;= 10
-and ($char&#39;s VehVeh&#39;s location is &quot;Apesai Lighthouse&quot; or it is &quot;The Grand Exchange&quot;)
+and $char&#39;s VehVeh&#39;s location is &quot;Apesai Lighthouse&quot;
 and $char&#39;s player&#39;s timerCooldown does not contain &quot;T: VehVeh Apesai&quot;
 )
 
@@ -5860,7 +5860,7 @@ _line[&quot;Erm... sure, I&#39;m not the best tour guide - barely get out of the
 &lt;!--better idea to use the standard variable $stuff&#39;s convoChoices so that it can be reused at will in the content temp vars (I&#39;ve removed automated spindle convo since conversations can go on a bit longer)--&gt;
 (set: $stuff&#39;s convoChoices to (dm:
      &quot;&lt;!--A--&gt;\&quot;Tell me about Apesai - generally.\&quot;&quot;, &quot;generalApesai&quot;,
-     &quot;&lt;!--B--&gt;\&quot;Where might I buy some supplies?\&quot;&quot;, &quot;marketApesai&quot;,
+     &quot;&lt;!--B--&gt;\&quot;Where is the local market? I&#39;m in need of some supplies.\&quot;&quot;, &quot;marketApesai&quot;,
      &quot;&lt;!--C--&gt;\&quot;How might a magus make some money in this city?\&quot;&quot;, &quot;jobApesai&quot;,
      &quot;&lt;!--D--&gt;\&quot;What is there to see, to //do//?\&quot;&quot;, &quot;doApesai&quot;,
      &quot;&lt;!--E--&gt;\&quot;How does one leave the island?\&quot;&quot;, &quot;leaveApesai&quot;,
@@ -5956,7 +5956,7 @@ She points to the wharf below, where all manners of sails and flags are billowin
 
 
 &lt;!--seenBigger--&gt;[
-_line[&quot;Oh, I&#39;m sure of that. You&#39;re from the heartlands, after all,&quot;] she chuckles. _line[&quot;And I&#39;m hoping to also see much bigger once I start journeying. Who know, maybe Apesai will seem so small in retrospect.&quot;]
+_line[&quot;Oh, I&#39;m sure of that. You&#39;re from the heartlands, after all,&quot;] she chuckles. _line[&quot;And I&#39;m hoping to also see much bigger once I start journeying. Who know, maybe Apesai will seem like a quaint little town in retrospect.&quot;]
 &lt;br&gt;
 As Veh-Veh starts to slip into melancholy, she quickly brushes it aside.
 &lt;br&gt;
@@ -6012,7 +6012,127 @@ _line[&quot;(either: &quot;All ears.&quot;, &quot;Go ahead.&quot;, &quot;Yes, so
 &lt;br&gt;
 ($funcInnerConvo: $stuff&#39;s convoChoices)
 &lt;br&gt;
-](generalApesaiDone|</tw-passagedata><tw-passagedata pid="122" name="convo.VehVeh.jobApesai" tags="" position="225,1600" size="100,100"></tw-passagedata><tw-passagedata pid="123" name="convo.VehVeh.leaveApesai" tags="" position="350,1600" size="100,100"></tw-passagedata><tw-passagedata pid="124" name="convo.VehVeh.marketApesai" tags="" position="475,1600" size="100,100"></tw-passagedata><tw-passagedata pid="125" name="T: VehVeh Boarding" tags="topic" position="600,1600" size="100,100">{=
+](generalApesaiDone|</tw-passagedata><tw-passagedata pid="122" name="convo.VehVeh.jobApesai" tags="" position="225,1600" size="100,100"></tw-passagedata><tw-passagedata pid="123" name="convo.VehVeh.leaveApesai" tags="" position="350,1600" size="100,100"></tw-passagedata><tw-passagedata pid="124" name="convo.VehVeh.marketApesai" tags="" position="475,1600" size="100,100">{=
+
+_line[&quot;Haha, really? Oh, you&#39;re serious. Sorry. I thought it was too obvious. Uhm, well, you&#39;d want to visit the market quarter. There&#39;s a Grand Exchange there, can&#39;t miss it.&quot;]
+&lt;br&gt;
+She points towards the giant red steel domes dominating the cityscape.
+&lt;br&gt;
+_line[&quot;It&#39;s //the// place to go to if you have some extra rials to spend; the markup can be steep since merchants are looking to offset the gate fee. But then again, it&#39;s not the //only// place. We&#39;re a port city, and so everyone in Apesai is selling something.&quot;]
+&lt;br&gt;
+($funcInnerConvo: (dm:
+	&quot;&lt;!--A--&gt;\&quot;Oh? Where else do you usually go?\&quot;&quot;, &quot;otherPlace&quot;,
+	&quot;&lt;!--B--&gt;\&quot;Can you show me the way to the Grand Exchange?\&quot;&quot;, &quot;getThere&quot;,
+	&quot;&lt;!--C--&gt;\&quot;Understood. Thank you, Veh-Veh.\&quot;&quot;, &quot;marketApesaiPreDone&quot;,
+))
+&lt;br&gt;
+
+
+&lt;!--otherPlace--&gt;
+[
+_line[&quot;Me? Why, are you asking me to share my &#39;special contacts&#39;? Hoping for a good deal?&quot;] She giggles. [&quot;I&#39;m just joking. I go to the Grand Exchange like everyone else. The mongers there have a deal with the davehmars, and they are less inclined to haggle.&quot;]
+&lt;br&gt;
+($funcInnerConvo: (dm:
+	&quot;&lt;!--A--&gt;\&quot;Could you put in a good word for me? Tell the mongers to extend their discount to me.\&quot;&quot;, &quot;putInGoodWord&quot;,
+	&quot;&lt;!--B--&gt;\&quot;Can you show me the way to the Grand Exchange?\&quot;&quot;, &quot;getThere&quot;,
+	&quot;&lt;!--C--&gt;\&quot;Understood. Thank you, Veh-Veh.\&quot;&quot;, &quot;marketApesaiPreDone&quot;,
+))
+&lt;br&gt;
+](otherPlace|
+
+
+&lt;!--putInGoodWord--&gt;
+[
+You are kind of a davehmar, after all.
+&lt;br&gt;
+_line[&quot;Erm... I would if my word counted for anything,&quot;] she scratches her head and squirms in place. _line[&quot;And plus, I don&#39;t think I should be taking advantage of my teachers&#39; reputation without them knowing...&quot;]
+&lt;br&gt;
+You may be a davehmar, but you are not one of them. For all intents and purposes, you are an outsider, something Veh-Veh is trying her hardest not to say.
+&lt;br&gt;
+($funcInnerConvo: (dm:
+	&quot;&lt;!--A--&gt;\&quot;Never mind that, then. Could you show me how to get to the Grand Exchange?\&quot;&quot;, &quot;getThere&quot;,
+	&quot;&lt;!--B--&gt;\&quot;Never mind that, then. We can talk about something else.\&quot;&quot;, &quot;marketApesaiDone&quot;,
+))
+&lt;br&gt;
+](putInGoodWord|
+
+
+&lt;!--getThere--&gt;
+[
+_line[&quot;Yes, so if you follow this road down... and then follow the red obelisks...&quot;] Veh-Veh proceeds to give you a series of fairly confusing and at times contradictory directions, though you suspect that it is not her fault altogether - Apesai&#39;s own layout is contradictory.
+&lt;br&gt;
+(if: ($funcCheckExists: $char&#39;s player&#39;s att, &quot;knowApesaiGE&quot;, 0) &gt; 0)[One must wonder if you are doing this to torment her. She is clearly struggling, and you already know where the Grand Exchange is.
+&lt;br&gt;
+]
+($funcInnerConvo: (dm:
+	&quot;&lt;!--A--&gt;Jokingly observe: \&quot;You would think that the way to a Grand Exchange was more straightforward.\&quot;&quot;, &quot;allRoads&quot;,
+	&quot;&lt;!--B--&gt;\&quot;Thank you, I&#39;ll put your advice to the test.\&quot;&quot;, &quot;marketApesaiDone&quot;,
+))
+&lt;br&gt;
+](getThere|
+
+
+&lt;!--allRoads--&gt;
+[
+The Grand Exchange is the heart of any major trading city. This appears to be a clogged heart.
+&lt;br&gt;
+_line[&quot;Hmm... I suppose you&#39;re right. Apesai has been too many things to too many different peoples. The Second Colony was a haphazard land grab among our nobilty, but the Kesh after that was so much worse. They kept placing their creepy temples on the worst spots. Thieves aren&#39;t known for their city-planning acumen.&quot;]
+&lt;br&gt;
+($funcInnerConvo: (dm:
+	&quot;&lt;!--A--&gt;\&quot;It&#39;s a good thing that the island is back in Nurandah&#39;s hands again.\&quot;&quot;, &quot;backInNurandah&quot;,
+	&quot;&lt;!--B--&gt;\&quot;Let&#39;s hope the current governor has better sense than Keshans.\&quot;&quot;, &quot;currentGovernor&quot;,
+))
+&lt;br&gt;
+](allRoads|
+
+
+&lt;!--backInNurandah--&gt;
+[
+_line[&quot;Light blesses, it is a good thing, this Reclamation. And with the local Grand Exchange restored, Apesai almost feels //important// again. I can feel it getting livelier and livelier every year. I wonder what it was like during the Keshan years, or even the during the Charlatan&#39;s reign...&quot;]
+&lt;br&gt;
+Veh-Veh shudders. A scholar like her must have read her share of history, so she likely knows what it was like. Still, morbid curiosity often drives us to ask questions for which we already know the unpleasant answers.
+&lt;br&gt;
+($funcInnerConvo: (dm:
+	&quot;&lt;!--A--&gt;\&quot;I think my initial question is answered now. Thank you.\&quot;&quot;, &quot;marketApesaiDone&quot;,
+    &quot;&lt;!--B--&gt;\&quot;It&#39;s better to not know these things too directly. Let&#39;s change the subject.\&quot;&quot;, &quot;marketApesaiDone&quot;,
+))
+&lt;br&gt;
+](backInNurandah|
+
+
+&lt;!--currentGovernor--&gt;
+[
+_line[&quot;That&#39;s a low bar to clear, haha,&quot;] Veh-Veh chuckles. _line[&quot;But of course, the governor is an extension of the Emperor&#39;s wisdom here in Askava, so we should expect nothing short of excellence. I&#39;ve also read that the governor has convinced the Exchange to fund some of the public works in Apesai and in Sabzam further inland. At least that markup we pay is going into something.&quot;]
+&lt;br&gt;
+&quot;Convince&quot; is a generous word. In most of recent memory, the Exchange has practically been under the throne&#39;s direct control. So this is like saying the left hand has convinced the right hand to do its bidding. However, you understand the need for a population to have confidence in their local officials.
+&lt;br&gt;
+($funcInnerConvo: (dm:
+	&quot;&lt;!--A--&gt;\&quot;I think my initial question is answered now. Thank you.\&quot;&quot;, &quot;marketApesaiDone&quot;,
+    &quot;&lt;!--B--&gt;\&quot;I&#39;ll see if the price is worth it. Let&#39;s change the subject for now.\&quot;&quot;, &quot;marketApesaiDone&quot;,
+))
+&lt;br&gt;
+](currentGovernor|
+
+
+&lt;!--marketApesaiPreDone--&gt;
+[
+_line[&quot;You&#39;re welcome. And please forgive me. I didn&#39;t mean to make fun of you.&quot;]
+&lt;br&gt;
+($funcInnerConvo: (dm:
+	&quot;&lt;!--A--&gt;\&quot;Don&#39;t worry about it.\&quot;&quot;, &quot;marketApesaiDone&quot;,
+	&quot;&lt;!--B--&gt;\&quot;Sure.\&quot;&quot;, &quot;marketApesaiDone&quot;,
+))
+&lt;br&gt;
+](marketApesaiPreDone|
+
+
+&lt;!--marketApesaiDone--&gt;
+[
+_line[&quot;Right. Anything else you want to know?&quot;]
+&lt;br&gt;
+($funcInnerConvo: $stuff&#39;s convoChoices)
+&lt;br&gt;
+](marketApesaiDone|</tw-passagedata><tw-passagedata pid="125" name="T: VehVeh Boarding" tags="topic" position="600,1600" size="100,100">{=
 
 (storylet: when
 (passage:) contains &quot;NPC&quot;

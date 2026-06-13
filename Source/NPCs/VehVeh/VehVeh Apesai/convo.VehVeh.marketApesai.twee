@@ -1,1 +1,123 @@
 :: convo.VehVeh.marketApesai
+
+{=
+
+_line["Haha, really? Oh, you're serious. Sorry. I thought it was too obvious. Uhm, well, you'd want to visit the market quarter. There's a Grand Exchange there, can't miss it."]
+<br>
+She points towards the giant red steel domes dominating the cityscape.
+<br>
+_line["It's //the// place to go to if you have some extra rials to spend; the markup can be steep since merchants are looking to offset the gate fee. But then again, it's not the //only// place. We're a port city, and so everyone in Apesai is selling something."]
+<br>
+($funcInnerConvo: (dm:
+	"<!--A-->\"Oh? Where else do you usually go?\"", "otherPlace",
+	"<!--B-->\"Can you show me the way to the Grand Exchange?\"", "getThere",
+	"<!--C-->\"Understood. Thank you, Veh-Veh.\"", "marketApesaiPreDone",
+))
+<br>
+
+
+<!--otherPlace-->
+[
+_line["Me? Why, are you asking me to share my 'special contacts'? Hoping for a good deal?"] She giggles. ["I'm just joking. I go to the Grand Exchange like everyone else. The mongers there have a deal with the davehmars, and they are less inclined to haggle."]
+<br>
+($funcInnerConvo: (dm:
+	"<!--A-->\"Could you put in a good word for me? Tell the mongers to extend their discount to me.\"", "putInGoodWord",
+	"<!--B-->\"Can you show me the way to the Grand Exchange?\"", "getThere",
+	"<!--C-->\"Understood. Thank you, Veh-Veh.\"", "marketApesaiPreDone",
+))
+<br>
+](otherPlace|
+
+
+<!--putInGoodWord-->
+[
+You are kind of a davehmar, after all.
+<br>
+_line["Erm... I would if my word counted for anything,"] she scratches her head and squirms in place. _line["And plus, I don't think I should be taking advantage of my teachers' reputation without them knowing..."]
+<br>
+You may be a davehmar, but you are not one of them. For all intents and purposes, you are an outsider, something Veh-Veh is trying her hardest not to say.
+<br>
+($funcInnerConvo: (dm:
+	"<!--A-->\"Never mind that, then. Could you show me how to get to the Grand Exchange?\"", "getThere",
+	"<!--B-->\"Never mind that, then. We can talk about something else.\"", "marketApesaiDone",
+))
+<br>
+](putInGoodWord|
+
+
+<!--getThere-->
+[
+_line["Yes, so if you follow this road down... and then follow the red obelisks..."] Veh-Veh proceeds to give you a series of fairly confusing and at times contradictory directions, though you suspect that it is not her fault altogether - Apesai's own layout is contradictory.
+<br>
+(if: ($funcCheckExists: $char's player's att, "knowApesaiGE", 0) > 0)[One must wonder if you are doing this to torment her. She is clearly struggling, and you already know where the Grand Exchange is.
+<br>
+]
+($funcInnerConvo: (dm:
+	"<!--A-->Jokingly observe: \"You would think that the way to a Grand Exchange was more straightforward.\"", "allRoads",
+	"<!--B-->\"Thank you, I'll put your advice to the test.\"", "marketApesaiDone",
+))
+<br>
+](getThere|
+
+
+<!--allRoads-->
+[
+The Grand Exchange is the heart of any major trading city. This appears to be a clogged heart.
+<br>
+_line["Hmm... I suppose you're right. Apesai has been too many things to too many different peoples. The Second Colony was a haphazard land grab among our nobilty, but the Kesh after that was so much worse. They kept placing their creepy temples on the worst spots. Thieves aren't known for their city-planning acumen."]
+<br>
+($funcInnerConvo: (dm:
+	"<!--A-->\"It's a good thing that the island is back in Nurandah's hands again.\"", "backInNurandah",
+	"<!--B-->\"Let's hope the current governor has better sense than Keshans.\"", "currentGovernor",
+))
+<br>
+](allRoads|
+
+
+<!--backInNurandah-->
+[
+_line["Light blesses, it is a good thing, this Reclamation. And with the local Grand Exchange restored, Apesai almost feels //important// again. I can feel it getting livelier and livelier every year. I wonder what it was like during the Keshan years, or even the during the Charlatan's reign..."]
+<br>
+Veh-Veh shudders. A scholar like her must have read her share of history, so she likely knows what it was like. Still, morbid curiosity often drives us to ask questions for which we already know the unpleasant answers.
+<br>
+($funcInnerConvo: (dm:
+	"<!--A-->\"I think my initial question is answered now. Thank you.\"", "marketApesaiDone",
+    "<!--B-->\"It's better to not know these things too directly. Let's change the subject.\"", "marketApesaiDone",
+))
+<br>
+](backInNurandah|
+
+
+<!--currentGovernor-->
+[
+_line["That's a low bar to clear, haha,"] Veh-Veh chuckles. _line["But of course, the governor is an extension of the Emperor's wisdom here in Askava, so we should expect nothing short of excellence. I've also read that the governor has convinced the Exchange to fund some of the public works in Apesai and in Sabzam further inland. At least that markup we pay is going into something."]
+<br>
+"Convince" is a generous word. In most of recent memory, the Exchange has practically been under the throne's direct control. So this is like saying the left hand has convinced the right hand to do its bidding. However, you understand the need for a population to have confidence in their local officials.
+<br>
+($funcInnerConvo: (dm:
+	"<!--A-->\"I think my initial question is answered now. Thank you.\"", "marketApesaiDone",
+    "<!--B-->\"I'll see if the price is worth it. Let's change the subject for now.\"", "marketApesaiDone",
+))
+<br>
+](currentGovernor|
+
+
+<!--marketApesaiPreDone-->
+[
+_line["You're welcome. And please forgive me. I didn't mean to make fun of you."]
+<br>
+($funcInnerConvo: (dm:
+	"<!--A-->\"Don't worry about it.\"", "marketApesaiDone",
+	"<!--B-->\"Sure.\"", "marketApesaiDone",
+))
+<br>
+](marketApesaiPreDone|
+
+
+<!--marketApesaiDone-->
+[
+_line["Right. Anything else you want to know?"]
+<br>
+($funcInnerConvo: $stuff's convoChoices)
+<br>
+](marketApesaiDone|

@@ -4,7 +4,7 @@
 (storylet: when
 (passage:) contains "NPC"
 and $char's VehVeh's opinion's 2nd >= 10
-and ($char's VehVeh's location is "Apesai Lighthouse" or it is "The Grand Exchange")
+and $char's VehVeh's location is "Apesai Lighthouse"
 and $char's player's timerCooldown does not contain "T: VehVeh Apesai"
 )
 
@@ -44,7 +44,7 @@ _line["Erm... sure, I'm not the best tour guide - barely get out of the lighthou
 <!--better idea to use the standard variable $stuff's convoChoices so that it can be reused at will in the content temp vars (I've removed automated spindle convo since conversations can go on a bit longer)-->
 (set: $stuff's convoChoices to (dm:
      "<!--A-->\"Tell me about Apesai - generally.\"", "generalApesai",
-     "<!--B-->\"Where might I buy some supplies?\"", "marketApesai",
+     "<!--B-->\"Where is the local market? I'm in need of some supplies.\"", "marketApesai",
      "<!--C-->\"How might a magus make some money in this city?\"", "jobApesai",
      "<!--D-->\"What is there to see, to //do//?\"", "doApesai",
      "<!--E-->\"How does one leave the island?\"", "leaveApesai",
