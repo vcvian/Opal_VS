@@ -4,18 +4,20 @@
 $cssColumnParent[
 
 $cssColumnChild[
-(link: "Play for realisies")[(goto: $place's sublocation)]
+(link: "▶️ Play for realisies")[(goto: $place's sublocation)]
 <br>
-(link-rerun: "DEBUG")[(debug: )]
+(link-rerun: "🐞 DEBUG")[(debug: )]
 <br>
-(link-rerun: "Jump to a passage")[
+(link-rerun: "🚧 List of passages needing attention")[(goto: "Test List Unfinished")]
+<br>
+(link-rerun: "🧭 Jump to a passage")[
     (set: _passage to (prompt: [Enter passage name:], "", "Cancel", "Confirm"))
     (unless: _passage is "")[(goto: _passage)]
 ]
 <br>
-(link: "Restart game")[(restart:)]
+(link: "🔄 Restart game")[(restart:)]
 <br>
-(link-rerun: "End day (mock)")[(goto: "mockDay")]
+(link-rerun: "➡️ End day (mock)")[(goto: "mockDay")]
 <br>
 
 ]<!--end child-->

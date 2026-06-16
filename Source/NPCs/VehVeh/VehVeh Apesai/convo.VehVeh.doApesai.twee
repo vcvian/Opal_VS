@@ -1,1 +1,134 @@
-:: convo.VehVeh.doApesai
+:: convo.VehVeh.doApesai [unfinished]
+{=
+
+(metadata: "devNote", [Conversation half-finished. Pay attention to placeholder/empty hooks.],)
+
+_line["Ah, that's... well, I can only speak from my perspective. The wharf is a great place to take a stroll. It has a great view of the ocean. Not as great as the lighthouse's, but I'd go down there from time to time if I miss seeing people. But then, I'd remember why I prefer to stay up here..."]
+<br>
+($funcInnerConvo: (dm:
+	"<!--A-->\"That's it?\"", "doApesaiThatsIt",
+    "<!--B-->\"How about from a visitor's perspective? Where would they want to go?\"", "visitorPerspective",
+	"<!--C-->\"Other than leisure, where would a magus go to apply their talent?\"", "applyTalent",
+))
+<br>
+
+<!--doApesaiThatsIt-->
+[
+_line["No..."] she says, a little embarrassed. _line["You can also walk around the city, take in the sights. It's a big city, and old, too. There's a lot of history. Sometimes, whenever I'm running errands, I'd take extra long just to gawk at the architecture, haha."]
+<br>
+Not so long ago, you were living a quasi-monastic life also.
+<br>
+($funcInnerConvo: (dm:
+	"<!--A-->\"Right. I suppose I'll just have see it for myself.\"", "doApesaiSeeForMyself",
+    "<!--B-->\"Let's say I want to do more than just look. What are my options?\"", "touristPerspective",
+	"<!--C-->\"With a city this big, there has to be a lot of opportunities for a magus, right?\"", "applyTalent",
+))
+<br>
+](doApesaiThatsIt|
+
+
+<!--doApesaiSeeForMyself-->
+[
+_line["You sound disappointed..."] she says, sounding more disappointed than you are. _line["I'm sorry, but like I said, I don't get out much. Don't let me mislead you into thinking that there isn't much else. If anything, there's //too much// going on all the time."]
+<br>
+($funcInnerConvo: (dm:
+	"<!--A-->\"It's alright, I understand. Let's talk about something else.\"", "doApesaiPreDone1",
+))
+<br>
+](doApesaiSeeForMyself|
+
+
+
+
+
+
+<!--visitorPerspective-->
+[
+_line["Well... there's the lighthouse. Pilgrims would travel up here to receive their blessings before embarking for mainland Askava, but that has lessened somewhat since our ritualist left with the other davehmars. There are ritual services down at the courthouse anyway. Still, some prefer to see a magic tower up close."
+<br>
+"Speaking of the courthouse, I hear that the governor would sometimes host balls and whatnot for the wealthy merchants and nobility. But I don't suppose that's something an average visitor can simply walk in."
+<br>
+"Most travelers, if they don't simply treat Apesai as a rest stop, would prefer to spend their time and rial on one of the Yavanid pleasure barges, and some may even go into the Yavanid quarters, though that's not something I'd recommend."]
+<br>
+($funcInnerConvo: (dm:
+	"<!--A-->\"Why? What's wrong with the Yavanid quarter?\"", "whatsWrongYavanid",
+    "<!--B-->\"Rest stop? Where else are travelers headed to?\"", "restStopElse",
+    "<!--D-->\"That's already a lot to go on. Thank you, Veh-Veh.\"", "doApesaiPreDone2",
+))
+<br>
+](visitorPerspective|
+
+
+<!--whatsWrongYavanid-->
+[
+_line[""]
+<br>
+($funcInnerConvo: (dm:
+	"<!--A-->\".\"", "",
+))
+<br>
+](whatsWrongYavanid|
+
+
+<!--restStopElse-->
+[
+_line["A majority of the time, it'd be either Nurandah citizens traveling to Yavana or Yavanids wanting to visit the empire. Anyone sailing the Nurrah Sea, basically. Most are merchants, but many are adventurers as well. Scholars, mercenaries, treasure hunters, thrill-seekers - you know the sort."
+<br>
+"Quite a few of these adventurers do intend to stop at Askava - usually because they're headed to the Navveh ruins inland, or they're looking to be employed by the pilgrims or even the army. In other words, they're all headed inland, only stopping by at Apesai to stock up."]
+<br>
+The Reclamation is proving to be quite lucrative for those who had a initiative for it, and the city of Apesai is in the perfect position to collect the dues.
+<br>
+($funcInnerConvo: (dm:
+	"<!--A-->\".\"", "",
+))
+<br>
+](restStopElse|
+
+
+
+
+
+<!--applyTalent-->
+[
+_line[""]
+<br>
+($funcInnerConvo: (dm:
+	"<!--A-->\".\"", "",
+))
+<br>
+](applyTalent|
+
+
+
+
+
+
+<!--doApesaiPreDone1-->
+[
+_line["Yes, but I stand by what I've said though. Even if you've lived here your whole life, there's always something new,"] she says, looking for your agreement.
+<br>
+You nod.
+<br>
+_line["Anyway, seeing is believing. Don't let me prattle on. You had something else in mind?"]
+(show:?doApesaiDone)
+<br>
+](doApesaiPreDone1|
+
+
+<!--doApesaiPreDone2-->
+[
+_line["No problem! Like I said, I'm not the most outgoing person. I only know //about// them."]
+<br>
+Right.
+<br>
+_line["Anyway, is there something else you want to ask?"]
+(show:?doApesaiDone)
+<br>
+](doApesaiPreDone2|
+
+
+<!--doApesaiDone-->[
+<br>
+($funcInnerConvo: $stuff's convoChoices)
+<br>
+](doApesaiDone|

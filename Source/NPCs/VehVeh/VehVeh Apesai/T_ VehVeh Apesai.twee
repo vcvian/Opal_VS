@@ -1,4 +1,4 @@
-:: T: VehVeh Apesai [topic] {"position":"6750,1650","size":"100,100"}
+:: T: VehVeh Apesai [topic unfinished] {"position":"6750,1650","size":"100,100"}
 {=
 
 (storylet: when
@@ -16,6 +16,7 @@ and $char's player's timerCooldown does not contain "T: VehVeh Apesai"
 "cooldown", 1,
 "talked", (a:),
 "addCode", [],
+"devNote", [Sub "convo." passages are still being written. Consider adding a reward mechanic (impressionApesai).]
 )
 
 $cssColumnParent[
@@ -45,10 +46,9 @@ _line["Erm... sure, I'm not the best tour guide - barely get out of the lighthou
 (set: $stuff's convoChoices to (dm:
      "<!--A-->\"Tell me about Apesai - generally.\"", "generalApesai",
      "<!--B-->\"Where is the local market? I'm in need of some supplies.\"", "marketApesai",
-     "<!--C-->\"How might a magus make some money in this city?\"", "jobApesai",
-     "<!--D-->\"What is there to see, to //do//?\"", "doApesai",
-     "<!--E-->\"How does one leave the island?\"", "leaveApesai",
-     "<!--F-->\"Actually, that's all for now.\"", "exitLink",
+     "<!--C-->\"What is there to see, to //do// in Apesai?\"", "doApesai",
+     "<!--D-->\"How does one leave the island?\"", "leaveApesai",
+     "<!--E-->\"Actually, that's all for now.\"", "exitLink",
 ))
 
 ($funcSpindleConvo: $stuff's convoChoices, 2)
@@ -61,10 +61,6 @@ _line["Erm... sure, I'm not the best tour guide - barely get out of the lighthou
 
 <!--_marketApesai-->
 (set: _marketApesai to (display: "convo.VehVeh.marketApesai"))<!--end of _marketApesai-->
-
-
-<!--_jobApesai-->
-(set: _jobApesai to (display: "convo.VehVeh.jobApesai"))<!--end of _jobApesai-->
 
 
 <!--_doApesai-->

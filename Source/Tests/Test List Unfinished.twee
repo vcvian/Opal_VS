@@ -1,0 +1,29 @@
+:: Test List Unfinished
+{=
+(metadata:
+"title", "List of Passages Needing Attention")
+
+[[⇦ BACK->Pre-Test (NEW)]]
+<br>
+''(print: (passage:)'s title)''
+
+<br>
+
+<!--initialize list-->
+(set: _passageList to (a:))
+
+<!--build list-->
+(for: each _passage, ...(passages: where its tags contains "unfinished"))[{
+    (set: _passageList to it + (a: _passage's name))
+}]
+
+<!--generate links-->
+(if: _passageList's length is 0)[$cssDesc[There are no passage tagged with the "unfinished" label.]]
+(else:)[{
+    <ol>
+    (for: each _passage, ..._passageList)[{
+        <li>(link: _passage)[(goto: _passage)]
+        (if: (passage: _passage) contains "devNote")[<br> $cssDesc[` `↪` `(print: (passage: _passage)'s devNote)]]
+    }]
+    </ol>
+}]

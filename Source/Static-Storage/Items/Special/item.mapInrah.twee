@@ -1,15 +1,128 @@
-:: item.mapInrah [static-storage] {"position":"3775,1325","size":"100,100"}
+:: item.mapInrah [static-storage unfinished] {"position":"3775,1325","size":"100,100"}
 {=
 
 (metadata: 
 	"id", [Inrah's Map of the Nurrah Coastlands],
     "key", (a: "document", "map"),
     "value", (a: 1000, 50, 50, 20, 50, 100,),
-    "img", "",
+    "img", "https://fallenlondon.wiki/w/images/4/43/Map.png",
     "desc", [An intricate parchment map made by one "Nav-Inrah". It pays special attention in depicting the major settlements found in the Nurrah rostak of Askava, down to the streets and alleyways. Perhaps unsurprisingly, the wilderness is only sparsely rendered.],
     "tip", [The map will come in handy when you are exploring the major settlements found in the Nurrah Coastlands.],
     "gainText", [You have in your hands a one-of-a-kind map of the Nurrah rostak, made by one "Nav-Inrah".],
     "lossText", [You've lost Inrah's map. There are other ways to navigate the settlements of Nurrah rostak, but this map was something special.],
-    "content", [],
+    "devNote", [Need to write map content.],
+    "content", [{
+<!--main content begins-->
+
+
+(set: _mapIntro to [{
+Upon unfurling the parchment, an (cycling-link: "meticulous yet idiosyncratic(hide:?meticulous)", "meticulous yet idiosyncratic(show:?meticulous)") ink rendition of the Nurrah Coastlands appears before you.
+<br>
+
+[The style and notation are unlike anything you have ever seen. The wilderness connecting various settlements have been simplified and contracted; the majority of parchment space is dedicated to tracing urban footpaths and depicting landmarks. It is decidedly the work of a very talented and pragmatic amateur, unfamiliar with the magical tools of cartography, but very familiar with a reed pen.
+<br>
+](meticulous|
+
+On one corner is the title in beautiful cursive: ''"Description of Nurrah Rostak, Southernmost Division of Askava Dahak of Nurandah"''. And in the opposite corner are initials in red ink - a name and self-style - standing for ''"Nav-Inrah, Independent Adventurer"''.
+<br>
+
+Most settlements in the Nurrah Coastlands follow from Apesai up north along (cycling-link: "the Rokhrud river(hide:?Rokhrud)",  "the Rokhrud river(show:?Rokhrud)")[, whose banks accounts for some of Askava's most fertile (or rather, least arid) lands. The Rokhrud is also a vital channel of transportation for trade goods coming from Inner Askava](Rokhrud|.
+<br>
+The settlements, from south to north, are:
+
+<ol>
+<li>At the south-western quadrant of the map, in the middle of the Nurrah Sea, lies the island-city of ''Apesai'' - the provincial capital of Askava. The map no doubt exaggerates the city's size proportional to the rest of the coastlands on account of the amount of streets needing to be depicted.</li>
+
+<li>Nearby inland, on the central coast is the commercial dock called ''Rokhab''. This is the main point-of-entry from Apesai into mainland Askava. It lies at the end of the Rokhrud river delta.</li>
+
+<li>Further north along the Rokhrud lies the ''Sabzam Villa'' and its surrounding holdings - farmsteads, quarries, villages, and so on. Although the Sabzam territories takes up most of the map's center, actual settlements are sparse and clustered.</li>
+
+<li>The Rokhrud river continues north until it reaches the upper edge of the map - the Besarag Range - and continues through a narrow opening called the ''Besarag Pass''. There, an imperial fort marks the end of the Nurandah-controlled coastlands and the beginning of Inner Askava.</li>
+</ol>
+
+Outside of the Rokhrud axis, there are two other major inland settlements, though they are so marginal that, if not for the map labels, one could be forgiven for overlooking them.
+
+<ol start="5">
+<li>To the very west end of the coastline, where the mountain pushes against the sea, is the isolated forests of ''Old Navveh'' - the Ruined City. Next to it is a label pointing to the left edge of the map, which says, "Kudkuch dahak" - the Nurandah heartlands beyond, seperated from Askava by impassable mountains.</li>
+
+<li>On the opposite end of the coastline, in the south-eastern quadrant, where the Rokhrud delta divides endlessly, are the swamps of ''Zirab''. The wetland continues off the right edge of the map, which terminates with the word "Yavana" - our eastern neighbors.</li>
+</ol>
+
+}])<!--end of intro-->
+
+
+
+
+
+
+<!--content displayed here-->
+[
+(if: $stuff does not contain "currentMapInrah")[_mapIntro]
+(else:)[(print: $stuff's "currentMapInrah")]
+]<bookContent|
+
+<br>
+$cssDesc[Having ''(print: (passage: "item.mapInrah")'s id)'' makes you more likely to succeed at exploring the settlements of the Nurrah Coastlands. However, since the map is so detailed, just studying it will not be as helpful. You need to be out and about.]
+<br>
+---
+<ol>
+
+<!--standard code for all links-->
+(set: _updateContent to [{
+    <!--replace content-->
+    (replace: ?bookContent)[(print: $stuff's currentMapInrah)]
+    <!--scroll up to page's top-->
+    <script>window.scrollTo(0,0)</script>
+}])
+
+Look more closely at...
+<li>(link-rerun: "Apesai Island.")[{
+    (set: $stuff's currentMapInrah to _Apesai)
+    _updateContent
+}]</li>
+
+<li>(link-rerun: "The Rokhab commerical dock.")[{
+    (set: $stuff's currentMapInrah to _Rokhab)
+    _updateContent
+}]</li>
+
+<li>(link-rerun: "The Sabzam Villa and nearby holdings.")[{
+    (set: $stuff's currentMapInrah to _Sabzam)
+    _updateContent
+}]</li>
+
+<li>(link-rerun: "The imperial fort at the Besarag Pass.")[{
+    (set: $stuff's currentMapInrah to _Besarag)
+    _updateContent
+}]</li>
+
+<li>(link-rerun: "The settlements in Zirab swamps.")[{
+    (set: $stuff's currentMapInrah to _Zirab)
+    _updateContent
+}]</li>
+
+<li>(link-rerun: "The ruins of Navveh.")[{
+    (set: $stuff's currentMapInrah to _Navveh)
+    _updateContent
+}]</li>
+
+<br>
+Or...
+
+<li>(link-rerun: "Step back and look at the whole map.")[{
+    (set: $stuff's currentMapInrah to _mapIntro)
+    _updateContent
+}]</li>
+
+<li>(link-rerun: "Put away the map.")[{
+    <!--clear $stuff-->
+    (set: $stuff to (dm:))
+    <!--goto-->
+    (goto: $readingNav's before)
+}]</li>
+<ol>
+
+<!--main content ends-->
+    }],
 
 )

@@ -6,7 +6,7 @@ _line["Haha, really? Oh, you're serious. Sorry. I thought it was too obvious. Uh
 <br>
 She points towards the giant red steel domes dominating the cityscape.
 <br>
-_line["It's //the// place to go to if you have some extra rials to spend; the markup can be steep since merchants are looking to offset the gate fee. But then again, it's not the //only// place. We're a port city, and so everyone in Apesai is selling something."]
+_line["It's //the// place to go to if you have some extra rials to spend; the markup can be steep since merchants are looking to offset the gate tolls. But then again, it's not the //only// place. We're a port city, and so everyone in Apesai is selling something."]
 <br>
 ($funcInnerConvo: (dm:
 	"<!--A-->\"Oh? Where else do you usually go?\"", "otherPlace",
@@ -18,7 +18,7 @@ _line["It's //the// place to go to if you have some extra rials to spend; the ma
 
 <!--otherPlace-->
 [
-_line["Me? Why, are you asking me to share my 'special contacts'? Hoping for a good deal?"] She giggles. ["I'm just joking. I go to the Grand Exchange like everyone else. The mongers there have a deal with the davehmars, and they are less inclined to haggle."]
+_line["Me? Why, are you asking me to share my 'special contacts'? Hoping for a good deal?"] She giggles. _line["I'm just joking. I go to the Grand Exchange like everyone else. The mongers there have a deal with the davehmars, and they are less inclined to haggle."]
 <br>
 ($funcInnerConvo: (dm:
 	"<!--A-->\"Could you put in a good word for me? Tell the mongers to extend their discount to me.\"", "putInGoodWord",
@@ -116,7 +116,7 @@ _line["You're welcome. And please forgive me. I didn't mean to make fun of you."
 
 <!--marketApesaiDone-->
 [
-_line["Right. Anything else you want to know?"]
+_line["Right. What else do you want to know?"]
 <br>
 ($funcInnerConvo: $stuff's convoChoices)
 <br>

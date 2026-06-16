@@ -64,25 +64,28 @@
 ]\
 
 <!--dev tools-->
-$cssBox[
+$cssBox[{
 <!--Test-->
 (link-rerun: "🧪")[\
 	(redirect: "Pre-Test (NEW)")
 ]\
 
+<!--under construction passages-->
+(link-rerun: "🚧")[(goto: "Test List Unfinished")]
+
 <!--Debug view-->
 (link-rerun: "🐞")[(debug: )]
 
 <!--Jump to arbitrary passage-->
-(link-rerun: "🧭")[\
+(link-rerun: "🧭")[
     (set: _passage to (prompt: [Enter passage name:], "", "Cancel", "Confirm"))\
     (unless: _passage is "")[(goto: _passage)]\
-]\
+]
 
 <!--Next day-->
 (link-rerun: "➡️")[\
 	$funcDone
 ]\
-]<!--end of dev box-->
+}]<!--end of dev box-->
 
 ]<!--end of sidebar append-->
