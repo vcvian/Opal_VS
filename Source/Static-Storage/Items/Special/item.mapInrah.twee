@@ -14,8 +14,6 @@
     "content", [{
 <!--main content begins-->
 
-
-(set: _mapIntro to [{
 Upon unfurling the parchment, an (cycling-link: "meticulous yet idiosyncratic(hide:?meticulous)", "meticulous yet idiosyncratic(show:?meticulous)") ink rendition of the Nurrah Coastlands appears before you.
 <br>
 
@@ -26,101 +24,32 @@ Upon unfurling the parchment, an (cycling-link: "meticulous yet idiosyncratic(hi
 On one corner is the title in beautiful cursive: ''"Description of Nurrah Rostak, Southernmost Division of Askava Dahak of Nurandah"''. And in the opposite corner are initials in red ink - a name and self-style - standing for ''"Nav-Inrah, Independent Adventurer"''.
 <br>
 
-Most settlements in the Nurrah Coastlands follow from Apesai up north along (cycling-link: "the Rokhrud river(hide:?Rokhrud)",  "the Rokhrud river(show:?Rokhrud)")[, whose banks accounts for some of Askava's most fertile (or rather, least arid) lands. The Rokhrud is also a vital channel of transportation for trade goods coming from Inner Askava](Rokhrud|.
+Most settlements in the Nurrah Coastlands follow from Apesai up north along (cycling-link: "the Rokhrud river(hide:?Rokhrud)",  "the Rokhrud river(show:?Rokhrud)")[, whose banks accounts for some of Askava's most fertile (or rather, least arid) lands. The Rokhrud's furthest sources are in the heights of Daabrag Range in Inner Askava, pouring south through Garsudrah rostak, growing larger with tributaries from the Besarag, and finally pouring out into the Nurrah Sea. The Rokhrud is a vital channel of transportation for trade goods coming from Inner Askava](Rokhrud|.
 <br>
-The settlements, from south to north, are:
+The major settlements, from south to north, are:
 
 <ol>
-<li>At the south-western quadrant of the map, in the middle of the Nurrah Sea, lies the island-city of ''Apesai'' - the provincial capital of Askava. The map no doubt exaggerates the city's size proportional to the rest of the coastlands on account of the amount of streets needing to be depicted.</li>
+<li>At the south-western quadrant of the map, in the middle of the Nurrah Sea, lies the island-city of (cycling-link: "''Apesai(hide:?ApesaiShort)''", "''Apesai(show:?ApesaiShort)''",)[ - the provincial capital of Askava. The map no doubt exaggerates the city's size proportional to the rest of the coastlands on account of the amount of streets needing to be depicted](ApesaiShort|.</li>
 
-<li>Nearby inland, on the central coast is the commercial dock called ''Rokhab''. This is the main point-of-entry from Apesai into mainland Askava. It lies at the end of the Rokhrud river delta.</li>
+<li>Nearby inland, on the central coast is the commercial dock called (cycling-link: "''Rokhab(hide:?RokhabShort)''", "''Rokhab(show:?RokhabShort)''",)[. This is the main point-of-entry from Apesai into mainland Askava. It lies at the end of the Rokhrud river delta](RokhabShort|.</li>
 
-<li>Further north along the Rokhrud lies the ''Sabzam Villa'' and its surrounding holdings - farmsteads, quarries, villages, and so on. Although the Sabzam territories takes up most of the map's center, actual settlements are sparse and clustered.</li>
+<li>Further north along the Rokhrud lies the (cycling-link: "''Sabzam Villa(hide:?SabzamShort)''", "''Sabzam Villa(show:?SabzamShort)''")[ and its surrounding holdings - farmsteads, quarries, villages, and so on. Although the Sabzam territories takes up most of the map's center, actual settlements are sparse and clustered](SabzamShort|.</li>
 
-<li>The Rokhrud river continues north until it reaches the upper edge of the map - the Besarag Range - and continues through a narrow opening called the ''Besarag Pass''. There, an imperial fort marks the end of the Nurandah-controlled coastlands and the beginning of Inner Askava.</li>
+<li>The Rokhrud river continues north until it reaches the upper edge of the map - the Besarag Range - and continues through a narrow opening called the (cycling-link: "''Besarag Pass(hide:?BesaragShort)''", "''Besarag Pass(show:?BesaragShort)''")[. There, an imperial fort marks the end of the Nurandah-controlled coastlands and the beginning of Inner Askava](BesaragShort|.</li>
 </ol>
 
 Outside of the Rokhrud axis, there are two other major inland settlements, though they are so marginal that, if not for the map labels, one could be forgiven for overlooking them.
 
 <ol start="5">
-<li>To the very west end of the coastline, where the mountain pushes against the sea, is the isolated forests of ''Old Navveh'' - the Ruined City. Next to it is a label pointing to the left edge of the map, which says, "Kudkuch dahak" - the Nurandah heartlands beyond, seperated from Askava by impassable mountains.</li>
+<li>To the very west end of the coastline, where the mountain pushes against the sea, is the isolated forests of (cycling-link: "''Old Navveh(hide:?NavvehShort)''", "''Old Navveh(show:?NavvehShort)''")[ - the Ruined City. Next to it is a label pointing to the left edge of the map, which says, "Kudkuch dahak" - the Nurandah heartlands beyond, seperated from Askava by impassable mountains](NavvehShort|.</li>
 
-<li>On the opposite end of the coastline, in the south-eastern quadrant, where the Rokhrud delta divides endlessly, are the swamps of ''Zirab''. The wetland continues off the right edge of the map, which terminates with the word "Yavana" - our eastern neighbors.</li>
+<li>On the opposite end of the coastline, in the south-eastern quadrant, where the Rokhrud delta divides endlessly, are the swamps of (cycling-link: "''Zirab(hide:?ZirabShort)''","''Zirab(show:?ZirabShort)''")[. The wetland continues off the right edge of the map, which terminates with the word "Yavana" - our eastern neighbor](ZirabShort|.</li>
 </ol>
 
-}])<!--end of intro-->
-
-
-
-
-
-
-<!--content displayed here-->
-[
-(if: $stuff does not contain "currentMapInrah")[_mapIntro]
-(else:)[(print: $stuff's "currentMapInrah")]
-]<bookContent|
-
-<br>
-$cssDesc[Having ''(print: (passage: "item.mapInrah")'s id)'' makes you more likely to succeed at exploring the settlements of the Nurrah Coastlands. However, since the map is so detailed, just studying it will not be as helpful. You need to be out and about.]
+$cssDesc[Having ''(print: (passage: "item.mapInrah")'s id)'' makes you more likely to succeed at exploring the settlements of the Nurrah Coastlands. However, since the map is so detailed, it is difficult to decipher without reference. You need to be out and about for it to make sense.]
 <br>
 ---
-<ol>
-
-<!--standard code for all links-->
-(set: _updateContent to [{
-    <!--replace content-->
-    (replace: ?bookContent)[(print: $stuff's currentMapInrah)]
-    <!--scroll up to page's top-->
-    <script>window.scrollTo(0,0)</script>
-}])
-
-Look more closely at...
-<li>(link-rerun: "Apesai Island.")[{
-    (set: $stuff's currentMapInrah to _Apesai)
-    _updateContent
-}]</li>
-
-<li>(link-rerun: "The Rokhab commerical dock.")[{
-    (set: $stuff's currentMapInrah to _Rokhab)
-    _updateContent
-}]</li>
-
-<li>(link-rerun: "The Sabzam Villa and nearby holdings.")[{
-    (set: $stuff's currentMapInrah to _Sabzam)
-    _updateContent
-}]</li>
-
-<li>(link-rerun: "The imperial fort at the Besarag Pass.")[{
-    (set: $stuff's currentMapInrah to _Besarag)
-    _updateContent
-}]</li>
-
-<li>(link-rerun: "The settlements in Zirab swamps.")[{
-    (set: $stuff's currentMapInrah to _Zirab)
-    _updateContent
-}]</li>
-
-<li>(link-rerun: "The ruins of Navveh.")[{
-    (set: $stuff's currentMapInrah to _Navveh)
-    _updateContent
-}]</li>
-
-<br>
-Or...
-
-<li>(link-rerun: "Step back and look at the whole map.")[{
-    (set: $stuff's currentMapInrah to _mapIntro)
-    _updateContent
-}]</li>
-
-<li>(link-rerun: "Put away the map.")[{
-    <!--clear $stuff-->
-    (set: $stuff to (dm:))
-    <!--goto-->
-    (goto: $readingNav's before)
-}]</li>
-<ol>
+(link-rerun: "Put away the map.")[{(goto: $readingNav's before)}]
 
 <!--main content ends-->
     }],
