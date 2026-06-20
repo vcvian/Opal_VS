@@ -1,14 +1,13 @@
 :: convo.VehVeh.doApesai [unfinished]
 {=
 
-(metadata: "devNote", [Conversation half-finished. Pay attention to placeholder/empty hooks.],)
+(metadata: "devNote", [Conversation half-finished. Pay attention to placeholder/empty hooks: whatsWrongYavanid],)
 
 _line["Ah, that's... well, I can only speak from my perspective. The wharf is a great place to take a stroll. It has a great view of the ocean. Not as great as the lighthouse's, but I'd go down there from time to time if I miss seeing people. But then, I'd remember why I prefer to stay up here..."]
 <br>
 ($funcInnerConvo: (dm:
 	"<!--A-->\"That's it?\"", "doApesaiThatsIt",
     "<!--B-->\"How about from a visitor's perspective? Where would they want to go?\"", "visitorPerspective",
-	"<!--C-->\"Other than leisure, where would a magus go to apply their talent?\"", "applyTalent",
 ))
 <br>
 
@@ -20,8 +19,7 @@ Not so long ago, you were living a quasi-monastic life also.
 <br>
 ($funcInnerConvo: (dm:
 	"<!--A-->\"Right. I suppose I'll just have see it for myself.\"", "doApesaiSeeForMyself",
-    "<!--B-->\"Let's say I want to do more than just look. What are my options?\"", "touristPerspective",
-	"<!--C-->\"With a city this big, there has to be a lot of opportunities for a magus, right?\"", "applyTalent",
+    "<!--B-->\"But let's say I want to do more than just look. What are my options?\"", "visitorPerspective",
 ))
 <br>
 ](doApesaiThatsIt|
@@ -33,20 +31,17 @@ _line["You sound disappointed..."] she says, sounding more disappointed than you
 <br>
 ($funcInnerConvo: (dm:
 	"<!--A-->\"It's alright, I understand. Let's talk about something else.\"", "doApesaiPreDone1",
+    "<!--B-->\"Too much? Name a few.\"", "visitorPerspective",
 ))
 <br>
 ](doApesaiSeeForMyself|
 
 
-
-
-
-
 <!--visitorPerspective-->
 [
-_line["Well... there's the lighthouse. Pilgrims would travel up here to receive their blessings before embarking for mainland Askava, but that has lessened somewhat since our ritualist left with the other davehmars. There are ritual services down at the courthouse anyway. Still, some prefer to see a magic tower up close."
+_line["Well... there's the lighthouse. Pilgrims would travel up here to receive their blessings before embarking for mainland Askava, but that has lessened somewhat since our ritualist left with the other davehmars. There are ritual services down at the courthouse anyway. Still, some prefer to see a magic tower up close.
 <br>
-"Speaking of the courthouse, I hear that the governor would sometimes host balls and whatnot for the wealthy merchants and nobility. But I don't suppose that's something an average visitor can simply walk in."
+"Speaking of the courthouse, I hear that the governor would sometimes host balls and whatnot for the wealthy merchants and nobility. But I don't suppose that's something an average visitor can simply walk in.
 <br>
 "Most travelers, if they don't simply treat Apesai as a rest stop, would prefer to spend their time and rial on one of the Yavanid pleasure barges, and some may even go into the Yavanid quarters, though that's not something I'd recommend."]
 <br>
@@ -61,46 +56,144 @@ _line["Well... there's the lighthouse. Pilgrims would travel up here to receive 
 
 <!--whatsWrongYavanid-->
 [
-_line[""]
+_line["It's... uhm, it's called the 'Pleasure Quarter' for a reason,] she explains hesitantly. _line[The Yavanid enclave is, how do I say this, not //entirely// subject to Nurandah's laws and customs. It has a bad reputation, but unfortunately, it is that reputation that attracts so many visitors. Just to be clear, these are the things I've heard; I wouldn't know of specifics. But, if you want to have a taste of Yavana - many do - there are music barges down in the wharf. Those sail in imperial waters, and so they're much safer. Relatively speaking."]
 <br>
 ($funcInnerConvo: (dm:
-	"<!--A-->\".\"", "",
+	"<!--A-->\"How awful. What exactly is so attractive about this 'Pleasure Quarter'?\"", "soAtttractiveAbout",
+    "<!--B-->\"Where is this 'Pleasure Quarter' exactly? So that I might avoid it...\"", "wherePleasureQuarter",
+    "<!--C-->\"Sounds like trouble. I'll be sure to stay away.\"", "beSureToStayAway",
 ))
 <br>
 ](whatsWrongYavanid|
 
 
+
+<!--soAtttractiveAbout-->
+[
+You watch her stammer, her face flushed.
+<br>
+_line["Oh, well, it'd be too impolite to call them by name. In fact, I don't know all the Yavanid words for them. They have a term for everything, and they're not always so clear."]
+<br>
+She thinks about it for more than a second.
+<br>
+_line["'Theater' - that's one way to call it. From their hospitality, to their gambling dens, to their businesses, to the way they serve you farabek, to their gangsters, to their worship, to... ah, love. Everything is an act. The only exception is threater, which is deadly serious to them, especially the men. Oh, and have I mentioned that farabek possession is legal for Yavanids? Yeah, that's a big draw for travelers."]
+<br>
+($funcInnerConvo: (dm:
+	"<!--A-->\"So it's legal for imperial citizens to go to the Pleasure Quarter to smoke farabek? Is that why they go there?\"", "legalForCitizens",
+    "<!--B-->\"And the city simply tolerates it?\"", "wherePleasureQuarter",
+    "<!--C-->\"I see... Well, I better look for distractions elsewhere.\"", "beSureToStayAway",
+))
+<br>
+](soAtttractiveAbout|
+
+
+<!--wherePleasureQuarter-->
+[
+_line["Apesai envelops the enclave. You can think of it as a city-within-a-city. Yavanid merchants were here on this island, living among the natives, before our first fishermen came centuries ago. Because of that, the enclave does not sit neatly within any district. It spans across much of the lower slums and up to parts of the mid-city."]
+<br>
+Veh-Veh points at the slope below the mount, where the city grows too dense to decipher, then she continues,
+<br>
+_line["Because the enclave is so old, so much of the city's commerce, culture, and even governance - though our dahakmars wouldn't admit to it - relies on the enclave being what it is. In other words, there's few options but to tolerate it."]
+<br>
+_line["You'll know if you're there when you start to see canals, and the houses look strange. The waterways can smell in the summer, so imperials try to avoid those parts if they can afford it. That, and the farabek dens tend to attract all kinds of outsiders. Not exactly a quiet neighborhood."]
+<br>
+($funcInnerConvo: (dm:
+	"<!--A-->\"Farabek is legal for travelers too? Is that why they go to the Pleasure Quarter?\"", "legalForCitizens",
+    "<!--C-->\"Sounds like I should do likewise and avoid it as well.\"", "beSureToStayAway",
+))
+<br>
+](wherePleasureQuarter|
+
+
+<!--legalForCitizens-->
+[
+_line["'No' for your first question. When in the enclave, citizens of Nurandah such as you or me are subject to both imperial laws //and// the enclave's rules. It's messy. Messy enough for many to conveniently forget that it's still illegal. Messy enough to enforce.
+<br>
+"And 'kind of' to your second question. Farabek isn't the only reason for the quarter's patronage. There are other, uhm, //services// that usually comes with it. Patrons under the influence tends to be less... discerning when it comes to their own money and, er... morals."]
+<br>
+($funcInnerConvo: (dm:
+    "<!--A-->Lie: \"I should steer clear of this place, then.\"", "beSureToStayAway",
+    "<!--B-->\"I should steer clear of this place, then.\"", "beSureToStayAway",
+))
+<br>
+](legalForCitizens|
+
+
+<!--beSureToStayAway-->
+[
+_line["Yes, it's best that you do. It's a shame, really. The governor has been trying to clean up the, uhm, slums and incorporate the Yavanids into the wider city, but that enclave is old. It was already old when the First Colony had just been established. The city can't do much without triggering an incident with Yavana, so things are just... up in the air right now,"] she says, sounding apologetic about the state of her own city.
+<br>
+($funcInnerConvo: (dm:
+	"<!--A-->\"Shame indeed. Thanks for the warning though, Veh-Veh.\"", "doApesaiPreDone2",
+))
+<br>
+
+](beSureToStayAway|
+
+
 <!--restStopElse-->
 [
-_line["A majority of the time, it'd be either Nurandah citizens traveling to Yavana or Yavanids wanting to visit the empire. Anyone sailing the Nurrah Sea, basically. Most are merchants, but many are adventurers as well. Scholars, mercenaries, treasure hunters, thrill-seekers - you know the sort."
+_line["A majority of the time, it'd be either Nurandah citizens traveling to Yavana or Yavanids wanting to visit the empire. Anyone sailing the Nurrah Sea, basically. Most are merchants, but many are adventurers as well. Scholars, mercenaries, treasure hunters, thrill-seekers - you know the sort.
 <br>
 "Quite a few of these adventurers do intend to stop at Askava - usually because they're headed to the Navveh ruins inland, or they're looking to be employed by the pilgrims or even the army. In other words, they're all headed inland, only stopping by at Apesai to stock up."]
 <br>
 The Reclamation is proving to be quite lucrative for those who had a initiative for it, and the city of Apesai is in the perfect position to collect the dues.
 <br>
 ($funcInnerConvo: (dm:
-	"<!--A-->\".\"", "",
+	"<!--A-->\"It's a shame that there aren't more who consider Apesai a destination.\"", "shameDestination",
+    "<!--C-->\"I think I have a better picture now. Thank you.\"", "doApesaiPreDone2",
 ))
 <br>
 ](restStopElse|
 
 
-
-
-
-<!--applyTalent-->
+<!--shameDestination-->
 [
-_line[""]
+_line["Yes, perhaps, but it //is// an island. Apesai is close to losing most of its wilderness to the sprawl already,"] Veh-Veh tsks. _line["In some way, we're even lucky that they are either bound for Inner Askava, in the pilgrims' case - the Reclaimers, I mean - or they will be on their way soon, in the merchants' case. The governor is flirting with the idea of demolishing the First-Colony oldtown to make more room. That'd be a worse shame."]
 <br>
 ($funcInnerConvo: (dm:
-	"<!--A-->\".\"", "",
+	"<!--A-->\"In the name of progress...\"", "inProgressName",
+    "<!--B-->\"Demolish the Oldtown? And where would people go?\"", "whereWouldGo",
+    "<!--C-->\"I think so too.\"", "thinkSoToo",
 ))
 <br>
-](applyTalent|
+](shameDestination|
 
 
+<!--inProgressName-->
+[
+She sighs, finishing the sentence, _line["... We will strive."]
+<br>
+So they do teach the slogan this far away.
+<br>
+_line["Anyway, is there something else you wish to talk about?"]
+(show:?doApesaiDone)
+<br>
+](inProgressName|
 
 
+<!--whereWouldGo-->
+[
+_line["Inland, I suppose,"] she sighs. _line["Work as a tenant on a Sabzam farm? Maybe even join the Reclaimers and go north?"]
+<br>
+Veh-Veh sounds more like she is asking you rather than answering. She wouldn't be privy to the governor's plans anyhow.
+<br>
+_line["That's all I have. Is there anything else you want to talk about?"]
+(show:?doApesaiDone)
+<br>
+](whereWouldGo|
+
+
+<!--thinkSoToo-->
+[
+_line["Right. Those who have lived here for generations do so because they do not want to be inland..."]
+<br>
+She sighs, massaging the bridge of her nose.
+<br>
+_line["Anyway, those in the know probably have a plan. I'd rather help you make yours. Anything else you want to ask me?"]
+(show:?doApesaiDone)
+<br>
+](thinkSoToo|
 
 
 <!--doApesaiPreDone1-->
@@ -117,7 +210,7 @@ _line["Anyway, seeing is believing. Don't let me prattle on. You had something e
 
 <!--doApesaiPreDone2-->
 [
-_line["No problem! Like I said, I'm not the most outgoing person. I only know //about// them."]
+_line["No problem! Like I said, I'm not the most outgoing person. I only know //about// these things. So, uh, don't think I'm any authority."]
 <br>
 Right.
 <br>

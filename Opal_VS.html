@@ -71,7 +71,7 @@ hr {
   100% {
     background-position: 0% center;
   }
-}</style><script role="script" id="twine-user-script" type="text/twine-javascript"></script><tw-tag name="test" color="blue"></tw-tag><tw-tag name="traveling" color="purple"></tw-tag><tw-tag name="book" color="yellow"></tw-tag><tw-tag name="effect" color="yellow"></tw-tag><tw-tag name="footer" color="yellow"></tw-tag><tw-tag name="storylet" color="blue"></tw-tag><tw-tag name="sublocation" color="green"></tw-tag><tw-tag name="topic" color="purple"></tw-tag><tw-tag name="UI" color="orange"></tw-tag><tw-tag name="header" color="yellow"></tw-tag><tw-tag name="startup" color="orange"></tw-tag><tw-tag name="static-storage" color="yellow"></tw-tag><tw-tag name="stay" color="yellow"></tw-tag><tw-passagedata pid="1" name="AA. Books, Reading &amp; Formulae" tags="startup" position="100,100" size="100,100">{=
+}</style><script role="script" id="twine-user-script" type="text/twine-javascript"></script><tw-tag name="startup" color="orange"></tw-tag><tw-tag name="stay" color="yellow"></tw-tag><tw-tag name="storylet" color="blue"></tw-tag><tw-tag name="sublocation" color="green"></tw-tag><tw-tag name="topic" color="purple"></tw-tag><tw-tag name="traveling" color="purple"></tw-tag><tw-tag name="test" color="blue"></tw-tag><tw-tag name="UI" color="orange"></tw-tag><tw-tag name="book" color="yellow"></tw-tag><tw-tag name="effect" color="yellow"></tw-tag><tw-tag name="footer" color="yellow"></tw-tag><tw-tag name="header" color="yellow"></tw-tag><tw-tag name="static-storage" color="yellow"></tw-tag><tw-passagedata pid="1" name="AA. Books, Reading &amp; Formulae" tags="startup" position="100,100" size="100,100">{=
 &lt;!--Macros related to books and reading--&gt;
 
 (set: $readingNav to (dm:
@@ -5909,14 +5909,13 @@ _line[&quot;Erm... sure, I&#39;m not the best tour guide - barely get out of the
 ]&lt;!--end child--&gt;
 ]&lt;!--end parent--&gt;</tw-passagedata><tw-passagedata pid="119" name="convo.VehVeh.doApesai" tags="unfinished" position="1100,1475" size="100,100">{=
 
-(metadata: &quot;devNote&quot;, [Conversation half-finished. Pay attention to placeholder/empty hooks.],)
+(metadata: &quot;devNote&quot;, [Conversation half-finished. Pay attention to placeholder/empty hooks: whatsWrongYavanid],)
 
 _line[&quot;Ah, that&#39;s... well, I can only speak from my perspective. The wharf is a great place to take a stroll. It has a great view of the ocean. Not as great as the lighthouse&#39;s, but I&#39;d go down there from time to time if I miss seeing people. But then, I&#39;d remember why I prefer to stay up here...&quot;]
 &lt;br&gt;
 ($funcInnerConvo: (dm:
 	&quot;&lt;!--A--&gt;\&quot;That&#39;s it?\&quot;&quot;, &quot;doApesaiThatsIt&quot;,
     &quot;&lt;!--B--&gt;\&quot;How about from a visitor&#39;s perspective? Where would they want to go?\&quot;&quot;, &quot;visitorPerspective&quot;,
-	&quot;&lt;!--C--&gt;\&quot;Other than leisure, where would a magus go to apply their talent?\&quot;&quot;, &quot;applyTalent&quot;,
 ))
 &lt;br&gt;
 
@@ -5928,8 +5927,7 @@ Not so long ago, you were living a quasi-monastic life also.
 &lt;br&gt;
 ($funcInnerConvo: (dm:
 	&quot;&lt;!--A--&gt;\&quot;Right. I suppose I&#39;ll just have see it for myself.\&quot;&quot;, &quot;doApesaiSeeForMyself&quot;,
-    &quot;&lt;!--B--&gt;\&quot;Let&#39;s say I want to do more than just look. What are my options?\&quot;&quot;, &quot;touristPerspective&quot;,
-	&quot;&lt;!--C--&gt;\&quot;With a city this big, there has to be a lot of opportunities for a magus, right?\&quot;&quot;, &quot;applyTalent&quot;,
+    &quot;&lt;!--B--&gt;\&quot;But let&#39;s say I want to do more than just look. What are my options?\&quot;&quot;, &quot;visitorPerspective&quot;,
 ))
 &lt;br&gt;
 ](doApesaiThatsIt|
@@ -5941,20 +5939,17 @@ _line[&quot;You sound disappointed...&quot;] she says, sounding more disappointe
 &lt;br&gt;
 ($funcInnerConvo: (dm:
 	&quot;&lt;!--A--&gt;\&quot;It&#39;s alright, I understand. Let&#39;s talk about something else.\&quot;&quot;, &quot;doApesaiPreDone1&quot;,
+    &quot;&lt;!--B--&gt;\&quot;Too much? Name a few.\&quot;&quot;, &quot;visitorPerspective&quot;,
 ))
 &lt;br&gt;
 ](doApesaiSeeForMyself|
 
 
-
-
-
-
 &lt;!--visitorPerspective--&gt;
 [
-_line[&quot;Well... there&#39;s the lighthouse. Pilgrims would travel up here to receive their blessings before embarking for mainland Askava, but that has lessened somewhat since our ritualist left with the other davehmars. There are ritual services down at the courthouse anyway. Still, some prefer to see a magic tower up close.&quot;
+_line[&quot;Well... there&#39;s the lighthouse. Pilgrims would travel up here to receive their blessings before embarking for mainland Askava, but that has lessened somewhat since our ritualist left with the other davehmars. There are ritual services down at the courthouse anyway. Still, some prefer to see a magic tower up close.
 &lt;br&gt;
-&quot;Speaking of the courthouse, I hear that the governor would sometimes host balls and whatnot for the wealthy merchants and nobility. But I don&#39;t suppose that&#39;s something an average visitor can simply walk in.&quot;
+&quot;Speaking of the courthouse, I hear that the governor would sometimes host balls and whatnot for the wealthy merchants and nobility. But I don&#39;t suppose that&#39;s something an average visitor can simply walk in.
 &lt;br&gt;
 &quot;Most travelers, if they don&#39;t simply treat Apesai as a rest stop, would prefer to spend their time and rial on one of the Yavanid pleasure barges, and some may even go into the Yavanid quarters, though that&#39;s not something I&#39;d recommend.&quot;]
 &lt;br&gt;
@@ -5969,46 +5964,144 @@ _line[&quot;Well... there&#39;s the lighthouse. Pilgrims would travel up here to
 
 &lt;!--whatsWrongYavanid--&gt;
 [
-_line[&quot;&quot;]
+_line[&quot;It&#39;s... uhm, it&#39;s called the &#39;Pleasure Quarter&#39; for a reason,] she explains hesitantly. _line[The Yavanid enclave is, how do I say this, not //entirely// subject to Nurandah&#39;s laws and customs. It has a bad reputation, but unfortunately, it is that reputation that attracts so many visitors. Just to be clear, these are the things I&#39;ve heard; I wouldn&#39;t know of specifics. But, if you want to have a taste of Yavana - many do - there are music barges down in the wharf. Those sail in imperial waters, and so they&#39;re much safer. Relatively speaking.&quot;]
 &lt;br&gt;
 ($funcInnerConvo: (dm:
-	&quot;&lt;!--A--&gt;\&quot;.\&quot;&quot;, &quot;&quot;,
+	&quot;&lt;!--A--&gt;\&quot;How awful. What exactly is so attractive about this &#39;Pleasure Quarter&#39;?\&quot;&quot;, &quot;soAtttractiveAbout&quot;,
+    &quot;&lt;!--B--&gt;\&quot;Where is this &#39;Pleasure Quarter&#39; exactly? So that I might avoid it...\&quot;&quot;, &quot;wherePleasureQuarter&quot;,
+    &quot;&lt;!--C--&gt;\&quot;Sounds like trouble. I&#39;ll be sure to stay away.\&quot;&quot;, &quot;beSureToStayAway&quot;,
 ))
 &lt;br&gt;
 ](whatsWrongYavanid|
 
 
+
+&lt;!--soAtttractiveAbout--&gt;
+[
+You watch her stammer, her face flushed.
+&lt;br&gt;
+_line[&quot;Oh, well, it&#39;d be too impolite to call them by name. In fact, I don&#39;t know all the Yavanid words for them. They have a term for everything, and they&#39;re not always so clear.&quot;]
+&lt;br&gt;
+She thinks about it for more than a second.
+&lt;br&gt;
+_line[&quot;&#39;Theater&#39; - that&#39;s one way to call it. From their hospitality, to their gambling dens, to their businesses, to the way they serve you farabek, to their gangsters, to their worship, to... ah, love. Everything is an act. The only exception is threater, which is deadly serious to them, especially the men. Oh, and have I mentioned that farabek possession is legal for Yavanids? Yeah, that&#39;s a big draw for travelers.&quot;]
+&lt;br&gt;
+($funcInnerConvo: (dm:
+	&quot;&lt;!--A--&gt;\&quot;So it&#39;s legal for imperial citizens to go to the Pleasure Quarter to smoke farabek? Is that why they go there?\&quot;&quot;, &quot;legalForCitizens&quot;,
+    &quot;&lt;!--B--&gt;\&quot;And the city simply tolerates it?\&quot;&quot;, &quot;wherePleasureQuarter&quot;,
+    &quot;&lt;!--C--&gt;\&quot;I see... Well, I better look for distractions elsewhere.\&quot;&quot;, &quot;beSureToStayAway&quot;,
+))
+&lt;br&gt;
+](soAtttractiveAbout|
+
+
+&lt;!--wherePleasureQuarter--&gt;
+[
+_line[&quot;Apesai envelops the enclave. You can think of it as a city-within-a-city. Yavanid merchants were here on this island, living among the natives, before our first fishermen came centuries ago. Because of that, the enclave does not sit neatly within any district. It spans across much of the lower slums and up to parts of the mid-city.&quot;]
+&lt;br&gt;
+Veh-Veh points at the slope below the mount, where the city grows too dense to decipher, then she continues,
+&lt;br&gt;
+_line[&quot;Because the enclave is so old, so much of the city&#39;s commerce, culture, and even governance - though our dahakmars wouldn&#39;t admit to it - relies on the enclave being what it is. In other words, there&#39;s few options but to tolerate it.&quot;]
+&lt;br&gt;
+_line[&quot;You&#39;ll know if you&#39;re there when you start to see canals, and the houses look strange. The waterways can smell in the summer, so imperials try to avoid those parts if they can afford it. That, and the farabek dens tend to attract all kinds of outsiders. Not exactly a quiet neighborhood.&quot;]
+&lt;br&gt;
+($funcInnerConvo: (dm:
+	&quot;&lt;!--A--&gt;\&quot;Farabek is legal for travelers too? Is that why they go to the Pleasure Quarter?\&quot;&quot;, &quot;legalForCitizens&quot;,
+    &quot;&lt;!--C--&gt;\&quot;Sounds like I should do likewise and avoid it as well.\&quot;&quot;, &quot;beSureToStayAway&quot;,
+))
+&lt;br&gt;
+](wherePleasureQuarter|
+
+
+&lt;!--legalForCitizens--&gt;
+[
+_line[&quot;&#39;No&#39; for your first question. When in the enclave, citizens of Nurandah such as you or me are subject to both imperial laws //and// the enclave&#39;s rules. It&#39;s messy. Messy enough for many to conveniently forget that it&#39;s still illegal. Messy enough to enforce.
+&lt;br&gt;
+&quot;And &#39;kind of&#39; to your second question. Farabek isn&#39;t the only reason for the quarter&#39;s patronage. There are other, uhm, //services// that usually comes with it. Patrons under the influence tends to be less... discerning when it comes to their own money and, er... morals.&quot;]
+&lt;br&gt;
+($funcInnerConvo: (dm:
+    &quot;&lt;!--A--&gt;Lie: \&quot;I should steer clear of this place, then.\&quot;&quot;, &quot;beSureToStayAway&quot;,
+    &quot;&lt;!--B--&gt;\&quot;I should steer clear of this place, then.\&quot;&quot;, &quot;beSureToStayAway&quot;,
+))
+&lt;br&gt;
+](legalForCitizens|
+
+
+&lt;!--beSureToStayAway--&gt;
+[
+_line[&quot;Yes, it&#39;s best that you do. It&#39;s a shame, really. The governor has been trying to clean up the, uhm, slums and incorporate the Yavanids into the wider city, but that enclave is old. It was already old when the First Colony had just been established. The city can&#39;t do much without triggering an incident with Yavana, so things are just... up in the air right now,&quot;] she says, sounding apologetic about the state of her own city.
+&lt;br&gt;
+($funcInnerConvo: (dm:
+	&quot;&lt;!--A--&gt;\&quot;Shame indeed. Thanks for the warning though, Veh-Veh.\&quot;&quot;, &quot;doApesaiPreDone2&quot;,
+))
+&lt;br&gt;
+
+](beSureToStayAway|
+
+
 &lt;!--restStopElse--&gt;
 [
-_line[&quot;A majority of the time, it&#39;d be either Nurandah citizens traveling to Yavana or Yavanids wanting to visit the empire. Anyone sailing the Nurrah Sea, basically. Most are merchants, but many are adventurers as well. Scholars, mercenaries, treasure hunters, thrill-seekers - you know the sort.&quot;
+_line[&quot;A majority of the time, it&#39;d be either Nurandah citizens traveling to Yavana or Yavanids wanting to visit the empire. Anyone sailing the Nurrah Sea, basically. Most are merchants, but many are adventurers as well. Scholars, mercenaries, treasure hunters, thrill-seekers - you know the sort.
 &lt;br&gt;
 &quot;Quite a few of these adventurers do intend to stop at Askava - usually because they&#39;re headed to the Navveh ruins inland, or they&#39;re looking to be employed by the pilgrims or even the army. In other words, they&#39;re all headed inland, only stopping by at Apesai to stock up.&quot;]
 &lt;br&gt;
 The Reclamation is proving to be quite lucrative for those who had a initiative for it, and the city of Apesai is in the perfect position to collect the dues.
 &lt;br&gt;
 ($funcInnerConvo: (dm:
-	&quot;&lt;!--A--&gt;\&quot;.\&quot;&quot;, &quot;&quot;,
+	&quot;&lt;!--A--&gt;\&quot;It&#39;s a shame that there aren&#39;t more who consider Apesai a destination.\&quot;&quot;, &quot;shameDestination&quot;,
+    &quot;&lt;!--C--&gt;\&quot;I think I have a better picture now. Thank you.\&quot;&quot;, &quot;doApesaiPreDone2&quot;,
 ))
 &lt;br&gt;
 ](restStopElse|
 
 
-
-
-
-&lt;!--applyTalent--&gt;
+&lt;!--shameDestination--&gt;
 [
-_line[&quot;&quot;]
+_line[&quot;Yes, perhaps, but it //is// an island. Apesai is close to losing most of its wilderness to the sprawl already,&quot;] Veh-Veh tsks. _line[&quot;In some way, we&#39;re even lucky that they are either bound for Inner Askava, in the pilgrims&#39; case - the Reclaimers, I mean - or they will be on their way soon, in the merchants&#39; case. The governor is flirting with the idea of demolishing the First-Colony oldtown to make more room. That&#39;d be a worse shame.&quot;]
 &lt;br&gt;
 ($funcInnerConvo: (dm:
-	&quot;&lt;!--A--&gt;\&quot;.\&quot;&quot;, &quot;&quot;,
+	&quot;&lt;!--A--&gt;\&quot;In the name of progress...\&quot;&quot;, &quot;inProgressName&quot;,
+    &quot;&lt;!--B--&gt;\&quot;Demolish the Oldtown? And where would people go?\&quot;&quot;, &quot;whereWouldGo&quot;,
+    &quot;&lt;!--C--&gt;\&quot;I think so too.\&quot;&quot;, &quot;thinkSoToo&quot;,
 ))
 &lt;br&gt;
-](applyTalent|
+](shameDestination|
 
 
+&lt;!--inProgressName--&gt;
+[
+She sighs, finishing the sentence, _line[&quot;... We will strive.&quot;]
+&lt;br&gt;
+So they do teach the slogan this far away.
+&lt;br&gt;
+_line[&quot;Anyway, is there something else you wish to talk about?&quot;]
+(show:?doApesaiDone)
+&lt;br&gt;
+](inProgressName|
 
 
+&lt;!--whereWouldGo--&gt;
+[
+_line[&quot;Inland, I suppose,&quot;] she sighs. _line[&quot;Work as a tenant on a Sabzam farm? Maybe even join the Reclaimers and go north?&quot;]
+&lt;br&gt;
+Veh-Veh sounds more like she is asking you rather than answering. She wouldn&#39;t be privy to the governor&#39;s plans anyhow.
+&lt;br&gt;
+_line[&quot;That&#39;s all I have. Is there anything else you want to talk about?&quot;]
+(show:?doApesaiDone)
+&lt;br&gt;
+](whereWouldGo|
+
+
+&lt;!--thinkSoToo--&gt;
+[
+_line[&quot;Right. Those who have lived here for generations do so because they do not want to be inland...&quot;]
+&lt;br&gt;
+She sighs, massaging the bridge of her nose.
+&lt;br&gt;
+_line[&quot;Anyway, those in the know probably have a plan. I&#39;d rather help you make yours. Anything else you want to ask me?&quot;]
+(show:?doApesaiDone)
+&lt;br&gt;
+](thinkSoToo|
 
 
 &lt;!--doApesaiPreDone1--&gt;
@@ -6025,7 +6118,7 @@ _line[&quot;Anyway, seeing is believing. Don&#39;t let me prattle on. You had so
 
 &lt;!--doApesaiPreDone2--&gt;
 [
-_line[&quot;No problem! Like I said, I&#39;m not the most outgoing person. I only know //about// them.&quot;]
+_line[&quot;No problem! Like I said, I&#39;m not the most outgoing person. I only know //about// these things. So, uh, don&#39;t think I&#39;m any authority.&quot;]
 &lt;br&gt;
 Right.
 &lt;br&gt;
@@ -9781,7 +9874,7 @@ Askava is a province of the Nurandah Empire, one of seven.
     &quot;gainText&quot;, [],
     &quot;lossText&quot;, [],
 
-)</tw-passagedata><tw-passagedata pid="189" name="item.mapInrah" tags="static-storage unfinished" position="3775,1325" size="100,100">{=
+)</tw-passagedata><tw-passagedata pid="189" name="item.mapInrah" tags="static-storage" position="3775,1325" size="100,100">{=
 
 (metadata: 
 	&quot;id&quot;, [Inrah&#39;s Map of the Nurrah Coastlands],
@@ -9792,7 +9885,6 @@ Askava is a province of the Nurandah Empire, one of seven.
     &quot;tip&quot;, [The map will come in handy when you are exploring the major settlements found in the Nurrah Coastlands.],
     &quot;gainText&quot;, [You have in your hands a one-of-a-kind map of the Nurrah rostak, made by one &quot;Nav-Inrah&quot;.],
     &quot;lossText&quot;, [You&#39;ve lost Inrah&#39;s map. There are other ways to navigate the settlements of Nurrah rostak, but this map was something special.],
-    &quot;devNote&quot;, [Need to write map content.],
     &quot;content&quot;, [{
 &lt;!--main content begins--&gt;
 
@@ -9836,7 +9928,7 @@ $cssDesc[Having &#39;&#39;(print: (passage: &quot;item.mapInrah&quot;)&#39;s id)
 &lt;!--main content ends--&gt;
     }],
 
-)</tw-passagedata><tw-passagedata pid="190" name="item.permitAskava" tags="static-storage" position="4300,1925" size="100,100">{=
+)</tw-passagedata><tw-passagedata pid="190" name="item.permitAskava" tags="static-storage unfinished" position="4300,1925" size="100,100">{=
 
 (metadata: 
 	&quot;id&quot;, [Askava Entry Permit],
@@ -9847,6 +9939,7 @@ $cssDesc[Having &#39;&#39;(print: (passage: &quot;item.mapInrah&quot;)&#39;s id)
     &quot;tip&quot;, [This document permits you a one-time passage from Apesai into mainland Askava, collected at either of the 3 major shores: Rokhab, Navveh, or Zirab. Valid once.],
     &quot;gainText&quot;, [After some trouble, you are finally granted a permit into Askava.],
     &quot;lossText&quot;, [You are loath to part with the precious papyrus, mostly because it will be bother to get another one if you ever make another trip from the island into the mainland.],
+    &quot;devNote&quot;, [Write permit&#39;s content (try to add dynamic text).],
     &quot;content&quot;, [
 (Permit content)
 &lt;br&gt;

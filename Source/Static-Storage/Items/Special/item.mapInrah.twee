@@ -1,4 +1,4 @@
-:: item.mapInrah [static-storage unfinished] {"position":"3775,1325","size":"100,100"}
+:: item.mapInrah [static-storage] {"position":"3775,1325","size":"100,100"}
 {=
 
 (metadata: 
@@ -10,7 +10,6 @@
     "tip", [The map will come in handy when you are exploring the major settlements found in the Nurrah Coastlands.],
     "gainText", [You have in your hands a one-of-a-kind map of the Nurrah rostak, made by one "Nav-Inrah".],
     "lossText", [You've lost Inrah's map. There are other ways to navigate the settlements of Nurrah rostak, but this map was something special.],
-    "devNote", [Need to write map content.],
     "content", [{
 <!--main content begins-->
 
