@@ -1,3 +1,141 @@
 :: convo.VehVeh.leaveApesai [unfinished]
-
+{=
 (metadata: "devNote", [No content yet.],)
+
+
+_line["Aw, leaving so soon?"] She asks, with a hint of a pout. _line["Well, since we're on an island - you can see, of course - the only way out is via boat, and all boats are down by the wharf. There are all kinds of boats-for-hire down there."]
+<br>
+($funcInnerConvo: (dm:
+	"<!--A-->\"How do I find these boats-for-hire? I can't just hop on any boat, can I?\"", "hopOnAnyBoat",
+    "<!--B-->\".\"", "",
+))
+<br>
+
+
+<!--hopOnAnyBoat-->
+[
+She snickers.
+<br>
+_line["Pff, finding boats isn't the hard part. There are hundreds of them on any given day, many are looking to recouperate docking fees while their main long-haulers wait for shipments. In fact, some of the captains are actively hawking their cabins, harassing passersby. You'll have no difficulty finding a willing captain.
+<br>
+"But, you'll need the coin and the papers. That's the hard part for most."]
+<br>
+($funcInnerConvo: (dm:
+	"<!--A-->\"Alright, I have the rial, but what kind of papers do I need?\"", "whatKindPaper",
+    "<!--B-->\".\"", "",
+))
+<br>
+](hopOnAnyBoat|
+
+
+<!--whatKindPaper-->
+[
+_line["Oh, that will depend on where you're headed,"] she explains. _line["I'm assuming that you mean mainland Askava, yes? Common coastal destinations are Rokhab, Zirab, or Navveh."]
+<br>
+($funcInnerConvo: (dm:
+    "<!--B-->\"Let's say I want to go to Rokhab.\"", "destinationRokhab",
+    "<!--C-->\"Zirab? As in, the swamps?\"", "destinationZirab",
+    "<!--D-->\"People still go to Navveh?\"", "destinationNavveh",
+))
+<br>
+](whatKindPaper|
+
+
+<!--destinationRokhab-->
+[
+_line["Great, most people do, and so the process is much simpler. You'll only need to show an entry permit down at the wharf, which you can acquire from the courthouse. That's a few districts here,"] Veh-Veh points downhill at the imposing marble palaces with tall arches. The "courthouse" appears to be a general term for the entirety of administrative complexes.
+<br>
+_line["The courthouse will only ask for your personal papers and, since you're already a journeyman, a document of vouchsafe from your university. There are extra fees and permits for pilgrims and merchants, which you are not.
+<br>
+By the way, where in the mainland do you intend to go?"]
+<br>
+($funcInnerConvo: (dm:
+    "<!--A-->\"Sabzam Villa. That's where I'm supposed to report to.\"", "destinationSabzam",
+    "<!--B-->\"I haven't decided yet. I might just go to other coastal docks - Navveh and Zirab - once I'm already in Rokhab.\"", "otherDocks",
+))
+<br>
+](destinationRokhab|
+
+
+<!--destinationZirab-->
+[
+_line["Yes, many are headed to the wetlands. Usually, they're soldiers retiring to their farmsteads or explorer trying to reclaim some of the marshes. It's a harsh place, though. At least you wouldn't get sick as often out in the desert. Many of these are Yavanids, though. Yavana wants it more than we do, since it's right next to their border, but you know, Zirab's still //ours//."]
+<br>
+($funcInnerConvo: (dm:
+    "<!--A-->\"Of course it is, and what do I need to get to Zirab?\"", "getToZirab",
+    "<!--B-->\"And where can I go from Zirab? Does it lead inland?\"", "otherDocks",
+    "<!--C-->\"Never mind that, I want to go north, deeper into the mainland.\"", "destinationSabzam",
+))
+<br>
+](destinationZirab|
+
+
+<!--getToZirab-->
+[
+_line["Oh, why would you want-"] She catches herself. _line["Sorry, I'm being presumptuous. So, to get to Zirab... I'm not entirely sure. I know that you'll need an entry permit from the courthouse, but I'm not sure about what else.
+<br>
+"Trade with Yavana is tightly controlled. Everything must be done here in Apesai, so people who travel to the border - Zirab - must be cleared by the Ministry of Funds. And by that, I mean the Grand Exchange. You know, to prevent smuggling."]
+<br>
+You'll have to figure the rest out yourself - is what she means.
+<br>
+($funcInnerConvo: (dm:
+    "<!--B-->\"Sounds troublesome. If I just want to go deeper inland, then which other dock should I land in?\"", "destinationSabzam",
+    "<!--C-->\"Thanks, Veh-Veh. I'll keep that in mind. Let's talk about something else.\"", "leaveApesaiPreDone1",
+))
+<br>
+](getToZirab|
+
+
+<!--destinationNavveh-->
+[
+_line["Oh yes, there are few who still go to the ruins - the brave or desperate, usually both,"] she explains with a sigh. _line["Some think the reward is worth the risk. Others think that the risk //is// the reward. Me, I just don't see how finding some artifact from the First Colony Era is worth the elemental sickness, anomalies, cave-ins, getting lost in the ruins...
+<br>
+"And then, there are some who aspire to re-establish a Navveh settlement - a Nav-Navveh, so to speak. Unsurprisingly, few takers so far. So to answer your question: Not zero, but not many either."]
+<br>
+($funcInnerConvo: (dm:
+    "<!--A-->\"And what if I want in? What must I do?\"", "wantInNavveh",
+    "<!--B-->\"The mountains have collapsed around that place. It must be quite isolated.\"", "otherDocks",
+    "<!--C-->\"Forget Navveh, civilization suits me better than ruins. What if I want to head inland, like Sabzam Villa?\"", "destinationSabzam",
+))
+<br>
+](destinationNavveh|
+
+
+<!--wantInNavveh-->
+[
+_line["Really? Truly? Don't you have somewhere else- You know what, forget I asked. Every journeyman must have their own path - so I've learned,"] she says, reassuring herself. _line["Don't mistake my surprise for me not wanting to help - I do. But truth be told, I don't know what you'll need to be let into Navveh. An entry permit is a minimum, that's the same for anyone landing on any coast.
+<br>
+"Perhaps... the Traveler's Society has been sponsoring adventurers, so maybe they'll know more. Their local headquarter is here in Apesai. But, that's the extent of my knowledge. Sorry."]
+<br>
+($funcInnerConvo: (dm:
+    "<!--B-->\"Membership means dues. More headache. If I just want to go deeper inland, then which other dock should I land in?\"", "destinationSabzam",
+    "<!--C-->\"Thanks, Veh-Veh. I'll try that out. For now,let's talk about something else.\"", "leaveApesaiPreDone1",
+))
+<br>
+](wantInNavveh|
+
+
+<!--otherDocks-->
+[
+Veh-Veh considers what you've said, trying to recount the travel routes before saying, _line["If you want to move between the coasts, you'll have to do it by boat.
+<br>
+"The Besarag Range, ever since its closing, has also been eroding seaward, blocking off most of the conventional footpaths between Navveh, Rokhab, and Zirab. Not only that, the fringes are practically isolated from the rest of the mainland also due to, again, the Besarag, so you can't go inland from either Navveh or Zirab, as far as I know.
+<br>
+Only Rokhab, which is at the end of the Rokhrud shipping lane, can lead you anywhere meaningful."]
+<br>
+($funcInnerConvo: (dm:
+    "<!--A-->\"Rokhab sounds like the commonsensical choice. I'm to report to Sabzam Villa anyway.\"", "destinationSabzam",
+    "<!--B-->\"Thanks, Veh-Veh. I'll try that out. For now,let's talk about something else.\"", "leaveApesaiPreDone1",
+))
+<br>
+](otherDocks|
+
+
+<!--destinationSabzam-->
+[
+_line[""]
+](destinationSabzam|
+
+
+<!--leaveApesaiPreDone1-->
+[](leaveApesaiPreDone1|

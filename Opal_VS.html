@@ -71,7 +71,7 @@ hr {
   100% {
     background-position: 0% center;
   }
-}</style><script role="script" id="twine-user-script" type="text/twine-javascript"></script><tw-tag name="startup" color="orange"></tw-tag><tw-tag name="stay" color="yellow"></tw-tag><tw-tag name="storylet" color="blue"></tw-tag><tw-tag name="sublocation" color="green"></tw-tag><tw-tag name="topic" color="purple"></tw-tag><tw-tag name="traveling" color="purple"></tw-tag><tw-tag name="test" color="blue"></tw-tag><tw-tag name="UI" color="orange"></tw-tag><tw-tag name="book" color="yellow"></tw-tag><tw-tag name="effect" color="yellow"></tw-tag><tw-tag name="footer" color="yellow"></tw-tag><tw-tag name="header" color="yellow"></tw-tag><tw-tag name="static-storage" color="yellow"></tw-tag><tw-passagedata pid="1" name="AA. Books, Reading &amp; Formulae" tags="startup" position="100,100" size="100,100">{=
+}</style><script role="script" id="twine-user-script" type="text/twine-javascript"></script><tw-tag name="footer" color="yellow"></tw-tag><tw-tag name="header" color="yellow"></tw-tag><tw-tag name="static-storage" color="yellow"></tw-tag><tw-tag name="test" color="blue"></tw-tag><tw-tag name="topic" color="purple"></tw-tag><tw-tag name="effect" color="yellow"></tw-tag><tw-tag name="book" color="yellow"></tw-tag><tw-tag name="startup" color="orange"></tw-tag><tw-tag name="stay" color="yellow"></tw-tag><tw-tag name="storylet" color="blue"></tw-tag><tw-tag name="sublocation" color="green"></tw-tag><tw-tag name="traveling" color="purple"></tw-tag><tw-tag name="UI" color="orange"></tw-tag><tw-passagedata pid="1" name="AA. Books, Reading &amp; Formulae" tags="startup" position="100,100" size="100,100">{=
 &lt;!--Macros related to books and reading--&gt;
 
 (set: $readingNav to (dm:
@@ -5907,9 +5907,7 @@ _line[&quot;Erm... sure, I&#39;m not the best tour guide - barely get out of the
 ]&lt;!--end done--&gt;
 
 ]&lt;!--end child--&gt;
-]&lt;!--end parent--&gt;</tw-passagedata><tw-passagedata pid="119" name="convo.VehVeh.doApesai" tags="unfinished" position="1100,1475" size="100,100">{=
-
-(metadata: &quot;devNote&quot;, [Conversation half-finished. Pay attention to placeholder/empty hooks: whatsWrongYavanid],)
+]&lt;!--end parent--&gt;</tw-passagedata><tw-passagedata pid="119" name="convo.VehVeh.doApesai" tags="" position="1100,1475" size="100,100">{=
 
 _line[&quot;Ah, that&#39;s... well, I can only speak from my perspective. The wharf is a great place to take a stroll. It has a great view of the ocean. Not as great as the lighthouse&#39;s, but I&#39;d go down there from time to time if I miss seeing people. But then, I&#39;d remember why I prefer to stay up here...&quot;]
 &lt;br&gt;
@@ -6236,7 +6234,146 @@ _line[&quot;(either: &quot;All ears.&quot;, &quot;Go ahead.&quot;, &quot;Yes, so
 &lt;br&gt;
 ($funcInnerConvo: $stuff&#39;s convoChoices)
 &lt;br&gt;
-](generalApesaiDone|</tw-passagedata><tw-passagedata pid="122" name="convo.VehVeh.leaveApesai" tags="unfinished" position="225,1600" size="100,100">(metadata: &quot;devNote&quot;, [No content yet.],)</tw-passagedata><tw-passagedata pid="123" name="convo.VehVeh.marketApesai" tags="" position="350,1600" size="100,100">{=
+](generalApesaiDone|</tw-passagedata><tw-passagedata pid="122" name="convo.VehVeh.leaveApesai" tags="unfinished" position="225,1600" size="100,100">{=
+(metadata: &quot;devNote&quot;, [No content yet.],)
+
+
+_line[&quot;Aw, leaving so soon?&quot;] She asks, with a hint of a pout. _line[&quot;Well, since we&#39;re on an island - you can see, of course - the only way out is via boat, and all boats are down by the wharf. There are all kinds of boats-for-hire down there.&quot;]
+&lt;br&gt;
+($funcInnerConvo: (dm:
+	&quot;&lt;!--A--&gt;\&quot;How do I find these boats-for-hire? I can&#39;t just hop on any boat, can I?\&quot;&quot;, &quot;hopOnAnyBoat&quot;,
+    &quot;&lt;!--B--&gt;\&quot;.\&quot;&quot;, &quot;&quot;,
+))
+&lt;br&gt;
+
+
+&lt;!--hopOnAnyBoat--&gt;
+[
+She snickers.
+&lt;br&gt;
+_line[&quot;Pff, finding boats isn&#39;t the hard part. There are hundreds of them on any given day, many are looking to recouperate docking fees while their main long-haulers wait for shipments. In fact, some of the captains are actively hawking their cabins, harassing passersby. You&#39;ll have no difficulty finding a willing captain.
+&lt;br&gt;
+&quot;But, you&#39;ll need the coin and the papers. That&#39;s the hard part for most.&quot;]
+&lt;br&gt;
+($funcInnerConvo: (dm:
+	&quot;&lt;!--A--&gt;\&quot;Alright, I have the rial, but what kind of papers do I need?\&quot;&quot;, &quot;whatKindPaper&quot;,
+    &quot;&lt;!--B--&gt;\&quot;.\&quot;&quot;, &quot;&quot;,
+))
+&lt;br&gt;
+](hopOnAnyBoat|
+
+
+&lt;!--whatKindPaper--&gt;
+[
+_line[&quot;Oh, that will depend on where you&#39;re headed,&quot;] she explains. _line[&quot;I&#39;m assuming that you mean mainland Askava, yes? Common coastal destinations are Rokhab, Zirab, or Navveh.&quot;]
+&lt;br&gt;
+($funcInnerConvo: (dm:
+    &quot;&lt;!--B--&gt;\&quot;Let&#39;s say I want to go to Rokhab.\&quot;&quot;, &quot;destinationRokhab&quot;,
+    &quot;&lt;!--C--&gt;\&quot;Zirab? As in, the swamps?\&quot;&quot;, &quot;destinationZirab&quot;,
+    &quot;&lt;!--D--&gt;\&quot;People still go to Navveh?\&quot;&quot;, &quot;destinationNavveh&quot;,
+))
+&lt;br&gt;
+](whatKindPaper|
+
+
+&lt;!--destinationRokhab--&gt;
+[
+_line[&quot;Great, most people do, and so the process is much simpler. You&#39;ll only need to show an entry permit down at the wharf, which you can acquire from the courthouse. That&#39;s a few districts here,&quot;] Veh-Veh points downhill at the imposing marble palaces with tall arches. The &quot;courthouse&quot; appears to be a general term for the entirety of administrative complexes.
+&lt;br&gt;
+_line[&quot;The courthouse will only ask for your personal papers and, since you&#39;re already a journeyman, a document of vouchsafe from your university. There are extra fees and permits for pilgrims and merchants, which you are not.
+&lt;br&gt;
+By the way, where in the mainland do you intend to go?&quot;]
+&lt;br&gt;
+($funcInnerConvo: (dm:
+    &quot;&lt;!--A--&gt;\&quot;Sabzam Villa. That&#39;s where I&#39;m supposed to report to.\&quot;&quot;, &quot;destinationSabzam&quot;,
+    &quot;&lt;!--B--&gt;\&quot;I haven&#39;t decided yet. I might just go to other coastal docks - Navveh and Zirab - once I&#39;m already in Rokhab.\&quot;&quot;, &quot;otherDocks&quot;,
+))
+&lt;br&gt;
+](destinationRokhab|
+
+
+&lt;!--destinationZirab--&gt;
+[
+_line[&quot;Yes, many are headed to the wetlands. Usually, they&#39;re soldiers retiring to their farmsteads or explorer trying to reclaim some of the marshes. It&#39;s a harsh place, though. At least you wouldn&#39;t get sick as often out in the desert. Many of these are Yavanids, though. Yavana wants it more than we do, since it&#39;s right next to their border, but you know, Zirab&#39;s still //ours//.&quot;]
+&lt;br&gt;
+($funcInnerConvo: (dm:
+    &quot;&lt;!--A--&gt;\&quot;Of course it is, and what do I need to get to Zirab?\&quot;&quot;, &quot;getToZirab&quot;,
+    &quot;&lt;!--B--&gt;\&quot;And where can I go from Zirab? Does it lead inland?\&quot;&quot;, &quot;otherDocks&quot;,
+    &quot;&lt;!--C--&gt;\&quot;Never mind that, I want to go north, deeper into the mainland.\&quot;&quot;, &quot;destinationSabzam&quot;,
+))
+&lt;br&gt;
+](destinationZirab|
+
+
+&lt;!--getToZirab--&gt;
+[
+_line[&quot;Oh, why would you want-&quot;] She catches herself. _line[&quot;Sorry, I&#39;m being presumptuous. So, to get to Zirab... I&#39;m not entirely sure. I know that you&#39;ll need an entry permit from the courthouse, but I&#39;m not sure about what else.
+&lt;br&gt;
+&quot;Trade with Yavana is tightly controlled. Everything must be done here in Apesai, so people who travel to the border - Zirab - must be cleared by the Ministry of Funds. And by that, I mean the Grand Exchange. You know, to prevent smuggling.&quot;]
+&lt;br&gt;
+You&#39;ll have to figure the rest out yourself - is what she means.
+&lt;br&gt;
+($funcInnerConvo: (dm:
+    &quot;&lt;!--B--&gt;\&quot;Sounds troublesome. If I just want to go deeper inland, then which other dock should I land in?\&quot;&quot;, &quot;destinationSabzam&quot;,
+    &quot;&lt;!--C--&gt;\&quot;Thanks, Veh-Veh. I&#39;ll keep that in mind. Let&#39;s talk about something else.\&quot;&quot;, &quot;leaveApesaiPreDone1&quot;,
+))
+&lt;br&gt;
+](getToZirab|
+
+
+&lt;!--destinationNavveh--&gt;
+[
+_line[&quot;Oh yes, there are few who still go to the ruins - the brave or desperate, usually both,&quot;] she explains with a sigh. _line[&quot;Some think the reward is worth the risk. Others think that the risk //is// the reward. Me, I just don&#39;t see how finding some artifact from the First Colony Era is worth the elemental sickness, anomalies, cave-ins, getting lost in the ruins...
+&lt;br&gt;
+&quot;And then, there are some who aspire to re-establish a Navveh settlement - a Nav-Navveh, so to speak. Unsurprisingly, few takers so far. So to answer your question: Not zero, but not many either.&quot;]
+&lt;br&gt;
+($funcInnerConvo: (dm:
+    &quot;&lt;!--A--&gt;\&quot;And what if I want in? What must I do?\&quot;&quot;, &quot;wantInNavveh&quot;,
+    &quot;&lt;!--B--&gt;\&quot;The mountains have collapsed around that place. It must be quite isolated.\&quot;&quot;, &quot;otherDocks&quot;,
+    &quot;&lt;!--C--&gt;\&quot;Forget Navveh, civilization suits me better than ruins. What if I want to head inland, like Sabzam Villa?\&quot;&quot;, &quot;destinationSabzam&quot;,
+))
+&lt;br&gt;
+](destinationNavveh|
+
+
+&lt;!--wantInNavveh--&gt;
+[
+_line[&quot;Really? Truly? Don&#39;t you have somewhere else- You know what, forget I asked. Every journeyman must have their own path - so I&#39;ve learned,&quot;] she says, reassuring herself. _line[&quot;Don&#39;t mistake my surprise for me not wanting to help - I do. But truth be told, I don&#39;t know what you&#39;ll need to be let into Navveh. An entry permit is a minimum, that&#39;s the same for anyone landing on any coast.
+&lt;br&gt;
+&quot;Perhaps... the Traveler&#39;s Society has been sponsoring adventurers, so maybe they&#39;ll know more. Their local headquarter is here in Apesai. But, that&#39;s the extent of my knowledge. Sorry.&quot;]
+&lt;br&gt;
+($funcInnerConvo: (dm:
+    &quot;&lt;!--B--&gt;\&quot;Membership means dues. More headache. If I just want to go deeper inland, then which other dock should I land in?\&quot;&quot;, &quot;destinationSabzam&quot;,
+    &quot;&lt;!--C--&gt;\&quot;Thanks, Veh-Veh. I&#39;ll try that out. For now,let&#39;s talk about something else.\&quot;&quot;, &quot;leaveApesaiPreDone1&quot;,
+))
+&lt;br&gt;
+](wantInNavveh|
+
+
+&lt;!--otherDocks--&gt;
+[
+Veh-Veh considers what you&#39;ve said, trying to recount the travel routes before saying, _line[&quot;If you want to move between the coasts, you&#39;ll have to do it by boat.
+&lt;br&gt;
+&quot;The Besarag Range, ever since its closing, has also been eroding seaward, blocking off most of the conventional footpaths between Navveh, Rokhab, and Zirab. Not only that, the fringes are practically isolated from the rest of the mainland also due to, again, the Besarag, so you can&#39;t go inland from either Navveh or Zirab, as far as I know.
+&lt;br&gt;
+Only Rokhab, which is at the end of the Rokhrud shipping lane, can lead you anywhere meaningful.&quot;]
+&lt;br&gt;
+($funcInnerConvo: (dm:
+    &quot;&lt;!--A--&gt;\&quot;Rokhab sounds like the commonsensical choice. I&#39;m to report to Sabzam Villa anyway.\&quot;&quot;, &quot;destinationSabzam&quot;,
+    &quot;&lt;!--B--&gt;\&quot;Thanks, Veh-Veh. I&#39;ll try that out. For now,let&#39;s talk about something else.\&quot;&quot;, &quot;leaveApesaiPreDone1&quot;,
+))
+&lt;br&gt;
+](otherDocks|
+
+
+&lt;!--destinationSabzam--&gt;
+[
+_line[&quot;&quot;]
+](destinationSabzam|
+
+
+&lt;!--leaveApesaiPreDone1--&gt;
+[](leaveApesaiPreDone1|</tw-passagedata><tw-passagedata pid="123" name="convo.VehVeh.marketApesai" tags="" position="350,1600" size="100,100">{=
 
 _line[&quot;Haha, really? Oh, you&#39;re serious. Sorry. I thought it was too obvious. Uhm, well, you&#39;d want to visit the market quarter. There&#39;s a Grand Exchange there, can&#39;t miss it.&quot;]
 &lt;br&gt;
