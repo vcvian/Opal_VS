@@ -7,9 +7,20 @@ _line["Aw, leaving so soon?"] She asks, with a hint of a pout. _line["Well, sinc
 <br>
 ($funcInnerConvo: (dm:
 	"<!--A-->\"How do I find these boats-for-hire? I can't just hop on any boat, can I?\"", "hopOnAnyBoat",
-    "<!--B-->\".\"", "",
+    "<!--B-->\"And I suppose I should expect some... bureaucracy?\"", "travelDocument",
 ))
 <br>
+
+
+<!--travelDocument-->
+[
+_line["Right you are,"] she smiles the same way she would when a student correctly answers a question. _line["It is a necessity for a safe coastland. But, for a light traveler like yourself - that is, if you're not in any import-export business, or if you're not traveling with controlled substances and artifacts, or if you do not have intentions of settling in Inner Askava - then not much will be asked of you. Any ship will take you, given papers and coins."]
+<br>
+($funcInnerConvo: (dm:
+	"<!--A-->\"Alright, I have the rial, but what kind of papers do I need?\"", "whatKindPaper",
+))
+<br>
+](travelDocument|
 
 
 <!--hopOnAnyBoat-->
@@ -18,11 +29,10 @@ She snickers.
 <br>
 _line["Pff, finding boats isn't the hard part. There are hundreds of them on any given day, many are looking to recouperate docking fees while their main long-haulers wait for shipments. In fact, some of the captains are actively hawking their cabins, harassing passersby. You'll have no difficulty finding a willing captain.
 <br>
-"But, you'll need the coin and the papers. That's the hard part for most."]
+"But, you'll need the coin and the papers. That's the hard part for most, but perhaps it'll be easier for a journeying magus."]
 <br>
 ($funcInnerConvo: (dm:
 	"<!--A-->\"Alright, I have the rial, but what kind of papers do I need?\"", "whatKindPaper",
-    "<!--B-->\".\"", "",
 ))
 <br>
 ](hopOnAnyBoat|
@@ -43,7 +53,7 @@ _line["Oh, that will depend on where you're headed,"] she explains. _line["I'm a
 
 <!--destinationRokhab-->
 [
-_line["Great, most people do, and so the process is much simpler. You'll only need to show an entry permit down at the wharf, which you can acquire from the courthouse. That's a few districts here,"] Veh-Veh points downhill at the imposing marble palaces with tall arches. The "courthouse" appears to be a general term for the entirety of administrative complexes.
+_line["Great, most people do, and so the process is much simpler. You'll only need to show an entry permit down at the wharf, which you can acquire from the courthouse. That's a few districts from here,"] Veh-Veh points downhill at the imposing marble palaces with tall arches. The "courthouse" appears to be a general term for the entirety of administrative complexes.
 <br>
 _line["The courthouse will only ask for your personal papers and, since you're already a journeyman, a document of vouchsafe from your university. There are extra fees and permits for pilgrims and merchants, which you are not.
 <br>
@@ -62,7 +72,7 @@ By the way, where in the mainland do you intend to go?"]
 _line["Yes, many are headed to the wetlands. Usually, they're soldiers retiring to their farmsteads or explorer trying to reclaim some of the marshes. It's a harsh place, though. At least you wouldn't get sick as often out in the desert. Many of these are Yavanids, though. Yavana wants it more than we do, since it's right next to their border, but you know, Zirab's still //ours//."]
 <br>
 ($funcInnerConvo: (dm:
-    "<!--A-->\"Of course it is, and what do I need to get to Zirab?\"", "getToZirab",
+    "<!--A-->\"Of course it is. And what do I need to get to Zirab?\"", "getToZirab",
     "<!--B-->\"And where can I go from Zirab? Does it lead inland?\"", "otherDocks",
     "<!--C-->\"Never mind that, I want to go north, deeper into the mainland.\"", "destinationSabzam",
 ))
@@ -119,12 +129,14 @@ _line["Really? Truly? Don't you have somewhere else- You know what, forget I ask
 [
 Veh-Veh considers what you've said, trying to recount the travel routes before saying, _line["If you want to move between the coasts, you'll have to do it by boat.
 <br>
-"The Besarag Range, ever since its closing, has also been eroding seaward, blocking off most of the conventional footpaths between Navveh, Rokhab, and Zirab. Not only that, the fringes are practically isolated from the rest of the mainland also due to, again, the Besarag, so you can't go inland from either Navveh or Zirab, as far as I know.
+"Although the Besarag's closing happened many centuries ago, the mountains haven't settled yet. Every year, they erode a bit more, moving seaward, blocking off most of the conventional footpaths between Navveh, Rokhab, and Zirab.
 <br>
-Only Rokhab, which is at the end of the Rokhrud shipping lane, can lead you anywhere meaningful."]
+"Not only that, the fringe coasts are practically isolated from the rest of the mainland also due to, again, the Besarag, so you can't go inland from either Navveh or Zirab, as far as I know.
+<br>
+"Only Rokhab, which is at the end of the Rokhrud shipping lane, can lead you anywhere meaningful."]
 <br>
 ($funcInnerConvo: (dm:
-    "<!--A-->\"Rokhab sounds like the commonsensical choice. I'm to report to Sabzam Villa anyway.\"", "destinationSabzam",
+    "<!--A-->\"Alright, Rokhab sounds like the commonsensical choice. I'm to report to Sabzam Villa anyway.\"", "destinationSabzam",
     "<!--B-->\"Thanks, Veh-Veh. I'll try that out. For now,let's talk about something else.\"", "leaveApesaiPreDone1",
 ))
 <br>
@@ -133,9 +145,31 @@ Only Rokhab, which is at the end of the Rokhrud shipping lane, can lead you anyw
 
 <!--destinationSabzam-->
 [
-_line[""]
+_line["Oh yes, then it'll make the most sense to dock at Rokhab if you're intended for Sabzam or anywhere inside Askava proper for that matter.
+<br>
+"Landing in Rokhab only requires an entry permit, which you can apply for at the Apesai Courthouse. It'll only take a few days. I'd know - I help my teachers out with their applications all the time.
+<br>
+"When you're in Rokhab, you'll want to follow the Rokhrud river up north until you reach Sabzam Villa. That stretch - Apesai, Rokhab, Sabzam - takes up the majority of traffic in Askava. It's well-guarded and temperate. Beyond that is only mountains and deserts.
+<br>
+"If there's ever an oft-tread path in the coastal wildlands, that would be it."]
+<br>
+Get a permit from the courthouse, pay for a boat, land in Rokhab, then follow the river north: This is the manner by which one enters Askava.
+<br>
+($funcInnerConvo: (dm:
+    "<!--A-->\"I see. I have enough for a mental picture now. Thank you, Veh-Veh.\"", "leaveApesaiPreDone1",
+))
+<br>
 ](destinationSabzam|
 
 
 <!--leaveApesaiPreDone1-->
-[](leaveApesaiPreDone1|
+[
+_line["Of course, glad to be of help. Just remember that the immigration office only receives applicants on work days, so avoid Zamruz and Khurruz."]
+<br>
+Just like anywhere else in Nurandah.
+<br>
+_line["So, is there anything else?"]
+<br>
+($funcInnerConvo: $stuff's convoChoices)
+<br>
+](leaveApesaiPreDone1|

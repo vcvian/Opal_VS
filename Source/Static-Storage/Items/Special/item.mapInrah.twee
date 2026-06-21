@@ -23,7 +23,7 @@ Upon unfurling the parchment, an (cycling-link: "meticulous yet idiosyncratic(hi
 On one corner is the title in beautiful cursive: ''"Description of Nurrah Rostak, Southernmost Division of Askava Dahak of Nurandah"''. And in the opposite corner are initials in red ink - a name and self-style - standing for ''"Nav-Inrah, Independent Adventurer"''.
 <br>
 
-Most settlements in the Nurrah Coastlands follow from Apesai up north along (cycling-link: "the Rokhrud river(hide:?Rokhrud)",  "the Rokhrud river(show:?Rokhrud)")[, whose banks accounts for some of Askava's most fertile (or rather, least arid) lands. The Rokhrud's furthest sources are in the heights of Daabrag Range in Inner Askava, pouring south through Garsudrah rostak, growing larger with tributaries from the Besarag, and finally pouring out into the Nurrah Sea. The Rokhrud is a vital channel of transportation for trade goods coming from Inner Askava](Rokhrud|.
+Most settlements in the Nurrah Coastlands follow from Apesai up north along (cycling-link: "the Rokhrud river(hide:?Rokhrud)",  "the Rokhrud river(show:?Rokhrud)")[, whose banks accounts for some of Askava's most fertile (or rather, least arid) lands. The Rokhrud's furthest sources are in the heights of Andarrag Range in Inner Askava, pouring south through Garsudrah rostak, growing larger with tributaries from the Besarag, and finally pouring out into the Nurrah Sea. The Rokhrud is a vital channel of transportation for trade goods coming from Inner Askava](Rokhrud|.
 <br>
 The major settlements, from south to north, are:
 
@@ -42,7 +42,7 @@ Outside of the Rokhrud axis, there are two other major inland settlements, thoug
 <ol start="5">
 <li>To the very west end of the coastline, where the mountain pushes against the sea, is the isolated forests of (cycling-link: "''Old Navveh(hide:?NavvehShort)''", "''Old Navveh(show:?NavvehShort)''")[ - the Ruined City. Next to it is a label pointing to the left edge of the map, which says, "Kudkuch dahak" - the Nurandah heartlands beyond, seperated from Askava by impassable mountains](NavvehShort|.</li>
 
-<li>On the opposite end of the coastline, in the south-eastern quadrant, where the Rokhrud delta divides endlessly, are the swamps of (cycling-link: "''Zirab(hide:?ZirabShort)''","''Zirab(show:?ZirabShort)''")[. The wetland continues off the right edge of the map, which terminates with the word "Yavana" - our eastern neighbor](ZirabShort|.</li>
+<li>On the opposite end of the coastline, in the south-eastern quadrant, are the swamps of (cycling-link: "''Zirab(hide:?ZirabShort)''","''Zirab(show:?ZirabShort)''")[. The wetland continues off the right edge of the map, which terminates with the word "Yavana" - our eastern neighbor](ZirabShort|.</li>
 </ol>
 
 $cssDesc[Having ''(print: (passage: "item.mapInrah")'s id)'' makes you more likely to succeed at exploring the settlements of the Nurrah Coastlands. However, since the map is so detailed, it is difficult to decipher without reference. You need to be out and about for it to make sense.]

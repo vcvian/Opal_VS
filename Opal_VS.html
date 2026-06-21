@@ -71,7 +71,7 @@ hr {
   100% {
     background-position: 0% center;
   }
-}</style><script role="script" id="twine-user-script" type="text/twine-javascript"></script><tw-tag name="footer" color="yellow"></tw-tag><tw-tag name="header" color="yellow"></tw-tag><tw-tag name="static-storage" color="yellow"></tw-tag><tw-tag name="test" color="blue"></tw-tag><tw-tag name="topic" color="purple"></tw-tag><tw-tag name="effect" color="yellow"></tw-tag><tw-tag name="book" color="yellow"></tw-tag><tw-tag name="startup" color="orange"></tw-tag><tw-tag name="stay" color="yellow"></tw-tag><tw-tag name="storylet" color="blue"></tw-tag><tw-tag name="sublocation" color="green"></tw-tag><tw-tag name="traveling" color="purple"></tw-tag><tw-tag name="UI" color="orange"></tw-tag><tw-passagedata pid="1" name="AA. Books, Reading &amp; Formulae" tags="startup" position="100,100" size="100,100">{=
+}</style><script role="script" id="twine-user-script" type="text/twine-javascript"></script><tw-tag name="effect" color="yellow"></tw-tag><tw-tag name="footer" color="yellow"></tw-tag><tw-tag name="static-storage" color="yellow"></tw-tag><tw-tag name="traveling" color="purple"></tw-tag><tw-tag name="UI" color="orange"></tw-tag><tw-tag name="book" color="yellow"></tw-tag><tw-tag name="stay" color="yellow"></tw-tag><tw-tag name="storylet" color="blue"></tw-tag><tw-tag name="sublocation" color="green"></tw-tag><tw-tag name="test" color="blue"></tw-tag><tw-tag name="topic" color="purple"></tw-tag><tw-tag name="header" color="yellow"></tw-tag><tw-tag name="startup" color="orange"></tw-tag><tw-passagedata pid="1" name="AA. Books, Reading &amp; Formulae" tags="startup" position="100,100" size="100,100">{=
 &lt;!--Macros related to books and reading--&gt;
 
 (set: $readingNav to (dm:
@@ -6242,9 +6242,20 @@ _line[&quot;Aw, leaving so soon?&quot;] She asks, with a hint of a pout. _line[&
 &lt;br&gt;
 ($funcInnerConvo: (dm:
 	&quot;&lt;!--A--&gt;\&quot;How do I find these boats-for-hire? I can&#39;t just hop on any boat, can I?\&quot;&quot;, &quot;hopOnAnyBoat&quot;,
-    &quot;&lt;!--B--&gt;\&quot;.\&quot;&quot;, &quot;&quot;,
+    &quot;&lt;!--B--&gt;\&quot;And I suppose I should expect some... bureaucracy?\&quot;&quot;, &quot;travelDocument&quot;,
 ))
 &lt;br&gt;
+
+
+&lt;!--travelDocument--&gt;
+[
+_line[&quot;Right you are,&quot;] she smiles the same way she would when a student correctly answers a question. _line[&quot;It is a necessity for a safe coastland. But, for a light traveler like yourself - that is, if you&#39;re not in any import-export business, or if you&#39;re not traveling with controlled substances and artifacts, or if you do not have intentions of settling in Inner Askava - then not much will be asked of you. Any ship will take you, given papers and coins.&quot;]
+&lt;br&gt;
+($funcInnerConvo: (dm:
+	&quot;&lt;!--A--&gt;\&quot;Alright, I have the rial, but what kind of papers do I need?\&quot;&quot;, &quot;whatKindPaper&quot;,
+))
+&lt;br&gt;
+](travelDocument|
 
 
 &lt;!--hopOnAnyBoat--&gt;
@@ -6253,11 +6264,10 @@ She snickers.
 &lt;br&gt;
 _line[&quot;Pff, finding boats isn&#39;t the hard part. There are hundreds of them on any given day, many are looking to recouperate docking fees while their main long-haulers wait for shipments. In fact, some of the captains are actively hawking their cabins, harassing passersby. You&#39;ll have no difficulty finding a willing captain.
 &lt;br&gt;
-&quot;But, you&#39;ll need the coin and the papers. That&#39;s the hard part for most.&quot;]
+&quot;But, you&#39;ll need the coin and the papers. That&#39;s the hard part for most, but perhaps it&#39;ll be easier for a journeying magus.&quot;]
 &lt;br&gt;
 ($funcInnerConvo: (dm:
 	&quot;&lt;!--A--&gt;\&quot;Alright, I have the rial, but what kind of papers do I need?\&quot;&quot;, &quot;whatKindPaper&quot;,
-    &quot;&lt;!--B--&gt;\&quot;.\&quot;&quot;, &quot;&quot;,
 ))
 &lt;br&gt;
 ](hopOnAnyBoat|
@@ -6278,7 +6288,7 @@ _line[&quot;Oh, that will depend on where you&#39;re headed,&quot;] she explains
 
 &lt;!--destinationRokhab--&gt;
 [
-_line[&quot;Great, most people do, and so the process is much simpler. You&#39;ll only need to show an entry permit down at the wharf, which you can acquire from the courthouse. That&#39;s a few districts here,&quot;] Veh-Veh points downhill at the imposing marble palaces with tall arches. The &quot;courthouse&quot; appears to be a general term for the entirety of administrative complexes.
+_line[&quot;Great, most people do, and so the process is much simpler. You&#39;ll only need to show an entry permit down at the wharf, which you can acquire from the courthouse. That&#39;s a few districts from here,&quot;] Veh-Veh points downhill at the imposing marble palaces with tall arches. The &quot;courthouse&quot; appears to be a general term for the entirety of administrative complexes.
 &lt;br&gt;
 _line[&quot;The courthouse will only ask for your personal papers and, since you&#39;re already a journeyman, a document of vouchsafe from your university. There are extra fees and permits for pilgrims and merchants, which you are not.
 &lt;br&gt;
@@ -6297,7 +6307,7 @@ By the way, where in the mainland do you intend to go?&quot;]
 _line[&quot;Yes, many are headed to the wetlands. Usually, they&#39;re soldiers retiring to their farmsteads or explorer trying to reclaim some of the marshes. It&#39;s a harsh place, though. At least you wouldn&#39;t get sick as often out in the desert. Many of these are Yavanids, though. Yavana wants it more than we do, since it&#39;s right next to their border, but you know, Zirab&#39;s still //ours//.&quot;]
 &lt;br&gt;
 ($funcInnerConvo: (dm:
-    &quot;&lt;!--A--&gt;\&quot;Of course it is, and what do I need to get to Zirab?\&quot;&quot;, &quot;getToZirab&quot;,
+    &quot;&lt;!--A--&gt;\&quot;Of course it is. And what do I need to get to Zirab?\&quot;&quot;, &quot;getToZirab&quot;,
     &quot;&lt;!--B--&gt;\&quot;And where can I go from Zirab? Does it lead inland?\&quot;&quot;, &quot;otherDocks&quot;,
     &quot;&lt;!--C--&gt;\&quot;Never mind that, I want to go north, deeper into the mainland.\&quot;&quot;, &quot;destinationSabzam&quot;,
 ))
@@ -6354,12 +6364,14 @@ _line[&quot;Really? Truly? Don&#39;t you have somewhere else- You know what, for
 [
 Veh-Veh considers what you&#39;ve said, trying to recount the travel routes before saying, _line[&quot;If you want to move between the coasts, you&#39;ll have to do it by boat.
 &lt;br&gt;
-&quot;The Besarag Range, ever since its closing, has also been eroding seaward, blocking off most of the conventional footpaths between Navveh, Rokhab, and Zirab. Not only that, the fringes are practically isolated from the rest of the mainland also due to, again, the Besarag, so you can&#39;t go inland from either Navveh or Zirab, as far as I know.
+&quot;Although the Besarag&#39;s closing happened many centuries ago, the mountains haven&#39;t settled yet. Every year, they erode a bit more, moving seaward, blocking off most of the conventional footpaths between Navveh, Rokhab, and Zirab.
 &lt;br&gt;
-Only Rokhab, which is at the end of the Rokhrud shipping lane, can lead you anywhere meaningful.&quot;]
+&quot;Not only that, the fringe coasts are practically isolated from the rest of the mainland also due to, again, the Besarag, so you can&#39;t go inland from either Navveh or Zirab, as far as I know.
+&lt;br&gt;
+&quot;Only Rokhab, which is at the end of the Rokhrud shipping lane, can lead you anywhere meaningful.&quot;]
 &lt;br&gt;
 ($funcInnerConvo: (dm:
-    &quot;&lt;!--A--&gt;\&quot;Rokhab sounds like the commonsensical choice. I&#39;m to report to Sabzam Villa anyway.\&quot;&quot;, &quot;destinationSabzam&quot;,
+    &quot;&lt;!--A--&gt;\&quot;Alright, Rokhab sounds like the commonsensical choice. I&#39;m to report to Sabzam Villa anyway.\&quot;&quot;, &quot;destinationSabzam&quot;,
     &quot;&lt;!--B--&gt;\&quot;Thanks, Veh-Veh. I&#39;ll try that out. For now,let&#39;s talk about something else.\&quot;&quot;, &quot;leaveApesaiPreDone1&quot;,
 ))
 &lt;br&gt;
@@ -6368,12 +6380,34 @@ Only Rokhab, which is at the end of the Rokhrud shipping lane, can lead you anyw
 
 &lt;!--destinationSabzam--&gt;
 [
-_line[&quot;&quot;]
+_line[&quot;Oh yes, then it&#39;ll make the most sense to dock at Rokhab if you&#39;re intended for Sabzam or anywhere inside Askava proper for that matter.
+&lt;br&gt;
+&quot;Landing in Rokhab only requires an entry permit, which you can apply for at the Apesai Courthouse. It&#39;ll only take a few days. I&#39;d know - I help my teachers out with their applications all the time.
+&lt;br&gt;
+&quot;When you&#39;re in Rokhab, you&#39;ll want to follow the Rokhrud river up north until you reach Sabzam Villa. That stretch - Apesai, Rokhab, Sabzam - takes up the majority of traffic in Askava. It&#39;s well-guarded and temperate. Beyond that is only mountains and deserts.
+&lt;br&gt;
+&quot;If there&#39;s ever an oft-tread path in the coastal wildlands, that would be it.&quot;]
+&lt;br&gt;
+Get a permit from the courthouse, pay for a boat, land in Rokhab, then follow the river north: This is the manner by which one enters Askava.
+&lt;br&gt;
+($funcInnerConvo: (dm:
+    &quot;&lt;!--A--&gt;\&quot;I see. I have enough for a mental picture now. Thank you, Veh-Veh.\&quot;&quot;, &quot;leaveApesaiPreDone1&quot;,
+))
+&lt;br&gt;
 ](destinationSabzam|
 
 
 &lt;!--leaveApesaiPreDone1--&gt;
-[](leaveApesaiPreDone1|</tw-passagedata><tw-passagedata pid="123" name="convo.VehVeh.marketApesai" tags="" position="350,1600" size="100,100">{=
+[
+_line[&quot;Of course, glad to be of help. Just remember that the immigration office only receives applicants on work days, so avoid Zamruz and Khurruz.&quot;]
+&lt;br&gt;
+Just like anywhere else in Nurandah.
+&lt;br&gt;
+_line[&quot;So, is there anything else?&quot;]
+&lt;br&gt;
+($funcInnerConvo: $stuff&#39;s convoChoices)
+&lt;br&gt;
+](leaveApesaiPreDone1|</tw-passagedata><tw-passagedata pid="123" name="convo.VehVeh.marketApesai" tags="" position="350,1600" size="100,100">{=
 
 _line[&quot;Haha, really? Oh, you&#39;re serious. Sorry. I thought it was too obvious. Uhm, well, you&#39;d want to visit the market quarter. There&#39;s a Grand Exchange there, can&#39;t miss it.&quot;]
 &lt;br&gt;
@@ -10035,7 +10069,7 @@ Upon unfurling the parchment, an (cycling-link: &quot;meticulous yet idiosyncrat
 On one corner is the title in beautiful cursive: &#39;&#39;&quot;Description of Nurrah Rostak, Southernmost Division of Askava Dahak of Nurandah&quot;&#39;&#39;. And in the opposite corner are initials in red ink - a name and self-style - standing for &#39;&#39;&quot;Nav-Inrah, Independent Adventurer&quot;&#39;&#39;.
 &lt;br&gt;
 
-Most settlements in the Nurrah Coastlands follow from Apesai up north along (cycling-link: &quot;the Rokhrud river(hide:?Rokhrud)&quot;,  &quot;the Rokhrud river(show:?Rokhrud)&quot;)[, whose banks accounts for some of Askava&#39;s most fertile (or rather, least arid) lands. The Rokhrud&#39;s furthest sources are in the heights of Daabrag Range in Inner Askava, pouring south through Garsudrah rostak, growing larger with tributaries from the Besarag, and finally pouring out into the Nurrah Sea. The Rokhrud is a vital channel of transportation for trade goods coming from Inner Askava](Rokhrud|.
+Most settlements in the Nurrah Coastlands follow from Apesai up north along (cycling-link: &quot;the Rokhrud river(hide:?Rokhrud)&quot;,  &quot;the Rokhrud river(show:?Rokhrud)&quot;)[, whose banks accounts for some of Askava&#39;s most fertile (or rather, least arid) lands. The Rokhrud&#39;s furthest sources are in the heights of Andarrag Range in Inner Askava, pouring south through Garsudrah rostak, growing larger with tributaries from the Besarag, and finally pouring out into the Nurrah Sea. The Rokhrud is a vital channel of transportation for trade goods coming from Inner Askava](Rokhrud|.
 &lt;br&gt;
 The major settlements, from south to north, are:
 
@@ -10054,7 +10088,7 @@ Outside of the Rokhrud axis, there are two other major inland settlements, thoug
 &lt;ol start=&quot;5&quot;&gt;
 &lt;li&gt;To the very west end of the coastline, where the mountain pushes against the sea, is the isolated forests of (cycling-link: &quot;&#39;&#39;Old Navveh(hide:?NavvehShort)&#39;&#39;&quot;, &quot;&#39;&#39;Old Navveh(show:?NavvehShort)&#39;&#39;&quot;)[ - the Ruined City. Next to it is a label pointing to the left edge of the map, which says, &quot;Kudkuch dahak&quot; - the Nurandah heartlands beyond, seperated from Askava by impassable mountains](NavvehShort|.&lt;/li&gt;
 
-&lt;li&gt;On the opposite end of the coastline, in the south-eastern quadrant, where the Rokhrud delta divides endlessly, are the swamps of (cycling-link: &quot;&#39;&#39;Zirab(hide:?ZirabShort)&#39;&#39;&quot;,&quot;&#39;&#39;Zirab(show:?ZirabShort)&#39;&#39;&quot;)[. The wetland continues off the right edge of the map, which terminates with the word &quot;Yavana&quot; - our eastern neighbor](ZirabShort|.&lt;/li&gt;
+&lt;li&gt;On the opposite end of the coastline, in the south-eastern quadrant, are the swamps of (cycling-link: &quot;&#39;&#39;Zirab(hide:?ZirabShort)&#39;&#39;&quot;,&quot;&#39;&#39;Zirab(show:?ZirabShort)&#39;&#39;&quot;)[. The wetland continues off the right edge of the map, which terminates with the word &quot;Yavana&quot; - our eastern neighbor](ZirabShort|.&lt;/li&gt;
 &lt;/ol&gt;
 
 $cssDesc[Having &#39;&#39;(print: (passage: &quot;item.mapInrah&quot;)&#39;s id)&#39;&#39; makes you more likely to succeed at exploring the settlements of the Nurrah Coastlands. However, since the map is so detailed, it is difficult to decipher without reference. You need to be out and about for it to make sense.]
