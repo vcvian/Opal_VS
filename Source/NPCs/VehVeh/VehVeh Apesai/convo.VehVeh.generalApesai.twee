@@ -1,6 +1,9 @@
 :: convo.VehVeh.generalApesai
 {=
 
+<!--award score-->
+(set: _score to it + 1)
+
 <!--_generalApesai-->
 
 _line["Just... //generally//? Heh, that's not so different from asking a fish to describe water. I've lived on this island nearly my whole life. Can't even remember the Nurandah heartlands enough to compare; I was tiny when I left. So, I don't know where to begin."]

@@ -1,6 +1,9 @@
 :: convo.VehVeh.doApesai
 {=
 
+<!--award score-->
+(set: _score to it + 1)
+
 _line["Ah, that's... well, I can only speak from my perspective. The wharf is a great place to take a stroll. It has a great view of the ocean. Not as great as the lighthouse's, but I'd go down there from time to time if I miss seeing people. But then, I'd remember why I prefer to stay up here..."]
 <br>
 ($funcInnerConvo: (dm:

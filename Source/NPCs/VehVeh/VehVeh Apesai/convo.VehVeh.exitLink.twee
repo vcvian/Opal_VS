@@ -1,3 +1,5 @@
-:: convo.VehVeh.exitLink [unfinished]
+:: convo.VehVeh.exitLink
+{=
 
-(metadata: "devNote", [No content yet.],)
+_line["Right. I hope you're not having too hard of a time. Apesai can be a lot, especially for newcomers,"] Veh-Veh chuckles nervously. She knows that she is too honest to be any sort of travel agent.
+(show:?done)

@@ -1,6 +1,8 @@
 :: convo.VehVeh.marketApesai
-
 {=
+
+<!--award score-->
+(set: _score to it + 1)
 
 _line["Haha, really? Oh, you're serious. Sorry. I thought it was too obvious. Uhm, well, you'd want to visit the market quarter. There's a Grand Exchange there, can't miss it."]
 <br>

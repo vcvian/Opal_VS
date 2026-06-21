@@ -1,7 +1,8 @@
-:: convo.VehVeh.leaveApesai [unfinished]
+:: convo.VehVeh.leaveApesai
 {=
-(metadata: "devNote", [No content yet.],)
 
+<!--award score-->
+(set: _score to it + 1)
 
 _line["Aw, leaving so soon?"] She asks, with a hint of a pout. _line["Well, since we're on an island - you can see, of course - the only way out is via boat, and all boats are down by the wharf. There are all kinds of boats-for-hire down there."]
 <br>

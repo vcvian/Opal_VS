@@ -53,7 +53,11 @@ _line["Erm... sure, I'm not the best tour guide - barely get out of the lighthou
 
 ($funcSpindleConvo: $stuff's convoChoices, 2)
 
-<!--first initialize, only then will the (display:) be of the right scope-->
+
+<!--initialize _score to track how much has been discussed-->
+(set: _score to 0)
+
+<!--temp vars, which are actually just (display:) commands-->
 
 <!--_generalApesai-->
 (set: _generalApesai to (display: "convo.VehVeh.generalApesai"))
@@ -71,21 +75,101 @@ _line["Erm... sure, I'm not the best tour guide - barely get out of the lighthou
 (set: _leaveApesai to (display: "convo.VehVeh.leaveApesai"))<!--end of _leaveApesai-->
 
 
-<!--_exitLink-->
+<!--_exitLink. Note: this last temp var MUST ALWAYS be named "_exitLink" because the spindle macro expects that exact name-->
 (set: _exitLink to (display: "convo.VehVeh.exitLink"))<!--end of _exitLink-->
 
 
 <!--main content ends-->
 
-|done)[
-<!--clear $stuff-->
-(set: $stuff to (dm:))
+
+|done)[{
+
+<!--initialize temp vars-->
+(set: _rewardOrNot to false)
+(set: _thanksLinkText to "\"No, I understand. I'll figure things out, eventually.\"")
+
+<!--reward if _score is 2 and up-->
+(if: _score > 1)[{
+     (set: _rewardOrNot to true)
+     (set: _thanksLinkText to "\"Please, this has been very enlightening. I do feel like I have a better grasp of Apesai.\"")
+}]
+
+<br>
+
+<!--reward tip-->
+(if: _rewardOrNot is true)[$cssDesc[The more you ask, the better you understand. You temporarily gain ''(print:_score -1 ) (print: (passage: "temp.impressionApesai")'s id)'', which increases your chances when exploring the island-city.]
+<br>
+]
+---
+
+(link: _thanksLinkText)[{
+     ($funcAddStoryletCooldown: (passage:)'s name)
+     ($funcTalked:)
+     (if: _rewardOrNot is true)[($funcTempGainLoss: "impressionApesai", _score - 1)]
+     (goto: "VehVeh Apesai (exit)")
+}]
+
+
+}]<!--end done-->
+
+]<!--end child-->
+]<!--end parent-->
+
+
+:: VehVeh Apesai (exit)
+{=
+
+(metadata:
+"NPC", "VehVeh",
+"title", "Asking Veh-Veh About Apesai",
+"topic", "\"I want to ask you something about this island-city.\"",
+"topicDetail", "What's there to do, to see on this rock, how to get off of it, and so on.",
+"talked", (a:),
+
+)
+
+$cssColumnParent[
+
+$cssColumnChild[
+	$cssBox[
+    	($funcImage: (passage: "S: VehVeh")'s img)
+         $cssBoxItem[''(print: (passage: "T: VehVeh Apesai")'s title )''<br>(print: (passage: "T: VehVeh Apesai")'s topicDetail)]
+    ]
+]
+
+$cssColumnChild[
+
+<!--VehVehLine short hand-->
+(set: _line to (hook: "VehVehLine"))
+
+<!--setting up the default _textBusy and _textExit-->
+(set: _textBusy to "Enough talking for today.")
+(set: _textExit to "Never mind, let's save it for some other time. Thank you, and goodbye, Veh-Veh.")
+
+<!--determine energy level-->
+(set: _busy to false)
+(if: $char's VehVeh's energy's 1st <= 0)[{
+     (set: _busy to true)
+     (set: _textExit to "Yes, of course, I've taken enough of your time. Thank you for enlightening me about Apesai. Goodbye, Veh-Veh.")
+}]
+
+<!--still some energy left-->
+(if: _busy is false)[{
+_line["Anyways, enough of that. Let's talk about something else, if you still want to,"] Veh-Veh offers. Talking is probably a welcome diversion for her also.
+}]
+
+<!--no more energy-->
+(else:)[{
+Veh-Veh seems distracted.
+<br>
+_line["Erm, by the way, if you don't mind, can we pick this up some other time? I have to... ugh, I don't even want to think about what I still have to do."]
+}]
+
 <br>
 ---
-<ol>
-($funcNPCTopics: "Veh-Veh trails off. The mind can draw blanks when one is too familiar with the place.", "Thanks anyway, Veh-Veh. Bye.")
-</ol>
-]<!--end done-->
 
+<ol>
+($funcNPCTopics: _textBusy, _textExit)
+</ol>
 ]<!--end child-->
 ]<!--end parent-->
