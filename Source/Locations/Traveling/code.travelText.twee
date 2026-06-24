@@ -1,0 +1,29 @@
+:: code.travelTextDisplay
+
+{=
+
+<!--
+1. Determine intinerary via $place's travelingFrom and $place's travelingTo.
+2. Determine if we are near depart, in the middle, or near arrival.
+3. Get text from table.travelText
+-->
+
+<!--output distance based on itinerary-->
+(set: _travelDistance to ($funcGetDistance: $place's travelingFrom, $place's travelingTo))
+
+<!--determine _travelProgress-->
+(set: _travelProgress to $char's player's timerQuest's traveling's timer)
+
+<!--Figure out near or far-->
+(set: _where to "")
+(cond:
+    (_travelDistance - _travelProgress) < 1, [(set: _where to "nearDepart")],
+    _travelProgress <= 1, [(set: _where to "nearArrive")],
+    [(set: _where to "middle")]
+)
+
+<!--display text from table.travelText-->
+(set: _travelText to (passage: "table.travelText"))
+(if: _where is "nearDepart")[(print: _travelText's ($place's travelingFrom)'s nearDepart)]
+(elseif: _where is "nearArrive")[(print: _travelText's ($place's travelingTo)'s nearArrive)]
+(else:)[(print: _travelText's ($place's travelingFrom)'s middle)]

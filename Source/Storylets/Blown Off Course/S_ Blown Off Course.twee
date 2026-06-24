@@ -19,7 +19,7 @@ and $dice >= 60
 and $char's player's timerCooldown does not contain "S: Blown Off Course"
 )
 (exclusivity: 1)
-(metadata: "title", "Blown Off Course", "cardDesc", "Strong winds are blowing your sails, in a bad way.", "img", "D:/GHE/Site/VCV(html)/Opal/Assets/Weather/weather_Windy.png", "cooldown", 3,)
+(metadata: "title", "Blown Off Course", "cardDesc", "Strong winds are blowing your sails, in a bad way.", "img", "Assets/Weather/weather_Windy.png", "cooldown", 3,)
 
 <h1>(print: (passage:)'s title )</h1>
 <br>

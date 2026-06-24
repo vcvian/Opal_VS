@@ -4,7 +4,7 @@
 <!--award score-->
 (set: _score to it + 1)
 
-_line["Ah, that's... well, I can only speak from my perspective. The wharf is a great place to take a stroll. It has a great view of the ocean. Not as great as the lighthouse's, but I'd go down there from time to time if I miss seeing people. But then, I'd remember why I prefer to stay up here..."]
+_line["Ah, that's... well, I can only speak from my perspective. The wharf is a great place to take a stroll. The local snakecats love gathering there; it has a great view of the ocean. Not as great as the lighthouse's, but I'd go down there from time to time if I miss seeing people. But then, I'd remember why I prefer to stay up here..."]
 <br>
 ($funcInnerConvo: (dm:
 	"<!--A-->\"That's it?\"", "doApesaiThatsIt",
@@ -14,7 +14,7 @@ _line["Ah, that's... well, I can only speak from my perspective. The wharf is a 
 
 <!--doApesaiThatsIt-->
 [
-_line["No..."] she says, a little embarrassed. _line["You can also walk around the city, take in the sights. It's a big city, and old, too. There's a lot of history. Sometimes, whenever I'm running errands, I'd take extra long just to gawk at the architecture, haha."]
+_line["No..."] she says, a little embarrassed. _line["You can also walk around the city, take in the sights. It's a big city, and old, too. There's a lot of history. Sometimes, whenever I'm running errands, I'd take extra long just to gawk at the architecture. And the snakecats, haha."]
 <br>
 Not so long ago, you were living a quasi-monastic life also.
 <br>
@@ -150,11 +150,11 @@ The Reclamation is proving to be quite lucrative for those who had a initiative 
 
 <!--shameDestination-->
 [
-_line["Yes, perhaps, but it //is// an island. Apesai is close to losing most of its wilderness to the sprawl already,"] Veh-Veh tsks. _line["In some way, we're even lucky that they are either bound for Inner Askava, in the pilgrims' case - the Reclaimers, I mean - or they will be on their way soon, in the merchants' case. The governor is flirting with the idea of demolishing the First-Colony oldtown to make more room. That'd be a worse shame."]
+_line["Yes, perhaps, but it //is// an island. Apesai is close to losing most of its wilderness to the sprawl already,"] Veh-Veh tsks. _line["In some way, we're even lucky that they are either bound for Inner Askava, in the pilgrims' case - the Reclaimers, I mean - or they will be on their way soon, in the merchants' case. The governor is flirting with the idea of demolishing the First-Colony oldtown to make more room. The Yavanids there are not happy, and so are our poorer citizens."]
 <br>
 ($funcInnerConvo: (dm:
 	"<!--A-->\"In the name of progress...\"", "inProgressName",
-    "<!--B-->\"Demolish the Oldtown? And where would people go?\"", "whereWouldGo",
+    "<!--B-->\"Demolish the oldtown? And where would the people go?\"", "whereWouldGo",
     "<!--C-->\"I think so too.\"", "thinkSoToo",
 ))
 <br>
@@ -179,7 +179,7 @@ _line["Inland, I suppose,"] she sighs. _line["Work as a tenant on a Sabzam farm?
 <br>
 Veh-Veh sounds more like she is asking you rather than answering. She wouldn't be privy to the governor's plans anyhow.
 <br>
-_line["That's all I have. Is there anything else you want to talk about?"]
+_line["Anyway, that's all I have. Is there anything else you want to talk about?"]
 (show:?doApesaiDone)
 <br>
 ](whereWouldGo|

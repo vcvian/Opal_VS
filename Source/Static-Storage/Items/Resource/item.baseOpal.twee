@@ -1,4 +1,4 @@
-:: item.baseOpal [static-storage] {"position":"2100,3375","size":"100,100"}
+:: item.baseOpal [static-storage unfinished] {"position":"2100,3375","size":"100,100"}
 <!--Not to be displayed. Only metadata used-->
 
 (metadata:
@@ -8,5 +8,6 @@
     "desc", [The luminous and glowing stone. Crucial to the production of magical artifacts and higher-level alchemy.],
     "tip", [This is used to turn magic into solid artifacts.],
     "gainText", [You have acquired a base opal. Keep it well.],
-    "lossText", [You part ways with the precious stone.]
+    "lossText", [You part ways with the precious stone.],
+    "devNote", [Placeholder text needs replacement. Not clear what it's used for.],
 )

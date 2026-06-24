@@ -125,7 +125,6 @@ _line["Erm... sure, I'm not the best tour guide - barely get out of the lighthou
 "topic", "\"I want to ask you something about this island-city.\"",
 "topicDetail", "What's there to do, to see on this rock, how to get off of it, and so on.",
 "talked", (a:),
-
 )
 
 $cssColumnParent[

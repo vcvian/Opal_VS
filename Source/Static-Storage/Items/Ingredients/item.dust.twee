@@ -1,0 +1,14 @@
+:: item.dust [static-storage]
+{=
+
+(metadata: 
+	"id", [A Pouch of Opal Dust],
+    "key", (a: "ingredient",),
+    "value", (a: 15, 1, 1, 1, 1, 1),
+    "img", "",
+    "desc", [A gut skin pouch of twinkling opal dust. This pearlescent powder is the byproduct of alchemical synthesis. In large-scale workshops, enough of it can be scraped off of machines and reused.],
+    "tip", [A minor alchemical source of ''all elements''.],
+    "gainText", [You hold up the gut skin pouch and gaze at the colors shining through - opal-light. Even the reject, the byproduct carries a sacred splendor.],
+    "lossText", [You empty the pouch's content and sees opal-light twinkling. Dust to dust.]
+
+)

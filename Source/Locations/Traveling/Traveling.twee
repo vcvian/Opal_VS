@@ -7,15 +7,36 @@
 "title", "Traveling",
 )
 
-<h2>(print: (passage:)'s title)</h2>
+<!--update header-->
+($funcUpdateLocation:)
 
-<!--Weather passage-->
-($funcWeatherBox:)
+<h2>(print: (passage:)'s title)</h2>
+$cssColumnParent[
+
+$cssColumnChild[
+	<!--Weather passage-->
+    ($funcWeatherBox:)
+]
+
+$cssColumnChild[
+
+<!--travelText-->
+(display: "code.travelTextDisplay")
 
 <br>
-$cssDesc[You're traveling from (print: $place's travelingFrom) to (print: $place's travelingTo).]
+
+<!--gameplay tip-->
+(set: _travelProgress to $char's player's timerQuest's traveling's timer)
+
+
+$cssDesc[You are traveling from ''(print: $place's travelingFrom)'' to ''(print: $place's travelingTo)''(if: _travelProgress > 0)[ and are about ''(plural: _travelProgress, "day")'' away from your destination.](else:)[, and you have ''arrived''.]
+
+]
+
+
+]<!--end child-->
+]<!--end parent-->
+
 <br>
 ---
-<br>
-<h3>Stories</h3>
 ($funcStorylet:)

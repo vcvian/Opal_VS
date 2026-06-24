@@ -42,7 +42,7 @@ Outside of the Rokhrud axis, there are two other major inland settlements, thoug
 <ol start="5">
 <li>To the very west end of the coastline, where the mountain pushes against the sea, is the isolated forests of (cycling-link: "''Old Navveh(hide:?NavvehShort)''", "''Old Navveh(show:?NavvehShort)''")[ - the Ruined City. Next to it is a label pointing to the left edge of the map, which says, "Kudkuch dahak" - the Nurandah heartlands beyond, seperated from Askava by impassable mountains](NavvehShort|.</li>
 
-<li>On the opposite end of the coastline, in the south-eastern quadrant, are the swamps of (cycling-link: "''Zirab(hide:?ZirabShort)''","''Zirab(show:?ZirabShort)''")[. The wetland continues off the right edge of the map, which terminates with the word "Yavana" - our eastern neighbor](ZirabShort|.</li>
+<li>On the opposite end of the coastline, in the south-eastern quadrant, are the salt marshes of (cycling-link: "''Zirab(hide:?ZirabShort)''","''Zirab(show:?ZirabShort)''")[. The wetland continues off the right edge of the map, which terminates with the word "Yavana" - our eastern neighbor](ZirabShort|.</li>
 </ol>
 
 $cssDesc[Having ''(print: (passage: "item.mapInrah")'s id)'' makes you more likely to succeed at exploring the settlements of the Nurrah Coastlands. However, since the map is so detailed, it is difficult to decipher without reference. You need to be out and about for it to make sense.]
