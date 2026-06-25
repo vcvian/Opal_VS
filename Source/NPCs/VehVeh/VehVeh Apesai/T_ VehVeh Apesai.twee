@@ -1,4 +1,4 @@
-:: T: VehVeh Apesai [topic unfinished] {"position":"6750,1650","size":"100,100"}
+:: T: VehVeh Apesai [topic] {"position":"6750,1650","size":"100,100"}
 {=
 
 (storylet: when
@@ -16,7 +16,6 @@ and $char's player's timerCooldown does not contain "T: VehVeh Apesai"
 "cooldown", 1,
 "talked", (a:),
 "addCode", [],
-"devNote", [Sub "convo." passages are still being written. Consider adding a reward mechanic (impressionApesai).]
 )
 
 $cssColumnParent[

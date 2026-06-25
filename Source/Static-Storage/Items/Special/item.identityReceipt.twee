@@ -1,0 +1,57 @@
+:: item.identityReceipt [static-storage unfinished]
+{=
+
+(metadata: 
+	"id", [Identity Receipt],
+    "key", (a: "document", "legal",),
+    "value", (a: 300, 100, 500, 200, 500, 1000,),
+    "img", "https://thefifthcity.wiki/w/images/3/3f/Currency3_copper.png",
+    "desc", [A paper receipt that verifies that you have paid all of your dues and taxes and are therefore free to travel outside of your dahak of residence. Such receipts are the most common form of identity document in Nurandah.],
+    "tip", [You will be asked to submit this document in various imperial offices.],
+    "gainText", [You pick up the receipt. Such a simple paper, but without it, you are simply not you.],
+    "lossText", [You part ways with the identity receipt. Without it, you feel naked and vulnerable.],
+    "devNote", [No content yet. Replace all desc text.],
+    "content", [{
+<!--main content begins-->
+''LIGHT BLESSES NURANDAH''
+<br>
+''Certification of Acquittance''<br>Pursuant to article serdah-pan of the Imperial Citizen Obligations Statute, year 705.
+<br>
+<br>
+From the Bakho Department of Funds in Kom, thereby the Bakho High Court in Kom and the Imperial Ministry of Funds, and by extension the will and wisdom of Nudankhan,<br>To all clerical offices of Bakho dahak and beyond,
+<br>
+<br>
+We, RIALMAR OF BAKHO, stand as witness that:
+
+<div style="padding: 1em;">//(print: $char's player's customName), born in 1033, student at Bakho University, resident of Kom bandak, Komzam rostak, Bakho dahak, citizen of Nurandah. $cssDesc[(This is followed by a long description of your physical appearance.)]//</div>
+
+has fulfilled all of their fiscal obligations, carries no outstanding debt or warrant, and is in good standing with their community.
+<br>
+To wit, as of the year 1056 of the Third Reclaimer, the following obligations have been cleared:
+
+<div style="padding: 1em;">//
+* Year dah-du tuition: 1,000 (dahsat) rial - (color:red)[PAID] to the Bakho University;
+* Apprentice loan, early settlement: 876 (hashtsat-haftdah-shes) rial - (color:red)[PAID] by benefactor to the Bakho Grand Exchange, Office of Davehkhan Support;
+* Bakho annual residential tax: 300 (sersat) rial - (color:red)[PAID] to the Kom Department of Funds;
+* Guild dues: 0 (hun) rial - (color:red)[NOT APPLICABLE], no guild membership filed;
+* Danur alms: 45 (chardah-pan) rial - (color:red)[WAIVED] by the Kom Department of Funds on account of negligible asset;
+* Administrative fee: 21 (dudah-yek) rial - (color:red)[WAIVED] by the dahakmar of Bakho on account of a general waiver for davehmars (including apprentices, journeymen, and masters);
+//</div>
+
+This document remains valid as a proof of identity and acquittance within the year of issuance and under the condition that no additional income, loan, property, or windfall has been registered beyond what has been listed above.
+<br>
+After the year of issuance, this document will only be valid as a basic proof of identity. It will not be valid as proof of acquittance.
+<br>
+<br>
+Kom, 1056 of the Third Reclaimer,
+<br>Rialmar: Dan-Anparz-Aghar-da-Qud
+<br>
+$cssDesc[There is a blue-wax seal, a sigil with the Sun of Nurandah, styled like a rial-face, indicating one of many provincial departments under the Imperial Ministry of Funds.]
+<br>
+---
+(link: "Put the receipt away.")[(goto: $readingNav's before)]
+<!--end of content-->
+
+    }],
+
+)
