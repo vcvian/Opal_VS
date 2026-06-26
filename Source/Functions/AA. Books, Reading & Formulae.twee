@@ -134,7 +134,7 @@ Types of document:
     <!--_listLegal sub-list-->
     (if: _listLegal's length > 0)[
         <details open>
-        <summary>''Legal Papers:'' $cssDesc[Identifications, permits, contracts, vouchsafes, and anything with an official-looking seal.]</summary>
+        <summary>''Legal Papers:'' $cssDesc[Identifications, permits, contracts, license, and anything with an official-looking seal.]</summary>
         <ol>
         <!--loop-->
         (for: each _nameLegal, ..._listLegal)[

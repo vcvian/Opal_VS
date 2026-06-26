@@ -83,10 +83,10 @@ That much is plain to see. The so-called "school" is only one tower - albeit a l
 [
 _line["That's reason number two: it's not a good idea to mix the guests with our juniors. They can be too excitable, and guests are... well, if you'd forgive me, but I alone can't vet everyone."]
 <br>
-What she means is that it is not safe for adults to be sharing quarters with the children.
+What she means is that it is not safe for strangers to be sharing quarters with the children.
 <br>
 ($funcInnerConvo: (dm:
-    "<!--A-->\"You alone? Is there no-one who can confirm my vouchsafe?\"", "talkSomeone",
+    "<!--A-->\"But I am no mere stranger. Is there no-one here who can confirm my license?\"", "talkSomeone",
     "<!--B-->\"I see. Of course, I understand.\"", "gotIt",
 ))
 <br>
@@ -95,7 +95,7 @@ What she means is that it is not safe for adults to be sharing quarters with the
 
 <!--talkSomeone-->
 [
-_line["Well, you're looking at that someone,"] she says, not very proud of it. _line["But my hands are tied. I have no real power or responsibility. To be exact, I have very little of the former and a lot of the latter. Sorry, but I can't just arrange you a room, even if you have a vouchsafe. It's not safe to have guests staying overnight without supervision. You'll have to wait for one of the teachers to come back from their expedition."]
+_line["Well, you're looking at that someone,"] she says, not very proud of it. _line["But my hands are tied. I have no real power or responsibility. To be exact, I have very little of the former and a lot of the latter. Sorry, but I can't just arrange you a room. I'm sure you carry a valid certification, but it's not safe to have guests staying overnight without supervision. You'll have to wait for one of the teachers to come back from their expedition."]
 <br>
 ($funcInnerConvo: (dm:
     "<!--A-->\"But I've seen other adults around. Teachers. Don't they have any say in this matter?\"", "otherAdult",

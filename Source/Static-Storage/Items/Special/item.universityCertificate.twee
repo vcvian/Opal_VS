@@ -1,0 +1,62 @@
+:: item.universityCertificate [static-storage]
+{=
+
+(metadata: 
+	"id", [Certificate of Journeymanship],
+    "key", (a: "document", "legal",),
+    "value", (a: 300, 100, 500, 200, 500, 1000,),
+    "img", "https://thefifthcity.wiki/w/images/3/3f/Currency3_copper.png",
+    "desc", [A piece of vellum from the Bakho University certifying that you have completed your apprenticeship and are qualified to practice magic.],
+    "tip", [You will be asked to submit this document in various imperial offices.],
+    "gainText", [You pick up the certificate. Twelve years of being practically locked up in a tower has earned you this piece of skin. Do not lose it.],
+    "lossText", [As you part ways with your certificate, you tell yourself that it is the skill that matters, not the paper. However, without the paper, not many would pay you for those skills.],
+    "devNote", [No content yet. Replace all desc text.],
+    "content", [{
+<!--content begins-->
+''LIGHT BLESSES NURANDAH''
+<br>
+''Certificate of Journeymanship''
+<br>
+<br>
+To all masters, magistrates, and citizens who shall read this text, the BAKHO DAVEHKHAN, Charsat Council, of Bakho University, of the City of Kom, sovereign-wisdom over Bakho dahak, under guarantee by the Collective Nudankhan Davehkhan, sends our greetings. 
+<br>
+<br>
+KNOW THAT BEFORE THE LIGHT OF NURANDAH, the citizen:
+
+<div style="padding: 1em;">//(print: $char's player's customName), resident of Kom bandak, Komzam rostak, Bakho dahak, free citizen of Nurandah,//</div>
+
+studying under Master:
+
+<div style="padding: 1em;">//Fir-Marrokh-Kuchtar-da-Zagash, attained Khur-a-Mah at the Zagash School of Engineering Sciences, granted tenure by the Bakho University, thrice-awared the Imperial Honor for Exceptional Service to the Reclamation,//</div>
+
+has, over the course of twelve years, completed the liberal arts, junior apprenticeship, and senior apprenticeship requirements as put forth by Bakho University and by extension the Collective Nudankhan Davehkhan, as attested by witnesses from the Bakho Davehkahn and through evidence as demonstrated on the Imperial Examination of 1056, thereby attaining competence in:
+
+<br>
+$cssDesc[This is followed by a long list of completed coursework, many of their titles you were only dimly aware of.]
+<br>
+
+and has demonstrated exemplary piety to reason, industriousness in all tasks, honesty in words and action, and sense of civic duty befitting of all citizens of Nurandah, and so therefore has:
+
+<div style="padding: 1em;">//GRADUATED WITH DISTINCTION//</div>
+
+Thus, the Bakho University GUARANTEE that should the graduate be employed at your institution or household, they will be capable of offering services of qualities that honors the decorated name of Bakho University and Nudankhan.
+<br>
+LET IT BE KNOWN that the graduate henceforth be entitled to the rank of "journeyman magus" and retains the right to insist on such reference and a wage in accordance the laws of Nudankhan.
+<br>
+LET IT BE THUS that the graduate be welcomed, given lodging and grain wherever they go, for there is nothing more precious than the presence of wisdom, which will always repay tenfold.
+<br>
+LET IT BE ENFORCED that the graduate obeys with the laws and customs of whichever land they may travel, that they will treat others with justice and reason, that they honor their debts and the dignity of others, lest their privileges, as granted by this letter, be forever revoked.
+<br>
+$cssDesc[The disclaimers continue for several more items, each written in tiny script.]
+<br>
+Given by our very hands at the Hall of Learning, Bakho University, in the City of Kom, Komzam rostak, Bakho dahak, Nurandah in the year 1056 of the Third Reclaimer.<br>Sa-davehzan: Fir-Rasnur-Padisarj-da-Kom
+<br>
+$cssDesc[There is a blue-wax seal, a sigil with the Sun of Nurandah behind crossed keys - the mark of Bakho University.]
+<br>
+---
+(link: "Put the certificate away.")[(goto: $readingNav's before)]
+
+<!--end of content-->
+        }],
+
+)

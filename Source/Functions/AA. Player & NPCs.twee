@@ -15,7 +15,7 @@
 "health", (a: 9, 10),
 "alive", true,
 
-"att", (dm:),"temp", (dm:),"inv", (dm: "rial", 300, "supplies", 3, "identityReceipt", 1, "vehzin", 1,),
+"att", (dm:),"temp", (dm:),"inv", (dm: "rial", 300, "supplies", 3, "identityReceipt", 1, "universityCertificate", 1, "vehzin", 1,),
 
 "quests", (dm:),
 
