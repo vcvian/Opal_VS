@@ -1,10 +1,11 @@
-:: Shopping Day 1b {"position":"3875,2300","size":"100,100"}
+:: Shopping Day 1b [unfinished] {"position":"3875,2300","size":"100,100"}
 {=
 
 (metadata:
 "currency", "rial",
 "title", "Dry Food Warehouse",
 "cardDesc", "Essential (and perhaps only) nutrition for pilgrims, caravaneers, sailors, and one journeying magus.",
+"devNote", [Review desc, write market info + code, review buying menu.],
 )
 
 

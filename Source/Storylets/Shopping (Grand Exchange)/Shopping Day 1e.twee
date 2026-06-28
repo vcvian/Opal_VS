@@ -1,1 +1,5 @@
-:: Shopping Day 1e {"position":"4175,2300","size":"100,100"}
+:: Shopping Day 1e [unfinished] {"position":"4175,2300","size":"100,100"}
+
+(metadata:
+"devNote", [No content yet. This is supposed to be "antique store" - though renaming might be necessary. Use template from other shops (`example:` (link: "Shopping Day 1c")[(goto: "Shopping Day 1c")])],
+)

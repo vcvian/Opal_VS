@@ -1,10 +1,11 @@
-:: The Grand Exchange [sublocation] {"position":"4000,2025","size":"100,100"}
+:: The Grand Exchange [sublocation unfinished] {"position":"4000,2025","size":"100,100"}
 {=
 
 (metadata:
 "prefecture", "Nurrah Coastlands",
 "location", "Apesai",
 "title", "The Grand Exchange",
+"devNote", [Location description needs updating.]
 )
 ($funcUpdateLocation:)
 

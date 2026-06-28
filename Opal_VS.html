@@ -71,7 +71,7 @@ hr {
   100% {
     background-position: 0% center;
   }
-}</style><script role="script" id="twine-user-script" type="text/twine-javascript"></script><tw-tag name="traveling" color="purple"></tw-tag><tw-tag name="book" color="yellow"></tw-tag><tw-tag name="footer" color="yellow"></tw-tag><tw-tag name="static-storage" color="yellow"></tw-tag><tw-tag name="stay" color="yellow"></tw-tag><tw-tag name="storylet" color="blue"></tw-tag><tw-tag name="sublocation" color="green"></tw-tag><tw-tag name="UI" color="orange"></tw-tag><tw-tag name="effect" color="yellow"></tw-tag><tw-tag name="header" color="yellow"></tw-tag><tw-tag name="startup" color="orange"></tw-tag><tw-tag name="test" color="blue"></tw-tag><tw-tag name="topic" color="purple"></tw-tag><tw-passagedata pid="1" name="AA. Books, Reading &amp; Formulae" tags="startup" position="100,100" size="100,100">{=
+}</style><script role="script" id="twine-user-script" type="text/twine-javascript"></script><tw-tag name="book" color="yellow"></tw-tag><tw-tag name="effect" color="yellow"></tw-tag><tw-tag name="static-storage" color="yellow"></tw-tag><tw-tag name="stay" color="yellow"></tw-tag><tw-tag name="test" color="blue"></tw-tag><tw-tag name="topic" color="purple"></tw-tag><tw-tag name="traveling" color="purple"></tw-tag><tw-tag name="UI" color="orange"></tw-tag><tw-tag name="footer" color="yellow"></tw-tag><tw-tag name="header" color="yellow"></tw-tag><tw-tag name="startup" color="orange"></tw-tag><tw-tag name="storylet" color="blue"></tw-tag><tw-tag name="sublocation" color="green"></tw-tag><tw-passagedata pid="1" name="AA. Books, Reading &amp; Formulae" tags="startup" position="100,100" size="100,100">{=
 &lt;!--Macros related to books and reading--&gt;
 
 (set: $readingNav to (dm:
@@ -2327,12 +2327,13 @@ You count a dozen massive long-haulers flying all kinds of flags, a dozen more v
 $cssColumnChild[($funcNavigateSublocations:)]
 ]&lt;!--end of $cssColumnParent--&gt;
 ---
-($funcStorylet:)</tw-passagedata><tw-passagedata pid="32" name="The Grand Exchange" tags="sublocation" position="4000,2025" size="100,100">{=
+($funcStorylet:)</tw-passagedata><tw-passagedata pid="32" name="The Grand Exchange" tags="sublocation unfinished" position="4000,2025" size="100,100">{=
 
 (metadata:
 &quot;prefecture&quot;, &quot;Nurrah Coastlands&quot;,
 &quot;location&quot;, &quot;Apesai&quot;,
 &quot;title&quot;, &quot;The Grand Exchange&quot;,
+&quot;devNote&quot;, [Location description needs updating.]
 )
 ($funcUpdateLocation:)
 
@@ -10304,7 +10305,7 @@ $cssDesc[Having &#39;&#39;(print: (passage: &quot;item.mapInrah&quot;)&#39;s id)
 &lt;!--main content ends--&gt;
     }],
 
-)</tw-passagedata><tw-passagedata pid="194" name="item.permitAskava" tags="static-storage unfinished" position="4300,1925" size="100,100">{=
+)</tw-passagedata><tw-passagedata pid="194" name="item.permitAskava" tags="static-storage" position="4300,1925" size="100,100">{=
 
 (metadata: 
 	&quot;id&quot;, [Askava Entry Permit],
@@ -10315,7 +10316,6 @@ $cssDesc[Having &#39;&#39;(print: (passage: &quot;item.mapInrah&quot;)&#39;s id)
     &quot;tip&quot;, [This document permits you a one-time passage from Apesai into mainland Askava, collected at either of the 3 major shores: Rokhab, Navveh, or Zirab. Valid once.],
     &quot;gainText&quot;, [After some trouble, you are finally granted a permit into Askava.],
     &quot;lossText&quot;, [You are loath to part with the precious papyrus, mostly because it will be bother to get another one if you ever make another trip from the island into the mainland.],
-    &quot;devNote&quot;, [Write permit&#39;s content (try to add dynamic text).],
     &quot;content&quot;, [{
 &lt;!--main content begins--&gt;
 &#39;&#39;LIGHT BLESSES NURANDAH&#39;&#39;
@@ -10358,7 +10358,6 @@ $cssDesc[There is a blue-wax seal, a sigil depicting an Askavan hare running und
     &quot;tip&quot;, [You will be asked to submit this document in various imperial offices.],
     &quot;gainText&quot;, [You pick up the certificate. Twelve years of being practically locked up in a tower has earned you this piece of skin. Do not lose it.],
     &quot;lossText&quot;, [As you part ways with your certificate, you tell yourself that it is the skill that matters, not the paper. However, without the paper, not many would pay you for those skills.],
-    &quot;devNote&quot;, [No content yet. Replace all desc text.],
     &quot;content&quot;, [{
 &lt;!--content begins--&gt;
 &#39;&#39;LIGHT BLESSES NURANDAH&#39;&#39;
@@ -10366,7 +10365,7 @@ $cssDesc[There is a blue-wax seal, a sigil depicting an Askavan hare running und
 &#39;&#39;Certificate of Journeymanship&#39;&#39;
 &lt;br&gt;
 &lt;br&gt;
-To all masters, magistrates, and citizens who shall read this text, the BAKHO DAVEHKHAN, Charsat Council, of Bakho University, of the City of Kom, sovereign-wisdom over Bakho dahak, under guarantee by the Collective Nudankhan Davehkhan, sends our greetings. 
+To all masters, magistrates, and citizens who shall read this text, the BAKHO DAVEHKHAN, Charsat Council, ruling body of Bakho University, of the City of Kom, sovereign-wisdom over Bakho dahak, under guarantee by the Collective Nudankhan Davehkhan, sends our greetings. 
 &lt;br&gt;
 &lt;br&gt;
 KNOW THAT BEFORE THE LIGHT OF NURANDAH, the citizen:
@@ -10389,7 +10388,7 @@ and has demonstrated exemplary piety to reason, industriousness in all tasks, ho
 
 Thus, the Bakho University GUARANTEE that should the graduate be employed at your institution or household, they will be capable of offering services of qualities that honors the decorated name of Bakho University and Nudankhan.
 &lt;br&gt;
-LET IT BE KNOWN that the graduate henceforth be entitled to the rank of &quot;journeyman magus&quot; and retains the right to insist on such reference and a wage in accordance the laws of Nudankhan.
+LET IT BE KNOWN that the graduate henceforth is entitled to the rank of &quot;journeyman magus&quot; and retains the right to insist on such reference and a wage in accordance the laws of Nudankhan.
 &lt;br&gt;
 LET IT BE THUS that the graduate be welcomed, given lodging and grain wherever they go, for there is nothing more precious than the presence of wisdom, which will always repay tenfold.
 &lt;br&gt;
@@ -13272,12 +13271,13 @@ You end up at...
 --&gt;
 
 ]&lt;!--end child--&gt;
-]&lt;!--end parent--&gt;</tw-passagedata><tw-passagedata pid="266" name="Shopping Day 1b" tags="" position="3875,2300" size="100,100">{=
+]&lt;!--end parent--&gt;</tw-passagedata><tw-passagedata pid="266" name="Shopping Day 1b" tags="unfinished" position="3875,2300" size="100,100">{=
 
 (metadata:
 &quot;currency&quot;, &quot;rial&quot;,
 &quot;title&quot;, &quot;Dry Food Warehouse&quot;,
 &quot;cardDesc&quot;, &quot;Essential (and perhaps only) nutrition for pilgrims, caravaneers, sailors, and one journeying magus.&quot;,
+&quot;devNote&quot;, [Review desc, write market info + code, review buying menu.],
 )
 
 
@@ -13331,12 +13331,13 @@ Actually, if anything, you might even have too much...
 &lt;li&gt;(link: &quot;Never mind.&quot;)[(goto: &quot;S: Shopping Day 1&quot;)]
 &lt;/ol&gt;
 ]&lt;!--end child--&gt;
-]&lt;!--end parent 2--&gt;</tw-passagedata><tw-passagedata pid="267" name="Shopping Day 1c" tags="" position="3975,2300" size="100,100">{=
+]&lt;!--end parent 2--&gt;</tw-passagedata><tw-passagedata pid="267" name="Shopping Day 1c" tags="unfinished" position="3975,2300" size="100,100">{=
 
 (metadata:
 &quot;currency&quot;, &quot;rial&quot;,
 &quot;title&quot;, &quot;Spice and Reagent Market&quot;,
 &quot;cardDesc&quot;, &quot;.&quot;,
+&quot;devNote&quot;, [Write desc, write market info + code, review buying menu.],
 )
 
 $cssColumnParent[
@@ -13390,12 +13391,13 @@ Or...
 &lt;li&gt;(link: &quot;Never mind.&quot;)[(goto: &quot;S: Shopping Day 1&quot;)]
 &lt;/ol&gt;
 ]&lt;!--end child--&gt;
-]&lt;!--end parent 2--&gt;</tw-passagedata><tw-passagedata pid="268" name="Shopping Day 1d" tags="" position="4075,2300" size="100,100">{=
+]&lt;!--end parent 2--&gt;</tw-passagedata><tw-passagedata pid="268" name="Shopping Day 1d" tags="unfinished" position="4075,2300" size="100,100">{=
 
 (metadata:
 &quot;currency&quot;, &quot;rial&quot;,
 &quot;title&quot;, &quot;Apesai Apothecaries&quot;,
 &quot;cardDesc&quot;, &quot;.&quot;,
+&quot;devNote&quot;, [Write desc, write market info + code, review buying menu.],
 )
 
 $cssColumnParent[
@@ -13449,7 +13451,9 @@ Or...
 &lt;li&gt;(link: &quot;Never mind.&quot;)[(goto: &quot;S: Shopping Day 1&quot;)]
 &lt;/ol&gt;
 ]&lt;!--end child--&gt;
-]&lt;!--end parent--&gt;</tw-passagedata><tw-passagedata pid="269" name="Shopping Day 1e" tags="" position="4175,2300" size="100,100"></tw-passagedata><tw-passagedata pid="270" name="S: Sick Teacher 1" tags="storylet" position="3100,2500" size="100,100">{=
+]&lt;!--end parent--&gt;</tw-passagedata><tw-passagedata pid="269" name="Shopping Day 1e" tags="unfinished" position="4175,2300" size="100,100">(metadata:
+&quot;devNote&quot;, [No content yet. This is supposed to be &quot;antique store&quot; - though renaming might be necessary. Use template from other shops (`example:` (link: &quot;Shopping Day 1c&quot;)[(goto: &quot;Shopping Day 1c&quot;)])],
+)</tw-passagedata><tw-passagedata pid="270" name="S: Sick Teacher 1" tags="storylet" position="3100,2500" size="100,100">{=
 
 (storylet: when
 $place&#39;s sublocation is $place&#39;s stay

@@ -10,7 +10,6 @@
     "tip", [You will be asked to submit this document in various imperial offices.],
     "gainText", [You pick up the certificate. Twelve years of being practically locked up in a tower has earned you this piece of skin. Do not lose it.],
     "lossText", [As you part ways with your certificate, you tell yourself that it is the skill that matters, not the paper. However, without the paper, not many would pay you for those skills.],
-    "devNote", [No content yet. Replace all desc text.],
     "content", [{
 <!--content begins-->
 ''LIGHT BLESSES NURANDAH''
@@ -18,7 +17,7 @@
 ''Certificate of Journeymanship''
 <br>
 <br>
-To all masters, magistrates, and citizens who shall read this text, the BAKHO DAVEHKHAN, Charsat Council, of Bakho University, of the City of Kom, sovereign-wisdom over Bakho dahak, under guarantee by the Collective Nudankhan Davehkhan, sends our greetings. 
+To all masters, magistrates, and citizens who shall read this text, the BAKHO DAVEHKHAN, Charsat Council, ruling body of Bakho University, of the City of Kom, sovereign-wisdom over Bakho dahak, under guarantee by the Collective Nudankhan Davehkhan, sends our greetings. 
 <br>
 <br>
 KNOW THAT BEFORE THE LIGHT OF NURANDAH, the citizen:
@@ -41,7 +40,7 @@ and has demonstrated exemplary piety to reason, industriousness in all tasks, ho
 
 Thus, the Bakho University GUARANTEE that should the graduate be employed at your institution or household, they will be capable of offering services of qualities that honors the decorated name of Bakho University and Nudankhan.
 <br>
-LET IT BE KNOWN that the graduate henceforth be entitled to the rank of "journeyman magus" and retains the right to insist on such reference and a wage in accordance the laws of Nudankhan.
+LET IT BE KNOWN that the graduate henceforth is entitled to the rank of "journeyman magus" and retains the right to insist on such reference and a wage in accordance the laws of Nudankhan.
 <br>
 LET IT BE THUS that the graduate be welcomed, given lodging and grain wherever they go, for there is nothing more precious than the presence of wisdom, which will always repay tenfold.
 <br>

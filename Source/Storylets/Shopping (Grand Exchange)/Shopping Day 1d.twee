@@ -1,10 +1,11 @@
-:: Shopping Day 1d {"position":"4075,2300","size":"100,100"}
+:: Shopping Day 1d [unfinished] {"position":"4075,2300","size":"100,100"}
 {=
 
 (metadata:
 "currency", "rial",
 "title", "Apesai Apothecaries",
 "cardDesc", ".",
+"devNote", [Write desc, write market info + code, review buying menu.],
 )
 
 $cssColumnParent[
