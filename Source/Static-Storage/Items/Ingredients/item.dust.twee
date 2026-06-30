@@ -2,7 +2,7 @@
 {=
 
 (metadata: 
-	"id", [A Pouch of Opal Dust],
+	"id", [Pouch of Opal Dust],
     "key", (a: "ingredient",),
     "value", (a: 15, 1, 1, 1, 1, 1),
     "img", "",

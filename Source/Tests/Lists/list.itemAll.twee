@@ -1,0 +1,10 @@
+:: list.itemAll
+{=
+
+(for: each _item, ...(passages: where its name contains "item."))[{
+    (set: $stuff's count to it + 1)
+    <li>''(print: _item's id)'' ((print: _item's name)) ($funcLogTip: "item.", (trimmed: "item.", _item's name))
+    <br>$cssDesc[Key: (print: _item's key)]
+    <br>$cssDesc[Value: (print: _item's value)]
+    </li>   
+}]

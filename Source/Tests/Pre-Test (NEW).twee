@@ -10,6 +10,8 @@ $cssColumnChild[
 <br>
 (link-rerun: "🚧 List of passages needing attention")[(goto: "Test List Unfinished")]
 <br>
+(link-rerun: "📋 Lists of things")[(goto: "Lists")]
+<br>
 (link-rerun: "🧭 Jump to a passage")[
     (set: _passage to (prompt: [Enter passage name:], "", "Cancel", "Confirm"))
     (unless: _passage is "")[(goto: _passage)]

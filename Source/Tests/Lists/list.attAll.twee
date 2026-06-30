@@ -1,0 +1,9 @@
+:: list.attAll
+{=
+(for: each _att, ...(passages: where its name contains "att."))[{
+    (set: $stuff's count to it + 1)
+    <li>''(print: _att's id)'' ((print: _att's name)) ($funcLogTip: "att.", (trimmed: "att.", _att's name))
+    <br>$cssDesc[Key: (print: _att's key)]
+    <br>$cssDesc[Value: (print: _att's value)]
+    </li>
+}]

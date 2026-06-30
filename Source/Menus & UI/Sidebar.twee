@@ -70,6 +70,9 @@ $cssBox[{
 	(redirect: "Pre-Test (NEW)")
 ]\
 
+<!--list of things-->
+(link-rerun: "📋")[(goto: "Lists")]
+
 <!--under construction passages-->
 (link-rerun: "🚧")[(goto: "Test List Unfinished")]
 

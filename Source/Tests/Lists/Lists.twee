@@ -1,0 +1,148 @@
+:: Lists
+{=
+
+(metadata: "title", "Lists")
+
+(link: "⇦ BACK")[(set: $stuff to (dm:))(goto: "Pre-Test (NEW)")]
+
+$cssColumnParent[
+<!--menu-->
+$cssColumnChild[
+
+<!--initialize-->
+(if: $stuff does not contain "currentList")[(set: $stuff's currentList to "")]
+(if: $stuff does not contain "listTitle")[(set: $stuff's listTitle to "")]
+(set: $stuff's count to 0)
+
+<!--display shorthand-->
+(set: _displayCode to [{(t8n:"dissolve")(rerun: ?displayedList)}])
+
+<h3>Lists</h3>
+Here we find lists of all things currently in the game.
+
+<!--list menu-->
+<ol>
+''Item''
+<br>
+<li>(link-rerun: "All items")[{
+    (set: $stuff's count to 0)
+    (set: $stuff's listTitle to "All Items")
+    (set: $stuff's currentList to "list.itemAll")
+    _displayCode
+}]</li>
+
+<li>(link-rerun: "Ingredients")[{
+    (set: $stuff's count to 0)
+    (set: $stuff's listTitle to "Ingredients")
+    (set: $stuff's currentList to "list.itemIngredients")
+    _displayCode
+}]</li>
+
+<li>(link-rerun: "Resource")[{
+    (set: $stuff's count to 0)
+    (set: $stuff's listTitle to "Resource")
+    (set: $stuff's currentList to "list.itemResource")
+    _displayCode
+}]</li>
+
+<li>(link-rerun: "Documents")[{
+    (set: $stuff's count to 0)
+    (set: $stuff's listTitle to "Documents")
+    (set: $stuff's currentList to "list.itemDocs")
+    _displayCode
+}]</li>
+
+<br>
+''Att''
+<br>
+<li>(link-rerun: "All att")[{
+    (set: $stuff's count to 0)
+    (set: $stuff's listTitle to "All Att")
+    (set: $stuff's currentList to "list.attAll")
+    _displayCode
+}]</li>
+
+<li>(link-rerun: "Elements")[{
+    (set: $stuff's count to 0)
+    (set: $stuff's listTitle to "Elements")
+    (set: $stuff's currentList to "list.attElements")
+    _displayCode
+}]</li>
+
+<li>(link-rerun: "Knowledge")[{
+    (set: $stuff's count to 0)
+    (set: $stuff's listTitle to "Knowledge")
+    (set: $stuff's currentList to "list.attKnowledge")
+    _displayCode
+}]</li>
+
+<li>(link-rerun: "Social")[{
+    (set: $stuff's count to 0)
+    (set: $stuff's listTitle to "Social")
+    (set: $stuff's currentList to "list.attSocial")
+    _displayCode
+}]</li>
+
+<li>(link-rerun: "Access")[{
+    (set: $stuff's count to 0)
+    (set: $stuff's listTitle to "Access")
+    (set: $stuff's currentList to "list.attAccess")
+    _displayCode
+}]</li>
+
+<li>(link-rerun: "Attributes")[{
+    (set: $stuff's count to 0)
+    (set: $stuff's listTitle to "Attributes")
+    (set: $stuff's currentList to "list.attAttributes")
+    _displayCode
+}]</li>
+
+<br>
+''Temp''
+<br>
+<li>(link-rerun: "All temporaries")[{
+    (set: $stuff's count to 0)
+    (set: $stuff's listTitle to "All Temporaries")
+    (set: $stuff's currentList to "list.tempAll")
+    _displayCode
+}]</li>
+
+<li>(link-rerun: "Memories")[{
+    (set: $stuff's count to 0)
+    (set: $stuff's listTitle to "Memories")
+    (set: $stuff's currentList to "list.tempMemory")
+    _displayCode
+}]</li>
+
+<li>(link-rerun: "Conditions")[{
+    (set: $stuff's count to 0)
+    (set: $stuff's listTitle to "Conditions")
+    (set: $stuff's currentList to "list.tempConditions")
+    _displayCode
+}]</li>
+
+
+</ol><!--end of list menu-->
+]<!--end of child-->
+
+<!--display-->
+$cssColumnChild[
+
+<!--displayedList-->
+[{
+    (if: $stuff's currentList's length > 0)[{
+<h3>(print: $stuff's listTitle)</h3>
+Count: ''[(print: $stuff's count)]<count|''        
+<br>     
+(box:"X", 23)+(bg: "#524538")[
+<ol>(display: $stuff's currentList)</ol>
+]
+
+(rerun: ?count)
+    }]<!--end of if able to display-->
+    (else:)[$cssDesc[(Select a list to display.)]]
+}]<displayedList|
+
+
+]<!--end child-->
+]<!--end parent-->

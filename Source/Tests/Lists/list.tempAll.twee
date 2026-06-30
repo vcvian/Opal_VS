@@ -1,0 +1,9 @@
+:: list.tempAll
+{=
+(for: each _temp, ...(passages: where its name contains "temp."))[{
+    (set: $stuff's count to it + 1)
+    <li>''(print: _temp's id)'' ((print: _temp's name)) ($funcLogTip: "temp.", (trimmed: "temp.", _temp's name))
+    <br>$cssDesc[Key: (print: _temp's key)]
+    <br>$cssDesc[Value: (print: _temp's value)]
+    </li>
+}]
