@@ -9,7 +9,7 @@
 </head>
 <body>
 <tw-story><noscript><tw-noscript>JavaScript needs to be enabled to play Opal.</tw-noscript></noscript></tw-story>
-<!-- UUID://B7CA1AB8-D586-46A4-8186-D10662A25374// --><tw-storydata name="Opal" startnode="316" creator="Tweego" creator-version="2.1.1+81d1d71" ifid="B7CA1AB8-D586-46A4-8186-D10662A25374" zoom="0.3" format="Harlowe" format-version="3.3.9" options="" hidden><style role="stylesheet" id="twine-user-stylesheet" type="text/twine-css">tw-story {
+<!-- UUID://B7CA1AB8-D586-46A4-8186-D10662A25374// --><tw-storydata name="Opal" startnode="318" creator="Tweego" creator-version="2.1.1+81d1d71" ifid="B7CA1AB8-D586-46A4-8186-D10662A25374" zoom="0.3" format="Harlowe" format-version="3.3.9" options="" hidden><style role="stylesheet" id="twine-user-stylesheet" type="text/twine-css">tw-story {
   font-size: 1.0rem;
   align-items: center;
   color: #e1d7cf;
@@ -71,7 +71,7 @@ hr {
   100% {
     background-position: 0% center;
   }
-}</style><script role="script" id="twine-user-script" type="text/twine-javascript"></script><tw-tag name="UI" color="orange"></tw-tag><tw-tag name="book" color="yellow"></tw-tag><tw-tag name="effect" color="yellow"></tw-tag><tw-tag name="footer" color="yellow"></tw-tag><tw-tag name="header" color="yellow"></tw-tag><tw-tag name="startup" color="orange"></tw-tag><tw-tag name="sublocation" color="green"></tw-tag><tw-tag name="traveling" color="purple"></tw-tag><tw-tag name="static-storage" color="yellow"></tw-tag><tw-tag name="stay" color="yellow"></tw-tag><tw-tag name="storylet" color="blue"></tw-tag><tw-tag name="test" color="blue"></tw-tag><tw-tag name="topic" color="purple"></tw-tag><tw-passagedata pid="1" name="AA. Books, Reading &amp; Formulae" tags="startup" position="100,100" size="100,100">{=
+}</style><script role="script" id="twine-user-script" type="text/twine-javascript"></script><tw-tag name="static-storage" color="yellow"></tw-tag><tw-tag name="sublocation" color="green"></tw-tag><tw-tag name="topic" color="purple"></tw-tag><tw-tag name="traveling" color="purple"></tw-tag><tw-tag name="startup" color="orange"></tw-tag><tw-tag name="book" color="yellow"></tw-tag><tw-tag name="effect" color="yellow"></tw-tag><tw-tag name="footer" color="yellow"></tw-tag><tw-tag name="header" color="yellow"></tw-tag><tw-tag name="stay" color="yellow"></tw-tag><tw-tag name="storylet" color="blue"></tw-tag><tw-tag name="test" color="blue"></tw-tag><tw-tag name="UI" color="orange"></tw-tag><tw-passagedata pid="1" name="AA. Books, Reading &amp; Formulae" tags="startup" position="100,100" size="100,100">{=
 &lt;!--Macros related to books and reading--&gt;
 
 (set: $readingNav to (dm:
@@ -8804,7 +8804,7 @@ You nod. Your teacher is eager to get out of Apesai more than anything, but you 
 	&quot;fresh&quot;, (dm:
     1, (a: &quot;Apesai Lighthouse&quot;, 4),
     2, (a: &quot;The Grand Exchange&quot;, 2),
-    3, (a: &quot;The Pleasure Quarter&quot;, 1),
+    3, (a: &quot;The Provincial Court of Askava&quot;, 1),
     ),
     &quot;testMode&quot;, (dm:
     1, (a: &quot;test sublocation 1&quot;, 3),
@@ -14930,6 +14930,17 @@ Here we find lists of all things currently in the game.
     _displayCode
 }]&lt;/li&gt;
 
+&lt;br&gt;
+&#39;&#39;NPCs&#39;&#39;
+&lt;br&gt;
+&lt;li&gt;(link-rerun: &quot;All NPCs&quot;)[{
+    (set: $stuff&#39;s count to 0)
+    (set: $stuff&#39;s listTitle to &quot;All NPCs&quot;)
+    (set: $stuff&#39;s currentList to &quot;list.npcAll&quot;)
+    _displayCode
+}]&lt;/li&gt;
+
+
 
 &lt;/ol&gt;&lt;!--end of list menu--&gt;
 ]&lt;!--end of child--&gt;
@@ -14954,49 +14965,100 @@ Count: &#39;&#39;[(print: $stuff&#39;s count)]&lt;count|&#39;&#39;
 
 
 ]&lt;!--end child--&gt;
-]&lt;!--end parent--&gt;</tw-passagedata><tw-passagedata pid="303" name="list.attAccess" tags="" position="350,3850" size="100,100">{=
+]&lt;!--end parent--&gt;</tw-passagedata><tw-passagedata pid="303" name="code.npcInfo" tags="" position="350,3850" size="100,100">(set: _npcInfo to (macro: str-type _npcName, [(out:)[{
+    &lt;!--load NPC datamap--&gt;
+    (set: _npcDM to (passage: &quot;npc.&quot; + _npcName))
+
+    &lt;!--dialog--&gt;
+    ^^(link-rerun: &quot;?&quot;)[{
+        (dialog: [{
+            &#39;&#39;(print: _npcDM&#39;s id)&#39;&#39;
+
+            &lt;!--Desc--&gt;
+            (if: _npcDM contains &quot;desc&quot;)[&lt;br&gt;&#39;&#39;desc:&#39;&#39; (print: _npcDM&#39;s desc)]
+
+            &lt;!--IMG--&gt;
+            (if: _npcDM contains &quot;img&quot;)[&lt;br&gt;&#39;&#39;img:&#39;&#39; (print: _npcDM&#39;s img)]
+
+            &lt;!--color--&gt;
+            (if: _npcDM contains &quot;color&quot;)[&lt;br&gt;&#39;&#39;color:&#39;&#39;` `(color: _npcDM&#39;s color)[(print: _npcDM&#39;s color)]]
+    }], &quot;Close&quot;)
+    }]^^
+
+    &lt;!--opinion mods--&gt;
+    (if: _npcDM contains &quot;opinionBonus&quot;)[{^^
+        (link-rerun: &quot;🗭&quot;)[(dialog: [{
+            &#39;&#39;opinionBonus:&#39;&#39;
+            (print: _npcDM&#39;s opinionBonus)
+        }], &quot;Close.&quot;)]
+    ^^}]
+
+
+    &lt;!--travelItinerary--&gt;
+    (if: _npcDM contains &quot;travelItinerary&quot;)[{^^
+        (link-rerun: &quot;✈&quot;)[(dialog: [&#39;&#39;travelItinerary:&#39;&#39;(box: &quot;X&quot;, 10)[{
+            &lt;ol&gt;(for: each _itinerary, ...(datanames: _npcDM&#39;s travelItinerary))[{
+                &lt;li&gt;
+                &#39;&#39;_itinerary:&#39;&#39;` `
+                (for: each _loc, ...(datanames: _npcDM&#39;s travelItinerary&#39;s _itinerary))[{
+                    _loc: $cssDesc[(print: _npcDM&#39;s travelItinerary&#39;s _itinerary&#39;s _loc)]
+                }]
+                &lt;/li&gt;
+            }]
+            &lt;/ol&gt;
+    }]], &quot;Close.&quot;)]
+    ^^}]
+
+    &lt;!--arcConditions--&gt;
+    (if: _npcDM contains &quot;arcConditions&quot;)[{^^
+        (link-rerun: &quot;🕮&quot;)[{
+            (dialog: [&#39;&#39;arcConditions:&#39;&#39;(box: &quot;X&quot;, 10)[(v6m-print: _npcDM&#39;s arcConditions)]], &quot;Close&quot;)            
+        }]
+    ^^}]
+
+}]]))</tw-passagedata><tw-passagedata pid="304" name="list.attAccess" tags="" position="475,3850" size="100,100">{=
 (for: each _att, ...(passages: where its name contains &quot;att.&quot;))[{
     (if: _att&#39;s key contains &quot;access&quot;)[(set: $stuff&#39;s count to it + 1)
     &lt;li&gt;&#39;&#39;(print: _att&#39;s id)&#39;&#39; ((print: _att&#39;s name)) ($funcLogTip: &quot;att.&quot;, (trimmed: &quot;att.&quot;, _att&#39;s name))
     &lt;br&gt;$cssDesc[Key: (print: _att&#39;s key)]
     &lt;br&gt;$cssDesc[Value: (print: _att&#39;s value)]
     &lt;/li&gt;]
-}]</tw-passagedata><tw-passagedata pid="304" name="list.attAll" tags="" position="475,3850" size="100,100">{=
+}]</tw-passagedata><tw-passagedata pid="305" name="list.attAll" tags="" position="600,3850" size="100,100">{=
 (for: each _att, ...(passages: where its name contains &quot;att.&quot;))[{
     (set: $stuff&#39;s count to it + 1)
     &lt;li&gt;&#39;&#39;(print: _att&#39;s id)&#39;&#39; ((print: _att&#39;s name)) ($funcLogTip: &quot;att.&quot;, (trimmed: &quot;att.&quot;, _att&#39;s name))
     &lt;br&gt;$cssDesc[Key: (print: _att&#39;s key)]
     &lt;br&gt;$cssDesc[Value: (print: _att&#39;s value)]
     &lt;/li&gt;
-}]</tw-passagedata><tw-passagedata pid="305" name="list.attAttributes" tags="" position="600,3850" size="100,100">{=
+}]</tw-passagedata><tw-passagedata pid="306" name="list.attAttributes" tags="" position="725,3850" size="100,100">{=
 (for: each _att, ...(passages: where its name contains &quot;att.&quot;))[{
     (if: _att&#39;s key contains &quot;attribute&quot;)[(set: $stuff&#39;s count to it + 1)
     &lt;li&gt;&#39;&#39;(print: _att&#39;s id)&#39;&#39; ((print: _att&#39;s name)) ($funcLogTip: &quot;att.&quot;, (trimmed: &quot;att.&quot;, _att&#39;s name))
     &lt;br&gt;$cssDesc[Key: (print: _att&#39;s key)]
     &lt;br&gt;$cssDesc[Value: (print: _att&#39;s value)]
     &lt;/li&gt;]
-}]</tw-passagedata><tw-passagedata pid="306" name="list.attElements" tags="" position="725,3850" size="100,100">{=
+}]</tw-passagedata><tw-passagedata pid="307" name="list.attElements" tags="" position="850,3850" size="100,100">{=
 (for: each _att, ...(passages: where its name contains &quot;att.&quot;))[{
     (if: _att&#39;s key contains &quot;element&quot;)[(set: $stuff&#39;s count to it + 1)
     &lt;li&gt;&#39;&#39;(print: _att&#39;s id)&#39;&#39; ((print: _att&#39;s name)) ($funcLogTip: &quot;att.&quot;, (trimmed: &quot;att.&quot;, _att&#39;s name))
     &lt;br&gt;$cssDesc[Key: (print: _att&#39;s key)]
     &lt;br&gt;$cssDesc[Value: (print: _att&#39;s value)]
     &lt;/li&gt;]
-}]</tw-passagedata><tw-passagedata pid="307" name="list.attKnowledge" tags="" position="850,3850" size="100,100">{=
+}]</tw-passagedata><tw-passagedata pid="308" name="list.attKnowledge" tags="" position="975,3850" size="100,100">{=
 (for: each _att, ...(passages: where its name contains &quot;att.&quot;))[{
     (if: _att&#39;s key contains &quot;knowledge&quot;)[(set: $stuff&#39;s count to it + 1)
     &lt;li&gt;&#39;&#39;(print: _att&#39;s id)&#39;&#39; ((print: _att&#39;s name)) ($funcLogTip: &quot;att.&quot;, (trimmed: &quot;att.&quot;, _att&#39;s name))
     &lt;br&gt;$cssDesc[Key: (print: _att&#39;s key)]
     &lt;br&gt;$cssDesc[Value: (print: _att&#39;s value)]
     &lt;/li&gt;]
-}]</tw-passagedata><tw-passagedata pid="308" name="list.attSocial" tags="" position="975,3850" size="100,100">{=
+}]</tw-passagedata><tw-passagedata pid="309" name="list.attSocial" tags="" position="1100,3850" size="100,100">{=
 (for: each _att, ...(passages: where its name contains &quot;att.&quot;))[{
     (if: _att&#39;s key contains &quot;social&quot;)[(set: $stuff&#39;s count to it + 1)
     &lt;li&gt;&#39;&#39;(print: _att&#39;s id)&#39;&#39; ((print: _att&#39;s name)) ($funcLogTip: &quot;att.&quot;, (trimmed: &quot;att.&quot;, _att&#39;s name))
     &lt;br&gt;$cssDesc[Key: (print: _att&#39;s key)]
     &lt;br&gt;$cssDesc[Value: (print: _att&#39;s value)]
     &lt;/li&gt;]
-}]</tw-passagedata><tw-passagedata pid="309" name="list.itemAll" tags="" position="1100,3850" size="100,100">{=
+}]</tw-passagedata><tw-passagedata pid="310" name="list.itemAll" tags="" position="1225,3850" size="100,100">{=
 
 (for: each _item, ...(passages: where its name contains &quot;item.&quot;))[{
     (set: $stuff&#39;s count to it + 1)
@@ -15004,7 +15066,7 @@ Count: &#39;&#39;[(print: $stuff&#39;s count)]&lt;count|&#39;&#39;
     &lt;br&gt;$cssDesc[Key: (print: _item&#39;s key)]
     &lt;br&gt;$cssDesc[Value: (print: _item&#39;s value)]
     &lt;/li&gt;   
-}]</tw-passagedata><tw-passagedata pid="310" name="list.itemDocs" tags="" position="1225,3850" size="100,100">{=
+}]</tw-passagedata><tw-passagedata pid="311" name="list.itemDocs" tags="" position="100,3975" size="100,100">{=
 
 (for: each _item, ...(passages: where its name contains &quot;item.&quot;))[{
     (if: _item&#39;s key contains &quot;document&quot;)[(set: $stuff&#39;s count to it + 1)
@@ -15012,7 +15074,7 @@ Count: &#39;&#39;[(print: $stuff&#39;s count)]&lt;count|&#39;&#39;
     &lt;br&gt;$cssDesc[Key: (print: _item&#39;s key)]
     &lt;br&gt;$cssDesc[Value: (print: _item&#39;s value)]
     &lt;/li&gt; ]  
-}]</tw-passagedata><tw-passagedata pid="311" name="list.itemIngredients" tags="" position="100,3975" size="100,100">{=
+}]</tw-passagedata><tw-passagedata pid="312" name="list.itemIngredients" tags="" position="225,3975" size="100,100">{=
 
 (for: each _item, ...(passages: where its name contains &quot;item.&quot;))[{
     (if: _item&#39;s key contains &quot;ingredient&quot;)[(set: $stuff&#39;s count to it + 1)
@@ -15020,7 +15082,7 @@ Count: &#39;&#39;[(print: $stuff&#39;s count)]&lt;count|&#39;&#39;
     &lt;br&gt;$cssDesc[Key: (print: _item&#39;s key)]
     &lt;br&gt;$cssDesc[Value: (print: _item&#39;s value)]
     &lt;/li&gt; ]  
-}]</tw-passagedata><tw-passagedata pid="312" name="list.itemResource" tags="" position="225,3975" size="100,100">{=
+}]</tw-passagedata><tw-passagedata pid="313" name="list.itemResource" tags="" position="350,3975" size="100,100">{=
 
 (for: each _item, ...(passages: where its name contains &quot;item.&quot;))[{
     (if: _item&#39;s key contains &quot;resource&quot;)[(set: $stuff&#39;s count to it + 1)
@@ -15028,28 +15090,40 @@ Count: &#39;&#39;[(print: $stuff&#39;s count)]&lt;count|&#39;&#39;
     &lt;br&gt;$cssDesc[Key: (print: _item&#39;s key)]
     &lt;br&gt;$cssDesc[Value: (print: _item&#39;s value)]
     &lt;/li&gt; ]  
-}]</tw-passagedata><tw-passagedata pid="313" name="list.tempAll" tags="" position="350,3975" size="100,100">{=
+}]</tw-passagedata><tw-passagedata pid="314" name="list.npcAll" tags="" position="475,3975" size="100,100">{=
+
+&lt;!--load temp macro--&gt;
+(set: _npcInfo to [])
+(display: &quot;code.npcInfo&quot;)
+
+(for: each _npc, ...(passages: where its name contains &quot;npc.&quot;))[{
+    (set: $stuff&#39;s count to it + 1)
+    &lt;li&gt;&#39;&#39;(print: _npc&#39;s id)&#39;&#39; ((print: _npc&#39;s name))
+    (_npcInfo: (trimmed: &quot;npc.&quot;, _npc&#39;s name))
+    (if: _npc contains &quot;desc&quot;)[&lt;br&gt;$cssDesc[(print: _npc&#39;s desc)]]
+    &lt;/li&gt;
+}]</tw-passagedata><tw-passagedata pid="315" name="list.tempAll" tags="" position="600,3975" size="100,100">{=
 (for: each _temp, ...(passages: where its name contains &quot;temp.&quot;))[{
     (set: $stuff&#39;s count to it + 1)
     &lt;li&gt;&#39;&#39;(print: _temp&#39;s id)&#39;&#39; ((print: _temp&#39;s name)) ($funcLogTip: &quot;temp.&quot;, (trimmed: &quot;temp.&quot;, _temp&#39;s name))
     &lt;br&gt;$cssDesc[Key: (print: _temp&#39;s key)]
     &lt;br&gt;$cssDesc[Value: (print: _temp&#39;s value)]
     &lt;/li&gt;
-}]</tw-passagedata><tw-passagedata pid="314" name="list.tempConditions" tags="" position="475,3975" size="100,100">{=
+}]</tw-passagedata><tw-passagedata pid="316" name="list.tempConditions" tags="" position="725,3975" size="100,100">{=
 (for: each _temp, ...(passages: where its name contains &quot;temp.&quot;))[{
     (if: _temp&#39;s key contains &quot;condition&quot;)[(set: $stuff&#39;s count to it + 1)
     &lt;li&gt;&#39;&#39;(print: _temp&#39;s id)&#39;&#39; ((print: _temp&#39;s name)) ($funcLogTip: &quot;temp.&quot;, (trimmed: &quot;temp.&quot;, _temp&#39;s name))
     &lt;br&gt;$cssDesc[Key: (print: _temp&#39;s key)]
     &lt;br&gt;$cssDesc[Value: (print: _temp&#39;s value)]
     &lt;/li&gt;]
-}]</tw-passagedata><tw-passagedata pid="315" name="list.tempMemory" tags="" position="600,3975" size="100,100">{=
+}]</tw-passagedata><tw-passagedata pid="317" name="list.tempMemory" tags="" position="850,3975" size="100,100">{=
 (for: each _temp, ...(passages: where its name contains &quot;temp.&quot;))[{
     (if: _temp&#39;s key contains &quot;memory&quot;)[(set: $stuff&#39;s count to it + 1)
     &lt;li&gt;&#39;&#39;(print: _temp&#39;s id)&#39;&#39; ((print: _temp&#39;s name)) ($funcLogTip: &quot;temp.&quot;, (trimmed: &quot;temp.&quot;, _temp&#39;s name))
     &lt;br&gt;$cssDesc[Key: (print: _temp&#39;s key)]
     &lt;br&gt;$cssDesc[Value: (print: _temp&#39;s value)]
     &lt;/li&gt;]
-}]</tw-passagedata><tw-passagedata pid="316" name="Pre-Test (NEW)" tags="" position="825,3350" size="100,100">{=
+}]</tw-passagedata><tw-passagedata pid="318" name="Pre-Test (NEW)" tags="" position="825,3350" size="100,100">{=
 
 $cssColumnParent[
 
@@ -15092,7 +15166,7 @@ $cssColumnChild[
 &lt;li&gt;[[Test N]] $cssDesc[(Spindle convo)]
 
 ]&lt;!--child end--&gt;
-]&lt;!--parent end--&gt;</tw-passagedata><tw-passagedata pid="317" name="Test A" tags="" position="1000,3350" size="100,100">{=
+]&lt;!--parent end--&gt;</tw-passagedata><tw-passagedata pid="319" name="Test A" tags="" position="1000,3350" size="100,100">{=
 
 (metadata: &quot;title&quot;, &quot;Test A (item basics)&quot;)
 
@@ -15142,7 +15216,7 @@ $cssColumnChild[
 Tests for `($funcCheckExists:)` macro, which takes (1) a datamap and (2) the name of a key that may or may not exists --&gt; outputs the value of that key if it exists. Otherwise outputs nothing:
 &lt;li&gt;sickTeacher quest: ($funcCheckExists: $char&#39;s player&#39;s quests, &quot;sickTeacher&quot;, &quot;&quot;)
 &lt;li&gt;Ginger: ($funcCheckExists: $char&#39;s player&#39;s inv, &quot;ginger&quot;, 0)
-&lt;li&gt;vigorous attribute: ($funcCheckExists: $char&#39;s player&#39;s att, &quot;vigorous&quot;, 0)</tw-passagedata><tw-passagedata pid="318" name="Test B" tags="" position="1000,3475" size="100,100">(metadata: &quot;title&quot;, &quot;Test B (buying &amp; selling)&quot;)
+&lt;li&gt;vigorous attribute: ($funcCheckExists: $char&#39;s player&#39;s att, &quot;vigorous&quot;, 0)</tw-passagedata><tw-passagedata pid="320" name="Test B" tags="" position="1000,3475" size="100,100">(metadata: &quot;title&quot;, &quot;Test B (buying &amp; selling)&quot;)
 
 (set: _priceModBuy to 2)
 (set: _priceModSell to .5)
@@ -15180,7 +15254,7 @@ Tests for `($funcCheckExists:)` macro, which takes (1) a datamap and (2) the nam
 
 &lt;br&gt;
 &#39;&#39;Player Inventory&#39;&#39;
-(print: $char&#39;s player&#39;s inv)</tw-passagedata><tw-passagedata pid="319" name="Test C" tags="" position="1000,3600" size="100,100">(metadata: &quot;title&quot;, &quot;Test C (elementalizing)&quot;)
+(print: $char&#39;s player&#39;s inv)</tw-passagedata><tw-passagedata pid="321" name="Test C" tags="" position="1000,3600" size="100,100">(metadata: &quot;title&quot;, &quot;Test C (elementalizing)&quot;)
 
 [[⇦ BACK-&gt;Pre-Test (NEW)]]
 &lt;ul&gt;
@@ -15206,7 +15280,7 @@ Based on inventory &amp; only ingredients (use this in game) &lt;br&gt;
 (print: $char&#39;s player&#39;s inv)
 &lt;br&gt;
 &#39;&#39;Player Attributes&#39;&#39;
-(print: $char&#39;s player&#39;s att)</tw-passagedata><tw-passagedata pid="320" name="Z. Test Conditions" tags="startup" position="550,3350" size="100,100">&lt;!----&gt;</tw-passagedata><tw-passagedata pid="321" name="Experimental Lab" tags="" position="1150,3875" size="100,100">{=
+(print: $char&#39;s player&#39;s att)</tw-passagedata><tw-passagedata pid="322" name="Z. Test Conditions" tags="startup" position="550,3350" size="100,100">&lt;!----&gt;</tw-passagedata><tw-passagedata pid="323" name="Experimental Lab" tags="" position="1150,3875" size="100,100">{=
 (metadata: 
 &quot;title&quot;, &quot;Experimental Lab (Test)&quot;,
 &quot;level&quot;, 3,
@@ -15223,7 +15297,7 @@ Based on inventory &amp; only ingredients (use this in game) &lt;br&gt;
 &lt;h3&gt;(print: (passage:)&#39;s title)&lt;/h3&gt;
 
 &lt;br&gt;
- ($funcVehzin: &quot;Test D&quot;)</tw-passagedata><tw-passagedata pid="322" name="Professional Lab" tags="" position="1150,3775" size="100,100">{=
+ ($funcVehzin: &quot;Test D&quot;)</tw-passagedata><tw-passagedata pid="324" name="Professional Lab" tags="" position="1150,3775" size="100,100">{=
 (metadata: 
 &quot;title&quot;, &quot;Professional Lab (Test)&quot;,
 &quot;level&quot;, 2,
@@ -15240,7 +15314,7 @@ Based on inventory &amp; only ingredients (use this in game) &lt;br&gt;
 &lt;h3&gt;(print: (passage:)&#39;s title)&lt;/h3&gt;
 
 &lt;br&gt;
- ($funcVehzin: &quot;Test D&quot;)</tw-passagedata><tw-passagedata pid="323" name="Simple Lab" tags="" position="1150,3675" size="100,100">{=
+ ($funcVehzin: &quot;Test D&quot;)</tw-passagedata><tw-passagedata pid="325" name="Simple Lab" tags="" position="1150,3675" size="100,100">{=
 
 (metadata: 
 &quot;title&quot;, &quot;Simple Lab (Test)&quot;,
@@ -15258,7 +15332,7 @@ Based on inventory &amp; only ingredients (use this in game) &lt;br&gt;
 &lt;h3&gt;(print: (passage:)&#39;s title)&lt;/h3&gt;
 
 &lt;br&gt;
- ($funcVehzin: &quot;Test D&quot;)</tw-passagedata><tw-passagedata pid="324" name="Test D" tags="" position="1000,3725" size="100,100">(metadata: &quot;title&quot;, &quot;Test D (synthesis labs)&quot;)
+ ($funcVehzin: &quot;Test D&quot;)</tw-passagedata><tw-passagedata pid="326" name="Test D" tags="" position="1000,3725" size="100,100">(metadata: &quot;title&quot;, &quot;Test D (synthesis labs)&quot;)
 
 [[⇦ BACK-&gt;Pre-Test (NEW)]]
 
@@ -15282,7 +15356,7 @@ Based on inventory &amp; only ingredients (use this in game) &lt;br&gt;
 
 (set: _result to (str:_b) + &quot; is &quot; + (str: _compare) + &quot; &quot; + (str: _a) + &quot;.&quot;)
 
-_result--&gt;</tw-passagedata><tw-passagedata pid="325" name="Test E" tags="" position="1000,4050" size="100,100">{=
+_result--&gt;</tw-passagedata><tw-passagedata pid="327" name="Test E" tags="" position="1000,4050" size="100,100">{=
 
 (metadata: &quot;title&quot;, &quot;Test E (time, place &amp; weather)&quot;)
 
@@ -15312,15 +15386,15 @@ Current location: (print: $place&#39;s sublocation), (print: $place&#39;s locati
 Staying at: (print: $place&#39;s stay).
 &lt;br&gt;
 The weather in (print: $place&#39;s location) is &#39;&#39;(print: $place&#39;s weather)&#39;&#39;:
-($funcWeatherBox:)</tw-passagedata><tw-passagedata pid="326" name="Test F Failure" tags="" position="1150,4250" size="100,100">{=
+($funcWeatherBox:)</tw-passagedata><tw-passagedata pid="328" name="Test F Failure" tags="" position="1150,4250" size="100,100">{=
 
 Uh oh, failure...
 &lt;br&gt;
-[[Back to Test F-&gt;Test F]]</tw-passagedata><tw-passagedata pid="327" name="Test F Success" tags="" position="1150,4175" size="100,100">{=
+[[Back to Test F-&gt;Test F]]</tw-passagedata><tw-passagedata pid="329" name="Test F Success" tags="" position="1150,4175" size="100,100">{=
 
 SUCCESS!
 &lt;br&gt;
-[[Back to Test F-&gt;Test F]]</tw-passagedata><tw-passagedata pid="328" name="Test F" tags="" position="1000,4200" size="100,100">{=
+[[Back to Test F-&gt;Test F]]</tw-passagedata><tw-passagedata pid="330" name="Test F" tags="" position="1000,4200" size="100,100">{=
 
 (metadata: &quot;title&quot;, &quot;Test F (checks &amp; gates)&quot;)
 
@@ -15339,38 +15413,38 @@ Check attribute without spending:
 &lt;br&gt;
 Pure luck:
 &lt;li&gt;($funcLuckGate: &quot;Try your luck&quot;, 70, &quot;Test F Success&quot;, &quot;Test F Failure&quot;)
-&lt;/ul&gt;</tw-passagedata><tw-passagedata pid="329" name="Test G Apply" tags="" position="700,4400" size="100,100">(metadata: &quot;title&quot;, &quot;Test G Applying for Permit&quot;,)
+&lt;/ul&gt;</tw-passagedata><tw-passagedata pid="331" name="Test G Apply" tags="" position="700,4400" size="100,100">(metadata: &quot;title&quot;, &quot;Test G Applying for Permit&quot;,)
 
 You submit your papers and were told to wait.
 &lt;br&gt;
 ---
 
-($funcQuestUpdateLink: &quot;You leave the immigration hall.&quot;, &quot;permitAskava&quot;, &quot;active&quot;, &quot;Your papers are submitted. It&#39;ll take a while. Try to keep yourself busy in the mean time.&quot;, &quot;Bureaucracies are the same everywhere - back home and here also.&quot;, [($funcAddTimer: &quot;permitAskava&quot;, &quot;wait&quot;)], &quot;Test G&quot;,)</tw-passagedata><tw-passagedata pid="330" name="Test G Essay Done" tags="" position="1375,4825" size="100,100">(metadata: &quot;title&quot;, &quot;Turn in Essay&quot;,)
+($funcQuestUpdateLink: &quot;You leave the immigration hall.&quot;, &quot;permitAskava&quot;, &quot;active&quot;, &quot;Your papers are submitted. It&#39;ll take a while. Try to keep yourself busy in the mean time.&quot;, &quot;Bureaucracies are the same everywhere - back home and here also.&quot;, [($funcAddTimer: &quot;permitAskava&quot;, &quot;wait&quot;)], &quot;Test G&quot;,)</tw-passagedata><tw-passagedata pid="332" name="Test G Essay Done" tags="" position="1375,4825" size="100,100">(metadata: &quot;title&quot;, &quot;Turn in Essay&quot;,)
  You turn it in on time!
  &lt;br&gt;
  $cssDesc[The deadline countdown should disappear now.]
  &lt;br&gt;
  ---
- ($funcQuestUpdateLink: &quot;Great job!&quot;, &quot;urgentAssignment&quot;, &quot;completed&quot;, &quot;You&#39;ve turned in your essay on time.&quot;, &quot;Phew!&quot;, [($funcRemoveTimer: &quot;urgentAssignment&quot;, &quot;deadline&quot;)], &quot;Test G&quot;)</tw-passagedata><tw-passagedata pid="331" name="Test G Essay Fail" tags="" position="1325,4775" size="100,100">(metadata: &quot;title&quot;, &quot;Essay Regress&quot;,)
+ ($funcQuestUpdateLink: &quot;Great job!&quot;, &quot;urgentAssignment&quot;, &quot;completed&quot;, &quot;You&#39;ve turned in your essay on time.&quot;, &quot;Phew!&quot;, [($funcRemoveTimer: &quot;urgentAssignment&quot;, &quot;deadline&quot;)], &quot;Test G&quot;)</tw-passagedata><tw-passagedata pid="333" name="Test G Essay Fail" tags="" position="1325,4775" size="100,100">(metadata: &quot;title&quot;, &quot;Essay Regress&quot;,)
 Oh no, you&#39;ve somehow made it worse!
 &lt;br&gt;
 ---
 (link-rerun: &quot;Scrap that! You&#39;ll try again tomorrow.&quot;)[\
 	(if: $char&#39;s player&#39;s att contains &quot;urgentAssignment&quot;)[($funcGainLoss: &quot;att.&quot;, &quot;urgentAssignment&quot;, -1)]\
     $funcDone
-]</tw-passagedata><tw-passagedata pid="332" name="Test G Essay Progress" tags="" position="1275,4725" size="100,100">(metadata: &quot;title&quot;, &quot;Essay Progress&quot;,)
+]</tw-passagedata><tw-passagedata pid="334" name="Test G Essay Progress" tags="" position="1275,4725" size="100,100">(metadata: &quot;title&quot;, &quot;Essay Progress&quot;,)
 Yes, little by little!
 &lt;br&gt;
 ---
 (link-rerun: &quot;Word by word.&quot;)[\
 	($funcGainLoss: &quot;att.&quot;, &quot;urgentAssignment&quot;, 1)\
     $funcDone
-]</tw-passagedata><tw-passagedata pid="333" name="Test G Failure" tags="" position="1275,4525" size="100,100">(metadata: &quot;title&quot;, &quot;Test G Dead Teacher&quot;,)
+]</tw-passagedata><tw-passagedata pid="335" name="Test G Failure" tags="" position="1275,4525" size="100,100">(metadata: &quot;title&quot;, &quot;Test G Dead Teacher&quot;,)
 
 Oh no! He&#39;s... Oh no!
 &lt;br&gt;
 ---
-($funcQuestUpdateLink: &quot;Fail the Fluxy Teacher Quest&quot;, &quot;sickTeacher&quot;, &quot;failed&quot;, &quot;He&#39;s... dead?&quot;, &quot;Can a magus even die?&quot;, [(set: $char&#39;s teacher&#39;s alive to false)], &quot;Test G&quot;)</tw-passagedata><tw-passagedata pid="334" name="Test G Receive" tags="" position="650,4475" size="100,100">(metadata: &quot;title&quot;, &quot;Test G Receive Permit&quot;,)
+($funcQuestUpdateLink: &quot;Fail the Fluxy Teacher Quest&quot;, &quot;sickTeacher&quot;, &quot;failed&quot;, &quot;He&#39;s... dead?&quot;, &quot;Can a magus even die?&quot;, [(set: $char&#39;s teacher&#39;s alive to false)], &quot;Test G&quot;)</tw-passagedata><tw-passagedata pid="336" name="Test G Receive" tags="" position="650,4475" size="100,100">(metadata: &quot;title&quot;, &quot;Test G Receive Permit&quot;,)
 
 The clerk hands you your permit.
 &lt;br&gt;
@@ -15381,7 +15455,7 @@ The clerk hands you your permit.
 ($funcQuestUpdateLink: &quot;You leave the immigration hall.&quot;, &quot;permitAskava&quot;, &quot;completed&quot;, &quot;It is done. You can finally leave this island and enter Askava proper.&quot;, &quot;Where your residency can begin in earnest.&quot;, [\
 	($funcGainLoss: &quot;item.&quot;, &quot;permitAskava&quot;, 1)\
 	($funcRemoveTimer: &quot;permitAskava&quot;, &quot;wait&quot;)\
-], &quot;Test G&quot;,)</tw-passagedata><tw-passagedata pid="335" name="Test G Sample Storylet 1" tags="test" position="1150,4375" size="100,100">{=
+], &quot;Test G&quot;,)</tw-passagedata><tw-passagedata pid="337" name="Test G Sample Storylet 1" tags="test" position="1150,4375" size="100,100">{=
 
 (storylet: when
 (passage:)&#39;s name is &quot;Test G&quot;
@@ -15394,7 +15468,7 @@ Oh no, your teacher is sick!
 &lt;br&gt;
 ---
 ($funcQuestUpdateLink: &quot;Begin the Fluxy Teacher Quest&quot;, &quot;sickTeacher&quot;, &quot;active&quot;, &quot;You found your teacher with his butt glued to the latrine. Nothing a little healing tonic can&#39;t help with.&quot;, &quot;You know what to do, right?&quot;, [], &quot;Test G&quot;)
-&lt;!--[[Test G]]--&gt;</tw-passagedata><tw-passagedata pid="336" name="Test G Sample Storylet 2" tags="test" position="1150,4500" size="100,100">{=
+&lt;!--[[Test G]]--&gt;</tw-passagedata><tw-passagedata pid="338" name="Test G Sample Storylet 2" tags="test" position="1150,4500" size="100,100">{=
 
 (storylet: when
 (passage:)&#39;s name is &quot;Test G&quot;
@@ -15412,7 +15486,7 @@ Oh no, your teacher is sick!
 &lt;li&gt;[[Never mind-&gt;Test G]]
 &lt;/ol&gt;
 
-&lt;!--[[Test G Success]][[Test G Failure]]--&gt;</tw-passagedata><tw-passagedata pid="337" name="Test G Sample Storylet 4" tags="test" position="1150,4650" size="100,100">{=
+&lt;!--[[Test G Success]][[Test G Failure]]--&gt;</tw-passagedata><tw-passagedata pid="339" name="Test G Sample Storylet 4" tags="test" position="1150,4650" size="100,100">{=
 
 (storylet: when
 (passage:)&#39;s name is &quot;Test G&quot;
@@ -15430,7 +15504,7 @@ $cssDesc[This is an example of a timed quest, where the quest auto-fails.]
 &lt;ol&gt;
 &lt;li&gt;($funcQuestUpdateLink: &quot;Time to get to it!&quot;, &quot;urgentAssignment&quot;, &quot;active&quot;, &quot;You begin your assignment. Time is limited.&quot;, &quot;No reason to dwadle.&quot;, [($funcAddTimer: &quot;urgentAssignment&quot;, &quot;deadline&quot;)], &quot;Test G&quot;)
 &lt;li&gt;[[Never mind-&gt;Test G]]
-&lt;/ol&gt;</tw-passagedata><tw-passagedata pid="338" name="Test G Sample Storylet 5" tags="test" position="1150,4775" size="100,100">{=
+&lt;/ol&gt;</tw-passagedata><tw-passagedata pid="340" name="Test G Sample Storylet 5" tags="test" position="1150,4775" size="100,100">{=
 
 (storylet: when
 (passage:)&#39;s name is &quot;Test G&quot;
@@ -15452,7 +15526,7 @@ $cssDesc[Contribute temp values for the quest.]
 &lt;li&gt;($funcCheckGate: &quot;Turn in what you have&quot;, &quot;att&quot;, &quot;urgentAssignment&quot;, 2, true, 100, &quot;Test G Essay Done&quot;, &quot;&quot;)&lt;!--Only [[Test G Essay Done]] exists due to 100% success chance--&gt;
 
 &lt;li&gt;[[Never mind-&gt;Test G]]
-&lt;/ol&gt;</tw-passagedata><tw-passagedata pid="339" name="Test G Sample Storylet 6" tags="test" position="1150,4900" size="100,100">{=
+&lt;/ol&gt;</tw-passagedata><tw-passagedata pid="341" name="Test G Sample Storylet 6" tags="test" position="1150,4900" size="100,100">{=
 
 (storylet: when
 (passage:)&#39;s name is &quot;Test G&quot;
@@ -15472,7 +15546,7 @@ $cssDesc[This storylet should only appear once after you&#39;ve failed the quest
 	($funcGainLoss: &quot;att.&quot;, &quot;urgentAssignment&quot;, -_reset)\
     ($funcRemoveTimer: &quot;urgentAssignment&quot;, &quot;deadline&quot;)\
     (goto: &quot;Test G&quot;)\
-    ]&lt;!--[[Test G]]--&gt;</tw-passagedata><tw-passagedata pid="340" name="Test G Sample Storylet 7" tags="test" position="825,4450" size="100,100">{=
+    ]&lt;!--[[Test G]]--&gt;</tw-passagedata><tw-passagedata pid="342" name="Test G Sample Storylet 7" tags="test" position="825,4450" size="100,100">{=
 
 (storylet: when
 (passage:)&#39;s name is &quot;Test G&quot;
@@ -15501,12 +15575,12 @@ In the meantime, you&#39;re just the same as everyone else here: peasants, labor
     (else:)[&lt;li&gt;~~Receive your permit.~~ $cssDesc[(Your entry application is being processed.)]]
 ]
 &lt;li&gt;[[Never mind-&gt;Test G]]
-&lt;/ol&gt;</tw-passagedata><tw-passagedata pid="341" name="Test G Success" tags="" position="1275,4400" size="100,100">(metadata: &quot;title&quot;, &quot;Test G Healed Teacher&quot;,)
+&lt;/ol&gt;</tw-passagedata><tw-passagedata pid="343" name="Test G Success" tags="" position="1275,4400" size="100,100">(metadata: &quot;title&quot;, &quot;Test G Healed Teacher&quot;,)
 
 Yay!, He&#39;s feeling better!
 &lt;br&gt;
 ---
-($funcQuestUpdateLink: &quot;Complete the Fluxy Teacher Quest&quot;, &quot;sickTeacher&quot;, &quot;completed&quot;, &quot;You gave your teacher his medicine. He&#39;s feeling better now.&quot;, &quot;We can get going, finally.&quot;, [], &quot;Test G&quot;)</tw-passagedata><tw-passagedata pid="342" name="Test G" tags="" position="975,4650" size="100,100">{=
+($funcQuestUpdateLink: &quot;Complete the Fluxy Teacher Quest&quot;, &quot;sickTeacher&quot;, &quot;completed&quot;, &quot;You gave your teacher his medicine. He&#39;s feeling better now.&quot;, &quot;We can get going, finally.&quot;, [], &quot;Test G&quot;)</tw-passagedata><tw-passagedata pid="344" name="Test G" tags="" position="975,4650" size="100,100">{=
 
 (metadata: &quot;title&quot;, &quot;Test G (quests)&quot;)
 
@@ -15527,7 +15601,7 @@ Yay!, He&#39;s feeling better!
 	&lt;li&gt;(link-rerun: _testStory&#39;s title)[(goto: _testStory&#39;s name)]\
 ]\
 
-&lt;/ul&gt;</tw-passagedata><tw-passagedata pid="343" name="Test H PickStay" tags="" position="1125,5200" size="100,100">{=
+&lt;/ul&gt;</tw-passagedata><tw-passagedata pid="345" name="Test H PickStay" tags="" position="1125,5200" size="100,100">{=
 (metadata: &quot;title&quot;, &quot;Picking a Place to Stay at Rokhab (test)&quot;)
 
 You&#39;re thinking about where to stay.
@@ -15535,7 +15609,7 @@ You&#39;re thinking about where to stay.
 &lt;br&gt;
 ---
 &lt;li&gt;($funcPickStay: &quot;Stay at the caravanserai, where all the traders and travelers do.&quot;, &quot;Rokhab Caravanserai&quot;)
-&lt;li&gt;($funcPickStay: &quot;Slum it in an alleyway, between the warehouses and the dock.&quot;, &quot;Rokhab Vagrant Camp&quot;)</tw-passagedata><tw-passagedata pid="344" name="Test H Rokhab" tags="test" position="1125,5075" size="100,100">{=
+&lt;li&gt;($funcPickStay: &quot;Slum it in an alleyway, between the warehouses and the dock.&quot;, &quot;Rokhab Vagrant Camp&quot;)</tw-passagedata><tw-passagedata pid="346" name="Test H Rokhab" tags="test" position="1125,5075" size="100,100">{=
 
 (storylet: when
 (passage:)&#39;s name is &quot;Traveling&quot;
@@ -15552,7 +15626,7 @@ You&#39;ve arrived in Rokhab. Disembark?
 &lt;ol&gt;
 &lt;li&gt;($funcArrive: &quot;Get settled in Rokhab&quot;, &quot;Test H PickStay&quot;)&lt;!--[[Test H PickStay]]--&gt;
 &lt;li&gt;(link-rerun: &quot;Not yet&quot;)[(goto: &quot;Traveling&quot;)]
-&lt;/ol&gt;</tw-passagedata><tw-passagedata pid="345" name="Test H" tags="" position="975,5100" size="100,100">{=
+&lt;/ol&gt;</tw-passagedata><tw-passagedata pid="347" name="Test H" tags="" position="975,5100" size="100,100">{=
 
 (metadata: &quot;title&quot;, &quot;Test H (traveling)&quot;)
 
@@ -15572,7 +15646,7 @@ Now, let&#39;s travel from here ((print: $place&#39;s location)) to...
 &lt;li&gt;($funcDepart: &quot;The fishing village of Rokhab.&quot;, &quot;Rokhab&quot;)
 &lt;li&gt;($funcDepart: &quot;The ruins of Navveh.&quot;, &quot;Navveh&quot;)
 &lt;li&gt;($funcDepart: &quot;The mysterious land known only as &#39;test location&#39;.&quot;, &quot;test&quot;)
-&lt;/ul&gt;</tw-passagedata><tw-passagedata pid="346" name="Test I" tags="" position="975,5400" size="100,100">{=
+&lt;/ul&gt;</tw-passagedata><tw-passagedata pid="348" name="Test I" tags="" position="975,5400" size="100,100">{=
 
 (metadata: &quot;title&quot;, &quot;Test I (navigating sublocations)&quot;)
 
@@ -15591,7 +15665,7 @@ Sublocations in Apesai:
 Set knowledge:
 &lt;li&gt;(link-rerun: &quot;I know where the Lighthouse is.&quot;)[($funcGainLoss: &quot;att.&quot;, &quot;knowApesaiLighthouse&quot;, 1, )(redirect: (passage:)&#39;s name)]
 &lt;li&gt;(link-rerun: &quot;I learn a bit about the Yavanid quarter.&quot;)[($funcGainLoss: &quot;att.&quot;, &quot;knowApesaiPleasure&quot;, 1, )(redirect: (passage:)&#39;s name)]
-&lt;/ul&gt;</tw-passagedata><tw-passagedata pid="347" name="Test J" tags="" position="975,5550" size="100,100">{=
+&lt;/ul&gt;</tw-passagedata><tw-passagedata pid="349" name="Test J" tags="" position="975,5550" size="100,100">{=
 
 (metadata: &quot;title&quot;, &quot;Test J (NPCs)&quot;)
 
@@ -15641,15 +15715,15 @@ Set knowledge:
         &lt;br&gt;
     ]\
 ]]
-&lt;/details&gt;</tw-passagedata><tw-passagedata pid="348" name="Test K Fail" tags="" position="1100,5800" size="100,100">{=
+&lt;/details&gt;</tw-passagedata><tw-passagedata pid="350" name="Test K Fail" tags="" position="1100,5800" size="100,100">{=
 
 Failure! But you still lost your wounds!? How?
 &lt;br&gt;
-(link: &quot;Back&quot;)[(goto: &quot;Test K&quot;)]</tw-passagedata><tw-passagedata pid="349" name="Test K Success" tags="" position="1100,5675" size="100,100">{=
+(link: &quot;Back&quot;)[(goto: &quot;Test K&quot;)]</tw-passagedata><tw-passagedata pid="351" name="Test K Success" tags="" position="1100,5675" size="100,100">{=
 
 Yay, you lost your wounds!
 &lt;br&gt;
-(link: &quot;Back&quot;)[(goto: &quot;Test K&quot;)]</tw-passagedata><tw-passagedata pid="350" name="Test K" tags="" position="975,5725" size="100,100">{=
+(link: &quot;Back&quot;)[(goto: &quot;Test K&quot;)]</tw-passagedata><tw-passagedata pid="352" name="Test K" tags="" position="975,5725" size="100,100">{=
 
 (metadata: &quot;title&quot;, &quot;Test K (Temps)&quot;)
 
@@ -15672,7 +15746,7 @@ Yay, you lost your wounds!
 
 &lt;li&gt;($funcCheckGate: &quot;Check for 2 wounds&quot;, &quot;temp&quot;, &quot;wound&quot;, 2, true, 50, &quot;Test K Success&quot;, &quot;Test K Fail&quot;)
 
-&lt;/ol&gt;</tw-passagedata><tw-passagedata pid="351" name="Test L" tags="" position="100,4475" size="100,100">(metadata: &quot;title&quot;, &quot;Test L (events)&quot;)
+&lt;/ol&gt;</tw-passagedata><tw-passagedata pid="353" name="Test L" tags="" position="350,4475" size="100,100">(metadata: &quot;title&quot;, &quot;Test L (events)&quot;)
 
 {=
 
@@ -15719,7 +15793,7 @@ $cssColumnChild[
 
 
 ]&lt;!--end child--&gt;
-]&lt;!--end parent--&gt;</tw-passagedata><tw-passagedata pid="352" name="Test List Unfinished" tags="" position="225,4475" size="100,100">{=
+]&lt;!--end parent--&gt;</tw-passagedata><tw-passagedata pid="354" name="Test List Unfinished" tags="" position="475,4475" size="100,100">{=
 (metadata:
 &quot;title&quot;, &quot;List of Passages Needing Attention&quot;)
 
@@ -15746,7 +15820,7 @@ $cssColumnChild[
         (if: (passage: _passage) contains &quot;devNote&quot;)[&lt;br&gt; $cssDesc[` `↪` `(print: (passage: _passage)&#39;s devNote)]]
     }]
     &lt;/ol&gt;
-}]</tw-passagedata><tw-passagedata pid="353" name="Test M" tags="" position="350,4475" size="100,100">(metadata: &quot;title&quot;, &quot;Test M (reading books)&quot;)
+}]</tw-passagedata><tw-passagedata pid="355" name="Test M" tags="" position="600,4475" size="100,100">(metadata: &quot;title&quot;, &quot;Test M (reading books)&quot;)
 
 {=
 
@@ -15810,7 +15884,7 @@ $cssColumnChild[
 &lt;/ol&gt;
 
 ]&lt;!--end child--&gt;
-]&lt;!--end parent--&gt;</tw-passagedata><tw-passagedata pid="354" name="Test N" tags="" position="475,4475" size="100,100">{=
+]&lt;!--end parent--&gt;</tw-passagedata><tw-passagedata pid="356" name="Test N" tags="" position="725,4475" size="100,100">{=
 
 (metadata: &quot;title&quot;, &quot;Test N (spindle convo)&quot;)
 

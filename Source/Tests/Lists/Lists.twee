@@ -121,6 +121,17 @@ Here we find lists of all things currently in the game.
     _displayCode
 }]</li>
 
+<br>
+''NPCs''
+<br>
+<li>(link-rerun: "All NPCs")[{
+    (set: $stuff's count to 0)
+    (set: $stuff's listTitle to "All NPCs")
+    (set: $stuff's currentList to "list.npcAll")
+    _displayCode
+}]</li>
+
+
 
 </ol><!--end of list menu-->
 ]<!--end of child-->

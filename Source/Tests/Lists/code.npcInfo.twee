@@ -1,0 +1,54 @@
+:: code.npcInfo
+
+(set: _npcInfo to (macro: str-type _npcName, [(out:)[{
+    <!--load NPC datamap-->
+    (set: _npcDM to (passage: "npc." + _npcName))
+
+    <!--dialog-->
+    ^^(link-rerun: "?")[{
+        (dialog: [{
+            ''(print: _npcDM's id)''
+
+            <!--Desc-->
+            (if: _npcDM contains "desc")[<br>''desc:'' (print: _npcDM's desc)]
+
+            <!--IMG-->
+            (if: _npcDM contains "img")[<br>''img:'' (print: _npcDM's img)]
+
+            <!--color-->
+            (if: _npcDM contains "color")[<br>''color:''` `(color: _npcDM's color)[(print: _npcDM's color)]]
+    }], "Close")
+    }]^^
+
+    <!--opinion mods-->
+    (if: _npcDM contains "opinionBonus")[{^^
+        (link-rerun: "🗭")[(dialog: [{
+            ''opinionBonus:''
+            (print: _npcDM's opinionBonus)
+        }], "Close.")]
+    ^^}]
+
+
+    <!--travelItinerary-->
+    (if: _npcDM contains "travelItinerary")[{^^
+        (link-rerun: "✈")[(dialog: [''travelItinerary:''(box: "X", 10)[{
+            <ol>(for: each _itinerary, ...(datanames: _npcDM's travelItinerary))[{
+                <li>
+                ''_itinerary:''` `
+                (for: each _loc, ...(datanames: _npcDM's travelItinerary's _itinerary))[{
+                    _loc: $cssDesc[(print: _npcDM's travelItinerary's _itinerary's _loc)]
+                }]
+                </li>
+            }]
+            </ol>
+    }]], "Close.")]
+    ^^}]
+
+    <!--arcConditions-->
+    (if: _npcDM contains "arcConditions")[{^^
+        (link-rerun: "🕮")[{
+            (dialog: [''arcConditions:''(box: "X", 10)[(v6m-print: _npcDM's arcConditions)]], "Close")            
+        }]
+    ^^}]
+
+}]]))

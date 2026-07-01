@@ -14,7 +14,7 @@
 	"fresh", (dm:
     1, (a: "Apesai Lighthouse", 4),
     2, (a: "The Grand Exchange", 2),
-    3, (a: "The Pleasure Quarter", 1),
+    3, (a: "The Provincial Court of Askava", 1),
     ),
     "testMode", (dm:
     1, (a: "test sublocation 1", 3),
