@@ -1,0 +1,35 @@
+:: Test O
+{=
+
+(metadata: "title", "Test O (Market & priceMod)")
+
+[[⇦ BACK->Pre-Test (NEW)]]
+<br>
+
+<!--test condition
+(set: $char's player's att to it + (dm: "repApesaiSwindler", 3))-->
+
+(set: _buyFactors to (dm:
+    "rainy", (dm: "healingTonic", .5, "supplies", .1, "allItems", .05),
+    "repApesaiSwindler", (dm: "allItems", .04),
+    "impressionApesai", (dm: "supplies", .06)
+))
+
+(set: _sellFactors to ($funcMarketMergeFactors: _buyFactors, (dm:
+    "rainy", (dm: "charcoal", -.5, "healingTonic", -.1,),
+    "repApesaiSwindler", (dm: "allItems", -.03),
+)))
+
+
+(set: _testList to (a: "supplies", "healingTonic", "charcoal", "water"))
+
+(set: _baseBuyMod to 3)
+(set: _baseSellMod to .5)
+
+($funcMarketPriceCalc: "supplies", _buyFactors)
+<br>
+$cssDesc[($funcMarketReadoutFull: _baseBuyMod, _baseSellMod, _testList, _buyFactors, _sellFactors)]
+<br>
+<ol>
+($funcMarketMain: _baseBuyMod, _baseSellMod, "rial", _testList, _buyFactors, _sellFactors, 2)
+</ol>

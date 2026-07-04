@@ -1,0 +1,13 @@
+:: list.eventAll
+{=
+
+<!--load temp macro-->
+(set: _eventInfo to [])
+(display: "code.eventInfo")
+
+(for: each _event, ...(passages: where its name contains "event."))[{
+    (set: $stuff's count to it + 1)
+    <li>''(print: _event's id)'' ((print: _event's name)) (_eventInfo: (trimmed: "event.", _event's name))
+    <br>$cssDesc[Desc: (print: _event's desc)]
+    </li>   
+}]

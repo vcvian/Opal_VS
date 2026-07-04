@@ -1,0 +1,14 @@
+:: list.questAll
+{=
+
+<!--load temp macro-->
+(set: _questInfo to [])
+(display: "code.questInfo")
+
+(for: each _quest, ...(passages: where its name contains "quest."))[{
+    (set: $stuff's count to it + 1)
+    <li>''(print: _quest's id)'' ((print: _quest's name))
+    (_questInfo: (trimmed: "quest.", _quest's name))
+    (if: _quest contains "desc")[<br>$cssDesc[(print: _quest's desc)]]
+    </li>
+}]

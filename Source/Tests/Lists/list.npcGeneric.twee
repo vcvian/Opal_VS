@@ -1,0 +1,14 @@
+:: list.npcGeneric
+{=
+
+<!--load temp macro-->
+(set: _npcInfo to [])
+(display: "code.npcInfo")
+
+(for: each _npc, ...(passages: where its name contains "npc."))[{
+    (if: _npc does not contain "desc")[(set: $stuff's count to it + 1)
+    <li>''(print: _npc's id)'' ((print: _npc's name))
+    (_npcInfo: (trimmed: "npc.", _npc's name))
+    (if: _npc contains "desc")[<br>$cssDesc[(print: _npc's desc)]]
+    </li>]
+}]

@@ -15,7 +15,12 @@ $cssColumnChild[
 (set: $stuff's count to 0)
 
 <!--display shorthand-->
-(set: _displayCode to [{(t8n:"dissolve")(rerun: ?displayedList)}])
+(set: _displayCode to [{
+    (t8n:"dissolve")
+    (rerun: ?displayedList)
+    <!--scroll up to page's top-->
+    <script>document.getElementById("displayedList").scrollIntoView({ behavior: "smooth" });</script>
+}])
 
 <h3>Lists</h3>
 Here we find lists of all things currently in the game.
@@ -28,6 +33,13 @@ Here we find lists of all things currently in the game.
     (set: $stuff's count to 0)
     (set: $stuff's listTitle to "All Items")
     (set: $stuff's currentList to "list.itemAll")
+    _displayCode
+}]</li>
+
+<li>(link-rerun: "Craftables")[{
+    (set: $stuff's count to 0)
+    (set: $stuff's listTitle to "Craftables")
+    (set: $stuff's currentList to "list.itemCraftables")
     _displayCode
 }]</li>
 
@@ -131,6 +143,39 @@ Here we find lists of all things currently in the game.
     _displayCode
 }]</li>
 
+<li>(link-rerun: "Notable NPCs")[{
+    (set: $stuff's count to 0)
+    (set: $stuff's listTitle to "Notable NPCs")
+    (set: $stuff's currentList to "list.npcNotable")
+    _displayCode
+}]</li>
+
+<li>(link-rerun: "Generic NPCs")[{
+    (set: $stuff's count to 0)
+    (set: $stuff's listTitle to "Generic NPCs")
+    (set: $stuff's currentList to "list.npcGeneric")
+    _displayCode
+}]</li>
+
+<br>
+''Quests''
+<br>
+<li>(link-rerun: "All quests")[{
+    (set: $stuff's count to 0)
+    (set: $stuff's listTitle to "All Quests")
+    (set: $stuff's currentList to "list.questAll")
+    _displayCode
+}]</li>
+
+<br>
+''Events''
+<br>
+<li>(link-rerun: "All events")[{
+    (set: $stuff's count to 0)
+    (set: $stuff's listTitle to "All Events")
+    (set: $stuff's currentList to "list.eventAll")
+    _displayCode
+}]</li>
 
 
 </ol><!--end of list menu-->
@@ -142,7 +187,7 @@ $cssColumnChild[
 <!--displayedList-->
 [{
     (if: $stuff's currentList's length > 0)[{
-<h3>(print: $stuff's listTitle)</h3>
+<h3 id="displayedList">(print: $stuff's listTitle)</h3>
 Count: ''[(print: $stuff's count)]<count|''        
 <br>     
 (box:"X", 23)+(bg: "#524538")[

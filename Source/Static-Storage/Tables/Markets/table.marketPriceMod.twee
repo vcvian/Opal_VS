@@ -1,0 +1,28 @@
+:: table.marketPriceMod
+
+(metadata:
+"universalBuy", (dm:
+    "rainy", (dm:
+        "allItems", .2,
+    ),
+    "stormy", (dm:
+        "allItems", .3,
+    ),
+    "windy", (dm:
+        "allItems", .15,
+    ),
+),
+"universalSell", (dm:
+    "rainy", (dm:
+        "allItems", -.1,
+    ),
+    "stormy", (dm:
+        "allItems", -.3,
+    ),
+    "windy", (dm:
+        "allItems", -.15,
+    ),
+),
+
+
+)

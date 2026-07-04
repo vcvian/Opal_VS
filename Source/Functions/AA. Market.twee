@@ -1,0 +1,245 @@
+:: AA. Market [startup unfinished]
+
+(metadata: "devNote", [Split into seperate buying and selling conditions])
+{=
+
+<!--3 codes:
+#1. Code that modifies a single item's priceMod;
+#2. Code that prints a market readout;
+#3. Code that lists a sales menu
+#4. Code that creates an alternative sell factor datamap-->
+
+<!--#1 code will:
+1. Take in a datamap of factors affecting the priceMod (att, temp, event, weather)
+2. Take in a single item.
+3. Perform calculations. Output the final priceMod.
+-->
+(set: $funcMarketPriceCalc to (macro: str-type _itemName, dm-type _priceModFactors,[{
+    <!--initialize mod number (which will be final output)-->
+    (set: _priceModAfterCalc to 0)
+
+    <!--Loop through _priceModFactors to see if there is a relevant factor-->
+    (for: each _factor, ...(datanames: _priceModFactors))[{
+        <!--initialize temp var called _addend-->
+        (set: _addend to 0)
+        <!--initialize _present-->
+        (set: _present to false)
+        
+        <!--if affects all items-->
+        (if: _priceModFactors's _factor contains "allItems")[{
+             <!--att-->
+            (if: $char's player's att contains _factor)[{
+                (set: _addend to it + ($char's player's att's _factor * _priceModFactors's _factor's allItems))
+                (set: _present to true)
+            }]
+            <!--temp-->
+            (if: $char's player's temp contains _factor)[{
+                (set: _addend to it + ($char's player's temp's _factor's 1st * _priceModFactors's _factor's allItems))
+                (set: _present to true)
+            }]
+            <!--event-->
+            (if: $place's events contains _factor)[{
+                (set: _addend to it + _priceModFactors's _factor's allItems)
+                (set: _present to true)
+            }]
+            <!--weather-->
+            (if: $place's weather is _factor)[{
+                (set: _addend to it + _priceModFactors's _factor's allItems)
+                (set: _present to true)
+            }]
+        }]<!--end of if allItems-->
+
+        <!--if specific item (not allItems)-->
+        (if: _priceModFactors's _factor contains _itemName)[
+        <!--Check which factor (att, temp, event, weather) is present-->
+        <!--att-->
+        (if: $char's player's att contains _factor)[{
+            (set: _addend to it + ($char's player's att's _factor * _priceModFactors's _factor's _itemName))
+            (set: _present to true)
+        }]
+        <!--temp-->
+        (if: $char's player's temp contains _factor)[{
+            (set: _addend to it + ($char's player's temp's _factor's 1st * _priceModFactors's _factor's _itemName))
+            (set: _present to true)
+        }]
+        <!--event-->
+        (if: $place's events contains _factor)[{
+            (set: _addend to it + _priceModFactors's _factor's _itemName)
+            (set: _present to true)
+        }]
+        <!--weather-->
+        (if: $place's weather is _factor)[{
+            (set: _addend to it + _priceModFactors's _factor's _itemName)
+            (set: _present to true)
+        }]
+        ]<!--end of if specific item (not allItems)-->
+    
+    <!--if present, perform calculation-->
+    (if: _present is true)[(set: _priceModAfterCalc to it + _addend)]
+
+    }]<!--end of factor looping-->
+    
+    <!--output pure number-->
+    (out-data: (round: _priceModAfterCalc * 100) / 100)
+}]))
+
+
+<!--Code #2 prints a market readout for all items currently affected-->
+(set: $funcMarketReadout to (macro: array-type _itemList, dm-type _priceModFactors, [(out:)[{
+
+    <!--initialize final dm-->
+    (set: _prosaicDM to (dm:))
+    
+    <!--Fill in factor's full ID-->
+    (for: each _factor, ...(datanames: _priceModFactors))[{
+        <!--att-->
+        (if: $char's player's att contains _factor)[{
+            (set: _amount to ($funcCheckExists: $char's player's att, _factor, 0))
+            (set: _prosaicDM to it + (dm: _factor,(a: (str: (passage: "att." + _factor)'s id) + " × " + (str: _amount),(dm-altered: via its value * _amount,_priceModFactors's _factor))))
+        }]
+        <!--temp-->
+        (if: $char's player's temp contains _factor)[{
+            (set: _amount to ($funcCheckTemp: _factor))
+            (set: _prosaicDM to it + (dm: _factor,(a: (str: (passage: "temp." + _factor)'s id) + " × " + (str: _amount),(dm-altered: via its value * _amount,_priceModFactors's _factor))))
+        }]
+        <!--event-->
+        (if: $place's events contains _factor)[{(set: _prosaicDM to it + (dm: _factor, (a: (str: (passage: "event." + _factor)'s id), _priceModFactors's _factor)))}]
+        <!--weather-->
+        (if: $place's weather is _factor)[(set: _prosaicDM to it + (dm: _factor, (a: (upperfirst:_factor) + " weather", _priceModFactors's _factor)))]
+    }]
+
+    <!--temporary macro that formats numbers-->
+    (set: _colorNumber to (macro: num-type _num, [(out:)[{
+        <!--initialize-->
+        (set: _output to "")
+        (set: _convert to 0)
+
+        <!--convert numbers-->
+        (set: _convert to (round: _num * 100))
+
+        <!--format-->
+        (if: _convert >= 0)[(set: _output to "(color: green+yellow)[+" + (str:_convert) + "%]")]
+        (else:)[(set: _output to "(color: red+orange)[" + (str:_convert) + "%]")]
+
+        <!--output-->
+        (print: _output)
+    }]]))
+
+    <!--Print out the prosaic list-->
+    <!--if not empty-->
+    (if: (datanames: _prosaicDM)'s length > 0)[{
+        <ol>
+        (for: each _factor, ...(datanames: _prosaicDM))[{
+            (set: _pos to 0)
+            <li>''(print: _prosaicDM's _factor's 1st):''
+            <!--first, allItems-->
+            (if: _prosaicDM's _factor's 2nd contains "allItems")[{
+<br>
+                All items (_colorNumber: _prosaicDM's _factor's 2nd's allItems)
+                <!--only display "per" tooltip if _factor is att or temp-->
+                (if: $char's player's att contains _factor or $char's player's temp contains _factor)[` `((_colorNumber: _priceModFactors's _factor's allItems) per)]
+            }]
+            (for: each _itemAffected, ...(datanames: _prosaicDM's _factor's 2nd))[{
+                (set: _pos to it + 1)
+                (unless: _itemAffected is "allItems")[
+<br>
+                    (print: (passage: "item." + _itemAffected)'s id)
+                    ` `(_colorNumber: _prosaicDM's _factor's 2nd's _itemAffected)
+                    <!--only display "per" tooltip if _factor is att or temp-->
+                    (if: $char's player's att contains _factor or $char's player's temp contains _factor)[` `((_colorNumber: _priceModFactors's _factor's _itemAffected) per)]
+                ]<!--end of unless allItems-->
+                (if: _pos < (datanames: _prosaicDM's _factor's 2nd)'s length)[,` `](else:)[.]
+            }]</li>
+        }]
+        </ol>
+    }]<!--end of if not empty-->
+    <!--if empty-->
+    (else:)[{
+<br>(Empty.)
+    }]
+
+}]]))
+
+<!--Code #2b combines both the buying and selling readout for a full readout-->
+(set: $funcMarketReadoutFull to (macro: num-type _baseBuyMod, num-type _baseSellMod, array-type _itemList, dm-type _buyFactors, dm-type _sellFactors, [(out:)[{
+    <!--standard passage-->
+    At ''(print: (passage:)'s title)'', goods are offered at (color:green+yellow)[(round: _baseBuyMod * 100)%] of their base value, and their resale price is (color: red+orange) [(round: _baseSellMod * 100)%] of their base value.
+<br>
+    <!--buying readout-->
+    Additionally, the following factors are affecting the price of what you can ''buy'' here:
+<br>
+    (box: "X", 5)+(bg: "#524538")[($funcMarketReadout: _itemList, _buyFactors)]
+<br>
+    <!--selling readout-->
+    And the following factors are affecting the price of what you can ''sell'' to the vendor:
+<br>
+    (box: "X", 5)+(bg: "#524538")[($funcMarketReadout: _itemList, _sellFactors)]
+<br>
+    This vendor trades in ''(print: (passage: "item." + (passage:)'s currency)'s id)'', of which you currently have ($funcCheckExists: $char's player's inv, (passage:)'s currency, 0).
+}]]))
+
+<!--Code #3 generates a list of links for buying and selling-->
+
+(set: $funcMarketMain to (macro: num-type _baseBuyMod, num-type _baseSellMod, str-type _currency, array-type _itemList, dm-type _buyModFactors, dm-type _sellModFactors, num-type _mode, [(out:)[{
+    
+    <!--Mode: 1. Both buy & sell, 2. Only buy, 3. Only sell-->
+    (set: _enableBuy to false)
+    (set: _enableSell to false)
+    (if: _mode is 1)[{
+        (set: _enableBuy to true)
+        (set: _enableSell to true)
+    }]
+    (elseif: _mode is 2)[{
+        (set: _enableBuy to true)
+        (set: _enableSell to false)
+    }]
+    (elseif: _mode is 3)[{
+        (set: _enableBuy to false)
+        (set: _enableSell to true)
+    }]
+    
+    (if: _mode is 1)[This vendor lets you both ''buy'' and ''sell''.]
+    (elseif: _mode is 2)[This vendor only lets you ''buy'', not sell.]
+    (elseif: _mode is 3)[This vendor only lets you ''sell'', not buy.]
+<br>
+    <!--Loop through _itemList to create links-->
+    (for: each _itemName, ..._itemList)[{
+        <!--title of item-->
+        <li>''(print: (passage: "item." + _itemName)'s id)''($funcLogTip: "item.", _itemName)
+        <br>$cssDesc[`  `↪`  `(print: (passage: "item." + _itemName)'s tip)]</li>
+
+        
+
+        <!--Buy link-->
+(if: _enableBuy)[
+        ($funcMultiBuySell: "buy", _itemName, _currency, _baseBuyMod + ($funcMarketPriceCalc: _itemName, _buyModFactors))
+<br>
+]
+        <!--Sell link-->
+(if: _enableSell)[
+        ($funcMultiBuySell: "sell", _itemName, _currency, _baseSellMod + ($funcMarketPriceCalc: _itemName, _sellModFactors))        
+<br>
+]
+    }]<!--end of _itemList loop-->
+}]]))
+
+
+<!--Code #4 creates an alternative _sellModFactors datamap by merging the original buy list with a sell list (remember to (set:) this to _sellModFactors or a similarly named temp var)-->
+
+(set: $funcMarketMergeFactors to (macro: dm-type _originalList, dm-type _newList, [{
+    <!--initialize _outputDM-->
+    (set: _outputDM to _originalList)
+
+    <!--Loop through _newList-->
+    (for: each _factor, ...(datanames: _newList))[{
+        <!--if _factor exists in the original list, then merge-->
+        (if: _outputDM contains _factor)[(set: _outputDM's _factor to it + _newList's _factor)]
+
+        <!--if factor doesn't exist in the original list-->
+        (else:)[(set: _outputDM to it + (dm: _factor, _newList's _factor))]
+
+    }]<!--finish looping through original list-->
+
+    <!--output-->
+    (out-data: _outputDM)
+}]))

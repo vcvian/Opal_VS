@@ -1,5 +1,73 @@
 :: Shopping Day 1e [unfinished] {"position":"4175,2300","size":"100,100"}
 
 (metadata:
-"devNote", [No content yet. This is supposed to be "antique store" - though renaming might be necessary. Use template from other shops (`example:` (link: "Shopping Day 1c")[(goto: "Shopping Day 1c")])],
+"currency", "rial",
+"title", "The Booksellers' Floor",
+"cardDesc", "Simple magical products for everyday use are often sold in alchemical shops.",
+"parent", "S: Shopping Day 1",
+"devNote", [Be careful: Do I want ''all'' books to be sold here? Or do I just want a selection?],
 )
+
+<!--Market setup-->
+<!--item list-->
+(set: _itemList to (a:))
+(for: each _itemDM, ...(passages: where its name contains "item."))[{
+     (if: _itemDM's key contains "book")[{
+        (set: _itemList to it + (a: (trimmed: "item.", _itemDM's name)))
+     }]
+}]
+<!--buy factor-->
+(set: _buyFactors to (passage: "table.marketPriceMod")'s universalBuy)
+<!--sell factor-->
+(set: _sellFactors to ($funcMarketMergeFactors: _buyFactors, (passage: "table.marketPriceMod")'s universalSell))
+<!--define base mods-->
+(set: _baseBuyMod to 1.5)
+(set: _baseSellMod to .5)
+<!--end of market setup-->
+
+
+$cssColumnParent[
+
+$cssColumnChild[
+
+	(css: "font-size: 70%")[
+        $cssColumnChild[(link: "⇦ Never mind.")[(goto: (passage:)'s parent)]]
+     ]
+
+	$cssBox[
+    	($funcImage: (passage: "S: Shopping Day 1")'s img)
+         $cssBoxItem[''(print: (passage:)'s title )''<br>(print: (passage:)'s cardDesc)]
+    ]
+]
+
+$cssColumnChild[
+This floor is overflowing - quite literally, you must have stepped on a few pages - with books, scrolls, parchments, and whatever media through which wisdom may be transposed. Perhaps the only wisdom that is lacking is a fear of fire hazard. 
+<br>
+Hung over each kiosk on this floor are various emblems from printers' guilds, copyist groups, and university presses. You know that these are only for show - prestige by association. These organizations do not typically operate shops this far away.
+<br>
+Nurandah might be the most literate society to ever exist, but the literati alone does not tie together the Seven Provinces. Rather, it is such wide-reaching network of mongers, such as these secondhand booksellers, that are the true civilizational threads. 
+]<!--end child-->
+]<!--end parent-->
+
+---
+
+$cssColumnParent[
+$cssColumnChild[
+<!--Readout-->
+$cssDesc[($funcMarketReadoutFull: _baseBuyMod, _baseSellMod, _itemList, _buyFactors, _sellFactors)]
+<!--end of readout-->
+]<!--end child, begin another-->
+
+$cssColumnChild[
+<!--main buy/sell menu-->
+<ol>
+($funcMarketMain: _baseBuyMod, _baseSellMod, (passage:)'s currency, _itemList, _buyFactors, _sellFactors, 2)
+<br>
+Or...
+<br>
+<li>(link: "Never mind.")[(goto: (passage:)'s parent)]</li>
+</ol>
+<!--end of main buy/sell menu-->
+
+]<!--end child-->
+]<!--end parent 2-->

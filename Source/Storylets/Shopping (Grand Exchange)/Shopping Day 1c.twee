@@ -3,17 +3,35 @@
 
 (metadata:
 "currency", "rial",
-"title", "Spice and Reagent Market",
-"cardDesc", ".",
-"devNote", [Write desc, write market info + code, review buying menu.],
+"title", "The Spices and Reagents Floor",
+"cardDesc", "Most things of the Earth carries a spark of magic. Most things of the Earth are sold here.",
+"parent", "S: Shopping Day 1",
+"devNote", [Might need to review the itemList. Does the market truly sells every ingredient?],
 )
+
+<!--Market setup-->
+<!--item list-->
+(set: _itemList to (a:))
+(for: each _itemDM, ...(passages: where its name contains "item."))[{
+    (if: _itemDM's name contains "item.")[{
+        (if: _itemDM's key contains "ingredient")[(set: _itemList to it + (a: (trimmed: "item.", _itemDM's name)))]
+    }]
+}]
+<!--buy factor-->
+(set: _buyFactors to (passage: "table.marketPriceMod")'s universalBuy)
+<!--sell factor-->
+(set: _sellFactors to ($funcMarketMergeFactors: _buyFactors, (passage: "table.marketPriceMod")'s universalSell))
+<!--define base mods-->
+(set: _baseBuyMod to 1.2)
+(set: _baseSellMod to .5)
+<!--end of market setup-->
 
 $cssColumnParent[
 
 $cssColumnChild[
 
     (css: "font-size: 70%")[
-        $cssColumnChild[(link: "⇦ Never mind.")[(goto: "S: Shopping Day 1")]]
+        $cssColumnChild[(link: "⇦ Never mind.")[(goto: (passage:)'s parent)]]
      ]
 
 	$cssBox[
@@ -24,7 +42,15 @@ $cssColumnChild[
 
 $cssColumnChild[
 
-(prose description)
+Wandering the many floors under the Grand Exchange's dome, you feel a distant kinship to the merchants who harp on about the value of their spices, herbs, oils, and so on.
+<br>
+They might tell you that so-and-so root goes excellently into a certain soup, or one brand of grease is better for a wagon's joint than another. But the value they hold most dear is a fundamental and fungible one: rial.
+<br>
+And as a magus who is trained to see the elemental value in everything - for all is made up of the same stuff - you, too, see these stalls teeming with raw, untapped energy.
+<br>
+All of it can be yours, if you have the rial.
+<br>
+
 
 ]<!--end child-->
 ]<!--end parent 1-->
@@ -32,31 +58,22 @@ $cssColumnChild[
 ---
 
 $cssColumnParent[
-<!--Very important! If the passage is a merchant, then where player might buy or sell things, then _priceMod must be defined. The formula can get more complex later on to account for faction attitudes, weather, and various other modifiers-->
-(set: _priceModBuy to 3)
-(set: _priceModSell to .5)
+$cssColumnChild[
+<!--Readout-->
+$cssDesc[($funcMarketReadoutFull: _baseBuyMod, _baseSellMod, _itemList, _buyFactors, _sellFactors)]
+<!--end of readout-->
+]<!--end child, begin another-->
 
 $cssColumnChild[
-(Market info. To be implemented)
-<br>
-$cssDesc[The Grand Exchange only accepts ''(print: (passage:)'s currency)'' - by order of the Ministry of Funds. But you can always sell your other currencies here, if you like being ripped off.
-<br>
-You currently have ($funcCheckExists: $char's player's inv, (passage:)'s currency, 0) (print: (passage:)'s currency).]
-]<!--end child-->
-
-$cssColumnChild[
+<!--main buy/sell menu-->
 <ol>
-Browsing... <br>
-(for: each _ingredient, ...(passages: where its name contains "item."))[\
-	(if: _ingredient contains "key")[(if: _ingredient's key contains "ingredient")[\
-        ''(print: _ingredient's id)''($funcLogTip: "item.", (trimmed: "item.", _ingredient's name)) <br>
-    	<li>($funcMultiBuySell: "buy", (trimmed: "item.", _ingredient's name), (passage:)'s currency, _priceModBuy)
-        <li>($funcMultiBuySell: "sell", (trimmed: "item.", _ingredient's name), (passage:)'s currency, _priceModSell)
-        ]]\
-]<!--end loop-->
+($funcMarketMain: _baseBuyMod, _baseSellMod, (passage:)'s currency, _itemList, _buyFactors, _sellFactors, 1)
 <br>
 Or...
-<li>(link: "Never mind.")[(goto: "S: Shopping Day 1")]
+<br>
+<li>(link: "Never mind.")[(goto: (passage:)'s parent)]</li>
 </ol>
+<!--end of main buy/sell menu-->
+
 ]<!--end child-->
 ]<!--end parent 2-->

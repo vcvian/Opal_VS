@@ -3,17 +3,38 @@
 
 (metadata:
 "currency", "rial",
-"title", "Apesai Apothecaries",
-"cardDesc", ".",
-"devNote", [Write desc, write market info + code, review buying menu.],
+"title", "The Apothecaries' Floors",
+"cardDesc", "Simple magical products for everyday use are often sold in alchemical shops.",
+"parent", "S: Shopping Day 1",
+"devNote", [itemList might need reviewing. Right now, it's selling only crafables lvl 1, but does it need to also sell some ingredients? Do ingredients need additional key tagging for easy classification?],
 )
+
+<!--Market setup-->
+<!--item list-->
+(set: _itemList to (a:))
+(for: each _itemDM, ...(passages: where its name contains "item."))[{
+     (if: _itemDM's key contains "craftable")[{
+          (if: _itemDM's level is 1)[{
+               (set: _itemList to it + (a: (trimmed: "item.", _itemDM's name)))
+          }]
+     }]
+}]
+<!--buy factor-->
+(set: _buyFactors to (passage: "table.marketPriceMod")'s universalBuy)
+<!--sell factor-->
+(set: _sellFactors to ($funcMarketMergeFactors: _buyFactors, (passage: "table.marketPriceMod")'s universalSell))
+<!--define base mods-->
+(set: _baseBuyMod to 3)
+(set: _baseSellMod to .9)
+<!--end of market setup-->
+
 
 $cssColumnParent[
 
 $cssColumnChild[
 
 	(css: "font-size: 70%")[
-        $cssColumnChild[(link: "⇦ Never mind.")[(goto: "S: Shopping Day 1")]]
+        $cssColumnChild[(link: "⇦ Never mind.")[(goto: (passage:)'s parent)]]
      ]
 
 	$cssBox[
@@ -23,40 +44,32 @@ $cssColumnChild[
 ]
 
 $cssColumnChild[
-(prose)
+Highly trained magi are few, but half-trained, self-trained, and untrained ones are plenty. Those versed in a few alchemical tricks often find employment in small laboratories, churning out minor remedies, supplements, cosmetics, and even cleaning substances.
+<br>
+Of course, if business employs a non-guild magus, it is not permitted to sell at guild prices - Exchange rules. You're not sure if you have seen a guild certification in any of these shops. It seems that your own coin purse will have to bear the difference. 
 
 ]<!--end child-->
 ]<!--end parent-->
 
 ---
+
 $cssColumnParent[
-
-
-<!--Very important! If the passage is a merchant, then where player might buy or sell things, then _priceMod must be defined. The formula can get more complex later on to account for faction attitudes, weather, and various other modifiers-->
-(set: _priceModBuy to 3)
-(set: _priceModSell to 1)
+$cssColumnChild[
+<!--Readout-->
+$cssDesc[($funcMarketReadoutFull: _baseBuyMod, _baseSellMod, _itemList, _buyFactors, _sellFactors)]
+<!--end of readout-->
+]<!--end child, begin another-->
 
 $cssColumnChild[
-(Market info here)
-<br>
-$cssDesc[The Grand Exchange only accepts ''(print: (passage:)'s currency)'' - by order of the Ministry of Funds. But you can always sell your other currencies here, if you like being ripped off.
-<br>
-You currently have ($funcCheckExists: $char's player's inv, (passage:)'s currency, 0) (print: (passage:)'s currency).]
-]
-
-$cssColumnChild[
+<!--main buy/sell menu-->
 <ol>
-Browsing... <br>
-(for: each _ingredient, ...(passages: where its name contains "item."))[\
-	(if: _ingredient contains "key")[(if: _ingredient's key contains "potion")[\
-    	''(print: _ingredient's id)''($funcLogTip: "item.", (trimmed: "item.", _ingredient's name)) <br>
-    	<li>($funcMultiBuySell: "buy", (trimmed: "item.", _ingredient's name), (passage:)'s currency, _priceModBuy)
-        <li>($funcMultiBuySell: "sell", (trimmed: "item.", _ingredient's name), (passage:)'s currency, _priceModSell)
-        ]]\
-]
+($funcMarketMain: _baseBuyMod, _baseSellMod, (passage:)'s currency, _itemList, _buyFactors, _sellFactors, 1)
 <br>
 Or...
-<li>(link: "Never mind.")[(goto: "S: Shopping Day 1")]
+<br>
+<li>(link: "Never mind.")[(goto: (passage:)'s parent)]</li>
 </ol>
+<!--end of main buy/sell menu-->
+
 ]<!--end child-->
-]<!--end parent-->
+]<!--end parent 2-->

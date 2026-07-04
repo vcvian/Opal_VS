@@ -1,12 +1,34 @@
-:: Shopping Day 1b [unfinished] {"position":"3875,2300","size":"100,100"}
+:: Shopping Day 1b {"position":"3875,2300","size":"100,100"}
 {=
 
 (metadata:
 "currency", "rial",
-"title", "Dry Food Warehouse",
+"title", "The Dry Food Warehouse",
 "cardDesc", "Essential (and perhaps only) nutrition for pilgrims, caravaneers, sailors, and one journeying magus.",
-"devNote", [Review desc, write market info + code, review buying menu.],
+"parent", "S: Shopping Day 1",
 )
+
+<!--To run a market (all temp var MUST be defined outside of any hook, so it goes at the beginning of the passage)
+1. Define an item list (temp var). Can use (for:) to build list.
+2. Define (a) buy factors and (b) sell factors, often using "table.marketPriceMod". Sell factor is usually a merge between the buy factors and its own things using $funcMarketMergeFactors.
+3. Define (a)_baseBuyMod and (b) _baseSellMod.
+4. Run readout: ($funcMarketReadoutFull:)
+5. Run buy/sell menu: ($funcMarketMain:)
+-->
+
+
+<!--Market setup-->
+<!--item list-->
+(set: _itemList to (a: "supplies",))
+<!--buy factor-->
+(set: _buyFactors to (passage: "table.marketPriceMod")'s universalBuy)
+<!--sell factor-->
+(set: _sellFactors to ($funcMarketMergeFactors: _buyFactors, (passage: "table.marketPriceMod")'s universalSell))
+<!--define base mods-->
+(set: _baseBuyMod to 3)
+(set: _baseSellMod to .5)
+<!--end of market setup-->
+
 
 
 $cssColumnParent[
@@ -14,7 +36,7 @@ $cssColumnParent[
 $cssColumnChild[
      
      (css: "font-size: 70%")[
-        $cssColumnChild[(link: "⇦ Never mind.")[(goto: "S: Shopping Day 1")]]
+        $cssColumnChild[(link: "⇦ Never mind.")[(goto: (passage:)'s parent)]]
      ]
 
 	$cssBox[
@@ -24,8 +46,9 @@ $cssColumnChild[
 ]
 
 $cssColumnChild[
-
-Salted fish from nearby Rokhab, goat jerky from Sabzam upriver, water-grains from Zirab, glazed pastries with Yavanid names you cannot pronounce - they're all here, all the things to keep yourself fed while on the road.
+Excess foods that do not fit on cargo ships are resold here right by the warehouses next to the Exchange, where needy travelers are plenty.
+<br>
+Salted fish from nearby Rokhab, goat jerky from Sabzam upriver, water-grains from Zirab, glazed pastries with Yavanid names you cannot pronounce - all the things to keep yourself fed while on the road are neatly packed and laid out on rows and rows of stalls, each with a monger hawking their wares.
 <br>
 How long will your jounrey be? How big is your purse?
 
@@ -35,28 +58,22 @@ How long will your jounrey be? How big is your purse?
 ---
 
 $cssColumnParent[
-
-<!--Very important! If the passage is a merchant, then where player might buy or sell things, then _priceMod must be defined. The formula can get more complex later on to account for faction attitudes, weather, and various other modifiers-->
-(set: _priceModBuy to 3)
-(set: _priceModSell to .5)
-
 $cssColumnChild[
-(Market info here)
-<br>
-$cssDesc[The Grand Exchange only accepts ''(print: (passage:)'s currency)'' - by order of the Ministry of Funds. But you can always sell your other currencies here, if you like being ripped off.
-<br>
-You currently have ($funcCheckExists: $char's player's inv, (passage:)'s currency, 0) (print: (passage:)'s currency).]
+<!--Readout-->
+$cssDesc[($funcMarketReadoutFull: _baseBuyMod, _baseSellMod, _itemList, _buyFactors, _sellFactors)]
+<!--end of readout-->
 ]<!--end child, begin another-->
 
 $cssColumnChild[
+<!--main buy/sell menu-->
 <ol>
-Something for the road...
-<li>($funcMultiBuySell: "buy", "supplies", (passage:)'s currency, _priceModBuy)
+($funcMarketMain: _baseBuyMod, _baseSellMod, (passage:)'s currency, _itemList, _buyFactors, _sellFactors, 1)
 <br>
-Actually, if anything, you might even have too much...
-<li>($funcMultiBuySell: "sell", "supplies", (passage:)'s currency, _priceModSell)
-<br>Or...
-<li>(link: "Never mind.")[(goto: "S: Shopping Day 1")]
+Or...
+<br>
+<li>(link: "Never mind.")[(goto: (passage:)'s parent)]</li>
 </ol>
+<!--end of main buy/sell menu-->
+
 ]<!--end child-->
 ]<!--end parent 2-->

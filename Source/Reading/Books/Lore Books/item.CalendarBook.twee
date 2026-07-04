@@ -3,9 +3,9 @@
 (metadata: 
 	"id", [Our Calendar Decoded! Essential Astrology for the Layman (with Warning)],
     "key", (a: "document", "book",),
-    "value", (a: 20, 0, 0, 0, 0, 20,),
+    "value", (a: 30, 0, 0, 0, 0, 20,),
     "img", "https://fallenlondon.wiki/w/images/3/30/Bookpurple.png",
-    "desc", [A pamphlet published by "The Neighborhood Astrologian & Co.", which is forced by law to print with a foreword by the Esora Guild of Astrologians denouncing the ensuing content as pseudoscience - as if the exclamation in the title didn't already give that away.],
+    "desc", [A book published by "The Neighborhood Astrologian & Co.", which is forced by law to print with a foreword by the Esora Guild of Astrologians denouncing the ensuing content as pseudoscience - as if the exclamation in the title didn't already give that away.],
     "tip", [At least the book doesn't misspell the names of days, weeks, and months.],
     "gainText", [You now hold in your hand what is technically "suppressed literature", much in the same way poison mushrooms are a "forbidden fruit": naturally shunned out of good sense, not a fruit, and surprisingly ubiquitous.],
     "lossText", [You part ways with the pamphlet. Could have kept it and used it as a shim for a wobbly table.],
@@ -40,7 +40,7 @@ Three, the Guild, as does the wider scientific consensus, rejects the identifica
 <br>
 _e
 <br>
-$cssDesc[The foreword goes on like this for another twelve points, taking up nearly half of the pamphlet's total page count, until finally ending with a seal from the Esora Guild of Astrologians.]
+$cssDesc[The foreword goes on like this for another twelve points, taking up nearly a quarter of the book's total page count, until finally ending with a seal from the Esora Guild of Astrologians.]
 }])<!--end of foreword-->
 
 
@@ -160,7 +160,7 @@ However, before you do, know that this wisdom is so impactful that there are cer
     <!--replace content-->
     _updateContent
 }]
-<li>(link-rerun: "Put the pamphlet away.")[{
+<li>(link-rerun: "Put the book away.")[{
     <!--clear $stuff-->
     (set: $stuff to (dm:))
     <!--goto-->

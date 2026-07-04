@@ -1,0 +1,17 @@
+:: code.questInfo
+
+(set: _questInfo to (macro: str-type _questName, [(out:)[{
+    <!--load full quest DM-->
+    (set: _questDM to (passage: "quest." + _questName))
+
+    <!--Display info link -> dialog-->
+    ^^(link-rerun: "?")[{
+        (dialog: [{
+            ''(print: _questName):''
+            <br>''img:'' (v6m-print: _questDM's img)
+            <br>''desc:'' (v6m-print: _questDM's desc)
+            <br>''tip:'' (box: "X", 3)+(bg: "#524538")[(v6m-print: _questDM's tip)]
+            <br>''source:'' (box: "X", 5)+(bg: "#524538")[(v6m-print: _questDM's source)]
+        }], "Close")
+    }]^^
+}]]))

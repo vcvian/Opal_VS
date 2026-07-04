@@ -1,0 +1,23 @@
+:: code.eventInfo
+{=
+
+(set: _eventInfo to (macro: str-type _eventName, [(out:)[{
+    <!--load full event DM-->
+    (set: _eventDM to (passage: "event." + _eventName))
+
+    <!--Display info link -> dialog-->
+    ^^(link-rerun: "?")[{
+        (dialog: [{
+            ''(print: _eventName):''
+            <br>''img:'' (v6m-print: _eventDM's img)
+            <br>''desc:'' (v6m-print: _eventDM's desc)
+            <br>''tip:'' (box: "X", 3)+(bg: "#524538")[(v6m-print: _eventDM's tip)]
+            <br>''eventConditions:'' (box: "X", 5)+(bg: "#524538")[(v6m-print: _eventDM's eventConditions)]
+            <br>''repeat:'' (v6m-print: _eventDM's repeat)
+            <br>''cooldown:'' (v6m-print: _eventDM's cooldown)
+            <br>''timed:'' (v6m-print: _eventDM's timed)
+            <br>''duration:'' (v6m-print: _eventDM's duration)
+            <br>''startup:'' (v6m-print: _eventDM's startup)
+        }], "Close")
+    }]^^
+}]]))
