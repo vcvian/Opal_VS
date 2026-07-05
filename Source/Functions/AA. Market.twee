@@ -1,6 +1,5 @@
-:: AA. Market [startup unfinished]
+:: AA. Market [startup]
 
-(metadata: "devNote", [Split into seperate buying and selling conditions])
 {=
 
 <!--3 codes:
@@ -27,7 +26,14 @@
         
         <!--if affects all items-->
         (if: _priceModFactors's _factor contains "allItems")[{
-             <!--att-->
+            
+            <!--Location-->
+            (if: $place's location is _factor)[{
+                (set: _addend to it + _priceModFactors's _factor's allItems)
+                (set: _present to true)
+            }]
+
+            <!--att-->
             (if: $char's player's att contains _factor)[{
                 (set: _addend to it + ($char's player's att's _factor * _priceModFactors's _factor's allItems))
                 (set: _present to true)
@@ -52,6 +58,13 @@
         <!--if specific item (not allItems)-->
         (if: _priceModFactors's _factor contains _itemName)[
         <!--Check which factor (att, temp, event, weather) is present-->
+
+        <!--Location-->
+            (if: $place's location is _factor)[{
+                (set: _addend to it + _priceModFactors's _factor's _itemName)
+                (set: _present to true)
+            }]
+
         <!--att-->
         (if: $char's player's att contains _factor)[{
             (set: _addend to it + ($char's player's att's _factor * _priceModFactors's _factor's _itemName))
@@ -92,6 +105,12 @@
     
     <!--Fill in factor's full ID-->
     (for: each _factor, ...(datanames: _priceModFactors))[{
+        
+        <!--Location-->
+        (if: $place's location is _factor)[{
+            (set: _prosaicDM to it + (dm: _factor, (a: "Regional market (" + _factor + ")", _priceModFactors's _factor)))
+        }]
+        
         <!--att-->
         (if: $char's player's att contains _factor)[{
             (set: _amount to ($funcCheckExists: $char's player's att, _factor, 0))
@@ -163,7 +182,9 @@
 <!--Code #2b combines both the buying and selling readout for a full readout-->
 (set: $funcMarketReadoutFull to (macro: num-type _baseBuyMod, num-type _baseSellMod, array-type _itemList, dm-type _buyFactors, dm-type _sellFactors, [(out:)[{
     <!--standard passage-->
-    At ''(print: (passage:)'s title)'', goods are offered at (color:green+yellow)[(round: _baseBuyMod * 100)%] of their base value, and their resale price is (color: red+orange) [(round: _baseSellMod * 100)%] of their base value.
+    ''(print: (passage:)'s title)'' trades in ''(print: (passage: "item." + (passage:)'s currency)'s id)'', of which you currently have ($funcCheckExists: $char's player's inv, (passage:)'s currency, 0).
+<br>
+    At this vendor, goods are offered at (color:green+yellow)[(round: _baseBuyMod * 100)%] of their base value, and their resale price is (color: red+orange) [(round: _baseSellMod * 100)%] of their base value.
 <br>
     <!--buying readout-->
     Additionally, the following factors are affecting the price of what you can ''buy'' here:
@@ -174,8 +195,6 @@
     And the following factors are affecting the price of what you can ''sell'' to the vendor:
 <br>
     (box: "X", 5)+(bg: "#524538")[($funcMarketReadout: _itemList, _sellFactors)]
-<br>
-    This vendor trades in ''(print: (passage: "item." + (passage:)'s currency)'s id)'', of which you currently have ($funcCheckExists: $char's player's inv, (passage:)'s currency, 0).
 }]]))
 
 <!--Code #3 generates a list of links for buying and selling-->
@@ -200,8 +219,10 @@
     
     (if: _mode is 1)[This vendor lets you both ''buy'' and ''sell''.]
     (elseif: _mode is 2)[This vendor only lets you ''buy'', not sell.]
-    (elseif: _mode is 3)[This vendor only lets you ''sell'', not buy.]
-<br>
+    (elseif: _mode is 3)[This vendor only lets you ''sell'', not buy.]<br>
+    <!--disclaimer-->
+    $cssDesc[''Note:'' Per unit price estimates are rounded. Final price may vary depending on transaction quantity.]
+<br>    
     <!--Loop through _itemList to create links-->
     (for: each _itemName, ..._itemList)[{
         <!--title of item-->

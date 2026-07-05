@@ -1,4 +1,4 @@
-:: att.knowApesaiPleasure [static-storage] {"position":"3125,1775","size":"100,100"}
+:: att.knowApesaiPleasure [static-storage unfinished] {"position":"3125,1775","size":"100,100"}
 {=
 
 (metadata: 
@@ -9,6 +9,7 @@
     "desc", [],
     "tip", [],
     "gainText", [],
-    "lossText", []
+    "lossText", [],
+    "devNote", [EMPTY],
 
 )

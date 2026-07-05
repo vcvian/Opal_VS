@@ -54,7 +54,7 @@ Fourth, it runs the buy/sell macro, passing into it the appropriate arguments.--
 				\
 				(set: _value to (num: _value))\
 				 ⚖ ($funcBuySell: _item, _value, _currency, _priceMod)\
-			] $cssDesc[(Each will cost you ''_pricePerUnit (print: _currencyDM's id).'' You currently have ''(if: $char's player's inv contains _item)[(print: $char's player's inv's _item)](else:)[0] (print: _itemDM's id).'')]\
+			] $cssDesc[(Each will cost you ~''_pricePerUnit (print: _currencyDM's id).'' You currently have ''(if: $char's player's inv contains _item)[(print: $char's player's inv's _item)](else:)[0] (print: _itemDM's id).'')]\
 		]<!--end of canBuy-->\
 		(else:)[\
 			~~Buy (print: _itemDM's id)~~ $cssDesc[(Insufficient ''(print: _currencyDM's id)''. You have|need at least (color:red)[(if: $char's player's inv contains _currency)[(print: $char's player's inv's _currency)](else:)[0]]|_pricePerUnit (print: _currencyDM's id). Also, you currently have ''(if: $char's player's inv contains _item)[(print: $char's player's inv's _item)](else:)[0] (print: _itemDM's id)''.)]\
@@ -74,10 +74,10 @@ Fourth, it runs the buy/sell macro, passing into it the appropriate arguments.--
 				\
 				(set: _value to -(num: _value))\
 				⚖ ($funcBuySell: _item, _value, _currency, _priceMod)\
-			] $cssDesc[(Each will fetch you ''_pricePerUnit (print: _currencyDM's id).'' You currently have ''(if: $char's player's inv contains _item)[(print: $char's player's inv's _item)](else:)[0] (print: _itemDM's id).'')]\
+			] $cssDesc[(Each will fetch you ~''_pricePerUnit (print: _currencyDM's id).'' You currently have ''(if: $char's player's inv contains _item)[(print: $char's player's inv's _item)](else:)[0] (print: _itemDM's id).'')]\
 		]<!--end of canSell-->\
 		(else:)[\
-			~~Sell (print: _itemDM's id)~~ $cssDesc[(Each will fetch you ''_pricePerUnit (print: _currencyDM's id),'' but alas, you don't have any to sell.)]\
+			~~Sell (print: _itemDM's id)~~ $cssDesc[(Each will fetch you ~''_pricePerUnit (print: _currencyDM's id),'' but alas, you don't have any to sell.)]\
 		]\
 	]<!--end of sell link-->\
 ]]))

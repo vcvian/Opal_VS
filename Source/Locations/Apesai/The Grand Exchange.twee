@@ -1,11 +1,10 @@
-:: The Grand Exchange [sublocation unfinished] {"position":"4000,2025","size":"100,100"}
+:: The Grand Exchange [sublocation] {"position":"4000,2025","size":"100,100"}
 {=
 
 (metadata:
 "prefecture", "Nurrah Coastlands",
 "location", "Apesai",
 "title", "The Grand Exchange",
-"devNote", [Location description needs updating.]
 )
 ($funcUpdateLocation:)
 
@@ -13,7 +12,7 @@
 $cssColumnParent[
 $cssColumnChild[
 
-To say that the Grand Exchange building dominates Apesai's mid-island commercial district is an understatement.
+To say that the ''Grand Exchange'' building dominates Apesai's mid-island commercial district is an understatement.
 <br>
 Rather, it is more accurate to say that the entire district - warehouses, merchant residences, accounting and notary offices, commodity trading floors, and many alleyside markets - has grown out from the Grand Exchange, like moss gathering around a stone.
 <br>

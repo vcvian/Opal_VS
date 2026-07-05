@@ -1,0 +1,104 @@
+:: S: Currency Exchange (GE) [storylet unfinished]
+{=
+
+(storylet: when
+$place's sublocation is "The Grand Exchange"
+)
+(urgency: .9)
+(metadata:
+    "title", "Apesai's Currency Swap Office",
+    "cardDesc", "The Grand Exchange will sell you many things, on the condition that you only use the rial. This one office accepts every kind of coin, but the only thing it will sell are rials.",
+    "img", "https://thefifthcity.wiki/w/images/3/3f/Currency3_copper.png",
+    "currency", "rial",
+    "parent", "S: Shopping Day 1",
+    "devNote", [Kinda done, but lots of bandage solutions. No idea if scalable lol. Definitely doesn't take new currencies at the moment.],
+)
+
+
+<!--Market setup-->
+<!--item list-->
+(set: _itemList to (a:))
+(for: each _itemDM, ...(passages: where its name contains "item."))[{
+     (if: _itemDM's key contains "currency" and _itemDM's name does not contain "rial")[{
+        (set: _itemList to it + (a: (trimmed: "item.", _itemDM's name)))
+     }]
+}]
+<!--buy factor-->
+(set: _buyFactors to (passage: "table.marketPriceMod")'s universalForex)
+<!--sell factor-->
+(set: _sellFactors to ($funcMarketMergeFactors: _buyFactors, (passage: "table.marketPriceMod")'s universalForex))
+<!--define base mods-->
+(set: _baseBuyMod to 1.15)
+(set: _baseSellMod to .8)
+<!--end of market setup-->
+
+$cssColumnParent[
+
+$cssColumnChild[
+
+	(css: "font-size: 70%")[
+        $cssColumnChild[{(link: "⇦ Exit the Grand Exchange.")[$funcBack]}]
+        $cssColumnChild[{(link: "⇦ Browse the shops.")[(goto: (passage:)'s parent)]}]
+     ]
+
+	$cssBox[
+    	($funcImage: (passage: "S: Shopping Day 1")'s img)
+         $cssBoxItem[''(print: (passage:)'s title )''<br>(print: (passage:)'s cardDesc)]
+    ]
+]
+
+$cssColumnChild[
+
+Near the front entrance of the Grand Exchange building is an office where foreign merchants line up to trade in their gold - a metal as impractical as the colorful Yavanids that use them - for Apesai's main commodity currency: red steel rial.
+<br>
+But gold ghan is not the only thing that is traded here, and neither are Yavanids.
+<br>
+Ethnic Keshans, stout and austere, with their heads held high, are bringing in their leftover keshi from the former occupation regime to liquidate, for their wish to participate in Nurandahid society is greater than their loyalty to the serpent cult.
+<br>
+And there are also the occasional native with their odd masks and odder currencies - a more fitting offering for the archeologist than the teller. Soon, when the light of Nurandah reaches the northern deserts, these people will trade in the rest of their primitive money and masks in exchange for rial and garbs befitting a citizen.
+<br>
+For now, the teller, sitting behind his rattan screen, accepts and weighs all such oddities. Everything can be made valuable if the scale is accurate enough.
+
+]<!--end child-->
+]<!--end parent-->
+
+---
+
+$cssColumnParent[
+$cssColumnChild[
+<!--Readout-->
+$cssDesc[($funcMarketReadoutFull: _baseBuyMod, _baseSellMod, _itemList, _buyFactors, _sellFactors)]
+<!--end of readout-->
+]<!--end child, begin another-->
+
+$cssColumnChild[
+<!--main buy/sell menu-->
+<ol>
+<!--($funcMarketMain: _baseBuyMod, _baseSellMod, (passage:)'s currency, _itemList, _buyFactors, _sellFactors, 3)-->
+Trading currencies:<br>
+<!--disclaimer-->
+$cssDesc[''Note:'' Per unit price estimates are rounded. Final price may vary depending on transaction quantity.]
+<br>
+
+<li>Buying ''rial''($funcLogTip: "item.", "rial") with ''ghan''($funcLogTip: "item.", "ghan"):<br>$cssDesc[`  `↪`  `(print: (passage: "item.ghan")'s tip)]</li>
+($funcMultiBuySell: "sell", "ghan", "rial", _baseSellMod + ($funcMarketPriceCalc: "ghan", _sellFactors))
+<br>
+
+<li>Buying ''rial''($funcLogTip: "item.", "rial") with ''keshi''($funcLogTip: "item.", "keshi"):<br>$cssDesc[`  `↪`  `(print: (passage: "item.keshi")'s tip)]</li>
+Sell keshi to ($funcMultiBuySell: "buy", "rial", "keshi", _baseBuyMod + ($funcMarketPriceCalc: "rial", _buyFactors))
+<br>
+
+<li>Buying ''rial''($funcLogTip: "item.", "rial") with ''pul''($funcLogTip: "item.", "pul"):<br>$cssDesc[`  `↪`  `(print: (passage: "item.pul")'s tip)]</li>
+Sell pul to ($funcMultiBuySell: "buy", "rial", "pul", _baseBuyMod + ($funcMarketPriceCalc: "rial", _buyFactors))
+<br>
+
+<br>
+Or...
+<br>
+<li>(link: "Browse the shops.")[(goto: (passage:)'s parent)]</li>
+<li>(link: "Exit the Grand Exchange.")[$funcBack]</li>
+</ol>
+<!--end of main buy/sell menu-->
+
+]<!--end child-->
+]<!--end parent 2-->

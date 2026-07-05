@@ -24,12 +24,12 @@
 (set: _testList to (a: "supplies", "healingTonic", "charcoal", "water"))
 
 (set: _baseBuyMod to 3)
-(set: _baseSellMod to .5)
+(set: _baseSellMod to -5)
 
 ($funcMarketPriceCalc: "supplies", _buyFactors)
 <br>
 $cssDesc[($funcMarketReadoutFull: _baseBuyMod, _baseSellMod, _testList, _buyFactors, _sellFactors)]
 <br>
 <ol>
-($funcMarketMain: _baseBuyMod, _baseSellMod, "rial", _testList, _buyFactors, _sellFactors, 2)
+($funcMarketMain: _baseBuyMod, _baseSellMod, "rial", _testList, _buyFactors, _sellFactors, 1)
 </ol>

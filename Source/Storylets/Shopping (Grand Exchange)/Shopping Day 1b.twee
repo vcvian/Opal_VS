@@ -25,8 +25,8 @@
 <!--sell factor-->
 (set: _sellFactors to ($funcMarketMergeFactors: _buyFactors, (passage: "table.marketPriceMod")'s universalSell))
 <!--define base mods-->
-(set: _baseBuyMod to 3)
-(set: _baseSellMod to .5)
+(set: _baseBuyMod to 1.5)
+(set: _baseSellMod to .8)
 <!--end of market setup-->
 
 
@@ -40,8 +40,8 @@ $cssColumnChild[
      ]
 
 	$cssBox[
-    	($funcImage: (passage: "S: Shopping Day 1")'s img)
-         $cssBoxItem[''(print: (passage:)'s title )''<br>(print: (passage:)'s cardDesc)]
+    	     ($funcImage: (passage: "S: Shopping Day 1")'s img)
+          $cssBoxItem[''(print: (passage:)'s title )''<br>(print: (passage:)'s cardDesc)]
     ]
 ]
 

@@ -1,4 +1,4 @@
-:: S: Reading (Activity) [storylet unfinished]
+:: S: Reading (Activity) [storylet]
 {=
 
 (storylet: when
@@ -8,7 +8,6 @@
 "title", "Read Something",
 "cardDesc", "Studying textbooks, reading letters, examining documents - a scholar's favorite pastime.",
 "img", "https://images.fallenlondon.com/icons/book.png",
-"devNote", [Storylet text needs to be written.],
 )
 (urgency: -1)
 

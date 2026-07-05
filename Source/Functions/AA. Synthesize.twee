@@ -59,7 +59,7 @@ Ex: 2|1 At, 0|1 Ab, 2|3 Gor, 0|2 Rokh, 0|0 Zam -->
 2. The lab is capable ("level");
 3. You have enough elements for at least 1.
 -->
-(set: $funcListCraftable to (macro: [(out:)[\
+(set: $funcListCraftable to (macro: [(out:)[{\
 	<!--empty list indicators-->\
     (set: _emptySimple to true)\
     (set: _emptyComplex to true)\
@@ -119,10 +119,16 @@ Ex: 2|1 At, 0|1 Ab, 2|3 Gor, 0|2 Rokh, 0|0 Zam -->
         ]\
 	]\
     <!--Hide empty lists-->
-    (if: _emptySimple is true)[(hide: ?simple)]\
-    (if: _emptyComplex is true)[(hide: ?complex)]\
-    (if: _emptyExotic is true)[(hide: ?exotic)]\
-]]))
+    (if: _emptySimple is true)[(append: ?simpleList)[$cssDesc[(No known formula in this category.)]
+<br>
+	]]\
+    (if: _emptyComplex is true)[(append: ?complexList)[$cssDesc[(No known formula in this category.)
+<br>
+	]]]\
+    (if: _emptyExotic is true)[(append: ?exoticList)[$cssDesc[(No known formula in this category.)]
+<br>
+	]]\
+}]]))
 
 <!--Multi-craft link-->
 (set: $funcMultiCraft to (macro: str-type _itemName, [(out:)[\
@@ -309,9 +315,10 @@ Ex: 2|1 At, 0|1 Ab, 2|3 Gor, 0|2 Rokh, 0|0 Zam -->
 		<br>''Current Projects''<br>
 		<li>($funcJobDone:)\
 		<li>($funcCancelLink:)\
-        <br>
+<br>
 		<details open><summary>''Potential Projects''</summary>\
-		(box: "X", 10)[($funcListCraftable:)]\
+<br>
+		(box: "X", 10)+(bg: "#524538")[($funcListCraftable:)]\
 		</details>\
 	]<!--end of running-->\
 	\

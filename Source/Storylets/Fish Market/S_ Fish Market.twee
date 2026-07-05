@@ -1,0 +1,115 @@
+:: S: Fish Market [storylet]
+
+(storylet: when
+$place's sublocation is "Apesai Wharf"
+)
+(urgency: -1)
+(metadata:
+    "title", "Quayside Fish Market",
+    "cardDesc", [{
+        (if: $place's weather is not "rainy" and it is not "stormy" and it is not "windy")[The quayside markets are open today - a boon for those hoping to catch both fresh fish and low prices.]
+        (else:)[The quayside markets are temporarily closed due to bad weather. There must be other places.]
+    }],
+    "img", "https://fallenlondon.wiki/w/images/3/3b/Fish_white.png",
+    "currency", "rial",
+)
+
+<!--To run a market (all temp var MUST be defined outside of any hook, so it goes at the beginning of the passage)
+1. Define an item list (temp var). Can use (for:) to build list.
+2. Define (a) buy factors and (b) sell factors, often using "table.marketPriceMod". Sell factor is usually a merge between the buy factors and its own things using $funcMarketMergeFactors.
+3. Define (a)_baseBuyMod and (b) _baseSellMod.
+4. Run readout: ($funcMarketReadoutFull:)
+5. Run buy/sell menu: ($funcMarketMain:)
+-->
+
+
+<!--Market setup-->
+<!--item list-->
+(set: _itemList to (a: "supplies",))
+<!--buy factor-->
+(set: _buyFactors to (passage: "table.marketPriceMod")'s universalBuy)
+<!--sell factor-->
+(set: _sellFactors to ($funcMarketMergeFactors: _buyFactors, (passage: "table.marketPriceMod")'s universalSell))
+<!--define base mods-->
+(set: _baseBuyMod to 1.0)
+(set: _baseSellMod to .8)
+<!--end of market setup-->
+
+<!--determine weather-->
+(set: _isOpen to false)
+(if: $place's weather is not "rainy" and it is not "stormy" and it is not "windy")[(set: _isOpen to true)]
+
+
+$cssColumnParent[
+
+$cssColumnChild[
+	(if: _isOpen is true)[(css: "font-size: 70%")[
+        $cssColumnChild[(link: "⇦ Never mind.")[$funcBack]]
+    ]]
+
+    $cssBox[
+    	($funcImage: (passage:)'s img)
+         $cssBoxItem[''(print: (passage:)'s title )''<br>(print: (passage:)'s cardDesc)]
+    ]
+]
+
+$cssColumnChild[
+<!--prose-->
+<!--if open-->
+(if: _isOpen is true)[{
+(cond:
+$place's weather is "sunny", "The sun is scorching the marble quays, and passersby desperately seek respite under the shade of the fish stalls, providing mongers ample opportunity to pounce upon the grateful and disoriented customers.",
+$place's weather is "foggy", "In this fog, one is liable to misstep and fall into the sea. To orient yourself, you follow the voices of the fishmongers. Else, you might end up among the catch.",
+$place's weather is "overcast", "Cool clouds above. It is a fine day to be a fisherman, a fishmonger, and a seagull. The quayside markets are teeming with fishes and people alike.",
+"The weather is agreeable today."
+)<!--end of weather text-->
+<br>
+Though commerce in Apesai is primarily concentrated in the Grand Exchange building uphill, not everyone is willing to go through the trouble, especially the less well-off citizens living in the shorelines.
+<br>
+Down here, there are many kinds of fresh seafood on offer. Trouble is, they're too fresh, too alive to be practical for your travels. But there are squids and fish fillets on drying racks, which may suit you better. 
+}]
+
+<!--if closed-->
+(else:)[{
+<!--weather text-->
+(cond:
+$place's weather is "rainy", "The fishmongers are hardy people and fear not a little rain. But the rain drives away customers and soaks the dry goods, which hurts business. This, the mongers fear.",
+$place's weather is "windy", "You walk by a collapsed stall - a temporary thing made from sticks and rattan screens - which the sea gale has devastated. The other stalls, fearing for their lives, have either been dismantled or covered up with heavy tarps, waiting for the wind to subside.",
+$place's weather is "stormy", "It is a death wish to stay out here in the open, uncovered quays when the sea is churning, and lightning is streaking across the sky. The fishmongers have all fled inside their boats.",
+"The weather is terrible right now."
+)<!--end of weather text-->
+<br>
+The fish market is closed for today. Such is the ephemerality of informal commerce. But this is Apesai; commerce is everywhere, regardless of weather. And "everywhere" really means "somewhere with a proper roof". A //dome//, even.
+<br>
+---
+(link: "Never mind. Come back another day.")[$funcBack]
+}]
+
+<!--end of prose-->
+]<!--end child-->
+]<!--end parent-->
+
+(if: _isOpen is true)[
+---
+
+$cssColumnParent[
+$cssColumnChild[
+<!--Readout-->
+$cssDesc[($funcMarketReadoutFull: _baseBuyMod, _baseSellMod, _itemList, _buyFactors, _sellFactors)]
+<!--end of readout-->
+]<!--end child, begin another-->
+
+$cssColumnChild[
+<!--main buy/sell menu-->
+<ol>
+($funcMarketMain: _baseBuyMod, _baseSellMod, (passage:)'s currency, _itemList, _buyFactors, _sellFactors, 1)
+<br>
+Or...
+<br>
+<li>(link: "Never mind.")[$funcBack]</li>
+</ol>
+<!--end of main buy/sell menu-->
+
+]<!--end child-->
+]<!--end parent 2-->
+]<!--end of market menu hook-->

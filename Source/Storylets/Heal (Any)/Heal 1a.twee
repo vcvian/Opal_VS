@@ -1,9 +1,9 @@
-:: Heal 1a {"position":"3475,2625","size":"100,100"}
+:: Heal 1a [unfinished] {"position":"3475,2625","size":"100,100"}
 {=
 
 (metadata:
 "title", "Lied Down",
-"cardDesc", "What need is medicine? You body can heal by itself. It only needs some time, and some peace.",
+"cardDesc", "What need is medicine? You body can heal by itself. It only needs some time, and some peace.", "devNote", [Need total rework. Healing effect needs to be systemic. Perhaps a 1-day temporary condition?],
 )
 
 $cssColumnParent[

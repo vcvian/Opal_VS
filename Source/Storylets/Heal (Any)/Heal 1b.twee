@@ -1,9 +1,9 @@
-:: Heal 1b {"position":"3575,2625","size":"100,100"}
+:: Heal 1b [unfinished] {"position":"3575,2625","size":"100,100"}
 {=
 
 (metadata:
 "title", "Medicated Rest",
-"cardDesc", "Gor - to help ground yourself, so you do not ascend before your time.",
+"cardDesc", "Gor - to help ground yourself, so you do not ascend before your time.", "devNote", [Need total rework.],
 )
 
 $cssColumnParent[

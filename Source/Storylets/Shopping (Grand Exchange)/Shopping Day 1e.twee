@@ -5,7 +5,7 @@
 "title", "The Booksellers' Floor",
 "cardDesc", "Simple magical products for everyday use are often sold in alchemical shops.",
 "parent", "S: Shopping Day 1",
-"devNote", [Be careful: Do I want ''all'' books to be sold here? Or do I just want a selection?],
+"devNote", [Be careful: Do I want ''all'' books to be sold here? Or do I just want a selection? Also, books should not be affected by factors like the weather. I might have to re-divide the tables.],
 )
 
 <!--Market setup-->

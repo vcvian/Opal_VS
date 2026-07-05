@@ -11,6 +11,9 @@
     "windy", (dm:
         "allItems", .15,
     ),
+    "Apesai", (dm:
+        "allItems", .1,
+    ),
 ),
 "universalSell", (dm:
     "rainy", (dm:
@@ -21,6 +24,16 @@
     ),
     "windy", (dm:
         "allItems", -.15,
+    ),
+    "Apesai", (dm:
+        "allItems", -.2,
+    ),
+),
+
+"universalForex", (dm:
+    "Apesai", (dm:
+        "rial", .5,
+        "ghan", -.1,
     ),
 ),
 

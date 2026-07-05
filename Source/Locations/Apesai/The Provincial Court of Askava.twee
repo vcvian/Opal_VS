@@ -1,9 +1,10 @@
-:: The Provincial Court of Askava [sublocation] {"position":"4500,1750","size":"100,100"}
+:: The Provincial Court of Askava [sublocation unfinished] {"position":"4500,1750","size":"100,100"}
 {=
 (metadata:
 "prefecture", "Nurrah Coastlands",
 "location", "Apesai",
 "title", "The Provincial Court of Askava",
+"devNote", [Need to write content.],
 )
 
 ($funcUpdateLocation:)
