@@ -1,0 +1,13 @@
+:: item.facePowder [static-storage]
+
+(metadata:
+	"id", [Yavanid Powder],
+    "key", (a: "craftable", "cosmetic"),
+    "level", 1,
+    "value", (a: 30, 0, 1, 0, 2, 1,),
+    "img", "",
+    "desc", [A brilliant-white powder of Zam. Popular with the people of Yavana and their imitators as a facial whitener. Avid users tend to develop a "Yavanid fugue".],
+    "tip", [A ''simple'' substance.],
+    "gainText", [You store the brilliant-white powder in a small wooden box, which will inevitably have its interior bleached.],
+    "lossText", [There goes. A ton of this powder gets used everyday in Yavana.]
+)

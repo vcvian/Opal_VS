@@ -43,11 +43,13 @@ You end up at...
 
 <li>(link: "The dry food warehouse.")[(goto: "Shopping Day 1b")] $cssDesc[(To fill your belly during your travels.)]</li>
 
-<li>(link: "The spices and reagents floor.")[(goto: "Shopping Day 1c")] $cssDesc[(And herbs, and extracts, and whatever else that goes in a cauldron in small quantities.)]</li>
+<li>(link: "The spices floor.")[(goto: "Shopping Day 1c")] $cssDesc[(And herbs, and extracts, and whatever else that goes in a cauldron in small quantities.)]</li>
 
 <li>(link: "The apothecaries' floor.")[(goto: "Shopping Day 1d")] $cssDesc[(Tinctures, balms, and face powder, too!)]</li>
 
 <li>(link: "The booksellers' floor.")[(goto: "Shopping Day 1e")] $cssDesc[(And scrolls, from all corners of Nurandah.)]</li>
+
+<li>(link: "The vehzin warehouse.")[(goto: "Shopping Day 1f")] $cssDesc[(One of Askava's main exports. Necessary for most magical technologies.)]</li>
 
 <li>(link: "The currency swap office.")[(goto: "S: Currency Exchange (GE)")] $cssDesc[(Buy money itself... with other money.)]</li>
 

@@ -1,0 +1,14 @@
+:: item.seaweed [static-storage]
+{=
+
+(metadata: 
+	"id", [Nurrah Seaweed],
+    "key", (a: "ingredient",),
+    "value", (a: 2, 0, 1, 0, 0, 0),
+    "img", "",
+    "desc", [Abundant in the Nurrah Sea, abundant in an Askavan salad bowl, and abundant in everyone's clothes after a swim.],
+    "tip", [A minor alchemical source of ''Ab''.],
+    "gainText", [You wrap the jelly-like seaweed in paper. The latter might be more valuable than the former.],
+    "lossText", [Gone. It's just seaweed.]
+
+)

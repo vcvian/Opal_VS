@@ -1,9 +1,9 @@
-:: Shopping Day 1e [unfinished] {"position":"4175,2300","size":"100,100"}
+:: Shopping Day 1e [unfinished]
 
 (metadata:
 "currency", "rial",
 "title", "The Booksellers' Floor",
-"cardDesc", "Simple magical products for everyday use are often sold in alchemical shops.",
+"cardDesc", "All Nurandah trade cities hoard the written word, regardless of quality.",
 "parent", "S: Shopping Day 1",
 "devNote", [Be careful: Do I want ''all'' books to be sold here? Or do I just want a selection? Also, books should not be affected by factors like the weather. I might have to re-divide the tables.],
 )
@@ -12,7 +12,7 @@
 <!--item list-->
 (set: _itemList to (a:))
 (for: each _itemDM, ...(passages: where its name contains "item."))[{
-     (if: _itemDM's key contains "book")[{
+     (if: _itemDM's key contains "book" and it does not contain "special")[{
         (set: _itemList to it + (a: (trimmed: "item.", _itemDM's name)))
      }]
 }]

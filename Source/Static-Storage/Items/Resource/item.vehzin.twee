@@ -6,7 +6,7 @@
     "key", (a: "resource", ),
     "value", (a: 20, 300, 1000, 500, 1000, 2000),
     "img", "",
-    "desc", [The so-called "Thought-Metal" - vehzin - is a semi-organic, crimson mineral that innately responds to magic. It is the precursor to the extremely versatile Red Steel and the primary source of fuel for most magical machinery. Needless to say, it is very valuable.],
+    "desc", [The so-called "Thought-Metal" - vehzin - is a semi-organic, crimson mineral that innately responds to magic. It is the precursor to the extremely versatile red steel and the primary source of fuel for most magical machinery. Needless to say, it is very valuable.],
     "tip", [Vehzin is used to power all manners of magic, chief of which are magical workstations.],
     "gainText", [You've handle so much vehzin before as part of your training, but your head still spins whenever you think about how important this crimson rock is to civilization. Of course, it could simply be that the rock is messing with your mind. It does that.],
     "lossText", [As you part ways with the vehzin, your mind grows quieter. Is it the rock's influence disappearing? Or is it the emptiness of loss that you feel?],

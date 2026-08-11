@@ -15,7 +15,7 @@ Fourth, it runs the buy/sell macro, passing into it the appropriate arguments.--
 	(set: _currencyDM to (passage: "item." + _currency))\
 	(set: _price to (abs:_itemDM's value's 1st))\
 	<!--Convert currency-->\
-	(set: _pricePerUnit to (round: (_price * _priceMod) / _currencyDM's value's 1st))\
+	(set: _pricePerUnit to (floor: (_price * _priceMod) / _currencyDM's value's 1st))\
 	(if: _pricePerUnit < 1)[(set: _pricePerUnit to 1)]\
 	\
 	<!--inv checks-->\

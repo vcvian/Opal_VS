@@ -1,0 +1,324 @@
+:: item.NurandahidBook [static-storage unfinished]
+{=
+(metadata: 
+	"devNote", [Need gainText and LossText],
+    "id", [On Nurandahids: A Sagely Dialogue],
+    "key", (a: "document", "book",),
+    "value", (a: 15, 0, 0, 0, 0, 20,),
+    "img", "https://fallenlondon.wiki/w/images/3/30/Bookpurple.png",
+    "desc", [A pamphlet published by the Nudankhan Council's Popular Press in the "sagely dialogue" genre, depicting a fictionalized exchange between an unnamed savage child and the mythic founder of Nurandah - Serpadi I - regarding the question of, "Who gets to be called an 'imperial'?".],
+    "tip", [You ''are'' an imperial; there is no doubt about that.],
+    "gainText", [You are quite sure that you were assigned this pamphlet for your civics class. Or foundational logic class. It's difficult to remember. It was so long ago. You've read hundreds of such dialogues since then.],
+    "lossText", [You part ways with the pamphlet. No great loss; there are so many of these anyhow.],
+    "content", [{
+<!--content begins-->
+
+<!--elipses-->
+(set: _e to [$cssDesc[`[...]`]])
+
+(set: _NurandahidPreface to [{
+<!--preface-->
+''Publisher's Foreword''
+<br>
+Wherever you are, light shines upon you.
+<br>
+It is easy to forget this simple fact when you are assaulted by the vicissitudes of existence, whether you are an apprentice weighed down by expectations, or you are a member of a named house worrying about your investments, or you are merely an errant soul bereft of purpose.
+<br>
+Know this: Light shines upon you all. None has been a greater exemplar of this wisdom than the source of all wisdom: The Grand Magus Serpadi I, Thrice-Great-Sage, Magus-of-Magi, Namer-of-Names, Lightbringer, Inventor of All Magical Sciences, Founder of Nurandah, Universal Emperor.
+<br>
+In life, Emperor Serpadi I has brought to Zam the light of Nurandah. In death, ten centuries later, his wisdom lives on through the works of his blessed descendants, and, more familiar to us is the apocryphal tradition which we often call the "sagely dialogues", which continues to instruct the everyday people of Nurandah in fulfilled and virtuous living.
+<br>
+Nudankhan Council's Popular Press takes great pride in sharing with the public, during what some may call "historical times", the undying, unchanging light of Serpadi I, neatly packaged in a multi-pamphlet (for easy sharing) collection called "Sagely Dialogues".
+<br>
+The pamphlets include:
+* On Nurandahids;
+* On Wealth;
+* On Leadership;
+* On Love;
+* On Meaningful Lives;
+* On Science;
+* On Education;
+* On Expertise;
+* On Charity;
+* On Civility;
+* On Piety;
+* On Peace;
+* On Dreams;
+* _e
+<br>
+$cssDesc[The list goes on, with quite a few synonymous, if not outright repeated titles. You are holding one such pamphlets.]
+
+
+<br>
+}])
+
+(set: _Nurandahid1 to [{
+<!--Page 1: Dialogue-->
+''On Nurandahids: A Sagely Dialogue''
+<br>
+_e
+<br>
+Presently, having drunk the rainbow nectar, eaten the gem fruits, bathed and rested in Samah's mirrored chamber, the savage child was finally received by Grand Magus Serpadi in the palace garden, where they walked and talked about many things of the sky and of the Earth, of the child's long travel from the woods of Esora to splendid Nudankhan, and of his many curiosities.
+<br>
+And finally, when the sage and the savage child reached a reflecting pool, where birds from four corners of Nurandah gathered and listened to each other's foreign songs, the child turned to the Great Magus with an inquiry.
+<br>
+
+''Savage Child:''
+<br>
+O, Thrice-Great-Sage, excuse my naive question, but this - I must ask.
+<br><br>
+
+''Sage:''
+<br>
+Ask away, child, for that is the only way one graduates from naivete.
+<br><br>
+
+''Savage Child:''
+<br>
+You are wise. My question is thus: Upon my entrance to your garden, and likewise when I entered the jeweled gate the grand city of Nudankhan, before my eyes could recover from being dazzled, I heard your guardsmen - themselves splendidly garbed and anointed, so I knew they could not be wrong - call me a "Nurandahid".
+<br>
+This strikes me as somewhat strange, and even though my eyes have adjusted, the strangeness still rings. But I know your guardsmen have not made a mistake, for they are well-garbed and well-anointed. Pray tell, why did they call me a "Nurandahid"?
+<br><br>
+
+''Sage:''
+<br>
+Are you //not// a Nurandahid?
+<br><br>
+
+''Savage Child:''
+<br>
+I do not //look// like one of you. My skin is not so shielded by your great domes, and my height is needed to climb the oaks of Esora.
+<br><br>
+
+''Sage:''
+<br>
+And if I - Serpadi-da-Nudankhan - were to spend a month in the jungle, away from my domes and my carriages, do you not think I would redden as well? And how red are you, really, compared to the fishermen or sand-tillers of Askava? How tall are you, compared to the giants of Shadowed Kudkuch? Even my daughter is sometimes called Samah-da-Kudkuch on account of her height, though she has never known cold in her life. Looks seem to be an inadequate criterion.
+<br><br>
+
+''Savage Child:''
+<br>
+You are right, o sage. But my people have looked upon the stars and has not found the urge to fell our trees, nor have we thought to dress our guards so finely and oil them so meticulously. And yet, you have felled mountains to carve out your city. Surely, if there is a difference, it must be in such deeds.
+<br><br>
+
+''Sage:''
+<br>
+Is that so? And why have you traveled so far away from your trees - a great deed for one so small - if you did not envy our cities?
+<br><br>
+
+''Savage Child:''
+<br>
+I was following a falling star. And when I reached the horizon, I found Nudankhan instead.
+<br><br>
+
+''Sage:''
+<br>
+The stars govern everyone, even me. We live under the same black dome. I, too, followed a star. It only happened to be the closest one. Look, child, here you are with me in this garden. Are we so different?
+<br><br>
+
+''Savage Child:''
+<br>
+You weave compelling words, but these words needed weaving in the first place.
+<br><br>
+
+''Sage:''
+<br>
+And so, too, did your distinction between Esora and Nurandah needed weaving, for you were not born naturally thinking those thoughts.
+<br><br>
+
+''Savage Child:''
+<br>
+What thought I could have, I do not know anymore.
+<br><br>
+
+''Sage:''
+<br>
+Good, so are you //not// Nurandahid?
+<br><br>
+
+''Savage Child:''
+<br>
+I thought not, but judging by your insistent challenge, I may infer that I have thought wrong, and I am ignorant after all.
+<br><br>
+
+''Sage:''
+<br>
+Are you truly, completely ignorant? In order to be wrong, you must already have some preconception. Tell me, who do you think are "Nurandahids"?
+<br><br>
+
+''Savage Child:''
+<br>
+I am embarrassed to speak, for I have exhausted both looks and deeds, but since you have asked, I will answer, for I expect you to do likewise after this, since my initial question still stands.
+<br>
+A Nurandahid is one from Nurandah, subject to the emperor's laws - your laws - and enjoys the emperor's protection - your protection, O Thrice-Great-Sage. And thus, a Nurandahid fulfills their obligations to the society that nurtures them - Nurandah - namely through service, dues, taxes, and charity.
+<br><br>
+
+''Sage:''
+<br>
+And are you not these things, dear child?
+<br><br>
+
+''Savage Child:''
+<br>
+I would not know. To one such as I, who lives far in the woods of Esora, who gazes at the stars and drinks from the river, so far from the magnificent cities, whom the taxman rarely visits, of whom little alms is expected, and fewer services required, whose name few records bear, how am I to know if I am of Nurandah?
+<br><br>
+
+''Sage:''
+<br>
+If my guards cannot be wrong, for their garb is splendid and their oils are well-applied, then the fault lies in your definition, does it not?
+<br>
+Or rather, the fault lies in your //negative// definition: That you rarely see my taxmen in your woods, nor often do my scribes record your name, cannot be the sole criterion to exclude you from Nurandah.
+<br><br>
+
+''Savage Child:''
+<br>
+Then what does?
+<br><br>
+
+''Sage:''
+<br>
+Nothing. Are my guards wrong? Are they not well-garbed and perfectly-oiled?
+<br><br>
+
+''Savage Child:''
+<br>
+No, they are not wrong. But I am not truly a citizen of Nurandah. I have not set foot onto Nurandah's soil until now, and I have never paid any dues, taxes, or alms.
+<br><br>
+
+''Sage:''
+<br>
+Ah, so wise you are. Then surely you must also know that "citizenship" is but a legal category, and scribes are but men. Try as they may, and they do try with great competence, for which they deserve great compensation, writing-men cannot hope to write all that is true and natural.
+<br><br>
+
+''Savage Child:''
+<br>
+Do you intend to say that being Nurandahid is a natural fact, as much as the birds fly and the fishes swim?
+<br><br>
+
+''Sage:''
+<br>
+Some birds do not fly at all, and some fishes do. But nothing is more natural than for a bird to be a bird, and for a fish to be a fish. By reason, you are Nurandahid, child.
+<br><br>
+
+''Savage Child:''
+<br>
+By reason? What is this reason you speak of?
+<br><br>
+
+''Sage:''
+<br>
+By "reason", I do mean our shared capacity to know a common thing by observation, analysis, comparison, and judgment. You have done so to our looks and deeds, and I have contributed my judgment on the same grounds.
+<br><br>
+
+''Savage Child:''
+<br>
+Thrice-Great-Sage, I do not dare to claim any commonality between us, much less your capacity for wisdom.
+<br><br>
+
+''Sage:''
+<br>
+Ha! If my so-called "capacity for wisdom" is purely peerless and cannot be shared, not even by one bit, then I would be a madman. Tell me, child: Do you accuse me of madness?
+<br><br>
+
+''Savage Child:''
+<br>
+Never! It is ''I'' who have gone mad from my years of privation in the woods, so far from the light of your spires and your wisdom. But the light can be hard to behold for eyes so rheumy.
+<br><br>
+
+''Sage:''
+<br>
+Ah, so you accuse me of being king of only mad subjects?
+<br><br>
+
+''Savage Child:''
+<br>
+No, though I sense that I have fallen into a rhetorical trap, and my politeness cannot protect me from your onslaught. Perhaps this is why you are king-of-kings, magus-of-magi, o Thrice-Great-Sage.
+<br><br>
+
+''Sage:''
+<br>
+Indeed, it is only natural, just as Khur shines everywhere, in lands without names, on heads with crowns or chains. Khur always rises. Where it does not has already perished in cold, and the denizens of those frozen lands would not have had this conversation.
+<br>
+That you are here in my garden is testament to this natural fact. That you have drank from your rivers and have gazed upon the light of distant suns are testaments to this natural fact.
+<br>
+It was by this natural reason, perhaps wholly without internal consideration but rather by external fact alone, that your forebears in Esora congregated around a campfire in your woods. And so it is by the same fact that you - the child, the man, the woman, and all having drunk fully of the river - now congregate under another shared light.
+<br>
+By natural reason alone, you are Nurandah. My guards called you "Nurandahid" because they can no more call a fish a bird. But "Nurandah" is but a name; so is "Esora"; so is "Zam"; so is "Khur". Do not let the names fool you. The writing-men can change their records, but they cannot change the truth - that we are of the same stock, everywhere.
+<br>
+Even I, master of all writing-men, must subject myself to the same reason. As a child, I had envied the wildness of Esoran children, but reason did not allow me to be a child, let alone be Esoran.
+<br>
+I was given reason, and so I must heed it. So will you.
+<br><br>
+
+''Savage Child:''
+<br>
+Does that mean I cannot be Esoran anymore?
+<br><br>
+
+''Sage:''
+<br>
+You can be, if you obey the law and pay your taxes and alms.
+<br><br>
+
+''Savage Child:''
+<br>
+And so must everyone else, by natural reason.
+<br><br>
+
+''Sage:''
+<br>
+Wise you are, Child-of-Nurandah.
+<br><br>
+
+_e
+
+<br>
+
+$cssDesc[The dialogue continues for a while longer, systematically going through the historical, cultural, and geographic differences between Esora and Nudankhan, but this time, it is the "child" who applies the sage's logic to these differences, and the sage gives increasingly extravagant praises, ultimately culminating in an offer to adopt the "child" into the royal family.
+<br>
+You are quite certain that the "child" here is partly inspired by the historical Emperor Serpadi III, son of an influential chieftain in what is today Esora dahak, taken as a hostage by the fledgling Nudankhan court (though he would have been in his 20s at the time of his taking). While living in captivity, he married Princess Samah and later aided in Nurandah's annexation of his own homeland Esora.
+<br>
+When Serpadi I was slain by his nephew, who crowned himself Serpadi II, Samah urged her husband to conspire with the Kuchkhan League against the new emperor. She ultimately overthrew her cousin, crowning her Esoran husband Serpadi III, beginning a centuries-long tradition of League-elected emperors until the League was finally purged and defanged by the absolutist First Reclaimer.]
+
+}])
+
+<!--displayedContent-->
+<span id="bookContent">
+[{
+(if: $stuff contains "NurandahidBookCurrent")[(print: $stuff's NurandahidBookCurrent)]
+(else:)[_NurandahidPreface]
+}]<displayedContent|
+</span>
+
+<br>
+---
+
+(set: _updateContent to [{
+    (t8n:"dissolve")
+    <!--refresh ?displayedContent hook-->
+    (rerun: ?displayedContent)
+    <!--scroll up to page's top-->
+    <script>document.getElementById("bookContent").scrollIntoView({ behavior: "smooth" });</script>
+}])
+
+<ol>
+<li>(link-rerun: "Read the dialogue.")[{
+    (set: $stuff's NurandahidBookCurrent to _Nurandahid1)
+    _updateContent
+}]</li>
+<li>(link-rerun: "Read the foreword again.")[{
+    (set: $stuff's NurandahidBookCurrent to _NurandahidPreface)
+    _updateContent
+}]</li>
+<li>(link-rerun: "Put the pamphlet away.")[{
+    <!--clear $stuff-->
+    (set: $stuff to (dm:))
+    <!--goto-->
+    (goto: $readingNav's before)
+}]</li>
+
+</ol>
+
+
+<!--content ends-->
+    }],
+)

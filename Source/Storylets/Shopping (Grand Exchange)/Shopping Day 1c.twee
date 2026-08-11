@@ -3,7 +3,7 @@
 
 (metadata:
 "currency", "rial",
-"title", "The Spices and Reagents Floor",
+"title", "The Spices Floor",
 "cardDesc", "Most things of the Earth carries a spark of magic. Most things of the Earth are sold here.",
 "parent", "S: Shopping Day 1",
 "devNote", [Might need to review the itemList. Does the market truly sells every ingredient?],

@@ -8,7 +8,7 @@
     "value", (a: 1, 115, 515, 5633, 393, 126,),
     "img", "",
     "desc", [Sample description 2],
-    "tip", [A ''complex'' subtance. Sample tip 2.],
+    "tip", [A ''complex'' substance. Sample tip 2.],
     "gainText", [Gain text 2.],
     "lossText", [Loss text 2.]
 )

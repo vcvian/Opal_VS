@@ -231,7 +231,7 @@ _e
 ))
 
 <!--?currentEntry: Where the book's content is displayed-->
-[
+<span id="bookContent">[
 <!--if reading has initialized (indicated by $stuff having a "readingorder")-->
 (if: $stuff contains "readingOrder")[(print: _SacredOpal's ($stuff's readingOrder's ($stuff's readingTurn)))]
 
@@ -258,7 +258,7 @@ Some may go on to greater heights after their first Sacred Opal - which are not 
 <!--lore note: producing the Sacred Opal is like creating a Turing-complete machine - a goal that does not do much by itself but opens up many possibilities.-->
 $cssDesc[Flip through the book to read the entries.]}
 ]<!--end else (at preface)-->
-]<currentEntry|
+]<currentEntry|</span>
 
 [
 <br>
@@ -277,9 +277,9 @@ $cssDesc[Flip through the book to read the entries.]}
     (set: $stuff's readingTurn to it + 1)
     (if: $stuff's readingTurn > _SacredOpal's length)[(set: $stuff's readingTurn to 1)]
     <!--print content-->
-    (replace: ?currentEntry)[{(print: _SacredOpal's ($stuff's readingOrder's ($stuff's readingTurn)))}]
+    (t8n:"dissolve")+(replace: ?currentEntry)[{(print: _SacredOpal's ($stuff's readingOrder's ($stuff's readingTurn)))}]
     <!--scroll up to page's top-->
-    <script>window.scrollTo(0,0)</script>
+    <script>document.getElementById("bookContent").scrollIntoView({ behavior: "smooth" });</script>
 }]
 <li>(link: "Read the preface again.")[{
     <!--clear $stuff-->

@@ -1,10 +1,17 @@
-:: AA. Market [startup]
+:: AA. Market [startup unfinished]
 
 {=
+
+(metadata: "devNote", [{
+Cap sell priceMod. It can't be more profitable than buy mod. Think about: (1) shops that both buy and sell (mode 1), and (2) 2 different shops in the same location that sells at the same rate, which may be exploited.
+<br>
+Readout should reflect mode (buy only, sell only, or both)
+}],)
 
 <!--3 codes:
 #1. Code that modifies a single item's priceMod;
 #2. Code that prints a market readout;
+#2b. Code that combines readout into a full prosaic UI;
 #3. Code that lists a sales menu
 #4. Code that creates an alternative sell factor datamap-->
 

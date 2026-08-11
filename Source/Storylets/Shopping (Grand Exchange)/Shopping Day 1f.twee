@@ -1,0 +1,66 @@
+:: Shopping Day 1f [unfinished]
+
+(metadata:
+"currency", "rial",
+"title", "The Vehzin Warehouse",
+"cardDesc", "If the Grand Exchange is the heart, then vehzin is the blood. Crimson, powdery, raw - it is mined in great quantities in Central Askava before coming here and ultimately, to everywhere else in the world.",
+"parent", "S: Shopping Day 1",
+"devNote", [Need to implement the vehzin shortage.],
+)
+
+<!--Market setup-->
+<!--item list-->
+(set: _itemList to (a: "vehzin"))
+<!--buy factor-->
+(set: _buyFactors to (passage: "table.marketPriceMod")'s universalBuy)
+<!--sell factor-->
+(set: _sellFactors to ($funcMarketMergeFactors: _buyFactors, (passage: "table.marketPriceMod")'s universalSell))
+<!--define base mods-->
+(set: _baseBuyMod to 2.5)
+(set: _baseSellMod to .8)
+<!--end of market setup-->
+
+$cssColumnParent[
+
+$cssColumnChild[
+
+	(css: "font-size: 70%")[
+        $cssColumnChild[(link: "⇦ Never mind.")[(goto: (passage:)'s parent)]]
+     ]
+
+	$cssBox[
+    	($funcImage: (passage: "S: Shopping Day 1")'s img)
+         $cssBoxItem[''(print: (passage:)'s title )''<br>(print: (passage:)'s cardDesc)]
+    ]
+]
+
+$cssColumnChild[
+All matter responds to magic to some extent, much in the same way a rock "repsonds" to a hammer - dumbly, and often with the former breaking. Except for vehzin; its value comes from how eagerly it bends to a magus's will. "Thought-metal". "//Wise//-metal".
+<br>
+
+]<!--end child-->
+]<!--end parent-->
+
+---
+
+$cssColumnParent[
+$cssColumnChild[
+<!--Readout-->
+$cssDesc[($funcMarketReadoutFull: _baseBuyMod, _baseSellMod, _itemList, _buyFactors, _sellFactors)]
+<!--end of readout-->
+]<!--end child, begin another-->
+
+$cssColumnChild[
+<!--main buy/sell menu-->
+<ol>
+($funcMarketMain: _baseBuyMod, _baseSellMod, (passage:)'s currency, _itemList, _buyFactors, _sellFactors, 1)
+<br>
+Or...
+<br>
+<li>(link: "Never mind.")[(goto: (passage:)'s parent)]</li>
+</ol>
+<!--end of main buy/sell menu-->
+
+]<!--end child-->
+]<!--end parent 2-->
+

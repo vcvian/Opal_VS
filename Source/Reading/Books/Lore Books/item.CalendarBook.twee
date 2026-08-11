@@ -8,7 +8,7 @@
     "desc", [A book published by "The Neighborhood Astrologian & Co.", which is forced by law to print with a foreword by the Esora Guild of Astrologians denouncing the ensuing content as pseudoscience - as if the exclamation in the title didn't already give that away.],
     "tip", [At least the book doesn't misspell the names of days, weeks, and months.],
     "gainText", [You now hold in your hand what is technically "suppressed literature", much in the same way poison mushrooms are a "forbidden fruit": naturally shunned out of good sense, not a fruit, and surprisingly ubiquitous.],
-    "lossText", [You part ways with the pamphlet. Could have kept it and used it as a shim for a wobbly table.],
+    "lossText", [You part ways with the pseudo-astrology book. Could have kept it and used it as a shim for a wobbly table.],
     "content", [{
 <!--content begins-->
 
@@ -47,7 +47,7 @@ $cssDesc[The foreword goes on like this for another twelve points, taking up nea
 (set: _days to [{
 ''Days of the Week''
 <br>
-"As above, so below", so has Grand Magus Beser, mythic founder of the magical sciences, carved onto his Emerald Tablet.
+"As above, so below", so has Grand Magus Serpadi, mythic founder of the magical sciences and of Ancient Nurandah, carved onto his Emerald Tablet.
 <br>
 Whether you are an insatiable lover, a hot-headed buffoon, a naggy mother, or dour as a willow is all determined at the moment of your birth by the stars which you were born under. It is such a shock that the stars that most affect who you become are also the closest? 
 <br>
@@ -121,10 +121,10 @@ However, before you do, know that this wisdom is so impactful that there are cer
 }])<!--end of foreword-->
 
 <!--content displayed here-->
-[
+<span id="bookContent">[
 (if: $stuff does not contain "currentCalendarBook")[_foreword]
 (else:)[(print: $stuff's "currentCalendarBook")]
-]<bookContent|
+]<bookContent|</span>
 
 <br>
 ---
@@ -132,10 +132,11 @@ However, before you do, know that this wisdom is so impactful that there are cer
 
 <!--standard code for all links-->
 (set: _updateContent to [{
+    (t8n:"dissolve")
     <!--replace content-->
-    (replace: ?bookContent)[(print: $stuff's currentCalendarBook)]
+    (rerun: ?bookContent)
     <!--scroll up to page's top-->
-    <script>window.scrollTo(0,0)</script>
+    <script>document.getElementById("bookContent").scrollIntoView({ behavior: "smooth" });</script>
 }])
 
 

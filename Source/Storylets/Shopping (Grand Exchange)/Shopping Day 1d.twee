@@ -1,10 +1,10 @@
-:: Shopping Day 1d [unfinished] {"position":"4075,2300","size":"100,100"}
+:: Shopping Day 1d [unfinished]
 {=
 
 (metadata:
 "currency", "rial",
-"title", "The Apothecaries' Floors",
-"cardDesc", "Simple magical products for everyday use are often sold in alchemical shops.",
+"title", "The Apothecaries' Floor",
+"cardDesc", "Simple magical products for everyday use, as well as some specialty reagents, are often sold in alchemical shops.",
 "parent", "S: Shopping Day 1",
 "devNote", [itemList might need reviewing. Right now, it's selling only crafables lvl 1, but does it need to also sell some ingredients? Do ingredients need additional key tagging for easy classification?],
 )
@@ -12,6 +12,7 @@
 <!--Market setup-->
 <!--item list-->
 (set: _itemList to (a:))
+<!--simple craftables-->
 (for: each _itemDM, ...(passages: where its name contains "item."))[{
      (if: _itemDM's key contains "craftable")[{
           (if: _itemDM's level is 1)[{
@@ -19,6 +20,16 @@
           }]
      }]
 }]
+<!--moderately expensive ingredients-->
+(for: each _itemDM, ...(passages: where its name contains "item."))[{
+     (if: _itemDM's key contains "ingredient")[{
+          (if: _itemDM's value's 1st >= 15)[{
+               (set: _itemList to it + (a: (trimmed: "item.", _itemDM's name)))
+          }]
+     }]
+}]
+<!--and water-->
+(set: _itemList to it + (a: "water"))
 <!--buy factor-->
 (set: _buyFactors to (passage: "table.marketPriceMod")'s universalBuy)
 <!--sell factor-->

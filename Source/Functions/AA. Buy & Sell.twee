@@ -9,7 +9,7 @@
 	(set: _currencyDM to (passage: "item." + _currency))\
 	(set: _price to (_itemDM's value)'s 1st * (abs:_value))\
 	<!--Convert currency-->\
-	(set: _priceFinal to (round: (_price * _priceMod) / _currencyDM's value's 1st))\
+	(set: _priceFinal to (floor: (_price * _priceMod) / _currencyDM's value's 1st))\
 	(if: _priceFinal < 1)[(set: _priceFinal to 1)]\
 	\
 	<!--Create confirm link-->\
