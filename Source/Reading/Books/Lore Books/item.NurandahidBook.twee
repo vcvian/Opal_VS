@@ -1,15 +1,14 @@
-:: item.NurandahidBook [static-storage unfinished]
+:: item.NurandahidBook [static-storage]
 {=
 (metadata: 
-	"devNote", [Need gainText and LossText],
     "id", [On Nurandahids: A Sagely Dialogue],
     "key", (a: "document", "book",),
     "value", (a: 15, 0, 0, 0, 0, 20,),
     "img", "https://fallenlondon.wiki/w/images/3/30/Bookpurple.png",
-    "desc", [A pamphlet published by the Nudankhan Council's Popular Press in the "sagely dialogue" genre, depicting a fictionalized exchange between an unnamed savage child and the mythic founder of Nurandah - Serpadi I - regarding the question of, "Who gets to be called an 'imperial'?".],
-    "tip", [You ''are'' an imperial; there is no doubt about that.],
+    "desc", [A pamphlet published by the Nudankhan Council's Popular Press in the "sagely dialogue" genre, depicting a fictionalized exchange between an unnamed savage child and the mythic founder of Nurandah - Serpadi I - regarding whom the term "Nurandahid" includes.],
+    "tip", [You ''are'' a Nurandahid; there is no doubt about that.],
     "gainText", [You are quite sure that you were assigned this pamphlet for your civics class. Or foundational logic class. It's difficult to remember. It was so long ago. You've read hundreds of such dialogues since then.],
-    "lossText", [You part ways with the pamphlet. No great loss; there are so many of these anyhow.],
+    "lossText", [You part ways with the pamphlet. No great loss; there are too many of these anyhow.],
     "content", [{
 <!--content begins-->
 
