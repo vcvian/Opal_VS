@@ -36,4 +36,8 @@
 <!--Roll global dice-->
 (set: $dice to (random: 1,100))
 
+<!--clear out the $stuff family of variables-->
+(set: $stuff to (dm:))
+(set: $stuffDaily to (dm:))
+
 (link: "Go to nextDay")[(goto: "nextDay"))]

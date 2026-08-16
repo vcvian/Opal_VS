@@ -15,3 +15,6 @@
 
 <!--"stuff" datamap to track miscellaneous things. Meant to be deleted-->
 (set: $stuff to (dm:))
+
+<!--daily version of $stuff, to be cleared at setDay/mockDay-->
+(set: $stuffDaily to (dm:))

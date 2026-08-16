@@ -40,6 +40,9 @@
         (goto: "Reading")
     ]<!--end of link-->
     //<!--end of italicize book's name-->
+
+    <!--Create ? tip-->
+    ($funcLogTip: "item.", _bookName)
     
     <!--long text warning-->
     (if: _long)[<br>$cssDesc[(⧗ Longer document: Takes a whole day or more to read.)]]

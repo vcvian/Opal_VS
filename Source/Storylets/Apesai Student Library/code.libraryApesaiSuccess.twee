@@ -1,0 +1,26 @@
+:: code.libraryApesaiSuccess [unfinished]
+
+{=
+
+(metadata: "devNote", [Write the ?browseContent text])
+
+<!--the "loot table"-->
+(set: _tableBrowseSuccess to (a:
+"CalendarBook",
+"healingTonicBook",
+"NurandahidBook",
+"SacredOpalListBook",
+))
+
+<!--find difference (prevent repeated books)-->
+(set: _tableNewBook to (find: _newBook where ($stuffDaily's browseList does not contain _newBook), ..._tableBrowseSuccess))
+
+<!--if no new book, then failure; if yes new book, then proceed-->
+(if: _tableNewBook's length <= 0)[(display: "code.libraryApesaiFailure")]
+(else:)[{
+    <!--pick a random book from the newBook list-->
+    (set: _foundBook to _tableNewBook's random)
+
+    <!--update the found book list ($stuffDaily's browseList)-->
+    (set: $stuffDaily's browseList to it + (a: _foundBook))
+}]

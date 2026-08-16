@@ -1,0 +1,167 @@
+:: Library Apesai (specific)
+{=
+
+(metadata:
+"title", "Asking the Attendant for a Specific Document",
+"cardDesc", "Tools are meant to be used. Plus, you wouldn't know where or how to begin, given the library's state.",
+"img", "https://fallenlondon.wiki/w/images/8/83/University.png",
+"parent", "S: Library Apesai",
+)
+
+$cssColumnParent[
+
+$cssColumnChild[
+	$cssBox[
+    	($funcImage: (passage:)'s img)
+         $cssBoxItem[''(print: (passage:)'s title )''<br>(print: (passage:)'s cardDesc)]
+    ]
+]
+
+$cssColumnChild[
+
+<!--format attendant lines-->
+($funcNPCSpeakManual: "genericAttendant2")
+(set: _line to (hook: "genericAttendant2Line"))
+
+<!--content begins-->
+_line["(either: "Of course! That's what I'm here for. What type of document or genre do you have in mind?", "No problem! In fact, I'd be disappointed if you didn't ask. So, what are you looking for?", "I understand. We do have an impressive collection, and I'm here to help you navigate it. What document do you have in mind?")"] The spider answers merrily, not without twitching. You can hear the gyroscopes inside it whirl as it begins to remember where everything is.
+<br>
+
+
+[{(if: $stuff contains "attendantResponse")[(print: $stuff's attendantResponse)]}]<attendantResponse|
+
+---
+
+<ol>
+|attendantOptions>[
+
+
+
+<!--code that tracks-->
+(set: _glitchTrack to [{
+    <!--track-->
+    (if: $stuff does not contain "glitchTracker")[(set: $stuff's glitchTracker to 1)]
+    (else:)[(set: $stuff's glitchTracker to it + 1)]
+    (if: $stuff's glitchTracker >= 3)[(replace: ?attendantOptions)[<li>~~Ask the attendant...~~ $cssDesc[(You should leave the thing alone for now.)]</li>]]
+}])
+
+<!--code that updates ?attendantResponse-->
+(set: _glitchAppend to (macro: codehook-type _glitchText, [(out:)[{
+    <!--add new text into response-->
+    (if: $stuff does not contain "attendantResponse")[(set: $stuff's attendantResponse to "")]
+    (set: $stuff's attendantResponse to it + (str:_glitchText))
+    
+    <!--last sentence-->
+    (if: $stuff contains "glitchTracker")[{
+        (if: $stuff's glitchTracker >= 3)[(set: $stuff's attendantResponse to it + (str: [{
+_line["Wh░t kind of ░▒▓▓ are you l▒▒king f░r?"]
+<br>
+This is no use. Anymore and the thing might explode in your face.
+<br>
+        }]))]
+    }]
+    
+    <!--refresh hook-->
+    (t8n: "dissolve")
+    (rerun: ?attendantResponse)
+    
+}]]))
+
+(set: _option0 to "Ask it to introduce you to the collection.")
+
+
+<li>(link: _option0)[{
+    (_glitchAppend: [{
+$cssDesc[''You: Ask the attendant to introduce you to the collection.'']
+<br>
+_line["The Apesai Davehkhan's library is currently, as of 924 AD, in possession of a thousand tomes of laws dating back to the First Colony Era, thr░▒▓ hundred volumes of the h▓▒▓▒ory of the tribes and settled families of A░▒▓▓a, six hundred volumes of ▓▒░▓▒░ history, three hundred treatises on the n░▒▓░▓▒░l philo░▒phies, five hundred scr░lls..."] the spider's voicebox sputters on and on while you gaze upon the dusty piles all around you - among them some unmistakably less-than-educational prints - and wonder if things were truly so different only a century ago. Shouldn't a provincial library //thrive// during the Reclamation?
+<br>
+_line["I'm sure a scholar like yourself - you //are// a scholar, I presume - is shaking with excitement before such a treasure trove of knowledge. So, where should we start?"]
+<br>
+    }])
+    ~~_option0~~
+}]</li>
+
+
+(set: _option1 to "Ask it for books on alchemical formulae.")
+<li>(link: _option1)[{
+    _glitchTrack
+    (_glitchAppend: [{
+$cssDesc[''You: Ask the attendant about books on alchemical formulae.'']
+<br>
+_line["Planning on doing some synthesis, aren't we? Very well, regarding alchemy, there are about t░o h▓▒░dred refer▓▒▓ce books and ▒▓░ hun░▒▓d scrolls on ░▒▓▓▓▒░"] the spider's voice begins to garble. Its gears are spinning so fast that you have to take one step back. _line["If y▒u ▒re he░ring th░s ▓▒░ ir░econcilable ▒▓ d▓screpanc▓es ▓▒▓"]
+<br>
+Fortunately, it stops, its hidden mechanisms settling down, and it says, vaguely indignant, _line["I'm sorry. We do not condone materials contrary to public interest."]
+<br>
+What does it think you have just said?
+<br>
+    }])
+    ~~_option1~~ $cssDesc[(That won't work.)]
+}]</li>
+
+
+(set: _option2 to "Ask it for anything that might help you better understand Askava.")
+<li>(link: _option2)[{
+    _glitchTrack
+    (_glitchAppend: [{
+$cssDesc[''You: Ask the attendant for anything that might help you better understand Askava.'']
+<br>
+_line["A personal favorite of mine! Regarding the seventh dahak and its many settlements - from bejeweled Apesai in the south to sky-gazing Sudain in the north - there are e▒▓hty t▒▓s on the his▓▒▓y of the dahak, as well as ▓ hun▓▒▓d and f▓▒░y scr░▒▓s documenting the various pre-c░▒▓ny t░▒▓bes and various i░▒▓rial fam▓▒▓es of import, and ░▒▓▓▓▒░"] the attendant shudders to produce the words, like a snakecat coughing up a hairball.
+<br>
+Eventually, it stops the self-torment and says apologetically, _line["I'm sorry. I don't recognize the location you speak of. Perhaps using a common Nurango name will help?"]
+<br>
+Askava //is// the Nurango term for this place.
+<br>
+    }])
+    ~~_option2~~ $cssDesc[(You don't want to torment the thing any further.)]
+}]</li>
+
+(set: _option3 to "Ask it for books on laws both imperial and natural.")
+<li>(link: _option3)[{
+    _glitchTrack
+    (_glitchAppend: [{
+$cssDesc[''You: Ask it for books on laws both imperial and natural.'']
+<br>
+_line["Of course! Although, you should note that here in the Apesai Davehkhan, we do not differentiate those two categories. Regarding the rational arts, our library has t░▒▓▓▒ atl░ses of local f░▒▓a and f░▒▓a with b░▒▓▓▒ful illust░▒▓▒▒s, se▓eral co▓▒ect░ons of d▓hak l▓▒s plus co▓▒ent▓ry, e░▒ven ░▓▒"] the attendant starts to talk, to yell over itself, different takes of the same voice line overlapping. A student somewhere groans, having already been subject to this auditory assault before.
+<br>
+_line["If y▒u ▒re he░ring th░s ▓▒░ ir░econcilable ▒▓ d▓screpanc▓es ▓▒▓ I'm sorry. Although our collection is impressive, we must also maintain intellectual and moral hygiene. Please refrain from requesting heretical literature."]
+<br>
+You are sure that the standards for "intellectual and moral hygiene" has not changed in the last few centuries. But who can say with these fringe schools?
+<br>
+    }])
+    ~~_option3~~ $cssDesc[(It's no use asking about this.)]
+}]</li>
+
+
+(set: _option4 to "Ask if it has any \"fun\" book.")
+<li>(link: _option4)[{
+    _glitchTrack
+    (_glitchAppend: [{
+$cssDesc[''You: Ask if it has any "fun" book.'']
+<br>
+_line["We take the enrichment of the spirit as seriously as we do the intellect. There are f▓▒▓▓r hun▓r░▓ works in the l░te▒a▒y canon in our possession, many of which are mand░▒▓ry re▒ding. Further, we also collect tran░▒▓▓ed w░▒ks from Y▓v▓n▓, Old ▓▒▓░van, and even ░▒▓▓▒"] the attendant babbles incoherently. You could swear you heard foreign words in there. Perhaps it is typical for a frontier city to have multi-lingual attendant. You do not discount the possibility of it simply bring broken either.
+<br>
+_line["If y▒u ▒re he░ring th░s ▓▒░ ir░econcilable ▒▓ d▓screpanc▓es ▓▒▓"] it interrupts itself, saying in a calm and clear voice, _line["I'm sorry. This is a school library. We do not stock that kind of book."]
+<br>
+Sounds about right.
+<br>
+    }])
+    ~~_option4~~ $cssDesc[(You don't want the attendant to break entirely.)]
+}]</li>
+
+]<!--end of attendantOptions hook-->
+
+<li>(link: "Leave the attendant alone.")[{
+    <!--clear temp vars in $stuff-->
+    (if: $stuff contains "attendantResponse")[(move: $stuff's attendantResponse into _trash)]
+    (if: $stuff contains "glitchTracker")[(move: $stuff's glitchTracker into _trash)]
+    (goto: "S: Library Apesai")
+}]
+
+
+</ol>
+
+
+<!--content ends-->
+]<!--end child-->
+]<!--end parent-->

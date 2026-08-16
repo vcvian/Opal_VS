@@ -1,0 +1,87 @@
+:: Library Apesai (browse) [unfinished]
+
+{=
+
+(metadata:
+"title", "Browsing the Apesai Library",
+"cardDesc", "The search is half the joy. Now, you'd be properly joyful if you //actually// find something of use.",
+"img", "https://fallenlondon.wiki/w/images/8/83/University.png",
+"parent", "S: Library Apesai",
+"devNote", [Write the ?browseContent text. And of course, write code.failure code and text],
+)
+
+$cssColumnParent[
+
+$cssColumnChild[
+	$cssBox[
+    	($funcImage: (passage:)'s img)
+         $cssBoxItem[''(print: (passage:)'s title )''<br>(print: (passage:)'s cardDesc)]
+    ]
+]
+
+$cssColumnChild[
+<!--format attendant lines-->
+($funcNPCSpeakManual: "genericAttendant2")
+(set: _line to (hook: "genericAttendant2Line"))
+
+<!--content begins-->
+Rolling up your sleeves, fastening the loose hem of your clothes, covering up your face, and steeling your nerves, you march into that dust-filled library - the battlefront of the mind.
+<br>
+_line["Browse at your leisure,"] the spider chirps as you leave it. _line["(either: "Keep in mind that we do not have a borrowing program. So plan your study time accordingly.", "But remember: All documents are considered property of the davehkhan and thereby of Nurandah. Take appropriate care.", "Do be mindful of other students and scholars. Do not hoard books.")"]
+<br>
+[{}]<browseContent|
+---
+<ol>
+
+|browseAction>[
+<!--Save list to $stuffDaily to prevent the browse list from being cleared-->
+
+<!--initialize browseList and browseAllowance-->
+(if: $stuffDaily does not contain "browseList")[(set: $stuffDaily's browseList to (a:))]
+(if: $stuffDaily does not contain "browseAllowance")[(set: $stuffDaily's browseAllowance to 6)]
+
+<!--standard action text-->
+(set: _browseLinkText to "Search the library shelves.")
+<!--if still allowed-->
+(if: $stuffDaily's browseAllowance > 0)[
+<li>(link-rerun: _browseLinkText)[{
+     <!--subtract browse allowance-->
+     (set: $stuffDaily's browseAllowance to it -1)
+     
+     <!--roll dice-->
+     (set: _browseDice to (random: 1,100))
+
+     <!--Success-->
+     (if: _browseDice >= 80)[(display: "code.libraryApesaiSuccess")]
+     <!--Failure-->
+     (else:)[Failure TEXTTTTTT!]
+
+     <!--refresh ?browseBox-->
+     (t8n: "dissolve")(rerun: ?browseBox)(rerun: ?browseAction)
+}]</li>]<!--end of if still allowed-->
+
+<!--if disallowed-->
+(else:)[<li>~~_browseLinkText~~ $cssDesc[(You have breathed in enough dust and are done browsing for today.)]]<!--end of if disallowed-->
+
+]<!--end of ?browseAction-->
+
+
+
+What you've found...
+<br>
+(box:"X", 10)+(bg: "#524538")[
+($funcReadingList: $stuffDaily's browseList)
+]<browseBox|
+<br>
+
+
+Actually...
+<li>(link: "Enough of this.")[{
+     (goto: "S: Library Apesai")
+}]</li>
+
+</ol>
+
+<!--content ends-->
+]<!--end child-->
+]<!--end parent-->

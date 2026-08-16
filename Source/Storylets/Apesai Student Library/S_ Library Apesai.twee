@@ -6,7 +6,11 @@ $place's sublocation is "Apesai Lighthouse"
 and $char's player's att contains "accessLighthouseLibrary"
 )
 
-(metadata: "title", "Apesai Student Library", "cardDesc", "The lighthouse's sixth floor is where the students of Apesai finds their reference books... and their naps.", "img", "https://fallenlondon.wiki/w/images/8/83/University.png",)
+(metadata:
+"title", "Apesai Student Library",
+"cardDesc", "The lighthouse's sixth floor is where the students of Apesai finds their reference books... and their naps.",
+"img", "https://fallenlondon.wiki/w/images/8/83/University.png",
+)
 
 $cssColumnParent[
 
@@ -23,34 +27,59 @@ $cssColumnChild[
 ($funcNPCSpeakManual: "genericAttendant2")
 (set: _line to (hook: "genericAttendant2Line"))
 
-<!--random student line-->
+<!--random student lines-->
 ($funcNPCSpeakManual: "genericStudent2")
 (set: _lineStudent to (hook: "genericStudent2Line"))
 
-Your climb takes you to the sixth floor of the tower, where a large door opens to a hall. Dust motes thickens the air like a veil, swirling and parting as you enter. Here, there are countless books and scrolls, some spilling from the shelves, all musty. A bad sign.
+|notEngaged)[Your climb takes you to the sixth floor of the tower, where a large door opens to a hall. Dust motes thickens the air like a veil, swirling and parting as you enter. Here, there are countless books and scrolls, some spilling from the shelves, all musty. A bad sign.
 <br>
-_line["(either: "Oh, rats, how do I do this?... Hello? Is this thing on? It is? Greetings, visitor! You're at the Apesai Davehkhan's library!", "Hello? Hello! Am I doing it right? Ah, there we go. Hello! Welcome, visitor, to the Apesai Davehkhan's library!", "... No, I've checked and- Oh, ehem. Greetings, visitor! Welcome to the Apesai Davehkah's library.")"]
+_line["(either: "Oh, rats, how do I do this?... Hello? Is this thing on? It is? Greetings, visitor! You're at the Apesai Davehkhan's library!", "Hello? Hello! Am I doing it right? Ah, there we go. Hello! Welcome, visitor, to the Apesai Davehkhan's library!", "... No, I've checked and- Oh, ehem. Greetings, visitor! Welcome to the Apesai Davehkhan's library.")"]
 <br>
 The skittering metal spider - an attendant - greets you with the loud, spritely voice of a young woman. In all likelihood, this person is no longer alive, not in any meaningful way.
 <br>
 _line["(either: "Browse our collection to your heart's content. Or, if you need me to find you something specific, just say the word!", "Do you have something you're looking for? Or are you just browsing?", "I will be your assistant for today. Let me know if you need anything, and I will find it for you.")"]
 <br>
+]<!--end of notEngaged-->
 
+|yesEgnaged)[{
+_line["(either: "We hope you are having a productive time at our library. Let me know if you need anything!", "Hope you've found what you are looking for. But if not, feel free to recruit my help!", "Make yourself at home. In fact, if you can see yourself studying here at the Apesai Davehkhan, the enrollment office is on the second floor!", "If you're feeling humbled, I empathize. Nurandah's light illuminates all ignorance, after all!", "Satisfied with our collection? Feel free to- Oh, we're not doing that? Oops, let me just... Ehem, satisfied with our collection? Come back anytime!")"] The attendant titters. Whichever davehmar gave it its voice and animated its machinery, she must have been either very fun to have as a teacher or a total nightmare.
+<br>
+}]<!--end of yesEgnaged-->
+
+
+
+
+<!--shown content text based on whether the attendant is engaged-->
+(if: $stuffDaily contains "attendEngaged")[(if: $stuffDaily's attendEngaged is true)[(show: ?yesEgnaged)]]
+(else:)[(show: ?notEngaged)]
+
+
+<!--standard end-passage text-->
 (either:
-
 [_lineStudent["Would someone please shut that thing off? I'm trying to study here!"] Yells a student from somewhere among the shelves. Another unseen student shushes the first, and the first shushes right back.],
-
 [_lineStudent["Don't bother,"] says a student as she passes you. _lineStudent["That thing hasn't worked once since I started going here."]],
-
 [You look past the attendant at the library inside. Perhaps "warehouse" is a more appropriate term, though it is not a very well-kept warehouse either.],
-
 [You look past the attendant at the library inside. You can spot a student in a far corner, slumped and snoring. No-one else seems to be around.],
-
 )
+
 <br>
 ---
 <ol>
 
+<li>(link: "Browse the library by yourself.")[{
+     (set: $stuffDaily's attendEngaged to true)
+     (goto: "Library Apesai (browse)")
+}]</li>
+
+<li>(link: "Ask the attendant for a specific document.")[{
+     (set: $stuffDaily's attendEngaged to true)
+     (goto: "Library Apesai (specific)")
+}]</li>
+
+<li>(link: "Leave the library.")[{
+     (set: $stuff to (dm:))
+     $funcBack
+}]</li>
 
 </ol>
 
