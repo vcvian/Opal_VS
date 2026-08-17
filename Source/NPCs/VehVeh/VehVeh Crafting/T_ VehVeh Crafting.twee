@@ -318,7 +318,7 @@ She thinks about it for a second before adding, ["There's also the Grand Exchang
 
 <!--toGrandExchange-->
 [
-["Uh, sure, so you see those domes over there? So from here, you head down the hill, then when you see the big road, the one with the red obelisks, you take a right... Erm, or was it left?..."]<VehVehLine| she mutters to herself several conflicting directions, then gives up. ["This is embarrassing. I usually just zone out whenever I make my groceries run. You might need a professional guide. Or you can just take a stroll, or several, around town, you'll eventually end up there. Apesai's a beautiful city. Confusing, but beautiful."]<VehVehLine|
+["Uh, sure, so you see those domes over there? So from here, you head down the hill, then when you see the big road, the one with the red obelisks, you take a right... Erm, or was it left?..."]<VehVehLine| she mutters to herself several conflicting directions, then gives up. ["This is embarrassing. I usually just let my mind wander whenever I make my grocery runs and let habit take me. You might need a professional guide. Or you can simply take a stroll, or several, around town, and you'll eventually end up there. Apesai's a beautiful city. Confusing, but beautiful."]<VehVehLine|
 <br>
 ($funcInnerConvo: (dm:
      "<!--B-->\"It's alright. I'll figure it out.\"", "BYOI",

@@ -1,4 +1,32 @@
 :: code.libraryApesaiFailure
 {=
 
-Failure!
+<!--set up table of text-->
+(set: _tableBrowseFail to (a:
+[Nothing you have found so far is anywhere near legible. The humid sea air must have destroyed anything older than a century - you think to yourself, as you gaze out at a very wide window. Odd. It occurs to you that this floor might not have been built to be a library.],
+[You have been kicking up so much dust that the few students here have evacuated the premises, not without giving you a nasty look first. It is a fair sentiment, though you can hardly be blamed. It's not your fault that their library is in such sorry state.],
+[Pulpy romance paperbacks lost among what used to be imperious treatises on the human condition - there is a certain logic to it, if you think about it. You look at the spider-like attendant twitching in a far corner of the hall and decide to not think at all about what madness lies within that metal shell.],
+[Most of what you've found are fragments, looking like the kind of treasure an archeologist a thousand years from now would fawn over, if these tattered pages last that long. Something tells you they won't.],
+[You've heard of port cities that force all ships to surrender their books and scrolls, where a local team of scribes would copy them before returning the documents. Apesai might be one of those cities, and this very hall, long ago, might have been one such scriptoriums. Evidently, there is no standard as to which document gets copied. There is so little of value here.],
+[You have come across your twentieth, no, thirtieth copy of shipping manifests. These span centuries. Perhaps one more specially trained than you might cobble these fragments together into some sort of narrative about trade, life, culture, and so on, but for you, they are simply long lists of vehzin blocks being shipped out. A child living in the Apesai slums can look out the window of their hovel and infer just as much.],
+[You find an alchemy book so thoroughly annotated that it is simply impossible to read the procedures. It is the handwriting of a mad person, spilling manic conjectures onto the text itself. Obscuring the diagrams are stains - which you hope is tea and not the result of whatever experiments the scribblings are gesturing at. This is not the first book of this kind that you've found today.],
+[The students have been drawing onto the books. One of them has made in the margin of a law book rather fantastic illustrations of their journey to become a master magus, after which they return to their tribe out in the desert and incinerate what seems to be their childhood bully.],
+[You have breathed in more dust than you ever have, though there were times in your life when you thought of yourself as endemic to libraries. But this is nothing - you tell yourself - compared to the dust and sands of inland Askava.],
+[In the furthest corners of the library, where no students go, the shelves have gone soft with moisture, and a few books have turned into a slimy substrate for all kinds of fungi. There must be a leaky pipe somewhere inside the walls, or it could be the accumulated sea air. Normally, red steel architecture heals itself, but you speculate that a lot of the infrastructure here was added post-completion by those less skilled but more ambitious.],
+))
+
+<!--pick a random one-->
+(set: _browseFailText to _tableBrowseFail's random)
+
+<!--main replace ?browseContent code-->
+(t8n: "dissolve")+(replace: ?browseContent)[
+$cssDesc[''You: (either: "Dig through a pile of unspooled scrolls.", "Search the high shelves.", "Dust off old tomes.", "Pick up something random from the floor.", "Look among a pile left out on the tables.")'']
+<br>
+_browseFailText
+<br>
+$cssDesc[
+    (if: $stuffDaily's browseAllowance > 0)[Keep searching, if you are still willing.]
+    (else:)[You feel like you should stop for now. If not for your health, then at least for your sanity.]
+]
+<br>
+]

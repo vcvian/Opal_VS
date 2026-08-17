@@ -1,5 +1,4 @@
-:: Library Apesai (browse) [unfinished]
-
+:: Library Apesai (browse)
 {=
 
 (metadata:
@@ -7,7 +6,6 @@
 "cardDesc", "The search is half the joy. Now, you'd be properly joyful if you //actually// find something of use.",
 "img", "https://fallenlondon.wiki/w/images/8/83/University.png",
 "parent", "S: Library Apesai",
-"devNote", [Write the ?browseContent text. And of course, write code.failure code and text],
 )
 
 $cssColumnParent[
@@ -29,7 +27,7 @@ Rolling up your sleeves, fastening the loose hem of your clothes, covering up yo
 <br>
 _line["Browse at your leisure,"] the spider chirps as you leave it. _line["(either: "Keep in mind that we do not have a borrowing program. So plan your study time accordingly.", "But remember: All documents are considered property of the davehkhan and thereby of Nurandah. Take appropriate care.", "Do be mindful of other students and scholars. Do not hoard books.")"]
 <br>
-[{}]<browseContent|
+[]<browseContent|
 ---
 <ol>
 
@@ -39,9 +37,10 @@ _line["Browse at your leisure,"] the spider chirps as you leave it. _line["(eith
 <!--initialize browseList and browseAllowance-->
 (if: $stuffDaily does not contain "browseList")[(set: $stuffDaily's browseList to (a:))]
 (if: $stuffDaily does not contain "browseAllowance")[(set: $stuffDaily's browseAllowance to 6)]
+(if: $stuffDaily does not contain "failText")[(set: $stuffDaily's failText to (a:))]
 
 <!--standard action text-->
-(set: _browseLinkText to "Search the library shelves.")
+(set: _browseLinkText to "Search the library.")
 <!--if still allowed-->
 (if: $stuffDaily's browseAllowance > 0)[
 <li>(link-rerun: _browseLinkText)[{
@@ -54,7 +53,7 @@ _line["Browse at your leisure,"] the spider chirps as you leave it. _line["(eith
      <!--Success-->
      (if: _browseDice >= 80)[(display: "code.libraryApesaiSuccess")]
      <!--Failure-->
-     (else:)[Failure TEXTTTTTT!]
+     (else:)[(display: "code.libraryApesaiFailure")]
 
      <!--refresh ?browseBox-->
      (t8n: "dissolve")(rerun: ?browseBox)(rerun: ?browseAction)

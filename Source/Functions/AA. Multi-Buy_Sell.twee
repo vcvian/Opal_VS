@@ -53,8 +53,8 @@ Fourth, it runs the buy/sell macro, passing into it the appropriate arguments.--
 				(dialog: bind _value, "How many ''(print:  _itemDM's id)'' do you wish to (color:green+yellow)[buy?] <br> $cssDesc[Each will cost you (color:red+ orange)[''_pricePerUnit (print: _currencyDM's id).''] <br> (print: _itemDM's tip)]", ..._manyOptions)\
 				\
 				(set: _value to (num: _value))\
-				 ⚖ ($funcBuySell: _item, _value, _currency, _priceMod)\
-			] $cssDesc[(Each will cost you ~''_pricePerUnit (print: _currencyDM's id).'' You currently have ''(if: $char's player's inv contains _item)[(print: $char's player's inv's _item)](else:)[0] (print: _itemDM's id).'')]\
+				(t8n: "dissolve")[ ⚖ ($funcBuySell: _item, _value, _currency, _priceMod)]\
+			] (t8n: "dissolve")+$cssDesc[(Each will cost you ~''_pricePerUnit (print: _currencyDM's id).'' You currently have ''(if: $char's player's inv contains _item)[(print: $char's player's inv's _item)](else:)[0] (print: _itemDM's id).'')]\
 		]<!--end of canBuy-->\
 		(else:)[\
 			~~Buy (print: _itemDM's id)~~ $cssDesc[(Insufficient ''(print: _currencyDM's id)''. You have|need at least (color:red)[(if: $char's player's inv contains _currency)[(print: $char's player's inv's _currency)](else:)[0]]|_pricePerUnit (print: _currencyDM's id). Also, you currently have ''(if: $char's player's inv contains _item)[(print: $char's player's inv's _item)](else:)[0] (print: _itemDM's id)''.)]\
@@ -73,8 +73,8 @@ Fourth, it runs the buy/sell macro, passing into it the appropriate arguments.--
 				(dialog: bind _value, "How many ''(print:  _itemDM's id)'' do you wish to (color:red+orange)[sell?] <br> $cssDesc[You currently have (print: $char's player's inv's _item) (print: _itemDM's id). Each will fetch you (color:green+yellow)[''_pricePerUnit (print: _currencyDM's id).''] <br> (print: _itemDM's tip)]", ..._manyOptions)\
 				\
 				(set: _value to -(num: _value))\
-				⚖ ($funcBuySell: _item, _value, _currency, _priceMod)\
-			] $cssDesc[(Each will fetch you ~''_pricePerUnit (print: _currencyDM's id).'' You currently have ''(if: $char's player's inv contains _item)[(print: $char's player's inv's _item)](else:)[0] (print: _itemDM's id).'')]\
+				(t8n: "dissolve")[ ⚖ ($funcBuySell: _item, _value, _currency, _priceMod)]\
+			] (t8n: "dissolve")+$cssDesc[(Each will fetch you ~''_pricePerUnit (print: _currencyDM's id).'' You currently have ''(if: $char's player's inv contains _item)[(print: $char's player's inv's _item)](else:)[0] (print: _itemDM's id).'')]\
 		]<!--end of canSell-->\
 		(else:)[\
 			~~Sell (print: _itemDM's id)~~ $cssDesc[(Each will fetch you ~''_pricePerUnit (print: _currencyDM's id),'' but alas, you don't have any to sell.)]\

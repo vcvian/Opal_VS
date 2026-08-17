@@ -1,8 +1,6 @@
-:: code.libraryApesaiSuccess [unfinished]
+:: code.libraryApesaiSuccess
 
 {=
-
-(metadata: "devNote", [Write the ?browseContent text])
 
 <!--the "loot table"-->
 (set: _tableBrowseSuccess to (a:
@@ -17,9 +15,28 @@
 
 <!--if no new book, then failure; if yes new book, then proceed-->
 (if: _tableNewBook's length <= 0)[(display: "code.libraryApesaiFailure")]
+<!--else, success code block-->
 (else:)[{
     <!--pick a random book from the newBook list-->
     (set: _foundBook to _tableNewBook's random)
+
+    <!--load full book DM-->
+    (set: _foundBookDM to (passage: "item." + _foundBook))
+
+    <!--update ?browseContent-->
+    (t8n: "dissolve")+(replace: ?browseContent)[{
+$cssDesc[''You: (either: "Dig through a pile of unspooled scrolls.", "Search the high shelves.", "Dust off old tomes.", "Pick up something random from the floor.", "Look among a pile left out on the tables.")'']
+<br>
+You wipe the dust from the pages and the sweat from your brows. The title reads: ''//(print: _foundBookDM's id)//''($funcLogTip: "item.", _foundBook).
+<br>
+(either: "The text is still legible, mostly.", "Mold has not eaten this one entirely, nor has time.", "Finally, something that is not entirely junk, in the narrowest sense of the word.", "The book card indicates a too-long list of borrowers, stopping close to a century ago, likely the time when the borrowing program stopped.", "You are sure you have seen this one before, although who knows what ancient edition a provincial school keeps.", "The binding's condition is acceptable; that is to say: It is unlikely to fall apart in your hands.", "You //are// glad to have found something, whether you plan on reading it or not.") You hold on to it, for now.
+<br>
+$cssDesc[
+    (if: $stuffDaily's browseAllowance > 0)[You've found something! Keep searching, if you are still willing.]
+    (else:)[You've found something! But, you feel like you should stop for now. If not for your health, then at least for your sanity.]
+]
+<br>
+    }]
 
     <!--update the found book list ($stuffDaily's browseList)-->
     (set: $stuffDaily's browseList to it + (a: _foundBook))

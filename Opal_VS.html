@@ -28,6 +28,18 @@ tw-dialog {
   background-color: #2e2721;
 }
 
+tw-dialog {
+  animation: dissolve-in 0.2s ease-out;
+}
+@keyframes dissolve-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
 tw-dialog-links {
   flex-wrap: wrap;
 }
@@ -71,7 +83,7 @@ hr {
   100% {
     background-position: 0% center;
   }
-}</style><script role="script" id="twine-user-script" type="text/twine-javascript"></script><tw-tag name="footer" color="yellow"></tw-tag><tw-tag name="header" color="yellow"></tw-tag><tw-tag name="static-storage" color="yellow"></tw-tag><tw-tag name="test" color="blue"></tw-tag><tw-tag name="UI" color="orange"></tw-tag><tw-tag name="effect" color="yellow"></tw-tag><tw-tag name="startup" color="orange"></tw-tag><tw-tag name="stay" color="yellow"></tw-tag><tw-tag name="storylet" color="blue"></tw-tag><tw-tag name="sublocation" color="green"></tw-tag><tw-tag name="topic" color="purple"></tw-tag><tw-tag name="traveling" color="purple"></tw-tag><tw-tag name="book" color="yellow"></tw-tag><tw-passagedata pid="1" name="AA. Books, Reading &amp; Formulae" tags="startup" position="100,100" size="100,100">{=
+}</style><script role="script" id="twine-user-script" type="text/twine-javascript"></script><tw-tag name="effect" color="yellow"></tw-tag><tw-tag name="startup" color="orange"></tw-tag><tw-tag name="static-storage" color="yellow"></tw-tag><tw-tag name="sublocation" color="green"></tw-tag><tw-tag name="test" color="blue"></tw-tag><tw-tag name="topic" color="purple"></tw-tag><tw-tag name="traveling" color="purple"></tw-tag><tw-tag name="book" color="yellow"></tw-tag><tw-tag name="footer" color="yellow"></tw-tag><tw-tag name="header" color="yellow"></tw-tag><tw-tag name="stay" color="yellow"></tw-tag><tw-tag name="storylet" color="blue"></tw-tag><tw-tag name="UI" color="orange"></tw-tag><tw-passagedata pid="1" name="AA. Books, Reading &amp; Formulae" tags="startup" position="100,100" size="100,100">{=
 &lt;!--Macros related to books and reading--&gt;
 
 (set: $readingNav to (dm:
@@ -489,8 +501,8 @@ Then, it multiplies that amount with the item&#39;s value and gives back the cor
 				(dialog: bind _value, &quot;Choose amount of &#39;&#39;(print: _itemDM&#39;s id)&#39;&#39; to turn into pure elements. &lt;br&gt; $cssDesc[(print: _itemDM&#39;s tip)] &lt;br&gt; $cssDesc[You currently have (print: $char&#39;s player&#39;s inv&#39;s _itemName) (print: _itemDM&#39;s id).]&quot;, ..._manyOptions)\
 				\
 				(set: _value to (num: _value))\
-				🝢 ($funcElementalize: _itemName, _value)\
-		] ($funcLogTip: &quot;item.&quot;, _itemName) $cssDesc[(You currently have (print: $char&#39;s player&#39;s inv&#39;s _itemName).)]\
+				(t8n: &quot;dissolve&quot;)[ 🝢 ($funcElementalize: _itemName, _value)]\
+		] (t8n: &quot;dissolve&quot;)[($funcLogTip: &quot;item.&quot;, _itemName) $cssDesc[(You currently have (print: $char&#39;s player&#39;s inv&#39;s _itemName).)]]\
 ]]))</tw-passagedata><tw-passagedata pid="6" name="AA. Game Menus" tags="startup" position="2300,2275" size="100,100">{=
 
 &lt;!--Master settings datamap--&gt;
@@ -1019,8 +1031,8 @@ Fourth, it runs the buy/sell macro, passing into it the appropriate arguments.--
 				(dialog: bind _value, &quot;How many &#39;&#39;(print:  _itemDM&#39;s id)&#39;&#39; do you wish to (color:green+yellow)[buy?] &lt;br&gt; $cssDesc[Each will cost you (color:red+ orange)[&#39;&#39;_pricePerUnit (print: _currencyDM&#39;s id).&#39;&#39;] &lt;br&gt; (print: _itemDM&#39;s tip)]&quot;, ..._manyOptions)\
 				\
 				(set: _value to (num: _value))\
-				 ⚖ ($funcBuySell: _item, _value, _currency, _priceMod)\
-			] $cssDesc[(Each will cost you ~&#39;&#39;_pricePerUnit (print: _currencyDM&#39;s id).&#39;&#39; You currently have &#39;&#39;(if: $char&#39;s player&#39;s inv contains _item)[(print: $char&#39;s player&#39;s inv&#39;s _item)](else:)[0] (print: _itemDM&#39;s id).&#39;&#39;)]\
+				(t8n: &quot;dissolve&quot;)[ ⚖ ($funcBuySell: _item, _value, _currency, _priceMod)]\
+			] (t8n: &quot;dissolve&quot;)+$cssDesc[(Each will cost you ~&#39;&#39;_pricePerUnit (print: _currencyDM&#39;s id).&#39;&#39; You currently have &#39;&#39;(if: $char&#39;s player&#39;s inv contains _item)[(print: $char&#39;s player&#39;s inv&#39;s _item)](else:)[0] (print: _itemDM&#39;s id).&#39;&#39;)]\
 		]&lt;!--end of canBuy--&gt;\
 		(else:)[\
 			~~Buy (print: _itemDM&#39;s id)~~ $cssDesc[(Insufficient &#39;&#39;(print: _currencyDM&#39;s id)&#39;&#39;. You have|need at least (color:red)[(if: $char&#39;s player&#39;s inv contains _currency)[(print: $char&#39;s player&#39;s inv&#39;s _currency)](else:)[0]]|_pricePerUnit (print: _currencyDM&#39;s id). Also, you currently have &#39;&#39;(if: $char&#39;s player&#39;s inv contains _item)[(print: $char&#39;s player&#39;s inv&#39;s _item)](else:)[0] (print: _itemDM&#39;s id)&#39;&#39;.)]\
@@ -1039,8 +1051,8 @@ Fourth, it runs the buy/sell macro, passing into it the appropriate arguments.--
 				(dialog: bind _value, &quot;How many &#39;&#39;(print:  _itemDM&#39;s id)&#39;&#39; do you wish to (color:red+orange)[sell?] &lt;br&gt; $cssDesc[You currently have (print: $char&#39;s player&#39;s inv&#39;s _item) (print: _itemDM&#39;s id). Each will fetch you (color:green+yellow)[&#39;&#39;_pricePerUnit (print: _currencyDM&#39;s id).&#39;&#39;] &lt;br&gt; (print: _itemDM&#39;s tip)]&quot;, ..._manyOptions)\
 				\
 				(set: _value to -(num: _value))\
-				⚖ ($funcBuySell: _item, _value, _currency, _priceMod)\
-			] $cssDesc[(Each will fetch you ~&#39;&#39;_pricePerUnit (print: _currencyDM&#39;s id).&#39;&#39; You currently have &#39;&#39;(if: $char&#39;s player&#39;s inv contains _item)[(print: $char&#39;s player&#39;s inv&#39;s _item)](else:)[0] (print: _itemDM&#39;s id).&#39;&#39;)]\
+				(t8n: &quot;dissolve&quot;)[ ⚖ ($funcBuySell: _item, _value, _currency, _priceMod)]\
+			] (t8n: &quot;dissolve&quot;)+$cssDesc[(Each will fetch you ~&#39;&#39;_pricePerUnit (print: _currencyDM&#39;s id).&#39;&#39; You currently have &#39;&#39;(if: $char&#39;s player&#39;s inv contains _item)[(print: $char&#39;s player&#39;s inv&#39;s _item)](else:)[0] (print: _itemDM&#39;s id).&#39;&#39;)]\
 		]&lt;!--end of canSell--&gt;\
 		(else:)[\
 			~~Sell (print: _itemDM&#39;s id)~~ $cssDesc[(Each will fetch you ~&#39;&#39;_pricePerUnit (print: _currencyDM&#39;s id),&#39;&#39; but alas, you don&#39;t have any to sell.)]\
@@ -1140,19 +1152,20 @@ Fourth, it runs the buy/sell macro, passing into it the appropriate arguments.--
 ]]))
 
 &lt;!--Inner conversations. The DM _convoChoices is formatted like so: (dm: &quot;choice&quot;, (hooks-named: &quot;1a&quot;) )--&gt;
-(set: $funcInnerConvo to (macro: dm-type _convoChoices, [(out:)[\
+(set: $funcInnerConvo to (macro: dm-type _convoChoices, [(out:)[{
 	&lt;!--beginning of choices block--&gt;[\
     	&lt;ol&gt;\
 		(for: each _choice, ...(data-names: _convoChoices))[\
 			&lt;li&gt; (link: _choice)[\
 				(hide: ?choicesBlock)\
-                (show: (hooks-named: (str:_convoChoices&#39;s _choice)))\
+                (t8n: &quot;dissolve&quot;)
+				(show: (hooks-named: (str:_convoChoices&#39;s _choice)))\
                 (prepend: (hooks-named: (str:_convoChoices&#39;s _choice)))[$cssDesc[&#39;&#39;You: _choice&#39;&#39;] &lt;br&gt;&lt;br&gt;]\
 			]&lt;!--end of choice link--&gt;\
 		&lt;/ol&gt;\
         ]&lt;!--end of looping--&gt;\
 	]&lt;choicesBlock|\
-]]))
+}]]))
 
 &lt;!--&quot;Spindle convo&quot; - a subtype of innerconvo that can be selected in any order (content must be set up outside of convo)
 Modes are:
@@ -1857,8 +1870,8 @@ Ex: 2|1 At, 0|1 Ab, 2|3 Gor, 0|2 Rokh, 0|0 Zam --&gt;
 			(dialog: bind _value, &quot;What amount of &#39;&#39;(print: _itemDM&#39;s id)&#39;&#39; do you wish to create? &lt;br&gt; $cssDesc[(print: _itemDM&#39;s tip) &lt;ul style=\&quot;line-height: 1.5\&quot;&gt;&lt;li&gt;To synthesize 1 of this, you have|need at least: ($funcElementHaveNeed: _itemName, 1) You have enough to make _atMost. &lt;li&gt;This workstation can synthesize a &#39;&#39;maximum of (plural: (passage:)&#39;s max, \&quot;unit\&quot;)&#39;&#39; each run. &lt;li&gt; Each run, this workstation will burn &#39;&#39;(print: (passage:)&#39;s fuelCost) (print: (passage:\&quot;item.vehzin\&quot;)&#39;s id)&#39;&#39;. &lt;li&gt;Regardless of amount, this workstation will automatically run for &#39;&#39;(plural: (passage:)&#39;s duration, \&quot;day\&quot;)&#39;&#39; before finishing. &lt;li&gt;Only 1 kind of thing can be made per run, per workstation.&lt;/ul&gt;]&quot;, ..._manyOptions)\
 			\
 			(set: _value to (num: _value))\
-			⇝ ($funcJobAdd: _itemName, _value)\
-		] ($funcLogTip: &quot;item.&quot;, _itemName) $cssDesc[(To make 1 unit of this, you have|need ($funcElementHaveNeed: _itemName, 1))]\
+			(t8n: &quot;dissolve&quot;)[ ⇝ ($funcJobAdd: _itemName, _value)]\
+		] (t8n: &quot;dissolve&quot;)[($funcLogTip: &quot;item.&quot;, _itemName) $cssDesc[(To make 1 unit of this, you have|need ($funcElementHaveNeed: _itemName, 1))]]\
 	]\
 	(else:)[~~Synthesize (print: _itemDM&#39;s id)~~ ($funcLogTip: &quot;item.&quot;, _itemName) $cssDesc[(Workstation is synthesizing (print: _currentJob&#39;s 2nd) (print: (passage: &quot;item.&quot; + _currentJob&#39;s 1st)&#39;s id). (if: _currentJob&#39;s 3rd &gt; 0)[(plural: _currentJob&#39;s 3rd, &quot;day&quot;) left.](else:)[It is already done.])]]\
 ]]))
@@ -1979,10 +1992,10 @@ Ex: 2|1 At, 0|1 Ab, 2|3 Gor, 0|2 Rokh, 0|0 Zam --&gt;
 		|startup&gt;[\
 			&lt;li&gt;(link: &quot;Power up the workstation.&quot;)[\
 				(set: _justFueled to true)\
-                (show: ?running)\
-                (replace: ?exitText)[$cssDesc[(And reclaim the fuel.)]]\
-				(replace: ?workstationStatus)[&lt;span class=&quot;rainbow&quot;&gt;ACTIVE&lt;/span&gt;]\
-				(replace: ?startup)[\
+                (t8n: &quot;dissolve&quot;)(show: ?running)\
+				(t8n: &quot;dissolve&quot;)+(replace: ?exitText)[$cssDesc[(And reclaim the fuel.)]]\
+				(t8n: &quot;dissolve&quot;)+(replace: ?workstationStatus)[&lt;span class=&quot;rainbow&quot;&gt;ACTIVE&lt;/span&gt;]\
+				(t8n: &quot;dissolve&quot;)+(replace: ?startup)[\
 					&lt;li&gt;~~Power up the workstation.~~ $cssDesc[(It is up and running.)]
 					&lt;li&gt;(link: &quot;Reclaim fuel.&quot;)[\
 					\
@@ -2027,7 +2040,7 @@ Ex: 2|1 At, 0|1 Ab, 2|3 Gor, 0|2 Rokh, 0|0 Zam --&gt;
 	&lt;li&gt;(link-rerun: &quot;Do something else.&quot;)[\
 		(if: _justFueled is true)[(display: &quot;code.labPowerDown&quot;)]\
         (goto:_exit)\
-	] []&lt;exitText|
+	]` `[]&lt;exitText|
 	\
 	(replace: ?exitText)[$cssDesc[(if: _busy is true)[(Let the magic do its thing.)]]]\
     \
@@ -3910,38 +3923,62 @@ $cssColumnChild[
 &lt;!--Main content begins here--&gt;
 $cssColumnChild[
 
+&lt;!--_line shorthand--&gt;
+(set: _line to (hook: &quot;OldInrahLine&quot;))
+
+&lt;!--speaking parts--&gt;
 $cssDesc[&#39;&#39;You: //(print: (passage:)&#39;s topic)//&#39;&#39;]
 &lt;br&gt;
-[&quot;Oh? Light guides us, that&#39;s not good,&quot;]&lt;OldInrahLine| the old woman mutters, her eyes wide for once. [&quot;Now, what does that say about the state of our economy, the state of the //whole Empire//, if a davehmar has to ask an old lady for odd jobs? Are you... out of rial?&quot;]&lt;OldInrahLine|
+_line[&quot;Oh? Light guides us, that&#39;s not good,&quot;] the old woman mutters, her eyes wide for once. _line[&quot;Now, what does that say about the state of our economy, the state of the //whole Empire//, if a davehmar has to ask an old lady for odd jobs? Are you... out of rial?&quot;]
 &lt;br&gt;
-You deny this wholeheartedly and reassure her that you can still pay for rent. Only, you might need some... supplementary income. Just in case.
+($funcInnerConvo: (dm:
+     &quot;\&quot;&lt;!--A--&gt;No, no, of course not! I&#39;m simply asking, just in case I might need some... supplementary income?\&quot;&quot;, &quot;justInCase&quot;,
+     &quot;\&quot;&lt;!--B--&gt;... I //might// be. I might not. That&#39;s between me and my purse.\&quot;&quot;, &quot;justInCase&quot;,
+))
 &lt;br&gt;
-[&quot;So you might...&quot;]&lt;OldInrahLine| she sucks her teeth, squinting at you, weighing. [&quot;You know the laws of our land - and Askava //is// our land, never mind what bandits may disagree - Koh-Inrah cannot employ or pay you a wage without a contract. And Koh-Inrah, self-educated as she is, knows better than to enter into a contract with one who has learned their terms and stipulations from an imperial university.&quot;]&lt;OldInrahLine|
+
+&lt;!--justInCase--&gt;
+[
+_line[&quot;So you might...&quot;] she sucks her teeth, squinting at you, weighing. _line[&quot;You know the laws of Nurandah - and Askava //is// Nurandah, never mind what bandits and cave-dwellers may disagree - Koh-Inrah cannot employ or pay you a wage without a contract. And Koh-Inrah, self-educated as she is, knows better than to enter into a contract with one who has learned their terms and stipulations from an imperial university.&quot;]
 &lt;br&gt;
 Her eyes gleam. She is going somewhere with this.
 &lt;br&gt;
-[&quot;But there is no law that prevents a davehmar from doing the maids and cooks here some favors. And there is no law that stops the establishment&#39;s mistress from feeling grateful. So grateful that she might even... refund the day&#39;s rent - such is her money, such is her wish. Refund, //not// waive, and especially //not// a wage. The books needs to be honest for the taxman. I&#39;m sure you understand, well-educated as you are.&quot;]&lt;OldInrahLine|
+($funcInnerConvo: (dm:
+     &quot;&lt;!--A--&gt;Let her continue.&quot;, &quot;letHer&quot;,
+))
+&lt;br&gt;
+](justInCase|
+
+&lt;!--letHer--&gt;
+[
+_line[&quot;But there is no law that prevents a davehmar from doing the maids and cooks here some favors, if the davehmar so happens to run into a working-fellow in need of aid. And there is no law that stops the establishment&#39;s mistress from feeling grateful when such aid is given by one so generous, who expects no recompense. So grateful that she might even... refund the day&#39;s rent - such is her money, such is her wish. Refund, //not// waive, and especially //not// a wage. The books needs to be honest for the taxman. Koh-Inrah is sure you understand, well-educated as all davehmars are.&quot;]
 &lt;br&gt;
 She leaves it at that.
 &lt;br&gt;
+(show: ?doneOptions)
+](letHer|
+
+
+&lt;!--doneOptions--&gt;
+[
 ---
 &lt;ol&gt;
-&lt;li&gt;(link-rerun: &quot;Sure, &#39;refund&#39;, I understand.&quot;)[\
+&lt;li&gt;(link-rerun: &quot;\&quot;Sure, &#39;refund&#39;, I understand.\&quot;&quot;)[\
 	($funcAddStoryletCooldown: (passage:)&#39;s name)\
     ($funcTalked:)\
 	($funcOpinionGainLoss: &quot;OldInrah&quot;, 1, &quot;Like many proprietors and proprietresses, Koh-Inrah values discretion in others.&quot;)\
     ($funcGainLoss: &quot;att.&quot;, &quot;accessInrahOddJobs&quot;, 1)\
     (goto: &quot;OldInrah Jobs Gain Access&quot;)&lt;!--[[OldInrah Jobs Gain Access]]--&gt;\
 ]
-&lt;li&gt;(link-rerun: &quot;I don&#39;t get why it has to be so complicated.&quot;)[\
+&lt;li&gt;(link-rerun: &quot;\&quot;I don&#39;t understand why it has to be so complicated.\&quot;&quot;)[\
 	($funcAddStoryletCooldown: (passage:)&#39;s name)\
     ($funcTalked:)\
-    ($funcOpinionGainLoss: &quot;OldInrah&quot;, -1, &quot;She knows you don&#39;t get why it&#39;s complicated, but do you //have// to admit your ignorance out loud? She pretends that you&#39;ve understood.&quot;)\
+    ($funcOpinionGainLoss: &quot;OldInrah&quot;, -1, &quot;She //knows// you don&#39;t understand why it&#39;s complicated, but do you //have// to admit your ignorance out loud? She pretends that you&#39;ve understood just fine.&quot;)\
     ($funcGainLoss: &quot;att.&quot;, &quot;accessInrahOddJobs&quot;, 1)\
     (goto: &quot;OldInrah Jobs Gain Access&quot;)&lt;!--[[OldInrah Jobs Gain Access]]--&gt;\
 ]
 &lt;/ol&gt;
-
+](doneOptions|
 
 ]&lt;!--end child--&gt;
 ]&lt;!--end parent--&gt;</tw-passagedata><tw-passagedata pid="92" name="T: OldInrah Refund" tags="topic" position="3200,1100" size="100,100">{=
@@ -7500,7 +7537,7 @@ She thinks about it for a second before adding, [&quot;There&#39;s also the Gran
 
 &lt;!--toGrandExchange--&gt;
 [
-[&quot;Uh, sure, so you see those domes over there? So from here, you head down the hill, then when you see the big road, the one with the red obelisks, you take a right... Erm, or was it left?...&quot;]&lt;VehVehLine| she mutters to herself several conflicting directions, then gives up. [&quot;This is embarrassing. I usually just zone out whenever I make my groceries run. You might need a professional guide. Or you can just take a stroll, or several, around town, you&#39;ll eventually end up there. Apesai&#39;s a beautiful city. Confusing, but beautiful.&quot;]&lt;VehVehLine|
+[&quot;Uh, sure, so you see those domes over there? So from here, you head down the hill, then when you see the big road, the one with the red obelisks, you take a right... Erm, or was it left?...&quot;]&lt;VehVehLine| she mutters to herself several conflicting directions, then gives up. [&quot;This is embarrassing. I usually just let my mind wander whenever I make my grocery runs and let habit take me. You might need a professional guide. Or you can simply take a stroll, or several, around town, and you&#39;ll eventually end up there. Apesai&#39;s a beautiful city. Confusing, but beautiful.&quot;]&lt;VehVehLine|
 &lt;br&gt;
 ($funcInnerConvo: (dm:
      &quot;&lt;!--B--&gt;\&quot;It&#39;s alright. I&#39;ll figure it out.\&quot;&quot;, &quot;BYOI&quot;,
@@ -9912,7 +9949,7 @@ _e
 ],
 
 [&lt;!--4--&gt;
-In the year 409 AD, &#39;&#39;Zinzan of House Padimar&#39;&#39;, satmar of the Kudkuch Legion, journeying with certification from the &#39;&#39;Kudkuch Academy&#39;&#39;, successfully synthesized and defended their first Sacred Opal at the age of thirty-five, earning them the recognition as &quot;master&quot; among his peers.
+In the year 409 AD, &#39;&#39;Zinzan of House Padimar&#39;&#39;, a satmar of the Kudkuch Legion, journeying with certification from the &#39;&#39;Kudkuch Academy&#39;&#39;, successfully synthesized and defended their first Sacred Opal at the age of thirty-five, earning them the recognition as &quot;master&quot; among his peers.
 &lt;br&gt;
 _e
 &lt;br&gt;
@@ -9959,7 +9996,7 @@ _e
 ],
 
 [&lt;!--5--&gt;
-In the year 229 AD, &#39;&#39;Atras of House Vehkhan&#39;&#39;, journeying with certification from the &#39;Nudankhan Council&#39;&#39;, successfully synthesized and defended his first Sacred Opal at the age of twenty-two, earning him the recognition as &quot;master&quot; among his peers.
+In the year 229 AD, &#39;&#39;Atras of House Vehkhan&#39;&#39;, journeying with certification from the &#39;&#39;Nudankhan Council&#39;&#39;, successfully synthesized and defended his first Sacred Opal at the age of twenty-two, earning him the recognition as &quot;master&quot; among his peers.
 &lt;br&gt;
 _e
 &lt;br&gt;
@@ -12266,14 +12303,13 @@ Someone ought to be able to show you around properly.
 }]
 
 
-&lt;/ol&gt;</tw-passagedata><tw-passagedata pid="233" name="Library Apesai (browse)" tags="unfinished" position="350,2975" size="100,100">{=
+&lt;/ol&gt;</tw-passagedata><tw-passagedata pid="233" name="Library Apesai (browse)" tags="" position="350,2975" size="100,100">{=
 
 (metadata:
 &quot;title&quot;, &quot;Browsing the Apesai Library&quot;,
 &quot;cardDesc&quot;, &quot;The search is half the joy. Now, you&#39;d be properly joyful if you //actually// find something of use.&quot;,
 &quot;img&quot;, &quot;https://fallenlondon.wiki/w/images/8/83/University.png&quot;,
 &quot;parent&quot;, &quot;S: Library Apesai&quot;,
-&quot;devNote&quot;, [Write the ?browseContent text. And of course, write code.failure code and text],
 )
 
 $cssColumnParent[
@@ -12295,7 +12331,7 @@ Rolling up your sleeves, fastening the loose hem of your clothes, covering up yo
 &lt;br&gt;
 _line[&quot;Browse at your leisure,&quot;] the spider chirps as you leave it. _line[&quot;(either: &quot;Keep in mind that we do not have a borrowing program. So plan your study time accordingly.&quot;, &quot;But remember: All documents are considered property of the davehkhan and thereby of Nurandah. Take appropriate care.&quot;, &quot;Do be mindful of other students and scholars. Do not hoard books.&quot;)&quot;]
 &lt;br&gt;
-[{}]&lt;browseContent|
+[]&lt;browseContent|
 ---
 &lt;ol&gt;
 
@@ -12305,9 +12341,10 @@ _line[&quot;Browse at your leisure,&quot;] the spider chirps as you leave it. _l
 &lt;!--initialize browseList and browseAllowance--&gt;
 (if: $stuffDaily does not contain &quot;browseList&quot;)[(set: $stuffDaily&#39;s browseList to (a:))]
 (if: $stuffDaily does not contain &quot;browseAllowance&quot;)[(set: $stuffDaily&#39;s browseAllowance to 6)]
+(if: $stuffDaily does not contain &quot;failText&quot;)[(set: $stuffDaily&#39;s failText to (a:))]
 
 &lt;!--standard action text--&gt;
-(set: _browseLinkText to &quot;Search the library shelves.&quot;)
+(set: _browseLinkText to &quot;Search the library.&quot;)
 &lt;!--if still allowed--&gt;
 (if: $stuffDaily&#39;s browseAllowance &gt; 0)[
 &lt;li&gt;(link-rerun: _browseLinkText)[{
@@ -12320,7 +12357,7 @@ _line[&quot;Browse at your leisure,&quot;] the spider chirps as you leave it. _l
      &lt;!--Success--&gt;
      (if: _browseDice &gt;= 80)[(display: &quot;code.libraryApesaiSuccess&quot;)]
      &lt;!--Failure--&gt;
-     (else:)[Failure TEXTTTTTT!]
+     (else:)[(display: &quot;code.libraryApesaiFailure&quot;)]
 
      &lt;!--refresh ?browseBox--&gt;
      (t8n: &quot;dissolve&quot;)(rerun: ?browseBox)(rerun: ?browseAction)
@@ -12602,9 +12639,35 @@ _line[&quot;(either: &quot;We hope you are having a productive time at our libra
 ]&lt;!--end child--&gt;
 ]&lt;!--end parent--&gt;</tw-passagedata><tw-passagedata pid="236" name="code.libraryApesaiFailure" tags="" position="725,2975" size="100,100">{=
 
-Failure!</tw-passagedata><tw-passagedata pid="237" name="code.libraryApesaiSuccess" tags="unfinished" position="850,2975" size="100,100">{=
+&lt;!--set up table of text--&gt;
+(set: _tableBrowseFail to (a:
+[Nothing you have found so far is anywhere near legible. The humid sea air must have destroyed anything older than a century - you think to yourself, as you gaze out at a very wide window. Odd. It occurs to you that this floor might not have been built to be a library.],
+[You have been kicking up so much dust that the few students here have evacuated the premises, not without giving you a nasty look first. It is a fair sentiment, though you can hardly be blamed. It&#39;s not your fault that their library is in such sorry state.],
+[Pulpy romance paperbacks lost among what used to be imperious treatises on the human condition - there is a certain logic to it, if you think about it. You look at the spider-like attendant twitching in a far corner of the hall and decide to not think at all about what madness lies within that metal shell.],
+[Most of what you&#39;ve found are fragments, looking like the kind of treasure an archeologist a thousand years from now would fawn over, if these tattered pages last that long. Something tells you they won&#39;t.],
+[You&#39;ve heard of port cities that force all ships to surrender their books and scrolls, where a local team of scribes would copy them before returning the documents. Apesai might be one of those cities, and this very hall, long ago, might have been one such scriptoriums. Evidently, there is no standard as to which document gets copied. There is so little of value here.],
+[You have come across your twentieth, no, thirtieth copy of shipping manifests. These span centuries. Perhaps one more specially trained than you might cobble these fragments together into some sort of narrative about trade, life, culture, and so on, but for you, they are simply long lists of vehzin blocks being shipped out. A child living in the Apesai slums can look out the window of their hovel and infer just as much.],
+[You find an alchemy book so thoroughly annotated that it is simply impossible to read the procedures. It is the handwriting of a mad person, spilling manic conjectures onto the text itself. Obscuring the diagrams are stains - which you hope is tea and not the result of whatever experiments the scribblings are gesturing at. This is not the first book of this kind that you&#39;ve found today.],
+[The students have been drawing onto the books. One of them has made in the margin of a law book rather fantastic illustrations of their journey to become a master magus, after which they return to their tribe out in the desert and incinerate what seems to be their childhood bully.],
+[You have breathed in more dust than you ever have, though there were times in your life when you thought of yourself as endemic to libraries. But this is nothing - you tell yourself - compared to the dust and sands of inland Askava.],
+[In the furthest corners of the library, where no students go, the shelves have gone soft with moisture, and a few books have turned into a slimy substrate for all kinds of fungi. There must be a leaky pipe somewhere inside the walls, or it could be the accumulated sea air. Normally, red steel architecture heals itself, but you speculate that a lot of the infrastructure here was added post-completion by those less skilled but more ambitious.],
+))
 
-(metadata: &quot;devNote&quot;, [Write the ?browseContent text])
+&lt;!--pick a random one--&gt;
+(set: _browseFailText to _tableBrowseFail&#39;s random)
+
+&lt;!--main replace ?browseContent code--&gt;
+(t8n: &quot;dissolve&quot;)+(replace: ?browseContent)[
+$cssDesc[&#39;&#39;You: (either: &quot;Dig through a pile of unspooled scrolls.&quot;, &quot;Search the high shelves.&quot;, &quot;Dust off old tomes.&quot;, &quot;Pick up something random from the floor.&quot;, &quot;Look among a pile left out on the tables.&quot;)&#39;&#39;]
+&lt;br&gt;
+_browseFailText
+&lt;br&gt;
+$cssDesc[
+    (if: $stuffDaily&#39;s browseAllowance &gt; 0)[Keep searching, if you are still willing.]
+    (else:)[You feel like you should stop for now. If not for your health, then at least for your sanity.]
+]
+&lt;br&gt;
+]</tw-passagedata><tw-passagedata pid="237" name="code.libraryApesaiSuccess" tags="" position="850,2975" size="100,100">{=
 
 &lt;!--the &quot;loot table&quot;--&gt;
 (set: _tableBrowseSuccess to (a:
@@ -12619,9 +12682,28 @@ Failure!</tw-passagedata><tw-passagedata pid="237" name="code.libraryApesaiSucce
 
 &lt;!--if no new book, then failure; if yes new book, then proceed--&gt;
 (if: _tableNewBook&#39;s length &lt;= 0)[(display: &quot;code.libraryApesaiFailure&quot;)]
+&lt;!--else, success code block--&gt;
 (else:)[{
     &lt;!--pick a random book from the newBook list--&gt;
     (set: _foundBook to _tableNewBook&#39;s random)
+
+    &lt;!--load full book DM--&gt;
+    (set: _foundBookDM to (passage: &quot;item.&quot; + _foundBook))
+
+    &lt;!--update ?browseContent--&gt;
+    (t8n: &quot;dissolve&quot;)+(replace: ?browseContent)[{
+$cssDesc[&#39;&#39;You: (either: &quot;Dig through a pile of unspooled scrolls.&quot;, &quot;Search the high shelves.&quot;, &quot;Dust off old tomes.&quot;, &quot;Pick up something random from the floor.&quot;, &quot;Look among a pile left out on the tables.&quot;)&#39;&#39;]
+&lt;br&gt;
+You wipe the dust from the pages and the sweat from your brows. The title reads: &#39;&#39;//(print: _foundBookDM&#39;s id)//&#39;&#39;($funcLogTip: &quot;item.&quot;, _foundBook).
+&lt;br&gt;
+(either: &quot;The text is still legible, mostly.&quot;, &quot;Mold has not eaten this one entirely, nor has time.&quot;, &quot;Finally, something that is not entirely junk, in the narrowest sense of the word.&quot;, &quot;The book card indicates a too-long list of borrowers, stopping close to a century ago, likely the time when the borrowing program stopped.&quot;, &quot;You are sure you have seen this one before, although who knows what ancient edition a provincial school keeps.&quot;, &quot;The binding&#39;s condition is acceptable; that is to say: It is unlikely to fall apart in your hands.&quot;, &quot;You //are// glad to have found something, whether you plan on reading it or not.&quot;) You hold on to it, for now.
+&lt;br&gt;
+$cssDesc[
+    (if: $stuffDaily&#39;s browseAllowance &gt; 0)[You&#39;ve found something! Keep searching, if you are still willing.]
+    (else:)[You&#39;ve found something! But, you feel like you should stop for now. If not for your health, then at least for your sanity.]
+]
+&lt;br&gt;
+    }]
 
     &lt;!--update the found book list ($stuffDaily&#39;s browseList)--&gt;
     (set: $stuffDaily&#39;s browseList to it + (a: _foundBook))

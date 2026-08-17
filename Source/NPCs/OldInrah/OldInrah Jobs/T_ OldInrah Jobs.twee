@@ -30,38 +30,62 @@ $cssColumnChild[
 <!--Main content begins here-->
 $cssColumnChild[
 
+<!--_line shorthand-->
+(set: _line to (hook: "OldInrahLine"))
+
+<!--speaking parts-->
 $cssDesc[''You: //(print: (passage:)'s topic)//'']
 <br>
-["Oh? Light guides us, that's not good,"]<OldInrahLine| the old woman mutters, her eyes wide for once. ["Now, what does that say about the state of our economy, the state of the //whole Empire//, if a davehmar has to ask an old lady for odd jobs? Are you... out of rial?"]<OldInrahLine|
+_line["Oh? Light guides us, that's not good,"] the old woman mutters, her eyes wide for once. _line["Now, what does that say about the state of our economy, the state of the //whole Empire//, if a davehmar has to ask an old lady for odd jobs? Are you... out of rial?"]
 <br>
-You deny this wholeheartedly and reassure her that you can still pay for rent. Only, you might need some... supplementary income. Just in case.
+($funcInnerConvo: (dm:
+     "\"<!--A-->No, no, of course not! I'm simply asking, just in case I might need some... supplementary income?\"", "justInCase",
+     "\"<!--B-->... I //might// be. I might not. That's between me and my purse.\"", "justInCase",
+))
 <br>
-["So you might..."]<OldInrahLine| she sucks her teeth, squinting at you, weighing. ["You know the laws of our land - and Askava //is// our land, never mind what bandits may disagree - Koh-Inrah cannot employ or pay you a wage without a contract. And Koh-Inrah, self-educated as she is, knows better than to enter into a contract with one who has learned their terms and stipulations from an imperial university."]<OldInrahLine|
+
+<!--justInCase-->
+[
+_line["So you might..."] she sucks her teeth, squinting at you, weighing. _line["You know the laws of Nurandah - and Askava //is// Nurandah, never mind what bandits and cave-dwellers may disagree - Koh-Inrah cannot employ or pay you a wage without a contract. And Koh-Inrah, self-educated as she is, knows better than to enter into a contract with one who has learned their terms and stipulations from an imperial university."]
 <br>
 Her eyes gleam. She is going somewhere with this.
 <br>
-["But there is no law that prevents a davehmar from doing the maids and cooks here some favors. And there is no law that stops the establishment's mistress from feeling grateful. So grateful that she might even... refund the day's rent - such is her money, such is her wish. Refund, //not// waive, and especially //not// a wage. The books needs to be honest for the taxman. I'm sure you understand, well-educated as you are."]<OldInrahLine|
+($funcInnerConvo: (dm:
+     "<!--A-->Let her continue.", "letHer",
+))
+<br>
+](justInCase|
+
+<!--letHer-->
+[
+_line["But there is no law that prevents a davehmar from doing the maids and cooks here some favors, if the davehmar so happens to run into a working-fellow in need of aid. And there is no law that stops the establishment's mistress from feeling grateful when such aid is given by one so generous, who expects no recompense. So grateful that she might even... refund the day's rent - such is her money, such is her wish. Refund, //not// waive, and especially //not// a wage. The books needs to be honest for the taxman. Koh-Inrah is sure you understand, well-educated as all davehmars are."]
 <br>
 She leaves it at that.
 <br>
+(show: ?doneOptions)
+](letHer|
+
+
+<!--doneOptions-->
+[
 ---
 <ol>
-<li>(link-rerun: "Sure, 'refund', I understand.")[\
+<li>(link-rerun: "\"Sure, 'refund', I understand.\"")[\
 	($funcAddStoryletCooldown: (passage:)'s name)\
     ($funcTalked:)\
 	($funcOpinionGainLoss: "OldInrah", 1, "Like many proprietors and proprietresses, Koh-Inrah values discretion in others.")\
     ($funcGainLoss: "att.", "accessInrahOddJobs", 1)\
     (goto: "OldInrah Jobs Gain Access")<!--[[OldInrah Jobs Gain Access]]-->\
 ]
-<li>(link-rerun: "I don't get why it has to be so complicated.")[\
+<li>(link-rerun: "\"I don't understand why it has to be so complicated.\"")[\
 	($funcAddStoryletCooldown: (passage:)'s name)\
     ($funcTalked:)\
-    ($funcOpinionGainLoss: "OldInrah", -1, "She knows you don't get why it's complicated, but do you //have// to admit your ignorance out loud? She pretends that you've understood.")\
+    ($funcOpinionGainLoss: "OldInrah", -1, "She //knows// you don't understand why it's complicated, but do you //have// to admit your ignorance out loud? She pretends that you've understood just fine.")\
     ($funcGainLoss: "att.", "accessInrahOddJobs", 1)\
     (goto: "OldInrah Jobs Gain Access")<!--[[OldInrah Jobs Gain Access]]-->\
 ]
 </ol>
-
+](doneOptions|
 
 ]<!--end child-->
 ]<!--end parent-->

@@ -93,19 +93,20 @@
 ]]))
 
 <!--Inner conversations. The DM _convoChoices is formatted like so: (dm: "choice", (hooks-named: "1a") )-->
-(set: $funcInnerConvo to (macro: dm-type _convoChoices, [(out:)[\
+(set: $funcInnerConvo to (macro: dm-type _convoChoices, [(out:)[{
 	<!--beginning of choices block-->[\
     	<ol>\
 		(for: each _choice, ...(data-names: _convoChoices))[\
 			<li> (link: _choice)[\
 				(hide: ?choicesBlock)\
-                (show: (hooks-named: (str:_convoChoices's _choice)))\
+                (t8n: "dissolve")
+				(show: (hooks-named: (str:_convoChoices's _choice)))\
                 (prepend: (hooks-named: (str:_convoChoices's _choice)))[$cssDesc[''You: _choice''] <br><br>]\
 			]<!--end of choice link-->\
 		</ol>\
         ]<!--end of looping-->\
 	]<choicesBlock|\
-]]))
+}]]))
 
 <!--"Spindle convo" - a subtype of innerconvo that can be selected in any order (content must be set up outside of convo)
 Modes are:

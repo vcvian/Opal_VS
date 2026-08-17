@@ -45,6 +45,6 @@ Then, it multiplies that amount with the item's value and gives back the corresp
 				(dialog: bind _value, "Choose amount of ''(print: _itemDM's id)'' to turn into pure elements. <br> $cssDesc[(print: _itemDM's tip)] <br> $cssDesc[You currently have (print: $char's player's inv's _itemName) (print: _itemDM's id).]", ..._manyOptions)\
 				\
 				(set: _value to (num: _value))\
-				🝢 ($funcElementalize: _itemName, _value)\
-		] ($funcLogTip: "item.", _itemName) $cssDesc[(You currently have (print: $char's player's inv's _itemName).)]\
+				(t8n: "dissolve")[ 🝢 ($funcElementalize: _itemName, _value)]\
+		] (t8n: "dissolve")[($funcLogTip: "item.", _itemName) $cssDesc[(You currently have (print: $char's player's inv's _itemName).)]]\
 ]]))
