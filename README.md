@@ -8,9 +8,9 @@ Instruction on PC:
 1. Download 2 things from this repo.
     1. The main game HTML [Opal_VS.html](Opal_VS.html);
     2. The "Asset" folder (make sure it is uncompressed).
-2. Place the HTML right outside of the "Asset" folder. So:
+2. Place the HTML right outside of the "Assets" folder. So:
     - 📁 any-folder
-        - 📁 Asset
+        - 📁 Assets
         - 📄 Opal_VS.html
 3. Open Opal_VS.html with any browser.
 
