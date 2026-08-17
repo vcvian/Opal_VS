@@ -6,8 +6,8 @@ $place's sublocation is $place's stay
 and $place's location is "Apesai"
 and $char's player's quests does not contain "sickTeacher"
 )
-(exclusivity: 0)
-(metadata: "title", "A Sick Teacher", "cardDesc", "Your teacher isn't feeling great.", "img", "https://thefifthcity.wiki/w/images/b/bc/Bloodstain.png?20240509225948", "interrupt", false,)
+(exclusivity: 3)
+(metadata: "title", "A... Moan?", "cardDesc", "An awful sound is coming from the other side of the wall.", "img", "https://thefifthcity.wiki/w/images/b/bc/Bloodstain.png?20240509225948", "interrupt", true,)
 
 $cssColumnParent[
 
@@ -19,10 +19,143 @@ $cssColumnChild[
 ]
 
 $cssColumnChild[
+
+<!--TeacherLine shorthand-->
+(set: _line to (hook: "TeacherLine"))
+(set: _ah to "Aaaaah...")
+(set: _retrospect to [(t8n:"dissolve")+(replace: ?maskedLine)[_line["_ah"]]])
+
+
+<!--passage content-->
+The walls of the Pilgrim's Rest is, quite literally, paper-thin, for what used to be palatial chambers were segmented with papyrus plaster into tight and decidedly not-soundproofed guest rooms. You can hear the other guests talking, laughing and even //moaning//.
 <br>
-["Argh, I'm so gassy,"]<TeacherLine| says the respectable magus.
+|maskedLine>["_ah"] - so goes a man's voice, hoarse and desperate, in the throes of a religious experience.
 <br>
+($funcInnerConvo: (dm:
+     "<!--A-->This is embarrassing.", "isEmbarrassing",
+     "<!--B-->Glad someone's having fun here.", "havingFun",
+))
+<br>
+
+
+<!--isEmbarrassing-->
+[
+After many years living of in the senior dorm of Bakho University, you know exactly how to deal with this situation: Meditation.
+<br>
+That's right. Meditation is not only a technique of self-cultivation and reaching wisdom, it is also the single best way to pass the time, as well as any potentially unpleasant feeling.
+<br>
+It is like sleep, but productive.
+<br>
+_line["Uuuuugh..."] - there he goes again. This time, louder.
+<br>
+($funcInnerConvo: (dm:
+     "<!--C-->Wait, is that...", "isThat",
+))
+<br>
+](isEmbarrassing|
+
+
+<!--havingFun-->
+[
+Humans have the innate capacity to find pleasure anywhere and anytime, though they be beaten by seawinds or cramped into holes in the wall. It is this indomitable appetite for enjoyment that makes a human.
+<br>
+Such high-minded notions make the ordeal a bit easier to bear.
+<br>
+_line["Uuuuugh..."] - there he goes again. You abandon your charitable thoughts and is about to knock on the wall when you realize...
+<br>
+($funcInnerConvo: (dm:
+     "<!--C-->Wait, is that...", "isThat",
+))
+<br>
+](havingFun|
+
+
+<!--isThat-->
+[
+_retrospect
+Professor Marrokh?
+<br>
+_line["Aaahh...,"] he answers your unspoken question from the room right next to you. _line["Fuuck... That's it, oooh that's it..."]
+<br>
+($funcInnerConvo: (dm:
+     "<!--A-->Is he with someone?", "withSomeone",
+     "<!--B-->Press your ear to the plaster wall.", "eavesdropWall",
+     "<!--C-->Go check on him.", "checkOnHim",
+))
+<br>
+](isThat|
+
+
+<!--withSomeone-->
+[
+No. No, no, no. You shouldn't think about that. You don't want to think about that. That's not like him at all. He's anything but that. Plus, you and he has just arrive; where would be find the opportunity? This is a proper place. Cramped, but //proper//.
+<br>
+_line["Somebody, please... I don't want to die like this..."]
+<br>
+That clears it up. Probably. But you should go check on him though. It sounds bad.
+<br>
+($funcInnerConvo: (dm:
+     "<!--C-->Go check on him.", "checkOnHim",
+))
+<br>
+](withSomeone|
+
+
+<!--eavesdropWall-->
+[
+You press your ear to the wall and immediately resents your curiosity, for immediately, there is a sound even more awful than the old man's moaning.
+<br>
+_line["That... No, that can't be good... Is this how I'm going to die?"]
+<br>
+That is probably your cue to go over there and check on him.
+<br>
+($funcInnerConvo: (dm:
+     "<!--C-->Go check on him.", "checkOnHim",
+))
+<br>
+](eavesdropWall|
+
+
+<!--checkOnHim-->
+[
+You head over to the room next to yours, where your mentor is lodging.
+<br>
+As you approach Professor Marrokh's door, you hear a groan - _line["Uuuugh..."] - and a curse - _line["What on Tar? Where the fuck is all this crap coming from? How? I- fuuuck..."] - or several.
+<br>
+($funcInnerConvo: (dm:
+     "<!--A-->Knock and ask if he is alright.", "knockAsk",
+     "<!--B-->Let yourself in.", "letYourselfIn",
+))
+<br>
+
+
+
+
+](checkOnHim|
+
+
+<!--knockAsk-->
+[You knock, too timid to be heard over whatevver is going on inside. Something tells you that it is not the time for niceties, so you deicde to simply barge right in.
+(show: ?doneOptions)
+<br>
+](knockAsk|
+
+
+<!--letYourselfIn-->
+[Sensing that he is indisposed, you expend with the niceties and barge right in.
+(show: ?doneOptions)
+<br>
+](letYourselfIn|
+
+<!--end of passage content-->
+
+
+<!--doneOptions-->
+[
 ---
-[[What the...|Sick Teacher 1a]]
+(link: "Professor Marrokh?")[(goto: "Sick Teacher 1a")]
+](doneOptions|
+
+
 ]<!--end child-->
 ]<!--end parent-->

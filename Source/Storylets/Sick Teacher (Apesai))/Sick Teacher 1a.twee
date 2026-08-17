@@ -2,8 +2,8 @@
 {=
 
 (metadata:
-"title", "Finding Your Teacher Sick",
-"cardDesc", "Your teacher isn't feeling great."
+"title", "Checking on Your Mentor",
+"cardDesc", "This is not good."
 )
 
 $cssColumnParent[
@@ -17,17 +17,177 @@ $cssColumnChild[
 
 $cssColumnChild[
 
-["Yo broski, this is bad,"]<TeacherLine| the magus says, curling over the latrine. ["I need my meds, stat!"]<TeacherLine|
+<!--TeacherLine shorthand-->
+(set: _line to (hook: "TeacherLine"))
+
+Before you can see where he is in the room, your nose - and what a bad day to have a nose - alerts you to his location //and// his current, on-going activity.
 <br>
-You're not so sure why he's talking like that.
+_line["Close the cursed door, you imbecile, or I'll fail you right here and now!"] The professor shouts from behind the skin curtain in the far corner of the room, where the latrine would be. He sounds like he is about to cry.
 <br>
-$cssDesc[A ''Healing Tonic'' will do. It's helped you before.]
+You comply. With the door shut, you are submerged in //his// world.
 <br>
+($funcInnerConvo: (dm:
+     "\"<!--A-->Are you alright, professor?\"", "askAlright",
+     "\"<!--B-->Do you need help?\"", "anyHelp",
+     "<!--C-->Try making some noise without opening your mouth or breathing, for your own good.", "makeNoise",
+))
+<br>
+
+<!--askAlright-->
+[
+... Which was what you //intended// to say, but you can only manage to get out the "are you-" before gasping and coughing.
+<br>
+_line["Dying? Am I dying? Why... wouldn't that be... convenient for //you//, huh?"] He says from behind the curtain. _line["You're going to take my papers... and pass yourself off... as me, aren't you? No-one knows who //I// am in this... forsaken ass-crack of a land anyhow."]
+<br>
+As a punctuation to his tirade, he pukes loudly into a tin bucket.
+<br>
+($funcInnerConvo: (dm:
+     "\"<!--B-->So do you need help?\"", "anyHelp",
+     "<!--C-->Stay silent. Let him talk.", "letHim"
+))
+<br>
+](askAlright|
+
+
+<!--anyHelp-->
+[
+You spit out the words as quickly as possible so you do not have to open your mouth for any longer than necessary, but already, your eyes are watering, and your breakfast is surging up.
+<br>
+_line["Oh, how far the mighty... has fallen, to ask for help... from one such as //you//!"] He guffaws from behind the curtain, but immediately pukes, splattering in a tin bucket. _line["Ugh... Yeah, I need help."]
+<br>
+($funcInnerConvo: (dm:
+     "<!--C-->Let him continue.", "letHim"
+))
+<br>
+](anyHelp|
+
+
+<!--makeNoise-->
+[
+You pathetically "mmm-mm-ed" something like a question as your eyes water and your breakfast surges upward.
+<br>
+_line["Hahaha, though I may be... at my worst - cast off from my oaken lectern... forced by fate to embrace this brass one instead - my power over you remains... overwhelming,"] he says from behind the curtain, then immediately pukes into a tin bucket. _line["Ugh, fuck... Alas, I am no match... for my guts."]
+<br>
+($funcInnerConvo: (dm:
+     "<!--C-->Let him continue.", "letHim"
+))
+<br>
+](makeNoise|
+
+
+<!--letHim-->
+[
+_line["Student... //At// and //Ab// leaves me... incessantly... by any way they see fit,"] explains the professor. _line["It seems my stomach's upset... from days ago aboard the ship... was but a herald. Someone has //poisoned// me."]
+<br>
+Thankfully, he cannot see you roll your eyes.
+
+<!--"spindle" convo, mode 3 (must exhaust all options)-->
+(set: $stuff's convoChoices to (dm:
+     "\"<!--A-->Poisoned? It is a mere flux. Fluxes are to be expected from long boat trips; we were warned before.\"", "mereFlux",
+     "\"<!--B-->Who would want to poisoned you?\"", "whoWould",
+     "\"<!--C-->Then we ought to have a physician diagnose you and administer you an antidote.\"", "findPhysician",
+     "<!--D-->\"Then what do you want me to do?\"", "exitLink",
+))
+
+($funcSpindleConvo: $stuff's convoChoices, 3)
+
+](letHim|
+
+<!--spindle texts are stored in temp var, not hooks-->
+
+<!--mereFlux-->
+(set: _mereFlux to [{
+_line["Then you have much to learn... much to-"] he pukes again.
+<br>
+Admittedly, you do not know as much about what exotic synthetic toxins are being made out there, unlike Professor Marrokh. But then again, he once called water "the deadliest toxin", so it's much safer to assume that he simply takes poorly to sea travel.
+<br>
+_line["Ugh... this torment... I do not discount the possibility of flux... I do not discount poison either."]
+<br>
+($funcInnerConvo: $stuff's convoChoices)
+<br>
+}])<!--end of mereFlux-->
+
+
+<!--whoWould-->
+(set: _whoWould to [{
+_line["Other than you?"] He chuckles. _line["Let me see... Our dear provost, who fears... that I'll reveal her to be a fraud and worse, a bureaucrat? Or agents of Kesh? Or the Interior Ministry? Either one of those... They want me dead... I'll prove it, one day. Or captain What's-His-Face? He has given me... very mean looks with his one good eye. I shudder to think what he might do... if he had both eyes..."]
+<br>
+You regret asking. The more you ask, the longer you'll have to hold your breath.
+<br>
+($funcInnerConvo: $stuff's convoChoices)
+<br>
+}])<!--end of whoWould-->
+
+
+<!--findPhysician-->
+(set: _findPhysician to [{
+_line["No physician! No hospitaler! No hospital either!"] He yells. _line["That's how they'll get me, my assailants... They'll be waiting to deliver... the final blow! I cannot allow the bastards... the satisfaction, haha."]
+<br>
+You can never tell if he is being serious about these things, but you have never seen him visit the school clinic once in your twelve years at Bakho.
+<br>
+($funcInnerConvo: $stuff's convoChoices)
+<br>
+}])<!--end of findPhysician-->
+
+
+<!--_exitLink. Note: this last temp var MUST ALWAYS be named "_exitLink" because the spindle macro expects that exact name-->
+(set: _exitLink to [{
+_line["Not you... My own body, by my own willpower... will fix itself. But it needs quickening... lest the Lady of Sabzam runs out of patience for us. I trust only... a simple tonic of Gor. Anything more... Who knows what they put in their complicated 'medicine' these days?
+<br>
+"But I can't get up from this latrine... let alone leave this room... not without inviting mockery to myself... So it has to be you, unfortunately for me...
+<br>
+"Find me a healing tonic of Gor, and I will be fit for travel again... We will set out for Sabzam, post-haste..."]
+<br>
+$cssDesc[You are to find in Apesai a ''(print: (passage: "item.healingTonic")'s id)''($funcLogTip: "item.", "healingTonic"), however you can, and give it to Professor Marrokh.]
+<br>
+($funcInnerConvo: (dm:
+     "\"<!--A-->Where should I start? I don't know my way around this city just yet.\"", "whereStart",
+))
+<br>
+}])<!--end of _exitLink-->
+
+
+<!--whereStart-->
+[
+_line["And here I thought you were... a magus. Be resourceful!"] He says, coughing wildly. _line["Just don't bankrupt us... Our monthly allowance is so little... Don't buy; make it yourself if you can... What am I saying, you are my student; of course you can."]
+<br>
+You can operate magical machineries, but a lot of the formulas and incantations - which you learned by rote only for the imperial examination - have been slowly flushed from your memory during your months at sea. You do not tell him this, though.
+<br>
+($funcInnerConvo: (dm:
+     "<!--A-->Let him continue.", "whereStart2",
+))
+<br>
+
+<!--whereStart2-->
+[{
+_line["There is a circle of magi... a school, here in Apesai. Find them... Ask to use their lab... If they charge you for it, tell them to shove-"] he starts coughing again, the his own acid burning in his throat. _line["If you somehow fail at even that... just go to the local Grand Exchange... But remember that if you get scammed... I am not reimbursing you... a single rial..."]
+<br>
+Something tells you that he won't reimburse you even if you //don't// get scammed.
+<br>
+($funcInnerConvo: (dm:
+     "\"<!--B-->Understood, professor. Meidicine is on the way. Just hold on.\"", "rightAway",
+))
+<br>
+}](whereStart2|
+
+](whereStart|
+
+
+<!--rightAway-->
+[
+_line["Are you fucking //joking//? Holding on to this latrine is all I //can// do. Now get out of my room! Go!"]
+(show: ?doneOptions)
+<br>
+](rightAway|
+
+<!--doneOptions-->
+[
 ---
 <ol>
-<li>($funcCheckGate: "Give your teacher a ''Healing Tonic''.", "inv", "healingTonic", 1, true, 100, "Sick Teacher 2a", "Sick Teacher 2b")<!--[[Sick Teacher 2a]]-->
-<li>($funcQuestUpdateLink: "You tell him to stay put. Medicine is on the way.", "sickTeacher", "active", "Your teacher is sick with the flux. You'll have to find him a ''Healing Tonic''.", "You know what to do, right? You're a magus!", [], $place's sublocation,)
+<li>($funcCheckGate: "Actually, you happen to have his medicine right here.", "inv", "healingTonic", 1, true, 100, "Sick Teacher 2a", "Sick Teacher 2b")
+<li>($funcQuestUpdateLink: "Leave the accursed room, finally.", "sickTeacher", "active", "Your teacher is sick with the flux. You'll have to find him a ''Healing Tonic''.", "You know what to do, right? You're a magus!", [], $place's sublocation,)
 </ol>
+](doneOptions|
 
 ]<!--end child-->
 ]<!--end parent-->

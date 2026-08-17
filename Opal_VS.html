@@ -83,7 +83,7 @@ hr {
   100% {
     background-position: 0% center;
   }
-}</style><script role="script" id="twine-user-script" type="text/twine-javascript"></script><tw-tag name="effect" color="yellow"></tw-tag><tw-tag name="startup" color="orange"></tw-tag><tw-tag name="static-storage" color="yellow"></tw-tag><tw-tag name="sublocation" color="green"></tw-tag><tw-tag name="test" color="blue"></tw-tag><tw-tag name="topic" color="purple"></tw-tag><tw-tag name="traveling" color="purple"></tw-tag><tw-tag name="book" color="yellow"></tw-tag><tw-tag name="footer" color="yellow"></tw-tag><tw-tag name="header" color="yellow"></tw-tag><tw-tag name="stay" color="yellow"></tw-tag><tw-tag name="storylet" color="blue"></tw-tag><tw-tag name="UI" color="orange"></tw-tag><tw-passagedata pid="1" name="AA. Books, Reading &amp; Formulae" tags="startup" position="100,100" size="100,100">{=
+}</style><script role="script" id="twine-user-script" type="text/twine-javascript"></script><tw-tag name="UI" color="orange"></tw-tag><tw-tag name="startup" color="orange"></tw-tag><tw-tag name="stay" color="yellow"></tw-tag><tw-tag name="test" color="blue"></tw-tag><tw-tag name="topic" color="purple"></tw-tag><tw-tag name="traveling" color="purple"></tw-tag><tw-tag name="sublocation" color="green"></tw-tag><tw-tag name="book" color="yellow"></tw-tag><tw-tag name="effect" color="yellow"></tw-tag><tw-tag name="footer" color="yellow"></tw-tag><tw-tag name="header" color="yellow"></tw-tag><tw-tag name="static-storage" color="yellow"></tw-tag><tw-tag name="storylet" color="blue"></tw-tag><tw-passagedata pid="1" name="AA. Books, Reading &amp; Formulae" tags="startup" position="100,100" size="100,100">{=
 &lt;!--Macros related to books and reading--&gt;
 
 (set: $readingNav to (dm:
@@ -5845,8 +5845,8 @@ $cssColumnChild[
 ))</tw-passagedata><tw-passagedata pid="114" name="npc.Teacher" tags="startup static-storage" position="2850,2500" size="100,100">{=
 
 (metadata:
-&quot;id&quot;, [The Respectable Magus],
-&quot;desc&quot;, &quot;For months, you&#39;ve been traveling with him from the university. You&#39;re helping with his research, hoping to be credited in his breakthrough.&quot;,
+&quot;id&quot;, [Professor Marrokh],
+&quot;desc&quot;, &quot;Fir-Marrokh-Kuchtar-da-Zagash is your long-time mentor at Bakho University. When he was exiled to Askava, you were too. He has promised to credit you with your first Sacred Opal - and the title of \&quot;master\&quot; - if you can help him prove his controversial theories. And just maybe, you will both be permitted back to the imperial heartlands.&quot;,
 &quot;img&quot;, &quot;Assets/Portraits/Old_2.png&quot;,
 &quot;color&quot;, #cde74c,
 &quot;opinionBonus&quot;, (dm:
@@ -9121,7 +9121,7 @@ You nod. Your teacher is eager to get out of Apesai more than anything, but you 
 
 (metadata:
 &quot;id&quot;, [Veh-Veh],
-&quot;desc&quot;, &quot;Mahveh-Vehkhan is a magus-in-training studying at the Apesai Lighthouse.&quot;,
+&quot;desc&quot;, &quot;Mahveh-Vehkhan is a magus-in-training studying at the Apesai Lighthouse. She is studious and helpful, if a little put-upon, as all studious and helpful people tend to be.&quot;,
 &quot;img&quot;, &quot;Assets/Portraits/Girl_1.png&quot;,
 &quot;color&quot;, #ccbff2,
 &quot;opinionBonus&quot;, (dm:
@@ -11128,10 +11128,10 @@ $cssDesc[There is a blue-wax seal, a sigil with the Sun of Nurandah behind cross
 &lt;!--Example of a quest that makes you wait--&gt;</tw-passagedata><tw-passagedata pid="202" name="quest.sickTeacher" tags="static-storage" position="2975,2500" size="100,100">{=
 
 (metadata: 
-	&quot;id&quot;, [Situation: A Fluxy Teacher],
+	&quot;id&quot;, [Situation: A Fluxy Mentor],
     &quot;img&quot;, &quot;https://thefifthcity.wiki/w/images/b/bc/Bloodstain.png?20240509225948&quot;,
-    &quot;desc&quot;, [Your teacher is sick and cannot travel. He needs his medicine.],
-    &quot;tip&quot;, [],
+    &quot;desc&quot;, [Your mentor - the respectable Fir-Marrokh-Kuchtar-da-Zagash - is sick with the flux and cannot travel. He needs his medicine.],
+    &quot;tip&quot;, [Find him a &#39;&#39;(print: (passage: &quot;item.healingTonic&quot;)&#39;s id)&#39;&#39;($funcLogTip: &quot;item.&quot;, &quot;healingTonic&quot;)],
 )</tw-passagedata><tw-passagedata pid="203" name="att.studentDebateX" tags="static-storage" position="5275,1800" size="100,100">{=
 
 (metadata: 
@@ -14996,8 +14996,8 @@ $place&#39;s sublocation is $place&#39;s stay
 and $place&#39;s location is &quot;Apesai&quot;
 and $char&#39;s player&#39;s quests does not contain &quot;sickTeacher&quot;
 )
-(exclusivity: 0)
-(metadata: &quot;title&quot;, &quot;A Sick Teacher&quot;, &quot;cardDesc&quot;, &quot;Your teacher isn&#39;t feeling great.&quot;, &quot;img&quot;, &quot;https://thefifthcity.wiki/w/images/b/bc/Bloodstain.png?20240509225948&quot;, &quot;interrupt&quot;, false,)
+(exclusivity: 3)
+(metadata: &quot;title&quot;, &quot;A... Moan?&quot;, &quot;cardDesc&quot;, &quot;An awful sound is coming from the other side of the wall.&quot;, &quot;img&quot;, &quot;https://thefifthcity.wiki/w/images/b/bc/Bloodstain.png?20240509225948&quot;, &quot;interrupt&quot;, true,)
 
 $cssColumnParent[
 
@@ -15009,11 +15009,144 @@ $cssColumnChild[
 ]
 
 $cssColumnChild[
+
+&lt;!--TeacherLine shorthand--&gt;
+(set: _line to (hook: &quot;TeacherLine&quot;))
+(set: _ah to &quot;Aaaaah...&quot;)
+(set: _retrospect to [(t8n:&quot;dissolve&quot;)+(replace: ?maskedLine)[_line[&quot;_ah&quot;]]])
+
+
+&lt;!--passage content--&gt;
+The walls of the Pilgrim&#39;s Rest is, quite literally, paper-thin, for what used to be palatial chambers were segmented with papyrus plaster into tight and decidedly not-soundproofed guest rooms. You can hear the other guests talking, laughing and even //moaning//.
 &lt;br&gt;
-[&quot;Argh, I&#39;m so gassy,&quot;]&lt;TeacherLine| says the respectable magus.
+|maskedLine&gt;[&quot;_ah&quot;] - so goes a man&#39;s voice, hoarse and desperate, in the throes of a religious experience.
 &lt;br&gt;
+($funcInnerConvo: (dm:
+     &quot;&lt;!--A--&gt;This is embarrassing.&quot;, &quot;isEmbarrassing&quot;,
+     &quot;&lt;!--B--&gt;Glad someone&#39;s having fun here.&quot;, &quot;havingFun&quot;,
+))
+&lt;br&gt;
+
+
+&lt;!--isEmbarrassing--&gt;
+[
+After many years living of in the senior dorm of Bakho University, you know exactly how to deal with this situation: Meditation.
+&lt;br&gt;
+That&#39;s right. Meditation is not only a technique of self-cultivation and reaching wisdom, it is also the single best way to pass the time, as well as any potentially unpleasant feeling.
+&lt;br&gt;
+It is like sleep, but productive.
+&lt;br&gt;
+_line[&quot;Uuuuugh...&quot;] - there he goes again. This time, louder.
+&lt;br&gt;
+($funcInnerConvo: (dm:
+     &quot;&lt;!--C--&gt;Wait, is that...&quot;, &quot;isThat&quot;,
+))
+&lt;br&gt;
+](isEmbarrassing|
+
+
+&lt;!--havingFun--&gt;
+[
+Humans have the innate capacity to find pleasure anywhere and anytime, though they be beaten by seawinds or cramped into holes in the wall. It is this indomitable appetite for enjoyment that makes a human.
+&lt;br&gt;
+Such high-minded notions make the ordeal a bit easier to bear.
+&lt;br&gt;
+_line[&quot;Uuuuugh...&quot;] - there he goes again. You abandon your charitable thoughts and is about to knock on the wall when you realize...
+&lt;br&gt;
+($funcInnerConvo: (dm:
+     &quot;&lt;!--C--&gt;Wait, is that...&quot;, &quot;isThat&quot;,
+))
+&lt;br&gt;
+](havingFun|
+
+
+&lt;!--isThat--&gt;
+[
+_retrospect
+Professor Marrokh?
+&lt;br&gt;
+_line[&quot;Aaahh...,&quot;] he answers your unspoken question from the room right next to you. _line[&quot;Fuuck... That&#39;s it, oooh that&#39;s it...&quot;]
+&lt;br&gt;
+($funcInnerConvo: (dm:
+     &quot;&lt;!--A--&gt;Is he with someone?&quot;, &quot;withSomeone&quot;,
+     &quot;&lt;!--B--&gt;Press your ear to the plaster wall.&quot;, &quot;eavesdropWall&quot;,
+     &quot;&lt;!--C--&gt;Go check on him.&quot;, &quot;checkOnHim&quot;,
+))
+&lt;br&gt;
+](isThat|
+
+
+&lt;!--withSomeone--&gt;
+[
+No. No, no, no. You shouldn&#39;t think about that. You don&#39;t want to think about that. That&#39;s not like him at all. He&#39;s anything but that. Plus, you and he has just arrive; where would be find the opportunity? This is a proper place. Cramped, but //proper//.
+&lt;br&gt;
+_line[&quot;Somebody, please... I don&#39;t want to die like this...&quot;]
+&lt;br&gt;
+That clears it up. Probably. But you should go check on him though. It sounds bad.
+&lt;br&gt;
+($funcInnerConvo: (dm:
+     &quot;&lt;!--C--&gt;Go check on him.&quot;, &quot;checkOnHim&quot;,
+))
+&lt;br&gt;
+](withSomeone|
+
+
+&lt;!--eavesdropWall--&gt;
+[
+You press your ear to the wall and immediately resents your curiosity, for immediately, there is a sound even more awful than the old man&#39;s moaning.
+&lt;br&gt;
+_line[&quot;That... No, that can&#39;t be good... Is this how I&#39;m going to die?&quot;]
+&lt;br&gt;
+That is probably your cue to go over there and check on him.
+&lt;br&gt;
+($funcInnerConvo: (dm:
+     &quot;&lt;!--C--&gt;Go check on him.&quot;, &quot;checkOnHim&quot;,
+))
+&lt;br&gt;
+](eavesdropWall|
+
+
+&lt;!--checkOnHim--&gt;
+[
+You head over to the room next to yours, where your mentor is lodging.
+&lt;br&gt;
+As you approach Professor Marrokh&#39;s door, you hear a groan - _line[&quot;Uuuugh...&quot;] - and a curse - _line[&quot;What on Tar? Where the fuck is all this crap coming from? How? I- fuuuck...&quot;] - or several.
+&lt;br&gt;
+($funcInnerConvo: (dm:
+     &quot;&lt;!--A--&gt;Knock and ask if he is alright.&quot;, &quot;knockAsk&quot;,
+     &quot;&lt;!--B--&gt;Let yourself in.&quot;, &quot;letYourselfIn&quot;,
+))
+&lt;br&gt;
+
+
+
+
+](checkOnHim|
+
+
+&lt;!--knockAsk--&gt;
+[You knock, too timid to be heard over whatevver is going on inside. Something tells you that it is not the time for niceties, so you deicde to simply barge right in.
+(show: ?doneOptions)
+&lt;br&gt;
+](knockAsk|
+
+
+&lt;!--letYourselfIn--&gt;
+[Sensing that he is indisposed, you expend with the niceties and barge right in.
+(show: ?doneOptions)
+&lt;br&gt;
+](letYourselfIn|
+
+&lt;!--end of passage content--&gt;
+
+
+&lt;!--doneOptions--&gt;
+[
 ---
-[[What the...|Sick Teacher 1a]]
+(link: &quot;Professor Marrokh?&quot;)[(goto: &quot;Sick Teacher 1a&quot;)]
+](doneOptions|
+
+
 ]&lt;!--end child--&gt;
 ]&lt;!--end parent--&gt;</tw-passagedata><tw-passagedata pid="284" name="S: Sick Teacher 2" tags="storylet" position="3225,2500" size="100,100">{=
 
@@ -15058,8 +15191,8 @@ $cssColumnChild[
 ]&lt;!--end parent--&gt;</tw-passagedata><tw-passagedata pid="285" name="Sick Teacher 1a" tags="" position="3100,2625" size="100,100">{=
 
 (metadata:
-&quot;title&quot;, &quot;Finding Your Teacher Sick&quot;,
-&quot;cardDesc&quot;, &quot;Your teacher isn&#39;t feeling great.&quot;
+&quot;title&quot;, &quot;Checking on Your Mentor&quot;,
+&quot;cardDesc&quot;, &quot;This is not good.&quot;
 )
 
 $cssColumnParent[
@@ -15073,17 +15206,177 @@ $cssColumnChild[
 
 $cssColumnChild[
 
-[&quot;Yo broski, this is bad,&quot;]&lt;TeacherLine| the magus says, curling over the latrine. [&quot;I need my meds, stat!&quot;]&lt;TeacherLine|
+&lt;!--TeacherLine shorthand--&gt;
+(set: _line to (hook: &quot;TeacherLine&quot;))
+
+Before you can see where he is in the room, your nose - and what a bad day to have a nose - alerts you to his location //and// his current, on-going activity.
 &lt;br&gt;
-You&#39;re not so sure why he&#39;s talking like that.
+_line[&quot;Close the cursed door, you imbecile, or I&#39;ll fail you right here and now!&quot;] The professor shouts from behind the skin curtain in the far corner of the room, where the latrine would be. He sounds like he is about to cry.
 &lt;br&gt;
-$cssDesc[A &#39;&#39;Healing Tonic&#39;&#39; will do. It&#39;s helped you before.]
+You comply. With the door shut, you are submerged in //his// world.
 &lt;br&gt;
+($funcInnerConvo: (dm:
+     &quot;\&quot;&lt;!--A--&gt;Are you alright, professor?\&quot;&quot;, &quot;askAlright&quot;,
+     &quot;\&quot;&lt;!--B--&gt;Do you need help?\&quot;&quot;, &quot;anyHelp&quot;,
+     &quot;&lt;!--C--&gt;Try making some noise without opening your mouth or breathing, for your own good.&quot;, &quot;makeNoise&quot;,
+))
+&lt;br&gt;
+
+&lt;!--askAlright--&gt;
+[
+... Which was what you //intended// to say, but you can only manage to get out the &quot;are you-&quot; before gasping and coughing.
+&lt;br&gt;
+_line[&quot;Dying? Am I dying? Why... wouldn&#39;t that be... convenient for //you//, huh?&quot;] He says from behind the curtain. _line[&quot;You&#39;re going to take my papers... and pass yourself off... as me, aren&#39;t you? No-one knows who //I// am in this... forsaken ass-crack of a land anyhow.&quot;]
+&lt;br&gt;
+As a punctuation to his tirade, he pukes loudly into a tin bucket.
+&lt;br&gt;
+($funcInnerConvo: (dm:
+     &quot;\&quot;&lt;!--B--&gt;So do you need help?\&quot;&quot;, &quot;anyHelp&quot;,
+     &quot;&lt;!--C--&gt;Stay silent. Let him talk.&quot;, &quot;letHim&quot;
+))
+&lt;br&gt;
+](askAlright|
+
+
+&lt;!--anyHelp--&gt;
+[
+You spit out the words as quickly as possible so you do not have to open your mouth for any longer than necessary, but already, your eyes are watering, and your breakfast is surging up.
+&lt;br&gt;
+_line[&quot;Oh, how far the mighty... has fallen, to ask for help... from one such as //you//!&quot;] He guffaws from behind the curtain, but immediately pukes, splattering in a tin bucket. _line[&quot;Ugh... Yeah, I need help.&quot;]
+&lt;br&gt;
+($funcInnerConvo: (dm:
+     &quot;&lt;!--C--&gt;Let him continue.&quot;, &quot;letHim&quot;
+))
+&lt;br&gt;
+](anyHelp|
+
+
+&lt;!--makeNoise--&gt;
+[
+You pathetically &quot;mmm-mm-ed&quot; something like a question as your eyes water and your breakfast surges upward.
+&lt;br&gt;
+_line[&quot;Hahaha, though I may be... at my worst - cast off from my oaken lectern... forced by fate to embrace this brass one instead - my power over you remains... overwhelming,&quot;] he says from behind the curtain, then immediately pukes into a tin bucket. _line[&quot;Ugh, fuck... Alas, I am no match... for my guts.&quot;]
+&lt;br&gt;
+($funcInnerConvo: (dm:
+     &quot;&lt;!--C--&gt;Let him continue.&quot;, &quot;letHim&quot;
+))
+&lt;br&gt;
+](makeNoise|
+
+
+&lt;!--letHim--&gt;
+[
+_line[&quot;Student... //At// and //Ab// leaves me... incessantly... by any way they see fit,&quot;] explains the professor. _line[&quot;It seems my stomach&#39;s upset... from days ago aboard the ship... was but a herald. Someone has //poisoned// me.&quot;]
+&lt;br&gt;
+Thankfully, he cannot see you roll your eyes.
+
+&lt;!--&quot;spindle&quot; convo, mode 3 (must exhaust all options)--&gt;
+(set: $stuff&#39;s convoChoices to (dm:
+     &quot;\&quot;&lt;!--A--&gt;Poisoned? It is a mere flux. Fluxes are to be expected from long boat trips; we were warned before.\&quot;&quot;, &quot;mereFlux&quot;,
+     &quot;\&quot;&lt;!--B--&gt;Who would want to poisoned you?\&quot;&quot;, &quot;whoWould&quot;,
+     &quot;\&quot;&lt;!--C--&gt;Then we ought to have a physician diagnose you and administer you an antidote.\&quot;&quot;, &quot;findPhysician&quot;,
+     &quot;&lt;!--D--&gt;\&quot;Then what do you want me to do?\&quot;&quot;, &quot;exitLink&quot;,
+))
+
+($funcSpindleConvo: $stuff&#39;s convoChoices, 3)
+
+](letHim|
+
+&lt;!--spindle texts are stored in temp var, not hooks--&gt;
+
+&lt;!--mereFlux--&gt;
+(set: _mereFlux to [{
+_line[&quot;Then you have much to learn... much to-&quot;] he pukes again.
+&lt;br&gt;
+Admittedly, you do not know as much about what exotic synthetic toxins are being made out there, unlike Professor Marrokh. But then again, he once called water &quot;the deadliest toxin&quot;, so it&#39;s much safer to assume that he simply takes poorly to sea travel.
+&lt;br&gt;
+_line[&quot;Ugh... this torment... I do not discount the possibility of flux... I do not discount poison either.&quot;]
+&lt;br&gt;
+($funcInnerConvo: $stuff&#39;s convoChoices)
+&lt;br&gt;
+}])&lt;!--end of mereFlux--&gt;
+
+
+&lt;!--whoWould--&gt;
+(set: _whoWould to [{
+_line[&quot;Other than you?&quot;] He chuckles. _line[&quot;Let me see... Our dear provost, who fears... that I&#39;ll reveal her to be a fraud and worse, a bureaucrat? Or agents of Kesh? Or the Interior Ministry? Either one of those... They want me dead... I&#39;ll prove it, one day. Or captain What&#39;s-His-Face? He has given me... very mean looks with his one good eye. I shudder to think what he might do... if he had both eyes...&quot;]
+&lt;br&gt;
+You regret asking. The more you ask, the longer you&#39;ll have to hold your breath.
+&lt;br&gt;
+($funcInnerConvo: $stuff&#39;s convoChoices)
+&lt;br&gt;
+}])&lt;!--end of whoWould--&gt;
+
+
+&lt;!--findPhysician--&gt;
+(set: _findPhysician to [{
+_line[&quot;No physician! No hospitaler! No hospital either!&quot;] He yells. _line[&quot;That&#39;s how they&#39;ll get me, my assailants... They&#39;ll be waiting to deliver... the final blow! I cannot allow the bastards... the satisfaction, haha.&quot;]
+&lt;br&gt;
+You can never tell if he is being serious about these things, but you have never seen him visit the school clinic once in your twelve years at Bakho.
+&lt;br&gt;
+($funcInnerConvo: $stuff&#39;s convoChoices)
+&lt;br&gt;
+}])&lt;!--end of findPhysician--&gt;
+
+
+&lt;!--_exitLink. Note: this last temp var MUST ALWAYS be named &quot;_exitLink&quot; because the spindle macro expects that exact name--&gt;
+(set: _exitLink to [{
+_line[&quot;Not you... My own body, by my own willpower... will fix itself. But it needs quickening... lest the Lady of Sabzam runs out of patience for us. I trust only... a simple tonic of Gor. Anything more... Who knows what they put in their complicated &#39;medicine&#39; these days?
+&lt;br&gt;
+&quot;But I can&#39;t get up from this latrine... let alone leave this room... not without inviting mockery to myself... So it has to be you, unfortunately for me...
+&lt;br&gt;
+&quot;Find me a healing tonic of Gor, and I will be fit for travel again... We will set out for Sabzam, post-haste...&quot;]
+&lt;br&gt;
+$cssDesc[You are to find in Apesai a &#39;&#39;(print: (passage: &quot;item.healingTonic&quot;)&#39;s id)&#39;&#39;($funcLogTip: &quot;item.&quot;, &quot;healingTonic&quot;), however you can, and give it to Professor Marrokh.]
+&lt;br&gt;
+($funcInnerConvo: (dm:
+     &quot;\&quot;&lt;!--A--&gt;Where should I start? I don&#39;t know my way around this city just yet.\&quot;&quot;, &quot;whereStart&quot;,
+))
+&lt;br&gt;
+}])&lt;!--end of _exitLink--&gt;
+
+
+&lt;!--whereStart--&gt;
+[
+_line[&quot;And here I thought you were... a magus. Be resourceful!&quot;] He says, coughing wildly. _line[&quot;Just don&#39;t bankrupt us... Our monthly allowance is so little... Don&#39;t buy; make it yourself if you can... What am I saying, you are my student; of course you can.&quot;]
+&lt;br&gt;
+You can operate magical machineries, but a lot of the formulas and incantations - which you learned by rote only for the imperial examination - have been slowly flushed from your memory during your months at sea. You do not tell him this, though.
+&lt;br&gt;
+($funcInnerConvo: (dm:
+     &quot;&lt;!--A--&gt;Let him continue.&quot;, &quot;whereStart2&quot;,
+))
+&lt;br&gt;
+
+&lt;!--whereStart2--&gt;
+[{
+_line[&quot;There is a circle of magi... a school, here in Apesai. Find them... Ask to use their lab... If they charge you for it, tell them to shove-&quot;] he starts coughing again, the his own acid burning in his throat. _line[&quot;If you somehow fail at even that... just go to the local Grand Exchange... But remember that if you get scammed... I am not reimbursing you... a single rial...&quot;]
+&lt;br&gt;
+Something tells you that he won&#39;t reimburse you even if you //don&#39;t// get scammed.
+&lt;br&gt;
+($funcInnerConvo: (dm:
+     &quot;\&quot;&lt;!--B--&gt;Understood, professor. Meidicine is on the way. Just hold on.\&quot;&quot;, &quot;rightAway&quot;,
+))
+&lt;br&gt;
+}](whereStart2|
+
+](whereStart|
+
+
+&lt;!--rightAway--&gt;
+[
+_line[&quot;Are you fucking //joking//? Holding on to this latrine is all I //can// do. Now get out of my room! Go!&quot;]
+(show: ?doneOptions)
+&lt;br&gt;
+](rightAway|
+
+&lt;!--doneOptions--&gt;
+[
 ---
 &lt;ol&gt;
-&lt;li&gt;($funcCheckGate: &quot;Give your teacher a &#39;&#39;Healing Tonic&#39;&#39;.&quot;, &quot;inv&quot;, &quot;healingTonic&quot;, 1, true, 100, &quot;Sick Teacher 2a&quot;, &quot;Sick Teacher 2b&quot;)&lt;!--[[Sick Teacher 2a]]--&gt;
-&lt;li&gt;($funcQuestUpdateLink: &quot;You tell him to stay put. Medicine is on the way.&quot;, &quot;sickTeacher&quot;, &quot;active&quot;, &quot;Your teacher is sick with the flux. You&#39;ll have to find him a &#39;&#39;Healing Tonic&#39;&#39;.&quot;, &quot;You know what to do, right? You&#39;re a magus!&quot;, [], $place&#39;s sublocation,)
+&lt;li&gt;($funcCheckGate: &quot;Actually, you happen to have his medicine right here.&quot;, &quot;inv&quot;, &quot;healingTonic&quot;, 1, true, 100, &quot;Sick Teacher 2a&quot;, &quot;Sick Teacher 2b&quot;)
+&lt;li&gt;($funcQuestUpdateLink: &quot;Leave the accursed room, finally.&quot;, &quot;sickTeacher&quot;, &quot;active&quot;, &quot;Your teacher is sick with the flux. You&#39;ll have to find him a &#39;&#39;Healing Tonic&#39;&#39;.&quot;, &quot;You know what to do, right? You&#39;re a magus!&quot;, [], $place&#39;s sublocation,)
 &lt;/ol&gt;
+](doneOptions|
 
 ]&lt;!--end child--&gt;
 ]&lt;!--end parent--&gt;</tw-passagedata><tw-passagedata pid="286" name="Sick Teacher 2a" tags="" position="3225,2625" size="100,100">{=

@@ -12,12 +12,13 @@ Instruction on PC:
     - 📁 any-folder
         - 📁 Assets
         - 📄 Opal_VS.html
-3. Open Opal_VS.html with any browser.
+3. (alternatively) Just download the entire repo. It's fine.
+4. Open Opal_VS.html with any browser.
 
 Instruction on mobile:
 1. lol idk put the files on localhost or something.
 2. I really do not know how these things work.
-3. I'll come back with a proper instruction later.
+3. I'll come back with proper instructions later.
 4. But maybe, one day, if this ever ends up on itch.io, then this would all have been moot anyway.
 
 # How to Play the Game
