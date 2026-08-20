@@ -6,7 +6,7 @@ $place's sublocation is $place's stay
 and $place's location is "Apesai"
 and ($funcCheckExists: $char's player's quests, "sickTeacher", "") is "active"
 )
-(metadata: "title", "A Sick Teacher", "cardDesc", "Your teacher is still fluxy...", "img", "https://thefifthcity.wiki/w/images/b/bc/Bloodstain.png?20240509225948",)
+(metadata: "title", "Medicine Expected", "cardDesc", "Your mentor is still fluxy. The pair of you will not be leaving Apesai anytime soon until your he gets his medicine...", "img", "https://thefifthcity.wiki/w/images/b/bc/Bloodstain.png?20240509225948",)
 
 $cssColumnParent[
 
@@ -18,25 +18,122 @@ $cssColumnChild[
 ]
 
 $cssColumnChild[
+
+<!--TeacherLine shorthand-->
+(set: _line to (hook: "TeacherLine"))
+
+<!--scenarios-->
+(set: _scenario to 0)
+(cond:
+$dice <= 25, [(set: _scenario to 1)],
+$dice <= 50, [(set: _scenario to 2)],
+$dice <= 75, [(set: _scenario to 3)],
+[(set: _scenario to 4)],
+)
+
+<!--asked for instruction?-->
+(set: _asked to false)
+
+
+<!--story content-->
+(if: _scenario is 1)[{
+_line["Uuugh... my savior, cursed fate,""] Professor Marrokh stirs in his bed. It is one of the few times he is not latrine-bound. _line["Do you have my medicine?"]
 <br>
-["Ughh, didja get my meds?"]<TeacherLine| asks the respectable magus. ["I'm so gassy..."]<TeacherLine|
+}]<!--end of scenario 1-->
+
+
+(elseif: _scenario is 2)[{
+_line["There you are!"] Professor Marrokh calls out as he waddles out in his small clothes from behind the skin curtain, behind which is a battlefield. _line["Medicine... do you bring it?"]
+<br>
+}]<!--end of scenario 2-->
+
+
+(elseif: _scenario is 3)[{
+_line["You! Why have you entered by chamber?"] Professor Marrokh yells, clearly in a compromising position. You avert your eyes. _line["Unless... you have my medicine?"]
+<br>
+}]<!--end of scenario 3-->
+
+
+(else:)[{
+_line["So frail, the body is..."] Professor Marrokh says as he gulps down another pitcher of water. It will not be enough. _line["Must mortality... be a fact? Say that it's not so, dear student."]
+<br>
+}]<!--end of scenario 41-->
+
+
+$cssDesc[You are to find in Apesai a ''(print: (passage: "item.healingTonic")'s id)''($funcLogTip: "item.", "healingTonic"), however you can, and give it to Professor Marrokh.]
+<br>
+
+<!--check med-->
+(set: _haveMed to false)
+(if: $char's player's inv contains "healingTonic")[(set: _haveMed to true)]
+
+<!--change text based on whether you have medicine-->
+(set: _haveMedText to "")
+(if: _haveMed is true)[(set: _haveMedText to "\"<!--B-->About that medicine...\"")]
+(else:)[(set: _haveMedText to "\"<!--B-->Um...\"")]
+
+($funcInnerConvo: (dm:
+     "\"<!--A-->Any idea where I should start, professor?\"", "whereToStart",
+     _haveMedText, "doneChoices",
+))
+<br>
+
+<!--whereToStart-->
+[
+(set: _asked to true)
+_line["Must you extract from me another lesson... while I am in this state? Has the past few years... not been enough... for your thick head?"] Your mentor groans. _line["Fine.
+<br>
+"Look for the local davehmars... They must have... alchemical equipments... to make something yourself... Even better if they have spare medicine... But I'll be... ashamed if you waste a single rial... for something as simple as a tonic of Gor... from these provincial quacks."]
+<br>
+$cssDesc[Make it, buy it, beg for it, pick it up from the streets - however you do it, you will have to figure out your way around the city first.]
+<br>
+_line["A healing tonic... you still remember how to make it, yes? No, don't tell me... My shame is already... too great to bear."]
+<br>
+$cssDesc[{
+     (if: $char's player's craftFormula contains "healingTonic")[Yes, you do know how to synthesize a ''(print: (passage: "item.healingTonic")'s id)''($funcLogTip: "item.", "healingTonic").]
+     (else:)[No, you cannot recall how to synthesize a ''(print: (passage: "item.healingTonic")'s id)''($funcLogTip: "item.", "healingTonic"). You will have find a way to relearn it.]
+     }]
+<br>
+($funcInnerConvo: (dm:
+     "\"<!--B-->I understand your instruction, professor.\"", "doneChoices",
+))
+<br>
+](whereToStart|
+
+<!--end of story content-->
+
+
+<!--doneChoices-->
+[
+(if: _asked is true)[_line["Davehmars, alchemy equipment, formula, ingredients, synthesize, give... Simple as that. Write it down... if you must. Don't make me... repeat myself."]]
+
+(else:)[_line["If you have something for me.... then give it! If not, then kindly make yourself scarce. And close the door on your way out, please."]]
 <br>
 ---
 <ol>
 
-<li>($funcCheckGate: "Give your teacher his ''Healing Tonic''.", "inv", "healingTonic", 1, true, 100, "Sick Teacher 2a", "")
+(set: _turnInText to "")
+(if: _asked is true)[(set: _turnInText to "\"Actually, I have your medicine right here.\"")]
+(else:)[(set: _turnInText to "\"Yes, I do have the medicine you asked for.\"")]
+
+
+<li>($funcCheckGate: _turnInText, "inv", "healingTonic", 1, true, 100, "Sick Teacher 2a", "")</li>
 
 (if: $char's OldInrah's talked contains "gingerBought" and $char's player's inv contains "ginger")[
      (if: $char's Teacher's talked does not contain "gingerGiven")[
-          <li>(link: "Present the 'alternative medicine' you bought.")[(goto: "Sick Teacher 2b")] $cssDesc[(Askavan ginger ''might'' help, so said the landlady.)]
+          <li>(link: "Present the \"alternative medicine\" you've just bought.")[(goto: "Sick Teacher 2b")] $cssDesc[(Askavan ginger ''might'' help, so said the landlady.)]</li>
      ]
-     (else:)[<li>~~Present the 'alternative medicine' you bought.~~ $cssDesc[(You've learned your lesson.)]]
+     (else:)[<li>~~Present the "alternative medicine" you've just bought.~~ $cssDesc[(You've learned your lesson.)]</li>]
 ]
 
 
 
-<li>(link: "Close the door!")[$funcBack]
+<li>(link: "\"Working on it. I'll be on my way.\"")[$funcBack]</li>
 </ol>
-<!--[[Sick Teacher 2a]] and [[Sick Teacher 2b]]-->
+
+
+](doneChoices|
+<!--end of doneChoices-->
+
 ]<!--end child-->
 ]<!--end parent-->

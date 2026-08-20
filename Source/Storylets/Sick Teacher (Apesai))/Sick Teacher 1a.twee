@@ -77,7 +77,7 @@ _line["Hahaha, though I may be... at my worst - cast off from my oaken lectern..
 
 <!--letHim-->
 [
-_line["Student... //At// and //Ab// leaves me... incessantly... by any way they see fit,"] explains the professor. _line["It seems my stomach's upset... from days ago aboard the ship... was but a herald. Someone has //poisoned// me."]
+_line["Student... //Ab// and //Zam// leave me... incessantly... by any way they see fit,"] explains the professor. _line["It seems my stomach's upset... from days ago aboard the ship... was but a herald. Someone has //poisoned// me."]
 <br>
 Thankfully, he cannot see you roll your eyes.
 
@@ -160,7 +160,7 @@ You can operate magical machineries, but a lot of the formulas and incantations 
 
 <!--whereStart2-->
 [{
-_line["There is a circle of magi... a school, here in Apesai. Find them... Ask to use their lab... If they charge you for it, tell them to shove-"] he starts coughing again, the his own acid burning in his throat. _line["If you somehow fail at even that... just go to the local Grand Exchange... But remember that if you get scammed... I am not reimbursing you... a single rial..."]
+_line["There is a circle of magi... davehmars... a school, here in Apesai. Find them... Ask to use their lab... If they charge you for it, tell them to shove-"] he starts coughing again, the his own acid burning in his throat. _line["If you somehow fail at even that... just go to the local Grand Exchange... But remember that if you get scammed... I am not reimbursing you... a single rial..."]
 <br>
 Something tells you that he won't reimburse you even if you //don't// get scammed.
 <br>
@@ -185,7 +185,7 @@ _line["Are you fucking //joking//? Holding on to this latrine is all I //can// d
 ---
 <ol>
 <li>($funcCheckGate: "Actually, you happen to have his medicine right here.", "inv", "healingTonic", 1, true, 100, "Sick Teacher 2a", "Sick Teacher 2b")
-<li>($funcQuestUpdateLink: "Leave the accursed room, finally.", "sickTeacher", "active", "Your teacher is sick with the flux. You'll have to find him a ''Healing Tonic''.", "You know what to do, right? You're a magus!", [], $place's sublocation,)
+<li>($funcQuestUpdateLink: "Leave the accursed room, finally.", "sickTeacher", "active", "Your mentor is sick with the flux. You'll have to find him a ''Healing Tonic''.", "You know what to do, right? You're a magus!", [], $place's sublocation,)
 </ol>
 ](doneOptions|
 

@@ -17,15 +17,167 @@ $cssColumnChild[
 
 $cssColumnChild[
 
-["Yooo, give it here!"]<TeacherLine| Your teacher says as he takes a large swig, larger either you or any of your peers in the academy has ever been able to, not in your wildest benders.
+<!--TeacherLine shorthand-->
+(set: _line to (hook: "TeacherLine"))
+
+_line["Give! Now!"] He growls as he lunges at you, jealously stealing the bottle from your hand and taking a large swig, larger either you or any of your peers in the academy has ever been able to, not in your wildest benders.
 <br>
-["Aaah, that's the shit,"]<TeacherLine| he says, wiping his mouth, colors returning to his face.
+But then, he immediately launches into a coughing fit, gagging, gasping for air.
 <br>
-You tell him you're glad he's well.
+($funcInnerConvo: (dm:
+     "\"<!--A-->How is it?\"", "howIsIt",
+     "\"<!--B-->Is it working?\"", "isItWorking",
+     "\"<!--C-->Did I mess up?\"", "didMessUp",
+))
 <br>
-["We set out as soon as the ferries able to! You have the ''permits'', don't you?"]<TeacherLine|
+
+
+<!--howIsIt-->
+[
+_line["Like my latrine,"] he wipes his mouth, panting. _line["Good job, student."]
+<br>
+(show:?colorReturns)
+](howIsIt|
+
+
+<!--isItWorking-->
+[
+_line["Oh yeah,"] he wipes his mouth, panting. _line["I'd say so."]
+<br>
+(show:?colorReturns)
+](isItWorking|
+
+
+<!--didMessUp-->
+[
+_line["False meekness..."] he wipes his mouth, panting. _line["Is unbecoming of... a student of mine."]
+<br>
+(show:?colorReturns)
+](didMessUp|
+
+
+<!--colorReturns-->
+[
+You see now that colors are returning to his cheeks and bulbous nose, like a fruit ripening before your very eyes.
+<br>
+($funcInnerConvo: (dm:
+     "\"<!--A-->I am glad.\"", "gladOK",
+     "\"<!--B-->You should rest, still.\"", "gladOK",
+))
+<br>
+](colorReturns|
+
+
+<!--gladOK-->
+[
+_line["Save it,"] he waves his hand, like your words are flies. _line["It'll take a few days for my body to recover its fluids... and flush out whatever ailed me.
+<br>
+"But that's no excuse to sit on our asses. On one hand, we should not tempt Lady Fate, and on the other... the Lady of Sabzam awaits us, still. We are at least a week late.
+<br>
+"Pack your things. We head to the wharf post-haste and set for the mainland. I do not plan on being ripped off by this guesthouse a day longer.
+<br>
+"Do you have a permit yet?"]
+<br>
+$cssDesc[An ''(print: (passage: "item.permitAskava")'s id)''($funcLogTip: "item.", "permitAskava") is required to enter the mainland. Else, no ship will take you.]
+
+
+<!--permit check-->
+(set: _havePermit to false)
+(if: $char's player's inv contains "permitAskava")[(set: _havePermit to true)]
+
+<!--permit-in-progress check: 0 is haven't started, 1 is waiting, and 2 is ready to pick up. All of this is overwritten if _havePermit is true (already have a permit)-->
+(set: _waitingPermit to 0)
+(if: (datanames: $char's player's timerQuest) contains "permitAskava")[
+	(if: $char's player's timerQuest's permitAskava's wait > 0)[(set: _waitingPermit to 1)]
+     (else:)[(set: _waitingPermit to 2)]
+]
+
+<!--set the actual response-->
+(set: _textPermit to "")
+(set: _textPermitResponse to "permitNotStarted")
+(cond:
+_havePermit is true, [(set: _textPermit to "Yes, I already have a permit.")(set: _textPermitResponse to "permitAlready")],
+
+_havePermit is false and _waitingPermit is 0, [(set: _textPermit to "No, I have not applied for one yet.")(set: _textPermitResponse to "permitNotStarted")],
+
+_havePermit is false and _waitingPermit is 1, [(set: _textPermit to "No, but I've already applied and am waiting for it to process.")(set: _textPermitResponse to "permitWaiting")],
+
+_havePermit is false and _waitingPermit is 2, [(set: _textPermit to "Yes, it's being processed, but I think it should be done by now.")(set: _textPermitResponse to "permitDoneByNow")],
+)
+
+<br>
+($funcInnerConvo: (dm:
+     "\"" + _textPermit + "\"", _textPermitResponse,
+))
+<br>
+](gladOK|
+
+
+<!--permitAlready-->
+[
+_line["My, my, what //initiative//! Keep it up, and you might just redeem yourself in my eyes,"] he chuckles. _line["That's all the praise you're getting for now.
+<br>
+"Let us pack up and get down to the wharf. You will look for a reasonable captain and pay our fare. I'll sleep off the medicine on the boat."]
+<br>
+($funcInnerConvo: (dm:
+     "\"<!--A-->Right away, professor.\"", "doneChoices",
+))
+<br>
+](permitAlready|
+
+
+<!--permitNotStarted-->
+[
+_line["Then go to the local courthouse - or wherever these provincials do their paperwork - and get one now! It won't be done overnight, you know?
+<br>
+"I'm a master already, so I don't need to worry about that. But you, on the other hand... I'll be here, resting."]
+<br>
+($funcInnerConvo: (dm:
+     "\"<!--A-->Right away, professor.\"", "doneChoices",
+))
+<br>
+](permitNotStarted|
+
+
+<!--permitWaiting-->
+[
+_line["Fucking bureaucrats... Fine. I'll be here resting. Pick it up as soon as you can. Pester them, if you must. No love lost there."]
+<br>
+($funcInnerConvo: (dm:
+     "\"<!--A-->Yes, professor.\"", "doneChoices",
+))
+<br>
+](permitWaiting|
+
+
+<!--permitDoneByNow-->
+[
+_line["Then what on Tar are you standing here for? Go pick it up, right now!"]
+<br>
+($funcInnerConvo: (dm:
+     "\"<!--A-->Right away, professor.\"", "doneChoices",
+))
+<br>
+](permitDoneByNow|
+
+
+
+<!--doneChoices-->
+[
+_line["The sooner we leave, the better. I can't stand the //stench// of this room much longer. Ten-cursed-rials per day for this, can you believe it?"]
 <br>
 ---
-($funcQuestUpdateLink: "Uh...", "sickTeacher", "completed", "Your teacher is good as new. You can finally start to leave this rock.", "Finally!", [], $place's sublocation,)
+($funcQuestUpdateLink: "\"Anyhow, it's good that you're recovering. We'll be on our way soon, professor.\"", "sickTeacher", "completed", "Your mentor is feeling readier. You can finally start to leave this rock. Provided, of course, that you have a permit.", "Finally!", [{
+
+<!--potential reward-->
+(cond:
+$char's player's inv contains "permitAskava", [($funcOpinionGainLoss: "Teacher", 3, "Not only have you demonstrate your helpfulness, you have also shown initiative - which is what you hope your mentor will write in a future recommendation letter.")],
+[($funcOpinionGainLoss: "Teacher", 2, "Your mentor is appreciative of you saving his life. Yes, this is the most appreciation he will show.")]
+)
+
+}], $place's sublocation,)
+](doneChoices|
+
+
 ]<!--end child-->
 ]<!--end parent-->

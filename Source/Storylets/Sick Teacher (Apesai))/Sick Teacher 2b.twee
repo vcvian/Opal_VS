@@ -3,9 +3,10 @@
 
 (metadata:
     "NPC", "Teacher",
-    "title", "Alternative Medicine",
-    "cardDesc", "It seems obvious to ask her. Guests often get sick after a long journey, right?",
+    "title", "\"Alternative\" Medicine",
+    "cardDesc", "He told you to be \"resourceful\", and that's exactly what you're being.",
     "talked", (a: "gingerGiven",),
+    "parent", "S: Sick Teacher 2"
 )
 
 <!--Manually add $funcTalked because this is not normal dialogue, and yet, there is still a new talked entry to be registered-->
@@ -13,22 +14,121 @@ $cssColumnParent[
 
 $cssColumnChild[
 	$cssBox[
-    	($funcImage: (passage:)'s img)
+    	($funcImage: (passage: (passage:)'s parent)'s img)
          $cssBoxItem[''(print: (passage:)'s title )''<br>(print: (passage:)'s cardDesc)]
     ]
 ]
 
 $cssColumnChild[
 
-(Giving him ginger, getting scolded)
+<!--TeacherLine shorthand-->
+(set: _line to (hook: "TeacherLine"))
 
+The landlady who sold you the Askavan ginger has spoken highly of the root's medicinal properties. But the only thing it seems to cure is the expectant smile on your mentor's face, which disappears as you produce from your bag the ginger and not the medicine he was expecting.
+<br>
+_line["Oh."]
+<br>
+He does not even look at the ginger; he only looks at you as though you have just defecated in front of him instead of the other way around.
+<br>
+($funcInnerConvo: (dm:
+     "\"<!--A-->The locals say that this traditional remedy can cure all kinds of illnesses.\"", "localSays",
+     "\"<!--B-->You don't seem entirely pleased.\"", "notPleased",
+     "\"<!--C-->Sorry.\"", "sorry",
+))
+<br>
+
+<!--localSays-->
+[
+_line["I'm sure they do,"] he says, staring at you, unblinking. _line["How much... did they charge you?"]
+(show: ?howMuch)
+](localSays|
+
+
+<!--notPleased-->
+[
+_line["What makes you... think that?"] He asks with a snort. _line["How much... did they ask from you?"]
+(show: ?howMuch)
+](notPleased|
+
+
+<!--sorry-->
+[
+_line["Hmm..."] he says. _line["How much... was it?"]
+(show: ?howMuch)
+](sorry|
+
+
+<!--howMuch-->
+[
+<br>
+($funcInnerConvo: (dm:
+     "\"<!--A-->Serdah.\"", "30",
+     "\"<!--B-->Dah.\"", "10",
+     "\"<!--C-->Nothing.\"", "0",
+))
+<br>
+](howMuch|
+
+
+<!--30-->
+[
+_line["Wow."]
+<br>
+He takes the ginger and drops it into the puke bucket beside his bed.
+<br>
+_line["There goes... your thirty rials. Let that be a lesson."]
+<br>
+($funcInnerConvo: (dm:
+     "\"<!--A-->...\"", "doneChoices",
+))
+<br>
+](30|
+
+
+<!--10-->
+[
+_line["Ten rials. A whole day's... worth of rent?"]
+<br>
+He takes the ginger and drops it into the puke bucket beside his bed.
+<br>
+_line["You know there are homeless people... out there in the streets of Apesai, yes? Good... Let that be a lesson."]
+<br>
+($funcInnerConvo: (dm:
+     "\"<!--A-->...\"", "doneChoices",
+))
+<br>
+](10|
+
+
+<!--0-->
+[
+_line["Precisely... what it's worth."]
+<br>
+He takes the ginger and drops it into the puke bucket beside his bed.
+<br>
+_line["But time itself... is worth something. You know why? Because we have to pay rent... and eat... Let that be a lesson."]
+<br>
+($funcInnerConvo: (dm:
+     "\"<!--A-->...\"", "doneChoices",
+))
+<br>
+](0|
+
+
+
+<!--doneChoices-->
+[
+_line["Go find us medicine, or we'll both be stuck here on this rock."]
 <br>
 ---
-(link: "Sorry")[
+(link: "\"Yes, professor. I'll get on it right away.\"")[
     ($funcTalked:)
-    ($funcOpinionGainLoss: "Teacher", -2, "You'd like to say that he isn't mad, just disappointed. But he //is// mad.")
+    ($funcOpinionGainLoss: "Teacher", -3, "You'd like to say that he isn't mad, just disappointed. But he //is// mad.")
     $funcBack
 ]
+](doneChoices|
+
+
 
 ]<!--end child-->
 ]<!--end parent-->

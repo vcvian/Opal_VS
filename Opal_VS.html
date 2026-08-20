@@ -83,7 +83,7 @@ hr {
   100% {
     background-position: 0% center;
   }
-}</style><script role="script" id="twine-user-script" type="text/twine-javascript"></script><tw-tag name="UI" color="orange"></tw-tag><tw-tag name="startup" color="orange"></tw-tag><tw-tag name="stay" color="yellow"></tw-tag><tw-tag name="test" color="blue"></tw-tag><tw-tag name="topic" color="purple"></tw-tag><tw-tag name="traveling" color="purple"></tw-tag><tw-tag name="sublocation" color="green"></tw-tag><tw-tag name="book" color="yellow"></tw-tag><tw-tag name="effect" color="yellow"></tw-tag><tw-tag name="footer" color="yellow"></tw-tag><tw-tag name="header" color="yellow"></tw-tag><tw-tag name="static-storage" color="yellow"></tw-tag><tw-tag name="storylet" color="blue"></tw-tag><tw-passagedata pid="1" name="AA. Books, Reading &amp; Formulae" tags="startup" position="100,100" size="100,100">{=
+}</style><script role="script" id="twine-user-script" type="text/twine-javascript"></script><tw-tag name="header" color="yellow"></tw-tag><tw-tag name="stay" color="yellow"></tw-tag><tw-tag name="UI" color="orange"></tw-tag><tw-tag name="effect" color="yellow"></tw-tag><tw-tag name="footer" color="yellow"></tw-tag><tw-tag name="storylet" color="blue"></tw-tag><tw-tag name="sublocation" color="green"></tw-tag><tw-tag name="test" color="blue"></tw-tag><tw-tag name="topic" color="purple"></tw-tag><tw-tag name="traveling" color="purple"></tw-tag><tw-tag name="book" color="yellow"></tw-tag><tw-tag name="startup" color="orange"></tw-tag><tw-tag name="static-storage" color="yellow"></tw-tag><tw-passagedata pid="1" name="AA. Books, Reading &amp; Formulae" tags="startup" position="100,100" size="100,100">{=
 &lt;!--Macros related to books and reading--&gt;
 
 (set: $readingNav to (dm:
@@ -5614,7 +5614,7 @@ $cssColumnChild[
     ](1stA1|
 
     [
-        [&quot;Of course there is! Apesai&#39;s a civilized place, unlike the mainland,&quot;]&lt;OldInrahLine| she huffs. [&quot;There is an enclave of magi living in the lighthouse, though they&#39;re no hospitallers. And, all kinds of shops can be found at the market district, right under... Ah, Old Inrah should not say anymore without charging. She does not give out free directions.&quot;]&lt;OldInrahLine|
+        [&quot;Of course there is! Apesai&#39;s a civilized place, unlike the mainland,&quot;]&lt;OldInrahLine| she huffs. [&quot;There is an enclave of magi living in the lighthouse, though they&#39;re no hospitalers. And, all kinds of shops can be found at the market district, right under... Ah, Old Inrah should not say anymore without charging. She does not give out free directions.&quot;]&lt;OldInrahLine|
 &lt;br&gt;
         It seems that directions do not come with your rent.
 &lt;br&gt;
@@ -15065,7 +15065,7 @@ _line[&quot;Uuuuugh...&quot;] - there he goes again. You abandon your charitable
 _retrospect
 Professor Marrokh?
 &lt;br&gt;
-_line[&quot;Aaahh...,&quot;] he answers your unspoken question from the room right next to you. _line[&quot;Fuuck... That&#39;s it, oooh that&#39;s it...&quot;]
+_line[&quot;Aaahh...&quot;] he answers your unspoken question from the room right next to you. _line[&quot;Fuuck... That&#39;s it, oooh that&#39;s it...&quot;]
 &lt;br&gt;
 ($funcInnerConvo: (dm:
      &quot;&lt;!--A--&gt;Is he with someone?&quot;, &quot;withSomeone&quot;,
@@ -15155,7 +15155,7 @@ $place&#39;s sublocation is $place&#39;s stay
 and $place&#39;s location is &quot;Apesai&quot;
 and ($funcCheckExists: $char&#39;s player&#39;s quests, &quot;sickTeacher&quot;, &quot;&quot;) is &quot;active&quot;
 )
-(metadata: &quot;title&quot;, &quot;A Sick Teacher&quot;, &quot;cardDesc&quot;, &quot;Your teacher is still fluxy...&quot;, &quot;img&quot;, &quot;https://thefifthcity.wiki/w/images/b/bc/Bloodstain.png?20240509225948&quot;,)
+(metadata: &quot;title&quot;, &quot;Medicine Expected&quot;, &quot;cardDesc&quot;, &quot;Your mentor is still fluxy. The pair of you will not be leaving Apesai anytime soon until your he gets his medicine...&quot;, &quot;img&quot;, &quot;https://thefifthcity.wiki/w/images/b/bc/Bloodstain.png?20240509225948&quot;,)
 
 $cssColumnParent[
 
@@ -15167,26 +15167,123 @@ $cssColumnChild[
 ]
 
 $cssColumnChild[
+
+&lt;!--TeacherLine shorthand--&gt;
+(set: _line to (hook: &quot;TeacherLine&quot;))
+
+&lt;!--scenarios--&gt;
+(set: _scenario to 0)
+(cond:
+$dice &lt;= 25, [(set: _scenario to 1)],
+$dice &lt;= 50, [(set: _scenario to 2)],
+$dice &lt;= 75, [(set: _scenario to 3)],
+[(set: _scenario to 4)],
+)
+
+&lt;!--asked for instruction?--&gt;
+(set: _asked to false)
+
+
+&lt;!--story content--&gt;
+(if: _scenario is 1)[{
+_line[&quot;Uuugh... my savior, cursed fate,&quot;&quot;] Professor Marrokh stirs in his bed. It is one of the few times he is not latrine-bound. _line[&quot;Do you have my medicine?&quot;]
 &lt;br&gt;
-[&quot;Ughh, didja get my meds?&quot;]&lt;TeacherLine| asks the respectable magus. [&quot;I&#39;m so gassy...&quot;]&lt;TeacherLine|
+}]&lt;!--end of scenario 1--&gt;
+
+
+(elseif: _scenario is 2)[{
+_line[&quot;There you are!&quot;] Professor Marrokh calls out as he waddles out in his small clothes from behind the skin curtain, behind which is a battlefield. _line[&quot;Medicine... do you bring it?&quot;]
+&lt;br&gt;
+}]&lt;!--end of scenario 2--&gt;
+
+
+(elseif: _scenario is 3)[{
+_line[&quot;You! Why have you entered by chamber?&quot;] Professor Marrokh yells, clearly in a compromising position. You avert your eyes. _line[&quot;Unless... you have my medicine?&quot;]
+&lt;br&gt;
+}]&lt;!--end of scenario 3--&gt;
+
+
+(else:)[{
+_line[&quot;So frail, the body is...&quot;] Professor Marrokh says as he gulps down another pitcher of water. It will not be enough. _line[&quot;Must mortality... be a fact? Say that it&#39;s not so, dear student.&quot;]
+&lt;br&gt;
+}]&lt;!--end of scenario 41--&gt;
+
+
+$cssDesc[You are to find in Apesai a &#39;&#39;(print: (passage: &quot;item.healingTonic&quot;)&#39;s id)&#39;&#39;($funcLogTip: &quot;item.&quot;, &quot;healingTonic&quot;), however you can, and give it to Professor Marrokh.]
+&lt;br&gt;
+
+&lt;!--check med--&gt;
+(set: _haveMed to false)
+(if: $char&#39;s player&#39;s inv contains &quot;healingTonic&quot;)[(set: _haveMed to true)]
+
+&lt;!--change text based on whether you have medicine--&gt;
+(set: _haveMedText to &quot;&quot;)
+(if: _haveMed is true)[(set: _haveMedText to &quot;\&quot;&lt;!--B--&gt;About that medicine...\&quot;&quot;)]
+(else:)[(set: _haveMedText to &quot;\&quot;&lt;!--B--&gt;Um...\&quot;&quot;)]
+
+($funcInnerConvo: (dm:
+     &quot;\&quot;&lt;!--A--&gt;Any idea where I should start, professor?\&quot;&quot;, &quot;whereToStart&quot;,
+     _haveMedText, &quot;doneChoices&quot;,
+))
+&lt;br&gt;
+
+&lt;!--whereToStart--&gt;
+[
+(set: _asked to true)
+_line[&quot;Must you extract from me another lesson... while I am in this state? Has the past few years... not been enough... for your thick head?&quot;] Your mentor groans. _line[&quot;Fine.
+&lt;br&gt;
+&quot;Look for the local davehmars... They must have... alchemical equipments... to make something yourself... Even better if they have spare medicine... But I&#39;ll be... ashamed if you waste a single rial... for something as simple as a tonic of Gor... from these provincial quacks.&quot;]
+&lt;br&gt;
+$cssDesc[Make it, buy it, beg for it, pick it up from the streets - however you do it, you will have to figure out your way around the city first.]
+&lt;br&gt;
+_line[&quot;A healing tonic... you still remember how to make it, yes? No, don&#39;t tell me... My shame is already... too great to bear.&quot;]
+&lt;br&gt;
+$cssDesc[{
+     (if: $char&#39;s player&#39;s craftFormula contains &quot;healingTonic&quot;)[Yes, you do know how to synthesize a &#39;&#39;(print: (passage: &quot;item.healingTonic&quot;)&#39;s id)&#39;&#39;($funcLogTip: &quot;item.&quot;, &quot;healingTonic&quot;).]
+     (else:)[No, you cannot recall how to synthesize a &#39;&#39;(print: (passage: &quot;item.healingTonic&quot;)&#39;s id)&#39;&#39;($funcLogTip: &quot;item.&quot;, &quot;healingTonic&quot;). You will have find a way to relearn it.]
+     }]
+&lt;br&gt;
+($funcInnerConvo: (dm:
+     &quot;\&quot;&lt;!--B--&gt;I understand your instruction, professor.\&quot;&quot;, &quot;doneChoices&quot;,
+))
+&lt;br&gt;
+](whereToStart|
+
+&lt;!--end of story content--&gt;
+
+
+&lt;!--doneChoices--&gt;
+[
+(if: _asked is true)[_line[&quot;Davehmars, alchemy equipment, formula, ingredients, synthesize, give... Simple as that. Write it down... if you must. Don&#39;t make me... repeat myself.&quot;]]
+
+(else:)[_line[&quot;If you have something for me.... then give it! If not, then kindly make yourself scarce. And close the door on your way out, please.&quot;]]
 &lt;br&gt;
 ---
 &lt;ol&gt;
 
-&lt;li&gt;($funcCheckGate: &quot;Give your teacher his &#39;&#39;Healing Tonic&#39;&#39;.&quot;, &quot;inv&quot;, &quot;healingTonic&quot;, 1, true, 100, &quot;Sick Teacher 2a&quot;, &quot;&quot;)
+(set: _turnInText to &quot;&quot;)
+(if: _asked is true)[(set: _turnInText to &quot;\&quot;Actually, I have your medicine right here.\&quot;&quot;)]
+(else:)[(set: _turnInText to &quot;\&quot;Yes, I do have the medicine you asked for.\&quot;&quot;)]
+
+
+&lt;li&gt;($funcCheckGate: _turnInText, &quot;inv&quot;, &quot;healingTonic&quot;, 1, true, 100, &quot;Sick Teacher 2a&quot;, &quot;&quot;)&lt;/li&gt;
 
 (if: $char&#39;s OldInrah&#39;s talked contains &quot;gingerBought&quot; and $char&#39;s player&#39;s inv contains &quot;ginger&quot;)[
      (if: $char&#39;s Teacher&#39;s talked does not contain &quot;gingerGiven&quot;)[
-          &lt;li&gt;(link: &quot;Present the &#39;alternative medicine&#39; you bought.&quot;)[(goto: &quot;Sick Teacher 2b&quot;)] $cssDesc[(Askavan ginger &#39;&#39;might&#39;&#39; help, so said the landlady.)]
+          &lt;li&gt;(link: &quot;Present the \&quot;alternative medicine\&quot; you&#39;ve just bought.&quot;)[(goto: &quot;Sick Teacher 2b&quot;)] $cssDesc[(Askavan ginger &#39;&#39;might&#39;&#39; help, so said the landlady.)]&lt;/li&gt;
      ]
-     (else:)[&lt;li&gt;~~Present the &#39;alternative medicine&#39; you bought.~~ $cssDesc[(You&#39;ve learned your lesson.)]]
+     (else:)[&lt;li&gt;~~Present the &quot;alternative medicine&quot; you&#39;ve just bought.~~ $cssDesc[(You&#39;ve learned your lesson.)]&lt;/li&gt;]
 ]
 
 
 
-&lt;li&gt;(link: &quot;Close the door!&quot;)[$funcBack]
+&lt;li&gt;(link: &quot;\&quot;Working on it. I&#39;ll be on my way.\&quot;&quot;)[$funcBack]&lt;/li&gt;
 &lt;/ol&gt;
-&lt;!--[[Sick Teacher 2a]] and [[Sick Teacher 2b]]--&gt;
+
+
+](doneChoices|
+&lt;!--end of doneChoices--&gt;
+
 ]&lt;!--end child--&gt;
 ]&lt;!--end parent--&gt;</tw-passagedata><tw-passagedata pid="285" name="Sick Teacher 1a" tags="" position="3100,2625" size="100,100">{=
 
@@ -15266,7 +15363,7 @@ _line[&quot;Hahaha, though I may be... at my worst - cast off from my oaken lect
 
 &lt;!--letHim--&gt;
 [
-_line[&quot;Student... //At// and //Ab// leaves me... incessantly... by any way they see fit,&quot;] explains the professor. _line[&quot;It seems my stomach&#39;s upset... from days ago aboard the ship... was but a herald. Someone has //poisoned// me.&quot;]
+_line[&quot;Student... //Ab// and //Zam// leave me... incessantly... by any way they see fit,&quot;] explains the professor. _line[&quot;It seems my stomach&#39;s upset... from days ago aboard the ship... was but a herald. Someone has //poisoned// me.&quot;]
 &lt;br&gt;
 Thankfully, he cannot see you roll your eyes.
 
@@ -15349,7 +15446,7 @@ You can operate magical machineries, but a lot of the formulas and incantations 
 
 &lt;!--whereStart2--&gt;
 [{
-_line[&quot;There is a circle of magi... a school, here in Apesai. Find them... Ask to use their lab... If they charge you for it, tell them to shove-&quot;] he starts coughing again, the his own acid burning in his throat. _line[&quot;If you somehow fail at even that... just go to the local Grand Exchange... But remember that if you get scammed... I am not reimbursing you... a single rial...&quot;]
+_line[&quot;There is a circle of magi... davehmars... a school, here in Apesai. Find them... Ask to use their lab... If they charge you for it, tell them to shove-&quot;] he starts coughing again, the his own acid burning in his throat. _line[&quot;If you somehow fail at even that... just go to the local Grand Exchange... But remember that if you get scammed... I am not reimbursing you... a single rial...&quot;]
 &lt;br&gt;
 Something tells you that he won&#39;t reimburse you even if you //don&#39;t// get scammed.
 &lt;br&gt;
@@ -15374,7 +15471,7 @@ _line[&quot;Are you fucking //joking//? Holding on to this latrine is all I //ca
 ---
 &lt;ol&gt;
 &lt;li&gt;($funcCheckGate: &quot;Actually, you happen to have his medicine right here.&quot;, &quot;inv&quot;, &quot;healingTonic&quot;, 1, true, 100, &quot;Sick Teacher 2a&quot;, &quot;Sick Teacher 2b&quot;)
-&lt;li&gt;($funcQuestUpdateLink: &quot;Leave the accursed room, finally.&quot;, &quot;sickTeacher&quot;, &quot;active&quot;, &quot;Your teacher is sick with the flux. You&#39;ll have to find him a &#39;&#39;Healing Tonic&#39;&#39;.&quot;, &quot;You know what to do, right? You&#39;re a magus!&quot;, [], $place&#39;s sublocation,)
+&lt;li&gt;($funcQuestUpdateLink: &quot;Leave the accursed room, finally.&quot;, &quot;sickTeacher&quot;, &quot;active&quot;, &quot;Your mentor is sick with the flux. You&#39;ll have to find him a &#39;&#39;Healing Tonic&#39;&#39;.&quot;, &quot;You know what to do, right? You&#39;re a magus!&quot;, [], $place&#39;s sublocation,)
 &lt;/ol&gt;
 ](doneOptions|
 
@@ -15397,24 +15494,177 @@ $cssColumnChild[
 
 $cssColumnChild[
 
-[&quot;Yooo, give it here!&quot;]&lt;TeacherLine| Your teacher says as he takes a large swig, larger either you or any of your peers in the academy has ever been able to, not in your wildest benders.
+&lt;!--TeacherLine shorthand--&gt;
+(set: _line to (hook: &quot;TeacherLine&quot;))
+
+_line[&quot;Give! Now!&quot;] He growls as he lunges at you, jealously stealing the bottle from your hand and taking a large swig, larger either you or any of your peers in the academy has ever been able to, not in your wildest benders.
 &lt;br&gt;
-[&quot;Aaah, that&#39;s the shit,&quot;]&lt;TeacherLine| he says, wiping his mouth, colors returning to his face.
+But then, he immediately launches into a coughing fit, gagging, gasping for air.
 &lt;br&gt;
-You tell him you&#39;re glad he&#39;s well.
+($funcInnerConvo: (dm:
+     &quot;\&quot;&lt;!--A--&gt;How is it?\&quot;&quot;, &quot;howIsIt&quot;,
+     &quot;\&quot;&lt;!--B--&gt;Is it working?\&quot;&quot;, &quot;isItWorking&quot;,
+     &quot;\&quot;&lt;!--C--&gt;Did I mess up?\&quot;&quot;, &quot;didMessUp&quot;,
+))
 &lt;br&gt;
-[&quot;We set out as soon as the ferries able to! You have the &#39;&#39;permits&#39;&#39;, don&#39;t you?&quot;]&lt;TeacherLine|
+
+
+&lt;!--howIsIt--&gt;
+[
+_line[&quot;Like my latrine,&quot;] he wipes his mouth, panting. _line[&quot;Good job, student.&quot;]
+&lt;br&gt;
+(show:?colorReturns)
+](howIsIt|
+
+
+&lt;!--isItWorking--&gt;
+[
+_line[&quot;Oh yeah,&quot;] he wipes his mouth, panting. _line[&quot;I&#39;d say so.&quot;]
+&lt;br&gt;
+(show:?colorReturns)
+](isItWorking|
+
+
+&lt;!--didMessUp--&gt;
+[
+_line[&quot;False meekness...&quot;] he wipes his mouth, panting. _line[&quot;Is unbecoming of... a student of mine.&quot;]
+&lt;br&gt;
+(show:?colorReturns)
+](didMessUp|
+
+
+&lt;!--colorReturns--&gt;
+[
+You see now that colors are returning to his cheeks and bulbous nose, like a fruit ripening before your very eyes.
+&lt;br&gt;
+($funcInnerConvo: (dm:
+     &quot;\&quot;&lt;!--A--&gt;I am glad.\&quot;&quot;, &quot;gladOK&quot;,
+     &quot;\&quot;&lt;!--B--&gt;You should rest, still.\&quot;&quot;, &quot;gladOK&quot;,
+))
+&lt;br&gt;
+](colorReturns|
+
+
+&lt;!--gladOK--&gt;
+[
+_line[&quot;Save it,&quot;] he waves his hand, like your words are flies. _line[&quot;It&#39;ll take a few days for my body to recover its fluids... and flush out whatever ailed me.
+&lt;br&gt;
+&quot;But that&#39;s no excuse to sit on our asses. On one hand, we should not tempt Lady Fate, and on the other... the Lady of Sabzam awaits us, still. We are at least a week late.
+&lt;br&gt;
+&quot;Pack your things. We head to the wharf post-haste and set for the mainland. I do not plan on being ripped off by this guesthouse a day longer.
+&lt;br&gt;
+&quot;Do you have a permit yet?&quot;]
+&lt;br&gt;
+$cssDesc[An &#39;&#39;(print: (passage: &quot;item.permitAskava&quot;)&#39;s id)&#39;&#39;($funcLogTip: &quot;item.&quot;, &quot;permitAskava&quot;) is required to enter the mainland. Else, no ship will take you.]
+
+
+&lt;!--permit check--&gt;
+(set: _havePermit to false)
+(if: $char&#39;s player&#39;s inv contains &quot;permitAskava&quot;)[(set: _havePermit to true)]
+
+&lt;!--permit-in-progress check: 0 is haven&#39;t started, 1 is waiting, and 2 is ready to pick up. All of this is overwritten if _havePermit is true (already have a permit)--&gt;
+(set: _waitingPermit to 0)
+(if: (datanames: $char&#39;s player&#39;s timerQuest) contains &quot;permitAskava&quot;)[
+	(if: $char&#39;s player&#39;s timerQuest&#39;s permitAskava&#39;s wait &gt; 0)[(set: _waitingPermit to 1)]
+     (else:)[(set: _waitingPermit to 2)]
+]
+
+&lt;!--set the actual response--&gt;
+(set: _textPermit to &quot;&quot;)
+(set: _textPermitResponse to &quot;permitNotStarted&quot;)
+(cond:
+_havePermit is true, [(set: _textPermit to &quot;Yes, I already have a permit.&quot;)(set: _textPermitResponse to &quot;permitAlready&quot;)],
+
+_havePermit is false and _waitingPermit is 0, [(set: _textPermit to &quot;No, I have not applied for one yet.&quot;)(set: _textPermitResponse to &quot;permitNotStarted&quot;)],
+
+_havePermit is false and _waitingPermit is 1, [(set: _textPermit to &quot;No, but I&#39;ve already applied and am waiting for it to process.&quot;)(set: _textPermitResponse to &quot;permitWaiting&quot;)],
+
+_havePermit is false and _waitingPermit is 2, [(set: _textPermit to &quot;Yes, it&#39;s being processed, but I think it should be done by now.&quot;)(set: _textPermitResponse to &quot;permitDoneByNow&quot;)],
+)
+
+&lt;br&gt;
+($funcInnerConvo: (dm:
+     &quot;\&quot;&quot; + _textPermit + &quot;\&quot;&quot;, _textPermitResponse,
+))
+&lt;br&gt;
+](gladOK|
+
+
+&lt;!--permitAlready--&gt;
+[
+_line[&quot;My, my, what //initiative//! Keep it up, and you might just redeem yourself in my eyes,&quot;] he chuckles. _line[&quot;That&#39;s all the praise you&#39;re getting for now.
+&lt;br&gt;
+&quot;Let us pack up and get down to the wharf. You will look for a reasonable captain and pay our fare. I&#39;ll sleep off the medicine on the boat.&quot;]
+&lt;br&gt;
+($funcInnerConvo: (dm:
+     &quot;\&quot;&lt;!--A--&gt;Right away, professor.\&quot;&quot;, &quot;doneChoices&quot;,
+))
+&lt;br&gt;
+](permitAlready|
+
+
+&lt;!--permitNotStarted--&gt;
+[
+_line[&quot;Then go to the local courthouse - or wherever these provincials do their paperwork - and get one now! It won&#39;t be done overnight, you know?
+&lt;br&gt;
+&quot;I&#39;m a master already, so I don&#39;t need to worry about that. But you, on the other hand... I&#39;ll be here, resting.&quot;]
+&lt;br&gt;
+($funcInnerConvo: (dm:
+     &quot;\&quot;&lt;!--A--&gt;Right away, professor.\&quot;&quot;, &quot;doneChoices&quot;,
+))
+&lt;br&gt;
+](permitNotStarted|
+
+
+&lt;!--permitWaiting--&gt;
+[
+_line[&quot;Fucking bureaucrats... Fine. I&#39;ll be here resting. Pick it up as soon as you can. Pester them, if you must. No love lost there.&quot;]
+&lt;br&gt;
+($funcInnerConvo: (dm:
+     &quot;\&quot;&lt;!--A--&gt;Yes, professor.\&quot;&quot;, &quot;doneChoices&quot;,
+))
+&lt;br&gt;
+](permitWaiting|
+
+
+&lt;!--permitDoneByNow--&gt;
+[
+_line[&quot;Then what on Tar are you standing here for? Go pick it up, right now!&quot;]
+&lt;br&gt;
+($funcInnerConvo: (dm:
+     &quot;\&quot;&lt;!--A--&gt;Right away, professor.\&quot;&quot;, &quot;doneChoices&quot;,
+))
+&lt;br&gt;
+](permitDoneByNow|
+
+
+
+&lt;!--doneChoices--&gt;
+[
+_line[&quot;The sooner we leave, the better. I can&#39;t stand the //stench// of this room much longer. Ten-cursed-rials per day for this, can you believe it?&quot;]
 &lt;br&gt;
 ---
-($funcQuestUpdateLink: &quot;Uh...&quot;, &quot;sickTeacher&quot;, &quot;completed&quot;, &quot;Your teacher is good as new. You can finally start to leave this rock.&quot;, &quot;Finally!&quot;, [], $place&#39;s sublocation,)
+($funcQuestUpdateLink: &quot;\&quot;Anyhow, it&#39;s good that you&#39;re recovering. We&#39;ll be on our way soon, professor.\&quot;&quot;, &quot;sickTeacher&quot;, &quot;completed&quot;, &quot;Your mentor is feeling readier. You can finally start to leave this rock. Provided, of course, that you have a permit.&quot;, &quot;Finally!&quot;, [{
+
+&lt;!--potential reward--&gt;
+(cond:
+$char&#39;s player&#39;s inv contains &quot;permitAskava&quot;, [($funcOpinionGainLoss: &quot;Teacher&quot;, 3, &quot;Not only have you demonstrate your helpfulness, you have also shown initiative - which is what you hope your mentor will write in a future recommendation letter.&quot;)],
+[($funcOpinionGainLoss: &quot;Teacher&quot;, 2, &quot;Your mentor is appreciative of you saving his life. Yes, this is the most appreciation he will show.&quot;)]
+)
+
+}], $place&#39;s sublocation,)
+](doneChoices|
+
+
 ]&lt;!--end child--&gt;
 ]&lt;!--end parent--&gt;</tw-passagedata><tw-passagedata pid="287" name="Sick Teacher 2b" tags="" position="3325,2625" size="100,100">{=
 
 (metadata:
     &quot;NPC&quot;, &quot;Teacher&quot;,
-    &quot;title&quot;, &quot;Alternative Medicine&quot;,
-    &quot;cardDesc&quot;, &quot;It seems obvious to ask her. Guests often get sick after a long journey, right?&quot;,
+    &quot;title&quot;, &quot;\&quot;Alternative\&quot; Medicine&quot;,
+    &quot;cardDesc&quot;, &quot;He told you to be \&quot;resourceful\&quot;, and that&#39;s exactly what you&#39;re being.&quot;,
     &quot;talked&quot;, (a: &quot;gingerGiven&quot;,),
+    &quot;parent&quot;, &quot;S: Sick Teacher 2&quot;
 )
 
 &lt;!--Manually add $funcTalked because this is not normal dialogue, and yet, there is still a new talked entry to be registered--&gt;
@@ -15422,22 +15672,121 @@ $cssColumnParent[
 
 $cssColumnChild[
 	$cssBox[
-    	($funcImage: (passage:)&#39;s img)
+    	($funcImage: (passage: (passage:)&#39;s parent)&#39;s img)
          $cssBoxItem[&#39;&#39;(print: (passage:)&#39;s title )&#39;&#39;&lt;br&gt;(print: (passage:)&#39;s cardDesc)]
     ]
 ]
 
 $cssColumnChild[
 
-(Giving him ginger, getting scolded)
+&lt;!--TeacherLine shorthand--&gt;
+(set: _line to (hook: &quot;TeacherLine&quot;))
 
+The landlady who sold you the Askavan ginger has spoken highly of the root&#39;s medicinal properties. But the only thing it seems to cure is the expectant smile on your mentor&#39;s face, which disappears as you produce from your bag the ginger and not the medicine he was expecting.
+&lt;br&gt;
+_line[&quot;Oh.&quot;]
+&lt;br&gt;
+He does not even look at the ginger; he only looks at you as though you have just defecated in front of him instead of the other way around.
+&lt;br&gt;
+($funcInnerConvo: (dm:
+     &quot;\&quot;&lt;!--A--&gt;The locals say that this traditional remedy can cure all kinds of illnesses.\&quot;&quot;, &quot;localSays&quot;,
+     &quot;\&quot;&lt;!--B--&gt;You don&#39;t seem entirely pleased.\&quot;&quot;, &quot;notPleased&quot;,
+     &quot;\&quot;&lt;!--C--&gt;Sorry.\&quot;&quot;, &quot;sorry&quot;,
+))
+&lt;br&gt;
+
+&lt;!--localSays--&gt;
+[
+_line[&quot;I&#39;m sure they do,&quot;] he says, staring at you, unblinking. _line[&quot;How much... did they charge you?&quot;]
+(show: ?howMuch)
+](localSays|
+
+
+&lt;!--notPleased--&gt;
+[
+_line[&quot;What makes you... think that?&quot;] He asks with a snort. _line[&quot;How much... did they ask from you?&quot;]
+(show: ?howMuch)
+](notPleased|
+
+
+&lt;!--sorry--&gt;
+[
+_line[&quot;Hmm...&quot;] he says. _line[&quot;How much... was it?&quot;]
+(show: ?howMuch)
+](sorry|
+
+
+&lt;!--howMuch--&gt;
+[
+&lt;br&gt;
+($funcInnerConvo: (dm:
+     &quot;\&quot;&lt;!--A--&gt;Serdah.\&quot;&quot;, &quot;30&quot;,
+     &quot;\&quot;&lt;!--B--&gt;Dah.\&quot;&quot;, &quot;10&quot;,
+     &quot;\&quot;&lt;!--C--&gt;Nothing.\&quot;&quot;, &quot;0&quot;,
+))
+&lt;br&gt;
+](howMuch|
+
+
+&lt;!--30--&gt;
+[
+_line[&quot;Wow.&quot;]
+&lt;br&gt;
+He takes the ginger and drops it into the puke bucket beside his bed.
+&lt;br&gt;
+_line[&quot;There goes... your thirty rials. Let that be a lesson.&quot;]
+&lt;br&gt;
+($funcInnerConvo: (dm:
+     &quot;\&quot;&lt;!--A--&gt;...\&quot;&quot;, &quot;doneChoices&quot;,
+))
+&lt;br&gt;
+](30|
+
+
+&lt;!--10--&gt;
+[
+_line[&quot;Ten rials. A whole day&#39;s... worth of rent?&quot;]
+&lt;br&gt;
+He takes the ginger and drops it into the puke bucket beside his bed.
+&lt;br&gt;
+_line[&quot;You know there are homeless people... out there in the streets of Apesai, yes? Good... Let that be a lesson.&quot;]
+&lt;br&gt;
+($funcInnerConvo: (dm:
+     &quot;\&quot;&lt;!--A--&gt;...\&quot;&quot;, &quot;doneChoices&quot;,
+))
+&lt;br&gt;
+](10|
+
+
+&lt;!--0--&gt;
+[
+_line[&quot;Precisely... what it&#39;s worth.&quot;]
+&lt;br&gt;
+He takes the ginger and drops it into the puke bucket beside his bed.
+&lt;br&gt;
+_line[&quot;But time itself... is worth something. You know why? Because we have to pay rent... and eat... Let that be a lesson.&quot;]
+&lt;br&gt;
+($funcInnerConvo: (dm:
+     &quot;\&quot;&lt;!--A--&gt;...\&quot;&quot;, &quot;doneChoices&quot;,
+))
+&lt;br&gt;
+](0|
+
+
+
+&lt;!--doneChoices--&gt;
+[
+_line[&quot;Go find us medicine, or we&#39;ll both be stuck here on this rock.&quot;]
 &lt;br&gt;
 ---
-(link: &quot;Sorry&quot;)[
+(link: &quot;\&quot;Yes, professor. I&#39;ll get on it right away.\&quot;&quot;)[
     ($funcTalked:)
-    ($funcOpinionGainLoss: &quot;Teacher&quot;, -2, &quot;You&#39;d like to say that he isn&#39;t mad, just disappointed. But he //is// mad.&quot;)
+    ($funcOpinionGainLoss: &quot;Teacher&quot;, -3, &quot;You&#39;d like to say that he isn&#39;t mad, just disappointed. But he //is// mad.&quot;)
     $funcBack
 ]
+](doneChoices|
+
+
 
 ]&lt;!--end child--&gt;
 ]&lt;!--end parent--&gt;</tw-passagedata><tw-passagedata pid="288" name="item.betTicketX" tags="static-storage" position="975,3600" size="100,100">(metadata: 

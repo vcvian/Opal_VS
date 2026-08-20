@@ -75,7 +75,7 @@ _line["Uuuuugh..."] - there he goes again. You abandon your charitable thoughts 
 _retrospect
 Professor Marrokh?
 <br>
-_line["Aaahh...,"] he answers your unspoken question from the room right next to you. _line["Fuuck... That's it, oooh that's it..."]
+_line["Aaahh..."] he answers your unspoken question from the room right next to you. _line["Fuuck... That's it, oooh that's it..."]
 <br>
 ($funcInnerConvo: (dm:
      "<!--A-->Is he with someone?", "withSomeone",
