@@ -1,10 +1,9 @@
-:: The Provincial Court of Askava [sublocation unfinished] {"position":"4500,1750","size":"100,100"}
+:: The Provincial Court of Askava [sublocation] {"position":"4500,1750","size":"100,100"}
 {=
 (metadata:
 "prefecture", "Nurrah Coastlands",
 "location", "Apesai",
 "title", "The Provincial Court of Askava",
-"devNote", [Need to write content.],
 )
 
 ($funcUpdateLocation:)
@@ -12,7 +11,13 @@
 <h2>(print: (passage:)'s title)</h2>
 $cssColumnParent[
 $cssColumnChild[
-(The courthouse, where papers are collected and issued...)
+
+Before you are dizzying arches and lavish mosaics filling up all walls. Each building's wind trap alone, sitting high above their roofs, are as large as any townhouse. Guards in silk and steel stand under the shadows of great columns, and bespectacled scribes hurry across gardens. Under your feet are floors of white marble.
+<br>
+This cluster of former palaces, now turned into administrative buildings, is the seat of the provincial government. "The Court" or "the Courthouse" is merely a metonymy.
+<br>
+All affairs of Askava dahak are overseen by scribes, experts, and officials who are charged with representing the will and law of Nurandah, all gathered here in the island-city of Apesai. Their presence makes this land a dahak.
+
 ]
 $cssColumnChild[($funcNavigateSublocations:)]
 ]<!--end of $cssColumnParent-->

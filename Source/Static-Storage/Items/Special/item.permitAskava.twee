@@ -9,7 +9,7 @@
     "desc", [A piece of paper with your name and a terse description of why you're in Askava, stamped with the magical, tamper-proof seal of the governor.],
     "tip", [This document permits you a one-time passage from Apesai into mainland Askava, collected at either of the 3 major shores: Rokhab, Navveh, or Zirab. Valid once.],
     "gainText", [After some trouble, you are finally granted a permit into Askava.],
-    "lossText", [You are loath to part with the precious papyrus, mostly because it will be bother to get another one if you ever make another trip from the island into the mainland.],
+    "lossText", [You are loath to part with the precious permit, mostly because it will be bother to get another one if you ever make another trip from the island into the mainland.],
     "content", [{
 <!--main content begins-->
 ''LIGHT BLESSES NURANDAH''
@@ -26,7 +26,7 @@ We, DAHAKMAR OF ASKAVA and also BANDAKMAR OF APESAI, hereby grants the holder of
 
 a one-time permission to enter continental Askava via Apesai, in accordance with the declaration of non-immigrantion, non-import, and non-espionage signed in Apesai bandak.
 <br>
-This document, which under no circumstances can be used as a proof of identity for the holder outside of Askava dahak, is exclusively intended to be used for transit within the dahak, valid for a single journey, to be collected and destroyed upon arrival.
+This document, which under no circumstances can be used as a proof of identity for the holder outside of Askava dahak, is exclusively intended to be used for transit within the dahak, valid for a single journey, to be collected and nullified upon arrival.
 <br>
 $cssDesc[The document then lists several more disclaimers, waivers, and conditions.]
 <br>

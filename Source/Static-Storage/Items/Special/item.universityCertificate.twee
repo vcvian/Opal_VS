@@ -9,7 +9,7 @@
     "desc", [A piece of vellum from the Bakho University certifying that you have completed your apprenticeship and are qualified to practice magic.],
     "tip", [You will be asked to submit this document in various imperial offices.],
     "gainText", [You pick up the certificate. Twelve years of being practically locked up in a tower has earned you this piece of skin. Do not lose it.],
-    "lossText", [As you part ways with your certificate, you tell yourself that it is the skill that matters, not the paper. However, without the paper, not many would pay you for those skills.],
+    "lossText", [As you part ways with your certificate, you tell yourself that it is the skill that matters, not the parchment. However, without the parchment, not many would pay you for those skills.],
     "content", [{
 <!--content begins-->
 ''LIGHT BLESSES NURANDAH''

@@ -17,8 +17,305 @@ $cssColumnChild[
 
 $cssColumnChild[
 
+<!--format lines-->
 ($funcNPCSpeakManual: "Clerk1")
+<!--shorthand-->
+(set: _line to (hook: "Clerk1Line"))
 
+
+<!--initialize $stuff-->
+(if: $stuff does not contain "waitTime")[(set: $stuff's waitTime to (random: 4,8))]
+(if: $stuff does not contain "waitProgress")[(set: $stuff's waitProgress to 0)]
+
+<!--_waitAdvanceCode-->
+(set: _waitAdvanceCode to [{
+     (set: $stuff's waitProgress to it + 1)
+     (t8n: "dissolve")(rerun: ?wait)
+}])
+
+<!--when done-->
+(set: _waitDoneCode to [{
+     (if: $stuff's waitProgress >= $stuff's waitTime)[{
+          (t8n: "dissolve")(show:?waitDone)
+          (t8n: "dissolve")+(replace: ?waitLink)
+[Finally, after standing around for what seems to be forever, thumbing your number slip until the ink has near-faded, you hear your name called.]
+     }]
+}])
+
+
+<!--initialize and load _waitProgressText-->
+(set: _waitProgressText to (a:))
+(display: "scene.waitProgressText")
+
+
+<!--Shuffle text into $stuff-->
+(if: $stuff does not contain "waitProgressText")[(set: $stuff's waitProgressText to _waitProgressText)]
+
+<!--story content begins-->
+Once again, you register your name, take your place in the queue, among the huddling masses, suffocating.
+<br>
+
+<!--what you see while waiting around-->
+[{
+     (if: $stuff's waitProgress > 0 and $stuff's waitProgress < $stuff's waitTime)[(print: ($stuff's waitProgressText)'s ($stuff's waitProgress))]
+<br>
+}]<wait|
+
+
+<!--the actual wait link-->
+(set: _waitLinkText to "Wait until you are called.")
+[(link-rerun: _waitLinkText)[{
+     _waitAdvanceCode
+     _waitDoneCode
+}]]<waitLink|
+<br>
+
+<!--waitDone-->
+[
+_line["Hmm,"] the clerk stares at you, unsure if you are the same person he has processed. You too are unsure whether he is the same one that interviewed you. They all look the same. Isn't that the point of uniforms?
+<br>
+_line["Name?"]
+<br>
+($funcInnerConvo: (dm:
+    "<!--A-->\"I thought you already knew.\"", "alreadyKnew",
+	"<!--B-->\"Come on, I've been here before. I'm checking on the status of my entry application.\"", "checkingStatus",
+    "<!--C-->State your name.", "giveHimName",
+))
+<br>
+](waitDone|
+
+
+<!--alreadyKnew-->
+[
+_line["We might,"] he says with a sigh. _line["Nevertheless, name?"]
+<br>
+He seems as tired of this song-and-dance as you are. No matter how fruitlessly, members of the public still get to question procedures; servants of the public, however, do not.
+<br>
+($funcInnerConvo: (dm:
+    "<!--C-->State your name.", "giveHimName",
+))
+<br>
+](alreadyKnew|
+
+
+<!--checkingStatus-->
+[
+_line["You and half of this room,"] he looks at the long queue behind you. Many of them seem to have been here weeks after weeks. _line["Name?"]
+<br>
+($funcInnerConvo: (dm:
+    "<!--C-->State your name.", "giveHimName",
+))
+<br>
+](checkingStatus|
+
+
+<!--giveHimName-->
+[
+_line["Mm-hmm,"] he glances at his ledger and sees what he expects. _line["Documents?"]
+<br>
+$cssDesc[(print: (passage: "quest.permitAskava")'s tip)]
+
+<!--check code-->
+(set: _haveID to false)
+(if: $char's player's inv contains "identityReceipt")[(set: _haveID to true)]
+(set: _haveLetter to false)
+(if: $char's player's inv contains "universityCertificate")[(set: _haveLetter to true)]
+
+<!--initialize text-->
+(set: _dialogue to "")
+(set: _response to "")
+<!--which scenario?-->
+(if: _haveID is true and _haveLetter is true)[{
+     (set: _dialogue to "\"Here they are.\"")
+     (set: _response to "lackNone")
+}]
+(elseif: _haveID is false and _haveLetter is true)[{
+     (set: _dialogue to "\"... Oh, I seem to have misplaced my tax receipt...\"")
+     (set: _response to "lackID")
+}]
+(elseif: _haveID is true and _haveLetter is false)[{
+     (set: _dialogue to "\"I... I don't have my certificate with me.\"")
+     (set: _response to "lackLetter")
+}]
+(else:)[{
+     (set: _dialogue to "\"Documents?\"")
+     (set: _response to "lackBoth")
+}]
+
+<br>
+($funcInnerConvo: (dm:
+     _dialogue, _response,
+))
+<br>
+](giveHimName|
+
+
+<!--lackNone-->
+[
+He takes them and scans through their content. Their blue-wax seals glowing at his touch.
+<br>
+_line["Very good. Everything is in order,"] he says, handing your papers back. You cannot tell whether it is relief in his voice - that the process has gone without incident - or disappointment - that a chance for any modicum of excitement has been missed.
+<br>
+_line["Your entry permit is ready,"] he pulls out from the cabinet behind him one of many rolled-up paper and presents it to you. _line["Please check and make sure the information is correct."]
+<br>
+($funcInnerConvo: (dm:
+    "<!--A-->Unroll the paper.", "unrollPermit",
+))
+<br>
+](lackNone|
+
+
+<!--unrollPermit-->
+[
+You look over its content: Your name... "one-time permission"... "continental Askava"... "exclusively used for transit"... "single journey"... "collected and nullified upon arrival"... current year...
+<br>
+At the end, there is a familiar blue-wax seal, though the sigil is different from yours. The governor's own seal, which doubles as a magical ward.
+<br>
+($funcInnerConvo: (dm:
+    "<!--A-->\"Everything is correct.\"", "everythingCorrect",
+	"<!--B-->\"This is single-use only?\"", "singleUse",
+))
+<br>
+](unrollPermit|
+
+
+<!--singleUse-->
+[
+_line["Yes,"] the clerk says simply. _line["Is everything correct?"]
+<br>
+($funcInnerConvo: (dm:
+    "<!--A-->\"Yes.\"", "everythingCorrect",
+))
+<br>
+](singleUse|
+
+
+<!--everythingCorrect-->
+[
+_line["Good. Now, please sign this confirmation form. It says that you have received your permit and has found the information contained therein to be accurate."]
+<br>
+($funcInnerConvo: (dm:
+    "<!--A-->Sign the form.", "signForm",
+	"<!--B-->\"Can I read it first?\"", "readFirst",
+))
+<br>
+](everythingCorrect|
+
+
+<!--readFirst-->
+[
+_line["Of course,"] he mumbles.
+<br>
+You read the form: "LIGHT BLESSES NURANDAH"... "received permit"... "agreed that information contained therein is accurate"... "declares no intention to"...
+<br>
+It is everything you have been interviewed and informed about, written in far too many words. The page opposite to it repears the same content, albeit in Sanurango, which you cannot read very well, but you will never tell any prospective employer that.
+<br>
+($funcInnerConvo: (dm:
+    "<!--A-->Sign the form.", "signForm",
+))
+<br>
+](readFirst|
+
+
+<!--signForm-->
+[
+You make your mark and gives the form back to the clerk. He mutters an incantation, and the blue-wax seal on your entry permit glows, indicating that it has been released.
+<br>
+_line["We are done here,"] he cracks a mirthless smile, though you wish he didn't. _line["Welcome to Askava, citizen."]
+<br>
+($funcInnerConvo: (dm:
+    "<!--A-->\"Gratitude, danmar. Light blesses Nurandah.\"", "lackNoneDone",
+))
+<br>
+](signForm|
+
+
+<!--lackNoneDone-->
+[
+_line["May your journey be fruitful, and light blesses Nurandah,"] he nods. _line["Next!"]
+<br>
+You exit the Hall of Immigration Affairs. It has taken the good part of your day, but at least you have an entry permit in your hands.
+<br>
+$cssDesc[You gain an ''(print: (passage: "item.permitAskava")'s id)''($funcLogTip: "item.", "permitAskava"), which allows you to hire a ship to take you to the mainland. The permit will be collected and nullified upon landing, making it single-use only.]
+<br>
+---
+
+($funcQuestUpdateLink: "It is done.", "permitAskava", "completed", "You can finally leave this island and enter Askava proper.", "Where your residency can begin in earnest.", [{
+	($funcGainLoss: "item.", "permitAskava", 1)
+	($funcRemoveTimer: "permitAskava", "wait")
+}], "mockDay",)
+
+](lackNoneDone|
+
+
+
+<!--lackID-->
+[
+_line["That's..."] the clerk massages his temples. You get the impression that this happens far more often than it should. _line["We cannot release the permit if you cannot prove that you //are// who you say you are."]
+<br>
+You have looked at a mirror recently, and you are certain that you are still you. But that, obviously, is not good enough.
+<br>
+($funcInnerConvo: (dm:
+    "<!--A-->\"Apologies, danmar. I will return another day with my tax receipt.\"", "failDone",
+))
+<br>
+](lackID|
+
+
+<!--lackLetter-->
+[
+_line["Oh, what happened? It's only been a week or so-"] he immediately interrupts himself before being pulled into something he would rather not know about. _line["No, never mind. Regardless of your reason, we cannot release the permit unless you have //all// of your papers."]
+<br>
+You knew this, of course, and still, you tried your luck, but luck, as it turns out, is not on your side today.
+<br>
+($funcInnerConvo: (dm:
+    "<!--A-->\"Apologies, danmar. I will return another day with my certificate.\"", "failDone",
+))
+<br>
+](lackLetter|
+
+
+<!--lackBoth-->
+[
+_line["Yes, documents - the same ones you have submitted during your application interview."]
+<br>
+($funcInnerConvo: (dm:
+    "<!--A-->\"I... I seem to have misplaced them.\"", "lackBoth2",
+))
+<br>
+](lackBoth|
+
+
+<!--lackBoth2-->
+[
+_line["What? But it's only been a week or so since-"] he immediately interrupts himself before being pulled into something he would rather not know about. _line["No, never mind. Regardless of your reason, we cannot release the permit unless you have //all// of your papers."]
+<br>
+By showing up empty-handed, you have just wasted his time and yours.
+<br>
+($funcInnerConvo: (dm:
+    "<!--A-->\"Apologies, danmar. I will return another day with all of my papers.\"", "failDone",
+))
+<br>
+](lackBoth2|
+
+
+<!--failDone-->
+[
+_line["Next!"]
+<br>
+You leave the Hall of Immigration Affairs. Most of your day has been spent waiting in line, and quite fruitlessly, as it turned out. Your legs are sore.
+<br>
+---
+(link: "You should go back and get some rest.")[{
+     (goto: "mockDay")
+}]
+
+](failDone|
+
+
+
+<!--old-->
+[
 ["Hmm,"]<Clerk1Line| the clerk stares at you, unsure if you're the same person he met. You're unsure whether he's the same one you handed your papers to. They all look kind of the same - isn't that the point of uniforms?
 <br>
 ["Apologies,"]<Clerk1Line| he says, finally. ["Askava is rich in resources and poor in morals. A lot of bad types come around."]<Clerk1Line|
@@ -33,6 +330,8 @@ You assure him that you're one of the good ones.
 	($funcGainLoss: "item.", "permitAskava", 1)\
 	($funcRemoveTimer: "permitAskava", "wait")\
 ], "mockDay",)
+](old|
+
 
 ]<!--end child-->
 ]<!--end child-->

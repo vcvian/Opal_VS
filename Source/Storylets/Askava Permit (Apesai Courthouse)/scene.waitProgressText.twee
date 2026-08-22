@@ -1,0 +1,34 @@
+:: scene.waitProgressText
+
+{=
+<!--the waiting text that shows-->
+(set: _waitProgressText to (shuffled:
+"Presently, a large man wearing a sleeveless leather vest is being served. The skin of his exposed arms is so pale that it would have been blinding, had it not been covered by a thick turf of hair. Must be a laborer or mercenary from Kudkuch dahak.",
+
+"A white-haired woman is called to the clerk's table. You cannot hear their conversation, but you can tell from the clerk's annoyed face that the woman speaks very little Nurango. You wonder if there are natives in the court's employ. For all you know, the clerk might be a native, whose nativeness has been watered down after centuries of contact with Nurandah, who now looks upon this woman with a frown.",
+
+"Right now, a noble woman is speaking to the clerk. Her handmaiden is right behind her, carrying a jeweled baby in her arms - likely the noble's own. The baby - no more thanone or two years of age - is staring straight at you with an unmistakable sneer. \"Trash,\" the baby seems to think.",
+
+"The man being served: You can smell him from far away. He is a disheveled imperial in a roughspun tunic draped with a blue-and-white shawl, the white having turned an off-yellow from his journey. A pilgrim. A Reclaimer. Odd, these types usually have intermediaries, whoever brought them to this land, likely the Traveler's Society. Perhaps this happens to be one of the less wealthy ones.",
+
+"Now, a young man is being served. Or are they a young woman? It is difficult to tell with their long hair, heavy makeup, and copious perfume. What is glaring is that they come from Yavana. Some have said that their women are very beautiful, and their men are even more so. But then again, if a Yavanid did not dress up, would anyone even know they were Yavanids? Without the glamour, they would look just like any other imperial from the south-eastern dahaks.",
+
+"Presently, a middle-aged woman is waiting for the clerk to shuffle through her papers. She seems impatient: Her arms are crossed over her chest, two columns of muscles and scars, and her metal foot is idly tapping on the floor. Clang-clang-clang. Is it some kind of battle-rhythm meant to drive her opponents mad? It seems to be working. A guard asks her to stop but backs away when she looks up with a smile.",
+
+"Right now, an old man is being served. He is taking very long to produce his documents. The clerk peeks at the long line and groans.",
+
+"Presently, a small, golden-skinned woman in black velvet is being served. The clerk is taking extra long with her, since she is Kesh by blood. There are at least twenty different Keshan clans still living in Askava, last you heard. Though they have relinquished the serpent cult and embraced the light, they remain simply Kesh to many.",
+
+"Right now, a fat, bald man is being served. Gold rings bind his dyed beard, and gold knives hang from his belt, which is doing everything it can not to snap from his huge belly. You speculate that he is a merchant from Yavana, or at least a merchant who admires Yavanid fashion. The more cosmopolitan among the traders tend to emulate the peoples they do business with, often to the embarrassment of both cultures.",
+
+"Now, an imperial man is being served. He looks like a million people you've seen before: sallow-skinned and dark-haired, with fine clothes that err on the side of boring. Nurandah's every-man. You suddenly feel homesick.",
+
+"Presently, veiled woman is at the clerk's table. As she waits for her paperwork to be processed, she scans the hall, as if worried about being seen. Veils are largely an archaic custom among imperials who sell services - craftspeople, hosts, diviners, and so on - but since she is obviously not at work, she stands out even more.",
+
+"A father and his son - both of them copper-skinned and light-haired - step up to the clerk's table. The clerk tells them to take off their wooden masks. The man complies, but the boy refuses. The father points to the armed guard standing nearby, and the boy relents and takes off his mask, but not without pouting the entire time they are being served.",
+
+"A nervous man steps up to the clerk. He immediately leans onto the table and begins making jokes, as though he has known the clerk his entire life. That may be the case; it is an island, after all. But the clerk only leers at him while taking his papers.",
+
+"A completely bald woman, dressed in a simple purple robe, her right shoulder exposed, steps up to the clerk's table. As she walks, her heavy beads rattle. The clerk's face is tense. The guards are shifting in place. But the woman only moves slowly, as though she is not there at all, as though she does not know that she is a serpent cultist.",
+
+))

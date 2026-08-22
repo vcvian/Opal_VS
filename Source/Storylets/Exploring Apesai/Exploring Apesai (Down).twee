@@ -81,9 +81,9 @@ You set out...
 ))
 <br>
 
-[(set: _nearWharf to it + _progress)(show: ?1)](1a|
-[(set: _nearTraveler to it + _progress)(show: ?1)](1b|
-[(set: _nearPleasure to it + _progress)(show: ?1)](1c|
+[(set: _nearWharf to it + _progress)(t8n:"dissolve")(show: ?1)](1a|
+[(set: _nearTraveler to it + _progress)(t8n:"dissolve")(show: ?1)](1b|
+[(set: _nearPleasure to it + _progress)(t8n:"dissolve")(show: ?1)](1c|
 
 [
 (display: "scene.exploreApesaiDown1")
@@ -100,9 +100,9 @@ You set out...
 <br>
 ](1|
 
-[(set: _nearWharf to it + _progress)(show: ?2)](2d|
-[(set: _nearTraveler to it + _progress)(show: ?2)](2e|
-[(set: _nearPleasure to it + _progress)(show: ?2)](2f|
+[(set: _nearWharf to it + _progress)(t8n:"dissolve")(show: ?2)](2d|
+[(set: _nearTraveler to it + _progress)(t8n:"dissolve")(show: ?2)](2e|
+[(set: _nearPleasure to it + _progress)(t8n:"dissolve")(show: ?2)](2f|
 
 [
 (display: "scene.exploreApesaiDown2")
@@ -146,9 +146,9 @@ You set out...
 <br>   
 ](2|
 
-[(set: _nearWharf to it + _progress)(show: ?done)](3g|
-[(set: _nearTraveler to it + _progress)(show: ?done)](3h|
-[(set: _nearPleasure to it + _progress)(show: ?done)](3i|
+[(set: _nearWharf to it + _progress)(t8n:"dissolve")(show: ?done)](3g|
+[(set: _nearTraveler to it + _progress)(t8n:"dissolve")(show: ?done)](3h|
+[(set: _nearPleasure to it + _progress)(t8n:"dissolve")(show: ?done)](3i|
 
 [
 <!--calculate _near-->

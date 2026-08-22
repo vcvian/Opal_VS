@@ -3,7 +3,7 @@
 
 (metadata:
 "title", "The Hall of Immigration Affairs",
-"cardDesc", "",
+"cardDesc", "Applying for an Entry Permit",
 )
 
 $cssColumnParent[
@@ -17,36 +17,365 @@ $cssColumnChild[
 
 $cssColumnChild[
 
+<!--format lines-->
 ($funcNPCSpeakManual: "Clerk1")
+<!--shorthand-->
+(set: _line to (hook: "Clerk1Line"))
 
-After standing around for what seems to be forever, thumbing your number slip until the ink has near-faded, your name is finally called.
+<!--little fun code for ?wait-->
+
+<!--initialize $stuff-->
+(if: $stuff does not contain "waitTime")[(set: $stuff's waitTime to (random: 4,8))]
+(if: $stuff does not contain "waitProgress")[(set: $stuff's waitProgress to 0)]
+
+<!--_waitAdvanceCode-->
+(set: _waitAdvanceCode to [{
+     (set: $stuff's waitProgress to it + 1)
+     (t8n: "dissolve")(rerun: ?wait)
+}])
+
+<!--when done-->
+(set: _waitDoneCode to [{
+     (if: $stuff's waitProgress >= $stuff's waitTime)[{
+          (t8n: "dissolve")(show:?waitDone)
+          (t8n: "dissolve")+(replace: ?waitLink)
+[Finally, after standing around for what seems to be forever, thumbing your number slip until the ink has near-faded, you hear your name called.]
+     }]
+}])
+
+
+<!--initialize and load _waitProgressText-->
+(set: _waitProgressText to (a:))
+(display: "scene.waitProgressText")
+
+
+<!--Shuffle text into $stuff-->
+(if: $stuff does not contain "waitProgressText")[(set: $stuff's waitProgressText to _waitProgressText)]
+
+<!--story content begins-->
+Though the dome ceiling rises high, constellations of crystal light glimmering above, the floor below is packed as tightly as any market. After all, as great as Nurandah is,there are only so many clerks to go around.
 <br>
-You approach the clerk. Despite his military uniform, you're sure that he's just a clerk. He doesn't look up.
+You register your name, take your number slip, and wait in line with all the other applicants.
 <br>
-["Documents?"]<Clerk1Line| He mumbles. 
+
+<!--what you see while waiting around-->
+[{
+     (if: $stuff's waitProgress > 0 and $stuff's waitProgress < $stuff's waitTime)[(print: ($stuff's waitProgressText)'s ($stuff's waitProgress))]
 <br>
-You give him a stack of whatever you can think of - bill of sale from the captain of the ship that carried you here, letters of recommendation from your university, a manifest of belongings, etc.
+}]<wait|
+
+
+<!--the actual wait link-->
+(set: _waitLinkText to "Wait until you are called.")
+[(link-rerun: _waitLinkText)[{
+     _waitAdvanceCode
+     _waitDoneCode
+}]]<waitLink|
 <br>
-He flips through the parchments, eyes strangely still, as if not reading at all.
+
+
+<!--waitDone-->
+[
+You approach the clerk who called your name. It is odd that he is dressed in his naval uniform. But then again, some consider Apesai to be a naval base with a city attached.
 <br>
-["A magus?"]<Clerk1Line|
+_line["Name?"] He asks without looking up. His hands are incessantly writing, putting away, getting a new sheet, writing...
 <br>
-Yes. Kind of. Not yet.
+($funcInnerConvo: (dm:
+     "<!--A-->\"Didn't you //just// call my name?\"", "callMyName",
+     "<!--B-->State your name.", "giveHimName",
+))
 <br>
-["Where's your master?"]<Clerk1Line|
+](waitDone|
+
+
+<!--callMyName-->
+[
+_line["Depends,"] he says, shuffling paper around.
 <br>
-He's indisposed.
+($funcInnerConvo: (dm:
+     "<!--A-->\"On what?\"", "onWhat",
+))
 <br>
-The clerk stares at you with the same distant look he has for your documents.
+](callMyName|
+
+
+<!--onWhat-->
+[
+_line["On whether you want a permit or not,"] he finally looks up. Two sunken eyes gaze out at you from behind thick glasses. _line["Name?"]
 <br>
-["Alright. Be back in a few days,"]<Clerk1Line| the clerk says, tossing your parchments onto the huge pile behind him.
+($funcInnerConvo: (dm:
+     "<!--A-->State your name.", "giveHimName",
+))
 <br>
-A few? How long?
+](onWhat|
+
+
+<!--giveHimName-->
+[
+He nods and jots down in one of his ledger books something too long to be your name.
 <br>
-The clerk eyes the pile, sighs, and says, ["However long it takes. Next!"]<Clerk1Line|
+_line["Documents?"] He mumbles.
+<br>
+$cssDesc[(print: (passage: "quest.permitAskava")'s tip)]
+
+<!--check code-->
+(set: _haveID to false)
+(if: $char's player's inv contains "identityReceipt")[(set: _haveID to true)]
+(set: _haveLetter to false)
+(if: $char's player's inv contains "universityCertificate")[(set: _haveLetter to true)]
+
+<!--initialize text-->
+(set: _dialogue to "")
+(set: _response to "")
+<!--which scenario?-->
+(if: _haveID is true and _haveLetter is true)[{
+     (set: _dialogue to "\"Here they are.\"")
+     (set: _response to "lackNone")
+}]
+(elseif: _haveID is false and _haveLetter is true)[{
+     (set: _dialogue to "\"... Oh, I seem to have misplaced my tax receipt...\"")
+     (set: _response to "lackID")
+}]
+(elseif: _haveID is true and _haveLetter is false)[{
+     (set: _dialogue to "\"I... I don't have my certificate with me.\"")
+     (set: _response to "lackLetter")
+}]
+(else:)[{
+     (set: _dialogue to "\"Documents?\"")
+     (set: _response to "lackBoth")
+}]
+
+<br>
+($funcInnerConvo: (dm:
+     _dialogue, _response,
+))
+<br>
+](giveHimName|
+
+
+<!--lackNone-->
+[
+You hand him your tax receipt - which says that a person of such-and-such identity is qualified to travel outside of their home dahak, since all their obligations have been fulfilled - and your certificate - which establishes your reason for travel: Work.
+<br>
+With narrowed eyes, he looks at one, then the other, then back again. He touches the blue-wax seals, and they answer him with a faint glow.
+<br>
+_line["A //magus//. Journeying?"]
+<br>
+($funcInnerConvo: (dm:
+     "<!--A-->\"Yes.\"", "yesJourney",
+))
+<br>
+](lackNone|
+
+
+<!--yesJourney-->
+[
+_line["Found employment yet? Sponsor?"]
+<br>
+($funcInnerConvo: (dm:
+     "<!--A-->\"Yes, at Sabzam Villa.\"", "foundEmployment",
+     "<!--B-->\"I'm freelancing right now.\"", "foundEmployment",
+     "<!--C-->\"Still looking.\"", "foundEmployment",
+))
+<br>
+](yesJourney|
+
+
+<!--foundEmployment-->
+[
+_line["Mmhm,"] he begins jotting down into his ledger, though you are sure that he is only copying the content of your documents instead of listening to you.
+<br>
+($funcInnerConvo: (dm:
+     "<!--A-->\"Wait for him to finish.\"", "beenTo",
+))
+<br>
+](foundEmployment|
+
+
+<!--beenTo-->
+[
+He pauses, _line["Have you ever been to Askava dahak before?"]
+<br>
+And by that, he doesn't mean just the mainland.
+<br>
+($funcInnerConvo: (dm:
+     "<!--A-->\"This is my first time.\"", "howLongStay",
+     "<!--B-->\"Can't say I have, though it seems like such a lovely place.\"", "howLongStay",
+     "<!--C-->\"No.\"", "howLongStay",
+))
+<br>
+](beenTo|
+
+
+<!--howLongStay-->
+[
+_line["Uh-huh,"] he continues writing. _line["And how long do you plan to stay in the dahak? Including Apesai Island."]
+<br>
+($funcInnerConvo: (dm:
+     "<!--A-->\"As long as I need to in order to produce my Khur-a-Mah.\"", "valuablesPossession",
+     "<!--B-->\"As little as possible.\"", "valuablesPossession",
+     "<!--C-->\"I don't know. We'll see.\"", "valuablesPossession",
+))
+<br>
+](howLongStay|
+
+
+<!--valuablesPossession-->
+[
+_line["Right,"] he says. _line["And do you have any valuables - that is, major exports, imports, or objects or substances of cultural significance in bulk quantities or in considerable value - in your possession?"]
+<br>
+($funcInnerConvo: (dm:
+     "<!--A-->\"No. I only carry enough for my work.\"", "beenToKesh",
+     "<!--B-->\"Do I look like a smuggler to you? No.\"", "beenToKesh",
+     "<!--C-->\"Wouldn't be able to carry them around anyhow. I'm traveling light. So, no.\"", "beenToKesh",
+))
+<br>
+](valuablesPossession|
+
+
+<!--beenToKesh-->
+[
+_line["Mm-hmm,"] he has already begun writing before you finish answering. You get the feeling that what you say does not matter all that much.
+<br>
+_line[Have you ever been to Kesh or any of the disputed lands near the Keshan border?]
+<br>
+($funcInnerConvo: (dm:
+     "<!--A-->\"Can't say I had the pleasure, no.\"", "spyQuestion",
+     "<!--B-->\"No, I've never been to Keshan land. Stayed in Bakho most of my life. Barely left Kom, come to think of it.\"", "spyQuestion",
+     "<!--C-->\"No.\"", "spyQuestion",
+))
+<br>
+](beenToKesh|
+
+
+<!--spyQuestion-->
+[
+_line["Mmm, and have you ever been or do you intend to act as an agent on behalf of the Kesh Empire?
+<br>
+"Involvement may include but not limited to: Associating with Kesh agents and/or representatives, receiving financial support from the Kesh Empire and its associates, engaging in espionage, propaganda, sabotage, criminal, and/or terroristic acts in benefit of the Kesh Empire?"]
+<br>
+($funcInnerConvo: (dm:
+     "<!--A-->\"No.\"", "spyNo",
+     "<!--B-->\"No.\"", "spyNo",
+     "<!--C-->\"No.\"", "spyNo",
+))
+<br>
+](spyQuestion|
+
+
+<!--spyNo-->
+[
+_line["Mm-hm..."] he says, jotting down far more than a simple "no". Then, he hands you back your papers. _line["Be back in a few days."]
+<br>
+($funcInnerConvo: (dm:
+     "<!--A-->\"'A few days'? How many, to be exact?\"", "howManyDays",
+     "<!--B-->\"Gratitude, danmar. Light blesses Nurandah.\"", "thanksDanmar",
+))
+<br>
+](spyNo|
+
+
+<!--howManyDays-->
+[
+He sighs, _line["However long it takes. Next!"]
+<br>
+(show: ?lackNoneDone)
+](howManyDays|
+
+
+<!--thanksDanmar-->
+[
+_line["Light blesses Nurandah, davehmar. Next!"]
+<br>
+(show: ?lackNoneDone)
+](thanksDanmar|
+
+
+<!--lackNoneDone-->
+[
+<br>
+You leave the Hall of Immigration Affairs. It is already dark outside. Your legs are sore from all the standing. You should go back and get some rest.
 <br>
 ---
-($funcQuestUpdateLink: "You leave the immigration hall.", "permitAskava", "active", "Your papers are submitted. It'll take a while. Try to keep yourself busy in the mean time.", "Bureaucracies are the same everywhere - back home and here also.", [($funcAddTimer: "permitAskava", "wait")], "mockDay",)
+($funcQuestUpdateLink: "Nothing else to do but wait.", "permitAskava", "active", "Your application has been submitted to the provincial administration. It will take a few days for them to decide on your permit. Of course it does. You'll give it a week or so (excluding weekends).", "Bureaucracies are the same everywhere - back home and here also.", [{
+     ($funcAddTimer: "permitAskava", "wait")
+     (set: $stuff to (dm:))
+}], "mockDay",)
+](lackNoneDone|
+
+
+<!--lackID-->
+[
+_line["Oh my..."] he mutters, glancing at the guard, perhaps wondering if he should have a potential tax evader arrested.
+<br>
+But then again, a mere lack of proof does not immediately implies guilt. Plus, he has so, so much work to do.
+<br>
+These must have been his thoughts because the only thing he says is, _line["Come back when you do."]
+<br>
+($funcInnerConvo: (dm:
+     "<!--A-->\"I will have it next time, danmar. Gratitude, and goodbye.\"", "failDone",
+))
+<br>
+](lackID|
+
+
+<!--lackLetter-->
+[
+_line["Oh, a davehmar?"] He adjusts his glasses to take a better look at you.
+<br>
+Perhaps you shouldn't have let on to this fact. But then again, he would have figured out anyways. Better now than later.
+<br>
+_line["Then yes, you //do// need to present your certificate. Non-certified magical work is illegal."]
+<br>
+In other words, whether you have misplaced it or do not have one at all, there is very little difference to him.
+<br>
+($funcInnerConvo: (dm:
+     "<!--A-->\"I will rectify this and return later, danmar. Gratitude, and goodbye.\"", "failDone",
+))
+<br>
+](lackLetter|
+
+
+<!--lackBoth-->
+[
+_line["Yes, the pieces of paper or parchment that proves who you say you are,"] he explains slowly to you, each word tightens his brows a little more.
+<br>
+($funcInnerConvo: (dm:
+     "<!--A-->\"I... I don't have any.\"", "lackBoth2",
+))
+<br>
+](lackBoth|
+
+<!--lackBoth2-->
+[
+_line["What? Then why have you come? Are you-"] He raises his voice, then quickly regains his composure and dismisses the guard who approached upon hearing the him yell. Despite the monotony of his work, he is wound up tight like a oud's strings.
+<br>
+_line["Please, be informed of our requirements. And come back when you have fulfilled them."]
+<br>
+He waves you away like a fly.
+<br>
+($funcInnerConvo: (dm:
+     "<!--A-->\"Apologies, danmar. And goodbye.\"", "failDone",
+))
+<br>
+](lackBoth2|
+
+<!--failDone-->
+[
+_line["Next!"]
+<br>
+You leave the Hall of Immigration Affairs. Most of your day has been spent waiting in line, and quite fruitlessly, as it turned out. Your legs are sore.
+<br>
+---
+(link: "You should go back and get some rest.")[{
+     (goto: "mockDay")
+}]
+
+](failDone|
+
+
+<!--making sure that the passage above shows even when clicked away (to menus)-->
+_waitDoneCode
 
 ]<!--end parent-->
 ]<!--end child-->

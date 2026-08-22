@@ -90,9 +90,9 @@ $place's weather is "sunny", "Obelisks - or at least their shadows - are also us
 ))
 <br>
 
-[(set: _nearCourt to it + _progress)(show: ?1)](1a|
-[(set: _nearGE to it + _progress)(show: ?1)](1b|
-[(set: _nearPleasure to it + _progress)(show: ?1)](1c|
+[(set: _nearCourt to it + _progress)(t8n:"dissolve")(show: ?1)](1a|
+[(set: _nearGE to it + _progress)(t8n:"dissolve")(show: ?1)](1b|
+[(set: _nearPleasure to it + _progress)(t8n:"dissolve")(show: ?1)](1c|
 
 [
 (display: "scene.exploreApesaiCenter1")
@@ -110,9 +110,9 @@ At a intersection, you look on ahead and see several more obelisks.
 <br>
 ](1|
 
-[(set: _nearCourt to it + _progress)(show: ?2)](2d|
-[(set: _nearGE to it + _progress)(show: ?2)](2e|
-[(set: _nearPleasure to it + _progress)(show: ?2)](2f|
+[(set: _nearCourt to it + _progress)(t8n:"dissolve")(show: ?2)](2d|
+[(set: _nearGE to it + _progress)(t8n:"dissolve")(show: ?2)](2e|
+[(set: _nearPleasure to it + _progress)(t8n:"dissolve")(show: ?2)](2f|
 
 
 [
@@ -131,9 +131,9 @@ Feeling lost again, you look around for the obelisks, but the streets are too pa
 <br>
 ](2|
 
-[(set: _nearCourt to it + _progress)(show: ?done)](3g|
-[(set: _nearGE to it + _progress)(show: ?done)](3h|
-[(set: _nearPleasure to it + _progress)(show: ?done)](3i|
+[(set: _nearCourt to it + _progress)(t8n:"dissolve")(show: ?done)](3g|
+[(set: _nearGE to it + _progress)(t8n:"dissolve")(show: ?done)](3h|
+[(set: _nearPleasure to it + _progress)(t8n:"dissolve")(show: ?done)](3i|
 
 [
 <!--calculate _near-->
@@ -142,7 +142,7 @@ Feeling lost again, you look around for the obelisks, but the streets are too pa
 (set: _nearest to (sorted: _nearCourt,_nearGE,_nearPleasure)'s last)
 (if: _nearest is _nearCourt)[
     (set: _near to "scene.exploreApesaiCourt")
-    (if: ($funcCheckExists: $char's player's att, "knowApesaiCourt", 0) >= 1)[(set: _near to "Apesai Courthouse")(set: _chance to 100)]
+    (if: ($funcCheckExists: $char's player's att, "knowApesaiCourt", 0) >= 1)[(set: _near to "The Provincial Court of Askava")(set: _chance to 100)]
     (set: _nearText to "You are so close now. You see banners everywhere, white marble obelisks had turned to white marble columns, holding up grand porches of grander buildings.")
 ]
 (elseif: _nearest is _nearGE)[

@@ -122,8 +122,8 @@ $place's weather is "sunny", "The day is dizzyingly hot. You think you might pas
 <br>
 ](2b|
 
-[(set: _chance to it + _progress)(show: ?done)](3a|
-[(set: _chance to it - _progress)(show: ?done)](3b|
+[(set: _chance to it + _progress)(t8n:"dissolve")(show: ?done)](3a|
+[(set: _chance to it - _progress)(t8n:"dissolve")(show: ?done)](3b|
 
 [
 <!--extract nearest location info. If already unlocked, go straight to the sublocation-->

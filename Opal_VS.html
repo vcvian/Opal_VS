@@ -9,7 +9,7 @@
 </head>
 <body>
 <tw-story><noscript><tw-noscript>JavaScript needs to be enabled to play Opal.</tw-noscript></noscript></tw-story>
-<!-- UUID://B7CA1AB8-D586-46A4-8186-D10662A25374// --><tw-storydata name="Opal" startnode="338" creator="Tweego" creator-version="2.1.1+81d1d71" ifid="B7CA1AB8-D586-46A4-8186-D10662A25374" zoom="0.3" format="Harlowe" format-version="3.3.9" options="" hidden><style role="stylesheet" id="twine-user-stylesheet" type="text/twine-css">tw-story {
+<!-- UUID://B7CA1AB8-D586-46A4-8186-D10662A25374// --><tw-storydata name="Opal" startnode="339" creator="Tweego" creator-version="2.1.1+81d1d71" ifid="B7CA1AB8-D586-46A4-8186-D10662A25374" zoom="0.3" format="Harlowe" format-version="3.3.9" options="" hidden><style role="stylesheet" id="twine-user-stylesheet" type="text/twine-css">tw-story {
   font-size: 1.0rem;
   align-items: center;
   color: #e1d7cf;
@@ -83,7 +83,7 @@ hr {
   100% {
     background-position: 0% center;
   }
-}</style><script role="script" id="twine-user-script" type="text/twine-javascript"></script><tw-tag name="header" color="yellow"></tw-tag><tw-tag name="stay" color="yellow"></tw-tag><tw-tag name="UI" color="orange"></tw-tag><tw-tag name="effect" color="yellow"></tw-tag><tw-tag name="footer" color="yellow"></tw-tag><tw-tag name="storylet" color="blue"></tw-tag><tw-tag name="sublocation" color="green"></tw-tag><tw-tag name="test" color="blue"></tw-tag><tw-tag name="topic" color="purple"></tw-tag><tw-tag name="traveling" color="purple"></tw-tag><tw-tag name="book" color="yellow"></tw-tag><tw-tag name="startup" color="orange"></tw-tag><tw-tag name="static-storage" color="yellow"></tw-tag><tw-passagedata pid="1" name="AA. Books, Reading &amp; Formulae" tags="startup" position="100,100" size="100,100">{=
+}</style><script role="script" id="twine-user-script" type="text/twine-javascript"></script><tw-tag name="storylet" color="blue"></tw-tag><tw-tag name="test" color="blue"></tw-tag><tw-tag name="traveling" color="purple"></tw-tag><tw-tag name="book" color="yellow"></tw-tag><tw-tag name="effect" color="yellow"></tw-tag><tw-tag name="footer" color="yellow"></tw-tag><tw-tag name="static-storage" color="yellow"></tw-tag><tw-tag name="stay" color="yellow"></tw-tag><tw-tag name="UI" color="orange"></tw-tag><tw-tag name="header" color="yellow"></tw-tag><tw-tag name="startup" color="orange"></tw-tag><tw-tag name="sublocation" color="green"></tw-tag><tw-tag name="topic" color="purple"></tw-tag><tw-passagedata pid="1" name="AA. Books, Reading &amp; Formulae" tags="startup" position="100,100" size="100,100">{=
 &lt;!--Macros related to books and reading--&gt;
 
 (set: $readingNav to (dm:
@@ -2703,12 +2703,11 @@ Of course, what is &quot;reasonable&quot; varies greatly between different cultu
 $cssColumnChild[($funcNavigateSublocations:)]
 ]&lt;!--end of $cssColumnParent--&gt;
 ---
-($funcStorylet:)</tw-passagedata><tw-passagedata pid="36" name="The Provincial Court of Askava" tags="sublocation unfinished" position="4500,1750" size="100,100">{=
+($funcStorylet:)</tw-passagedata><tw-passagedata pid="36" name="The Provincial Court of Askava" tags="sublocation" position="4500,1750" size="100,100">{=
 (metadata:
 &quot;prefecture&quot;, &quot;Nurrah Coastlands&quot;,
 &quot;location&quot;, &quot;Apesai&quot;,
 &quot;title&quot;, &quot;The Provincial Court of Askava&quot;,
-&quot;devNote&quot;, [Need to write content.],
 )
 
 ($funcUpdateLocation:)
@@ -2716,7 +2715,13 @@ $cssColumnChild[($funcNavigateSublocations:)]
 &lt;h2&gt;(print: (passage:)&#39;s title)&lt;/h2&gt;
 $cssColumnParent[
 $cssColumnChild[
-(The courthouse, where papers are collected and issued...)
+
+Before you are dizzying arches and lavish mosaics filling up all walls. Each building&#39;s wind trap alone, sitting high above their roofs, are as large as any townhouse. Guards in silk and steel stand under the shadows of great columns, and bespectacled scribes hurry across gardens. Under your feet are floors of white marble.
+&lt;br&gt;
+This cluster of former palaces, now turned into administrative buildings, is the seat of the provincial government. &quot;The Court&quot; or &quot;the Courthouse&quot; is merely a metonymy.
+&lt;br&gt;
+All affairs of Askava dahak are overseen by scribes, experts, and officials who are charged with representing the will and law of Nurandah, all gathered here in the island-city of Apesai. Their presence makes this land a dahak.
+
 ]
 $cssColumnChild[($funcNavigateSublocations:)]
 ]&lt;!--end of $cssColumnParent--&gt;
@@ -3591,7 +3596,7 @@ $cssDesc[It is now &#39;&#39;(display:&quot;table.dayNames&quot;)&#39;&#39;, &#3
 &lt;!--Go to nextDay immediately to avoid faffing around with the auto-triggers above interacting weirdly with menu buttons--&gt;
 (link-rerun: &quot;Done setting Day&quot;)[(goto: &quot;nextDay&quot;)]</tw-passagedata><tw-passagedata pid="74" name="npc.Clerk1" tags="static-storage" position="4200,1925" size="100,100">(metadata:
 &quot;id&quot;, [Provincial Clerk],
-&quot;color&quot;, #8a7f99,
+&quot;color&quot;, #bab0ce,
 )\
 &lt;!--This is a generic NPC that has no variables--&gt;</tw-passagedata><tw-passagedata pid="75" name="npc.genericAttendant1" tags="static-storage" position="600,975" size="100,100">{=
 (metadata:
@@ -6847,7 +6852,7 @@ Veh-Veh considers what you&#39;ve said, trying to recount the travel routes befo
 [
 _line[&quot;Oh yes, then it&#39;ll make the most sense to dock at Rokhab if you&#39;re intended for Sabzam or anywhere inside Askava proper for that matter.
 &lt;br&gt;
-&quot;Landing in Rokhab only requires an entry permit, which you can apply for at the Apesai Courthouse. It&#39;ll only take a few days. I&#39;d know - I help my teachers out with their applications all the time.
+&quot;Landing in Rokhab only requires an entry permit, which you can apply for one at the administrative district; most just call it &#39;the courthouse&#39;. It&#39;ll only take a few days. I&#39;d know - I help my teachers out with their applications all the time.
 &lt;br&gt;
 &quot;When you&#39;re in Rokhab, you&#39;ll want to follow the Rokhrud river up north until you reach Sabzam Villa. That stretch - Apesai, Rokhab, Sabzam - takes up the majority of traffic in Askava. It&#39;s well-guarded and temperate. Beyond that is only mountains and deserts.
 &lt;br&gt;
@@ -10993,7 +10998,7 @@ $cssDesc[Having &#39;&#39;(print: (passage: &quot;item.mapInrah&quot;)&#39;s id)
     &quot;desc&quot;, [A piece of paper with your name and a terse description of why you&#39;re in Askava, stamped with the magical, tamper-proof seal of the governor.],
     &quot;tip&quot;, [This document permits you a one-time passage from Apesai into mainland Askava, collected at either of the 3 major shores: Rokhab, Navveh, or Zirab. Valid once.],
     &quot;gainText&quot;, [After some trouble, you are finally granted a permit into Askava.],
-    &quot;lossText&quot;, [You are loath to part with the precious papyrus, mostly because it will be bother to get another one if you ever make another trip from the island into the mainland.],
+    &quot;lossText&quot;, [You are loath to part with the precious permit, mostly because it will be bother to get another one if you ever make another trip from the island into the mainland.],
     &quot;content&quot;, [{
 &lt;!--main content begins--&gt;
 &#39;&#39;LIGHT BLESSES NURANDAH&#39;&#39;
@@ -11010,7 +11015,7 @@ We, DAHAKMAR OF ASKAVA and also BANDAKMAR OF APESAI, hereby grants the holder of
 
 a one-time permission to enter continental Askava via Apesai, in accordance with the declaration of non-immigrantion, non-import, and non-espionage signed in Apesai bandak.
 &lt;br&gt;
-This document, which under no circumstances can be used as a proof of identity for the holder outside of Askava dahak, is exclusively intended to be used for transit within the dahak, valid for a single journey, to be collected and destroyed upon arrival.
+This document, which under no circumstances can be used as a proof of identity for the holder outside of Askava dahak, is exclusively intended to be used for transit within the dahak, valid for a single journey, to be collected and nullified upon arrival.
 &lt;br&gt;
 $cssDesc[The document then lists several more disclaimers, waivers, and conditions.]
 &lt;br&gt;
@@ -11035,7 +11040,7 @@ $cssDesc[There is a blue-wax seal, a sigil depicting an Askavan hare running und
     &quot;desc&quot;, [A piece of vellum from the Bakho University certifying that you have completed your apprenticeship and are qualified to practice magic.],
     &quot;tip&quot;, [You will be asked to submit this document in various imperial offices.],
     &quot;gainText&quot;, [You pick up the certificate. Twelve years of being practically locked up in a tower has earned you this piece of skin. Do not lose it.],
-    &quot;lossText&quot;, [As you part ways with your certificate, you tell yourself that it is the skill that matters, not the paper. However, without the paper, not many would pay you for those skills.],
+    &quot;lossText&quot;, [As you part ways with your certificate, you tell yourself that it is the skill that matters, not the parchment. However, without the parchment, not many would pay you for those skills.],
     &quot;content&quot;, [{
 &lt;!--content begins--&gt;
 &#39;&#39;LIGHT BLESSES NURANDAH&#39;&#39;
@@ -11105,24 +11110,23 @@ $cssDesc[There is a blue-wax seal, a sigil with the Sun of Nurandah behind cross
 
 ))
 
-)</tw-passagedata><tw-passagedata pid="201" name="quest.permitAskava" tags="static-storage unfinished" position="4200,1800" size="100,100">{=
+)</tw-passagedata><tw-passagedata pid="201" name="quest.permitAskava" tags="static-storage" position="4200,1800" size="100,100">{=
 
 (metadata:
-    &quot;devNote&quot;, [No tip yet.],
 	&quot;id&quot;, [Task: Permit into Askava],
     &quot;img&quot;, &quot;https://thefifthcity.wiki/w/images/3/3f/Currency3_copper.png&quot;,
     &quot;desc&quot;, [No-one enters mainland Askava without a permit from the provincial government.],
-    &quot;tip&quot;, [],
+    &quot;tip&quot;, [You must produce both an &#39;&#39;(print: (passage: &quot;item.identityReceipt&quot;)&#39;s id)&#39;&#39;($funcLogTip: &quot;item.&quot;, &quot;identityReceipt&quot;) and a &#39;&#39;(print: (passage: &quot;item.universityCertificate&quot;)&#39;s id)&#39;&#39;($funcLogTip: &quot;item.&quot;, &quot;universityCertificate&quot;)],
     
     &quot;wait&quot;, 5,
     &quot;waitDesc&quot;, [Application submitted. You were told come back later, (if: $char&#39;s player&#39;s timerQuest&#39;s permitAskava&#39;s wait &gt; 0)[perhaps in (plural: $char&#39;s player&#39;s timerQuest&#39;s permitAskava&#39;s wait, &quot;day&quot;)](else:)[and well, today is &quot;later&quot;].],
     &quot;waitAddLog&quot;, [You were told to come back in (plural: (passage: &quot;quest.permitAskava&quot;)&#39;s wait, &quot;day&quot;).],
-    &quot;waitAddDialog&quot;, [The clerk files away your application, telling you to come back in (plural: (passage: &quot;quest.permitAskava&quot;)&#39;s wait, &quot;day&quot;).],
+    &quot;waitAddDialog&quot;, [The clerk has filed away your application. You resolve to come back in (plural: (passage: &quot;quest.permitAskava&quot;)&#39;s wait, &quot;day&quot;).],
     &quot;waitAddConfirm&quot;, &quot;Right.&quot;,
-    &quot;waitDoneDialog&quot;, [Your Askava entry permit should be ready. Come pick it up at the &#39;&#39;Provincial Court&#39;&#39;.],
+    &quot;waitDoneDialog&quot;, [The result for your Askava entry permit application should be available. Come to the &#39;&#39;Provincial Court of Askava&#39;&#39; on a weekday.],
     &quot;waitDoneConfirm&quot;, &quot;Finally.&quot;,
     &quot;waitDoneEffect&quot;, [],
-    &quot;waitDoneLog&quot;, [Your Askava entry permit should be ready to be picked up at the &#39;&#39;Provincial Court&#39;&#39;.],
+    &quot;waitDoneLog&quot;, [The result for your Askava entry permit application should be available. Come to the &#39;&#39;Provincial Court of Askava&#39;&#39; on a weekday.],
     
 )\
 &lt;!--Example of a quest that makes you wait--&gt;</tw-passagedata><tw-passagedata pid="202" name="quest.sickTeacher" tags="static-storage" position="2975,2500" size="100,100">{=
@@ -12711,7 +12715,7 @@ $cssDesc[
 
 (metadata:
 &quot;title&quot;, &quot;The Hall of Immigration Affairs&quot;,
-&quot;cardDesc&quot;, &quot;&quot;,
+&quot;cardDesc&quot;, &quot;Applying for an Entry Permit&quot;,
 )
 
 $cssColumnParent[
@@ -12725,36 +12729,365 @@ $cssColumnChild[
 
 $cssColumnChild[
 
+&lt;!--format lines--&gt;
 ($funcNPCSpeakManual: &quot;Clerk1&quot;)
+&lt;!--shorthand--&gt;
+(set: _line to (hook: &quot;Clerk1Line&quot;))
 
-After standing around for what seems to be forever, thumbing your number slip until the ink has near-faded, your name is finally called.
+&lt;!--little fun code for ?wait--&gt;
+
+&lt;!--initialize $stuff--&gt;
+(if: $stuff does not contain &quot;waitTime&quot;)[(set: $stuff&#39;s waitTime to (random: 4,8))]
+(if: $stuff does not contain &quot;waitProgress&quot;)[(set: $stuff&#39;s waitProgress to 0)]
+
+&lt;!--_waitAdvanceCode--&gt;
+(set: _waitAdvanceCode to [{
+     (set: $stuff&#39;s waitProgress to it + 1)
+     (t8n: &quot;dissolve&quot;)(rerun: ?wait)
+}])
+
+&lt;!--when done--&gt;
+(set: _waitDoneCode to [{
+     (if: $stuff&#39;s waitProgress &gt;= $stuff&#39;s waitTime)[{
+          (t8n: &quot;dissolve&quot;)(show:?waitDone)
+          (t8n: &quot;dissolve&quot;)+(replace: ?waitLink)
+[Finally, after standing around for what seems to be forever, thumbing your number slip until the ink has near-faded, you hear your name called.]
+     }]
+}])
+
+
+&lt;!--initialize and load _waitProgressText--&gt;
+(set: _waitProgressText to (a:))
+(display: &quot;scene.waitProgressText&quot;)
+
+
+&lt;!--Shuffle text into $stuff--&gt;
+(if: $stuff does not contain &quot;waitProgressText&quot;)[(set: $stuff&#39;s waitProgressText to _waitProgressText)]
+
+&lt;!--story content begins--&gt;
+Though the dome ceiling rises high, constellations of crystal light glimmering above, the floor below is packed as tightly as any market. After all, as great as Nurandah is,there are only so many clerks to go around.
 &lt;br&gt;
-You approach the clerk. Despite his military uniform, you&#39;re sure that he&#39;s just a clerk. He doesn&#39;t look up.
+You register your name, take your number slip, and wait in line with all the other applicants.
 &lt;br&gt;
-[&quot;Documents?&quot;]&lt;Clerk1Line| He mumbles. 
+
+&lt;!--what you see while waiting around--&gt;
+[{
+     (if: $stuff&#39;s waitProgress &gt; 0 and $stuff&#39;s waitProgress &lt; $stuff&#39;s waitTime)[(print: ($stuff&#39;s waitProgressText)&#39;s ($stuff&#39;s waitProgress))]
 &lt;br&gt;
-You give him a stack of whatever you can think of - bill of sale from the captain of the ship that carried you here, letters of recommendation from your university, a manifest of belongings, etc.
+}]&lt;wait|
+
+
+&lt;!--the actual wait link--&gt;
+(set: _waitLinkText to &quot;Wait until you are called.&quot;)
+[(link-rerun: _waitLinkText)[{
+     _waitAdvanceCode
+     _waitDoneCode
+}]]&lt;waitLink|
 &lt;br&gt;
-He flips through the parchments, eyes strangely still, as if not reading at all.
+
+
+&lt;!--waitDone--&gt;
+[
+You approach the clerk who called your name. It is odd that he is dressed in his naval uniform. But then again, some consider Apesai to be a naval base with a city attached.
 &lt;br&gt;
-[&quot;A magus?&quot;]&lt;Clerk1Line|
+_line[&quot;Name?&quot;] He asks without looking up. His hands are incessantly writing, putting away, getting a new sheet, writing...
 &lt;br&gt;
-Yes. Kind of. Not yet.
+($funcInnerConvo: (dm:
+     &quot;&lt;!--A--&gt;\&quot;Didn&#39;t you //just// call my name?\&quot;&quot;, &quot;callMyName&quot;,
+     &quot;&lt;!--B--&gt;State your name.&quot;, &quot;giveHimName&quot;,
+))
 &lt;br&gt;
-[&quot;Where&#39;s your master?&quot;]&lt;Clerk1Line|
+](waitDone|
+
+
+&lt;!--callMyName--&gt;
+[
+_line[&quot;Depends,&quot;] he says, shuffling paper around.
 &lt;br&gt;
-He&#39;s indisposed.
+($funcInnerConvo: (dm:
+     &quot;&lt;!--A--&gt;\&quot;On what?\&quot;&quot;, &quot;onWhat&quot;,
+))
 &lt;br&gt;
-The clerk stares at you with the same distant look he has for your documents.
+](callMyName|
+
+
+&lt;!--onWhat--&gt;
+[
+_line[&quot;On whether you want a permit or not,&quot;] he finally looks up. Two sunken eyes gaze out at you from behind thick glasses. _line[&quot;Name?&quot;]
 &lt;br&gt;
-[&quot;Alright. Be back in a few days,&quot;]&lt;Clerk1Line| the clerk says, tossing your parchments onto the huge pile behind him.
+($funcInnerConvo: (dm:
+     &quot;&lt;!--A--&gt;State your name.&quot;, &quot;giveHimName&quot;,
+))
 &lt;br&gt;
-A few? How long?
+](onWhat|
+
+
+&lt;!--giveHimName--&gt;
+[
+He nods and jots down in one of his ledger books something too long to be your name.
 &lt;br&gt;
-The clerk eyes the pile, sighs, and says, [&quot;However long it takes. Next!&quot;]&lt;Clerk1Line|
+_line[&quot;Documents?&quot;] He mumbles.
+&lt;br&gt;
+$cssDesc[(print: (passage: &quot;quest.permitAskava&quot;)&#39;s tip)]
+
+&lt;!--check code--&gt;
+(set: _haveID to false)
+(if: $char&#39;s player&#39;s inv contains &quot;identityReceipt&quot;)[(set: _haveID to true)]
+(set: _haveLetter to false)
+(if: $char&#39;s player&#39;s inv contains &quot;universityCertificate&quot;)[(set: _haveLetter to true)]
+
+&lt;!--initialize text--&gt;
+(set: _dialogue to &quot;&quot;)
+(set: _response to &quot;&quot;)
+&lt;!--which scenario?--&gt;
+(if: _haveID is true and _haveLetter is true)[{
+     (set: _dialogue to &quot;\&quot;Here they are.\&quot;&quot;)
+     (set: _response to &quot;lackNone&quot;)
+}]
+(elseif: _haveID is false and _haveLetter is true)[{
+     (set: _dialogue to &quot;\&quot;... Oh, I seem to have misplaced my tax receipt...\&quot;&quot;)
+     (set: _response to &quot;lackID&quot;)
+}]
+(elseif: _haveID is true and _haveLetter is false)[{
+     (set: _dialogue to &quot;\&quot;I... I don&#39;t have my certificate with me.\&quot;&quot;)
+     (set: _response to &quot;lackLetter&quot;)
+}]
+(else:)[{
+     (set: _dialogue to &quot;\&quot;Documents?\&quot;&quot;)
+     (set: _response to &quot;lackBoth&quot;)
+}]
+
+&lt;br&gt;
+($funcInnerConvo: (dm:
+     _dialogue, _response,
+))
+&lt;br&gt;
+](giveHimName|
+
+
+&lt;!--lackNone--&gt;
+[
+You hand him your tax receipt - which says that a person of such-and-such identity is qualified to travel outside of their home dahak, since all their obligations have been fulfilled - and your certificate - which establishes your reason for travel: Work.
+&lt;br&gt;
+With narrowed eyes, he looks at one, then the other, then back again. He touches the blue-wax seals, and they answer him with a faint glow.
+&lt;br&gt;
+_line[&quot;A //magus//. Journeying?&quot;]
+&lt;br&gt;
+($funcInnerConvo: (dm:
+     &quot;&lt;!--A--&gt;\&quot;Yes.\&quot;&quot;, &quot;yesJourney&quot;,
+))
+&lt;br&gt;
+](lackNone|
+
+
+&lt;!--yesJourney--&gt;
+[
+_line[&quot;Found employment yet? Sponsor?&quot;]
+&lt;br&gt;
+($funcInnerConvo: (dm:
+     &quot;&lt;!--A--&gt;\&quot;Yes, at Sabzam Villa.\&quot;&quot;, &quot;foundEmployment&quot;,
+     &quot;&lt;!--B--&gt;\&quot;I&#39;m freelancing right now.\&quot;&quot;, &quot;foundEmployment&quot;,
+     &quot;&lt;!--C--&gt;\&quot;Still looking.\&quot;&quot;, &quot;foundEmployment&quot;,
+))
+&lt;br&gt;
+](yesJourney|
+
+
+&lt;!--foundEmployment--&gt;
+[
+_line[&quot;Mmhm,&quot;] he begins jotting down into his ledger, though you are sure that he is only copying the content of your documents instead of listening to you.
+&lt;br&gt;
+($funcInnerConvo: (dm:
+     &quot;&lt;!--A--&gt;\&quot;Wait for him to finish.\&quot;&quot;, &quot;beenTo&quot;,
+))
+&lt;br&gt;
+](foundEmployment|
+
+
+&lt;!--beenTo--&gt;
+[
+He pauses, _line[&quot;Have you ever been to Askava dahak before?&quot;]
+&lt;br&gt;
+And by that, he doesn&#39;t mean just the mainland.
+&lt;br&gt;
+($funcInnerConvo: (dm:
+     &quot;&lt;!--A--&gt;\&quot;This is my first time.\&quot;&quot;, &quot;howLongStay&quot;,
+     &quot;&lt;!--B--&gt;\&quot;Can&#39;t say I have, though it seems like such a lovely place.\&quot;&quot;, &quot;howLongStay&quot;,
+     &quot;&lt;!--C--&gt;\&quot;No.\&quot;&quot;, &quot;howLongStay&quot;,
+))
+&lt;br&gt;
+](beenTo|
+
+
+&lt;!--howLongStay--&gt;
+[
+_line[&quot;Uh-huh,&quot;] he continues writing. _line[&quot;And how long do you plan to stay in the dahak? Including Apesai Island.&quot;]
+&lt;br&gt;
+($funcInnerConvo: (dm:
+     &quot;&lt;!--A--&gt;\&quot;As long as I need to in order to produce my Khur-a-Mah.\&quot;&quot;, &quot;valuablesPossession&quot;,
+     &quot;&lt;!--B--&gt;\&quot;As little as possible.\&quot;&quot;, &quot;valuablesPossession&quot;,
+     &quot;&lt;!--C--&gt;\&quot;I don&#39;t know. We&#39;ll see.\&quot;&quot;, &quot;valuablesPossession&quot;,
+))
+&lt;br&gt;
+](howLongStay|
+
+
+&lt;!--valuablesPossession--&gt;
+[
+_line[&quot;Right,&quot;] he says. _line[&quot;And do you have any valuables - that is, major exports, imports, or objects or substances of cultural significance in bulk quantities or in considerable value - in your possession?&quot;]
+&lt;br&gt;
+($funcInnerConvo: (dm:
+     &quot;&lt;!--A--&gt;\&quot;No. I only carry enough for my work.\&quot;&quot;, &quot;beenToKesh&quot;,
+     &quot;&lt;!--B--&gt;\&quot;Do I look like a smuggler to you? No.\&quot;&quot;, &quot;beenToKesh&quot;,
+     &quot;&lt;!--C--&gt;\&quot;Wouldn&#39;t be able to carry them around anyhow. I&#39;m traveling light. So, no.\&quot;&quot;, &quot;beenToKesh&quot;,
+))
+&lt;br&gt;
+](valuablesPossession|
+
+
+&lt;!--beenToKesh--&gt;
+[
+_line[&quot;Mm-hmm,&quot;] he has already begun writing before you finish answering. You get the feeling that what you say does not matter all that much.
+&lt;br&gt;
+_line[Have you ever been to Kesh or any of the disputed lands near the Keshan border?]
+&lt;br&gt;
+($funcInnerConvo: (dm:
+     &quot;&lt;!--A--&gt;\&quot;Can&#39;t say I had the pleasure, no.\&quot;&quot;, &quot;spyQuestion&quot;,
+     &quot;&lt;!--B--&gt;\&quot;No, I&#39;ve never been to Keshan land. Stayed in Bakho most of my life. Barely left Kom, come to think of it.\&quot;&quot;, &quot;spyQuestion&quot;,
+     &quot;&lt;!--C--&gt;\&quot;No.\&quot;&quot;, &quot;spyQuestion&quot;,
+))
+&lt;br&gt;
+](beenToKesh|
+
+
+&lt;!--spyQuestion--&gt;
+[
+_line[&quot;Mmm, and have you ever been or do you intend to act as an agent on behalf of the Kesh Empire?
+&lt;br&gt;
+&quot;Involvement may include but not limited to: Associating with Kesh agents and/or representatives, receiving financial support from the Kesh Empire and its associates, engaging in espionage, propaganda, sabotage, criminal, and/or terroristic acts in benefit of the Kesh Empire?&quot;]
+&lt;br&gt;
+($funcInnerConvo: (dm:
+     &quot;&lt;!--A--&gt;\&quot;No.\&quot;&quot;, &quot;spyNo&quot;,
+     &quot;&lt;!--B--&gt;\&quot;No.\&quot;&quot;, &quot;spyNo&quot;,
+     &quot;&lt;!--C--&gt;\&quot;No.\&quot;&quot;, &quot;spyNo&quot;,
+))
+&lt;br&gt;
+](spyQuestion|
+
+
+&lt;!--spyNo--&gt;
+[
+_line[&quot;Mm-hm...&quot;] he says, jotting down far more than a simple &quot;no&quot;. Then, he hands you back your papers. _line[&quot;Be back in a few days.&quot;]
+&lt;br&gt;
+($funcInnerConvo: (dm:
+     &quot;&lt;!--A--&gt;\&quot;&#39;A few days&#39;? How many, to be exact?\&quot;&quot;, &quot;howManyDays&quot;,
+     &quot;&lt;!--B--&gt;\&quot;Gratitude, danmar. Light blesses Nurandah.\&quot;&quot;, &quot;thanksDanmar&quot;,
+))
+&lt;br&gt;
+](spyNo|
+
+
+&lt;!--howManyDays--&gt;
+[
+He sighs, _line[&quot;However long it takes. Next!&quot;]
+&lt;br&gt;
+(show: ?lackNoneDone)
+](howManyDays|
+
+
+&lt;!--thanksDanmar--&gt;
+[
+_line[&quot;Light blesses Nurandah, davehmar. Next!&quot;]
+&lt;br&gt;
+(show: ?lackNoneDone)
+](thanksDanmar|
+
+
+&lt;!--lackNoneDone--&gt;
+[
+&lt;br&gt;
+You leave the Hall of Immigration Affairs. It is already dark outside. Your legs are sore from all the standing. You should go back and get some rest.
 &lt;br&gt;
 ---
-($funcQuestUpdateLink: &quot;You leave the immigration hall.&quot;, &quot;permitAskava&quot;, &quot;active&quot;, &quot;Your papers are submitted. It&#39;ll take a while. Try to keep yourself busy in the mean time.&quot;, &quot;Bureaucracies are the same everywhere - back home and here also.&quot;, [($funcAddTimer: &quot;permitAskava&quot;, &quot;wait&quot;)], &quot;mockDay&quot;,)
+($funcQuestUpdateLink: &quot;Nothing else to do but wait.&quot;, &quot;permitAskava&quot;, &quot;active&quot;, &quot;Your application has been submitted to the provincial administration. It will take a few days for them to decide on your permit. Of course it does. You&#39;ll give it a week or so (excluding weekends).&quot;, &quot;Bureaucracies are the same everywhere - back home and here also.&quot;, [{
+     ($funcAddTimer: &quot;permitAskava&quot;, &quot;wait&quot;)
+     (set: $stuff to (dm:))
+}], &quot;mockDay&quot;,)
+](lackNoneDone|
+
+
+&lt;!--lackID--&gt;
+[
+_line[&quot;Oh my...&quot;] he mutters, glancing at the guard, perhaps wondering if he should have a potential tax evader arrested.
+&lt;br&gt;
+But then again, a mere lack of proof does not immediately implies guilt. Plus, he has so, so much work to do.
+&lt;br&gt;
+These must have been his thoughts because the only thing he says is, _line[&quot;Come back when you do.&quot;]
+&lt;br&gt;
+($funcInnerConvo: (dm:
+     &quot;&lt;!--A--&gt;\&quot;I will have it next time, danmar. Gratitude, and goodbye.\&quot;&quot;, &quot;failDone&quot;,
+))
+&lt;br&gt;
+](lackID|
+
+
+&lt;!--lackLetter--&gt;
+[
+_line[&quot;Oh, a davehmar?&quot;] He adjusts his glasses to take a better look at you.
+&lt;br&gt;
+Perhaps you shouldn&#39;t have let on to this fact. But then again, he would have figured out anyways. Better now than later.
+&lt;br&gt;
+_line[&quot;Then yes, you //do// need to present your certificate. Non-certified magical work is illegal.&quot;]
+&lt;br&gt;
+In other words, whether you have misplaced it or do not have one at all, there is very little difference to him.
+&lt;br&gt;
+($funcInnerConvo: (dm:
+     &quot;&lt;!--A--&gt;\&quot;I will rectify this and return later, danmar. Gratitude, and goodbye.\&quot;&quot;, &quot;failDone&quot;,
+))
+&lt;br&gt;
+](lackLetter|
+
+
+&lt;!--lackBoth--&gt;
+[
+_line[&quot;Yes, the pieces of paper or parchment that proves who you say you are,&quot;] he explains slowly to you, each word tightens his brows a little more.
+&lt;br&gt;
+($funcInnerConvo: (dm:
+     &quot;&lt;!--A--&gt;\&quot;I... I don&#39;t have any.\&quot;&quot;, &quot;lackBoth2&quot;,
+))
+&lt;br&gt;
+](lackBoth|
+
+&lt;!--lackBoth2--&gt;
+[
+_line[&quot;What? Then why have you come? Are you-&quot;] He raises his voice, then quickly regains his composure and dismisses the guard who approached upon hearing the him yell. Despite the monotony of his work, he is wound up tight like a oud&#39;s strings.
+&lt;br&gt;
+_line[&quot;Please, be informed of our requirements. And come back when you have fulfilled them.&quot;]
+&lt;br&gt;
+He waves you away like a fly.
+&lt;br&gt;
+($funcInnerConvo: (dm:
+     &quot;&lt;!--A--&gt;\&quot;Apologies, danmar. And goodbye.\&quot;&quot;, &quot;failDone&quot;,
+))
+&lt;br&gt;
+](lackBoth2|
+
+&lt;!--failDone--&gt;
+[
+_line[&quot;Next!&quot;]
+&lt;br&gt;
+You leave the Hall of Immigration Affairs. Most of your day has been spent waiting in line, and quite fruitlessly, as it turned out. Your legs are sore.
+&lt;br&gt;
+---
+(link: &quot;You should go back and get some rest.&quot;)[{
+     (goto: &quot;mockDay&quot;)
+}]
+
+](failDone|
+
+
+&lt;!--making sure that the passage above shows even when clicked away (to menus)--&gt;
+_waitDoneCode
 
 ]&lt;!--end parent--&gt;
 ]&lt;!--end child--&gt;</tw-passagedata><tw-passagedata pid="239" name="AskavaPermit 1b" tags="" position="4575,2025" size="100,100">{=
@@ -12775,8 +13108,305 @@ $cssColumnChild[
 
 $cssColumnChild[
 
+&lt;!--format lines--&gt;
 ($funcNPCSpeakManual: &quot;Clerk1&quot;)
+&lt;!--shorthand--&gt;
+(set: _line to (hook: &quot;Clerk1Line&quot;))
 
+
+&lt;!--initialize $stuff--&gt;
+(if: $stuff does not contain &quot;waitTime&quot;)[(set: $stuff&#39;s waitTime to (random: 4,8))]
+(if: $stuff does not contain &quot;waitProgress&quot;)[(set: $stuff&#39;s waitProgress to 0)]
+
+&lt;!--_waitAdvanceCode--&gt;
+(set: _waitAdvanceCode to [{
+     (set: $stuff&#39;s waitProgress to it + 1)
+     (t8n: &quot;dissolve&quot;)(rerun: ?wait)
+}])
+
+&lt;!--when done--&gt;
+(set: _waitDoneCode to [{
+     (if: $stuff&#39;s waitProgress &gt;= $stuff&#39;s waitTime)[{
+          (t8n: &quot;dissolve&quot;)(show:?waitDone)
+          (t8n: &quot;dissolve&quot;)+(replace: ?waitLink)
+[Finally, after standing around for what seems to be forever, thumbing your number slip until the ink has near-faded, you hear your name called.]
+     }]
+}])
+
+
+&lt;!--initialize and load _waitProgressText--&gt;
+(set: _waitProgressText to (a:))
+(display: &quot;scene.waitProgressText&quot;)
+
+
+&lt;!--Shuffle text into $stuff--&gt;
+(if: $stuff does not contain &quot;waitProgressText&quot;)[(set: $stuff&#39;s waitProgressText to _waitProgressText)]
+
+&lt;!--story content begins--&gt;
+Once again, you register your name, take your place in the queue, among the huddling masses, suffocating.
+&lt;br&gt;
+
+&lt;!--what you see while waiting around--&gt;
+[{
+     (if: $stuff&#39;s waitProgress &gt; 0 and $stuff&#39;s waitProgress &lt; $stuff&#39;s waitTime)[(print: ($stuff&#39;s waitProgressText)&#39;s ($stuff&#39;s waitProgress))]
+&lt;br&gt;
+}]&lt;wait|
+
+
+&lt;!--the actual wait link--&gt;
+(set: _waitLinkText to &quot;Wait until you are called.&quot;)
+[(link-rerun: _waitLinkText)[{
+     _waitAdvanceCode
+     _waitDoneCode
+}]]&lt;waitLink|
+&lt;br&gt;
+
+&lt;!--waitDone--&gt;
+[
+_line[&quot;Hmm,&quot;] the clerk stares at you, unsure if you are the same person he has processed. You too are unsure whether he is the same one that interviewed you. They all look the same. Isn&#39;t that the point of uniforms?
+&lt;br&gt;
+_line[&quot;Name?&quot;]
+&lt;br&gt;
+($funcInnerConvo: (dm:
+    &quot;&lt;!--A--&gt;\&quot;I thought you already knew.\&quot;&quot;, &quot;alreadyKnew&quot;,
+	&quot;&lt;!--B--&gt;\&quot;Come on, I&#39;ve been here before. I&#39;m checking on the status of my entry application.\&quot;&quot;, &quot;checkingStatus&quot;,
+    &quot;&lt;!--C--&gt;State your name.&quot;, &quot;giveHimName&quot;,
+))
+&lt;br&gt;
+](waitDone|
+
+
+&lt;!--alreadyKnew--&gt;
+[
+_line[&quot;We might,&quot;] he says with a sigh. _line[&quot;Nevertheless, name?&quot;]
+&lt;br&gt;
+He seems as tired of this song-and-dance as you are. No matter how fruitlessly, members of the public still get to question procedures; servants of the public, however, do not.
+&lt;br&gt;
+($funcInnerConvo: (dm:
+    &quot;&lt;!--C--&gt;State your name.&quot;, &quot;giveHimName&quot;,
+))
+&lt;br&gt;
+](alreadyKnew|
+
+
+&lt;!--checkingStatus--&gt;
+[
+_line[&quot;You and half of this room,&quot;] he looks at the long queue behind you. Many of them seem to have been here weeks after weeks. _line[&quot;Name?&quot;]
+&lt;br&gt;
+($funcInnerConvo: (dm:
+    &quot;&lt;!--C--&gt;State your name.&quot;, &quot;giveHimName&quot;,
+))
+&lt;br&gt;
+](checkingStatus|
+
+
+&lt;!--giveHimName--&gt;
+[
+_line[&quot;Mm-hmm,&quot;] he glances at his ledger and sees what he expects. _line[&quot;Documents?&quot;]
+&lt;br&gt;
+$cssDesc[(print: (passage: &quot;quest.permitAskava&quot;)&#39;s tip)]
+
+&lt;!--check code--&gt;
+(set: _haveID to false)
+(if: $char&#39;s player&#39;s inv contains &quot;identityReceipt&quot;)[(set: _haveID to true)]
+(set: _haveLetter to false)
+(if: $char&#39;s player&#39;s inv contains &quot;universityCertificate&quot;)[(set: _haveLetter to true)]
+
+&lt;!--initialize text--&gt;
+(set: _dialogue to &quot;&quot;)
+(set: _response to &quot;&quot;)
+&lt;!--which scenario?--&gt;
+(if: _haveID is true and _haveLetter is true)[{
+     (set: _dialogue to &quot;\&quot;Here they are.\&quot;&quot;)
+     (set: _response to &quot;lackNone&quot;)
+}]
+(elseif: _haveID is false and _haveLetter is true)[{
+     (set: _dialogue to &quot;\&quot;... Oh, I seem to have misplaced my tax receipt...\&quot;&quot;)
+     (set: _response to &quot;lackID&quot;)
+}]
+(elseif: _haveID is true and _haveLetter is false)[{
+     (set: _dialogue to &quot;\&quot;I... I don&#39;t have my certificate with me.\&quot;&quot;)
+     (set: _response to &quot;lackLetter&quot;)
+}]
+(else:)[{
+     (set: _dialogue to &quot;\&quot;Documents?\&quot;&quot;)
+     (set: _response to &quot;lackBoth&quot;)
+}]
+
+&lt;br&gt;
+($funcInnerConvo: (dm:
+     _dialogue, _response,
+))
+&lt;br&gt;
+](giveHimName|
+
+
+&lt;!--lackNone--&gt;
+[
+He takes them and scans through their content. Their blue-wax seals glowing at his touch.
+&lt;br&gt;
+_line[&quot;Very good. Everything is in order,&quot;] he says, handing your papers back. You cannot tell whether it is relief in his voice - that the process has gone without incident - or disappointment - that a chance for any modicum of excitement has been missed.
+&lt;br&gt;
+_line[&quot;Your entry permit is ready,&quot;] he pulls out from the cabinet behind him one of many rolled-up paper and presents it to you. _line[&quot;Please check and make sure the information is correct.&quot;]
+&lt;br&gt;
+($funcInnerConvo: (dm:
+    &quot;&lt;!--A--&gt;Unroll the paper.&quot;, &quot;unrollPermit&quot;,
+))
+&lt;br&gt;
+](lackNone|
+
+
+&lt;!--unrollPermit--&gt;
+[
+You look over its content: Your name... &quot;one-time permission&quot;... &quot;continental Askava&quot;... &quot;exclusively used for transit&quot;... &quot;single journey&quot;... &quot;collected and nullified upon arrival&quot;... current year...
+&lt;br&gt;
+At the end, there is a familiar blue-wax seal, though the sigil is different from yours. The governor&#39;s own seal, which doubles as a magical ward.
+&lt;br&gt;
+($funcInnerConvo: (dm:
+    &quot;&lt;!--A--&gt;\&quot;Everything is correct.\&quot;&quot;, &quot;everythingCorrect&quot;,
+	&quot;&lt;!--B--&gt;\&quot;This is single-use only?\&quot;&quot;, &quot;singleUse&quot;,
+))
+&lt;br&gt;
+](unrollPermit|
+
+
+&lt;!--singleUse--&gt;
+[
+_line[&quot;Yes,&quot;] the clerk says simply. _line[&quot;Is everything correct?&quot;]
+&lt;br&gt;
+($funcInnerConvo: (dm:
+    &quot;&lt;!--A--&gt;\&quot;Yes.\&quot;&quot;, &quot;everythingCorrect&quot;,
+))
+&lt;br&gt;
+](singleUse|
+
+
+&lt;!--everythingCorrect--&gt;
+[
+_line[&quot;Good. Now, please sign this confirmation form. It says that you have received your permit and has found the information contained therein to be accurate.&quot;]
+&lt;br&gt;
+($funcInnerConvo: (dm:
+    &quot;&lt;!--A--&gt;Sign the form.&quot;, &quot;signForm&quot;,
+	&quot;&lt;!--B--&gt;\&quot;Can I read it first?\&quot;&quot;, &quot;readFirst&quot;,
+))
+&lt;br&gt;
+](everythingCorrect|
+
+
+&lt;!--readFirst--&gt;
+[
+_line[&quot;Of course,&quot;] he mumbles.
+&lt;br&gt;
+You read the form: &quot;LIGHT BLESSES NURANDAH&quot;... &quot;received permit&quot;... &quot;agreed that information contained therein is accurate&quot;... &quot;declares no intention to&quot;...
+&lt;br&gt;
+It is everything you have been interviewed and informed about, written in far too many words. The page opposite to it repears the same content, albeit in Sanurango, which you cannot read very well, but you will never tell any prospective employer that.
+&lt;br&gt;
+($funcInnerConvo: (dm:
+    &quot;&lt;!--A--&gt;Sign the form.&quot;, &quot;signForm&quot;,
+))
+&lt;br&gt;
+](readFirst|
+
+
+&lt;!--signForm--&gt;
+[
+You make your mark and gives the form back to the clerk. He mutters an incantation, and the blue-wax seal on your entry permit glows, indicating that it has been released.
+&lt;br&gt;
+_line[&quot;We are done here,&quot;] he cracks a mirthless smile, though you wish he didn&#39;t. _line[&quot;Welcome to Askava, citizen.&quot;]
+&lt;br&gt;
+($funcInnerConvo: (dm:
+    &quot;&lt;!--A--&gt;\&quot;Gratitude, danmar. Light blesses Nurandah.\&quot;&quot;, &quot;lackNoneDone&quot;,
+))
+&lt;br&gt;
+](signForm|
+
+
+&lt;!--lackNoneDone--&gt;
+[
+_line[&quot;May your journey be fruitful, and light blesses Nurandah,&quot;] he nods. _line[&quot;Next!&quot;]
+&lt;br&gt;
+You exit the Hall of Immigration Affairs. It has taken the good part of your day, but at least you have an entry permit in your hands.
+&lt;br&gt;
+$cssDesc[You gain an &#39;&#39;(print: (passage: &quot;item.permitAskava&quot;)&#39;s id)&#39;&#39;($funcLogTip: &quot;item.&quot;, &quot;permitAskava&quot;), which allows you to hire a ship to take you to the mainland. The permit will be collected and nullified upon landing, making it single-use only.]
+&lt;br&gt;
+---
+
+($funcQuestUpdateLink: &quot;It is done.&quot;, &quot;permitAskava&quot;, &quot;completed&quot;, &quot;You can finally leave this island and enter Askava proper.&quot;, &quot;Where your residency can begin in earnest.&quot;, [{
+	($funcGainLoss: &quot;item.&quot;, &quot;permitAskava&quot;, 1)
+	($funcRemoveTimer: &quot;permitAskava&quot;, &quot;wait&quot;)
+}], &quot;mockDay&quot;,)
+
+](lackNoneDone|
+
+
+
+&lt;!--lackID--&gt;
+[
+_line[&quot;That&#39;s...&quot;] the clerk massages his temples. You get the impression that this happens far more often than it should. _line[&quot;We cannot release the permit if you cannot prove that you //are// who you say you are.&quot;]
+&lt;br&gt;
+You have looked at a mirror recently, and you are certain that you are still you. But that, obviously, is not good enough.
+&lt;br&gt;
+($funcInnerConvo: (dm:
+    &quot;&lt;!--A--&gt;\&quot;Apologies, danmar. I will return another day with my tax receipt.\&quot;&quot;, &quot;failDone&quot;,
+))
+&lt;br&gt;
+](lackID|
+
+
+&lt;!--lackLetter--&gt;
+[
+_line[&quot;Oh, what happened? It&#39;s only been a week or so-&quot;] he immediately interrupts himself before being pulled into something he would rather not know about. _line[&quot;No, never mind. Regardless of your reason, we cannot release the permit unless you have //all// of your papers.&quot;]
+&lt;br&gt;
+You knew this, of course, and still, you tried your luck, but luck, as it turns out, is not on your side today.
+&lt;br&gt;
+($funcInnerConvo: (dm:
+    &quot;&lt;!--A--&gt;\&quot;Apologies, danmar. I will return another day with my certificate.\&quot;&quot;, &quot;failDone&quot;,
+))
+&lt;br&gt;
+](lackLetter|
+
+
+&lt;!--lackBoth--&gt;
+[
+_line[&quot;Yes, documents - the same ones you have submitted during your application interview.&quot;]
+&lt;br&gt;
+($funcInnerConvo: (dm:
+    &quot;&lt;!--A--&gt;\&quot;I... I seem to have misplaced them.\&quot;&quot;, &quot;lackBoth2&quot;,
+))
+&lt;br&gt;
+](lackBoth|
+
+
+&lt;!--lackBoth2--&gt;
+[
+_line[&quot;What? But it&#39;s only been a week or so since-&quot;] he immediately interrupts himself before being pulled into something he would rather not know about. _line[&quot;No, never mind. Regardless of your reason, we cannot release the permit unless you have //all// of your papers.&quot;]
+&lt;br&gt;
+By showing up empty-handed, you have just wasted his time and yours.
+&lt;br&gt;
+($funcInnerConvo: (dm:
+    &quot;&lt;!--A--&gt;\&quot;Apologies, danmar. I will return another day with all of my papers.\&quot;&quot;, &quot;failDone&quot;,
+))
+&lt;br&gt;
+](lackBoth2|
+
+
+&lt;!--failDone--&gt;
+[
+_line[&quot;Next!&quot;]
+&lt;br&gt;
+You leave the Hall of Immigration Affairs. Most of your day has been spent waiting in line, and quite fruitlessly, as it turned out. Your legs are sore.
+&lt;br&gt;
+---
+(link: &quot;You should go back and get some rest.&quot;)[{
+     (goto: &quot;mockDay&quot;)
+}]
+
+](failDone|
+
+
+
+&lt;!--old--&gt;
+[
 [&quot;Hmm,&quot;]&lt;Clerk1Line| the clerk stares at you, unsure if you&#39;re the same person he met. You&#39;re unsure whether he&#39;s the same one you handed your papers to. They all look kind of the same - isn&#39;t that the point of uniforms?
 &lt;br&gt;
 [&quot;Apologies,&quot;]&lt;Clerk1Line| he says, finally. [&quot;Askava is rich in resources and poor in morals. A lot of bad types come around.&quot;]&lt;Clerk1Line|
@@ -12791,6 +13421,8 @@ You assure him that you&#39;re one of the good ones.
 	($funcGainLoss: &quot;item.&quot;, &quot;permitAskava&quot;, 1)\
 	($funcRemoveTimer: &quot;permitAskava&quot;, &quot;wait&quot;)\
 ], &quot;mockDay&quot;,)
+](old|
+
 
 ]&lt;!--end child--&gt;
 ]&lt;!--end child--&gt;</tw-passagedata><tw-passagedata pid="240" name="S: AskavaPermit 1" tags="storylet" position="4500,1900" size="100,100">{=
@@ -12800,7 +13432,7 @@ $place&#39;s sublocation is &quot;The Provincial Court of Askava&quot;
 and ($time&#39;s day &gt; 1 and it &lt; 7)
 and $char&#39;s player&#39;s inv does not contain &quot;permitAskava&quot;
 )
-(metadata: &quot;title&quot;, &quot;Apply for an Entry Permit&quot;, &quot;cardDesc&quot;, &quot;The Hall of Immigration Affairs is packed full of those wanting to get off this rock and land in Askava proper.&quot;, &quot;img&quot;, &quot;https://thefifthcity.wiki/w/images/3/3f/Currency3_copper.png&quot;,)
+(metadata: &quot;title&quot;, &quot;Apply for an Entry Permit&quot;, &quot;cardDesc&quot;, &quot;The Hall of Immigration Affairs building is packed full of those seeking permission to enter mainland Askava.&quot;, &quot;img&quot;, &quot;https://thefifthcity.wiki/w/images/3/3f/Currency3_copper.png&quot;,)
 
 $cssColumnParent[
 
@@ -12812,18 +13444,18 @@ $cssColumnChild[
 ]
 
 $cssColumnChild[
-Imperial guardsmen eye you apathetically. It&#39;s like they don&#39;t even know that you&#39;re a magus. Well, a magus-to-be.
+The imperial guardsmen here are dressed in silk and metal, spears in their hands. They eye you apathetically. You wonder if they know you are a magus. To be fair, a magus-to-be.
 &lt;br&gt;
-In the meantime, you&#39;re just the same as everyone else here: peasants, laborers, merchants, shoving each other for a place in the next ship into mainland Askava.
+In the meantime, you are just the same as everyone else in this hall: peasants, laborers, merchants, one lining up behind another, each hoping to be granted permission to enter mainland Askava.
 &lt;br&gt;
 ---
 &lt;ol&gt;
 
 (if: (datanames: $char&#39;s player&#39;s timerQuest) contains &quot;permitAskava&quot;)[
-	(if: $char&#39;s player&#39;s timerQuest&#39;s permitAskava&#39;s wait &gt; 0)[&lt;li&gt;~~Await your turn.~~ $cssDesc[ (Your entry application is being processed.)]]
-	(else:)[&lt;li&gt;[[Receive your Askava entry permit. ⧗|AskavaPermit 1b]]]
+	(if: $char&#39;s player&#39;s timerQuest&#39;s permitAskava&#39;s wait &gt; 0)[&lt;li&gt;~~Line up and await your turn.~~ $cssDesc[ (Your entry application is being processed.)]]
+	(else:)[&lt;li&gt;(link: &quot;Line up to receive your Askava entry permit. ⧗&quot;)[(goto: &quot;AskavaPermit 1b&quot;)]&lt;/li&gt;]
 ]
-(else:)[&lt;li&gt;[[Await your turn. ⧗|AskavaPermit 1a]]]
+(else:)[&lt;li&gt;(link: &quot;Line up and await your turn. ⧗&quot;)[(goto: &quot;AskavaPermit 1a&quot;)]&lt;/li&gt;]
 
 &lt;li&gt;(link: &quot;Never mind.&quot;)[$funcBack]
 
@@ -12836,7 +13468,7 @@ $place&#39;s sublocation is &quot;The Provincial Court of Askava&quot;
 and ($time&#39;s day is 1 or it is 7)
 and $char&#39;s player&#39;s inv does not contain &quot;permitAskava&quot;
 )
-(metadata: &quot;title&quot;, &quot;Apply for an Entry Permit&quot;, &quot;cardDesc&quot;, &quot;But the Hall of Immigration Affairs is closed today.&quot;, &quot;img&quot;, &quot;https://thefifthcity.wiki/w/images/3/3f/Currency3_copper.png&quot;,)
+(metadata: &quot;title&quot;, &quot;Apply for an Entry Permit&quot;, &quot;cardDesc&quot;, &quot;... But the Hall of Immigration Affairs is closed today.&quot;, &quot;img&quot;, &quot;https://thefifthcity.wiki/w/images/3/3f/Currency3_copper.png&quot;,)
 
 $cssColumnParent[
 
@@ -12848,8 +13480,7 @@ $cssColumnChild[
 ]
 
 $cssColumnChild[
-&lt;br&gt;
- The gilded gates are shut tight. On them, wrought iron forms the zig-zagging letters of &#39;&#39;&quot;Zamruz&quot;&#39;&#39;, and twisted gold spells &#39;&#39;&quot;Khurruz&quot;&#39;&#39; - //&quot;From the soil to the sun&quot;//.
+The hall&#39;s gilded gates are shut tight. On them, wrought iron forms the zig-zagging letters of &#39;&#39;&quot;Zamruz&quot;&#39;&#39;, and twisted gold spells &#39;&#39;&quot;Khurruz&quot;&#39;&#39; - //&quot;From the soil to the sun&quot;//.
 &lt;br&gt;
 In other words, weekends.
 &lt;br&gt;
@@ -12857,12 +13488,43 @@ In other words, weekends.
 
 &lt;ol&gt;
 
-&lt;li&gt;~~About a permit...~~ $cssDesc[(Not today.)]
+&lt;li&gt;~~Apply for a permit...~~ $cssDesc[ (Not today.)]
 &lt;li&gt;(link: &quot;Never mind.&quot;)[$funcBack]
 
 &lt;/ol&gt;
 ]&lt;!--end child--&gt;
-]&lt;!--end parent--&gt;</tw-passagedata><tw-passagedata pid="242" name="Blown Off Course 1a" tags="" position="4825,3675" size="100,100">{=
+]&lt;!--end parent--&gt;</tw-passagedata><tw-passagedata pid="242" name="scene.waitProgressText" tags="" position="225,3100" size="100,100">{=
+&lt;!--the waiting text that shows--&gt;
+(set: _waitProgressText to (shuffled:
+&quot;Presently, a large man wearing a sleeveless leather vest is being served. The skin of his exposed arms is so pale that it would have been blinding, had it not been covered by a thick turf of hair. Must be a laborer or mercenary from Kudkuch dahak.&quot;,
+
+&quot;A white-haired woman is called to the clerk&#39;s table. You cannot hear their conversation, but you can tell from the clerk&#39;s annoyed face that the woman speaks very little Nurango. You wonder if there are natives in the court&#39;s employ. For all you know, the clerk might be a native, whose nativeness has been watered down after centuries of contact with Nurandah, who now looks upon this woman with a frown.&quot;,
+
+&quot;Right now, a noble woman is speaking to the clerk. Her handmaiden is right behind her, carrying a jeweled baby in her arms - likely the noble&#39;s own. The baby - no more thanone or two years of age - is staring straight at you with an unmistakable sneer. \&quot;Trash,\&quot; the baby seems to think.&quot;,
+
+&quot;The man being served: You can smell him from far away. He is a disheveled imperial in a roughspun tunic draped with a blue-and-white shawl, the white having turned an off-yellow from his journey. A pilgrim. A Reclaimer. Odd, these types usually have intermediaries, whoever brought them to this land, likely the Traveler&#39;s Society. Perhaps this happens to be one of the less wealthy ones.&quot;,
+
+&quot;Now, a young man is being served. Or are they a young woman? It is difficult to tell with their long hair, heavy makeup, and copious perfume. What is glaring is that they come from Yavana. Some have said that their women are very beautiful, and their men are even more so. But then again, if a Yavanid did not dress up, would anyone even know they were Yavanids? Without the glamour, they would look just like any other imperial from the south-eastern dahaks.&quot;,
+
+&quot;Presently, a middle-aged woman is waiting for the clerk to shuffle through her papers. She seems impatient: Her arms are crossed over her chest, two columns of muscles and scars, and her metal foot is idly tapping on the floor. Clang-clang-clang. Is it some kind of battle-rhythm meant to drive her opponents mad? It seems to be working. A guard asks her to stop but backs away when she looks up with a smile.&quot;,
+
+&quot;Right now, an old man is being served. He is taking very long to produce his documents. The clerk peeks at the long line and groans.&quot;,
+
+&quot;Presently, a small, golden-skinned woman in black velvet is being served. The clerk is taking extra long with her, since she is Kesh by blood. There are at least twenty different Keshan clans still living in Askava, last you heard. Though they have relinquished the serpent cult and embraced the light, they remain simply Kesh to many.&quot;,
+
+&quot;Right now, a fat, bald man is being served. Gold rings bind his dyed beard, and gold knives hang from his belt, which is doing everything it can not to snap from his huge belly. You speculate that he is a merchant from Yavana, or at least a merchant who admires Yavanid fashion. The more cosmopolitan among the traders tend to emulate the peoples they do business with, often to the embarrassment of both cultures.&quot;,
+
+&quot;Now, an imperial man is being served. He looks like a million people you&#39;ve seen before: sallow-skinned and dark-haired, with fine clothes that err on the side of boring. Nurandah&#39;s every-man. You suddenly feel homesick.&quot;,
+
+&quot;Presently, veiled woman is at the clerk&#39;s table. As she waits for her paperwork to be processed, she scans the hall, as if worried about being seen. Veils are largely an archaic custom among imperials who sell services - craftspeople, hosts, diviners, and so on - but since she is obviously not at work, she stands out even more.&quot;,
+
+&quot;A father and his son - both of them copper-skinned and light-haired - step up to the clerk&#39;s table. The clerk tells them to take off their wooden masks. The man complies, but the boy refuses. The father points to the armed guard standing nearby, and the boy relents and takes off his mask, but not without pouting the entire time they are being served.&quot;,
+
+&quot;A nervous man steps up to the clerk. He immediately leans onto the table and begins making jokes, as though he has known the clerk his entire life. That may be the case; it is an island, after all. But the clerk only leers at him while taking his papers.&quot;,
+
+&quot;A completely bald woman, dressed in a simple purple robe, her right shoulder exposed, steps up to the clerk&#39;s table. As she walks, her heavy beads rattle. The clerk&#39;s face is tense. The guards are shifting in place. But the woman only moves slowly, as though she is not there at all, as though she does not know that she is a serpent cultist.&quot;,
+
+))</tw-passagedata><tw-passagedata pid="243" name="Blown Off Course 1a" tags="" position="4825,3675" size="100,100">{=
 
 (metadata: &quot;title&quot;, &quot;Blown off Course&quot;)
 
@@ -12872,7 +13534,7 @@ In other words, weekends.
 (link: &quot;Dang it!&quot;)[
 	(set: $questTimer&#39;s traveling&#39;s timer to it + 1)
 	$funcDone\
-]</tw-passagedata><tw-passagedata pid="243" name="S: Blown Off Course" tags="storylet traveling" position="4825,3550" size="100,100">{=
+]</tw-passagedata><tw-passagedata pid="244" name="S: Blown Off Course" tags="storylet traveling" position="4825,3550" size="100,100">{=
 
 (storylet: when
 $place&#39;s traveling is true
@@ -12901,7 +13563,7 @@ and $char&#39;s player&#39;s timerCooldown does not contain &quot;S: Blown Off C
 ---
 &lt;ol&gt;
 &lt;li&gt;(link: &quot;Oh no... ⧗&quot;)[($funcAddStoryletCooldown: (passage:)&#39;s name)(goto: &quot;Blown Off Course 1a&quot;)]&lt;!--[[Blown Off Course 1a]]--&gt;
-&lt;ol&gt;</tw-passagedata><tw-passagedata pid="244" name="Exploring Apesai (Center)" tags="" position="475,3100" size="100,100">{=
+&lt;ol&gt;</tw-passagedata><tw-passagedata pid="245" name="Exploring Apesai (Center)" tags="" position="600,3100" size="100,100">{=
 (metadata:
 &quot;title&quot;, &quot;Following Apesai&#39;s Obelisks&quot;,
 &quot;cardDesc&quot;, &quot;They&#39;re leading you somewhere. But //where//?&quot;,
@@ -12991,9 +13653,9 @@ $place&#39;s weather is &quot;sunny&quot;, &quot;Obelisks - or at least their sh
 ))
 &lt;br&gt;
 
-[(set: _nearCourt to it + _progress)(show: ?1)](1a|
-[(set: _nearGE to it + _progress)(show: ?1)](1b|
-[(set: _nearPleasure to it + _progress)(show: ?1)](1c|
+[(set: _nearCourt to it + _progress)(t8n:&quot;dissolve&quot;)(show: ?1)](1a|
+[(set: _nearGE to it + _progress)(t8n:&quot;dissolve&quot;)(show: ?1)](1b|
+[(set: _nearPleasure to it + _progress)(t8n:&quot;dissolve&quot;)(show: ?1)](1c|
 
 [
 (display: &quot;scene.exploreApesaiCenter1&quot;)
@@ -13011,9 +13673,9 @@ At a intersection, you look on ahead and see several more obelisks.
 &lt;br&gt;
 ](1|
 
-[(set: _nearCourt to it + _progress)(show: ?2)](2d|
-[(set: _nearGE to it + _progress)(show: ?2)](2e|
-[(set: _nearPleasure to it + _progress)(show: ?2)](2f|
+[(set: _nearCourt to it + _progress)(t8n:&quot;dissolve&quot;)(show: ?2)](2d|
+[(set: _nearGE to it + _progress)(t8n:&quot;dissolve&quot;)(show: ?2)](2e|
+[(set: _nearPleasure to it + _progress)(t8n:&quot;dissolve&quot;)(show: ?2)](2f|
 
 
 [
@@ -13032,9 +13694,9 @@ Feeling lost again, you look around for the obelisks, but the streets are too pa
 &lt;br&gt;
 ](2|
 
-[(set: _nearCourt to it + _progress)(show: ?done)](3g|
-[(set: _nearGE to it + _progress)(show: ?done)](3h|
-[(set: _nearPleasure to it + _progress)(show: ?done)](3i|
+[(set: _nearCourt to it + _progress)(t8n:&quot;dissolve&quot;)(show: ?done)](3g|
+[(set: _nearGE to it + _progress)(t8n:&quot;dissolve&quot;)(show: ?done)](3h|
+[(set: _nearPleasure to it + _progress)(t8n:&quot;dissolve&quot;)(show: ?done)](3i|
 
 [
 &lt;!--calculate _near--&gt;
@@ -13043,7 +13705,7 @@ Feeling lost again, you look around for the obelisks, but the streets are too pa
 (set: _nearest to (sorted: _nearCourt,_nearGE,_nearPleasure)&#39;s last)
 (if: _nearest is _nearCourt)[
     (set: _near to &quot;scene.exploreApesaiCourt&quot;)
-    (if: ($funcCheckExists: $char&#39;s player&#39;s att, &quot;knowApesaiCourt&quot;, 0) &gt;= 1)[(set: _near to &quot;Apesai Courthouse&quot;)(set: _chance to 100)]
+    (if: ($funcCheckExists: $char&#39;s player&#39;s att, &quot;knowApesaiCourt&quot;, 0) &gt;= 1)[(set: _near to &quot;The Provincial Court of Askava&quot;)(set: _chance to 100)]
     (set: _nearText to &quot;You are so close now. You see banners everywhere, white marble obelisks had turned to white marble columns, holding up grand porches of grander buildings.&quot;)
 ]
 (elseif: _nearest is _nearGE)[
@@ -13071,7 +13733,7 @@ Keep walking, and ($funcLuckGate: &quot;you arrive at...&quot;, _chance, _near, 
 ](done|
 
 ]&lt;!--end child--&gt;
-]&lt;!--end parent--&gt;</tw-passagedata><tw-passagedata pid="245" name="Exploring Apesai (Down)" tags="" position="600,3100" size="100,100">{=
+]&lt;!--end parent--&gt;</tw-passagedata><tw-passagedata pid="246" name="Exploring Apesai (Down)" tags="" position="725,3100" size="100,100">{=
 (metadata:
 &quot;title&quot;, &quot;Weaving Through Apesai&#39;s Slums&quot;,
 &quot;cardDesc&quot;, &quot;For most, this is not a place they will go to unless they absolutely //have// to. For you, curiosity is its own reward.&quot;)
@@ -13152,9 +13814,9 @@ You set out...
 ))
 &lt;br&gt;
 
-[(set: _nearWharf to it + _progress)(show: ?1)](1a|
-[(set: _nearTraveler to it + _progress)(show: ?1)](1b|
-[(set: _nearPleasure to it + _progress)(show: ?1)](1c|
+[(set: _nearWharf to it + _progress)(t8n:&quot;dissolve&quot;)(show: ?1)](1a|
+[(set: _nearTraveler to it + _progress)(t8n:&quot;dissolve&quot;)(show: ?1)](1b|
+[(set: _nearPleasure to it + _progress)(t8n:&quot;dissolve&quot;)(show: ?1)](1c|
 
 [
 (display: &quot;scene.exploreApesaiDown1&quot;)
@@ -13171,9 +13833,9 @@ You set out...
 &lt;br&gt;
 ](1|
 
-[(set: _nearWharf to it + _progress)(show: ?2)](2d|
-[(set: _nearTraveler to it + _progress)(show: ?2)](2e|
-[(set: _nearPleasure to it + _progress)(show: ?2)](2f|
+[(set: _nearWharf to it + _progress)(t8n:&quot;dissolve&quot;)(show: ?2)](2d|
+[(set: _nearTraveler to it + _progress)(t8n:&quot;dissolve&quot;)(show: ?2)](2e|
+[(set: _nearPleasure to it + _progress)(t8n:&quot;dissolve&quot;)(show: ?2)](2f|
 
 [
 (display: &quot;scene.exploreApesaiDown2&quot;)
@@ -13217,9 +13879,9 @@ You set out...
 &lt;br&gt;   
 ](2|
 
-[(set: _nearWharf to it + _progress)(show: ?done)](3g|
-[(set: _nearTraveler to it + _progress)(show: ?done)](3h|
-[(set: _nearPleasure to it + _progress)(show: ?done)](3i|
+[(set: _nearWharf to it + _progress)(t8n:&quot;dissolve&quot;)(show: ?done)](3g|
+[(set: _nearTraveler to it + _progress)(t8n:&quot;dissolve&quot;)(show: ?done)](3h|
+[(set: _nearPleasure to it + _progress)(t8n:&quot;dissolve&quot;)(show: ?done)](3i|
 
 [
 &lt;!--calculate _near--&gt;
@@ -13260,7 +13922,7 @@ Eventually, ($funcLuckGate: &quot;you arrive at...&quot;, _chance, _near, &quot;
 ](done|
 
 ]&lt;!--end child--&gt;
-]&lt;!--end parent--&gt;</tw-passagedata><tw-passagedata pid="246" name="Exploring Apesai (Up)" tags="" position="725,3100" size="100,100">{=
+]&lt;!--end parent--&gt;</tw-passagedata><tw-passagedata pid="247" name="Exploring Apesai (Up)" tags="" position="850,3100" size="100,100">{=
 (metadata:
 &quot;title&quot;, &quot;Climbing Apesai&#39;s Upper Quarters&quot;,
 &quot;cardDesc&quot;, &quot;Grand things are often placed high above for others to see.&quot;,
@@ -13383,8 +14045,8 @@ $place&#39;s weather is &quot;sunny&quot;, &quot;The day is dizzyingly hot. You 
 &lt;br&gt;
 ](2b|
 
-[(set: _chance to it + _progress)(show: ?done)](3a|
-[(set: _chance to it - _progress)(show: ?done)](3b|
+[(set: _chance to it + _progress)(t8n:&quot;dissolve&quot;)(show: ?done)](3a|
+[(set: _chance to it - _progress)(t8n:&quot;dissolve&quot;)(show: ?done)](3b|
 
 [
 &lt;!--extract nearest location info. If already unlocked, go straight to the sublocation--&gt;
@@ -13411,7 +14073,7 @@ After long climb through Apesai&#39;s mountainous upper quarters, ($funcLuckGate
 ](done|
 
 ]&lt;!--end child--&gt;
-]&lt;!--end parent--&gt;</tw-passagedata><tw-passagedata pid="247" name="S: Explore Apesai" tags="storylet" position="850,3100" size="100,100">{=
+]&lt;!--end parent--&gt;</tw-passagedata><tw-passagedata pid="248" name="S: Explore Apesai" tags="storylet" position="975,3100" size="100,100">{=
 (storylet: when
     $place&#39;s location is &quot;Apesai&quot;
     and $place&#39;s traveling is false
@@ -13481,7 +14143,7 @@ $cssDesc[Successfully exploring Apesai will open up many of the city&#39;s locat
 &lt;/ol&gt;
 
 ]&lt;!--end child--&gt;
-]&lt;!--end parent--&gt;</tw-passagedata><tw-passagedata pid="248" name="scene.exploreApesaiCenter1" tags="" position="975,3100" size="100,100">{=
+]&lt;!--end parent--&gt;</tw-passagedata><tw-passagedata pid="249" name="scene.exploreApesaiCenter1" tags="" position="1100,3100" size="100,100">{=
 
 [
 All around you, the street is narrow, and the houses are tall. Each house is lined with projecting caged balconies, their metalwork intricate, their splendor blocking out your view of the sky, making it difficult to keep track of the cardinal directions.
@@ -13524,7 +14186,7 @@ It is the emperors&#39; wisdom that one ought to be convinced of wisdom, not for
 ](temple|
 
 (set: _show to (either: &quot;A&quot;,&quot;B&quot;,&quot;C&quot;,&quot;temple&quot;))
-(show: (hooks-named: _show))</tw-passagedata><tw-passagedata pid="249" name="scene.exploreApesaiCenter2" tags="" position="1100,3100" size="100,100">{=
+(show: (hooks-named: _show))</tw-passagedata><tw-passagedata pid="250" name="scene.exploreApesaiCenter2" tags="" position="1225,3100" size="100,100">{=
 
 [
 During your long walk, your mind starts to drift. You recall something your architecture teacher - whom you only attended a single year - has said:
@@ -13552,7 +14214,7 @@ Inland, of course. Harsh but vast, vast inland Askava. Your head fills with the 
 
 
 (set: _show to (either: &quot;D&quot;,&quot;E&quot;,&quot;F&quot;))
-(show: (hooks-named: _show))</tw-passagedata><tw-passagedata pid="250" name="scene.exploreApesaiDown1" tags="" position="1225,3100" size="100,100">{=
+(show: (hooks-named: _show))</tw-passagedata><tw-passagedata pid="251" name="scene.exploreApesaiDown1" tags="" position="100,3225" size="100,100">{=
 
 [
 As you trace the muddy alleys, careful to not let the hem of your robe get dirtied, you see children - some copper-skinned, some golden, and some paler, albeit sun-baked - running and rolling in the muck without a care.
@@ -13583,7 +14245,7 @@ Eventually, perhaps too soon, the ground will give way, and parts of the slums, 
 ](C|
 
 (set: _show to (either: &quot;A&quot;, &quot;B&quot;, &quot;C&quot;))
-(show: (hooks-named: _show))</tw-passagedata><tw-passagedata pid="251" name="scene.exploreApesaiDown2" tags="" position="100,3225" size="100,100">{=
+(show: (hooks-named: _show))</tw-passagedata><tw-passagedata pid="252" name="scene.exploreApesaiDown2" tags="" position="225,3225" size="100,100">{=
 
 [
 [Deeper into the slums, the canals take up most of the width of the streets, which aren&#39;t very wide to begin with. The stench of canal water, coupled with a ubiquitous scent of perfume, is stinging your eyes. You try your best stick close to the houses, only occasionally crossing wooden bridges to get to the other side of the water.
@@ -13663,7 +14325,7 @@ There is not enough space in Apesai for all of them. Most will end up in some ru
 
 (if: _nearest is _nearPleasure)[(show: ?pleasureText)]
 (elseif: _nearest is _nearTraveler)[(show: ?travelerText)]
-(elseif: _nearest is _nearWharf)[(show: ?wharfText)]</tw-passagedata><tw-passagedata pid="252" name="scene.exploreApesaiFail" tags="" position="225,3225" size="100,100">{=
+(elseif: _nearest is _nearWharf)[(show: ?wharfText)]</tw-passagedata><tw-passagedata pid="253" name="scene.exploreApesaiFail" tags="" position="350,3225" size="100,100">{=
 
 (metadata:
 &quot;title&quot;, &quot;Lost and Confused&quot;,
@@ -13717,7 +14379,7 @@ $cssDesc[You gain a temporary &#39;&#39;(print: (passage: &quot;temp.impressionA
 
 
 ]&lt;!--end child--&gt;
-]&lt;!--end parent--&gt;</tw-passagedata><tw-passagedata pid="253" name="scene.exploreApesaiLighthouse" tags="" position="350,3225" size="100,100">{=
+]&lt;!--end parent--&gt;</tw-passagedata><tw-passagedata pid="254" name="scene.exploreApesaiLighthouse" tags="" position="475,3225" size="100,100">{=
 
 (metadata:
 &quot;title&quot;, &quot;Discovered the Apesai Lighthouse!&quot;,
@@ -13759,7 +14421,7 @@ $cssDesc[You gain &#39;&#39;(print: (passage: &quot;att.knowApesaiLighthouse&quo
 
 
 ]&lt;!--end child--&gt;
-]&lt;!--end parent--&gt;</tw-passagedata><tw-passagedata pid="254" name="scene.exploreApesaiGE" tags="" position="475,3225" size="100,100">{=
+]&lt;!--end parent--&gt;</tw-passagedata><tw-passagedata pid="255" name="scene.exploreApesaiGE" tags="" position="600,3225" size="100,100">{=
 
 (metadata:
 &quot;title&quot;, &quot;Discovered the Grand Exchange!&quot;,
@@ -13796,7 +14458,7 @@ $cssDesc[You gain &#39;&#39;(print: (passage: &quot;att.knowApesaiGE&quot;)&#39;
 
 
 ]&lt;!--end child--&gt;
-]&lt;!--end parent--&gt;</tw-passagedata><tw-passagedata pid="255" name="scene.exploreApesaiCourt" tags="" position="600,3225" size="100,100">{=
+]&lt;!--end parent--&gt;</tw-passagedata><tw-passagedata pid="256" name="scene.exploreApesaiCourt" tags="" position="725,3225" size="100,100">{=
 (metadata:
 &quot;title&quot;, &quot;Discovered the Provincial Court!&quot;,
 &quot;cardDesc&quot;, &quot;From this seat of power, the whole of Askava is administered.&quot;)
@@ -13834,7 +14496,7 @@ $cssDesc[You gain &#39;&#39;(print: (passage: &quot;att.knowApesaiCourt&quot;)&#
 ]
 
 ]&lt;!--end child--&gt;
-]&lt;!--end parent--&gt;</tw-passagedata><tw-passagedata pid="256" name="scene.exploreApesaiTraveler" tags="" position="725,3225" size="100,100">{=
+]&lt;!--end parent--&gt;</tw-passagedata><tw-passagedata pid="257" name="scene.exploreApesaiTraveler" tags="" position="850,3225" size="100,100">{=
 (metadata:
 &quot;title&quot;, &quot;Discovered the Traveler&#39;s Society!&quot;,
 &quot;cardDesc&quot;, &quot;Where there is opportunity, there is the Society. Its Apesai branch is larger than any that you&#39;ve ever seen.&quot;)
@@ -13869,7 +14531,7 @@ $cssDesc[You gain &#39;&#39;(print: (passage: &quot;att.knowApesaiTraveler&quot;
 ]
 
 ]&lt;!--end child--&gt;
-]&lt;!--end parent--&gt;</tw-passagedata><tw-passagedata pid="257" name="scene.exploreApesaiPleasure" tags="" position="850,3225" size="100,100">{=
+]&lt;!--end parent--&gt;</tw-passagedata><tw-passagedata pid="258" name="scene.exploreApesaiPleasure" tags="" position="975,3225" size="100,100">{=
 
 (metadata:
 &quot;title&quot;, &quot;Discovered a Strange Part of Apesai.&quot;,
@@ -13934,7 +14596,7 @@ $cssDesc[You gain &#39;&#39;1 more (print: (passage: &quot;att.knowApesaiPleasur
 
 
 ]&lt;!--end child--&gt;
-]&lt;!--end parent--&gt;</tw-passagedata><tw-passagedata pid="258" name="scene.exploreApesaiUp1" tags="" position="975,3225" size="100,100">{=
+]&lt;!--end parent--&gt;</tw-passagedata><tw-passagedata pid="259" name="scene.exploreApesaiUp1" tags="" position="1100,3225" size="100,100">{=
 
 [At a glance, the Upper Apesai looks just like any heartland metropolis - shining tileworks everywhere, intricate mosaics and reliefs adorn every house, terrace palaces built on the side of mountains, and vivid rugs draping from high balconies, of which there are many.
 &lt;br&gt;
@@ -13951,7 +14613,7 @@ But from down here, in the crowded streets, one could hardly see the splendor.](
 Did it have to be middle-of-nowhere //Sabzam//? Mainland Askava is such a rough place.](C|
 
 (set: _show to (either: &quot;A&quot;,&quot;B&quot;,&quot;C&quot;))
-(show: (hooks-named: _show))</tw-passagedata><tw-passagedata pid="259" name="scene.exploreApesaiUp2" tags="" position="1100,3225" size="100,100">{=
+(show: (hooks-named: _show))</tw-passagedata><tw-passagedata pid="260" name="scene.exploreApesaiUp2" tags="" position="1225,3225" size="100,100">{=
 
 
 [Since Apesai was built on a steep slope, many buildings&#39; roofs become the next one&#39;s yard, or even its street.
@@ -13975,7 +14637,7 @@ Though you&#39;ve come across such drivel at home, it appears that light forms o
 Those guys are //way// more uptight than even your meanest teachers.](F|
 
 (set: _show to (either: &quot;D&quot;,&quot;E&quot;,&quot;F&quot;))
-(show: (hooks-named: _show))</tw-passagedata><tw-passagedata pid="260" name="S: Fish Market" tags="storylet" position="1225,3225" size="100,100">(storylet: when
+(show: (hooks-named: _show))</tw-passagedata><tw-passagedata pid="261" name="S: Fish Market" tags="storylet" position="100,3350" size="100,100">(storylet: when
 $place&#39;s sublocation is &quot;Apesai Wharf&quot;
 )
 (urgency: -1)
@@ -14087,7 +14749,7 @@ Or...
 
 ]&lt;!--end child--&gt;
 ]&lt;!--end parent 2--&gt;
-]&lt;!--end of market menu hook--&gt;</tw-passagedata><tw-passagedata pid="261" name="Fishing 1a" tags="" position="5300,3675" size="100,100">{=
+]&lt;!--end of market menu hook--&gt;</tw-passagedata><tw-passagedata pid="262" name="Fishing 1a" tags="" position="5300,3675" size="100,100">{=
 
 (metadata: &quot;title&quot;, &quot;Casting a Line&quot;,
 &quot;cardDesc&quot;, &quot;The feathered lure bobs in the ocean waves.&quot;,
@@ -14124,7 +14786,7 @@ You cast the line into the water.
 ($funcLuckGate: &quot;Wait for them to bite.&quot;, _chance, &quot;Fishing 1b&quot;, &quot;Fishing 1c&quot;)
 
 ]&lt;!--end child--&gt;
-]&lt;!--end parent--&gt;</tw-passagedata><tw-passagedata pid="262" name="Fishing 1b" tags="" position="5175,3800" size="100,100">{=
+]&lt;!--end parent--&gt;</tw-passagedata><tw-passagedata pid="263" name="Fishing 1b" tags="" position="5175,3800" size="100,100">{=
 
 (metadata: &quot;title&quot;, &quot;Caught a Fish&quot;,
 &quot;cardDesc&quot;, &quot;Success! The ocean yields its delicious treasure.&quot;)
@@ -14148,7 +14810,7 @@ Yes! Now what do you do? Filet it? Cure it over embers? Sear it in a pan? So man
     $funcDone\
     ]
 ]&lt;!--end child--&gt;
-]&lt;!--end parent--&gt;</tw-passagedata><tw-passagedata pid="263" name="Fishing 1c" tags="" position="5300,3800" size="100,100">{=
+]&lt;!--end parent--&gt;</tw-passagedata><tw-passagedata pid="264" name="Fishing 1c" tags="" position="5300,3800" size="100,100">{=
 
 (metadata: &quot;title&quot;, &quot;Unsuccessfully Fished&quot;,
 &quot;cardDesc&quot;, &quot;You tried, and the fishes cared not for your effort.&quot;,
@@ -14172,7 +14834,7 @@ The hook dangles, now baitless.
 (link: &quot;Oh well.&quot;)[$funcDone]
 
 ]&lt;!--end child--&gt;
-]&lt;!--end parent--&gt;</tw-passagedata><tw-passagedata pid="264" name="S: Fishing (Nurrah)" tags="storylet traveling" position="5300,3550" size="100,100">{=
+]&lt;!--end parent--&gt;</tw-passagedata><tw-passagedata pid="265" name="S: Fishing (Nurrah)" tags="storylet traveling" position="5300,3550" size="100,100">{=
 
 (storylet: when
 $place&#39;s traveling is true
@@ -14207,7 +14869,7 @@ $cssColumnChild[
 &lt;/ol&gt;
 
 ]&lt;!--end child--&gt;
-]&lt;!--end parent--&gt;</tw-passagedata><tw-passagedata pid="265" name="Foraging 1a" tags="" position="5425,3675" size="100,100">{=
+]&lt;!--end parent--&gt;</tw-passagedata><tw-passagedata pid="266" name="Foraging 1a" tags="" position="5425,3675" size="100,100">{=
 
 (metadata:
     &quot;title&quot;, &quot;Foraging Along the Rokhrud&quot;,
@@ -14231,7 +14893,7 @@ $cssColumnChild[
 ($funcLuckGate: &quot;You find...&quot;, 40, &quot;Foraging 1b&quot;, &quot;Foraging 1c&quot;)
 
 ]&lt;!--end child--&gt;
-]&lt;!--end parent--&gt;</tw-passagedata><tw-passagedata pid="266" name="Foraging 1b" tags="" position="5425,3800" size="100,100">{=
+]&lt;!--end parent--&gt;</tw-passagedata><tw-passagedata pid="267" name="Foraging 1b" tags="" position="5425,3800" size="100,100">{=
 
 (metadata: &quot;title&quot;, &quot;Successful Forage&quot;,
 &quot;cardDesc&quot;, &quot;Bounty awaits those who dares, and you did dare.&quot;)
@@ -14254,7 +14916,7 @@ $cssColumnChild[
     $funcDone\
     ]
 ]&lt;!--end child--&gt;
-]&lt;!--end parent--&gt;</tw-passagedata><tw-passagedata pid="267" name="Foraging 1c" tags="" position="5550,3800" size="100,100">{=
+]&lt;!--end parent--&gt;</tw-passagedata><tw-passagedata pid="268" name="Foraging 1c" tags="" position="5550,3800" size="100,100">{=
 
 (metadata: &quot;title&quot;, &quot;Wasted Time in the Bushes&quot;,
 &quot;cardDesc&quot;, &quot;You&#39;ve got twigs in your hair and hook-seeds on your clothes.&quot;)
@@ -14274,7 +14936,7 @@ $cssColumnChild[
 ---
 (link: &quot;Oh well.&quot;)[$funcDone]
 ]&lt;!--end child--&gt;
-]&lt;!--end parent--&gt;</tw-passagedata><tw-passagedata pid="268" name="S: Foraging (Rokhrud)" tags="storylet traveling" position="5425,3550" size="100,100">{=
+]&lt;!--end parent--&gt;</tw-passagedata><tw-passagedata pid="269" name="S: Foraging (Rokhrud)" tags="storylet traveling" position="5425,3550" size="100,100">{=
 
 (storylet: when
 $place&#39;s traveling is true
@@ -14301,7 +14963,7 @@ $cssColumnChild[
 &lt;li&gt;(link: &quot;Never mind.&quot;)[$funcBack]
 &lt;ol&gt;
 ]&lt;!--end child--&gt;
-]&lt;!--end parent--&gt;</tw-passagedata><tw-passagedata pid="269" name="Heal 1a" tags="unfinished" position="3475,2625" size="100,100">{=
+]&lt;!--end parent--&gt;</tw-passagedata><tw-passagedata pid="270" name="Heal 1a" tags="unfinished" position="3475,2625" size="100,100">{=
 
 (metadata:
 &quot;title&quot;, &quot;Lied Down&quot;,
@@ -14332,7 +14994,7 @@ $cssColumnChild[
 ]
 &lt;!--Might add more effects into the above code if there are diseases--&gt;
 ]&lt;!--end child--&gt;
-]&lt;!--end parent--&gt;</tw-passagedata><tw-passagedata pid="270" name="Heal 1b" tags="unfinished" position="3575,2625" size="100,100">{=
+]&lt;!--end parent--&gt;</tw-passagedata><tw-passagedata pid="271" name="Heal 1b" tags="unfinished" position="3575,2625" size="100,100">{=
 
 (metadata:
 &quot;title&quot;, &quot;Medicated Rest&quot;,
@@ -14362,7 +15024,7 @@ $cssColumnChild[
 ]
 &lt;!--Might add more effects into the above code if there are diseases--&gt;
 ]&lt;!--end child--&gt;
-]&lt;!--end parent--&gt;</tw-passagedata><tw-passagedata pid="271" name="S: Heal" tags="storylet unfinished" position="3475,2500" size="100,100">{=
+]&lt;!--end parent--&gt;</tw-passagedata><tw-passagedata pid="272" name="S: Heal" tags="storylet unfinished" position="3475,2500" size="100,100">{=
 
 (storylet: when
 (passage:)&#39;s name is $place&#39;s stay
@@ -14398,21 +15060,21 @@ $cssColumnChild[
 
 &lt;/ol&gt;
 ]&lt;!--end child--&gt;
-]&lt;!--end parent--&gt;</tw-passagedata><tw-passagedata pid="272" name="Random Encounter 1a" tags="" position="4925,3675" size="100,100">{=
+]&lt;!--end parent--&gt;</tw-passagedata><tw-passagedata pid="273" name="Random Encounter 1a" tags="" position="4925,3675" size="100,100">{=
 
 (metadata: &quot;title&quot;, &quot;???&quot;)
 
 (windy...)
 &lt;br&gt;
 ---
-(link: &quot;Done.&quot;)[$funcDone]</tw-passagedata><tw-passagedata pid="273" name="Random Encounter 2a" tags="" position="5050,3675" size="100,100">{=
+(link: &quot;Done.&quot;)[$funcDone]</tw-passagedata><tw-passagedata pid="274" name="Random Encounter 2a" tags="" position="5050,3675" size="100,100">{=
 
 (metadata: &quot;title&quot;, &quot;???&quot;)
 
 (sunny...)
 &lt;br&gt;
 ---
-(link: &quot;Done.&quot;)[$funcDone]</tw-passagedata><tw-passagedata pid="274" name="S: Random Encounter 1" tags="storylet traveling" position="4925,3550" size="100,100">{=
+(link: &quot;Done.&quot;)[$funcDone]</tw-passagedata><tw-passagedata pid="275" name="S: Random Encounter 1" tags="storylet traveling" position="4925,3550" size="100,100">{=
 
 (storylet: when
 $place&#39;s traveling is true
@@ -14429,7 +15091,7 @@ and $char&#39;s player&#39;s timerCooldown does not contain &quot;S: Random Enco
 &lt;ol&gt;
 &lt;li&gt;(link: &quot;Windy event. ⧗&quot;)[($funcAddStoryletCooldown: (passage:)&#39;s name)(goto: &quot;Random Encounter 1a&quot;)]&lt;!--[[Random Encounter 1a]]--&gt;
 &lt;li&gt;(link: &quot;Never mind.&quot;)[$funcBack]
-&lt;ol&gt;</tw-passagedata><tw-passagedata pid="275" name="S: Random Encounter 2" tags="storylet traveling" position="5050,3550" size="100,100">{=
+&lt;ol&gt;</tw-passagedata><tw-passagedata pid="276" name="S: Random Encounter 2" tags="storylet traveling" position="5050,3550" size="100,100">{=
 
 (storylet: when
 $place&#39;s traveling is true
@@ -14446,7 +15108,7 @@ and $char&#39;s player&#39;s timerCooldown does not contain &quot;S: Random Enco
 &lt;ol&gt;
 &lt;li&gt;(link: &quot;Sunny event. ⧗&quot;)[($funcAddStoryletCooldown: (passage:)&#39;s name)(goto: &quot;Random Encounter 2a&quot;)]&lt;!--[[Random Encounter 2a]]--&gt;
 &lt;li&gt;(link: &quot;Never mind.&quot;)[$funcBack]
-&lt;ol&gt;</tw-passagedata><tw-passagedata pid="276" name="S: Currency Exchange (GE)" tags="storylet unfinished" position="725,3475" size="100,100">{=
+&lt;ol&gt;</tw-passagedata><tw-passagedata pid="277" name="S: Currency Exchange (GE)" tags="storylet unfinished" position="850,3475" size="100,100">{=
 
 (storylet: when
 $place&#39;s sublocation is &quot;The Grand Exchange&quot;
@@ -14548,7 +15210,7 @@ Or...
 &lt;!--end of main buy/sell menu--&gt;
 
 ]&lt;!--end child--&gt;
-]&lt;!--end parent 2--&gt;</tw-passagedata><tw-passagedata pid="277" name="S: Shopping Day 1" tags="storylet" position="4000,2175" size="100,100">{=
+]&lt;!--end parent 2--&gt;</tw-passagedata><tw-passagedata pid="278" name="S: Shopping Day 1" tags="storylet" position="4000,2175" size="100,100">{=
 
 (storylet: when
 $place&#39;s sublocation is &quot;The Grand Exchange&quot;
@@ -14619,7 +15281,7 @@ You end up at...
 --&gt;
 
 ]&lt;!--end child--&gt;
-]&lt;!--end parent--&gt;</tw-passagedata><tw-passagedata pid="278" name="Shopping Day 1b" tags="" position="3875,2300" size="100,100">{=
+]&lt;!--end parent--&gt;</tw-passagedata><tw-passagedata pid="279" name="Shopping Day 1b" tags="" position="3875,2300" size="100,100">{=
 
 (metadata:
 &quot;currency&quot;, &quot;rial&quot;,
@@ -14696,7 +15358,7 @@ Or...
 &lt;!--end of main buy/sell menu--&gt;
 
 ]&lt;!--end child--&gt;
-]&lt;!--end parent 2--&gt;</tw-passagedata><tw-passagedata pid="279" name="Shopping Day 1c" tags="unfinished" position="3975,2300" size="100,100">{=
+]&lt;!--end parent 2--&gt;</tw-passagedata><tw-passagedata pid="280" name="Shopping Day 1c" tags="unfinished" position="3975,2300" size="100,100">{=
 
 (metadata:
 &quot;currency&quot;, &quot;rial&quot;,
@@ -14773,7 +15435,7 @@ Or...
 &lt;!--end of main buy/sell menu--&gt;
 
 ]&lt;!--end child--&gt;
-]&lt;!--end parent 2--&gt;</tw-passagedata><tw-passagedata pid="280" name="Shopping Day 1d" tags="unfinished" position="1225,3475" size="100,100">{=
+]&lt;!--end parent 2--&gt;</tw-passagedata><tw-passagedata pid="281" name="Shopping Day 1d" tags="unfinished" position="100,3600" size="100,100">{=
 
 (metadata:
 &quot;currency&quot;, &quot;rial&quot;,
@@ -14857,7 +15519,7 @@ Or...
 &lt;!--end of main buy/sell menu--&gt;
 
 ]&lt;!--end child--&gt;
-]&lt;!--end parent 2--&gt;</tw-passagedata><tw-passagedata pid="281" name="Shopping Day 1e" tags="unfinished" position="100,3600" size="100,100">(metadata:
+]&lt;!--end parent 2--&gt;</tw-passagedata><tw-passagedata pid="282" name="Shopping Day 1e" tags="unfinished" position="225,3600" size="100,100">(metadata:
 &quot;currency&quot;, &quot;rial&quot;,
 &quot;title&quot;, &quot;The Booksellers&#39; Floor&quot;,
 &quot;cardDesc&quot;, &quot;All Nurandah trade cities hoard the written word, regardless of quality.&quot;,
@@ -14927,7 +15589,7 @@ Or...
 &lt;!--end of main buy/sell menu--&gt;
 
 ]&lt;!--end child--&gt;
-]&lt;!--end parent 2--&gt;</tw-passagedata><tw-passagedata pid="282" name="Shopping Day 1f" tags="unfinished" position="225,3600" size="100,100">(metadata:
+]&lt;!--end parent 2--&gt;</tw-passagedata><tw-passagedata pid="283" name="Shopping Day 1f" tags="unfinished" position="350,3600" size="100,100">(metadata:
 &quot;currency&quot;, &quot;rial&quot;,
 &quot;title&quot;, &quot;The Vehzin Warehouse&quot;,
 &quot;cardDesc&quot;, &quot;If the Grand Exchange is the heart, then vehzin is the blood. Crimson, powdery, raw - it is mined in great quantities in Central Askava before coming here and ultimately, to everywhere else in the world.&quot;,
@@ -14989,7 +15651,7 @@ Or...
 &lt;!--end of main buy/sell menu--&gt;
 
 ]&lt;!--end child--&gt;
-]&lt;!--end parent 2--&gt;</tw-passagedata><tw-passagedata pid="283" name="S: Sick Teacher 1" tags="storylet" position="3100,2500" size="100,100">{=
+]&lt;!--end parent 2--&gt;</tw-passagedata><tw-passagedata pid="284" name="S: Sick Teacher 1" tags="storylet" position="3100,2500" size="100,100">{=
 
 (storylet: when
 $place&#39;s sublocation is $place&#39;s stay
@@ -15065,7 +15727,7 @@ _line[&quot;Uuuuugh...&quot;] - there he goes again. You abandon your charitable
 _retrospect
 Professor Marrokh?
 &lt;br&gt;
-_line[&quot;Aaahh...&quot;] he answers your unspoken question from the room right next to you. _line[&quot;Fuuck... That&#39;s it, oooh that&#39;s it...&quot;]
+_line[&quot;Aaahh...&quot;] he answers your unspoken question from the room right next to you. _line[&quot;Fuuck... That&#39;s it...&quot;]
 &lt;br&gt;
 ($funcInnerConvo: (dm:
      &quot;&lt;!--A--&gt;Is he with someone?&quot;, &quot;withSomeone&quot;,
@@ -15148,7 +15810,7 @@ As you approach Professor Marrokh&#39;s door, you hear a groan - _line[&quot;Uuu
 
 
 ]&lt;!--end child--&gt;
-]&lt;!--end parent--&gt;</tw-passagedata><tw-passagedata pid="284" name="S: Sick Teacher 2" tags="storylet" position="3225,2500" size="100,100">{=
+]&lt;!--end parent--&gt;</tw-passagedata><tw-passagedata pid="285" name="S: Sick Teacher 2" tags="storylet" position="3225,2500" size="100,100">{=
 
 (storylet: when
 $place&#39;s sublocation is $place&#39;s stay
@@ -15285,7 +15947,7 @@ $cssDesc[{
 &lt;!--end of doneChoices--&gt;
 
 ]&lt;!--end child--&gt;
-]&lt;!--end parent--&gt;</tw-passagedata><tw-passagedata pid="285" name="Sick Teacher 1a" tags="" position="3100,2625" size="100,100">{=
+]&lt;!--end parent--&gt;</tw-passagedata><tw-passagedata pid="286" name="Sick Teacher 1a" tags="" position="3100,2625" size="100,100">{=
 
 (metadata:
 &quot;title&quot;, &quot;Checking on Your Mentor&quot;,
@@ -15476,7 +16138,7 @@ _line[&quot;Are you fucking //joking//? Holding on to this latrine is all I //ca
 ](doneOptions|
 
 ]&lt;!--end child--&gt;
-]&lt;!--end parent--&gt;</tw-passagedata><tw-passagedata pid="286" name="Sick Teacher 2a" tags="" position="3225,2625" size="100,100">{=
+]&lt;!--end parent--&gt;</tw-passagedata><tw-passagedata pid="287" name="Sick Teacher 2a" tags="" position="3225,2625" size="100,100">{=
 
 (metadata:
 &quot;title&quot;, &quot;Medicating Your Teacher&quot;,
@@ -15657,7 +16319,7 @@ $char&#39;s player&#39;s inv contains &quot;permitAskava&quot;, [($funcOpinionGa
 
 
 ]&lt;!--end child--&gt;
-]&lt;!--end parent--&gt;</tw-passagedata><tw-passagedata pid="287" name="Sick Teacher 2b" tags="" position="3325,2625" size="100,100">{=
+]&lt;!--end parent--&gt;</tw-passagedata><tw-passagedata pid="288" name="Sick Teacher 2b" tags="" position="3325,2625" size="100,100">{=
 
 (metadata:
     &quot;NPC&quot;, &quot;Teacher&quot;,
@@ -15789,7 +16451,7 @@ _line[&quot;Go find us medicine, or we&#39;ll both be stuck here on this rock.&q
 
 
 ]&lt;!--end child--&gt;
-]&lt;!--end parent--&gt;</tw-passagedata><tw-passagedata pid="288" name="item.betTicketX" tags="static-storage" position="975,3600" size="100,100">(metadata: 
+]&lt;!--end parent--&gt;</tw-passagedata><tw-passagedata pid="289" name="item.betTicketX" tags="static-storage" position="1100,3600" size="100,100">(metadata: 
 	&quot;id&quot;, [Betting Ticket (X)],
     &quot;key&quot;, (a: &quot;document&quot;, &quot;note&quot;),
     &quot;value&quot;, (a: 10, 0, 0, 0, 0, 20,),
@@ -15800,7 +16462,7 @@ _line[&quot;Go find us medicine, or we&#39;ll both be stuck here on this rock.&q
     &quot;lossText&quot;, [Torn up, never to be acknowledged.],
     &quot;content&quot;, [],
 
-)</tw-passagedata><tw-passagedata pid="289" name="item.betTicketY" tags="static-storage" position="1100,3600" size="100,100">(metadata: 
+)</tw-passagedata><tw-passagedata pid="290" name="item.betTicketY" tags="static-storage" position="1225,3600" size="100,100">(metadata: 
 	&quot;id&quot;, [Betting Ticket (Y)],
     &quot;key&quot;, (a: &quot;document&quot;, &quot;note&quot;),
     &quot;value&quot;, (a: 10, 0, 0, 0, 0, 20,),
@@ -15811,7 +16473,7 @@ _line[&quot;Go find us medicine, or we&#39;ll both be stuck here on this rock.&q
     &quot;lossText&quot;, [Torn up, never to be acknowledged.],
     &quot;content&quot;, [],
 
-)</tw-passagedata><tw-passagedata pid="290" name="S: studentDebate (Bookie After)" tags="storylet" position="1225,3600" size="100,100">{=
+)</tw-passagedata><tw-passagedata pid="291" name="S: studentDebate (Bookie After)" tags="storylet" position="100,3725" size="100,100">{=
 (storylet: when
 $place&#39;s sublocation is $place&#39;s stay
 and $place&#39;s traveling is false
@@ -15930,7 +16592,7 @@ Cash out your winnings...
 ]&lt;!--end of uninvolved options--&gt;
 
 ]&lt;!--end child--&gt;
-]&lt;!--end parent--&gt;</tw-passagedata><tw-passagedata pid="291" name="studentDebate (Cheated Forfeit)" tags="" position="100,3725" size="100,100">{=
+]&lt;!--end parent--&gt;</tw-passagedata><tw-passagedata pid="292" name="studentDebate (Cheated Forfeit)" tags="" position="225,3725" size="100,100">{=
 
 (metadata: &quot;title&quot;, &quot;Forfeiting Winnings&quot;, &quot;cardDesc&quot;, &quot;&quot;)
 
@@ -15966,7 +16628,7 @@ $cssColumnChild[
 
 
 ]&lt;!--end child--&gt;
-]&lt;!--end parent--&gt;</tw-passagedata><tw-passagedata pid="292" name="studentDebate (Cheated Swindler)" tags="" position="225,3725" size="100,100">{=
+]&lt;!--end parent--&gt;</tw-passagedata><tw-passagedata pid="293" name="studentDebate (Cheated Swindler)" tags="" position="350,3725" size="100,100">{=
 
 (metadata: &quot;title&quot;, &quot;A Shameful Recuperation&quot;, &quot;cardDesc&quot;, &quot;You are allowed a meager return at the loss of both money and reputation.&quot;)
 
@@ -16062,7 +16724,7 @@ Cash out your winnings...
 
 
 ]&lt;!--end child--&gt;
-]&lt;!--end parent--&gt;</tw-passagedata><tw-passagedata pid="293" name="S: studentDebate (Betting)" tags="storylet" position="350,3725" size="100,100">{=
+]&lt;!--end parent--&gt;</tw-passagedata><tw-passagedata pid="294" name="S: studentDebate (Betting)" tags="storylet" position="475,3725" size="100,100">{=
 (storylet: when
 $place&#39;s location is &quot;Apesai&quot;
 and $place&#39;s sublocation is &quot;Apesai Lighthouse&quot;
@@ -16110,7 +16772,7 @@ $cssColumnChild[
 &lt;/ol&gt;
 
 ]&lt;!--end child--&gt;
-]&lt;!--end parent--&gt;</tw-passagedata><tw-passagedata pid="294" name="studentDebate (Betting) (Explanation)" tags="" position="475,3725" size="100,100">{=
+]&lt;!--end parent--&gt;</tw-passagedata><tw-passagedata pid="295" name="studentDebate (Betting) (Explanation)" tags="" position="600,3725" size="100,100">{=
 (metadata:
 &quot;title&quot;, &quot;An Academic Wager&quot;,
 &quot;cardDesc&quot;, &quot;&quot;,
@@ -16137,7 +16799,7 @@ $cssColumnChild[
 
 
 ]&lt;!--end child--&gt;
-]&lt;!--end parent--&gt;</tw-passagedata><tw-passagedata pid="295" name="studentDebate (Placing Bets)" tags="" position="600,3725" size="100,100">{=
+]&lt;!--end parent--&gt;</tw-passagedata><tw-passagedata pid="296" name="studentDebate (Placing Bets)" tags="" position="725,3725" size="100,100">{=
 (metadata:
 &quot;title&quot;, &quot;Placing a Bet&quot;,
 &quot;cardDesc&quot;, &quot;&quot;,
@@ -16199,7 +16861,7 @@ You choose to bet on...
 }]&lt;/li&gt;
 &lt;/ol&gt;
 ]&lt;!--end child--&gt;
-]&lt;!--end parent--&gt;</tw-passagedata><tw-passagedata pid="296" name="S: studentDebate (Swinder)" tags="storylet" position="725,3725" size="100,100">{=
+]&lt;!--end parent--&gt;</tw-passagedata><tw-passagedata pid="297" name="S: studentDebate (Swinder)" tags="storylet" position="850,3725" size="100,100">{=
 (storylet: when
 $place&#39;s location is &quot;Apesai&quot;
 and $place&#39;s sublocation is &quot;Apesai Lighthouse&quot;
@@ -16239,7 +16901,7 @@ $cssColumnChild[
 
 
 ]&lt;!--end child--&gt;
-]&lt;!--end parent--&gt;</tw-passagedata><tw-passagedata pid="297" name="code.studentDebate" tags="" position="850,3725" size="100,100">{=
+]&lt;!--end parent--&gt;</tw-passagedata><tw-passagedata pid="298" name="code.studentDebate" tags="" position="975,3725" size="100,100">{=
 
 &lt;!--Use (display:), outputs
 _debateDaysLeft
@@ -16287,7 +16949,7 @@ _whim
 &lt;!--did the judge overrule the advantage? (output _whim)--&gt;
 (set: _whim to false)
 (if: _victor is &quot;X&quot; and _advantage &gt; 0)[(set: _whim to true)]
-(if: _victor is &quot;Y&quot; and _advantage &lt;= 0)[(set: _whim to true)]</tw-passagedata><tw-passagedata pid="298" name="code.studentDebateReset" tags="" position="975,3725" size="100,100">{=
+(if: _victor is &quot;Y&quot; and _advantage &lt;= 0)[(set: _whim to true)]</tw-passagedata><tw-passagedata pid="299" name="code.studentDebateReset" tags="" position="1100,3725" size="100,100">{=
 &lt;!--produces _resetDebate. Erases all tracker att--&gt;
 (set: _resetDebate to [{
     &lt;!--check X--&gt;
@@ -16298,7 +16960,7 @@ _whim
     (set: _reset to ($funcCheckExists: $char&#39;s player&#39;s att, &quot;studentDebateY&quot;, 0))
     &lt;!--Erase Y--&gt;
 	($funcGainLoss: &quot;att.&quot;, &quot;studentDebateY&quot;, -_reset)
-}])</tw-passagedata><tw-passagedata pid="299" name="code.studentDebateCheat" tags="" position="1100,3725" size="100,100">{=
+}])</tw-passagedata><tw-passagedata pid="300" name="code.studentDebateCheat" tags="" position="1225,3725" size="100,100">{=
 &lt;!--determines whether the player has cheated (output _cheated)--&gt;
 
 (set: _cheated to false)
@@ -16307,7 +16969,7 @@ _whim
 (if: (($funcCheckExists: $char&#39;s player&#39;s att, &quot;studentDebateY&quot;, 0) + ($funcCheckExists: $char&#39;s player&#39;s att, &quot;studentDebateX&quot;, 0)) &gt;= 2)[(set: _helped to true)]
 
 (if: _victor is &quot;X&quot; and ($funcCheckExists: $char&#39;s player&#39;s inv, &quot;betTicketX&quot;, 0) &gt; 0 and _helped)[(set: _cheated to true)]
-(if: _victor is &quot;Y&quot; and ($funcCheckExists: $char&#39;s player&#39;s inv, &quot;betTicketY&quot;, 0) &gt; 0 and _helped)[(set: _cheated to true)]</tw-passagedata><tw-passagedata pid="300" name="S: studentDebate 1c" tags="storylet" position="1225,3725" size="100,100">{=
+(if: _victor is &quot;Y&quot; and ($funcCheckExists: $char&#39;s player&#39;s inv, &quot;betTicketY&quot;, 0) &gt; 0 and _helped)[(set: _cheated to true)]</tw-passagedata><tw-passagedata pid="301" name="S: studentDebate 1c" tags="storylet" position="100,3850" size="100,100">{=
 
 (storylet: when
 $place&#39;s location is &quot;Apesai&quot;
@@ -16342,7 +17004,7 @@ $cssColumnChild[
 &lt;/ol&gt;
 
 ]&lt;!--end child--&gt;
-]&lt;!--end parent--&gt;</tw-passagedata><tw-passagedata pid="301" name="studentDebate 1d" tags="" position="100,3850" size="100,100">(metadata:
+]&lt;!--end parent--&gt;</tw-passagedata><tw-passagedata pid="302" name="studentDebate 1d" tags="" position="225,3850" size="100,100">(metadata:
 &quot;title&quot;, &quot;Commotion Near the Lighthouse&quot;,
 &quot;cardDesc&quot;, &quot;&quot;,
 )
@@ -16368,7 +17030,7 @@ $cssColumnChild[
 &lt;li&gt;(link: &quot;Walk away. You&#39;ll return once everyone is tired of this farce.&quot;)[(goto: &quot;Apesai Lighthouse&quot;)]
 &lt;ol&gt;
 ]&lt;!--end child--&gt;
-]&lt;!--end parent--&gt;</tw-passagedata><tw-passagedata pid="302" name="studentDebate 1e" tags="" position="225,3850" size="100,100">(metadata:
+]&lt;!--end parent--&gt;</tw-passagedata><tw-passagedata pid="303" name="studentDebate 1e" tags="" position="350,3850" size="100,100">(metadata:
 &quot;title&quot;, &quot;Commotion Near the Lighthouse&quot;,
 &quot;cardDesc&quot;, &quot;&quot;,
 )
@@ -16394,7 +17056,7 @@ $cssColumnChild[
 &lt;/ol&gt;
 
 ]&lt;!--end child--&gt;
-]&lt;!--end parent--&gt;</tw-passagedata><tw-passagedata pid="303" name="S: studentDebate 1" tags="storylet" position="5450,1575" size="100,100">{=
+]&lt;!--end parent--&gt;</tw-passagedata><tw-passagedata pid="304" name="S: studentDebate 1" tags="storylet" position="5450,1575" size="100,100">{=
 
 (storylet: when
 $place&#39;s location is &quot;Apesai&quot;
@@ -16432,7 +17094,7 @@ $cssColumnChild[
 
 &lt;/ol&gt;
 ]&lt;!--end child--&gt;
-]&lt;!--end parent--&gt;</tw-passagedata><tw-passagedata pid="304" name="studentDebate 1a" tags="" position="5450,1700" size="100,100">{=
+]&lt;!--end parent--&gt;</tw-passagedata><tw-passagedata pid="305" name="studentDebate 1a" tags="" position="5450,1700" size="100,100">{=
 
 (metadata:
 &quot;title&quot;, &quot;A Streetside Argument&quot;,
@@ -16463,7 +17125,7 @@ $cssDesc[The debate will take place through out several days.]
 &lt;/ol&gt;
 
 ]&lt;!--end child--&gt;
-]&lt;!--end parent--&gt;</tw-passagedata><tw-passagedata pid="305" name="S: VehVeh Debate" tags="storylet" position="5750,1575" size="100,100">{=
+]&lt;!--end parent--&gt;</tw-passagedata><tw-passagedata pid="306" name="S: VehVeh Debate" tags="storylet" position="5750,1575" size="100,100">{=
 
 (storylet: when
 $char&#39;s VehVeh&#39;s alive is true
@@ -16503,7 +17165,7 @@ She&#39;s uncharacteristically warlike...
 
 &lt;!--The topic storylet function reads the current passage&#39;s NPC--&gt;
 ]&lt;!--end child--&gt;
-]&lt;!--end parent--&gt;</tw-passagedata><tw-passagedata pid="306" name="S: studentDebate (Labs)" tags="storylet" position="5150,1575" size="100,100">{=
+]&lt;!--end parent--&gt;</tw-passagedata><tw-passagedata pid="307" name="S: studentDebate (Labs)" tags="storylet" position="5150,1575" size="100,100">{=
 
 (storylet: when
 $place&#39;s sublocation is &quot;Apesai Lighthouse&quot;
@@ -16533,7 +17195,7 @@ $cssColumnChild[
 
 &lt;/ol&gt;
 ]&lt;!--end child--&gt;
-]&lt;!--end parent--&gt;</tw-passagedata><tw-passagedata pid="307" name="S: studentDebate (Clear)" tags="storylet" position="850,3850" size="100,100">{=
+]&lt;!--end parent--&gt;</tw-passagedata><tw-passagedata pid="308" name="S: studentDebate (Clear)" tags="storylet" position="975,3850" size="100,100">{=
 (storylet: when
 $place&#39;s sublocation is $place&#39;s stay
 and $place&#39;s traveling is false
@@ -16584,7 +17246,7 @@ $cssColumnChild[
 ($funcQuestUpdateLink: &quot;Good for them.&quot;, &quot;studentDebate&quot;, &quot;inactive&quot;, &quot;The students of Apesai have grown tired of being at each other&#39;s throats, for now. But it seems inevitable that, some time in the future, they will relitigate their disagreements.&quot;, &quot;Debate rarely resolves anything.&quot;, [_resetDebate], $place&#39;s sublocation)
 
 ]&lt;!--end child--&gt;
-]&lt;!--end parent--&gt;</tw-passagedata><tw-passagedata pid="308" name="studentDebate VehVeh" tags="" position="5750,1700" size="100,100">{=
+]&lt;!--end parent--&gt;</tw-passagedata><tw-passagedata pid="309" name="studentDebate VehVeh" tags="" position="5750,1700" size="100,100">{=
 
 (metadata:
 &quot;title&quot;, &quot;Veh-Veh the Apprentice&quot;,
@@ -16609,7 +17271,7 @@ MY side is right, of course, you dolt!
 &lt;li&gt;(link: &quot;Ok thanks for the insight, Veh-Veh.&quot;)[$funcBack]
 &lt;/ol&gt;
 ]&lt;!--end child--&gt;
-]&lt;!--end parent--&gt;</tw-passagedata><tw-passagedata pid="309" name="S: studentDebate 2" tags="storylet" position="5575,1625" size="100,100">{=
+]&lt;!--end parent--&gt;</tw-passagedata><tw-passagedata pid="310" name="S: studentDebate 2" tags="storylet" position="5575,1625" size="100,100">{=
 
 (storylet: when
 $place&#39;s sublocation is &quot;Apesai Lighthouse&quot;
@@ -16656,7 +17318,7 @@ $cssDesc[(if: _debateDaysLeft is 1)[The debate is nearing its conclusion. Will y
 
 &lt;/ol&gt;
 ]&lt;!--end child--&gt;
-]&lt;!--end parent--&gt;</tw-passagedata><tw-passagedata pid="310" name="studentDebate 2 END" tags="" position="5575,2000" size="100,100">{=
+]&lt;!--end parent--&gt;</tw-passagedata><tw-passagedata pid="311" name="studentDebate 2 END" tags="" position="5575,2000" size="100,100">{=
 
 (metadata:
 &quot;title&quot;, &quot;The Student Debate&quot;,
@@ -16755,7 +17417,7 @@ Side Y victory.
 }]&lt;!--end if X--&gt;
 
 ]&lt;!--end child--&gt;
-]&lt;!--end parent--&gt;</tw-passagedata><tw-passagedata pid="311" name="studentDebate 2X" tags="" position="5525,1875" size="100,100">{=
+]&lt;!--end parent--&gt;</tw-passagedata><tw-passagedata pid="312" name="studentDebate 2X" tags="" position="5525,1875" size="100,100">{=
 
 (metadata:
 &quot;title&quot;, &quot;The Student Debate&quot;,
@@ -16808,7 +17470,7 @@ _whim
 }]
 
 ]&lt;!--end child--&gt;
-]&lt;!--end parent--&gt;</tw-passagedata><tw-passagedata pid="312" name="studentDebate 2Y" tags="" position="5650,1875" size="100,100">{=
+]&lt;!--end parent--&gt;</tw-passagedata><tw-passagedata pid="313" name="studentDebate 2Y" tags="" position="5650,1875" size="100,100">{=
 
 (metadata:
 &quot;title&quot;, &quot;The Student Debate&quot;,
@@ -16861,7 +17523,7 @@ _whim
 }]
 
 ]&lt;!--end child--&gt;
-]&lt;!--end parent--&gt;</tw-passagedata><tw-passagedata pid="313" name="studentDebate 2a" tags="" position="5575,1750" size="100,100">{=
+]&lt;!--end parent--&gt;</tw-passagedata><tw-passagedata pid="314" name="studentDebate 2a" tags="" position="5575,1750" size="100,100">{=
 
 (metadata:
 &quot;title&quot;, &quot;The Debate&quot;,
@@ -16932,7 +17594,7 @@ $cssDesc[{
 &lt;/ol&gt;
 
 ]&lt;!--end child--&gt;
-]&lt;!--end parent--&gt;</tw-passagedata><tw-passagedata pid="314" name="studentDebate none" tags="" position="5775,1875" size="100,100">(metadata:
+]&lt;!--end parent--&gt;</tw-passagedata><tw-passagedata pid="315" name="studentDebate none" tags="" position="5775,1875" size="100,100">(metadata:
 &quot;title&quot;, &quot;The Student Debate&quot;,
 &quot;cardDesc&quot;, &quot;Staying neutral.&quot;,
 )
@@ -16983,7 +17645,7 @@ _whim
 }]
 
 ]&lt;!--end child--&gt;
-]&lt;!--end parent--&gt;</tw-passagedata><tw-passagedata pid="315" name="Lists" tags="" position="600,3975" size="100,100">{=
+]&lt;!--end parent--&gt;</tw-passagedata><tw-passagedata pid="316" name="Lists" tags="" position="725,3975" size="100,100">{=
 
 (metadata: &quot;title&quot;, &quot;Lists&quot;)
 
@@ -17185,7 +17847,7 @@ Count: &#39;&#39;[(print: $stuff&#39;s count)]&lt;count|&#39;&#39;
 
 
 ]&lt;!--end child--&gt;
-]&lt;!--end parent--&gt;</tw-passagedata><tw-passagedata pid="316" name="code.eventInfo" tags="" position="725,3975" size="100,100">{=
+]&lt;!--end parent--&gt;</tw-passagedata><tw-passagedata pid="317" name="code.eventInfo" tags="" position="850,3975" size="100,100">{=
 
 (set: _eventInfo to (macro: str-type _eventName, [(out:)[{
     &lt;!--load full event DM--&gt;
@@ -17206,7 +17868,7 @@ Count: &#39;&#39;[(print: $stuff&#39;s count)]&lt;count|&#39;&#39;
             &lt;br&gt;&#39;&#39;startup:&#39;&#39; (v6m-print: _eventDM&#39;s startup)
         }], &quot;Close&quot;)
     }]^^
-}]]))</tw-passagedata><tw-passagedata pid="317" name="code.npcInfo" tags="" position="850,3975" size="100,100">(set: _npcInfo to (macro: str-type _npcName, [(out:)[{
+}]]))</tw-passagedata><tw-passagedata pid="318" name="code.npcInfo" tags="" position="975,3975" size="100,100">(set: _npcInfo to (macro: str-type _npcName, [(out:)[{
     &lt;!--load NPC datamap--&gt;
     (set: _npcDM to (passage: &quot;npc.&quot; + _npcName))
 
@@ -17257,7 +17919,7 @@ Count: &#39;&#39;[(print: $stuff&#39;s count)]&lt;count|&#39;&#39;
         }]
     ^^}]
 
-}]]))</tw-passagedata><tw-passagedata pid="318" name="code.questInfo" tags="" position="975,3975" size="100,100">(set: _questInfo to (macro: str-type _questName, [(out:)[{
+}]]))</tw-passagedata><tw-passagedata pid="319" name="code.questInfo" tags="" position="1100,3975" size="100,100">(set: _questInfo to (macro: str-type _questName, [(out:)[{
     &lt;!--load full quest DM--&gt;
     (set: _questDM to (passage: &quot;quest.&quot; + _questName))
 
@@ -17271,49 +17933,49 @@ Count: &#39;&#39;[(print: $stuff&#39;s count)]&lt;count|&#39;&#39;
             &lt;br&gt;&#39;&#39;source:&#39;&#39; (box: &quot;X&quot;, 5)+(bg: &quot;#524538&quot;)[(v6m-print: _questDM&#39;s source)]
         }], &quot;Close&quot;)
     }]^^
-}]]))</tw-passagedata><tw-passagedata pid="319" name="list.attAccess" tags="" position="1100,3975" size="100,100">{=
+}]]))</tw-passagedata><tw-passagedata pid="320" name="list.attAccess" tags="" position="1225,3975" size="100,100">{=
 (for: each _att, ...(passages: where its name contains &quot;att.&quot;))[{
     (if: _att&#39;s key contains &quot;access&quot;)[(set: $stuff&#39;s count to it + 1)
     &lt;li&gt;&#39;&#39;(print: _att&#39;s id)&#39;&#39; ((print: _att&#39;s name)) ($funcLogTip: &quot;att.&quot;, (trimmed: &quot;att.&quot;, _att&#39;s name))
     &lt;br&gt;$cssDesc[Key: (print: _att&#39;s key)]
     &lt;br&gt;$cssDesc[Value: (print: _att&#39;s value)]
     &lt;/li&gt;]
-}]</tw-passagedata><tw-passagedata pid="320" name="list.attAll" tags="" position="1225,3975" size="100,100">{=
+}]</tw-passagedata><tw-passagedata pid="321" name="list.attAll" tags="" position="100,4100" size="100,100">{=
 (for: each _att, ...(passages: where its name contains &quot;att.&quot;))[{
     (set: $stuff&#39;s count to it + 1)
     &lt;li&gt;&#39;&#39;(print: _att&#39;s id)&#39;&#39; ((print: _att&#39;s name)) ($funcLogTip: &quot;att.&quot;, (trimmed: &quot;att.&quot;, _att&#39;s name))
     &lt;br&gt;$cssDesc[Key: (print: _att&#39;s key)]
     &lt;br&gt;$cssDesc[Value: (print: _att&#39;s value)]
     &lt;/li&gt;
-}]</tw-passagedata><tw-passagedata pid="321" name="list.attAttributes" tags="" position="100,4100" size="100,100">{=
+}]</tw-passagedata><tw-passagedata pid="322" name="list.attAttributes" tags="" position="225,4100" size="100,100">{=
 (for: each _att, ...(passages: where its name contains &quot;att.&quot;))[{
     (if: _att&#39;s key contains &quot;attribute&quot;)[(set: $stuff&#39;s count to it + 1)
     &lt;li&gt;&#39;&#39;(print: _att&#39;s id)&#39;&#39; ((print: _att&#39;s name)) ($funcLogTip: &quot;att.&quot;, (trimmed: &quot;att.&quot;, _att&#39;s name))
     &lt;br&gt;$cssDesc[Key: (print: _att&#39;s key)]
     &lt;br&gt;$cssDesc[Value: (print: _att&#39;s value)]
     &lt;/li&gt;]
-}]</tw-passagedata><tw-passagedata pid="322" name="list.attElements" tags="" position="225,4100" size="100,100">{=
+}]</tw-passagedata><tw-passagedata pid="323" name="list.attElements" tags="" position="350,4100" size="100,100">{=
 (for: each _att, ...(passages: where its name contains &quot;att.&quot;))[{
     (if: _att&#39;s key contains &quot;element&quot;)[(set: $stuff&#39;s count to it + 1)
     &lt;li&gt;&#39;&#39;(print: _att&#39;s id)&#39;&#39; ((print: _att&#39;s name)) ($funcLogTip: &quot;att.&quot;, (trimmed: &quot;att.&quot;, _att&#39;s name))
     &lt;br&gt;$cssDesc[Key: (print: _att&#39;s key)]
     &lt;br&gt;$cssDesc[Value: (print: _att&#39;s value)]
     &lt;/li&gt;]
-}]</tw-passagedata><tw-passagedata pid="323" name="list.attKnowledge" tags="" position="350,4100" size="100,100">{=
+}]</tw-passagedata><tw-passagedata pid="324" name="list.attKnowledge" tags="" position="475,4100" size="100,100">{=
 (for: each _att, ...(passages: where its name contains &quot;att.&quot;))[{
     (if: _att&#39;s key contains &quot;knowledge&quot;)[(set: $stuff&#39;s count to it + 1)
     &lt;li&gt;&#39;&#39;(print: _att&#39;s id)&#39;&#39; ((print: _att&#39;s name)) ($funcLogTip: &quot;att.&quot;, (trimmed: &quot;att.&quot;, _att&#39;s name))
     &lt;br&gt;$cssDesc[Key: (print: _att&#39;s key)]
     &lt;br&gt;$cssDesc[Value: (print: _att&#39;s value)]
     &lt;/li&gt;]
-}]</tw-passagedata><tw-passagedata pid="324" name="list.attSocial" tags="" position="475,4100" size="100,100">{=
+}]</tw-passagedata><tw-passagedata pid="325" name="list.attSocial" tags="" position="600,4100" size="100,100">{=
 (for: each _att, ...(passages: where its name contains &quot;att.&quot;))[{
     (if: _att&#39;s key contains &quot;social&quot;)[(set: $stuff&#39;s count to it + 1)
     &lt;li&gt;&#39;&#39;(print: _att&#39;s id)&#39;&#39; ((print: _att&#39;s name)) ($funcLogTip: &quot;att.&quot;, (trimmed: &quot;att.&quot;, _att&#39;s name))
     &lt;br&gt;$cssDesc[Key: (print: _att&#39;s key)]
     &lt;br&gt;$cssDesc[Value: (print: _att&#39;s value)]
     &lt;/li&gt;]
-}]</tw-passagedata><tw-passagedata pid="325" name="list.eventAll" tags="" position="600,4100" size="100,100">{=
+}]</tw-passagedata><tw-passagedata pid="326" name="list.eventAll" tags="" position="725,4100" size="100,100">{=
 
 &lt;!--load temp macro--&gt;
 (set: _eventInfo to [])
@@ -17324,7 +17986,7 @@ Count: &#39;&#39;[(print: $stuff&#39;s count)]&lt;count|&#39;&#39;
     &lt;li&gt;&#39;&#39;(print: _event&#39;s id)&#39;&#39; ((print: _event&#39;s name)) (_eventInfo: (trimmed: &quot;event.&quot;, _event&#39;s name))
     &lt;br&gt;$cssDesc[Desc: (print: _event&#39;s desc)]
     &lt;/li&gt;   
-}]</tw-passagedata><tw-passagedata pid="326" name="list.itemAll" tags="" position="725,4100" size="100,100">{=
+}]</tw-passagedata><tw-passagedata pid="327" name="list.itemAll" tags="" position="850,4100" size="100,100">{=
 
 (for: each _item, ...(passages: where its name contains &quot;item.&quot;))[{
     (set: $stuff&#39;s count to it + 1)
@@ -17332,7 +17994,7 @@ Count: &#39;&#39;[(print: $stuff&#39;s count)]&lt;count|&#39;&#39;
     &lt;br&gt;$cssDesc[Key: (print: _item&#39;s key)]
     &lt;br&gt;$cssDesc[Value: (print: _item&#39;s value)]
     &lt;/li&gt;   
-}]</tw-passagedata><tw-passagedata pid="327" name="list.itemCraftables" tags="" position="850,4100" size="100,100">{=
+}]</tw-passagedata><tw-passagedata pid="328" name="list.itemCraftables" tags="" position="975,4100" size="100,100">{=
 
 (for: each _item, ...(passages: where its name contains &quot;item.&quot;))[{
     (if: _item&#39;s key contains &quot;craftable&quot;)[(set: $stuff&#39;s count to it + 1)
@@ -17341,7 +18003,7 @@ Count: &#39;&#39;[(print: $stuff&#39;s count)]&lt;count|&#39;&#39;
     &lt;br&gt;$cssDesc[Value: (print: _item&#39;s value)]
     &lt;br&gt;$cssDesc[Level: (print: _item&#39;s level)]
     &lt;/li&gt; ]  
-}]</tw-passagedata><tw-passagedata pid="328" name="list.itemDocs" tags="" position="975,4100" size="100,100">{=
+}]</tw-passagedata><tw-passagedata pid="329" name="list.itemDocs" tags="" position="1100,4100" size="100,100">{=
 
 (for: each _item, ...(passages: where its name contains &quot;item.&quot;))[{
     (if: _item&#39;s key contains &quot;document&quot;)[(set: $stuff&#39;s count to it + 1)
@@ -17349,7 +18011,7 @@ Count: &#39;&#39;[(print: $stuff&#39;s count)]&lt;count|&#39;&#39;
     &lt;br&gt;$cssDesc[Key: (print: _item&#39;s key)]
     &lt;br&gt;$cssDesc[Value: (print: _item&#39;s value)]
     &lt;/li&gt; ]  
-}]</tw-passagedata><tw-passagedata pid="329" name="list.itemIngredients" tags="" position="1100,4100" size="100,100">{=
+}]</tw-passagedata><tw-passagedata pid="330" name="list.itemIngredients" tags="" position="1225,4100" size="100,100">{=
 
 (for: each _item, ...(passages: where its name contains &quot;item.&quot;))[{
     (if: _item&#39;s key contains &quot;ingredient&quot;)[(set: $stuff&#39;s count to it + 1)
@@ -17357,7 +18019,7 @@ Count: &#39;&#39;[(print: $stuff&#39;s count)]&lt;count|&#39;&#39;
     &lt;br&gt;$cssDesc[Key: (print: _item&#39;s key)]
     &lt;br&gt;$cssDesc[Value: (print: _item&#39;s value)]
     &lt;/li&gt; ]  
-}]</tw-passagedata><tw-passagedata pid="330" name="list.itemResource" tags="" position="1225,4100" size="100,100">{=
+}]</tw-passagedata><tw-passagedata pid="331" name="list.itemResource" tags="" position="100,4225" size="100,100">{=
 
 (for: each _item, ...(passages: where its name contains &quot;item.&quot;))[{
     (if: _item&#39;s key contains &quot;resource&quot;)[(set: $stuff&#39;s count to it + 1)
@@ -17365,7 +18027,7 @@ Count: &#39;&#39;[(print: $stuff&#39;s count)]&lt;count|&#39;&#39;
     &lt;br&gt;$cssDesc[Key: (print: _item&#39;s key)]
     &lt;br&gt;$cssDesc[Value: (print: _item&#39;s value)]
     &lt;/li&gt; ]  
-}]</tw-passagedata><tw-passagedata pid="331" name="list.npcAll" tags="" position="100,4225" size="100,100">{=
+}]</tw-passagedata><tw-passagedata pid="332" name="list.npcAll" tags="" position="225,4225" size="100,100">{=
 
 &lt;!--load temp macro--&gt;
 (set: _npcInfo to [])
@@ -17377,7 +18039,7 @@ Count: &#39;&#39;[(print: $stuff&#39;s count)]&lt;count|&#39;&#39;
     (_npcInfo: (trimmed: &quot;npc.&quot;, _npc&#39;s name))
     (if: _npc contains &quot;desc&quot;)[&lt;br&gt;$cssDesc[(print: _npc&#39;s desc)]]
     &lt;/li&gt;
-}]</tw-passagedata><tw-passagedata pid="332" name="list.npcGeneric" tags="" position="225,4225" size="100,100">{=
+}]</tw-passagedata><tw-passagedata pid="333" name="list.npcGeneric" tags="" position="350,4225" size="100,100">{=
 
 &lt;!--load temp macro--&gt;
 (set: _npcInfo to [])
@@ -17389,7 +18051,7 @@ Count: &#39;&#39;[(print: $stuff&#39;s count)]&lt;count|&#39;&#39;
     (_npcInfo: (trimmed: &quot;npc.&quot;, _npc&#39;s name))
     (if: _npc contains &quot;desc&quot;)[&lt;br&gt;$cssDesc[(print: _npc&#39;s desc)]]
     &lt;/li&gt;]
-}]</tw-passagedata><tw-passagedata pid="333" name="list.npcNotable" tags="" position="350,4225" size="100,100">{=
+}]</tw-passagedata><tw-passagedata pid="334" name="list.npcNotable" tags="" position="475,4225" size="100,100">{=
 
 &lt;!--load temp macro--&gt;
 (set: _npcInfo to [])
@@ -17401,7 +18063,7 @@ Count: &#39;&#39;[(print: $stuff&#39;s count)]&lt;count|&#39;&#39;
     (_npcInfo: (trimmed: &quot;npc.&quot;, _npc&#39;s name))
     (if: _npc contains &quot;desc&quot;)[&lt;br&gt;$cssDesc[(print: _npc&#39;s desc)]]
     &lt;/li&gt;]
-}]</tw-passagedata><tw-passagedata pid="334" name="list.questAll" tags="" position="475,4225" size="100,100">{=
+}]</tw-passagedata><tw-passagedata pid="335" name="list.questAll" tags="" position="600,4225" size="100,100">{=
 
 &lt;!--load temp macro--&gt;
 (set: _questInfo to [])
@@ -17413,28 +18075,28 @@ Count: &#39;&#39;[(print: $stuff&#39;s count)]&lt;count|&#39;&#39;
     (_questInfo: (trimmed: &quot;quest.&quot;, _quest&#39;s name))
     (if: _quest contains &quot;desc&quot;)[&lt;br&gt;$cssDesc[(print: _quest&#39;s desc)]]
     &lt;/li&gt;
-}]</tw-passagedata><tw-passagedata pid="335" name="list.tempAll" tags="" position="600,4225" size="100,100">{=
+}]</tw-passagedata><tw-passagedata pid="336" name="list.tempAll" tags="" position="725,4225" size="100,100">{=
 (for: each _temp, ...(passages: where its name contains &quot;temp.&quot;))[{
     (set: $stuff&#39;s count to it + 1)
     &lt;li&gt;&#39;&#39;(print: _temp&#39;s id)&#39;&#39; ((print: _temp&#39;s name)) ($funcLogTip: &quot;temp.&quot;, (trimmed: &quot;temp.&quot;, _temp&#39;s name))
     &lt;br&gt;$cssDesc[Key: (print: _temp&#39;s key)]
     &lt;br&gt;$cssDesc[Value: (print: _temp&#39;s value)]
     &lt;/li&gt;
-}]</tw-passagedata><tw-passagedata pid="336" name="list.tempConditions" tags="" position="725,4225" size="100,100">{=
+}]</tw-passagedata><tw-passagedata pid="337" name="list.tempConditions" tags="" position="850,4225" size="100,100">{=
 (for: each _temp, ...(passages: where its name contains &quot;temp.&quot;))[{
     (if: _temp&#39;s key contains &quot;condition&quot;)[(set: $stuff&#39;s count to it + 1)
     &lt;li&gt;&#39;&#39;(print: _temp&#39;s id)&#39;&#39; ((print: _temp&#39;s name)) ($funcLogTip: &quot;temp.&quot;, (trimmed: &quot;temp.&quot;, _temp&#39;s name))
     &lt;br&gt;$cssDesc[Key: (print: _temp&#39;s key)]
     &lt;br&gt;$cssDesc[Value: (print: _temp&#39;s value)]
     &lt;/li&gt;]
-}]</tw-passagedata><tw-passagedata pid="337" name="list.tempMemory" tags="" position="850,4225" size="100,100">{=
+}]</tw-passagedata><tw-passagedata pid="338" name="list.tempMemory" tags="" position="975,4225" size="100,100">{=
 (for: each _temp, ...(passages: where its name contains &quot;temp.&quot;))[{
     (if: _temp&#39;s key contains &quot;memory&quot;)[(set: $stuff&#39;s count to it + 1)
     &lt;li&gt;&#39;&#39;(print: _temp&#39;s id)&#39;&#39; ((print: _temp&#39;s name)) ($funcLogTip: &quot;temp.&quot;, (trimmed: &quot;temp.&quot;, _temp&#39;s name))
     &lt;br&gt;$cssDesc[Key: (print: _temp&#39;s key)]
     &lt;br&gt;$cssDesc[Value: (print: _temp&#39;s value)]
     &lt;/li&gt;]
-}]</tw-passagedata><tw-passagedata pid="338" name="Pre-Test (NEW)" tags="" position="825,3350" size="100,100">{=
+}]</tw-passagedata><tw-passagedata pid="339" name="Pre-Test (NEW)" tags="" position="825,3350" size="100,100">{=
 
 $cssColumnParent[
 
@@ -17478,7 +18140,7 @@ $cssColumnChild[
 &lt;li&gt;[[Test O]] $cssDesc[(Market &amp; priceMod)]
 
 ]&lt;!--child end--&gt;
-]&lt;!--parent end--&gt;</tw-passagedata><tw-passagedata pid="339" name="Test A" tags="" position="1000,3350" size="100,100">{=
+]&lt;!--parent end--&gt;</tw-passagedata><tw-passagedata pid="340" name="Test A" tags="" position="1000,3350" size="100,100">{=
 
 (metadata: &quot;title&quot;, &quot;Test A (item basics)&quot;)
 
@@ -17528,7 +18190,7 @@ $cssColumnChild[
 Tests for `($funcCheckExists:)` macro, which takes (1) a datamap and (2) the name of a key that may or may not exists --&gt; outputs the value of that key if it exists. Otherwise outputs nothing:
 &lt;li&gt;sickTeacher quest: ($funcCheckExists: $char&#39;s player&#39;s quests, &quot;sickTeacher&quot;, &quot;&quot;)
 &lt;li&gt;Ginger: ($funcCheckExists: $char&#39;s player&#39;s inv, &quot;ginger&quot;, 0)
-&lt;li&gt;vigorous attribute: ($funcCheckExists: $char&#39;s player&#39;s att, &quot;vigorous&quot;, 0)</tw-passagedata><tw-passagedata pid="340" name="Test B" tags="" position="1000,3475" size="100,100">(metadata: &quot;title&quot;, &quot;Test B (buying &amp; selling)&quot;)
+&lt;li&gt;vigorous attribute: ($funcCheckExists: $char&#39;s player&#39;s att, &quot;vigorous&quot;, 0)</tw-passagedata><tw-passagedata pid="341" name="Test B" tags="" position="1000,3475" size="100,100">(metadata: &quot;title&quot;, &quot;Test B (buying &amp; selling)&quot;)
 
 (set: _priceModBuy to 2)
 (set: _priceModSell to .5)
@@ -17566,7 +18228,7 @@ Tests for `($funcCheckExists:)` macro, which takes (1) a datamap and (2) the nam
 
 &lt;br&gt;
 &#39;&#39;Player Inventory&#39;&#39;
-(print: $char&#39;s player&#39;s inv)</tw-passagedata><tw-passagedata pid="341" name="Test C" tags="" position="1000,3600" size="100,100">(metadata: &quot;title&quot;, &quot;Test C (elementalizing)&quot;)
+(print: $char&#39;s player&#39;s inv)</tw-passagedata><tw-passagedata pid="342" name="Test C" tags="" position="1000,3600" size="100,100">(metadata: &quot;title&quot;, &quot;Test C (elementalizing)&quot;)
 
 [[⇦ BACK-&gt;Pre-Test (NEW)]]
 &lt;ul&gt;
@@ -17592,7 +18254,7 @@ Based on inventory &amp; only ingredients (use this in game) &lt;br&gt;
 (print: $char&#39;s player&#39;s inv)
 &lt;br&gt;
 &#39;&#39;Player Attributes&#39;&#39;
-(print: $char&#39;s player&#39;s att)</tw-passagedata><tw-passagedata pid="342" name="Z. Test Conditions" tags="startup" position="550,3350" size="100,100">&lt;!----&gt;</tw-passagedata><tw-passagedata pid="343" name="Experimental Lab" tags="" position="1150,3875" size="100,100">{=
+(print: $char&#39;s player&#39;s att)</tw-passagedata><tw-passagedata pid="343" name="Z. Test Conditions" tags="startup" position="550,3350" size="100,100">&lt;!----&gt;</tw-passagedata><tw-passagedata pid="344" name="Experimental Lab" tags="" position="1150,3875" size="100,100">{=
 (metadata: 
 &quot;title&quot;, &quot;Experimental Lab (Test)&quot;,
 &quot;level&quot;, 3,
@@ -17609,7 +18271,7 @@ Based on inventory &amp; only ingredients (use this in game) &lt;br&gt;
 &lt;h3&gt;(print: (passage:)&#39;s title)&lt;/h3&gt;
 
 &lt;br&gt;
- ($funcVehzin: &quot;Test D&quot;)</tw-passagedata><tw-passagedata pid="344" name="Professional Lab" tags="" position="1150,3775" size="100,100">{=
+ ($funcVehzin: &quot;Test D&quot;)</tw-passagedata><tw-passagedata pid="345" name="Professional Lab" tags="" position="1150,3775" size="100,100">{=
 (metadata: 
 &quot;title&quot;, &quot;Professional Lab (Test)&quot;,
 &quot;level&quot;, 2,
@@ -17626,7 +18288,7 @@ Based on inventory &amp; only ingredients (use this in game) &lt;br&gt;
 &lt;h3&gt;(print: (passage:)&#39;s title)&lt;/h3&gt;
 
 &lt;br&gt;
- ($funcVehzin: &quot;Test D&quot;)</tw-passagedata><tw-passagedata pid="345" name="Simple Lab" tags="" position="1150,3675" size="100,100">{=
+ ($funcVehzin: &quot;Test D&quot;)</tw-passagedata><tw-passagedata pid="346" name="Simple Lab" tags="" position="1150,3675" size="100,100">{=
 
 (metadata: 
 &quot;title&quot;, &quot;Simple Lab (Test)&quot;,
@@ -17644,7 +18306,7 @@ Based on inventory &amp; only ingredients (use this in game) &lt;br&gt;
 &lt;h3&gt;(print: (passage:)&#39;s title)&lt;/h3&gt;
 
 &lt;br&gt;
- ($funcVehzin: &quot;Test D&quot;)</tw-passagedata><tw-passagedata pid="346" name="Test D" tags="" position="1000,3725" size="100,100">(metadata: &quot;title&quot;, &quot;Test D (synthesis labs)&quot;)
+ ($funcVehzin: &quot;Test D&quot;)</tw-passagedata><tw-passagedata pid="347" name="Test D" tags="" position="1000,3725" size="100,100">(metadata: &quot;title&quot;, &quot;Test D (synthesis labs)&quot;)
 
 [[⇦ BACK-&gt;Pre-Test (NEW)]]
 
@@ -17668,7 +18330,7 @@ Based on inventory &amp; only ingredients (use this in game) &lt;br&gt;
 
 (set: _result to (str:_b) + &quot; is &quot; + (str: _compare) + &quot; &quot; + (str: _a) + &quot;.&quot;)
 
-_result--&gt;</tw-passagedata><tw-passagedata pid="347" name="Test E" tags="" position="1000,4050" size="100,100">{=
+_result--&gt;</tw-passagedata><tw-passagedata pid="348" name="Test E" tags="" position="1000,4050" size="100,100">{=
 
 (metadata: &quot;title&quot;, &quot;Test E (time, place &amp; weather)&quot;)
 
@@ -17698,15 +18360,15 @@ Current location: (print: $place&#39;s sublocation), (print: $place&#39;s locati
 Staying at: (print: $place&#39;s stay).
 &lt;br&gt;
 The weather in (print: $place&#39;s location) is &#39;&#39;(print: $place&#39;s weather)&#39;&#39;:
-($funcWeatherBox:)</tw-passagedata><tw-passagedata pid="348" name="Test F Failure" tags="" position="1150,4250" size="100,100">{=
+($funcWeatherBox:)</tw-passagedata><tw-passagedata pid="349" name="Test F Failure" tags="" position="1150,4250" size="100,100">{=
 
 Uh oh, failure...
 &lt;br&gt;
-[[Back to Test F-&gt;Test F]]</tw-passagedata><tw-passagedata pid="349" name="Test F Success" tags="" position="1150,4175" size="100,100">{=
+[[Back to Test F-&gt;Test F]]</tw-passagedata><tw-passagedata pid="350" name="Test F Success" tags="" position="1150,4175" size="100,100">{=
 
 SUCCESS!
 &lt;br&gt;
-[[Back to Test F-&gt;Test F]]</tw-passagedata><tw-passagedata pid="350" name="Test F" tags="" position="1000,4200" size="100,100">{=
+[[Back to Test F-&gt;Test F]]</tw-passagedata><tw-passagedata pid="351" name="Test F" tags="" position="1000,4200" size="100,100">{=
 
 (metadata: &quot;title&quot;, &quot;Test F (checks &amp; gates)&quot;)
 
@@ -17725,38 +18387,38 @@ Check attribute without spending:
 &lt;br&gt;
 Pure luck:
 &lt;li&gt;($funcLuckGate: &quot;Try your luck&quot;, 70, &quot;Test F Success&quot;, &quot;Test F Failure&quot;)
-&lt;/ul&gt;</tw-passagedata><tw-passagedata pid="351" name="Test G Apply" tags="" position="700,4400" size="100,100">(metadata: &quot;title&quot;, &quot;Test G Applying for Permit&quot;,)
+&lt;/ul&gt;</tw-passagedata><tw-passagedata pid="352" name="Test G Apply" tags="" position="700,4400" size="100,100">(metadata: &quot;title&quot;, &quot;Test G Applying for Permit&quot;,)
 
 You submit your papers and were told to wait.
 &lt;br&gt;
 ---
 
-($funcQuestUpdateLink: &quot;You leave the immigration hall.&quot;, &quot;permitAskava&quot;, &quot;active&quot;, &quot;Your papers are submitted. It&#39;ll take a while. Try to keep yourself busy in the mean time.&quot;, &quot;Bureaucracies are the same everywhere - back home and here also.&quot;, [($funcAddTimer: &quot;permitAskava&quot;, &quot;wait&quot;)], &quot;Test G&quot;,)</tw-passagedata><tw-passagedata pid="352" name="Test G Essay Done" tags="" position="1375,4825" size="100,100">(metadata: &quot;title&quot;, &quot;Turn in Essay&quot;,)
+($funcQuestUpdateLink: &quot;You leave the immigration hall.&quot;, &quot;permitAskava&quot;, &quot;active&quot;, &quot;Your papers are submitted. It&#39;ll take a while. Try to keep yourself busy in the mean time.&quot;, &quot;Bureaucracies are the same everywhere - back home and here also.&quot;, [($funcAddTimer: &quot;permitAskava&quot;, &quot;wait&quot;)], &quot;Test G&quot;,)</tw-passagedata><tw-passagedata pid="353" name="Test G Essay Done" tags="" position="1375,4825" size="100,100">(metadata: &quot;title&quot;, &quot;Turn in Essay&quot;,)
  You turn it in on time!
  &lt;br&gt;
  $cssDesc[The deadline countdown should disappear now.]
  &lt;br&gt;
  ---
- ($funcQuestUpdateLink: &quot;Great job!&quot;, &quot;urgentAssignment&quot;, &quot;completed&quot;, &quot;You&#39;ve turned in your essay on time.&quot;, &quot;Phew!&quot;, [($funcRemoveTimer: &quot;urgentAssignment&quot;, &quot;deadline&quot;)], &quot;Test G&quot;)</tw-passagedata><tw-passagedata pid="353" name="Test G Essay Fail" tags="" position="1325,4775" size="100,100">(metadata: &quot;title&quot;, &quot;Essay Regress&quot;,)
+ ($funcQuestUpdateLink: &quot;Great job!&quot;, &quot;urgentAssignment&quot;, &quot;completed&quot;, &quot;You&#39;ve turned in your essay on time.&quot;, &quot;Phew!&quot;, [($funcRemoveTimer: &quot;urgentAssignment&quot;, &quot;deadline&quot;)], &quot;Test G&quot;)</tw-passagedata><tw-passagedata pid="354" name="Test G Essay Fail" tags="" position="1325,4775" size="100,100">(metadata: &quot;title&quot;, &quot;Essay Regress&quot;,)
 Oh no, you&#39;ve somehow made it worse!
 &lt;br&gt;
 ---
 (link-rerun: &quot;Scrap that! You&#39;ll try again tomorrow.&quot;)[\
 	(if: $char&#39;s player&#39;s att contains &quot;urgentAssignment&quot;)[($funcGainLoss: &quot;att.&quot;, &quot;urgentAssignment&quot;, -1)]\
     $funcDone
-]</tw-passagedata><tw-passagedata pid="354" name="Test G Essay Progress" tags="" position="1275,4725" size="100,100">(metadata: &quot;title&quot;, &quot;Essay Progress&quot;,)
+]</tw-passagedata><tw-passagedata pid="355" name="Test G Essay Progress" tags="" position="1275,4725" size="100,100">(metadata: &quot;title&quot;, &quot;Essay Progress&quot;,)
 Yes, little by little!
 &lt;br&gt;
 ---
 (link-rerun: &quot;Word by word.&quot;)[\
 	($funcGainLoss: &quot;att.&quot;, &quot;urgentAssignment&quot;, 1)\
     $funcDone
-]</tw-passagedata><tw-passagedata pid="355" name="Test G Failure" tags="" position="1275,4525" size="100,100">(metadata: &quot;title&quot;, &quot;Test G Dead Teacher&quot;,)
+]</tw-passagedata><tw-passagedata pid="356" name="Test G Failure" tags="" position="1275,4525" size="100,100">(metadata: &quot;title&quot;, &quot;Test G Dead Teacher&quot;,)
 
 Oh no! He&#39;s... Oh no!
 &lt;br&gt;
 ---
-($funcQuestUpdateLink: &quot;Fail the Fluxy Teacher Quest&quot;, &quot;sickTeacher&quot;, &quot;failed&quot;, &quot;He&#39;s... dead?&quot;, &quot;Can a magus even die?&quot;, [(set: $char&#39;s teacher&#39;s alive to false)], &quot;Test G&quot;)</tw-passagedata><tw-passagedata pid="356" name="Test G Receive" tags="" position="650,4475" size="100,100">(metadata: &quot;title&quot;, &quot;Test G Receive Permit&quot;,)
+($funcQuestUpdateLink: &quot;Fail the Fluxy Teacher Quest&quot;, &quot;sickTeacher&quot;, &quot;failed&quot;, &quot;He&#39;s... dead?&quot;, &quot;Can a magus even die?&quot;, [(set: $char&#39;s teacher&#39;s alive to false)], &quot;Test G&quot;)</tw-passagedata><tw-passagedata pid="357" name="Test G Receive" tags="" position="650,4475" size="100,100">(metadata: &quot;title&quot;, &quot;Test G Receive Permit&quot;,)
 
 The clerk hands you your permit.
 &lt;br&gt;
@@ -17767,7 +18429,7 @@ The clerk hands you your permit.
 ($funcQuestUpdateLink: &quot;You leave the immigration hall.&quot;, &quot;permitAskava&quot;, &quot;completed&quot;, &quot;It is done. You can finally leave this island and enter Askava proper.&quot;, &quot;Where your residency can begin in earnest.&quot;, [\
 	($funcGainLoss: &quot;item.&quot;, &quot;permitAskava&quot;, 1)\
 	($funcRemoveTimer: &quot;permitAskava&quot;, &quot;wait&quot;)\
-], &quot;Test G&quot;,)</tw-passagedata><tw-passagedata pid="357" name="Test G Sample Storylet 1" tags="test" position="1150,4375" size="100,100">{=
+], &quot;Test G&quot;,)</tw-passagedata><tw-passagedata pid="358" name="Test G Sample Storylet 1" tags="test" position="1150,4375" size="100,100">{=
 
 (storylet: when
 (passage:)&#39;s name is &quot;Test G&quot;
@@ -17780,7 +18442,7 @@ Oh no, your teacher is sick!
 &lt;br&gt;
 ---
 ($funcQuestUpdateLink: &quot;Begin the Fluxy Teacher Quest&quot;, &quot;sickTeacher&quot;, &quot;active&quot;, &quot;You found your teacher with his butt glued to the latrine. Nothing a little healing tonic can&#39;t help with.&quot;, &quot;You know what to do, right?&quot;, [], &quot;Test G&quot;)
-&lt;!--[[Test G]]--&gt;</tw-passagedata><tw-passagedata pid="358" name="Test G Sample Storylet 2" tags="test" position="1150,4500" size="100,100">{=
+&lt;!--[[Test G]]--&gt;</tw-passagedata><tw-passagedata pid="359" name="Test G Sample Storylet 2" tags="test" position="1150,4500" size="100,100">{=
 
 (storylet: when
 (passage:)&#39;s name is &quot;Test G&quot;
@@ -17798,7 +18460,7 @@ Oh no, your teacher is sick!
 &lt;li&gt;[[Never mind-&gt;Test G]]
 &lt;/ol&gt;
 
-&lt;!--[[Test G Success]][[Test G Failure]]--&gt;</tw-passagedata><tw-passagedata pid="359" name="Test G Sample Storylet 4" tags="test" position="1150,4650" size="100,100">{=
+&lt;!--[[Test G Success]][[Test G Failure]]--&gt;</tw-passagedata><tw-passagedata pid="360" name="Test G Sample Storylet 4" tags="test" position="1150,4650" size="100,100">{=
 
 (storylet: when
 (passage:)&#39;s name is &quot;Test G&quot;
@@ -17816,7 +18478,7 @@ $cssDesc[This is an example of a timed quest, where the quest auto-fails.]
 &lt;ol&gt;
 &lt;li&gt;($funcQuestUpdateLink: &quot;Time to get to it!&quot;, &quot;urgentAssignment&quot;, &quot;active&quot;, &quot;You begin your assignment. Time is limited.&quot;, &quot;No reason to dwadle.&quot;, [($funcAddTimer: &quot;urgentAssignment&quot;, &quot;deadline&quot;)], &quot;Test G&quot;)
 &lt;li&gt;[[Never mind-&gt;Test G]]
-&lt;/ol&gt;</tw-passagedata><tw-passagedata pid="360" name="Test G Sample Storylet 5" tags="test" position="1150,4775" size="100,100">{=
+&lt;/ol&gt;</tw-passagedata><tw-passagedata pid="361" name="Test G Sample Storylet 5" tags="test" position="1150,4775" size="100,100">{=
 
 (storylet: when
 (passage:)&#39;s name is &quot;Test G&quot;
@@ -17838,7 +18500,7 @@ $cssDesc[Contribute temp values for the quest.]
 &lt;li&gt;($funcCheckGate: &quot;Turn in what you have&quot;, &quot;att&quot;, &quot;urgentAssignment&quot;, 2, true, 100, &quot;Test G Essay Done&quot;, &quot;&quot;)&lt;!--Only [[Test G Essay Done]] exists due to 100% success chance--&gt;
 
 &lt;li&gt;[[Never mind-&gt;Test G]]
-&lt;/ol&gt;</tw-passagedata><tw-passagedata pid="361" name="Test G Sample Storylet 6" tags="test" position="1150,4900" size="100,100">{=
+&lt;/ol&gt;</tw-passagedata><tw-passagedata pid="362" name="Test G Sample Storylet 6" tags="test" position="1150,4900" size="100,100">{=
 
 (storylet: when
 (passage:)&#39;s name is &quot;Test G&quot;
@@ -17858,7 +18520,7 @@ $cssDesc[This storylet should only appear once after you&#39;ve failed the quest
 	($funcGainLoss: &quot;att.&quot;, &quot;urgentAssignment&quot;, -_reset)\
     ($funcRemoveTimer: &quot;urgentAssignment&quot;, &quot;deadline&quot;)\
     (goto: &quot;Test G&quot;)\
-    ]&lt;!--[[Test G]]--&gt;</tw-passagedata><tw-passagedata pid="362" name="Test G Sample Storylet 7" tags="test" position="825,4450" size="100,100">{=
+    ]&lt;!--[[Test G]]--&gt;</tw-passagedata><tw-passagedata pid="363" name="Test G Sample Storylet 7" tags="test" position="825,4450" size="100,100">{=
 
 (storylet: when
 (passage:)&#39;s name is &quot;Test G&quot;
@@ -17887,12 +18549,12 @@ In the meantime, you&#39;re just the same as everyone else here: peasants, labor
     (else:)[&lt;li&gt;~~Receive your permit.~~ $cssDesc[(Your entry application is being processed.)]]
 ]
 &lt;li&gt;[[Never mind-&gt;Test G]]
-&lt;/ol&gt;</tw-passagedata><tw-passagedata pid="363" name="Test G Success" tags="" position="1275,4400" size="100,100">(metadata: &quot;title&quot;, &quot;Test G Healed Teacher&quot;,)
+&lt;/ol&gt;</tw-passagedata><tw-passagedata pid="364" name="Test G Success" tags="" position="1275,4400" size="100,100">(metadata: &quot;title&quot;, &quot;Test G Healed Teacher&quot;,)
 
 Yay!, He&#39;s feeling better!
 &lt;br&gt;
 ---
-($funcQuestUpdateLink: &quot;Complete the Fluxy Teacher Quest&quot;, &quot;sickTeacher&quot;, &quot;completed&quot;, &quot;You gave your teacher his medicine. He&#39;s feeling better now.&quot;, &quot;We can get going, finally.&quot;, [], &quot;Test G&quot;)</tw-passagedata><tw-passagedata pid="364" name="Test G" tags="" position="975,4650" size="100,100">{=
+($funcQuestUpdateLink: &quot;Complete the Fluxy Teacher Quest&quot;, &quot;sickTeacher&quot;, &quot;completed&quot;, &quot;You gave your teacher his medicine. He&#39;s feeling better now.&quot;, &quot;We can get going, finally.&quot;, [], &quot;Test G&quot;)</tw-passagedata><tw-passagedata pid="365" name="Test G" tags="" position="975,4650" size="100,100">{=
 
 (metadata: &quot;title&quot;, &quot;Test G (quests)&quot;)
 
@@ -17913,7 +18575,7 @@ Yay!, He&#39;s feeling better!
 	&lt;li&gt;(link-rerun: _testStory&#39;s title)[(goto: _testStory&#39;s name)]\
 ]\
 
-&lt;/ul&gt;</tw-passagedata><tw-passagedata pid="365" name="Test H PickStay" tags="" position="1125,5200" size="100,100">{=
+&lt;/ul&gt;</tw-passagedata><tw-passagedata pid="366" name="Test H PickStay" tags="" position="1125,5200" size="100,100">{=
 (metadata: &quot;title&quot;, &quot;Picking a Place to Stay at Rokhab (test)&quot;)
 
 You&#39;re thinking about where to stay.
@@ -17921,7 +18583,7 @@ You&#39;re thinking about where to stay.
 &lt;br&gt;
 ---
 &lt;li&gt;($funcPickStay: &quot;Stay at the caravanserai, where all the traders and travelers do.&quot;, &quot;Rokhab Caravanserai&quot;)
-&lt;li&gt;($funcPickStay: &quot;Slum it in an alleyway, between the warehouses and the dock.&quot;, &quot;Rokhab Vagrant Camp&quot;)</tw-passagedata><tw-passagedata pid="366" name="Test H Rokhab" tags="test" position="1125,5075" size="100,100">{=
+&lt;li&gt;($funcPickStay: &quot;Slum it in an alleyway, between the warehouses and the dock.&quot;, &quot;Rokhab Vagrant Camp&quot;)</tw-passagedata><tw-passagedata pid="367" name="Test H Rokhab" tags="test" position="1125,5075" size="100,100">{=
 
 (storylet: when
 (passage:)&#39;s name is &quot;Traveling&quot;
@@ -17938,7 +18600,7 @@ You&#39;ve arrived in Rokhab. Disembark?
 &lt;ol&gt;
 &lt;li&gt;($funcArrive: &quot;Get settled in Rokhab&quot;, &quot;Test H PickStay&quot;)&lt;!--[[Test H PickStay]]--&gt;
 &lt;li&gt;(link-rerun: &quot;Not yet&quot;)[(goto: &quot;Traveling&quot;)]
-&lt;/ol&gt;</tw-passagedata><tw-passagedata pid="367" name="Test H" tags="" position="975,5100" size="100,100">{=
+&lt;/ol&gt;</tw-passagedata><tw-passagedata pid="368" name="Test H" tags="" position="975,5100" size="100,100">{=
 
 (metadata: &quot;title&quot;, &quot;Test H (traveling)&quot;)
 
@@ -17958,7 +18620,7 @@ Now, let&#39;s travel from here ((print: $place&#39;s location)) to...
 &lt;li&gt;($funcDepart: &quot;The fishing village of Rokhab.&quot;, &quot;Rokhab&quot;)
 &lt;li&gt;($funcDepart: &quot;The ruins of Navveh.&quot;, &quot;Navveh&quot;)
 &lt;li&gt;($funcDepart: &quot;The mysterious land known only as &#39;test location&#39;.&quot;, &quot;test&quot;)
-&lt;/ul&gt;</tw-passagedata><tw-passagedata pid="368" name="Test I" tags="" position="975,5400" size="100,100">{=
+&lt;/ul&gt;</tw-passagedata><tw-passagedata pid="369" name="Test I" tags="" position="975,5400" size="100,100">{=
 
 (metadata: &quot;title&quot;, &quot;Test I (navigating sublocations)&quot;)
 
@@ -17977,7 +18639,7 @@ Sublocations in Apesai:
 Set knowledge:
 &lt;li&gt;(link-rerun: &quot;I know where the Lighthouse is.&quot;)[($funcGainLoss: &quot;att.&quot;, &quot;knowApesaiLighthouse&quot;, 1, )(redirect: (passage:)&#39;s name)]
 &lt;li&gt;(link-rerun: &quot;I learn a bit about the Yavanid quarter.&quot;)[($funcGainLoss: &quot;att.&quot;, &quot;knowApesaiPleasure&quot;, 1, )(redirect: (passage:)&#39;s name)]
-&lt;/ul&gt;</tw-passagedata><tw-passagedata pid="369" name="Test J" tags="" position="975,5550" size="100,100">{=
+&lt;/ul&gt;</tw-passagedata><tw-passagedata pid="370" name="Test J" tags="" position="975,5550" size="100,100">{=
 
 (metadata: &quot;title&quot;, &quot;Test J (NPCs)&quot;)
 
@@ -18027,15 +18689,15 @@ Set knowledge:
         &lt;br&gt;
     ]\
 ]]
-&lt;/details&gt;</tw-passagedata><tw-passagedata pid="370" name="Test K Fail" tags="" position="1100,5800" size="100,100">{=
+&lt;/details&gt;</tw-passagedata><tw-passagedata pid="371" name="Test K Fail" tags="" position="1100,5800" size="100,100">{=
 
 Failure! But you still lost your wounds!? How?
 &lt;br&gt;
-(link: &quot;Back&quot;)[(goto: &quot;Test K&quot;)]</tw-passagedata><tw-passagedata pid="371" name="Test K Success" tags="" position="1100,5675" size="100,100">{=
+(link: &quot;Back&quot;)[(goto: &quot;Test K&quot;)]</tw-passagedata><tw-passagedata pid="372" name="Test K Success" tags="" position="1100,5675" size="100,100">{=
 
 Yay, you lost your wounds!
 &lt;br&gt;
-(link: &quot;Back&quot;)[(goto: &quot;Test K&quot;)]</tw-passagedata><tw-passagedata pid="372" name="Test K" tags="" position="975,5725" size="100,100">{=
+(link: &quot;Back&quot;)[(goto: &quot;Test K&quot;)]</tw-passagedata><tw-passagedata pid="373" name="Test K" tags="" position="975,5725" size="100,100">{=
 
 (metadata: &quot;title&quot;, &quot;Test K (Temps)&quot;)
 
@@ -18058,7 +18720,7 @@ Yay, you lost your wounds!
 
 &lt;li&gt;($funcCheckGate: &quot;Check for 2 wounds&quot;, &quot;temp&quot;, &quot;wound&quot;, 2, true, 50, &quot;Test K Success&quot;, &quot;Test K Fail&quot;)
 
-&lt;/ol&gt;</tw-passagedata><tw-passagedata pid="373" name="Test L" tags="" position="350,4725" size="100,100">(metadata: &quot;title&quot;, &quot;Test L (events)&quot;)
+&lt;/ol&gt;</tw-passagedata><tw-passagedata pid="374" name="Test L" tags="" position="475,4725" size="100,100">(metadata: &quot;title&quot;, &quot;Test L (events)&quot;)
 
 {=
 
@@ -18105,7 +18767,7 @@ $cssColumnChild[
 
 
 ]&lt;!--end child--&gt;
-]&lt;!--end parent--&gt;</tw-passagedata><tw-passagedata pid="374" name="Test List Unfinished" tags="" position="475,4725" size="100,100">{=
+]&lt;!--end parent--&gt;</tw-passagedata><tw-passagedata pid="375" name="Test List Unfinished" tags="" position="600,4725" size="100,100">{=
 (metadata:
 &quot;title&quot;, &quot;List of Passages Needing Attention&quot;)
 
@@ -18132,7 +18794,7 @@ $cssColumnChild[
         (if: (passage: _passage) contains &quot;devNote&quot;)[&lt;br&gt; $cssDesc[` `↪` `(print: (passage: _passage)&#39;s devNote)]]
     }]
     &lt;/ol&gt;
-}]</tw-passagedata><tw-passagedata pid="375" name="Test M" tags="" position="600,4725" size="100,100">(metadata: &quot;title&quot;, &quot;Test M (reading books)&quot;)
+}]</tw-passagedata><tw-passagedata pid="376" name="Test M" tags="" position="725,4725" size="100,100">(metadata: &quot;title&quot;, &quot;Test M (reading books)&quot;)
 
 {=
 
@@ -18196,7 +18858,7 @@ $cssColumnChild[
 &lt;/ol&gt;
 
 ]&lt;!--end child--&gt;
-]&lt;!--end parent--&gt;</tw-passagedata><tw-passagedata pid="376" name="Test N" tags="" position="725,4725" size="100,100">{=
+]&lt;!--end parent--&gt;</tw-passagedata><tw-passagedata pid="377" name="Test N" tags="" position="850,4725" size="100,100">{=
 
 (metadata: &quot;title&quot;, &quot;Test N (spindle convo)&quot;)
 
@@ -18259,7 +18921,7 @@ It&#39;s (print: $place&#39;s weather).
 
 [Sounds good.
 &lt;br&gt;
-(link: &quot;↺ Start over&quot;)[(redirect: (passage:)&#39;s name)]](chess|</tw-passagedata><tw-passagedata pid="377" name="Test O" tags="" position="850,4725" size="100,100">{=
+(link: &quot;↺ Start over&quot;)[(redirect: (passage:)&#39;s name)]](chess|</tw-passagedata><tw-passagedata pid="378" name="Test O" tags="" position="975,4725" size="100,100">{=
 
 (metadata: &quot;title&quot;, &quot;Test O (Market &amp; priceMod)&quot;)
 
