@@ -202,19 +202,19 @@ She says it slowly. This is clearly a teaching moment for her.
 <!--workstation2a-->
 [
 ["Yes, the very one. Apprentices of all ages here use the same facilities,"]<VehVehLine| she sounds defensive.` `
-(show:?workstation3)
+(t8n:"dissolve")(show:?workstation3)
 ](workstation2a|
 
 <!--workstation2b-->
 [
 ["Then I suppose you'll need to take a hike down to the market for an actual apothecary. Apesai's got a Grand Exchange, you know,"]<VehVehLine| she says, slightly annoyed.` `
-(show:?workstation3)
+(t8n:"dissolve")(show:?workstation3)
 ](workstation2b|
 
 <!--workstation2c-->
 [
 ["Yeah... not the stuff that would impress a visitor from the heartlands, I know,"]<VehVehLine| she seems genuinely embarrassed.` `
-(show:?workstation3)
+(t8n:"dissolve")(show:?workstation3)
 ](workstation2c|
 
 
