@@ -5,12 +5,173 @@
 $place's sublocation is "Apesai Wharf"
 )
 
-(metadata: "title", "Departing from Apesai", "cardDesc", "Ferries for hire flock at the wharf, waiting to take those with coins and papers into the mainland.", "img", "https://fallenlondon.wiki/w/images/3/3b/Shipilaltun.png",)
+(metadata: "title", "Depart from Apesai", "cardDesc", "Ferries-for-hire flock the wharf, waiting to take those with the coins into mainland Askava.", "img", "https://fallenlondon.wiki/w/images/3/3b/Shipilaltun.png",)
 
-<h1>(print: (passage:)'s title )</h1>
+
+
+$cssColumnParent[
+
+$cssColumnChild[
+	$cssBox[
+    	($funcImage: (passage:)'s img)
+         $cssBoxItem[''(print: (passage:)'s title )''<br>(print: (passage:)'s cardDesc)]
+    ]
+]
+
+$cssColumnChild[
+
+<!--roll which sailor you deal with today-->
+(set: _whichSailor to "genericSailor1")
+(cond:
+    $dice <= 33, [(set: _whichSailor to "genericSailor2")],
+    $dice <= 67, [(set: _whichSailor to "genericSailor3")],
+    [(set: _whichSailor to "genericSailor1")],
+)
+
+<!--enchant speaker lines-->
+($funcNPCSpeakManual: _whichSailor)
+
+<!--line shorthand-->
+(set: _line to (hook: _whichSailor + "Line"))
+
+
+<!--main content-->
+
+<!--greetings-->
+(cond:
+_whichSailor is "genericSailor1", [{
+_line["You there, you with the clueless face! Looking for a ship to the mainland?"] a large woman in salt-stained linen hails you down.
 <br>
-(print: (passage:)'s cardDesc)
+Behind her is an old cutter that has seen better days, but that is precisely the mark of quality: worse ships will not sail if they are in such a condition.
 <br>
+_line["No point in browsing; we all charge a standard guild price here,"] she grins, showing teeth stained red-and-black. _line["Where are ya headed?"]
+}],
+
+_whichSailor is "genericSailor2", [{
+_line["Ho, traveler! Yes, well met. Are you looking for a ship to the mainland?"] a man approaches you. He wears a quilted vest, arms bare and tattooed. _line["There's still space on our ship. We set sail today."]
+<br>
+He gestures at a large dromon with sweeping, fin-like sails. Smaller merchant ships often moonlight as coastal ferries while waiting for their shipments to arrive.
+<br>
+_line["My captain takes guild price like any other. Where are you bound?"]
+}],
+
+_whichSailor is "genericSailor3", [{
+_line["My, what fortune for us to have met. Come, traveler. Are you looking for a way into the mainland?"] A man with fire-red hair and beard, clad in silk and gold, approaches you. _line["We just so happen to have a few spare cabins left. Come and see the //real// Askava."]
+<br>
+You can smell the new paint from here. Behind him is a fairly large vessel, where passengers are leaning over the deck's railing, taking in the sight from up high.
+<br>
+_line["It is a fine way to travel, is it not? Don't worry, we ask only for the standard guild price,"] he rubs his ringed hands together. _line["So, where should our journey take us?"]
+}],
+)
+<br>
+$cssDesc[Ferries from Apesai can go to every major ports of the Nurrah Coastlands, which include ''Rokhab'', ''Navveh'', and ''Zirab''.]
+<br>
+($funcInnerConvo: (dm:
+    "<!--A-->\"Rokhab.\"", "Rokhab",
+    "<!--B-->\"Navveh.\"", "Navveh",
+    "<!--C-->\"Zirab.\"", "Zirab",
+    "<!--D-->\"Never mind. I'm not interested right now.\"", "neverMind",
+))
+<br>
+
+
+<!--Rokhab-->
+[
+(cond:
+_whichSailor is "genericSailor1", [{
+_line["Easy,"] she chuckles, _line["We'll be there in about three days, if the weather isn't being a pain in the ass."]
+<br>
+The Rokhab port is the closest to Apesai, so chances of things going awry is slim. After all, the Apesai-Rokhab route is the most used sea routes in the entirety of the dahak, and that puts your mind at ease somewhat.
+<br>
+_line["But I'll have to be a different sort of pain in your little behind and ask to see your entry permit first. Not collecting it or anything; just making sure."]
+}],
+
+_whichSailor is "genericSailor2", [{
+_line["Ah, you make my life simple then,"] he smiles boardly, flashing a crystal tooth. _line["Port's about three days away, give or take, and the route should be trouble-free, weather not withstanding."]
+<br>
+The Rokhab port is the closest to Apesai, so any inclement weather should not interfere with the journey all that much. Further, the Apesai-Rokhab route is one of the most well-patrolled stretches of sea this side of Nurandah. You should be fine.
+<br>
+_line["Now, before we start discussing details, I must ask to see your entry permit first. Don't worry, I won't take it from you. The Rokhab guards will want to see it."]
+}],
+
+_whichSailor is "genericSailor3", [{
+_line["How original,"] he rolls his eyes, disappointed. _line["I'm joking; we'll have to stop at Rokhab anyhow. Most of our passengers are headed there as well. Personally, I just don't like the smell."]
+<br>
+The Rokhab port is the closest to Apesai, and it is not surprising that it sees the most traffic going to and from, since Rokhab connects with the rest of the dahak, from which riches flows out.
+<br>
+_line["And now, it is my turn to do the unoriginal thing: Please show me your entry permit. Due diligence, you understand."]
+
+}],
+)
+<br>
+$cssDesc[Going to ''Rokhab'' requires an ''(print: (passage: "item.permitAskava")'s id)''($funcLogTip: "item.", "permitAskava").]
+
+<!--papers check-->
+(set: _havePapers to false)
+(if: $char's player's inv contains "permitAskava")[(set: _havePapers to true)]
+
+<!--set dialog option-->
+(set: _say to "Um...")
+(if: _havePapers is true)[(set: _say to "I have it right here.")]
+
+<br>
+($funcInnerConvo: (dm:
+    "<!--A-->\""+_say+"\"", "RokhabDone",
+    "<!--B-->\"How about a different destination?\"", "differentDestination",
+    "<!--C-->\"Never mind. I'm not interested right now.\"", "neverMind",
+))
+<br>
+](Rokhab|
+
+
+<!--RokhabDone-->
+[
+(cond:
+_whichSailor is "genericSailor1", [{
+She crosses her arms, waiting as you search your bag.
+}],
+
+_whichSailor is "genericSailor2", [{
+He whistles, looking away, giving you the privacy to search your bag.
+}],
+
+_whichSailor is "genericSailor3", [{
+He polishes a ring on his silk robe, waiting for you to search your bag. 
+}],
+)
+<br>
+---
+<ol>
+<li>($funcCheckGate: "Show your permit.", "inv", "permitAskava", 1, false, 100, "Depart from Apesai 1a", "",)</li>
+<br>
+Actually...
+<li>(link: "\"I'm interested in another destination.\"")[(t8n:"dissolve")(redirect: (passage:)'s name)]</li>
+<li>(link: "\"Never mind. I'm not interested right now.\"")[$funcBack]</li>
+</ol>
+](RokhabDone|
+
+
+<!--Navveh-->
+[](Navveh|
+
+
+<!--Zirab-->
+[](Zirab|
+
+
+<!--differentDestination-->
+[(t8n:"dissolve")(redirect: (passage:)'s name)](differentDestination|
+
+
+<!--neverMind-->
+[$funcBack](neverMind|
+
+
+
+<!--end of main content-->
+
+
+[
 (Show your permit...)
 <br>
 ---
@@ -21,3 +182,8 @@ You intend to leave for...
 <li>($funcCheckGate: " Zirab. ⧗", "inv", "permitAskava", 1, false, 100, "Depart from Apesai 3a", "",)<!--[[Depart from Apesai 3a]]-->
 <li>(link: "Never mind.")[$funcBack]
 </ol>
+
+](old|
+
+]<!--end child-->
+]<!--end parent-->

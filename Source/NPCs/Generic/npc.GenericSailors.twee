@@ -1,0 +1,22 @@
+:: npc.genericSailor1 [static-storage]
+{=
+(metadata:
+"id", "Rough Sailor",
+"color", #a19c81,
+)
+
+
+:: npc.genericSailor2 [static-storage]
+{=
+(metadata:
+"id", "Professional Sailor",
+"color", #94b3e1,
+)
+
+
+:: npc.genericSailor3 [static-storage]
+{=
+(metadata:
+"id", "Colorful Sailor",
+"color", #d68f63,
+)

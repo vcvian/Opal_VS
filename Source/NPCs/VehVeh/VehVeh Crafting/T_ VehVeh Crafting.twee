@@ -241,7 +241,7 @@ $cssDesc[You also receive a ''(print: (passage: "item.vehzin")'s id)'' - standar
 
 <!--already have access (either via the "crafting" or the "sickTeacher" topic)-->
 (else:)[
-["(either: "Sure, no problem.","Oh, did you forget?","You mean the student lab?", "You sure can.") It's on the fifth floor, up the spiral stairs. There //should// be a few free synthesis arrays. The elementalysis table is in the same room, too. (either: "Hope the attendants aren't giving you any trouble. They're sorely due for repairs.", "It's not much, but it //is// the 'full package'. In a way.", "It's not the fastest, but it used to take a whole week to run a cycle.", "I just had everything re-tuned a couple of weeks back. No, more like a month.")"]<VehVehLine|
+["(either: "Sure, no problem.","Oh, did you forget?","You mean the student lab?", "I sure can.") It's on the fifth floor, up the spiral stairs. There //should// be a few free synthesis arrays. The elementalysis table is in the same room, too. (either: "Hope the attendants aren't giving you any trouble. They're sorely due for repairs.", "They're not much, but they //are// the 'full package'. In a way.", "They're not the fastest, but it used to take a whole week to run a cycle.", "I just had everything re-tuned a couple of weeks back. No, more like a month.")"]<VehVehLine|
 <br>
 
 <!--convo works a bit different because questions can be asked in any order.-->
