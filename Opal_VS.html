@@ -83,7 +83,7 @@ hr {
   100% {
     background-position: 0% center;
   }
-}</style><script role="script" id="twine-user-script" type="text/twine-javascript"></script><tw-tag name="footer" color="yellow"></tw-tag><tw-tag name="stay" color="yellow"></tw-tag><tw-tag name="sublocation" color="green"></tw-tag><tw-tag name="test" color="blue"></tw-tag><tw-tag name="traveling" color="purple"></tw-tag><tw-tag name="UI" color="orange"></tw-tag><tw-tag name="effect" color="yellow"></tw-tag><tw-tag name="header" color="yellow"></tw-tag><tw-tag name="startup" color="orange"></tw-tag><tw-tag name="static-storage" color="yellow"></tw-tag><tw-tag name="storylet" color="blue"></tw-tag><tw-tag name="topic" color="purple"></tw-tag><tw-tag name="book" color="yellow"></tw-tag><tw-passagedata pid="1" name="AA. Books, Reading &amp; Formulae" tags="startup" position="100,100" size="100,100">{=
+}</style><script role="script" id="twine-user-script" type="text/twine-javascript"></script><tw-tag name="topic" color="purple"></tw-tag><tw-tag name="book" color="yellow"></tw-tag><tw-tag name="header" color="yellow"></tw-tag><tw-tag name="static-storage" color="yellow"></tw-tag><tw-tag name="test" color="blue"></tw-tag><tw-tag name="stay" color="yellow"></tw-tag><tw-tag name="storylet" color="blue"></tw-tag><tw-tag name="sublocation" color="green"></tw-tag><tw-tag name="traveling" color="purple"></tw-tag><tw-tag name="UI" color="orange"></tw-tag><tw-tag name="effect" color="yellow"></tw-tag><tw-tag name="footer" color="yellow"></tw-tag><tw-tag name="startup" color="orange"></tw-tag><tw-passagedata pid="1" name="AA. Books, Reading &amp; Formulae" tags="startup" position="100,100" size="100,100">{=
 &lt;!--Macros related to books and reading--&gt;
 
 (set: $readingNav to (dm:
@@ -3013,15 +3013,18 @@ $cssDesc[The journey will take &#39;&#39;(plural: ($funcDistance: &quot;Zirab&qu
 (You board a passenger boat to the swamps of Zirab...)
 &lt;br&gt;
 ---
-($funcDepart: &quot;Leave for Zirab&quot;, &quot;Zirab&quot;,)</tw-passagedata><tw-passagedata pid="57" name="S: Depart from Apesai" tags="storylet" position="4600,2850" size="100,100">{=
+($funcDepart: &quot;Leave for Zirab&quot;, &quot;Zirab&quot;,)</tw-passagedata><tw-passagedata pid="57" name="S: Depart from Apesai" tags="storylet unfinished" position="4600,2850" size="100,100">{=
 
 (storylet: when
 $place&#39;s sublocation is &quot;Apesai Wharf&quot;
 )
 
-(metadata: &quot;title&quot;, &quot;Depart from Apesai&quot;, &quot;cardDesc&quot;, &quot;Ferries-for-hire flock the wharf, waiting to take those with the coins into mainland Askava.&quot;, &quot;img&quot;, &quot;https://fallenlondon.wiki/w/images/3/3b/Shipilaltun.png&quot;,)
-
-
+(metadata:
+&quot;title&quot;, &quot;Depart from Apesai&quot;,
+&quot;cardDesc&quot;, &quot;Ferries-for-hire flock the wharf, waiting to take those with the coins into mainland Askava.&quot;,
+&quot;img&quot;, &quot;https://fallenlondon.wiki/w/images/3/3b/Shipilaltun.png&quot;,
+&quot;devNote&quot;, [Implement multi-check gates for the Navveh and Zirab options.Also, add item.licenseAdventure to the game],
+)
 
 $cssColumnParent[
 
@@ -3166,11 +3169,159 @@ Actually...
 
 
 &lt;!--Navveh--&gt;
-[](Navveh|
+[
+(cond:
+_whichSailor is &quot;genericSailor1&quot;, [{
+_line[&quot;The ruins?&quot;] She raises her brows quizzically. _line[&quot;Why, are you some kind of Bone-digger? Treasure-hunter? Death-seeker? Ya know what, don&#39;t answer. Not my business.&quot;]
+&lt;br&gt;
+Most still recoil at the mention of Old Navveh. Once, it was the capital of Askava dahak. Now, the forest has reclaimed the once-grand city, and there is little left of its fame but superstitions. To be fair, it is not //all// superstition; the residual magical hazard is very real.
+&lt;br&gt;
+_line[&quot;What //is// my business whether that you&#39;re vetted. The whole Navveh rostak is declared &#39;culturally significant&#39;; they&#39;re not letting just anyone in. Ya need to show me an entry permit and a Society&#39;s adventuring license. Those are the rules.&quot;]
+}],
+
+_whichSailor is &quot;genericSailor2&quot;, [{
+_line[&quot;Oh? You&#39;re interested in the ruins,&quot;] he says, trying his best to hide his hesitation. _line[&quot;Shouldn&#39;t be a surprise. It is one of Askava&#39;s major attractions anyhow. Although, it is not the most pleasant waters to sail in.&quot;]
+&lt;br&gt;
+The quake that destroyed Old Navveh - the former capital of Askava dahak - has also disturbed the geology of its coastlines, raising up jagged rocks that make for a hazardous trip. Still, a small but steady number of adventurers go there every month, and a smaller number returns enviably rich, if they return at all.
+&lt;br&gt;
+_line[&quot;Ah, but we are professionals. We will sail, if you can show us the papers. Governor&#39;s rule is that, on top of an entry permit, you&#39;ll also need an adventuring license. The Traveler&#39;s Society issues those. It&#39;s for people&#39;s own good, you understand, to make sure their preparedness matches their bravado.&quot;]
+}],
+
+_whichSailor is &quot;genericSailor3&quot;, [{
+_line[&quot;The ruins? My, my, my, how //romantic//!&quot;] The man covers his mouth in feigned shock. _line[&quot;The allure lost grandeur is one thing, but the //danger//. Oh! I&#39;m getting goosebumps.&quot;]
+&lt;br&gt;
+The former capital of Askava dahak - Navveh - is one of the coastlands&#39; major attractions. Every year, adventurers and scholars brave its magical (and natural) hazards, hoping to be enriched by the past, intellectually or materially. Few see their ambitions fulfilled, but the promise is enough for many.
+&lt;br&gt;
+_line[&quot;I envy the young, truly. If I were in charge of this land, I&#39;d let all of you into Old Navveh, no questions asked. But alas, I am not, and so I must comply by the law and ask that you show me... ugh, a Society&#39;s adventuring license... on top of the standard entry permit, of course.&quot;]
+}],
+)
+&lt;br&gt;
+$cssDesc[Going to &#39;&#39;Navveh&#39;&#39; requires both an &#39;&#39;(print: (passage: &quot;item.permitAskava&quot;)&#39;s id)&#39;&#39;($funcLogTip: &quot;item.&quot;, &quot;permitAskava&quot;) and an &#39;&#39;(print: (passage: &quot;item.licenseAdventure&quot;)&#39;s id)&#39;&#39;($funcLogTip: &quot;item.&quot;, &quot;licenseAdventure&quot;).]
+
+&lt;!--papers check--&gt;
+(set: _havePapers to false)
+(if: $char&#39;s player&#39;s inv contains &quot;permitAskava&quot; and it contains &quot;licenseAdventure&quot;)[(set: _havePapers to true)]
+
+&lt;!--set dialog option--&gt;
+(set: _say to &quot;Um...&quot;)
+(if: _havePapers is true)[(set: _say to &quot;I have it right here.&quot;)]
+
+&lt;br&gt;
+($funcInnerConvo: (dm:
+    &quot;&lt;!--A--&gt;\&quot;&quot;+_say+&quot;\&quot;&quot;, &quot;NavvehDone&quot;,
+    &quot;&lt;!--B--&gt;\&quot;How about a different destination?\&quot;&quot;, &quot;differentDestination&quot;,
+    &quot;&lt;!--C--&gt;\&quot;Never mind. I&#39;m not interested right now.\&quot;&quot;, &quot;neverMind&quot;,
+))
+&lt;br&gt;
+](Navveh|
+
+
+&lt;!--NavvehDone--&gt;
+[
+(cond:
+_whichSailor is &quot;genericSailor1&quot;, [{
+She crosses her arms, waiting as you search your bag.
+}],
+
+_whichSailor is &quot;genericSailor2&quot;, [{
+He whistles, looking away, giving you the privacy to search your bag.
+}],
+
+_whichSailor is &quot;genericSailor3&quot;, [{
+He polishes a ring on his silk robe, waiting for you to search your bag. 
+}],
+)
+&lt;br&gt;
+---
+&lt;ol&gt;
+&lt;li&gt;MULTI-CHECK NEEDED!&lt;/li&gt;
+&lt;br&gt;
+Actually...
+&lt;li&gt;(link: &quot;\&quot;I&#39;m interested in another destination.\&quot;&quot;)[(t8n:&quot;dissolve&quot;)(redirect: (passage:)&#39;s name)]&lt;/li&gt;
+&lt;li&gt;(link: &quot;\&quot;Never mind. I&#39;m not interested right now.\&quot;&quot;)[$funcBack]&lt;/li&gt;
+&lt;/ol&gt;
+](NavvehDone|
 
 
 &lt;!--Zirab--&gt;
-[](Zirab|
+[
+(cond:
+_whichSailor is &quot;genericSailor1&quot;, [{
+_line[&quot;Oh... Oh-ho-ho,&quot;] she starts guffawing, as if you have just told her a brilliant joke. _line[&quot;Wait, really? What&#39;s in Zirab for //you//? Ya know what? Never mind, it&#39;s not my place to question a customer.&quot;]
+&lt;br&gt;
+Zirab rostak is largely fallow marshland and isolated holdings given to less-than-favored soldiers. In other words, exiles. People are hesitant to live there, let alone develop it. It is never clear if any given patch of wetland is Nurandah or Yavana, which makes any property a liability. That, and the mosquito-borne diseases.
+&lt;br&gt;
+_line[&quot;I&#39;m only to do as I&#39;m told. The governor requires that only Grand Exchange merchants are to sail there, to make sure the swamp-dwellers don&#39;t starve. But otherwise, most traffic is... heavily discouraged. Ya need to show me a trading license, on top of the usual entry permit.&quot;]
+}],
+
+_whichSailor is &quot;genericSailor2&quot;, [{
+_line[&quot;Zirab? Please don&#39;t tell me...&quot;] he trails off. _line[&quot;Yes, in fact, do //not// tell me. The less I know, the better.&quot;]
+&lt;br&gt;
+Zirab - a fallow marshland bordering Yavana to the south-east - is unfortunately known to being a smugglers&#39; den. Its ambiguous status and hostile environment makes it unattractive to investors and settlers but a wonderful sanctuary for those looking to evade the governor&#39;s tight grip on trade.
+&lt;br&gt;
+These things are well-known, but the guards and navy are momentarily turning a blind eye. Anything that might be cosntrued as a territorial encroachment will threaten peace with Yavana. Askava already has the Kesh in the north to deal with.
+&lt;br&gt;
+_line[&quot;I only know that I must ask for a trading license, on top of the usual entry permit. Only Grand Exchange merchants are allowed to sail there, for the moment.&quot;]
+
+}],
+
+_whichSailor is &quot;genericSailor3&quot;, [{
+_line[&quot;Zirab? Don&#39;t you mean to say //Vayu//?&quot;] The large man huffs, jiggling his golden knives. _line[&quot;Ah, but I shouldn&#39;t expect an imperial to know its //proper// name. Yes, we do sail to... ugh, //Zirab//.&quot;]
+&lt;br&gt;
+Zirab - also known as &quot;Vayu&quot; to the Yavanids - is the marshy part of the Nurrah Coastlands bordering Yavana to the south-east. Neither Yavana, Nurandah, Kesh, or even the native Askavans have ever openly fought over that land, since it is of little value to those who are prone to mosquito-born diseases, which is to say: everyone.
+&lt;br&gt;
+Most would rather live on Apesai island instead. After all, why fight over a piece of swampland while peaceful coexistence is possible in one of the biggest cities of the Nurrah Sea? All of this, your school has taught you.
+&lt;br&gt;
+_line[&quot;Your governor has decreed that only Grand Exchange traffic is allowed to land in the marshes. To save us some trouble later on, please show me your trading license, in addition to the usual entry permit.&quot;]
+&lt;br&gt;
+}],
+)
+&lt;br&gt;
+$cssDesc[Going to &#39;&#39;Zirab&#39;&#39; requires both an &#39;&#39;(print: (passage: &quot;item.permitAskava&quot;)&#39;s id)&#39;&#39;($funcLogTip: &quot;item.&quot;, &quot;permitAskava&quot;) and an &#39;&#39;(print: (passage: &quot;item.licenseTrade&quot;)&#39;s id)&#39;&#39;($funcLogTip: &quot;item.&quot;, &quot;licenseTrade&quot;).]
+
+&lt;!--papers check--&gt;
+(set: _havePapers to false)
+(if: $char&#39;s player&#39;s inv contains &quot;permitAskava&quot; and it contains &quot;licenseTrade&quot;)[(set: _havePapers to true)]
+
+&lt;!--set dialog option--&gt;
+(set: _say to &quot;Um...&quot;)
+(if: _havePapers is true)[(set: _say to &quot;I have it right here.&quot;)]
+
+&lt;br&gt;
+($funcInnerConvo: (dm:
+    &quot;&lt;!--A--&gt;\&quot;&quot;+_say+&quot;\&quot;&quot;, &quot;ZirabDone&quot;,
+    &quot;&lt;!--B--&gt;\&quot;How about a different destination?\&quot;&quot;, &quot;differentDestination&quot;,
+    &quot;&lt;!--C--&gt;\&quot;Never mind. I&#39;m not interested right now.\&quot;&quot;, &quot;neverMind&quot;,
+))
+&lt;br&gt;
+](Zirab|
+
+
+&lt;!--ZirabDone--&gt;
+[
+(cond:
+_whichSailor is &quot;genericSailor1&quot;, [{
+She crosses her arms, waiting as you search your bag.
+}],
+
+_whichSailor is &quot;genericSailor2&quot;, [{
+He whistles, looking away, giving you the privacy to search your bag.
+}],
+
+_whichSailor is &quot;genericSailor3&quot;, [{
+He polishes a ring on his silk robe, waiting for you to search your bag. 
+}],
+)
+&lt;br&gt;
+---
+&lt;ol&gt;
+&lt;li&gt;MULTI-CHECK NEEDED!&lt;/li&gt;
+&lt;br&gt;
+Actually...
+&lt;li&gt;(link: &quot;\&quot;I&#39;m interested in another destination.\&quot;&quot;)[(t8n:&quot;dissolve&quot;)(redirect: (passage:)&#39;s name)]&lt;/li&gt;
+&lt;li&gt;(link: &quot;\&quot;Never mind. I&#39;m not interested right now.\&quot;&quot;)[$funcBack]&lt;/li&gt;
+&lt;/ol&gt;
+](ZirabDone|
 
 
 &lt;!--differentDestination--&gt;
