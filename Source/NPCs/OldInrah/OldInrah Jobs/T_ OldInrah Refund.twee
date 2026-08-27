@@ -19,7 +19,6 @@ and ($funcCheckExists: (passage:), "talked", (a:)) does not contain "refund"
 "addCode", [],)
 
 
-
 $cssColumnParent[
 
 $cssColumnChild[
@@ -57,9 +56,10 @@ $cssDesc[You currently have ''($funcCheckExists: $char's player's att, "repFamil
 <br>
 ---
 <ol>
-<li>($funcCheckGate: (passage: "OldInrah Refund x1")'s topic, "att", "repFamilyBizGood", 1, true, 100, "OldInrah Refund x1", "")<!--[[OldInrah Refund x1]]-->
-<li>($funcCheckGate: (passage: "OldInrah Refund x7")'s topic, "att", "repFamilyBizGood", 7, true, 100, "OldInrah Refund x7", "")<!--[[OldInrah Refund x7]]-->
-<li>($funcCheckGate: (passage: "OldInrah Refund x14")'s topic, "att", "repFamilyBizGood", 14, true, 100, "OldInrah Refund x14", "")<!--[[OldInrah Refund x14]]-->
+<li>($funcMultiCheckGate: (passage: "OldInrah Refund x1")'s topic, "att", (dm: "repFamilyBizGood", 1), true, 100, [], "OldInrah Refund x1", "",)</li>
+<li>($funcMultiCheckGate: (passage: "OldInrah Refund x7")'s topic, "att", (dm: "repFamilyBizGood", 7), true, 100, [], "OldInrah Refund x7", "",)</li>
+<li>($funcMultiCheckGate: (passage: "OldInrah Refund x14")'s topic, "att", (dm: "repFamilyBizGood", 14), true, 100, [], "OldInrah Refund x14", "",)</li>
+
 <br> Actually, that matter can wait...
 ($funcNPCTopics: "One either pays, or one works. That seems to be the foremost law here. Or anywhere.", "Gratitude, Koh-Inrah, and goodbye.")
 </ol>

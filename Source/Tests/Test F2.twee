@@ -1,0 +1,109 @@
+:: Test F2
+{=
+
+(metadata: "title", "Test F2 (multi-check gate)")
+
+[[⇦ BACK->Pre-Test (NEW)]]
+<br>
+$cssColumnParent[
+
+<!--initialize temp vars-->
+(set: _linkText to "Multi-check gate link test.")
+(set: _req to (dm:))
+(set: _pocketName to "inv")
+(set: _spend to false)
+(set: _chance to 90)
+
+<!--explanation of test-->
+$cssColumnChild[
+
+<!--special colored text-->
+(set: _color to (color: white+green))
+
+Testing the macro [`($funcMultiCheckGate:)`].
+<br>
+It takes the following arguments:
+(box:"X", 3)[<ol>
+<li>str-type _color[`_linkText`],</li>
+<li>str-type _color[`_pocketName`],</li>
+<li>dm-type _color[`_thingList`],</li>
+<li>boolean-type _color[`_spend`],</li>
+<li>num-type _color[`_chance`],</li>
+<li>codehook-type _color[`_addCode`],</li>
+<li>str-type _color[`_gotoSuccess`],</li>
+<li>str-type _color[`_gotoFailure`],</li>
+</ol>]
+<br>
+The most important argument is the _color[`_thingList` (dm)]. For this test, we fill it with the content below:
+
+<ol>
+<li>(link-rerun: "List of papers.")[{
+    (set: _linkText to "Do you have your papers?")
+    (set: _pocketName to "inv")
+    (set: _req to (dm: "permitAskava", 1, "identityReceipt", 1, "universityCertificate", 1))
+    (t8n: "dissolve")(rerun: ?test)
+}]</li>
+
+<li>(link-rerun: "An ID is fine.")[{
+    (set: _linkText to "Show you ID.")
+    (set: _pocketName to "inv")
+    (set: _req to (dm: "identityReceipt", 1))
+    (t8n: "dissolve")(rerun: ?test)
+}]</li>
+
+<li>(link-rerun: "List of attributes.")[{
+    (set: _linkText to "Do you have the right attributes?")
+    (set: _pocketName to "att")
+    (set: _req to (dm: "at", 10, "ab", 20, "zam", 12, "vigorous", 1))
+    (t8n: "dissolve")(rerun: ?test)
+}]</li>
+
+<li>(link-rerun: "Check for wounds (temporary effect).")[{
+    (set: _linkText to "Are you doubly wounded?")
+    (set: _pocketName to "temp")
+    (set: _req to (dm: "wound", 2,))
+    (t8n: "dissolve")(rerun: ?test)
+}]</li>
+
+<li>(link-rerun: "Spend mode?")[{
+    (if: _spend is false)[(set: _spend to true)]
+    (else:)[(set: _spend to false)]
+    (t8n: "dissolve")(rerun: ?spend)
+    (t8n: "dissolve")(rerun: ?test)
+}]` `Currently: [_spend[Spending](else:)[NOT spending]]<spend|</li>
+
+
+<li>(link-rerun: "Change chance.")[{
+    (dialog: bind _chance, "What are the chances of success?", "0", "20", "50", "70", "90", "100")
+    (set: _chance to (num: _chance))
+    (t8n: "dissolve")(rerun: ?test)
+}]</li>
+</ol>
+
+
+]<!--end child-->
+
+<!--test-->
+$cssColumnChild[
+<ol>
+[<li>($funcMultiCheckGate: _linkText, _pocketName, _req, _spend, _chance, [], "Test F2 (Success)", "Test F2 (Failure)")</li>]<test|
+<li>Just trying to see how the above will appear when put in a list. Apparently, line-height: 1.6 works very well.</li>
+</ol>
+
+
+]<!--end child-->
+]<!--end parent-->
+
+
+:: Test F2 (Success)
+
+Yay! Success!
+<br>
+(link: "Back")[(goto: "Test F2")]
+
+
+:: Test F2 (Failure)
+
+Aw, failure.
+<br>
+(link: "Back")[(goto: "Test F2")]

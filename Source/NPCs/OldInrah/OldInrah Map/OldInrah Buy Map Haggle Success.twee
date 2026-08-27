@@ -27,7 +27,9 @@ She gazes away, muttering a calculation and sucking on her black teeth, finding 
 <br>
 ---
 <ol>
-<li>($funcCheckGate: "Accept the new price.", "inv", "rial", 200, true, 100, "OldInrah Buy Map Accept", "")<!--[[OldInrah Buy Map Accept]]-->
+
+<li>($funcMultiCheckGate: "Accept the new price.", "inv", (dm: "rial", 200), true, 100, [], "OldInrah Buy Map Accept", "",)</li>
+
 <li>(link-rerun: "Regretfully admit that you won't be buying.")[($funcOpinionGainLoss: "OldInrah", -5, "She has lowered the price, and still you said 'no'.")(goto: "OldInrah Buy Map Decline")]<!--[[OldInrah Buy Map Decline]]-->
 </ol>
 

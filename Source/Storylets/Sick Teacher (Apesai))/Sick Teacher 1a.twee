@@ -184,8 +184,8 @@ _line["Are you fucking //joking//? Holding on to this latrine is all I //can// d
 [
 ---
 <ol>
-<li>($funcCheckGate: "Actually, you happen to have his medicine right here.", "inv", "healingTonic", 1, true, 100, "Sick Teacher 2a", "Sick Teacher 2b")
-<li>($funcQuestUpdateLink: "Leave the accursed room, finally.", "sickTeacher", "active", "Your mentor is sick with the flux. You'll have to find him a ''Healing Tonic''.", "You know what to do, right? You're a magus!", [], $place's sublocation,)
+<li>($funcMultiCheckGate: "Actually, you happen to have some medicine right here with you.", "inv", (dm: "healingTonic", 1), true, 100, [], "Sick Teacher 2a", "Sick Teacher 2b",)</li>
+<li>($funcQuestUpdateLink: "Leave the accursed room, finally.", "sickTeacher", "active", "Your mentor is sick with the flux. You'll have to find him a ''Healing Tonic''.", "You know what to do, right? You're a magus!", [], $place's sublocation,)</li>
 </ol>
 ](doneOptions|
 

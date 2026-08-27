@@ -130,9 +130,9 @@ It is only a master - one who has earned the title "magus" - who can run their o
 
 
 [
-["The Traveler's Society - do you have it where you're from?"]<OldInrahLine| the old woman points to a pulp affiche on the wall.
+["The Traveler's Society - do you have it where you're from?"]<OldInrahLine| The old woman points to a pulp affiche on the wall.
 <br>
-It depicts, in woodcut print, a nude woman with a striped sash around her waist, pointing a spear or a javelin at a gigantic eye. The eye shines like the sun over a desert scene. The printed big letters call for, "Wayward adventurers: reclaim your home!"
+It depicts, in woodcut print, a nude woman with a striped sash around her waist, pointing a spear or a javelin at a gigantic eye. The eye shines like the sun over a desert scene. The printed big letters call for, "Wayward adventurers, Children of Askava: Reclaim your home!"
 <br>
 ($funcInnerConvo: (dm:
 	"<!--A-->\"Yes, their fundraising activities were practically unavoidable.\"", "2a",

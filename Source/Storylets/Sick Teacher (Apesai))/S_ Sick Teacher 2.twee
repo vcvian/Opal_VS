@@ -116,12 +116,12 @@ $cssDesc[{
 (if: _asked is true)[(set: _turnInText to "\"Actually, I have your medicine right here.\"")]
 (else:)[(set: _turnInText to "\"Yes, I do have the medicine you asked for.\"")]
 
+<li>($funcMultiCheckGate: _turnInText, "inv", (dm: "healingTonic", 1), true, 100, [], "Sick Teacher 2a", "",)</li>
 
-<li>($funcCheckGate: _turnInText, "inv", "healingTonic", 1, true, 100, "Sick Teacher 2a", "")</li>
 
 (if: $char's OldInrah's talked contains "gingerBought" and $char's player's inv contains "ginger")[
      (if: $char's Teacher's talked does not contain "gingerGiven")[
-          <li>(link: "Present the \"alternative medicine\" you've just bought.")[(goto: "Sick Teacher 2b")] $cssDesc[(Askavan ginger ''might'' help, so said the landlady.)]</li>
+          <li>($funcMultiCheckGate: "Present the \"alternative medicine\" you've just bought.", "inv", (dm: "ginger", 1), true, 100, [], "Sick Teacher 2b", "",) $cssDesc[(Askavan ginger ''might'' help, so said the landlady.)]</li>
      ]
      (else:)[<li>~~Present the "alternative medicine" you've just bought.~~ $cssDesc[(You've learned your lesson.)]</li>]
 ]

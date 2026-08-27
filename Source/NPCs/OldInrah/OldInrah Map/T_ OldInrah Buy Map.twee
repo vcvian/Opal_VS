@@ -33,6 +33,7 @@ $cssDesc[''You: //(print: (passage:)'s topic)//'']
 
 <!--firstTime-->[
 ["Oh? You're interested?"]<OldInrahLine| Koh-Inrah shoots up straight, surprisingly nimble for her age. ["You magi are all very smart, everyone knows."]<OldInrahLine|
+<br>
 ($funcInnerConvo: (dm:
 	"Continue.", "1stA",
 ))
@@ -125,9 +126,15 @@ That's almost a month's worth of rent at her guesthouse!
 ---
 <ol>
 ($funcTalked:)
-<li>($funcCheckGate: "Accept the asking price.", "inv", "rial", 250, true, 100, "OldInrah Buy Map Accept", "")<!--[[OldInrah Buy Map Accept]]-->
-<li>($funcOpinionGate: "Appeal to her for a lower price.", "OldInrah", 30, 50, "OldInrah Buy Map Haggle Success", "OldInrah Buy Map Haggle Failed")<!--[[OldInrah Buy Map Haggle Success]]--><!--[[OldInrah Buy Map Haggle Failed]]-->
-<li>($funcCheckGate: "Call in favors for a lowered price.", "att", "repFamilyBizGood", 4, true, 100, "OldInrah Buy Map Haggle Success", "")<!--[[OldInrah Buy Map Accept]]-->
+
+<li>($funcMultiCheckGate: "Accept the asking price.", "inv", (dm: "rial", 250), true, 100, [], "OldInrah Buy Map Accept", "",)</li>
+
+<li>($funcMultiCheckGate: "Call in favors for a lowered price.", "att", (dm: "repFamilyBizGood", 4), true, 100, [], "OldInrah Buy Map Haggle Success", "",)</li>
+
+<li>($funcOpinionGate: "Appeal to her for a lower price.", "OldInrah", 30, 70, "OldInrah Buy Map Haggle Success", "OldInrah Buy Map Haggle Failed")</li>
+
+
+
 <li>(link-rerun: "Never mind.")[($funcOpinionGainLoss: "OldInrah", -1, "The old woman sneers, as though the price she has asked for is not ridiculous.")(goto: "OldInrah Buy Map Decline")]<!--[[OldInrah Buy Map Decline]]-->
 </ol>
 ](done|

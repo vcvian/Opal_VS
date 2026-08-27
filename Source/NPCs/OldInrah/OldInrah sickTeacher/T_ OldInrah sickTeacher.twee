@@ -107,7 +107,7 @@ $cssColumnChild[
         ---
         ($funcTalked:)
         <ol>
-        <li>($funcCheckGate: "Buy the ginger.", "inv", "rial", 30, true, 100, "OldInrah Buy Ginger Accept", "")
+        <li>($funcMultiCheckGate: "Buy the ginger.", "inv", (dm: "rial", 30), true, 100, [], "OldInrah Buy Ginger Accept", "",)</li>
         <li>(link: "Refuse.")[
             ($funcOpinionGainLoss: "OldInrah", -1, "You've wasted her time over only a bit of ginger.")
             (goto: "OldInrah Buy Ginger Decline")
@@ -139,7 +139,9 @@ $cssColumnChild[
 <br>
         ---
         <ol>
-        <li>($funcCheckGate: "\"Actually, I want to buy that fist of ginger off of you.\"", "inv", "rial", 30, true, 100, "OldInrah Buy Ginger Accept", "")
+
+        <li>($funcMultiCheckGate: "\"Actually, I want to buy that fist of ginger off of you.\"", "inv", (dm: "rial", 30), true, 100, [], "OldInrah Buy Ginger Accept", "",)</li>
+
 <br>
         On second thought...
         ($funcNPCTopics: "Old Inrah eyes an impatient guest behind you.", "\"Thank you anyway, Koh-Inrah. Goodbye.\"")
@@ -160,8 +162,8 @@ $cssColumnChild[
 <br>
     ---
     <ol>
-        <li>($funcCheckGate: "\"Alright, I'll bite. Where would one buy some medicine on this rock? How do I get there?\"", "inv", "rial", 10, true, 100, "OldInrah Locales GE", "")
-<br>
+        <li>($funcMultiCheckGate: "\"Alright, I'll bite. Where would one buy some medicine on this rock? How do I get there?\"", "inv", (dm: "rial", (passage: "T: OldInrah Locales")'s fee), true, 100, [], "OldInrah Locales GE", "",)</li>
+        
         On second thought...
         ($funcNPCTopics: "An impatient guest is tapping you on your shoulder.", "\"We'll revisit this later. Goodbye, Koh-Inrah.\"")
     </ol>

@@ -22,7 +22,7 @@ Despite your best effort this time, the old woman won't be moved.
 <br>
 ---
 <ol>
-<li>($funcCheckGate: "Accept the asking price.", "inv", "rial", 250, true, 100, "OldInrah Buy Map Accept", "")<!--[[OldInrah Buy Map Accept]]-->
+<li>($funcMultiCheckGate: "Accept the asking price.", "inv", (dm: "rial", 250,), true, 100, [], "OldInrah Buy Map Accept", "",)</li>
 <li>(link-rerun: "Concede that you won't be buying.")[($funcOpinionGainLoss: "OldInrah", -2, "The old woman is annoyed at your failed attempt to bargain.")(goto: "OldInrah Buy Map Decline")]<!--[[OldInrah Buy Map Decline]]-->
 </ol>
 

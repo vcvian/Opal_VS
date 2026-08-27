@@ -10,3 +10,23 @@
 (set: $cssColumnParent to (css: "display: flex; flex-direction: row; flex-wrap: wrap; align-items: flex-start; justify-content: center;"))
 
 (set: $cssColumnChild to (css: "flex-basis: 400px; flex-grow: 1; margin: 10px; padding: 10px;"))
+
+
+(set: $cssChanceColor to (macro: str-type _formattedText, num-type _value, num-type _max, [(out:)[{
+    <!--color gradient for chance-->
+(set: _r to 0)
+(set: _g to 0)
+(set: _half to (round: _max/2))
+(if: _value <= _half)[
+	(set: _r to 255)
+	(set: _g to (round: (_value / _half) * 255))
+]
+(else:)[
+	(set: _r to (round: ((_max - _chance) / _half) * 255))
+	(set: _g to 255)
+]
+(set: _chanceColor to (color: (rgb: _r, _g, 0)))
+
+<!--output formatted text-->
+_chanceColor[_formattedText]
+}]]))

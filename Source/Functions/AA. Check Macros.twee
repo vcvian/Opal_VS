@@ -2,7 +2,7 @@
 {=
 
 <!--A check gate that may or may not force spending, with a failure chance-->
-(set: $funcCheckGate to (macro: str-type _linkText, str-type _pocketName, str-type _thingName, num-type _checkAmount, boolean-type _spend, num-type _chance, str-type _gotoSuccess, str-type _gotoFailure, [(out:)[\
+(set: $funcCheckGate to (macro: str-type _linkText, str-type _pocketName, str-type _thingName, num-type _checkAmount, boolean-type _spend, num-type _chance, str-type _gotoSuccess, str-type _gotoFailure, [(out:)[{
 	<!--determine which pocket, output datamap-->\
 	(set: _pocket to "")\
 	(if: _pocketName is "inv" or it is "item")[(set: _pocket to $char's player's inv)]\
@@ -40,12 +40,12 @@
 				(else:)[($funcNoti: "dice", [Failure! $cssDesc[You needed to roll ''above (print: 100-_chance)'', but you ''got _dice''...]], "Aw.")(goto: _gotoFailure)]\
 			]\
 			(else:)[(goto: _gotoSuccess)]\
-		] $cssDesc[((if: _spend is true)[Lose](else:)[Without taking anything from you, check for at least] ''_checkAmount (print: _thingDM's id)'', of which you currently have (print: _pocket's _thingName).(if: _chance < 100)[ There is a _chance% chance of success.])]\
+		] $cssDesc[((if: _spend is true)[Lose](else:)[Without taking anything from you, check for at least] ''_checkAmount (print: _thingDM's id)'', of which you currently have (if: _pocketName is "temp")[($funcCheckTemp: _thingName)](else:)[(print: _pocket's _thingName)].(if: _chance < 100)[ There is a ($cssChanceColor: "_chance%", _chance, 100) chance of success.])]\
 	]\
-	(else:)[\
-		~~_linkText~~ $cssDesc[(Not enough. Need ''_checkAmount (print: _thingDM's id)'', but you have (if: _haveNone is false)[(print: _pocket's _thingName)](else:)[0].)]\
-	]\
-]]))
+	(else:)[
+		~~_linkText~~ $cssDesc[(Not enough. Need ''_checkAmount (print: _thingDM's id)'', but you have (if: _haveNone is false)[(if: _pocketName is "temp")[($funcCheckTemp: _thingName)](else:)[(print: _pocket's _thingName)]](else:)[0].)]\
+	]
+}]]))
 
 <!--A luck gate-->
 (set: $funcLuckGate to (macro: str-type _text, num-type _chance, str-type _gotoSuccess, str-type _gotoFailure,[(out:)[\
@@ -53,7 +53,7 @@
 		(set: _dice to (random: 1,100))\
 		(if: (100-_chance) <= _dice)[(dialog: [Success! <br> $cssDesc[You needed to roll above (print: 100-_chance), and you got _dice!]], "Nice!")(goto: _gotoSuccess)]\
 		(else:)[(dialog: [Failure! $cssDesc[You needed to roll above (print: 100-_chance), and you got _dice.]], "Aw.")(goto: _gotoFailure)]\
-	] $cssDesc[(Pray fortune. (print: _chance)% chance of success.)]\
+	] $cssDesc[(Pray fortune. ($cssChanceColor: "_chance%", _chance, 100) chance of success.)]\
 ]]))
 
 <!--An opinion gate-->
@@ -78,7 +78,7 @@
 				(else:)[($funcNoti: "dice", [Failure! $cssDesc[You needed to roll ''above (print: 100-_chance)'', but you ''got _dice''...]], "Aw.")(goto: _gotoFailure)]\
 			]\
 			(else:)[(goto: _gotoSuccess)]\
-		] $cssDesc[((print: _charDM's id)'s opinion of you is high enough. ''At least _opinionRequired'' is required, which it is currently at ($funcOpinionCalc: _char, true).(if: _chance <100)[ There is a _chance% chance of success.])]\
+		] $cssDesc[((print: _charDM's id)'s opinion of you is high enough. ''At least _opinionRequired'' is required, which it is currently at ($funcOpinionCalc: _char, true).(if: _chance <100)[ There is a ($cssChanceColor: "_chance%", _chance, 100) chance of success.])]\
 		<!--end of link-->\
 	]<!--end of if pass is true-->\
 	\
@@ -86,3 +86,193 @@
 		~~_linkText~~ $cssDesc[((print: _charDM's id)'s opinion of you is too low. ''At least _opinionRequired'' is required, but it is currently ($funcOpinionCalc: _char, true).)]\
 	]<!--end of if pass is false-->\
 ]]))
+
+<!--multi-check gate:
+(1) Take a (dm:) for inv, att, or temp. Structure is (dm: _thingName, _checkAmount). Declare type.
+(2) Set _spend mode.
+(3) Check player's inventory, attributes, or temporaries.
+(4) If every conditions are met, then create link. If not, then cross out.
+(5) Link probabilistically takes to next passage. Spending depends on whether that pocket's _spend is true.
+(6) Run addCode.
+(7) Create readout.-->
+
+
+(set: $funcMultiCheckGate to (macro: str-type _linkText, str-type _pocketName, dm-type _thingList, boolean-type _spend, num-type _chance, codehook-type _addCode, str-type _gotoSuccess, str-type _gotoFailure, [(out:)[{
+	<!--determine which pocket-->
+	(set: _pocket to "")
+	(if: _pocketName is "inv" or it is "item")[(set: _pocket to $char's player's inv)]
+	(elseif: _pocketName is "att")[(set: _pocket to $char's player's att)]
+    (elseif: _pocketName is "temp")[(set: _pocket to $char's player's temp)]
+
+	<!--Check pocket, will build an array-->
+	<!--first, initialize _metReq array-->
+	(set: _metReq to (a:))
+	<!--second, loop through the provided _thingList DM-->
+	(for: each _thing, ...(datanames: _thingList))[{
+		<!--third, check if _thing exists in _pocket-->
+		(set: _doHave to false)
+		(if: _pocket contains _thing)[(set: _doHave to true)]
+		<!--fourth, check if it exists in the right quantity (be careful about temporaries pocket types)-->
+		(if: _doHave is true)[{
+			<!--special case (temp)-->
+			(if: _pocketName is "temp")[{
+				(if: ($funcCheckTemp: _thing) >= _thingList's _thing)[(set: _metReq to it + (a: _thing))]<!--add it in if req is met-->
+			}]<!--end of temp scenario-->
+			<!--else, the rest of the times (inv + att)-->
+			(else:)[{
+				(if: _pocket's _thing >= _thingList's _thing)[(set: _metReq to it + (a: _thing))]<!--add it in if req is met-->
+			}]<!--end of inv or att scenarios-->
+		}]<!--end of checking req-->
+	}]<!--end of looping through _thingList-->
+
+	<!--now that we have _metReq, do we have enough?-->
+	(set: _enough to false)
+	(if: _metReq's length >= (datanames: _thingList)'s length)[(set: _enough to true)]<!--end of _enough-->
+
+	<!--If _enough, Create link-->
+	(if: _enough is true)[{
+		(link: _linkText)[{
+			<!--If _spend mode is true, GainLoss, depending on which _pocketName-->
+			(if: _spend is true)[{
+				<!--loop through everything in _thingList (to subtract)-->
+				(for: each _thing, ...(datanames: _thingList))[{
+					<!--if temporaries-->
+					(if: _pocketName is "temp")[{
+						<!--subtract-->
+						($funcTempGainLoss: _thing, -_thingList's _thing)
+					}]<!--end of if temporaries-->
+					<!--else, the rest of the times (inv + att)-->
+					(if: _pocketName is not "temp")[{
+						<!--set prefix: "item." or "att."?-->
+						(set: _pocketPrefix to "")
+						(if: _pocketName is "att")[(set: _pocketPrefix to "att.")]
+						(else:)[(set: _pocketPrefix to "item.")]
+						<!--subtract-->
+						($funcGainLoss: _pocketPrefix, _thing, -_thingList's _thing)
+					}]<!--end of else (inv + att)-->
+				}]<!--end of looping _thingList (to subtract)-->
+				
+			}]<!--end of if _spend is true-->
+		
+			<!--roll dice-->
+			(set: _dice to (random: 1, 100))
+			(set: _success to false)
+
+			<!--if failure is possible, do the luck check-->
+			(if: _chance < 100)[{
+				(if: (100-_chance)<=_dice)[{
+					<!--notify-->
+					($funcNoti: "dice", [Success! <br> $cssDesc[You needed to roll ''above (print: 100-_chance)'', and you ''got _dice''!]], "Nice!")
+					<!--set _success for use in _addCode (if I ever want to run the _addCode ONLY when I succeed)-->
+					(set: _success to true)
+					<!--run _addCode-->
+					(print: _addCode)
+					<!--Finally, go to success passage-->
+					(goto: _gotoSuccess)}]
+				(else:)[{
+					<!--notify-->
+					($funcNoti: "dice", [Failure! $cssDesc[You needed to roll ''above (print: 100-_chance)'', but you ''got _dice''...]], "Aw.")
+					<!--run _addCode-->
+					(print: _addCode)
+					<!--go to failure passage-->
+					(goto: _gotoFailure)}]
+			}]<!--end of failure possible-->
+
+			<!--else, run _addCode and go straight to success passage-->
+			(else:)[{
+				<!--set _success for use in _addCode (if I ever want to run the _addCode ONLY when I succeed)-->
+				(set: _success to true)
+				(print: _addCode)
+				(goto: _gotoSuccess)
+			}]
+
+		}]<!--end of link-->
+	}]<!--end of if _enough-->
+
+	<!--else, not _enough, Create crossed-out text instead of link-->
+	(else:)[~~_linkText~~]
+
+	<!--tip readout-->
+
+	<!--single?-->
+	(set: _singleCheck to false)
+	(if: (datanames:_thingList)'s length is 1)[(set: _singleCheck to true)]
+
+<!--if not single (multiple)-->
+$cssDesc[{
+	(if: _singleCheck is false)[{
+
+		<!--first line (lose or check?)-->
+<br>
+		↪`	`(if: _spend is true)[(color: red+orange)[Lose]]
+		(else:)[(color: yellow)[Checking] for]
+		` `the following:
+		<!--list (loop)-->
+		<ol style="line-height: 1">
+		(for: each _thing, ...(datanames: _thingList))[{
+			<!--load _thing's full DM-->
+			(set: _thingDM to (dm:))
+			(set: _pocketPrefix to "")
+			(if: _pocketName is "temp")[(set: _pocketPrefix to "temp.")]
+			(elseif: _pocketName is "att")[(set: _pocketPrefix to "att.")]
+			(else:)[(set: _pocketPrefix to "item.")]
+			(set: _thingDM to (passage: _pocketPrefix + _thing))
+
+			<!--check if _metReq contains it-->
+			(set: _checkmark to [(color: red)[✗]])
+			(if: _metReq contains _thing)[(set: _checkmark to [(color: green)[✓]])]
+			
+			<!--_current (how much you have)-->
+			(set: _current to 0)
+			(if: _pocketName is "temp")[(set: _current to ($funcCheckTemp: _thing))]
+			(else:)[(set: _current to ($funcCheckExists: _pocket, _thing, 0))]
+
+			<!--_needed-->
+			(set: _needed to _thingList's _thing)
+
+			<li style="line-height: 1">
+			_checkmark` `''_needed` `(print: _thingDM's id)($funcLogTip: _pocketPrefix, _thing):'' You have` `(if: _current < _needed)[(color: red)[_current]](else:)[_current]|need` `_needed.
+			</li>
+		}]<!--end of list loop-->
+		</ol>
+}]
+
+<!--if single-->
+(else:)[{
+	<!--load sole item's full DM-->
+	(set: _thing to (datanames: _thingList)'s 1st)
+	(set: _pocketPrefix to "")
+	(if: _pocketName is "temp")[(set: _pocketPrefix to "temp.")]
+	(elseif: _pocketName is "att")[(set: _pocketPrefix to "att.")]
+	(else:)[(set: _pocketPrefix to "item.")]
+	(set: _thingDM to (passage: _pocketPrefix + _thing))
+
+	<!--check if _metReq contains it-->
+	(set: _checkmark to [(color: red)[✗]])
+	(if: _metReq contains _thing)[(set: _checkmark to [(color: green)[✓]])]
+	
+	<!--_current (how much you have)-->
+	(set: _current to 0)
+	(if: _pocketName is "temp")[(set: _current to ($funcCheckTemp: _thing))]
+	(else:)[(set: _current to ($funcCheckExists: _pocket, _thing, 0))]
+
+	<!--_needed-->
+	(set: _needed to _thingList's _thing)
+
+	<!--first line (lose or check?)-->
+<br>
+	↪`	`(if: _spend is true)[(color: red+orange)[Lose]]
+	(else:)[(color: yellow)[Checking] for]
+	` `the following:` `
+	<!--readout sole requirement-->
+	_checkmark` `''_needed` `(print: _thingDM's id)($funcLogTip: _pocketPrefix, _thing):'' You have` `(if: _current < _needed)[(color: red)[_current]](else:)[_current]|need` `_needed.` `
+}]
+
+<!--chance readout-->
+(if: _chance < 100)[There is a ($cssChanceColor: "_chance%", _chance, 100) chance of success.]
+<br>
+
+	}]<!--end of cssDesc-->
+
+
+}]]))

@@ -32,6 +32,9 @@ $cssColumnChild[
 <li>[[Test D]] $cssDesc[(Synthesis labs)]
 <li>[[Test E]] $cssDesc[(Time, place & weather)]
 <li>[[Test F]] $cssDesc[(Checks & gates)]
+    <ul>
+    <li>[[Test F2]] $cssDesc[(Multi-check)]
+    </ul>
 <li>[[Test G]] $cssDesc[(Quests)]
 <li>[[Test H]] $cssDesc[(Traveling)]
 <li>[[Test I]] $cssDesc[(Navigating sublocations)]

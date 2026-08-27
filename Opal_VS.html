@@ -83,7 +83,7 @@ hr {
   100% {
     background-position: 0% center;
   }
-}</style><script role="script" id="twine-user-script" type="text/twine-javascript"></script><tw-tag name="topic" color="purple"></tw-tag><tw-tag name="book" color="yellow"></tw-tag><tw-tag name="header" color="yellow"></tw-tag><tw-tag name="static-storage" color="yellow"></tw-tag><tw-tag name="test" color="blue"></tw-tag><tw-tag name="stay" color="yellow"></tw-tag><tw-tag name="storylet" color="blue"></tw-tag><tw-tag name="sublocation" color="green"></tw-tag><tw-tag name="traveling" color="purple"></tw-tag><tw-tag name="UI" color="orange"></tw-tag><tw-tag name="effect" color="yellow"></tw-tag><tw-tag name="footer" color="yellow"></tw-tag><tw-tag name="startup" color="orange"></tw-tag><tw-passagedata pid="1" name="AA. Books, Reading &amp; Formulae" tags="startup" position="100,100" size="100,100">{=
+}</style><script role="script" id="twine-user-script" type="text/twine-javascript"></script><tw-tag name="book" color="yellow"></tw-tag><tw-tag name="effect" color="yellow"></tw-tag><tw-tag name="footer" color="yellow"></tw-tag><tw-tag name="header" color="yellow"></tw-tag><tw-tag name="storylet" color="blue"></tw-tag><tw-tag name="UI" color="orange"></tw-tag><tw-tag name="static-storage" color="yellow"></tw-tag><tw-tag name="stay" color="yellow"></tw-tag><tw-tag name="sublocation" color="green"></tw-tag><tw-tag name="test" color="blue"></tw-tag><tw-tag name="topic" color="purple"></tw-tag><tw-tag name="traveling" color="purple"></tw-tag><tw-tag name="startup" color="orange"></tw-tag><tw-passagedata pid="1" name="AA. Books, Reading &amp; Formulae" tags="startup" position="100,100" size="100,100">{=
 &lt;!--Macros related to books and reading--&gt;
 
 (set: $readingNav to (dm:
@@ -372,7 +372,7 @@ $cssDesc[How likely you are to be successful at this challenge will &#39;&#39;de
 }]]))</tw-passagedata><tw-passagedata pid="4" name="AA. Check Macros" tags="startup" position="1825,3750" size="100,100">{=
 
 &lt;!--A check gate that may or may not force spending, with a failure chance--&gt;
-(set: $funcCheckGate to (macro: str-type _linkText, str-type _pocketName, str-type _thingName, num-type _checkAmount, boolean-type _spend, num-type _chance, str-type _gotoSuccess, str-type _gotoFailure, [(out:)[\
+(set: $funcCheckGate to (macro: str-type _linkText, str-type _pocketName, str-type _thingName, num-type _checkAmount, boolean-type _spend, num-type _chance, str-type _gotoSuccess, str-type _gotoFailure, [(out:)[{
 	&lt;!--determine which pocket, output datamap--&gt;\
 	(set: _pocket to &quot;&quot;)\
 	(if: _pocketName is &quot;inv&quot; or it is &quot;item&quot;)[(set: _pocket to $char&#39;s player&#39;s inv)]\
@@ -410,12 +410,12 @@ $cssDesc[How likely you are to be successful at this challenge will &#39;&#39;de
 				(else:)[($funcNoti: &quot;dice&quot;, [Failure! $cssDesc[You needed to roll &#39;&#39;above (print: 100-_chance)&#39;&#39;, but you &#39;&#39;got _dice&#39;&#39;...]], &quot;Aw.&quot;)(goto: _gotoFailure)]\
 			]\
 			(else:)[(goto: _gotoSuccess)]\
-		] $cssDesc[((if: _spend is true)[Lose](else:)[Without taking anything from you, check for at least] &#39;&#39;_checkAmount (print: _thingDM&#39;s id)&#39;&#39;, of which you currently have (print: _pocket&#39;s _thingName).(if: _chance &lt; 100)[ There is a _chance% chance of success.])]\
+		] $cssDesc[((if: _spend is true)[Lose](else:)[Without taking anything from you, check for at least] &#39;&#39;_checkAmount (print: _thingDM&#39;s id)&#39;&#39;, of which you currently have (if: _pocketName is &quot;temp&quot;)[($funcCheckTemp: _thingName)](else:)[(print: _pocket&#39;s _thingName)].(if: _chance &lt; 100)[ There is a ($cssChanceColor: &quot;_chance%&quot;, _chance, 100) chance of success.])]\
 	]\
-	(else:)[\
-		~~_linkText~~ $cssDesc[(Not enough. Need &#39;&#39;_checkAmount (print: _thingDM&#39;s id)&#39;&#39;, but you have (if: _haveNone is false)[(print: _pocket&#39;s _thingName)](else:)[0].)]\
-	]\
-]]))
+	(else:)[
+		~~_linkText~~ $cssDesc[(Not enough. Need &#39;&#39;_checkAmount (print: _thingDM&#39;s id)&#39;&#39;, but you have (if: _haveNone is false)[(if: _pocketName is &quot;temp&quot;)[($funcCheckTemp: _thingName)](else:)[(print: _pocket&#39;s _thingName)]](else:)[0].)]\
+	]
+}]]))
 
 &lt;!--A luck gate--&gt;
 (set: $funcLuckGate to (macro: str-type _text, num-type _chance, str-type _gotoSuccess, str-type _gotoFailure,[(out:)[\
@@ -423,7 +423,7 @@ $cssDesc[How likely you are to be successful at this challenge will &#39;&#39;de
 		(set: _dice to (random: 1,100))\
 		(if: (100-_chance) &lt;= _dice)[(dialog: [Success! &lt;br&gt; $cssDesc[You needed to roll above (print: 100-_chance), and you got _dice!]], &quot;Nice!&quot;)(goto: _gotoSuccess)]\
 		(else:)[(dialog: [Failure! $cssDesc[You needed to roll above (print: 100-_chance), and you got _dice.]], &quot;Aw.&quot;)(goto: _gotoFailure)]\
-	] $cssDesc[(Pray fortune. (print: _chance)% chance of success.)]\
+	] $cssDesc[(Pray fortune. ($cssChanceColor: &quot;_chance%&quot;, _chance, 100) chance of success.)]\
 ]]))
 
 &lt;!--An opinion gate--&gt;
@@ -448,14 +448,204 @@ $cssDesc[How likely you are to be successful at this challenge will &#39;&#39;de
 				(else:)[($funcNoti: &quot;dice&quot;, [Failure! $cssDesc[You needed to roll &#39;&#39;above (print: 100-_chance)&#39;&#39;, but you &#39;&#39;got _dice&#39;&#39;...]], &quot;Aw.&quot;)(goto: _gotoFailure)]\
 			]\
 			(else:)[(goto: _gotoSuccess)]\
-		] $cssDesc[((print: _charDM&#39;s id)&#39;s opinion of you is high enough. &#39;&#39;At least _opinionRequired&#39;&#39; is required, which it is currently at ($funcOpinionCalc: _char, true).(if: _chance &lt;100)[ There is a _chance% chance of success.])]\
+		] $cssDesc[((print: _charDM&#39;s id)&#39;s opinion of you is high enough. &#39;&#39;At least _opinionRequired&#39;&#39; is required, which it is currently at ($funcOpinionCalc: _char, true).(if: _chance &lt;100)[ There is a ($cssChanceColor: &quot;_chance%&quot;, _chance, 100) chance of success.])]\
 		&lt;!--end of link--&gt;\
 	]&lt;!--end of if pass is true--&gt;\
 	\
 	(else:)[\
 		~~_linkText~~ $cssDesc[((print: _charDM&#39;s id)&#39;s opinion of you is too low. &#39;&#39;At least _opinionRequired&#39;&#39; is required, but it is currently ($funcOpinionCalc: _char, true).)]\
 	]&lt;!--end of if pass is false--&gt;\
-]]))</tw-passagedata><tw-passagedata pid="5" name="AA. Elementalize" tags="startup" position="1425,3750" size="100,100">{=
+]]))
+
+&lt;!--multi-check gate:
+(1) Take a (dm:) for inv, att, or temp. Structure is (dm: _thingName, _checkAmount). Declare type.
+(2) Set _spend mode.
+(3) Check player&#39;s inventory, attributes, or temporaries.
+(4) If every conditions are met, then create link. If not, then cross out.
+(5) Link probabilistically takes to next passage. Spending depends on whether that pocket&#39;s _spend is true.
+(6) Run addCode.
+(7) Create readout.--&gt;
+
+
+(set: $funcMultiCheckGate to (macro: str-type _linkText, str-type _pocketName, dm-type _thingList, boolean-type _spend, num-type _chance, codehook-type _addCode, str-type _gotoSuccess, str-type _gotoFailure, [(out:)[{
+	&lt;!--determine which pocket--&gt;
+	(set: _pocket to &quot;&quot;)
+	(if: _pocketName is &quot;inv&quot; or it is &quot;item&quot;)[(set: _pocket to $char&#39;s player&#39;s inv)]
+	(elseif: _pocketName is &quot;att&quot;)[(set: _pocket to $char&#39;s player&#39;s att)]
+    (elseif: _pocketName is &quot;temp&quot;)[(set: _pocket to $char&#39;s player&#39;s temp)]
+
+	&lt;!--Check pocket, will build an array--&gt;
+	&lt;!--first, initialize _metReq array--&gt;
+	(set: _metReq to (a:))
+	&lt;!--second, loop through the provided _thingList DM--&gt;
+	(for: each _thing, ...(datanames: _thingList))[{
+		&lt;!--third, check if _thing exists in _pocket--&gt;
+		(set: _doHave to false)
+		(if: _pocket contains _thing)[(set: _doHave to true)]
+		&lt;!--fourth, check if it exists in the right quantity (be careful about temporaries pocket types)--&gt;
+		(if: _doHave is true)[{
+			&lt;!--special case (temp)--&gt;
+			(if: _pocketName is &quot;temp&quot;)[{
+				(if: ($funcCheckTemp: _thing) &gt;= _thingList&#39;s _thing)[(set: _metReq to it + (a: _thing))]&lt;!--add it in if req is met--&gt;
+			}]&lt;!--end of temp scenario--&gt;
+			&lt;!--else, the rest of the times (inv + att)--&gt;
+			(else:)[{
+				(if: _pocket&#39;s _thing &gt;= _thingList&#39;s _thing)[(set: _metReq to it + (a: _thing))]&lt;!--add it in if req is met--&gt;
+			}]&lt;!--end of inv or att scenarios--&gt;
+		}]&lt;!--end of checking req--&gt;
+	}]&lt;!--end of looping through _thingList--&gt;
+
+	&lt;!--now that we have _metReq, do we have enough?--&gt;
+	(set: _enough to false)
+	(if: _metReq&#39;s length &gt;= (datanames: _thingList)&#39;s length)[(set: _enough to true)]&lt;!--end of _enough--&gt;
+
+	&lt;!--If _enough, Create link--&gt;
+	(if: _enough is true)[{
+		(link: _linkText)[{
+			&lt;!--If _spend mode is true, GainLoss, depending on which _pocketName--&gt;
+			(if: _spend is true)[{
+				&lt;!--loop through everything in _thingList (to subtract)--&gt;
+				(for: each _thing, ...(datanames: _thingList))[{
+					&lt;!--if temporaries--&gt;
+					(if: _pocketName is &quot;temp&quot;)[{
+						&lt;!--subtract--&gt;
+						($funcTempGainLoss: _thing, -_thingList&#39;s _thing)
+					}]&lt;!--end of if temporaries--&gt;
+					&lt;!--else, the rest of the times (inv + att)--&gt;
+					(if: _pocketName is not &quot;temp&quot;)[{
+						&lt;!--set prefix: &quot;item.&quot; or &quot;att.&quot;?--&gt;
+						(set: _pocketPrefix to &quot;&quot;)
+						(if: _pocketName is &quot;att&quot;)[(set: _pocketPrefix to &quot;att.&quot;)]
+						(else:)[(set: _pocketPrefix to &quot;item.&quot;)]
+						&lt;!--subtract--&gt;
+						($funcGainLoss: _pocketPrefix, _thing, -_thingList&#39;s _thing)
+					}]&lt;!--end of else (inv + att)--&gt;
+				}]&lt;!--end of looping _thingList (to subtract)--&gt;
+				
+			}]&lt;!--end of if _spend is true--&gt;
+		
+			&lt;!--roll dice--&gt;
+			(set: _dice to (random: 1, 100))
+			(set: _success to false)
+
+			&lt;!--if failure is possible, do the luck check--&gt;
+			(if: _chance &lt; 100)[{
+				(if: (100-_chance)&lt;=_dice)[{
+					&lt;!--notify--&gt;
+					($funcNoti: &quot;dice&quot;, [Success! &lt;br&gt; $cssDesc[You needed to roll &#39;&#39;above (print: 100-_chance)&#39;&#39;, and you &#39;&#39;got _dice&#39;&#39;!]], &quot;Nice!&quot;)
+					&lt;!--set _success for use in _addCode (if I ever want to run the _addCode ONLY when I succeed)--&gt;
+					(set: _success to true)
+					&lt;!--run _addCode--&gt;
+					(print: _addCode)
+					&lt;!--Finally, go to success passage--&gt;
+					(goto: _gotoSuccess)}]
+				(else:)[{
+					&lt;!--notify--&gt;
+					($funcNoti: &quot;dice&quot;, [Failure! $cssDesc[You needed to roll &#39;&#39;above (print: 100-_chance)&#39;&#39;, but you &#39;&#39;got _dice&#39;&#39;...]], &quot;Aw.&quot;)
+					&lt;!--run _addCode--&gt;
+					(print: _addCode)
+					&lt;!--go to failure passage--&gt;
+					(goto: _gotoFailure)}]
+			}]&lt;!--end of failure possible--&gt;
+
+			&lt;!--else, run _addCode and go straight to success passage--&gt;
+			(else:)[{
+				&lt;!--set _success for use in _addCode (if I ever want to run the _addCode ONLY when I succeed)--&gt;
+				(set: _success to true)
+				(print: _addCode)
+				(goto: _gotoSuccess)
+			}]
+
+		}]&lt;!--end of link--&gt;
+	}]&lt;!--end of if _enough--&gt;
+
+	&lt;!--else, not _enough, Create crossed-out text instead of link--&gt;
+	(else:)[~~_linkText~~]
+
+	&lt;!--tip readout--&gt;
+
+	&lt;!--single?--&gt;
+	(set: _singleCheck to false)
+	(if: (datanames:_thingList)&#39;s length is 1)[(set: _singleCheck to true)]
+
+&lt;!--if not single (multiple)--&gt;
+$cssDesc[{
+	(if: _singleCheck is false)[{
+
+		&lt;!--first line (lose or check?)--&gt;
+&lt;br&gt;
+		↪`	`(if: _spend is true)[(color: red+orange)[Lose]]
+		(else:)[(color: yellow)[Checking] for]
+		` `the following:
+		&lt;!--list (loop)--&gt;
+		&lt;ol style=&quot;line-height: 1&quot;&gt;
+		(for: each _thing, ...(datanames: _thingList))[{
+			&lt;!--load _thing&#39;s full DM--&gt;
+			(set: _thingDM to (dm:))
+			(set: _pocketPrefix to &quot;&quot;)
+			(if: _pocketName is &quot;temp&quot;)[(set: _pocketPrefix to &quot;temp.&quot;)]
+			(elseif: _pocketName is &quot;att&quot;)[(set: _pocketPrefix to &quot;att.&quot;)]
+			(else:)[(set: _pocketPrefix to &quot;item.&quot;)]
+			(set: _thingDM to (passage: _pocketPrefix + _thing))
+
+			&lt;!--check if _metReq contains it--&gt;
+			(set: _checkmark to [(color: red)[✗]])
+			(if: _metReq contains _thing)[(set: _checkmark to [(color: green)[✓]])]
+			
+			&lt;!--_current (how much you have)--&gt;
+			(set: _current to 0)
+			(if: _pocketName is &quot;temp&quot;)[(set: _current to ($funcCheckTemp: _thing))]
+			(else:)[(set: _current to ($funcCheckExists: _pocket, _thing, 0))]
+
+			&lt;!--_needed--&gt;
+			(set: _needed to _thingList&#39;s _thing)
+
+			&lt;li style=&quot;line-height: 1&quot;&gt;
+			_checkmark` `&#39;&#39;_needed` `(print: _thingDM&#39;s id)($funcLogTip: _pocketPrefix, _thing):&#39;&#39; You have` `(if: _current &lt; _needed)[(color: red)[_current]](else:)[_current]|need` `_needed.
+			&lt;/li&gt;
+		}]&lt;!--end of list loop--&gt;
+		&lt;/ol&gt;
+}]
+
+&lt;!--if single--&gt;
+(else:)[{
+	&lt;!--load sole item&#39;s full DM--&gt;
+	(set: _thing to (datanames: _thingList)&#39;s 1st)
+	(set: _pocketPrefix to &quot;&quot;)
+	(if: _pocketName is &quot;temp&quot;)[(set: _pocketPrefix to &quot;temp.&quot;)]
+	(elseif: _pocketName is &quot;att&quot;)[(set: _pocketPrefix to &quot;att.&quot;)]
+	(else:)[(set: _pocketPrefix to &quot;item.&quot;)]
+	(set: _thingDM to (passage: _pocketPrefix + _thing))
+
+	&lt;!--check if _metReq contains it--&gt;
+	(set: _checkmark to [(color: red)[✗]])
+	(if: _metReq contains _thing)[(set: _checkmark to [(color: green)[✓]])]
+	
+	&lt;!--_current (how much you have)--&gt;
+	(set: _current to 0)
+	(if: _pocketName is &quot;temp&quot;)[(set: _current to ($funcCheckTemp: _thing))]
+	(else:)[(set: _current to ($funcCheckExists: _pocket, _thing, 0))]
+
+	&lt;!--_needed--&gt;
+	(set: _needed to _thingList&#39;s _thing)
+
+	&lt;!--first line (lose or check?)--&gt;
+&lt;br&gt;
+	↪`	`(if: _spend is true)[(color: red+orange)[Lose]]
+	(else:)[(color: yellow)[Checking] for]
+	` `the following:` `
+	&lt;!--readout sole requirement--&gt;
+	_checkmark` `&#39;&#39;_needed` `(print: _thingDM&#39;s id)($funcLogTip: _pocketPrefix, _thing):&#39;&#39; You have` `(if: _current &lt; _needed)[(color: red)[_current]](else:)[_current]|need` `_needed.` `
+}]
+
+&lt;!--chance readout--&gt;
+(if: _chance &lt; 100)[There is a ($cssChanceColor: &quot;_chance%&quot;, _chance, 100) chance of success.]
+&lt;br&gt;
+
+	}]&lt;!--end of cssDesc--&gt;
+
+
+}]]))</tw-passagedata><tw-passagedata pid="5" name="AA. Elementalize" tags="startup" position="1425,3750" size="100,100">{=
 
 &lt;!--Elementalize confirm link--&gt;
 
@@ -2522,7 +2712,27 @@ Ex: 2|1 At, 0|1 Ab, 2|3 Gor, 0|2 Rokh, 0|0 Zam --&gt;
 
 (set: $cssColumnParent to (css: &quot;display: flex; flex-direction: row; flex-wrap: wrap; align-items: flex-start; justify-content: center;&quot;))
 
-(set: $cssColumnChild to (css: &quot;flex-basis: 400px; flex-grow: 1; margin: 10px; padding: 10px;&quot;))</tw-passagedata><tw-passagedata pid="25" name="E. Image Macros" tags="startup" position="1475,3100" size="100,100">&lt;!--Macros to display images (excluding weather)--&gt;
+(set: $cssColumnChild to (css: &quot;flex-basis: 400px; flex-grow: 1; margin: 10px; padding: 10px;&quot;))
+
+
+(set: $cssChanceColor to (macro: str-type _formattedText, num-type _value, num-type _max, [(out:)[{
+    &lt;!--color gradient for chance--&gt;
+(set: _r to 0)
+(set: _g to 0)
+(set: _half to (round: _max/2))
+(if: _value &lt;= _half)[
+	(set: _r to 255)
+	(set: _g to (round: (_value / _half) * 255))
+]
+(else:)[
+	(set: _r to (round: ((_max - _chance) / _half) * 255))
+	(set: _g to 255)
+]
+(set: _chanceColor to (color: (rgb: _r, _g, 0)))
+
+&lt;!--output formatted text--&gt;
+_chanceColor[_formattedText]
+}]]))</tw-passagedata><tw-passagedata pid="25" name="E. Image Macros" tags="startup" position="1475,3100" size="100,100">&lt;!--Macros to display images (excluding weather)--&gt;
 
 &lt;!--Display icons--&gt;
 (set: $funcIcon to (macro: str-type _key, [(out:)[\
@@ -3023,7 +3233,7 @@ $place&#39;s sublocation is &quot;Apesai Wharf&quot;
 &quot;title&quot;, &quot;Depart from Apesai&quot;,
 &quot;cardDesc&quot;, &quot;Ferries-for-hire flock the wharf, waiting to take those with the coins into mainland Askava.&quot;,
 &quot;img&quot;, &quot;https://fallenlondon.wiki/w/images/3/3b/Shipilaltun.png&quot;,
-&quot;devNote&quot;, [Implement multi-check gates for the Navveh and Zirab options.Also, add item.licenseAdventure to the game],
+&quot;devNote&quot;, [Implement multi-check gates for the Navveh and Zirab options. Also, add item.licenseAdventure to the game],
 )
 
 $cssColumnParent[
@@ -3037,7 +3247,7 @@ $cssColumnChild[
 
 $cssColumnChild[
 
-&lt;!--roll which sailor you deal with today--&gt;
+&lt;!--roll which sailor you deal with today; there is no need for a global var, since I can just re-evaluate $dice in the next passage--&gt;
 (set: _whichSailor to &quot;genericSailor1&quot;)
 (cond:
     $dice &lt;= 33, [(set: _whichSailor to &quot;genericSailor2&quot;)],
@@ -3159,7 +3369,7 @@ He polishes a ring on his silk robe, waiting for you to search your bag.
 &lt;br&gt;
 ---
 &lt;ol&gt;
-&lt;li&gt;($funcCheckGate: &quot;Show your permit.&quot;, &quot;inv&quot;, &quot;permitAskava&quot;, 1, false, 100, &quot;Depart from Apesai 1a&quot;, &quot;&quot;,)&lt;/li&gt;
+&lt;li&gt;($funcMultiCheckGate: &quot;Show your permit.&quot;, &quot;inv&quot;, (dm: &quot;permitAskava&quot;, 1), false, 100, [], &quot;Depart from Apesai 1a&quot;, &quot;&quot;,)&lt;/li&gt;
 &lt;br&gt;
 Actually...
 &lt;li&gt;(link: &quot;\&quot;I&#39;m interested in another destination.\&quot;&quot;)[(t8n:&quot;dissolve&quot;)(redirect: (passage:)&#39;s name)]&lt;/li&gt;
@@ -3234,7 +3444,7 @@ He polishes a ring on his silk robe, waiting for you to search your bag.
 &lt;br&gt;
 ---
 &lt;ol&gt;
-&lt;li&gt;MULTI-CHECK NEEDED!&lt;/li&gt;
+&lt;li&gt;($funcMultiCheckGate: &quot;Show your papers.&quot;, &quot;inv&quot;, (dm: &quot;permitAskava&quot;, 1, &quot;licenseAdventure&quot;, 1), false, 100, [], &quot;Depart from Apesai 2a&quot;, &quot;&quot;,)&lt;/li&gt;
 &lt;br&gt;
 Actually...
 &lt;li&gt;(link: &quot;\&quot;I&#39;m interested in another destination.\&quot;&quot;)[(t8n:&quot;dissolve&quot;)(redirect: (passage:)&#39;s name)]&lt;/li&gt;
@@ -3315,7 +3525,7 @@ He polishes a ring on his silk robe, waiting for you to search your bag.
 &lt;br&gt;
 ---
 &lt;ol&gt;
-&lt;li&gt;MULTI-CHECK NEEDED!&lt;/li&gt;
+&lt;li&gt;($funcMultiCheckGate: &quot;Show your papers.&quot;, &quot;inv&quot;, (dm: &quot;permitAskava&quot;, 1, &quot;licenseTrade&quot;, 1), false, 100, [], &quot;Depart from Apesai 3a&quot;, &quot;&quot;,)&lt;/li&gt;
 &lt;br&gt;
 Actually...
 &lt;li&gt;(link: &quot;\&quot;I&#39;m interested in another destination.\&quot;&quot;)[(t8n:&quot;dissolve&quot;)(redirect: (passage:)&#39;s name)]&lt;/li&gt;
@@ -3342,9 +3552,9 @@ Actually...
 ---
 &lt;ol&gt;
 You intend to leave for...
-&lt;li&gt;($funcCheckGate: &quot;Rokhab. ⧗&quot;, &quot;inv&quot;, &quot;permitAskava&quot;, 1, false, 100, &quot;Depart from Apesai 1a&quot;, &quot;&quot;,)&lt;!--[[Depart from Apesai 1a]]--&gt;
-&lt;li&gt;($funcCheckGate: &quot;Navveh. ⧗&quot;, &quot;inv&quot;, &quot;permitAskava&quot;, 1, false, 100, &quot;Depart from Apesai 2a&quot;, &quot;&quot;,)&lt;!--[[Depart from Apesai 2a]]--&gt;
-&lt;li&gt;($funcCheckGate: &quot; Zirab. ⧗&quot;, &quot;inv&quot;, &quot;permitAskava&quot;, 1, false, 100, &quot;Depart from Apesai 3a&quot;, &quot;&quot;,)&lt;!--[[Depart from Apesai 3a]]--&gt;
+&lt;li&gt;($x: &quot;Rokhab. ⧗&quot;, &quot;inv&quot;, &quot;permitAskava&quot;, 1, false, 100, &quot;Depart from Apesai 1a&quot;, &quot;&quot;,)&lt;!--[[Depart from Apesai 1a]]--&gt;
+&lt;li&gt;($x: &quot;Navveh. ⧗&quot;, &quot;inv&quot;, &quot;permitAskava&quot;, 1, false, 100, &quot;Depart from Apesai 2a&quot;, &quot;&quot;,)&lt;!--[[Depart from Apesai 2a]]--&gt;
+&lt;li&gt;($x: &quot; Zirab. ⧗&quot;, &quot;inv&quot;, &quot;permitAskava&quot;, 1, false, 100, &quot;Depart from Apesai 3a&quot;, &quot;&quot;,)&lt;!--[[Depart from Apesai 3a]]--&gt;
 &lt;li&gt;(link: &quot;Never mind.&quot;)[$funcBack]
 &lt;/ol&gt;
 
@@ -4335,7 +4545,6 @@ and ($funcCheckExists: (passage:), &quot;talked&quot;, (a:)) does not contain &q
 &quot;addCode&quot;, [],)
 
 
-
 $cssColumnParent[
 
 $cssColumnChild[
@@ -4373,9 +4582,10 @@ $cssDesc[You currently have &#39;&#39;($funcCheckExists: $char&#39;s player&#39;
 &lt;br&gt;
 ---
 &lt;ol&gt;
-&lt;li&gt;($funcCheckGate: (passage: &quot;OldInrah Refund x1&quot;)&#39;s topic, &quot;att&quot;, &quot;repFamilyBizGood&quot;, 1, true, 100, &quot;OldInrah Refund x1&quot;, &quot;&quot;)&lt;!--[[OldInrah Refund x1]]--&gt;
-&lt;li&gt;($funcCheckGate: (passage: &quot;OldInrah Refund x7&quot;)&#39;s topic, &quot;att&quot;, &quot;repFamilyBizGood&quot;, 7, true, 100, &quot;OldInrah Refund x7&quot;, &quot;&quot;)&lt;!--[[OldInrah Refund x7]]--&gt;
-&lt;li&gt;($funcCheckGate: (passage: &quot;OldInrah Refund x14&quot;)&#39;s topic, &quot;att&quot;, &quot;repFamilyBizGood&quot;, 14, true, 100, &quot;OldInrah Refund x14&quot;, &quot;&quot;)&lt;!--[[OldInrah Refund x14]]--&gt;
+&lt;li&gt;($funcMultiCheckGate: (passage: &quot;OldInrah Refund x1&quot;)&#39;s topic, &quot;att&quot;, (dm: &quot;repFamilyBizGood&quot;, 1), true, 100, [], &quot;OldInrah Refund x1&quot;, &quot;&quot;,)&lt;/li&gt;
+&lt;li&gt;($funcMultiCheckGate: (passage: &quot;OldInrah Refund x7&quot;)&#39;s topic, &quot;att&quot;, (dm: &quot;repFamilyBizGood&quot;, 7), true, 100, [], &quot;OldInrah Refund x7&quot;, &quot;&quot;,)&lt;/li&gt;
+&lt;li&gt;($funcMultiCheckGate: (passage: &quot;OldInrah Refund x14&quot;)&#39;s topic, &quot;att&quot;, (dm: &quot;repFamilyBizGood&quot;, 14), true, 100, [], &quot;OldInrah Refund x14&quot;, &quot;&quot;,)&lt;/li&gt;
+
 &lt;br&gt; Actually, that matter can wait...
 ($funcNPCTopics: &quot;One either pays, or one works. That seems to be the foremost law here. Or anywhere.&quot;, &quot;Gratitude, Koh-Inrah, and goodbye.&quot;)
 &lt;/ol&gt;
@@ -5319,9 +5529,9 @@ It is only a master - one who has earned the title &quot;magus&quot; - who can r
 
 
 [
-[&quot;The Traveler&#39;s Society - do you have it where you&#39;re from?&quot;]&lt;OldInrahLine| the old woman points to a pulp affiche on the wall.
+[&quot;The Traveler&#39;s Society - do you have it where you&#39;re from?&quot;]&lt;OldInrahLine| The old woman points to a pulp affiche on the wall.
 &lt;br&gt;
-It depicts, in woodcut print, a nude woman with a striped sash around her waist, pointing a spear or a javelin at a gigantic eye. The eye shines like the sun over a desert scene. The printed big letters call for, &quot;Wayward adventurers: reclaim your home!&quot;
+It depicts, in woodcut print, a nude woman with a striped sash around her waist, pointing a spear or a javelin at a gigantic eye. The eye shines like the sun over a desert scene. The printed big letters call for, &quot;Wayward adventurers, Children of Askava: Reclaim your home!&quot;
 &lt;br&gt;
 ($funcInnerConvo: (dm:
 	&quot;&lt;!--A--&gt;\&quot;Yes, their fundraising activities were practically unavoidable.\&quot;&quot;, &quot;2a&quot;,
@@ -5475,15 +5685,15 @@ Advice for getting around... &lt;br&gt;
 
 (if: $char&#39;s OldInrah&#39;s talked does not contain &quot;mapInrahBought&quot;)[&lt;li&gt;(link-rerun: &quot;\&quot;About that one-of-a-kind map...\&quot;&quot;)[(set: $char&#39;s OldInrah&#39;s energy&#39;s 1st to it -1)(goto: &quot;T: OldInrah Buy Map&quot;)] $cssDesc[(Such a spirited pitch... Be prepared to part ways with a significant sum.)]&lt;!--[[T: OldInrah Buy Map]]--&gt;]
 
-&lt;li&gt;($funcCheckGate: (passage: &quot;OldInrah Locales Lighthouse&quot;)&#39;s topic, &quot;inv&quot;, &quot;rial&quot;, (passage: &quot;T: OldInrah Locales&quot;)&#39;s fee, true, 100, &quot;OldInrah Locales Lighthouse&quot;, &quot;&quot;)&lt;!--[[OldInrah Locales Lighthouse]]--&gt;
+&lt;li&gt;($funcMultiCheckGate: (passage: &quot;OldInrah Locales Lighthouse&quot;)&#39;s topic, &quot;inv&quot;, (dm: &quot;rial&quot;, (passage: &quot;T: OldInrah Locales&quot;)&#39;s fee), true, 100, [], &quot;OldInrah Locales Lighthouse&quot;, &quot;&quot;,)
 
-&lt;li&gt;($funcCheckGate: (passage: &quot;OldInrah Locales GE&quot;)&#39;s topic, &quot;inv&quot;, &quot;rial&quot;, (passage: &quot;T: OldInrah Locales&quot;)&#39;s fee, true, 100, &quot;OldInrah Locales GE&quot;, &quot;&quot;)&lt;!--[[OldInrah Locales GE]]--&gt;
+&lt;li&gt;($funcMultiCheckGate: (passage: &quot;OldInrah Locales GE&quot;)&#39;s topic, &quot;inv&quot;, (dm: &quot;rial&quot;, (passage: &quot;T: OldInrah Locales&quot;)&#39;s fee), true, 100, [], &quot;OldInrah Locales GE&quot;, &quot;&quot;,)
 
-&lt;li&gt;($funcCheckGate: (passage: &quot;OldInrah Locales Travelers&quot;)&#39;s topic, &quot;inv&quot;, &quot;rial&quot;, (passage: &quot;T: OldInrah Locales&quot;)&#39;s fee, true, 100, &quot;OldInrah Locales Travelers&quot;, &quot;&quot;)&lt;!--[[OldInrah Locales Travelers]]--&gt;
+&lt;li&gt;($funcMultiCheckGate: (passage: &quot;OldInrah Locales Travelers&quot;)&#39;s topic, &quot;inv&quot;, (dm: &quot;rial&quot;, (passage: &quot;T: OldInrah Locales&quot;)&#39;s fee), true, 100, [], &quot;OldInrah Locales Travelers&quot;, &quot;&quot;,)
 
-&lt;li&gt;($funcCheckGate: (passage: &quot;OldInrah Locales Pleasure&quot;)&#39;s topic, &quot;inv&quot;, &quot;rial&quot;, (passage: &quot;T: OldInrah Locales&quot;)&#39;s fee, true, 100, &quot;OldInrah Locales Pleasure&quot;, &quot;&quot;)&lt;!--[[OldInrah Locales Pleasure]]--&gt;
+&lt;li&gt;($funcMultiCheckGate: (passage: &quot;OldInrah Locales Pleasure&quot;)&#39;s topic, &quot;inv&quot;, (dm: &quot;rial&quot;, (passage: &quot;T: OldInrah Locales&quot;)&#39;s fee), true, 100, [], &quot;OldInrah Locales Pleasure&quot;, &quot;&quot;,)
 
-&lt;li&gt;($funcCheckGate: (passage: &quot;OldInrah Locales Court&quot;)&#39;s topic, &quot;inv&quot;, &quot;rial&quot;, (passage: &quot;T: OldInrah Locales&quot;)&#39;s fee, true, 100, &quot;OldInrah Locales Court&quot;, &quot;&quot;)&lt;!--[[OldInrah Locales Court]]--&gt;</tw-passagedata><tw-passagedata pid="104" name="Old Inrah Buy Map Receive" tags="" position="3825,1475" size="100,100">{=
+&lt;li&gt;($funcMultiCheckGate: (passage: &quot;OldInrah Locales Court&quot;)&#39;s topic, &quot;inv&quot;, (dm: &quot;rial&quot;, (passage: &quot;T: OldInrah Locales&quot;)&#39;s fee), true, 100, [], &quot;OldInrah Locales Court&quot;, &quot;&quot;,)</tw-passagedata><tw-passagedata pid="104" name="Old Inrah Buy Map Receive" tags="" position="3825,1475" size="100,100">{=
 
 (metadata:
 &quot;NPC&quot;, &quot;OldInrah&quot;,
@@ -5615,7 +5825,7 @@ Despite your best effort this time, the old woman won&#39;t be moved.
 &lt;br&gt;
 ---
 &lt;ol&gt;
-&lt;li&gt;($funcCheckGate: &quot;Accept the asking price.&quot;, &quot;inv&quot;, &quot;rial&quot;, 250, true, 100, &quot;OldInrah Buy Map Accept&quot;, &quot;&quot;)&lt;!--[[OldInrah Buy Map Accept]]--&gt;
+&lt;li&gt;($funcMultiCheckGate: &quot;Accept the asking price.&quot;, &quot;inv&quot;, (dm: &quot;rial&quot;, 250,), true, 100, [], &quot;OldInrah Buy Map Accept&quot;, &quot;&quot;,)&lt;/li&gt;
 &lt;li&gt;(link-rerun: &quot;Concede that you won&#39;t be buying.&quot;)[($funcOpinionGainLoss: &quot;OldInrah&quot;, -2, &quot;The old woman is annoyed at your failed attempt to bargain.&quot;)(goto: &quot;OldInrah Buy Map Decline&quot;)]&lt;!--[[OldInrah Buy Map Decline]]--&gt;
 &lt;/ol&gt;
 
@@ -5648,7 +5858,9 @@ She gazes away, muttering a calculation and sucking on her black teeth, finding 
 &lt;br&gt;
 ---
 &lt;ol&gt;
-&lt;li&gt;($funcCheckGate: &quot;Accept the new price.&quot;, &quot;inv&quot;, &quot;rial&quot;, 200, true, 100, &quot;OldInrah Buy Map Accept&quot;, &quot;&quot;)&lt;!--[[OldInrah Buy Map Accept]]--&gt;
+
+&lt;li&gt;($funcMultiCheckGate: &quot;Accept the new price.&quot;, &quot;inv&quot;, (dm: &quot;rial&quot;, 200), true, 100, [], &quot;OldInrah Buy Map Accept&quot;, &quot;&quot;,)&lt;/li&gt;
+
 &lt;li&gt;(link-rerun: &quot;Regretfully admit that you won&#39;t be buying.&quot;)[($funcOpinionGainLoss: &quot;OldInrah&quot;, -5, &quot;She has lowered the price, and still you said &#39;no&#39;.&quot;)(goto: &quot;OldInrah Buy Map Decline&quot;)]&lt;!--[[OldInrah Buy Map Decline]]--&gt;
 &lt;/ol&gt;
 
@@ -5688,6 +5900,7 @@ $cssDesc[&#39;&#39;You: //(print: (passage:)&#39;s topic)//&#39;&#39;]
 
 &lt;!--firstTime--&gt;[
 [&quot;Oh? You&#39;re interested?&quot;]&lt;OldInrahLine| Koh-Inrah shoots up straight, surprisingly nimble for her age. [&quot;You magi are all very smart, everyone knows.&quot;]&lt;OldInrahLine|
+&lt;br&gt;
 ($funcInnerConvo: (dm:
 	&quot;Continue.&quot;, &quot;1stA&quot;,
 ))
@@ -5780,9 +5993,15 @@ That&#39;s almost a month&#39;s worth of rent at her guesthouse!
 ---
 &lt;ol&gt;
 ($funcTalked:)
-&lt;li&gt;($funcCheckGate: &quot;Accept the asking price.&quot;, &quot;inv&quot;, &quot;rial&quot;, 250, true, 100, &quot;OldInrah Buy Map Accept&quot;, &quot;&quot;)&lt;!--[[OldInrah Buy Map Accept]]--&gt;
-&lt;li&gt;($funcOpinionGate: &quot;Appeal to her for a lower price.&quot;, &quot;OldInrah&quot;, 30, 50, &quot;OldInrah Buy Map Haggle Success&quot;, &quot;OldInrah Buy Map Haggle Failed&quot;)&lt;!--[[OldInrah Buy Map Haggle Success]]--&gt;&lt;!--[[OldInrah Buy Map Haggle Failed]]--&gt;
-&lt;li&gt;($funcCheckGate: &quot;Call in favors for a lowered price.&quot;, &quot;att&quot;, &quot;repFamilyBizGood&quot;, 4, true, 100, &quot;OldInrah Buy Map Haggle Success&quot;, &quot;&quot;)&lt;!--[[OldInrah Buy Map Accept]]--&gt;
+
+&lt;li&gt;($funcMultiCheckGate: &quot;Accept the asking price.&quot;, &quot;inv&quot;, (dm: &quot;rial&quot;, 250), true, 100, [], &quot;OldInrah Buy Map Accept&quot;, &quot;&quot;,)&lt;/li&gt;
+
+&lt;li&gt;($funcMultiCheckGate: &quot;Call in favors for a lowered price.&quot;, &quot;att&quot;, (dm: &quot;repFamilyBizGood&quot;, 4), true, 100, [], &quot;OldInrah Buy Map Haggle Success&quot;, &quot;&quot;,)&lt;/li&gt;
+
+&lt;li&gt;($funcOpinionGate: &quot;Appeal to her for a lower price.&quot;, &quot;OldInrah&quot;, 30, 70, &quot;OldInrah Buy Map Haggle Success&quot;, &quot;OldInrah Buy Map Haggle Failed&quot;)&lt;/li&gt;
+
+
+
 &lt;li&gt;(link-rerun: &quot;Never mind.&quot;)[($funcOpinionGainLoss: &quot;OldInrah&quot;, -1, &quot;The old woman sneers, as though the price she has asked for is not ridiculous.&quot;)(goto: &quot;OldInrah Buy Map Decline&quot;)]&lt;!--[[OldInrah Buy Map Decline]]--&gt;
 &lt;/ol&gt;
 ](done|
@@ -5975,7 +6194,7 @@ $cssColumnChild[
         ---
         ($funcTalked:)
         &lt;ol&gt;
-        &lt;li&gt;($funcCheckGate: &quot;Buy the ginger.&quot;, &quot;inv&quot;, &quot;rial&quot;, 30, true, 100, &quot;OldInrah Buy Ginger Accept&quot;, &quot;&quot;)
+        &lt;li&gt;($funcMultiCheckGate: &quot;Buy the ginger.&quot;, &quot;inv&quot;, (dm: &quot;rial&quot;, 30), true, 100, [], &quot;OldInrah Buy Ginger Accept&quot;, &quot;&quot;,)&lt;/li&gt;
         &lt;li&gt;(link: &quot;Refuse.&quot;)[
             ($funcOpinionGainLoss: &quot;OldInrah&quot;, -1, &quot;You&#39;ve wasted her time over only a bit of ginger.&quot;)
             (goto: &quot;OldInrah Buy Ginger Decline&quot;)
@@ -6007,7 +6226,9 @@ $cssColumnChild[
 &lt;br&gt;
         ---
         &lt;ol&gt;
-        &lt;li&gt;($funcCheckGate: &quot;\&quot;Actually, I want to buy that fist of ginger off of you.\&quot;&quot;, &quot;inv&quot;, &quot;rial&quot;, 30, true, 100, &quot;OldInrah Buy Ginger Accept&quot;, &quot;&quot;)
+
+        &lt;li&gt;($funcMultiCheckGate: &quot;\&quot;Actually, I want to buy that fist of ginger off of you.\&quot;&quot;, &quot;inv&quot;, (dm: &quot;rial&quot;, 30), true, 100, [], &quot;OldInrah Buy Ginger Accept&quot;, &quot;&quot;,)&lt;/li&gt;
+
 &lt;br&gt;
         On second thought...
         ($funcNPCTopics: &quot;Old Inrah eyes an impatient guest behind you.&quot;, &quot;\&quot;Thank you anyway, Koh-Inrah. Goodbye.\&quot;&quot;)
@@ -6028,8 +6249,8 @@ $cssColumnChild[
 &lt;br&gt;
     ---
     &lt;ol&gt;
-        &lt;li&gt;($funcCheckGate: &quot;\&quot;Alright, I&#39;ll bite. Where would one buy some medicine on this rock? How do I get there?\&quot;&quot;, &quot;inv&quot;, &quot;rial&quot;, 10, true, 100, &quot;OldInrah Locales GE&quot;, &quot;&quot;)
-&lt;br&gt;
+        &lt;li&gt;($funcMultiCheckGate: &quot;\&quot;Alright, I&#39;ll bite. Where would one buy some medicine on this rock? How do I get there?\&quot;&quot;, &quot;inv&quot;, (dm: &quot;rial&quot;, (passage: &quot;T: OldInrah Locales&quot;)&#39;s fee), true, 100, [], &quot;OldInrah Locales GE&quot;, &quot;&quot;,)&lt;/li&gt;
+        
         On second thought...
         ($funcNPCTopics: &quot;An impatient guest is tapping you on your shoulder.&quot;, &quot;\&quot;We&#39;ll revisit this later. Goodbye, Koh-Inrah.\&quot;&quot;)
     &lt;/ol&gt;
@@ -15382,10 +15603,12 @@ $cssColumnChild[
 &lt;li&gt;(if: ($funcCheckExists: $char&#39;s player&#39;s inv, &quot;supplies&quot;, 0) &gt; 0 or (passage: $place&#39;s stay)&#39;s currency is not &quot;supplies&quot;)[[[Rest, without aid.-&gt;Heal 1a]]]
 
 (else:)[~~Rest, without aid~~ $cssDesc[(Won&#39;t work. You&#39;re too hungry. Find some &#39;&#39;(print: (passage: &quot;item.supplies&quot;)&#39;s id)&#39;&#39; or find proper lodging.)]]
+&lt;/li&gt;
 
-&lt;li&gt;($funcCheckGate: &quot;Drink a medicinal tonic, then rest.&quot;, &quot;inv&quot;, &quot;healingTonic&quot;, 1, true, 100, &quot;Heal 1b&quot;, &quot;&quot;)
+&lt;li&gt;($funcMultiCheckGate: &quot;Drink a medicinal tonic, then rest.&quot;, &quot;inv&quot;, (dm: &quot;healingTonic&quot;, 1), true, 100, [], &quot;Heal 1b&quot;, &quot;&quot;,)&lt;/li&gt;
 
-&lt;li&gt;(link: &quot;No, there are other things to do. You&#39;ll be fine.&quot;)[$funcBack]
+
+&lt;li&gt;(link: &quot;No, there are other things to do. You&#39;ll be fine.&quot;)[$funcBack]&lt;/li&gt;
 
 &lt;/ol&gt;
 ]&lt;!--end child--&gt;
@@ -16256,12 +16479,12 @@ $cssDesc[{
 (if: _asked is true)[(set: _turnInText to &quot;\&quot;Actually, I have your medicine right here.\&quot;&quot;)]
 (else:)[(set: _turnInText to &quot;\&quot;Yes, I do have the medicine you asked for.\&quot;&quot;)]
 
+&lt;li&gt;($funcMultiCheckGate: _turnInText, &quot;inv&quot;, (dm: &quot;healingTonic&quot;, 1), true, 100, [], &quot;Sick Teacher 2a&quot;, &quot;&quot;,)&lt;/li&gt;
 
-&lt;li&gt;($funcCheckGate: _turnInText, &quot;inv&quot;, &quot;healingTonic&quot;, 1, true, 100, &quot;Sick Teacher 2a&quot;, &quot;&quot;)&lt;/li&gt;
 
 (if: $char&#39;s OldInrah&#39;s talked contains &quot;gingerBought&quot; and $char&#39;s player&#39;s inv contains &quot;ginger&quot;)[
      (if: $char&#39;s Teacher&#39;s talked does not contain &quot;gingerGiven&quot;)[
-          &lt;li&gt;(link: &quot;Present the \&quot;alternative medicine\&quot; you&#39;ve just bought.&quot;)[(goto: &quot;Sick Teacher 2b&quot;)] $cssDesc[(Askavan ginger &#39;&#39;might&#39;&#39; help, so said the landlady.)]&lt;/li&gt;
+          &lt;li&gt;($funcMultiCheckGate: &quot;Present the \&quot;alternative medicine\&quot; you&#39;ve just bought.&quot;, &quot;inv&quot;, (dm: &quot;ginger&quot;, 1), true, 100, [], &quot;Sick Teacher 2b&quot;, &quot;&quot;,) $cssDesc[(Askavan ginger &#39;&#39;might&#39;&#39; help, so said the landlady.)]&lt;/li&gt;
      ]
      (else:)[&lt;li&gt;~~Present the &quot;alternative medicine&quot; you&#39;ve just bought.~~ $cssDesc[(You&#39;ve learned your lesson.)]&lt;/li&gt;]
 ]
@@ -16461,8 +16684,8 @@ _line[&quot;Are you fucking //joking//? Holding on to this latrine is all I //ca
 [
 ---
 &lt;ol&gt;
-&lt;li&gt;($funcCheckGate: &quot;Actually, you happen to have his medicine right here.&quot;, &quot;inv&quot;, &quot;healingTonic&quot;, 1, true, 100, &quot;Sick Teacher 2a&quot;, &quot;Sick Teacher 2b&quot;)
-&lt;li&gt;($funcQuestUpdateLink: &quot;Leave the accursed room, finally.&quot;, &quot;sickTeacher&quot;, &quot;active&quot;, &quot;Your mentor is sick with the flux. You&#39;ll have to find him a &#39;&#39;Healing Tonic&#39;&#39;.&quot;, &quot;You know what to do, right? You&#39;re a magus!&quot;, [], $place&#39;s sublocation,)
+&lt;li&gt;($funcMultiCheckGate: &quot;Actually, you happen to have some medicine right here with you.&quot;, &quot;inv&quot;, (dm: &quot;healingTonic&quot;, 1), true, 100, [], &quot;Sick Teacher 2a&quot;, &quot;Sick Teacher 2b&quot;,)&lt;/li&gt;
+&lt;li&gt;($funcQuestUpdateLink: &quot;Leave the accursed room, finally.&quot;, &quot;sickTeacher&quot;, &quot;active&quot;, &quot;Your mentor is sick with the flux. You&#39;ll have to find him a &#39;&#39;Healing Tonic&#39;&#39;.&quot;, &quot;You know what to do, right? You&#39;re a magus!&quot;, [], $place&#39;s sublocation,)&lt;/li&gt;
 &lt;/ol&gt;
 ](doneOptions|
 
@@ -18458,6 +18681,9 @@ $cssColumnChild[
 &lt;li&gt;[[Test D]] $cssDesc[(Synthesis labs)]
 &lt;li&gt;[[Test E]] $cssDesc[(Time, place &amp; weather)]
 &lt;li&gt;[[Test F]] $cssDesc[(Checks &amp; gates)]
+    &lt;ul&gt;
+    &lt;li&gt;[[Test F2]] $cssDesc[(Multi-check)]
+    &lt;/ul&gt;
 &lt;li&gt;[[Test G]] $cssDesc[(Quests)]
 &lt;li&gt;[[Test H]] $cssDesc[(Traveling)]
 &lt;li&gt;[[Test I]] $cssDesc[(Navigating sublocations)]
@@ -18716,38 +18942,135 @@ Check attribute without spending:
 &lt;br&gt;
 Pure luck:
 &lt;li&gt;($funcLuckGate: &quot;Try your luck&quot;, 70, &quot;Test F Success&quot;, &quot;Test F Failure&quot;)
-&lt;/ul&gt;</tw-passagedata><tw-passagedata pid="355" name="Test G Apply" tags="" position="700,4400" size="100,100">(metadata: &quot;title&quot;, &quot;Test G Applying for Permit&quot;,)
+&lt;/ul&gt;</tw-passagedata><tw-passagedata pid="355" name="Test F2" tags="" position="600,4475" size="100,100">{=
+
+(metadata: &quot;title&quot;, &quot;Test F2 (multi-check gate)&quot;)
+
+[[⇦ BACK-&gt;Pre-Test (NEW)]]
+&lt;br&gt;
+$cssColumnParent[
+
+&lt;!--initialize temp vars--&gt;
+(set: _linkText to &quot;Multi-check gate link test.&quot;)
+(set: _req to (dm:))
+(set: _pocketName to &quot;inv&quot;)
+(set: _spend to false)
+(set: _chance to 90)
+
+&lt;!--explanation of test--&gt;
+$cssColumnChild[
+
+&lt;!--special colored text--&gt;
+(set: _color to (color: white+green))
+
+Testing the macro [`($funcMultiCheckGate:)`].
+&lt;br&gt;
+It takes the following arguments:
+(box:&quot;X&quot;, 3)[&lt;ol&gt;
+&lt;li&gt;str-type _color[`_linkText`],&lt;/li&gt;
+&lt;li&gt;str-type _color[`_pocketName`],&lt;/li&gt;
+&lt;li&gt;dm-type _color[`_thingList`],&lt;/li&gt;
+&lt;li&gt;boolean-type _color[`_spend`],&lt;/li&gt;
+&lt;li&gt;num-type _color[`_chance`],&lt;/li&gt;
+&lt;li&gt;codehook-type _color[`_addCode`],&lt;/li&gt;
+&lt;li&gt;str-type _color[`_gotoSuccess`],&lt;/li&gt;
+&lt;li&gt;str-type _color[`_gotoFailure`],&lt;/li&gt;
+&lt;/ol&gt;]
+&lt;br&gt;
+The most important argument is the _color[`_thingList` (dm)]. For this test, we fill it with the content below:
+
+&lt;ol&gt;
+&lt;li&gt;(link-rerun: &quot;List of papers.&quot;)[{
+    (set: _linkText to &quot;Do you have your papers?&quot;)
+    (set: _pocketName to &quot;inv&quot;)
+    (set: _req to (dm: &quot;permitAskava&quot;, 1, &quot;identityReceipt&quot;, 1, &quot;universityCertificate&quot;, 1))
+    (t8n: &quot;dissolve&quot;)(rerun: ?test)
+}]&lt;/li&gt;
+
+&lt;li&gt;(link-rerun: &quot;An ID is fine.&quot;)[{
+    (set: _linkText to &quot;Show you ID.&quot;)
+    (set: _pocketName to &quot;inv&quot;)
+    (set: _req to (dm: &quot;identityReceipt&quot;, 1))
+    (t8n: &quot;dissolve&quot;)(rerun: ?test)
+}]&lt;/li&gt;
+
+&lt;li&gt;(link-rerun: &quot;List of attributes.&quot;)[{
+    (set: _linkText to &quot;Do you have the right attributes?&quot;)
+    (set: _pocketName to &quot;att&quot;)
+    (set: _req to (dm: &quot;at&quot;, 10, &quot;ab&quot;, 20, &quot;zam&quot;, 12, &quot;vigorous&quot;, 1))
+    (t8n: &quot;dissolve&quot;)(rerun: ?test)
+}]&lt;/li&gt;
+
+&lt;li&gt;(link-rerun: &quot;Check for wounds (temporary effect).&quot;)[{
+    (set: _linkText to &quot;Are you doubly wounded?&quot;)
+    (set: _pocketName to &quot;temp&quot;)
+    (set: _req to (dm: &quot;wound&quot;, 2,))
+    (t8n: &quot;dissolve&quot;)(rerun: ?test)
+}]&lt;/li&gt;
+
+&lt;li&gt;(link-rerun: &quot;Spend mode?&quot;)[{
+    (if: _spend is false)[(set: _spend to true)]
+    (else:)[(set: _spend to false)]
+    (t8n: &quot;dissolve&quot;)(rerun: ?spend)
+    (t8n: &quot;dissolve&quot;)(rerun: ?test)
+}]` `Currently: [_spend[Spending](else:)[NOT spending]]&lt;spend|&lt;/li&gt;
+
+
+&lt;li&gt;(link-rerun: &quot;Change chance.&quot;)[{
+    (dialog: bind _chance, &quot;What are the chances of success?&quot;, &quot;0&quot;, &quot;20&quot;, &quot;50&quot;, &quot;70&quot;, &quot;90&quot;, &quot;100&quot;)
+    (set: _chance to (num: _chance))
+    (t8n: &quot;dissolve&quot;)(rerun: ?test)
+}]&lt;/li&gt;
+&lt;/ol&gt;
+
+
+]&lt;!--end child--&gt;
+
+&lt;!--test--&gt;
+$cssColumnChild[
+&lt;ol&gt;
+[&lt;li&gt;($funcMultiCheckGate: _linkText, _pocketName, _req, _spend, _chance, [], &quot;Test F2 (Success)&quot;, &quot;Test F2 (Failure)&quot;)&lt;/li&gt;]&lt;test|
+&lt;li&gt;Just trying to see how the above will appear when put in a list. Apparently, line-height: 1.6 works very well.&lt;/li&gt;
+&lt;/ol&gt;
+
+
+]&lt;!--end child--&gt;
+]&lt;!--end parent--&gt;</tw-passagedata><tw-passagedata pid="356" name="Test F2 (Success)" tags="" position="725,4475" size="100,100">Yay! Success!
+&lt;br&gt;
+(link: &quot;Back&quot;)[(goto: &quot;Test F2&quot;)]</tw-passagedata><tw-passagedata pid="357" name="Test F2 (Failure)" tags="" position="850,4475" size="100,100">Aw, failure.
+&lt;br&gt;
+(link: &quot;Back&quot;)[(goto: &quot;Test F2&quot;)]</tw-passagedata><tw-passagedata pid="358" name="Test G Apply" tags="" position="700,4400" size="100,100">(metadata: &quot;title&quot;, &quot;Test G Applying for Permit&quot;,)
 
 You submit your papers and were told to wait.
 &lt;br&gt;
 ---
 
-($funcQuestUpdateLink: &quot;You leave the immigration hall.&quot;, &quot;permitAskava&quot;, &quot;active&quot;, &quot;Your papers are submitted. It&#39;ll take a while. Try to keep yourself busy in the mean time.&quot;, &quot;Bureaucracies are the same everywhere - back home and here also.&quot;, [($funcAddTimer: &quot;permitAskava&quot;, &quot;wait&quot;)], &quot;Test G&quot;,)</tw-passagedata><tw-passagedata pid="356" name="Test G Essay Done" tags="" position="1375,4825" size="100,100">(metadata: &quot;title&quot;, &quot;Turn in Essay&quot;,)
+($funcQuestUpdateLink: &quot;You leave the immigration hall.&quot;, &quot;permitAskava&quot;, &quot;active&quot;, &quot;Your papers are submitted. It&#39;ll take a while. Try to keep yourself busy in the mean time.&quot;, &quot;Bureaucracies are the same everywhere - back home and here also.&quot;, [($funcAddTimer: &quot;permitAskava&quot;, &quot;wait&quot;)], &quot;Test G&quot;,)</tw-passagedata><tw-passagedata pid="359" name="Test G Essay Done" tags="" position="1375,4825" size="100,100">(metadata: &quot;title&quot;, &quot;Turn in Essay&quot;,)
  You turn it in on time!
  &lt;br&gt;
  $cssDesc[The deadline countdown should disappear now.]
  &lt;br&gt;
  ---
- ($funcQuestUpdateLink: &quot;Great job!&quot;, &quot;urgentAssignment&quot;, &quot;completed&quot;, &quot;You&#39;ve turned in your essay on time.&quot;, &quot;Phew!&quot;, [($funcRemoveTimer: &quot;urgentAssignment&quot;, &quot;deadline&quot;)], &quot;Test G&quot;)</tw-passagedata><tw-passagedata pid="357" name="Test G Essay Fail" tags="" position="1325,4775" size="100,100">(metadata: &quot;title&quot;, &quot;Essay Regress&quot;,)
+ ($funcQuestUpdateLink: &quot;Great job!&quot;, &quot;urgentAssignment&quot;, &quot;completed&quot;, &quot;You&#39;ve turned in your essay on time.&quot;, &quot;Phew!&quot;, [($funcRemoveTimer: &quot;urgentAssignment&quot;, &quot;deadline&quot;)], &quot;Test G&quot;)</tw-passagedata><tw-passagedata pid="360" name="Test G Essay Fail" tags="" position="1325,4775" size="100,100">(metadata: &quot;title&quot;, &quot;Essay Regress&quot;,)
 Oh no, you&#39;ve somehow made it worse!
 &lt;br&gt;
 ---
 (link-rerun: &quot;Scrap that! You&#39;ll try again tomorrow.&quot;)[\
 	(if: $char&#39;s player&#39;s att contains &quot;urgentAssignment&quot;)[($funcGainLoss: &quot;att.&quot;, &quot;urgentAssignment&quot;, -1)]\
     $funcDone
-]</tw-passagedata><tw-passagedata pid="358" name="Test G Essay Progress" tags="" position="1275,4725" size="100,100">(metadata: &quot;title&quot;, &quot;Essay Progress&quot;,)
+]</tw-passagedata><tw-passagedata pid="361" name="Test G Essay Progress" tags="" position="1275,4725" size="100,100">(metadata: &quot;title&quot;, &quot;Essay Progress&quot;,)
 Yes, little by little!
 &lt;br&gt;
 ---
 (link-rerun: &quot;Word by word.&quot;)[\
 	($funcGainLoss: &quot;att.&quot;, &quot;urgentAssignment&quot;, 1)\
     $funcDone
-]</tw-passagedata><tw-passagedata pid="359" name="Test G Failure" tags="" position="1275,4525" size="100,100">(metadata: &quot;title&quot;, &quot;Test G Dead Teacher&quot;,)
+]</tw-passagedata><tw-passagedata pid="362" name="Test G Failure" tags="" position="1275,4525" size="100,100">(metadata: &quot;title&quot;, &quot;Test G Dead Teacher&quot;,)
 
 Oh no! He&#39;s... Oh no!
 &lt;br&gt;
 ---
-($funcQuestUpdateLink: &quot;Fail the Fluxy Teacher Quest&quot;, &quot;sickTeacher&quot;, &quot;failed&quot;, &quot;He&#39;s... dead?&quot;, &quot;Can a magus even die?&quot;, [(set: $char&#39;s teacher&#39;s alive to false)], &quot;Test G&quot;)</tw-passagedata><tw-passagedata pid="360" name="Test G Receive" tags="" position="650,4475" size="100,100">(metadata: &quot;title&quot;, &quot;Test G Receive Permit&quot;,)
+($funcQuestUpdateLink: &quot;Fail the Fluxy Teacher Quest&quot;, &quot;sickTeacher&quot;, &quot;failed&quot;, &quot;He&#39;s... dead?&quot;, &quot;Can a magus even die?&quot;, [(set: $char&#39;s teacher&#39;s alive to false)], &quot;Test G&quot;)</tw-passagedata><tw-passagedata pid="363" name="Test G Receive" tags="" position="650,4475" size="100,100">(metadata: &quot;title&quot;, &quot;Test G Receive Permit&quot;,)
 
 The clerk hands you your permit.
 &lt;br&gt;
@@ -18758,7 +19081,7 @@ The clerk hands you your permit.
 ($funcQuestUpdateLink: &quot;You leave the immigration hall.&quot;, &quot;permitAskava&quot;, &quot;completed&quot;, &quot;It is done. You can finally leave this island and enter Askava proper.&quot;, &quot;Where your residency can begin in earnest.&quot;, [\
 	($funcGainLoss: &quot;item.&quot;, &quot;permitAskava&quot;, 1)\
 	($funcRemoveTimer: &quot;permitAskava&quot;, &quot;wait&quot;)\
-], &quot;Test G&quot;,)</tw-passagedata><tw-passagedata pid="361" name="Test G Sample Storylet 1" tags="test" position="1150,4375" size="100,100">{=
+], &quot;Test G&quot;,)</tw-passagedata><tw-passagedata pid="364" name="Test G Sample Storylet 1" tags="test" position="1150,4375" size="100,100">{=
 
 (storylet: when
 (passage:)&#39;s name is &quot;Test G&quot;
@@ -18771,7 +19094,7 @@ Oh no, your teacher is sick!
 &lt;br&gt;
 ---
 ($funcQuestUpdateLink: &quot;Begin the Fluxy Teacher Quest&quot;, &quot;sickTeacher&quot;, &quot;active&quot;, &quot;You found your teacher with his butt glued to the latrine. Nothing a little healing tonic can&#39;t help with.&quot;, &quot;You know what to do, right?&quot;, [], &quot;Test G&quot;)
-&lt;!--[[Test G]]--&gt;</tw-passagedata><tw-passagedata pid="362" name="Test G Sample Storylet 2" tags="test" position="1150,4500" size="100,100">{=
+&lt;!--[[Test G]]--&gt;</tw-passagedata><tw-passagedata pid="365" name="Test G Sample Storylet 2" tags="test" position="1150,4500" size="100,100">{=
 
 (storylet: when
 (passage:)&#39;s name is &quot;Test G&quot;
@@ -18789,7 +19112,7 @@ Oh no, your teacher is sick!
 &lt;li&gt;[[Never mind-&gt;Test G]]
 &lt;/ol&gt;
 
-&lt;!--[[Test G Success]][[Test G Failure]]--&gt;</tw-passagedata><tw-passagedata pid="363" name="Test G Sample Storylet 4" tags="test" position="1150,4650" size="100,100">{=
+&lt;!--[[Test G Success]][[Test G Failure]]--&gt;</tw-passagedata><tw-passagedata pid="366" name="Test G Sample Storylet 4" tags="test" position="1150,4650" size="100,100">{=
 
 (storylet: when
 (passage:)&#39;s name is &quot;Test G&quot;
@@ -18807,7 +19130,7 @@ $cssDesc[This is an example of a timed quest, where the quest auto-fails.]
 &lt;ol&gt;
 &lt;li&gt;($funcQuestUpdateLink: &quot;Time to get to it!&quot;, &quot;urgentAssignment&quot;, &quot;active&quot;, &quot;You begin your assignment. Time is limited.&quot;, &quot;No reason to dwadle.&quot;, [($funcAddTimer: &quot;urgentAssignment&quot;, &quot;deadline&quot;)], &quot;Test G&quot;)
 &lt;li&gt;[[Never mind-&gt;Test G]]
-&lt;/ol&gt;</tw-passagedata><tw-passagedata pid="364" name="Test G Sample Storylet 5" tags="test" position="1150,4775" size="100,100">{=
+&lt;/ol&gt;</tw-passagedata><tw-passagedata pid="367" name="Test G Sample Storylet 5" tags="test" position="1150,4775" size="100,100">{=
 
 (storylet: when
 (passage:)&#39;s name is &quot;Test G&quot;
@@ -18829,7 +19152,7 @@ $cssDesc[Contribute temp values for the quest.]
 &lt;li&gt;($funcCheckGate: &quot;Turn in what you have&quot;, &quot;att&quot;, &quot;urgentAssignment&quot;, 2, true, 100, &quot;Test G Essay Done&quot;, &quot;&quot;)&lt;!--Only [[Test G Essay Done]] exists due to 100% success chance--&gt;
 
 &lt;li&gt;[[Never mind-&gt;Test G]]
-&lt;/ol&gt;</tw-passagedata><tw-passagedata pid="365" name="Test G Sample Storylet 6" tags="test" position="1150,4900" size="100,100">{=
+&lt;/ol&gt;</tw-passagedata><tw-passagedata pid="368" name="Test G Sample Storylet 6" tags="test" position="1150,4900" size="100,100">{=
 
 (storylet: when
 (passage:)&#39;s name is &quot;Test G&quot;
@@ -18849,7 +19172,7 @@ $cssDesc[This storylet should only appear once after you&#39;ve failed the quest
 	($funcGainLoss: &quot;att.&quot;, &quot;urgentAssignment&quot;, -_reset)\
     ($funcRemoveTimer: &quot;urgentAssignment&quot;, &quot;deadline&quot;)\
     (goto: &quot;Test G&quot;)\
-    ]&lt;!--[[Test G]]--&gt;</tw-passagedata><tw-passagedata pid="366" name="Test G Sample Storylet 7" tags="test" position="825,4450" size="100,100">{=
+    ]&lt;!--[[Test G]]--&gt;</tw-passagedata><tw-passagedata pid="369" name="Test G Sample Storylet 7" tags="test" position="825,4450" size="100,100">{=
 
 (storylet: when
 (passage:)&#39;s name is &quot;Test G&quot;
@@ -18878,12 +19201,12 @@ In the meantime, you&#39;re just the same as everyone else here: peasants, labor
     (else:)[&lt;li&gt;~~Receive your permit.~~ $cssDesc[(Your entry application is being processed.)]]
 ]
 &lt;li&gt;[[Never mind-&gt;Test G]]
-&lt;/ol&gt;</tw-passagedata><tw-passagedata pid="367" name="Test G Success" tags="" position="1275,4400" size="100,100">(metadata: &quot;title&quot;, &quot;Test G Healed Teacher&quot;,)
+&lt;/ol&gt;</tw-passagedata><tw-passagedata pid="370" name="Test G Success" tags="" position="1275,4400" size="100,100">(metadata: &quot;title&quot;, &quot;Test G Healed Teacher&quot;,)
 
 Yay!, He&#39;s feeling better!
 &lt;br&gt;
 ---
-($funcQuestUpdateLink: &quot;Complete the Fluxy Teacher Quest&quot;, &quot;sickTeacher&quot;, &quot;completed&quot;, &quot;You gave your teacher his medicine. He&#39;s feeling better now.&quot;, &quot;We can get going, finally.&quot;, [], &quot;Test G&quot;)</tw-passagedata><tw-passagedata pid="368" name="Test G" tags="" position="975,4650" size="100,100">{=
+($funcQuestUpdateLink: &quot;Complete the Fluxy Teacher Quest&quot;, &quot;sickTeacher&quot;, &quot;completed&quot;, &quot;You gave your teacher his medicine. He&#39;s feeling better now.&quot;, &quot;We can get going, finally.&quot;, [], &quot;Test G&quot;)</tw-passagedata><tw-passagedata pid="371" name="Test G" tags="" position="975,4650" size="100,100">{=
 
 (metadata: &quot;title&quot;, &quot;Test G (quests)&quot;)
 
@@ -18904,7 +19227,7 @@ Yay!, He&#39;s feeling better!
 	&lt;li&gt;(link-rerun: _testStory&#39;s title)[(goto: _testStory&#39;s name)]\
 ]\
 
-&lt;/ul&gt;</tw-passagedata><tw-passagedata pid="369" name="Test H PickStay" tags="" position="1125,5200" size="100,100">{=
+&lt;/ul&gt;</tw-passagedata><tw-passagedata pid="372" name="Test H PickStay" tags="" position="1125,5200" size="100,100">{=
 (metadata: &quot;title&quot;, &quot;Picking a Place to Stay at Rokhab (test)&quot;)
 
 You&#39;re thinking about where to stay.
@@ -18912,7 +19235,7 @@ You&#39;re thinking about where to stay.
 &lt;br&gt;
 ---
 &lt;li&gt;($funcPickStay: &quot;Stay at the caravanserai, where all the traders and travelers do.&quot;, &quot;Rokhab Caravanserai&quot;)
-&lt;li&gt;($funcPickStay: &quot;Slum it in an alleyway, between the warehouses and the dock.&quot;, &quot;Rokhab Vagrant Camp&quot;)</tw-passagedata><tw-passagedata pid="370" name="Test H Rokhab" tags="test" position="1125,5075" size="100,100">{=
+&lt;li&gt;($funcPickStay: &quot;Slum it in an alleyway, between the warehouses and the dock.&quot;, &quot;Rokhab Vagrant Camp&quot;)</tw-passagedata><tw-passagedata pid="373" name="Test H Rokhab" tags="test" position="1125,5075" size="100,100">{=
 
 (storylet: when
 (passage:)&#39;s name is &quot;Traveling&quot;
@@ -18929,7 +19252,7 @@ You&#39;ve arrived in Rokhab. Disembark?
 &lt;ol&gt;
 &lt;li&gt;($funcArrive: &quot;Get settled in Rokhab&quot;, &quot;Test H PickStay&quot;)&lt;!--[[Test H PickStay]]--&gt;
 &lt;li&gt;(link-rerun: &quot;Not yet&quot;)[(goto: &quot;Traveling&quot;)]
-&lt;/ol&gt;</tw-passagedata><tw-passagedata pid="371" name="Test H" tags="" position="975,5100" size="100,100">{=
+&lt;/ol&gt;</tw-passagedata><tw-passagedata pid="374" name="Test H" tags="" position="975,5100" size="100,100">{=
 
 (metadata: &quot;title&quot;, &quot;Test H (traveling)&quot;)
 
@@ -18949,7 +19272,7 @@ Now, let&#39;s travel from here ((print: $place&#39;s location)) to...
 &lt;li&gt;($funcDepart: &quot;The fishing village of Rokhab.&quot;, &quot;Rokhab&quot;)
 &lt;li&gt;($funcDepart: &quot;The ruins of Navveh.&quot;, &quot;Navveh&quot;)
 &lt;li&gt;($funcDepart: &quot;The mysterious land known only as &#39;test location&#39;.&quot;, &quot;test&quot;)
-&lt;/ul&gt;</tw-passagedata><tw-passagedata pid="372" name="Test I" tags="" position="975,5400" size="100,100">{=
+&lt;/ul&gt;</tw-passagedata><tw-passagedata pid="375" name="Test I" tags="" position="975,5400" size="100,100">{=
 
 (metadata: &quot;title&quot;, &quot;Test I (navigating sublocations)&quot;)
 
@@ -18968,7 +19291,7 @@ Sublocations in Apesai:
 Set knowledge:
 &lt;li&gt;(link-rerun: &quot;I know where the Lighthouse is.&quot;)[($funcGainLoss: &quot;att.&quot;, &quot;knowApesaiLighthouse&quot;, 1, )(redirect: (passage:)&#39;s name)]
 &lt;li&gt;(link-rerun: &quot;I learn a bit about the Yavanid quarter.&quot;)[($funcGainLoss: &quot;att.&quot;, &quot;knowApesaiPleasure&quot;, 1, )(redirect: (passage:)&#39;s name)]
-&lt;/ul&gt;</tw-passagedata><tw-passagedata pid="373" name="Test J" tags="" position="975,5550" size="100,100">{=
+&lt;/ul&gt;</tw-passagedata><tw-passagedata pid="376" name="Test J" tags="" position="975,5550" size="100,100">{=
 
 (metadata: &quot;title&quot;, &quot;Test J (NPCs)&quot;)
 
@@ -19018,15 +19341,15 @@ Set knowledge:
         &lt;br&gt;
     ]\
 ]]
-&lt;/details&gt;</tw-passagedata><tw-passagedata pid="374" name="Test K Fail" tags="" position="1100,5800" size="100,100">{=
+&lt;/details&gt;</tw-passagedata><tw-passagedata pid="377" name="Test K Fail" tags="" position="1100,5800" size="100,100">{=
 
 Failure! But you still lost your wounds!? How?
 &lt;br&gt;
-(link: &quot;Back&quot;)[(goto: &quot;Test K&quot;)]</tw-passagedata><tw-passagedata pid="375" name="Test K Success" tags="" position="1100,5675" size="100,100">{=
+(link: &quot;Back&quot;)[(goto: &quot;Test K&quot;)]</tw-passagedata><tw-passagedata pid="378" name="Test K Success" tags="" position="1100,5675" size="100,100">{=
 
 Yay, you lost your wounds!
 &lt;br&gt;
-(link: &quot;Back&quot;)[(goto: &quot;Test K&quot;)]</tw-passagedata><tw-passagedata pid="376" name="Test K" tags="" position="975,5725" size="100,100">{=
+(link: &quot;Back&quot;)[(goto: &quot;Test K&quot;)]</tw-passagedata><tw-passagedata pid="379" name="Test K" tags="" position="975,5725" size="100,100">{=
 
 (metadata: &quot;title&quot;, &quot;Test K (Temps)&quot;)
 
@@ -19049,7 +19372,7 @@ Yay, you lost your wounds!
 
 &lt;li&gt;($funcCheckGate: &quot;Check for 2 wounds&quot;, &quot;temp&quot;, &quot;wound&quot;, 2, true, 50, &quot;Test K Success&quot;, &quot;Test K Fail&quot;)
 
-&lt;/ol&gt;</tw-passagedata><tw-passagedata pid="377" name="Test L" tags="" position="850,4725" size="100,100">(metadata: &quot;title&quot;, &quot;Test L (events)&quot;)
+&lt;/ol&gt;</tw-passagedata><tw-passagedata pid="380" name="Test L" tags="" position="1225,4725" size="100,100">(metadata: &quot;title&quot;, &quot;Test L (events)&quot;)
 
 {=
 
@@ -19096,7 +19419,7 @@ $cssColumnChild[
 
 
 ]&lt;!--end child--&gt;
-]&lt;!--end parent--&gt;</tw-passagedata><tw-passagedata pid="378" name="Test List Unfinished" tags="" position="975,4725" size="100,100">{=
+]&lt;!--end parent--&gt;</tw-passagedata><tw-passagedata pid="381" name="Test List Unfinished" tags="" position="100,4850" size="100,100">{=
 (metadata:
 &quot;title&quot;, &quot;List of Passages Needing Attention&quot;)
 
@@ -19123,7 +19446,7 @@ $cssColumnChild[
         (if: (passage: _passage) contains &quot;devNote&quot;)[&lt;br&gt; $cssDesc[` `↪` `(print: (passage: _passage)&#39;s devNote)]]
     }]
     &lt;/ol&gt;
-}]</tw-passagedata><tw-passagedata pid="379" name="Test M" tags="" position="1100,4725" size="100,100">(metadata: &quot;title&quot;, &quot;Test M (reading books)&quot;)
+}]</tw-passagedata><tw-passagedata pid="382" name="Test M" tags="" position="225,4850" size="100,100">(metadata: &quot;title&quot;, &quot;Test M (reading books)&quot;)
 
 {=
 
@@ -19187,7 +19510,7 @@ $cssColumnChild[
 &lt;/ol&gt;
 
 ]&lt;!--end child--&gt;
-]&lt;!--end parent--&gt;</tw-passagedata><tw-passagedata pid="380" name="Test N" tags="" position="1225,4725" size="100,100">{=
+]&lt;!--end parent--&gt;</tw-passagedata><tw-passagedata pid="383" name="Test N" tags="" position="350,4850" size="100,100">{=
 
 (metadata: &quot;title&quot;, &quot;Test N (spindle convo)&quot;)
 
@@ -19250,7 +19573,7 @@ It&#39;s (print: $place&#39;s weather).
 
 [Sounds good.
 &lt;br&gt;
-(link: &quot;↺ Start over&quot;)[(redirect: (passage:)&#39;s name)]](chess|</tw-passagedata><tw-passagedata pid="381" name="Test O" tags="" position="100,4850" size="100,100">{=
+(link: &quot;↺ Start over&quot;)[(redirect: (passage:)&#39;s name)]](chess|</tw-passagedata><tw-passagedata pid="384" name="Test O" tags="" position="475,4850" size="100,100">{=
 
 (metadata: &quot;title&quot;, &quot;Test O (Market &amp; priceMod)&quot;)
 

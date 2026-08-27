@@ -9,7 +9,7 @@ $place's sublocation is "Apesai Wharf"
 "title", "Depart from Apesai",
 "cardDesc", "Ferries-for-hire flock the wharf, waiting to take those with the coins into mainland Askava.",
 "img", "https://fallenlondon.wiki/w/images/3/3b/Shipilaltun.png",
-"devNote", [Implement multi-check gates for the Navveh and Zirab options.Also, add item.licenseAdventure to the game],
+"devNote", [Implement multi-check gates for the Navveh and Zirab options. Also, add item.licenseAdventure to the game],
 )
 
 $cssColumnParent[
@@ -23,7 +23,7 @@ $cssColumnChild[
 
 $cssColumnChild[
 
-<!--roll which sailor you deal with today-->
+<!--roll which sailor you deal with today; there is no need for a global var, since I can just re-evaluate $dice in the next passage-->
 (set: _whichSailor to "genericSailor1")
 (cond:
     $dice <= 33, [(set: _whichSailor to "genericSailor2")],
@@ -145,7 +145,7 @@ He polishes a ring on his silk robe, waiting for you to search your bag.
 <br>
 ---
 <ol>
-<li>($funcCheckGate: "Show your permit.", "inv", "permitAskava", 1, false, 100, "Depart from Apesai 1a", "",)</li>
+<li>($funcMultiCheckGate: "Show your permit.", "inv", (dm: "permitAskava", 1), false, 100, [], "Depart from Apesai 1a", "",)</li>
 <br>
 Actually...
 <li>(link: "\"I'm interested in another destination.\"")[(t8n:"dissolve")(redirect: (passage:)'s name)]</li>
@@ -220,7 +220,7 @@ He polishes a ring on his silk robe, waiting for you to search your bag.
 <br>
 ---
 <ol>
-<li>MULTI-CHECK NEEDED!</li>
+<li>($funcMultiCheckGate: "Show your papers.", "inv", (dm: "permitAskava", 1, "licenseAdventure", 1), false, 100, [], "Depart from Apesai 2a", "",)</li>
 <br>
 Actually...
 <li>(link: "\"I'm interested in another destination.\"")[(t8n:"dissolve")(redirect: (passage:)'s name)]</li>
@@ -301,7 +301,7 @@ He polishes a ring on his silk robe, waiting for you to search your bag.
 <br>
 ---
 <ol>
-<li>MULTI-CHECK NEEDED!</li>
+<li>($funcMultiCheckGate: "Show your papers.", "inv", (dm: "permitAskava", 1, "licenseTrade", 1), false, 100, [], "Depart from Apesai 3a", "",)</li>
 <br>
 Actually...
 <li>(link: "\"I'm interested in another destination.\"")[(t8n:"dissolve")(redirect: (passage:)'s name)]</li>
@@ -328,9 +328,9 @@ Actually...
 ---
 <ol>
 You intend to leave for...
-<li>($funcCheckGate: "Rokhab. ⧗", "inv", "permitAskava", 1, false, 100, "Depart from Apesai 1a", "",)<!--[[Depart from Apesai 1a]]-->
-<li>($funcCheckGate: "Navveh. ⧗", "inv", "permitAskava", 1, false, 100, "Depart from Apesai 2a", "",)<!--[[Depart from Apesai 2a]]-->
-<li>($funcCheckGate: " Zirab. ⧗", "inv", "permitAskava", 1, false, 100, "Depart from Apesai 3a", "",)<!--[[Depart from Apesai 3a]]-->
+<li>($x: "Rokhab. ⧗", "inv", "permitAskava", 1, false, 100, "Depart from Apesai 1a", "",)<!--[[Depart from Apesai 1a]]-->
+<li>($x: "Navveh. ⧗", "inv", "permitAskava", 1, false, 100, "Depart from Apesai 2a", "",)<!--[[Depart from Apesai 2a]]-->
+<li>($x: " Zirab. ⧗", "inv", "permitAskava", 1, false, 100, "Depart from Apesai 3a", "",)<!--[[Depart from Apesai 3a]]-->
 <li>(link: "Never mind.")[$funcBack]
 </ol>
 
