@@ -7,25 +7,174 @@
 
 <br>
 
-<!--Known People-->
-<div style="padding: 20px;">
-<details open>
-<summary>''People Met''</summary>
-(for: each _char, ...(data-names: $char))[\
-	(if: _char is not "player")[\
-    	<!--Load NPC's DM-->\
-        (set: _charDM to (passage: "npc."+_char))\
-    	(if: $char's _char's know is true)[\
-        	<div>$cssBox[<div>(print: "<img style=\"margin: 20px\" width=\"150px\" src=\"" + _charDM's img + "\">")</div>\
-		$cssBoxItem[\
-            ''(print: _charDM's id)'' — (print: _charDM's desc)\
-            <br>$cssDesc[	↪	Opinion of you: (print: $char's _char's opinion's 1st) ''(($funcOpinionCalc: _char, true))'' ]\
-		]<!--end of boxItem-->\
-		]<!--end of box-->\
-	</div>\
-        ]<!--end of if know-->\
-    ]<!--end of if not player-->\
-]\
-</details>
-</div>
-<!--end of known people-->
+<!--initialize temp vars-->
+(set: _peopleTitle to "People Met")
+(set: _peopleList to (a:))
+(set: _keyList to (a:))
+
+<!--build full list, including unknown people-->
+(set: _listFull to (find: _person where _person is not "player", ...(datanames: $char)))
+
+<!--build list of all currently known people-->
+(set: _listMet to (find: _person where $char's _person's know is true, ..._listFull))
+
+<!--build list of keys of known people-->
+(for: each _person, ..._listMet)[{
+	<!--load full DM-->
+	(set: _personDM to (passage: "npc."+_person))
+	<!--add their keys into _keyList-->
+	(set: _keyList to it + _personDM's key)
+}]
+
+<!--keep only unique keys-->
+(set: _keyList to (unique: ..._keyList))
+
+<!--run default list (all met)-->
+(set: _peopleList to _listMet)
+
+<!--test-->
+_keyList
+
+<!--main UI begins-->
+
+<!--menu-->
+$cssColumnParent[
+<!--info text-->
+$cssColumnChild[
+
+Info text
+
+]<!--end of child-->
+<!--end of info text-->
+
+<!--Menu links-->
+$cssColumnChild[
+
+<!--default update code-->
+(set: _updateCode to [{
+	<!--update-->
+	(t8n: "dissolve")(rerun: ?display)
+	<!--scroll up to page's top-->
+    <script>
+	requestAnimationFrame(() => {
+		document.getElementById("displayedList").scrollIntoView({
+			behavior: "smooth",
+			block: "start"
+		});
+	});
+	</script>
+}])
+
+<ol>
+
+<li>(link-rerun: "Everyone you have met")[{
+	<!--filter _peopleList-->
+	(set: _peopleList to _listMet)
+	<!--set title-->
+	(set: _peopleTitle to "People Met")
+	<!--update-->
+	_updateCode
+}]</li>
+
+<li>(link-rerun: "Everyone")[{
+	<!--filter _peopleList-->
+	(set: _peopleList to _listFull)
+	<!--set title-->
+	(set: _peopleTitle to "Everyone")
+	<!--update-->
+	_updateCode
+}]</li>
+
+(if: _keyList contains "imperial")[<li>(link-rerun: "Imperials")[{
+	<!--filter _peopleList-->
+	(set: _peopleList to (find: _person where (passage: "npc."+_person)'s key contains "imperial", ..._listMet))
+	<!--set title-->
+	(set: _peopleTitle to "Imperials")
+	<!--update-->
+	_updateCode
+}]
+</li>]
+
+(if: _keyList contains "davehmar")[<li>(link-rerun: "Davehmars")[{
+	<!--filter _peopleList-->
+	(set: _peopleList to (find: _person where (passage: "npc."+_person)'s key contains "davehmar", ..._listMet))
+	<!--set title-->
+	(set: _peopleTitle to "Davehmars")
+	<!--update-->
+	_updateCode
+}]
+</li>]
+
+(if: _keyList contains "familyBiz")[<li>(link-rerun: "The Inrah Family Business")[{
+	<!--filter _peopleList-->
+	(set: _peopleList to (find: _person where (passage: "npc."+_person)'s key contains "familyBiz", ..._listMet))
+	<!--set title-->
+	(set: _peopleTitle to "The Inrah Family Business")
+	<!--update-->
+	_updateCode
+}]
+</li>]
+
+</ol>
+
+]<!--end of child-->
+]<!--end parent 1-->
+<!--end of menu-->
+
+<br>
+---
+<br>
+<!--?display hook; refreshed when a menu filter is selected-->
+[
+<!--heading-->
+<h3 id="displayedList">_peopleTitle</h3>
+<br>
+
+<!--display-->
+$cssColumnParent[
+
+<!--Code that generates cards-->
+(set: _cardCode to (macro: array-type _list, [(out:)[{
+	<!--only run if _smallList has any item at all-->
+	(if: _list's length > 0)[
+		(for: each _person where _person is not "player", ..._list)[{
+			<!--load NPC's full DM-->
+			(set: _personDM to (passage: "npc." + _person))
+
+			<!--display their card-->
+			$cssBox[
+				<!--image-->
+				($funcImage: _personDM's img)
+				<!--text-->
+				$cssBoxItem[
+					''(print: _personDM's id)'' — (print: _personDM's desc)
+					<br>$cssDesc[	↪	Opinion of you: (print: $char's _person's opinion's 1st) ''(($funcOpinionCalc: _person, true))'' ]
+				]<!--end of text-->
+			]<!--end of card-->
+		}]<!--end of looping-->
+	]<!--end of if _smallList has any item at all-->
+}]]))
+
+<!--Code that distributes _peopleList into different _smallLists-->
+(set: _listLeft to (a:))
+(set: _listRight to (a:))
+(for: each _i, ...(range: 1, _peopleList's length))[{
+	(if: _i % 2 is 1)[(set: _listLeft to it + (a: _peopleList's _i))]
+	(else:)[(set: _listRight to it + (a: _peopleList's _i))]
+}]
+
+
+<!--left child-->
+$cssColumnChild[
+	(_cardCode: _listLeft)
+]<!--end of left child-->
+
+
+<!--right child-->
+$cssColumnChild[
+	(_cardCode: _listRight)
+]<!--end of right child-->
+
+]<!--end of parent 2-->
+]<display|
+<!--main UI ends-->

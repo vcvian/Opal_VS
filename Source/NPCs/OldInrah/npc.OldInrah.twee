@@ -3,6 +3,7 @@
 
 (metadata:
 "id", [Koh-Inrah the Landlady],
+"key", (a: "imperial", "familyBiz"),
 "desc", "As owner and proprietress of the Pilgrim's Rest in Apesai, Old Inrah has seen much over the years. Perhaps that is why she squints so often.",
 "img", "Assets/Portraits/Old_1.png",
 "color", #c7a069,

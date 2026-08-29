@@ -8,6 +8,6 @@
 
 
 <!--Display card portrait-->
-(set: $funcImage to (macro: str-type _imageAddress, [(out:)[\
-	(print: "<img style =\"margin: 20px;\" width=\"150px\" src=\"" + (str:_imageAddress) + "\">")
-]]))
+(set: $funcImage to (macro: str-type _imageAddress, [(out:)[{
+	(print: "<img style =\"margin: 20px; border: 2px solid #6e645a; filter: drop-shadow(4px 4px 5px rgba(0, 0, 0, 0.3));\" width=\"150px\" src=\"" + (str:_imageAddress) + "\">")
+}]]))

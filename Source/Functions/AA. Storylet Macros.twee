@@ -36,7 +36,7 @@
 		<!--column 1-->\
 		$cssColumnChild[\
 			(for: each _storylet, ..._listA)[\
-			$cssBox[(print: "<img style=\"margin: 20px\" width=\"150px\" src=\"" + _storylet's img + "\">")\
+			$cssBox[($funcImage: _storylet's img)\
 			$cssBoxItem[\
 				(link: _storylet's title)[(goto: _storylet's name)]\
 				<br>(print: _storylet's cardDesc)\
@@ -47,7 +47,7 @@
 		<!--column 2-->\
 		$cssColumnChild[\
 			(for: each _storylet, ..._listB)[\
-			$cssBox[(print: "<img style=\"margin: 20px\" width=\"150px\" src=\"" + _storylet's img + "\">")\
+			$cssBox[($funcImage: _storylet's img)\
 			$cssBoxItem[\
 				(link: _storylet's title)[(goto: _storylet's name)]\
 				<br>(print: _storylet's cardDesc)\

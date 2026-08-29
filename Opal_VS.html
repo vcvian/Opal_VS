@@ -83,7 +83,7 @@ hr {
   100% {
     background-position: 0% center;
   }
-}</style><script role="script" id="twine-user-script" type="text/twine-javascript"></script><tw-tag name="book" color="yellow"></tw-tag><tw-tag name="effect" color="yellow"></tw-tag><tw-tag name="footer" color="yellow"></tw-tag><tw-tag name="header" color="yellow"></tw-tag><tw-tag name="storylet" color="blue"></tw-tag><tw-tag name="UI" color="orange"></tw-tag><tw-tag name="static-storage" color="yellow"></tw-tag><tw-tag name="stay" color="yellow"></tw-tag><tw-tag name="sublocation" color="green"></tw-tag><tw-tag name="test" color="blue"></tw-tag><tw-tag name="topic" color="purple"></tw-tag><tw-tag name="traveling" color="purple"></tw-tag><tw-tag name="startup" color="orange"></tw-tag><tw-passagedata pid="1" name="AA. Books, Reading &amp; Formulae" tags="startup" position="100,100" size="100,100">{=
+}</style><script role="script" id="twine-user-script" type="text/twine-javascript"></script><tw-tag name="static-storage" color="yellow"></tw-tag><tw-tag name="storylet" color="blue"></tw-tag><tw-tag name="sublocation" color="green"></tw-tag><tw-tag name="test" color="blue"></tw-tag><tw-tag name="topic" color="purple"></tw-tag><tw-tag name="startup" color="orange"></tw-tag><tw-tag name="book" color="yellow"></tw-tag><tw-tag name="effect" color="yellow"></tw-tag><tw-tag name="footer" color="yellow"></tw-tag><tw-tag name="header" color="yellow"></tw-tag><tw-tag name="stay" color="yellow"></tw-tag><tw-tag name="traveling" color="purple"></tw-tag><tw-tag name="UI" color="orange"></tw-tag><tw-passagedata pid="1" name="AA. Books, Reading &amp; Formulae" tags="startup" position="100,100" size="100,100">{=
 &lt;!--Macros related to books and reading--&gt;
 
 (set: $readingNav to (dm:
@@ -1858,7 +1858,7 @@ Modes are:
 		&lt;!--column 1--&gt;\
 		$cssColumnChild[\
 			(for: each _storylet, ..._listA)[\
-			$cssBox[(print: &quot;&lt;img style=\&quot;margin: 20px\&quot; width=\&quot;150px\&quot; src=\&quot;&quot; + _storylet&#39;s img + &quot;\&quot;&gt;&quot;)\
+			$cssBox[($funcImage: _storylet&#39;s img)\
 			$cssBoxItem[\
 				(link: _storylet&#39;s title)[(goto: _storylet&#39;s name)]\
 				&lt;br&gt;(print: _storylet&#39;s cardDesc)\
@@ -1869,7 +1869,7 @@ Modes are:
 		&lt;!--column 2--&gt;\
 		$cssColumnChild[\
 			(for: each _storylet, ..._listB)[\
-			$cssBox[(print: &quot;&lt;img style=\&quot;margin: 20px\&quot; width=\&quot;150px\&quot; src=\&quot;&quot; + _storylet&#39;s img + &quot;\&quot;&gt;&quot;)\
+			$cssBox[($funcImage: _storylet&#39;s img)\
 			$cssBoxItem[\
 				(link: _storylet&#39;s title)[(goto: _storylet&#39;s name)]\
 				&lt;br&gt;(print: _storylet&#39;s cardDesc)\
@@ -2371,29 +2371,28 @@ Ex: 2|1 At, 0|1 Ab, 2|3 Gor, 0|2 Rokh, 0|0 Zam --&gt;
 ]))
 
 &lt;!--Create weather box--&gt;
-(set: $funcWeatherBox to (macro: [(out:)[\
-	&lt;!--Load images (_weatherImage) &amp; text (_weatherData&#39;s text)--&gt;\
-	(set: _weatherImage to (dm:))\
-    (set: _weatherData to (dm:))\
-    (set: _weatherTravelText to (dm:))\
-    (display: &quot;img.weather&quot;)\
-	(display: &quot;table.weather&quot; + $place&#39;s location)\
-    (display: &quot;table.weatherTraveling&quot;)\
-	\
-	&lt;!--Make weather box--&gt;\
-	&lt;div&gt;$cssBox[\
-		&lt;!--Image--&gt;\
-		&lt;div&gt;\
-        (print: &quot;&lt;img style=\&quot;margin:20px\&quot; width=\&quot;150px\&quot; src=\&quot;&quot; + _weatherImage&#39;s ($place&#39;s weather) + &quot;\&quot;&gt;&quot;)\
-        &lt;/div&gt;&lt;!--for some reason, only the image should be a div--&gt;\
-		&lt;!--Text--&gt;\
-		$cssBoxItem[$cssDesc[\
-        	&lt;!--By default, uses the table.weather[location], but a different table (table.weatherTraveling) is used when traveling--&gt;\
-        	(if: (passage:)&#39;s name is not &quot;Traveling&quot;)[(print: _weatherData&#39;s text&#39;s ($place&#39;s weather))]\
-            (else:)[(print: _weatherTravelText&#39;s ($place&#39;s weather))]\
-        ]]\
-	]&lt;/div&gt;\
-]]))
+(set: $funcWeatherBox to (macro: [(out:)[{
+	&lt;!--Load images (_weatherImage) &amp; text (_weatherData&#39;s text)--&gt;
+	(set: _weatherImage to (dm:))
+    (set: _weatherData to (dm:))
+    (set: _weatherTravelText to (dm:))
+    (display: &quot;img.weather&quot;)
+	(display: &quot;table.weather&quot; + $place&#39;s location)
+    (display: &quot;table.weatherTraveling&quot;)
+	
+	&lt;!--Make weather box--&gt;
+	&lt;div&gt;$cssBox[
+		&lt;!--Image--&gt;
+		($funcImage: _weatherImage&#39;s ($place&#39;s weather))
+        &lt;!--for some reason, only the image should be a div--&gt;
+		&lt;!--Text--&gt;
+		$cssBoxItem[$cssDesc[
+        	&lt;!--By default, uses the table.weather[location], but a different table (table.weatherTraveling) is used when traveling--&gt;
+        	(if: (passage:)&#39;s name is not &quot;Traveling&quot;)[(print: _weatherData&#39;s text&#39;s ($place&#39;s weather))]
+            (else:)[(print: _weatherTravelText&#39;s ($place&#39;s weather))]
+        ]]
+	]&lt;/div&gt;
+}]]))
 
 (set: $funcUpdateLocation to (macro: ,[(out:)[\
 	(if: (passage:) contains &quot;prefecture&quot;)[(set: $place&#39;s prefecture to (passage:)&#39;s prefecture)]\
@@ -2704,7 +2703,7 @@ Ex: 2|1 At, 0|1 Ab, 2|3 Gor, 0|2 Rokh, 0|0 Zam --&gt;
     ]&lt;!--end of looping--&gt;
 }]]))</tw-passagedata><tw-passagedata pid="24" name="D. CSS Macros" tags="startup" position="1450,3250" size="100,100">&lt;!--CSS formatting--&gt;
 
-(set: $cssBox to (css: &quot;display: flex; flex-direction: row; flex-wrap: wrap; align-items: center; justify-content: center; border: 2px solid #333; margin: 10px; padding: 10px;&quot;))
+(set: $cssBox to (css: &quot;display: flex; flex-direction: row; flex-wrap: wrap; align-items: center; justify-content: center; border: 2px solid #6e645a; background: #524538; filter: drop-shadow(4px 4px 5px rgba(0, 0, 0, 0.3));  margin: 10px; padding: 10px;&quot;))
 
 (set: $cssBoxItem to (css: &quot;flex-basis: 300px; flex-grow: 1; padding: 20px;&quot;))
 
@@ -2741,9 +2740,9 @@ _chanceColor[_formattedText]
 
 
 &lt;!--Display card portrait--&gt;
-(set: $funcImage to (macro: str-type _imageAddress, [(out:)[\
-	(print: &quot;&lt;img style =\&quot;margin: 20px;\&quot; width=\&quot;150px\&quot; src=\&quot;&quot; + (str:_imageAddress) + &quot;\&quot;&gt;&quot;)
-]]))</tw-passagedata><tw-passagedata pid="26" name="E. Images" tags="startup" position="1350,3100" size="100,100">&lt;!--Database of all images. Will need to convert to relative addresses when exporting project--&gt;
+(set: $funcImage to (macro: str-type _imageAddress, [(out:)[{
+	(print: &quot;&lt;img style =\&quot;margin: 20px; border: 2px solid #6e645a; filter: drop-shadow(4px 4px 5px rgba(0, 0, 0, 0.3));\&quot; width=\&quot;150px\&quot; src=\&quot;&quot; + (str:_imageAddress) + &quot;\&quot;&gt;&quot;)
+}]]))</tw-passagedata><tw-passagedata pid="26" name="E. Images" tags="startup" position="1350,3100" size="100,100">&lt;!--Database of all images. Will need to convert to relative addresses when exporting project--&gt;
 
 (set: $icons to (dm:
 &quot;supplies&quot;,&quot;Assets/Icons/icon_Supplies.png&quot;,
@@ -3821,28 +3820,177 @@ $cssDesc[It is &#39;&#39;(display:&quot;table.dayNames&quot;)&#39;&#39;, &#39;&#
 
 &lt;br&gt;
 
-&lt;!--Known People--&gt;
-&lt;div style=&quot;padding: 20px;&quot;&gt;
-&lt;details open&gt;
-&lt;summary&gt;&#39;&#39;People Met&#39;&#39;&lt;/summary&gt;
-(for: each _char, ...(data-names: $char))[\
-	(if: _char is not &quot;player&quot;)[\
-    	&lt;!--Load NPC&#39;s DM--&gt;\
-        (set: _charDM to (passage: &quot;npc.&quot;+_char))\
-    	(if: $char&#39;s _char&#39;s know is true)[\
-        	&lt;div&gt;$cssBox[&lt;div&gt;(print: &quot;&lt;img style=\&quot;margin: 20px\&quot; width=\&quot;150px\&quot; src=\&quot;&quot; + _charDM&#39;s img + &quot;\&quot;&gt;&quot;)&lt;/div&gt;\
-		$cssBoxItem[\
-            &#39;&#39;(print: _charDM&#39;s id)&#39;&#39; — (print: _charDM&#39;s desc)\
-            &lt;br&gt;$cssDesc[	↪	Opinion of you: (print: $char&#39;s _char&#39;s opinion&#39;s 1st) &#39;&#39;(($funcOpinionCalc: _char, true))&#39;&#39; ]\
-		]&lt;!--end of boxItem--&gt;\
-		]&lt;!--end of box--&gt;\
-	&lt;/div&gt;\
-        ]&lt;!--end of if know--&gt;\
-    ]&lt;!--end of if not player--&gt;\
-]\
-&lt;/details&gt;
-&lt;/div&gt;
-&lt;!--end of known people--&gt;</tw-passagedata><tw-passagedata pid="67" name="Profile" tags="UI" position="2300,2400" size="100,100">{=
+&lt;!--initialize temp vars--&gt;
+(set: _peopleTitle to &quot;People Met&quot;)
+(set: _peopleList to (a:))
+(set: _keyList to (a:))
+
+&lt;!--build full list, including unknown people--&gt;
+(set: _listFull to (find: _person where _person is not &quot;player&quot;, ...(datanames: $char)))
+
+&lt;!--build list of all currently known people--&gt;
+(set: _listMet to (find: _person where $char&#39;s _person&#39;s know is true, ..._listFull))
+
+&lt;!--build list of keys of known people--&gt;
+(for: each _person, ..._listMet)[{
+	&lt;!--load full DM--&gt;
+	(set: _personDM to (passage: &quot;npc.&quot;+_person))
+	&lt;!--add their keys into _keyList--&gt;
+	(set: _keyList to it + _personDM&#39;s key)
+}]
+
+&lt;!--keep only unique keys--&gt;
+(set: _keyList to (unique: ..._keyList))
+
+&lt;!--run default list (all met)--&gt;
+(set: _peopleList to _listMet)
+
+&lt;!--test--&gt;
+_keyList
+
+&lt;!--main UI begins--&gt;
+
+&lt;!--menu--&gt;
+$cssColumnParent[
+&lt;!--info text--&gt;
+$cssColumnChild[
+
+Info text
+
+]&lt;!--end of child--&gt;
+&lt;!--end of info text--&gt;
+
+&lt;!--Menu links--&gt;
+$cssColumnChild[
+
+&lt;!--default update code--&gt;
+(set: _updateCode to [{
+	&lt;!--update--&gt;
+	(t8n: &quot;dissolve&quot;)(rerun: ?display)
+	&lt;!--scroll up to page&#39;s top--&gt;
+    &lt;script&gt;
+	requestAnimationFrame(() =&gt; {
+		document.getElementById(&quot;displayedList&quot;).scrollIntoView({
+			behavior: &quot;smooth&quot;,
+			block: &quot;start&quot;
+		});
+	});
+	&lt;/script&gt;
+}])
+
+&lt;ol&gt;
+
+&lt;li&gt;(link-rerun: &quot;Everyone you have met&quot;)[{
+	&lt;!--filter _peopleList--&gt;
+	(set: _peopleList to _listMet)
+	&lt;!--set title--&gt;
+	(set: _peopleTitle to &quot;People Met&quot;)
+	&lt;!--update--&gt;
+	_updateCode
+}]&lt;/li&gt;
+
+&lt;li&gt;(link-rerun: &quot;Everyone&quot;)[{
+	&lt;!--filter _peopleList--&gt;
+	(set: _peopleList to _listFull)
+	&lt;!--set title--&gt;
+	(set: _peopleTitle to &quot;Everyone&quot;)
+	&lt;!--update--&gt;
+	_updateCode
+}]&lt;/li&gt;
+
+(if: _keyList contains &quot;imperial&quot;)[&lt;li&gt;(link-rerun: &quot;Imperials&quot;)[{
+	&lt;!--filter _peopleList--&gt;
+	(set: _peopleList to (find: _person where (passage: &quot;npc.&quot;+_person)&#39;s key contains &quot;imperial&quot;, ..._listMet))
+	&lt;!--set title--&gt;
+	(set: _peopleTitle to &quot;Imperials&quot;)
+	&lt;!--update--&gt;
+	_updateCode
+}]
+&lt;/li&gt;]
+
+(if: _keyList contains &quot;davehmar&quot;)[&lt;li&gt;(link-rerun: &quot;Davehmars&quot;)[{
+	&lt;!--filter _peopleList--&gt;
+	(set: _peopleList to (find: _person where (passage: &quot;npc.&quot;+_person)&#39;s key contains &quot;davehmar&quot;, ..._listMet))
+	&lt;!--set title--&gt;
+	(set: _peopleTitle to &quot;Davehmars&quot;)
+	&lt;!--update--&gt;
+	_updateCode
+}]
+&lt;/li&gt;]
+
+(if: _keyList contains &quot;familyBiz&quot;)[&lt;li&gt;(link-rerun: &quot;The Inrah Family Business&quot;)[{
+	&lt;!--filter _peopleList--&gt;
+	(set: _peopleList to (find: _person where (passage: &quot;npc.&quot;+_person)&#39;s key contains &quot;familyBiz&quot;, ..._listMet))
+	&lt;!--set title--&gt;
+	(set: _peopleTitle to &quot;The Inrah Family Business&quot;)
+	&lt;!--update--&gt;
+	_updateCode
+}]
+&lt;/li&gt;]
+
+&lt;/ol&gt;
+
+]&lt;!--end of child--&gt;
+]&lt;!--end parent 1--&gt;
+&lt;!--end of menu--&gt;
+
+&lt;br&gt;
+---
+&lt;br&gt;
+&lt;!--?display hook; refreshed when a menu filter is selected--&gt;
+[
+&lt;!--heading--&gt;
+&lt;h3 id=&quot;displayedList&quot;&gt;_peopleTitle&lt;/h3&gt;
+&lt;br&gt;
+
+&lt;!--display--&gt;
+$cssColumnParent[
+
+&lt;!--Code that generates cards--&gt;
+(set: _cardCode to (macro: array-type _list, [(out:)[{
+	&lt;!--only run if _smallList has any item at all--&gt;
+	(if: _list&#39;s length &gt; 0)[
+		(for: each _person where _person is not &quot;player&quot;, ..._list)[{
+			&lt;!--load NPC&#39;s full DM--&gt;
+			(set: _personDM to (passage: &quot;npc.&quot; + _person))
+
+			&lt;!--display their card--&gt;
+			$cssBox[
+				&lt;!--image--&gt;
+				($funcImage: _personDM&#39;s img)
+				&lt;!--text--&gt;
+				$cssBoxItem[
+					&#39;&#39;(print: _personDM&#39;s id)&#39;&#39; — (print: _personDM&#39;s desc)
+					&lt;br&gt;$cssDesc[	↪	Opinion of you: (print: $char&#39;s _person&#39;s opinion&#39;s 1st) &#39;&#39;(($funcOpinionCalc: _person, true))&#39;&#39; ]
+				]&lt;!--end of text--&gt;
+			]&lt;!--end of card--&gt;
+		}]&lt;!--end of looping--&gt;
+	]&lt;!--end of if _smallList has any item at all--&gt;
+}]]))
+
+&lt;!--Code that distributes _peopleList into different _smallLists--&gt;
+(set: _listLeft to (a:))
+(set: _listRight to (a:))
+(for: each _i, ...(range: 1, _peopleList&#39;s length))[{
+	(if: _i % 2 is 1)[(set: _listLeft to it + (a: _peopleList&#39;s _i))]
+	(else:)[(set: _listRight to it + (a: _peopleList&#39;s _i))]
+}]
+
+
+&lt;!--left child--&gt;
+$cssColumnChild[
+	(_cardCode: _listLeft)
+]&lt;!--end of left child--&gt;
+
+
+&lt;!--right child--&gt;
+$cssColumnChild[
+	(_cardCode: _listRight)
+]&lt;!--end of right child--&gt;
+
+]&lt;!--end of parent 2--&gt;
+]&lt;display|
+&lt;!--main UI ends--&gt;</tw-passagedata><tw-passagedata pid="67" name="Profile" tags="UI" position="2300,2400" size="100,100">{=
 
 (metadata: &quot;UI&quot;, true,)
 
@@ -6367,6 +6515,7 @@ $cssColumnChild[
 
 (metadata:
 &quot;id&quot;, [Koh-Inrah the Landlady],
+&quot;key&quot;, (a: &quot;imperial&quot;, &quot;familyBiz&quot;),
 &quot;desc&quot;, &quot;As owner and proprietress of the Pilgrim&#39;s Rest in Apesai, Old Inrah has seen much over the years. Perhaps that is why she squints so often.&quot;,
 &quot;img&quot;, &quot;Assets/Portraits/Old_1.png&quot;,
 &quot;color&quot;, #c7a069,
@@ -6401,6 +6550,7 @@ $cssColumnChild[
 
 (metadata:
 &quot;id&quot;, [Professor Marrokh],
+&quot;key&quot;, (a: &quot;imperial&quot;, &quot;davehmar&quot;,),
 &quot;desc&quot;, &quot;Fir-Marrokh-Kuchtar-da-Zagash is your long-time mentor at Bakho University. When he was exiled to Askava, you were too. He has promised to credit you with your first Sacred Opal - and the title of \&quot;master\&quot; - if you can help him prove his controversial theories. And just maybe, you will both be permitted back to the imperial heartlands.&quot;,
 &quot;img&quot;, &quot;Assets/Portraits/Old_2.png&quot;,
 &quot;color&quot;, #cde74c,
@@ -9676,6 +9826,7 @@ You nod. Your teacher is eager to get out of Apesai more than anything, but you 
 
 (metadata:
 &quot;id&quot;, [Veh-Veh],
+&quot;key&quot;, (a: &quot;imperial&quot;, &quot;davehmar&quot;,),
 &quot;desc&quot;, &quot;Mahveh-Vehkhan is a magus-in-training studying at the Apesai Lighthouse. She is studious and helpful, if a little put-upon, as all studious and helpful people tend to be.&quot;,
 &quot;img&quot;, &quot;Assets/Portraits/Girl_1.png&quot;,
 &quot;color&quot;, #ccbff2,
@@ -16566,7 +16717,7 @@ _line[&quot;Oh, how far the mighty... has fallen, to ask for help... from one su
 [
 You pathetically &quot;mmm-mm-ed&quot; something like a question as your eyes water and your breakfast surges upward.
 &lt;br&gt;
-_line[&quot;Hahaha, though I may be... at my worst - cast off from my oaken lectern... forced by fate to embrace this brass one instead - my power over you remains... overwhelming,&quot;] he says from behind the curtain, then immediately pukes into a tin bucket. _line[&quot;Ugh, fuck... Alas, I am no match... for my guts.&quot;]
+_line[&quot;Hahaha, though I may be... at my worst - cast off from my oaken lectern... forced by fate to embrace this brass one instead - my power over you remains... overwhelming,&quot;] he says from behind the curtain, then immediately pukes into a tin bucket. _line[&quot;Ugh... Alas, I am no match... for my guts.&quot;]
 &lt;br&gt;
 ($funcInnerConvo: (dm:
      &quot;&lt;!--C--&gt;Let him continue.&quot;, &quot;letHim&quot;
@@ -16675,7 +16826,7 @@ Something tells you that he won&#39;t reimburse you even if you //don&#39;t// ge
 
 &lt;!--rightAway--&gt;
 [
-_line[&quot;Are you fucking //joking//? Holding on to this latrine is all I //can// do. Now get out of my room! Go!&quot;]
+_line[&quot;Are you fucking //joking//? At a time like this? Holding on to this latrine is all I //can// do. Now get out of my room! Go!&quot;]
 (show: ?doneOptions)
 &lt;br&gt;
 ](rightAway|

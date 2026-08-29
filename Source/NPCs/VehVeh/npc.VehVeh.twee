@@ -3,6 +3,7 @@
 
 (metadata:
 "id", [Veh-Veh],
+"key", (a: "imperial", "davehmar",),
 "desc", "Mahveh-Vehkhan is a magus-in-training studying at the Apesai Lighthouse. She is studious and helpful, if a little put-upon, as all studious and helpful people tend to be.",
 "img", "Assets/Portraits/Girl_1.png",
 "color", #ccbff2,

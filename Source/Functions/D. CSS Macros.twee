@@ -1,7 +1,7 @@
 :: D. CSS Macros [startup] {"position":"1450,3250","size":"100,100"}
 <!--CSS formatting-->
 
-(set: $cssBox to (css: "display: flex; flex-direction: row; flex-wrap: wrap; align-items: center; justify-content: center; border: 2px solid #333; margin: 10px; padding: 10px;"))
+(set: $cssBox to (css: "display: flex; flex-direction: row; flex-wrap: wrap; align-items: center; justify-content: center; border: 2px solid #6e645a; background: #524538; filter: drop-shadow(4px 4px 5px rgba(0, 0, 0, 0.3));  margin: 10px; padding: 10px;"))
 
 (set: $cssBoxItem to (css: "flex-basis: 300px; flex-grow: 1; padding: 20px;"))
 

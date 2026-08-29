@@ -54,29 +54,28 @@
 ]))
 
 <!--Create weather box-->
-(set: $funcWeatherBox to (macro: [(out:)[\
-	<!--Load images (_weatherImage) & text (_weatherData's text)-->\
-	(set: _weatherImage to (dm:))\
-    (set: _weatherData to (dm:))\
-    (set: _weatherTravelText to (dm:))\
-    (display: "img.weather")\
-	(display: "table.weather" + $place's location)\
-    (display: "table.weatherTraveling")\
-	\
-	<!--Make weather box-->\
-	<div>$cssBox[\
-		<!--Image-->\
-		<div>\
-        (print: "<img style=\"margin:20px\" width=\"150px\" src=\"" + _weatherImage's ($place's weather) + "\">")\
-        </div><!--for some reason, only the image should be a div-->\
-		<!--Text-->\
-		$cssBoxItem[$cssDesc[\
-        	<!--By default, uses the table.weather[location], but a different table (table.weatherTraveling) is used when traveling-->\
-        	(if: (passage:)'s name is not "Traveling")[(print: _weatherData's text's ($place's weather))]\
-            (else:)[(print: _weatherTravelText's ($place's weather))]\
-        ]]\
-	]</div>\
-]]))
+(set: $funcWeatherBox to (macro: [(out:)[{
+	<!--Load images (_weatherImage) & text (_weatherData's text)-->
+	(set: _weatherImage to (dm:))
+    (set: _weatherData to (dm:))
+    (set: _weatherTravelText to (dm:))
+    (display: "img.weather")
+	(display: "table.weather" + $place's location)
+    (display: "table.weatherTraveling")
+	
+	<!--Make weather box-->
+	<div>$cssBox[
+		<!--Image-->
+		($funcImage: _weatherImage's ($place's weather))
+        <!--for some reason, only the image should be a div-->
+		<!--Text-->
+		$cssBoxItem[$cssDesc[
+        	<!--By default, uses the table.weather[location], but a different table (table.weatherTraveling) is used when traveling-->
+        	(if: (passage:)'s name is not "Traveling")[(print: _weatherData's text's ($place's weather))]
+            (else:)[(print: _weatherTravelText's ($place's weather))]
+        ]]
+	]</div>
+}]]))
 
 (set: $funcUpdateLocation to (macro: ,[(out:)[\
 	(if: (passage:) contains "prefecture")[(set: $place's prefecture to (passage:)'s prefecture)]\

@@ -66,7 +66,7 @@ _line["Oh, how far the mighty... has fallen, to ask for help... from one such as
 [
 You pathetically "mmm-mm-ed" something like a question as your eyes water and your breakfast surges upward.
 <br>
-_line["Hahaha, though I may be... at my worst - cast off from my oaken lectern... forced by fate to embrace this brass one instead - my power over you remains... overwhelming,"] he says from behind the curtain, then immediately pukes into a tin bucket. _line["Ugh, fuck... Alas, I am no match... for my guts."]
+_line["Hahaha, though I may be... at my worst - cast off from my oaken lectern... forced by fate to embrace this brass one instead - my power over you remains... overwhelming,"] he says from behind the curtain, then immediately pukes into a tin bucket. _line["Ugh... Alas, I am no match... for my guts."]
 <br>
 ($funcInnerConvo: (dm:
      "<!--C-->Let him continue.", "letHim"
@@ -175,7 +175,7 @@ Something tells you that he won't reimburse you even if you //don't// get scamme
 
 <!--rightAway-->
 [
-_line["Are you fucking //joking//? Holding on to this latrine is all I //can// do. Now get out of my room! Go!"]
+_line["Are you fucking //joking//? At a time like this? Holding on to this latrine is all I //can// do. Now get out of my room! Go!"]
 (show: ?doneOptions)
 <br>
 ](rightAway|
