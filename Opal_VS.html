@@ -83,7 +83,7 @@ hr {
   100% {
     background-position: 0% center;
   }
-}</style><script role="script" id="twine-user-script" type="text/twine-javascript"></script><tw-tag name="static-storage" color="yellow"></tw-tag><tw-tag name="storylet" color="blue"></tw-tag><tw-tag name="sublocation" color="green"></tw-tag><tw-tag name="test" color="blue"></tw-tag><tw-tag name="topic" color="purple"></tw-tag><tw-tag name="startup" color="orange"></tw-tag><tw-tag name="book" color="yellow"></tw-tag><tw-tag name="effect" color="yellow"></tw-tag><tw-tag name="footer" color="yellow"></tw-tag><tw-tag name="header" color="yellow"></tw-tag><tw-tag name="stay" color="yellow"></tw-tag><tw-tag name="traveling" color="purple"></tw-tag><tw-tag name="UI" color="orange"></tw-tag><tw-passagedata pid="1" name="AA. Books, Reading &amp; Formulae" tags="startup" position="100,100" size="100,100">{=
+}</style><script role="script" id="twine-user-script" type="text/twine-javascript"></script><tw-tag name="stay" color="yellow"></tw-tag><tw-tag name="storylet" color="blue"></tw-tag><tw-tag name="sublocation" color="green"></tw-tag><tw-tag name="traveling" color="purple"></tw-tag><tw-tag name="UI" color="orange"></tw-tag><tw-tag name="footer" color="yellow"></tw-tag><tw-tag name="header" color="yellow"></tw-tag><tw-tag name="startup" color="orange"></tw-tag><tw-tag name="static-storage" color="yellow"></tw-tag><tw-tag name="test" color="blue"></tw-tag><tw-tag name="topic" color="purple"></tw-tag><tw-tag name="book" color="yellow"></tw-tag><tw-tag name="effect" color="yellow"></tw-tag><tw-passagedata pid="1" name="AA. Books, Reading &amp; Formulae" tags="startup" position="100,100" size="100,100">{=
 &lt;!--Macros related to books and reading--&gt;
 
 (set: $readingNav to (dm:
@@ -3699,6 +3699,296 @@ $cssDesc[It is &#39;&#39;(display:&quot;table.dayNames&quot;)&#39;&#39;, &#39;&#
 
 ($funcUITopBar:)
 
+
+&lt;!--initialize temp var--&gt;
+(set: _listStories to (a:))
+(set: _displayStories to (a:))
+(set: _storiesTitle to &quot;All Stories&quot;)
+(set: _keyDesc to &quot;Everything so far.&quot;)
+
+&lt;!--build a list of all visible (active, completed, failed) stories--&gt;
+(set: _listStories to (find: _story where $char&#39;s player&#39;s quests&#39;s _story is &quot;active&quot; or it is &quot;completed&quot; or it is &quot;failed&quot;, ...(datanames: $char&#39;s player&#39;s quests)))
+
+&lt;!--Default: Display all stories (no filter)--&gt;
+(set: _displayStories to _listStories)
+
+&lt;!--parent 1: Menu--&gt;
+$cssColumnParent[
+&lt;!--Child 1a: info text--&gt;
+$cssColumnChild[
+
+&#39;&#39;Going-Ons&#39;&#39;
+&lt;br&gt;
+
+
+
+]&lt;!--end child 1a: info text--&gt;
+
+
+&lt;!--Child 1b: filter links--&gt;
+$cssColumnChild[
+
+&lt;!--default update code--&gt;
+(set: _updateCode to [{
+	&lt;!--update--&gt;
+	(t8n: &quot;dissolve&quot;)(rerun: ?display)
+	&lt;!--scroll up to page&#39;s top--&gt;
+    &lt;script&gt;
+	requestAnimationFrame(() =&gt; {
+		document.getElementById(&quot;displayedList&quot;).scrollIntoView({
+			behavior: &quot;smooth&quot;,
+			block: &quot;start&quot;
+		});
+	});
+	&lt;/script&gt;
+}])
+
+&#39;&#39;Categories&#39;&#39;
+&lt;ol&gt;
+
+&lt;li&gt;(link-rerun: &quot;All stories&quot;)[{
+    &lt;!--define list--&gt;
+    (set: _displayStories to _listStories)
+    &lt;!--set title--&gt;
+    (set: _storiesTitle to &quot;All Stories&quot;)
+    &lt;!--set _keyDesc--&gt;
+    (set: _keyDesc to &quot;Everything so far.&quot;)
+    _updateCode
+}]
+&lt;/li&gt;
+
+
+&lt;/ol&gt;
+
+]&lt;!--end child 1b: filter links--&gt;
+
+
+]&lt;!--end of parent 1: Menu--&gt;
+
+&lt;br&gt;
+---
+&lt;br&gt;
+
+&lt;!--?display hook - updated by filter--&gt;
+[
+
+&lt;!--code that categorizes stories into either &quot;active&quot;, &quot;completed&quot;, or &quot;failed&quot;--&gt;
+(set: _listActive to (a:))
+(set: _listCompleted to (a:))
+(set: _listFailed to (a:))
+(for: each _story, ..._displayStories)[{
+    (if: $char&#39;s player&#39;s quests&#39;s _story is &quot;active&quot;)[(set: _listActive to it + (a: _story))]
+    (elseif: $char&#39;s player&#39;s quests&#39;s _story is &quot;completed&quot;)[(set: _listCompleted to it + (a: _story))]
+    (elseif: $char&#39;s player&#39;s quests&#39;s _story is &quot;failed&quot;)[(set: _listFailed to it + (a: _story))]
+}]
+
+&lt;!--macro that generates 2 left-right lists--&gt;
+(set: _listLeft to (a:))
+(set: _listRight to (a:))
+(set: _funcLeftRight to (macro: array-type _listAny, [(out:)[{
+    
+    &lt;!--reset lists--&gt;
+    (set: _listLeft to (a:))
+    (set: _listRight to (a:))
+
+    (if: _listAny&#39;s length is &gt; 0)[(for: each _i, ...(range: 1, _listAny&#39;s length))[{
+        (if: _i % 2 is 1)[(set: _listLeft to it + (a: _listAny&#39;s _i))]
+	    (else:)[(set: _listRight to it + (a: _listAny&#39;s _i))]
+    }]]
+
+}]]))
+
+&lt;!--macro that generates cards--&gt;
+(set: _funcStoryCard to (macro: array-type _listAny, codehook-type _indicator, [(out:)[{
+    (if: _listAny&#39;s length &gt; 0)[{
+    &lt;!--loop through input list--&gt;
+    (for: each _story, ..._listAny)[{
+        &lt;!--Load quest DM--&gt;
+        (set: _storyDM to (passage: &quot;quest.&quot;+_story))
+    
+        &lt;!--create card--&gt;
+        $cssBox[
+            &lt;!--image--&gt;
+            ($funcImage: _storyDM&#39;s img)
+            $cssBoxItem[
+                _indicator` `&#39;&#39;(print: _storyDM&#39;s id)&#39;&#39; — (print:_storyDM&#39;s desc)\
+                $cssDesc[&lt;br&gt;		↪  (print: _storyDM&#39;s tip)]\
+                (if: (datanames: $char&#39;s player&#39;s timerQuest) contains _story)[
+                    (for: each _timer, ...(datanames: $char&#39;s player&#39;s timerQuest&#39;s _story))[
+                        $cssDesc[&lt;br&gt;		↪  (print: _storyDM&#39;s (_timer + &quot;Desc&quot;))]
+                    ]&lt;!--end of timer loops--&gt;
+                ]&lt;!--end of if has timer--&gt;
+            ]&lt;!--end of boxItem--&gt;
+        ]&lt;!--end of box--&gt;
+    }]&lt;!--end looping--&gt;
+    }]&lt;!--end of if length &gt; 0--&gt;
+}]]))
+
+
+
+&lt;!--heading (active)--&gt;
+&lt;h3 id=&quot;displayedList&quot;&gt;_storiesTitle` `(Active)&lt;/h3&gt;
+(align: &quot;=&gt;&lt;=&quot;)+$cssDesc[_keyDesc]
+&lt;br&gt;
+&lt;!--parent 2: Display Active--&gt;
+$cssColumnParent[
+
+&lt;!--build 2 lists--&gt;
+(_funcLeftRight: _listActive)
+
+&lt;!--check if making something--&gt;
+(set: _makingSomething to false)
+(if: (data-names: $char&#39;s player&#39;s timerCraft)&#39;s length &gt; 0)[(set: _makingSomething to true)]
+
+&lt;!--empty?--&gt;
+(set: _emptyActive to true)
+(if: _listActive&#39;s length &gt; 0 or _makingSomething is true)[(set: _emptyActive to false)]
+
+&lt;!--Child 2a: left column--&gt;
+$cssColumnChild[
+
+(if: _emptyActive is false)[{
+
+&lt;!--generate &quot;Making Something&quot;--&gt;
+(if: _makingSomething is true)[{
+    &lt;!--create card--&gt;
+    $cssBox[
+        &lt;!--image--&gt;
+        ($funcImage: &quot;https://thefifthcity.wiki/w/images/a/a2/Dawnmachinegaz.png&quot;)
+        $cssBoxItem[
+            ⏳` `&#39;&#39;Things Being Made&#39;&#39; — You have (plural: (datanames: $char&#39;s player&#39;s timerCraft)&#39;s length, &quot;on-going synthesis job&quot;)` `at the following locations:
+            &lt;!--scroll box--&gt;$cssDesc+(css: &quot;background: #615244;box-shadow: inset 0px 4px 8px rgba(0, 0, 0, 0.3);&quot;)+(box: &quot;X&quot;, 5)[{
+            &lt;ol style=&quot;margin-block-start: 0; padding-left: 1em&quot;&gt;
+            (for: each _job, ...(datanames: $char&#39;s player&#39;s timerCraft))[{
+                &lt;!--note: Format is (dm: &quot;lab&quot;, (a: &quot;item&quot;, amount, timer)), where _job represents the lab&#39;s passage name--&gt;
+                
+                &lt;!--load lab DM--&gt;
+                (set: _labDM to (passage: _job))
+                &lt;!--load job info (array)--&gt;
+                (set: _jobInfo to $char&#39;s player&#39;s timerCraft&#39;s _job)
+                &lt;!--load item DM--&gt;
+                (set: _itemDM to (passage: &quot;item.&quot; + _jobInfo&#39;s 1st))
+                
+                &lt;!--print readout--&gt;
+                &lt;li style=&quot; line-height: 1.5&quot;&gt;&#39;&#39;(print: _labDM&#39;s title):&#39;&#39;` `
+                (print: _jobInfo&#39;s 2nd)` `
+                (print: _itemDM&#39;s id)($funcLogTip: &quot;item.&quot;, _jobInfo&#39;s 1st)` `
+                &lt;!--time--&gt;
+                (if: _jobInfo&#39;s 3rd &gt; 0)[((plural: _jobInfo&#39;s 3rd, &quot;day&quot;)` `left)]
+                (else:)[(color: yellow)[(Done!)]] 
+
+                &lt;/li&gt;
+
+            }]&lt;!--end of looping--&gt;
+            &lt;/ol&gt;
+            }]&lt;!--end of scrollbox--&gt;
+        ]&lt;!--end of boxItem--&gt;
+    ]&lt;!--end of card/box--&gt;
+}]
+
+&lt;!--generate story cards--&gt;
+(_funcStoryCard: _listLeft, [📜])
+
+}]
+(else:)[$cssDesc[(Empty.)]]
+
+]&lt;!--end child 2a: left column--&gt;
+
+
+&lt;!--Child 2b: right column--&gt;
+$cssColumnChild[
+
+(_funcStoryCard: _listRight, [📜])
+
+]&lt;!--end child 2b: right column--&gt;
+
+
+]&lt;!--end of parent 2: Display Active--&gt;
+
+
+&lt;br&gt;
+---
+&lt;br&gt;
+
+
+&lt;!--heading (completed)--&gt;
+&lt;h3&gt;_storiesTitle` `(Completed)&lt;/h3&gt;
+(align: &quot;=&gt;&lt;=&quot;)+$cssDesc[_keyDesc]
+&lt;br&gt;
+&lt;!--parent 3: Display Completed--&gt;
+$cssColumnParent[
+
+&lt;!--build 2 lists--&gt;
+(_funcLeftRight: _listCompleted)
+
+&lt;!--Child 3a: left column--&gt;
+$cssColumnChild[
+
+(if: _listLeft&#39;s length &gt; 0)[{
+    (_funcStoryCard: _listLeft, [✔️])
+}]
+(else:)[$cssDesc[(Empty.)]]
+
+]&lt;!--end child 3a: left column--&gt;
+
+
+&lt;!--Child 3b: right column--&gt;
+$cssColumnChild[
+(_funcStoryCard: _listRight, [✔️])
+]&lt;!--end child 3b: right column--&gt;
+
+
+]&lt;!--end of parent 3: Display Completed--&gt;
+
+
+&lt;br&gt;
+---
+&lt;br&gt;
+
+
+&lt;!--heading (failed)--&gt;
+&lt;h3 id=&quot;displayedList&quot;&gt;_storiesTitle` `(Failed)&lt;/h3&gt;
+(align: &quot;=&gt;&lt;=&quot;)+$cssDesc[_keyDesc]
+&lt;br&gt;
+&lt;!--parent 4: Display Failed--&gt;
+$cssColumnParent[
+
+&lt;!--build 2 lists--&gt;
+(_funcLeftRight: _listFailed)
+
+&lt;!--Child 4a: left column--&gt;
+$cssColumnChild[
+
+(if: _listLeft&#39;s length &gt; 0)[{
+    (_funcStoryCard: _listLeft, [❌])
+}]
+(else:)[$cssDesc[(Empty.)]]
+
+]&lt;!--end child 4a: left column--&gt;
+
+
+&lt;!--Child 4b: right column--&gt;
+$cssColumnChild[
+(_funcStoryCard: _listRight, [❌])
+]&lt;!--end child 4b: right column--&gt;
+
+
+]&lt;!--end of parent 4: Display Failed--&gt;
+
+]&lt;display|&lt;!--end of main ?display hook that gets updated by filter--&gt;
+
+
+
+
+
+
+
+
+
+
+
+&lt;!--old--&gt;
+[
 &lt;!--Job Queue--&gt;
 (if: (data-names: $char&#39;s player&#39;s timerCraft)&#39;s length &gt; 0)[\
 &lt;div style=&quot;padding: 20px;&quot;&gt;
@@ -3785,7 +4075,9 @@ $cssDesc[It is &#39;&#39;(display:&quot;table.dayNames&quot;)&#39;&#39;, &#39;&#
 ]\
 &lt;/details&gt;
 &lt;/div&gt;
-&lt;!--end of failed quests--&gt;</tw-passagedata><tw-passagedata pid="65" name="Long Log" tags="UI" position="2575,2650" size="100,100">{=
+&lt;!--end of failed quests--&gt;
+
+](old|</tw-passagedata><tw-passagedata pid="65" name="Long Log" tags="UI" position="2575,2650" size="100,100">{=
 
 (metadata: &quot;UI&quot;, true,)
 
@@ -3824,6 +4116,7 @@ $cssDesc[It is &#39;&#39;(display:&quot;table.dayNames&quot;)&#39;&#39;, &#39;&#
 (set: _peopleTitle to &quot;People Met&quot;)
 (set: _peopleList to (a:))
 (set: _keyList to (a:))
+(set: _keyDesc to &quot;All notable people you have met on your journey.&quot;)
 
 &lt;!--build full list, including unknown people--&gt;
 (set: _listFull to (find: _person where _person is not &quot;player&quot;, ...(datanames: $char)))
@@ -3845,9 +4138,6 @@ $cssDesc[It is &#39;&#39;(display:&quot;table.dayNames&quot;)&#39;&#39;, &#39;&#
 &lt;!--run default list (all met)--&gt;
 (set: _peopleList to _listMet)
 
-&lt;!--test--&gt;
-_keyList
-
 &lt;!--main UI begins--&gt;
 
 &lt;!--menu--&gt;
@@ -3855,7 +4145,11 @@ $cssColumnParent[
 &lt;!--info text--&gt;
 $cssColumnChild[
 
-Info text
+&#39;&#39;People&#39;&#39;
+&lt;br&gt;
+No magi succeed alone. On your journey, you will come to know many - from masters whom you might learn from, to foes who dog your steps. You should do well to remember them.
+&lt;br&gt;
+$cssDesc[This screen shows you everyone that you have met so far. You can also filter them by categories, which are added as you get acquainted with more people.]
 
 ]&lt;!--end of child--&gt;
 &lt;!--end of info text--&gt;
@@ -3878,6 +4172,8 @@ $cssColumnChild[
 	&lt;/script&gt;
 }])
 
+&#39;&#39;Categories&#39;&#39;
+
 &lt;ol&gt;
 
 &lt;li&gt;(link-rerun: &quot;Everyone you have met&quot;)[{
@@ -3885,6 +4181,8 @@ $cssColumnChild[
 	(set: _peopleList to _listMet)
 	&lt;!--set title--&gt;
 	(set: _peopleTitle to &quot;People Met&quot;)
+	&lt;!--set _keyDesc--&gt;
+	(set: _keyDesc to &quot;All notable people you have met on your journey.&quot;)
 	&lt;!--update--&gt;
 	_updateCode
 }]&lt;/li&gt;
@@ -3894,6 +4192,8 @@ $cssColumnChild[
 	(set: _peopleList to _listFull)
 	&lt;!--set title--&gt;
 	(set: _peopleTitle to &quot;Everyone&quot;)
+	&lt;!--set _keyDesc--&gt;
+	(set: _keyDesc to &quot;All characters, known or not.&quot;)
 	&lt;!--update--&gt;
 	_updateCode
 }]&lt;/li&gt;
@@ -3903,6 +4203,8 @@ $cssColumnChild[
 	(set: _peopleList to (find: _person where (passage: &quot;npc.&quot;+_person)&#39;s key contains &quot;imperial&quot;, ..._listMet))
 	&lt;!--set title--&gt;
 	(set: _peopleTitle to &quot;Imperials&quot;)
+	&lt;!--set _keyDesc--&gt;
+	(set: _keyDesc to &quot;Citizens whose families trace back to the Nurandahid heartlands.&quot;)
 	&lt;!--update--&gt;
 	_updateCode
 }]
@@ -3913,6 +4215,8 @@ $cssColumnChild[
 	(set: _peopleList to (find: _person where (passage: &quot;npc.&quot;+_person)&#39;s key contains &quot;davehmar&quot;, ..._listMet))
 	&lt;!--set title--&gt;
 	(set: _peopleTitle to &quot;Davehmars&quot;)
+	&lt;!--set _keyDesc--&gt;
+	(set: _keyDesc to &quot;University magi - the most well-learned among the Nurandahids.&quot;)
 	&lt;!--update--&gt;
 	_updateCode
 }]
@@ -3923,6 +4227,8 @@ $cssColumnChild[
 	(set: _peopleList to (find: _person where (passage: &quot;npc.&quot;+_person)&#39;s key contains &quot;familyBiz&quot;, ..._listMet))
 	&lt;!--set title--&gt;
 	(set: _peopleTitle to &quot;The Inrah Family Business&quot;)
+	&lt;!--set _keyDesc--&gt;
+	(set: _keyDesc to &quot;Those associated with the various Inrah family enterprises.&quot;)
 	&lt;!--update--&gt;
 	_updateCode
 }]
@@ -3941,6 +4247,7 @@ $cssColumnChild[
 [
 &lt;!--heading--&gt;
 &lt;h3 id=&quot;displayedList&quot;&gt;_peopleTitle&lt;/h3&gt;
+(align: &quot;=&gt;&lt;=&quot;)+$cssDesc[_keyDesc]
 &lt;br&gt;
 
 &lt;!--display--&gt;
@@ -13795,7 +14102,7 @@ _waitDoneCode
 
 (metadata:
 &quot;title&quot;, &quot;The Hall of Immigration Affairs&quot;,
-&quot;cardDesc&quot;, &quot;&quot;,
+&quot;cardDesc&quot;, &quot;Once again, you take your place in the queue, hoping to receive your entry permit.&quot;,
 )
 
 $cssColumnParent[

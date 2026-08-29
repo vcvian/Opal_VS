@@ -5,6 +5,296 @@
 
 ($funcUITopBar:)
 
+
+<!--initialize temp var-->
+(set: _listStories to (a:))
+(set: _displayStories to (a:))
+(set: _storiesTitle to "All Stories")
+(set: _keyDesc to "Everything so far.")
+
+<!--build a list of all visible (active, completed, failed) stories-->
+(set: _listStories to (find: _story where $char's player's quests's _story is "active" or it is "completed" or it is "failed", ...(datanames: $char's player's quests)))
+
+<!--Default: Display all stories (no filter)-->
+(set: _displayStories to _listStories)
+
+<!--parent 1: Menu-->
+$cssColumnParent[
+<!--Child 1a: info text-->
+$cssColumnChild[
+
+''Going-Ons''
+<br>
+
+
+
+]<!--end child 1a: info text-->
+
+
+<!--Child 1b: filter links-->
+$cssColumnChild[
+
+<!--default update code-->
+(set: _updateCode to [{
+	<!--update-->
+	(t8n: "dissolve")(rerun: ?display)
+	<!--scroll up to page's top-->
+    <script>
+	requestAnimationFrame(() => {
+		document.getElementById("displayedList").scrollIntoView({
+			behavior: "smooth",
+			block: "start"
+		});
+	});
+	</script>
+}])
+
+''Categories''
+<ol>
+
+<li>(link-rerun: "All stories")[{
+    <!--define list-->
+    (set: _displayStories to _listStories)
+    <!--set title-->
+    (set: _storiesTitle to "All Stories")
+    <!--set _keyDesc-->
+    (set: _keyDesc to "Everything so far.")
+    _updateCode
+}]
+</li>
+
+
+</ol>
+
+]<!--end child 1b: filter links-->
+
+
+]<!--end of parent 1: Menu-->
+
+<br>
+---
+<br>
+
+<!--?display hook - updated by filter-->
+[
+
+<!--code that categorizes stories into either "active", "completed", or "failed"-->
+(set: _listActive to (a:))
+(set: _listCompleted to (a:))
+(set: _listFailed to (a:))
+(for: each _story, ..._displayStories)[{
+    (if: $char's player's quests's _story is "active")[(set: _listActive to it + (a: _story))]
+    (elseif: $char's player's quests's _story is "completed")[(set: _listCompleted to it + (a: _story))]
+    (elseif: $char's player's quests's _story is "failed")[(set: _listFailed to it + (a: _story))]
+}]
+
+<!--macro that generates 2 left-right lists-->
+(set: _listLeft to (a:))
+(set: _listRight to (a:))
+(set: _funcLeftRight to (macro: array-type _listAny, [(out:)[{
+    
+    <!--reset lists-->
+    (set: _listLeft to (a:))
+    (set: _listRight to (a:))
+
+    (if: _listAny's length is > 0)[(for: each _i, ...(range: 1, _listAny's length))[{
+        (if: _i % 2 is 1)[(set: _listLeft to it + (a: _listAny's _i))]
+	    (else:)[(set: _listRight to it + (a: _listAny's _i))]
+    }]]
+
+}]]))
+
+<!--macro that generates cards-->
+(set: _funcStoryCard to (macro: array-type _listAny, codehook-type _indicator, [(out:)[{
+    (if: _listAny's length > 0)[{
+    <!--loop through input list-->
+    (for: each _story, ..._listAny)[{
+        <!--Load quest DM-->
+        (set: _storyDM to (passage: "quest."+_story))
+    
+        <!--create card-->
+        $cssBox[
+            <!--image-->
+            ($funcImage: _storyDM's img)
+            $cssBoxItem[
+                _indicator` `''(print: _storyDM's id)'' — (print:_storyDM's desc)\
+                $cssDesc[<br>		↪  (print: _storyDM's tip)]\
+                (if: (datanames: $char's player's timerQuest) contains _story)[
+                    (for: each _timer, ...(datanames: $char's player's timerQuest's _story))[
+                        $cssDesc[<br>		↪  (print: _storyDM's (_timer + "Desc"))]
+                    ]<!--end of timer loops-->
+                ]<!--end of if has timer-->
+            ]<!--end of boxItem-->
+        ]<!--end of box-->
+    }]<!--end looping-->
+    }]<!--end of if length > 0-->
+}]]))
+
+
+
+<!--heading (active)-->
+<h3 id="displayedList">_storiesTitle` `(Active)</h3>
+(align: "=><=")+$cssDesc[_keyDesc]
+<br>
+<!--parent 2: Display Active-->
+$cssColumnParent[
+
+<!--build 2 lists-->
+(_funcLeftRight: _listActive)
+
+<!--check if making something-->
+(set: _makingSomething to false)
+(if: (data-names: $char's player's timerCraft)'s length > 0)[(set: _makingSomething to true)]
+
+<!--empty?-->
+(set: _emptyActive to true)
+(if: _listActive's length > 0 or _makingSomething is true)[(set: _emptyActive to false)]
+
+<!--Child 2a: left column-->
+$cssColumnChild[
+
+(if: _emptyActive is false)[{
+
+<!--generate "Making Something"-->
+(if: _makingSomething is true)[{
+    <!--create card-->
+    $cssBox[
+        <!--image-->
+        ($funcImage: "https://thefifthcity.wiki/w/images/a/a2/Dawnmachinegaz.png")
+        $cssBoxItem[
+            ⏳` `''Things Being Made'' — You have (plural: (datanames: $char's player's timerCraft)'s length, "on-going synthesis job")` `at the following locations:
+            <!--scroll box-->$cssDesc+(css: "background: #615244;box-shadow: inset 0px 4px 8px rgba(0, 0, 0, 0.3);")+(box: "X", 5)[{
+            <ol style="margin-block-start: 0; padding-left: 1em">
+            (for: each _job, ...(datanames: $char's player's timerCraft))[{
+                <!--note: Format is (dm: "lab", (a: "item", amount, timer)), where _job represents the lab's passage name-->
+                
+                <!--load lab DM-->
+                (set: _labDM to (passage: _job))
+                <!--load job info (array)-->
+                (set: _jobInfo to $char's player's timerCraft's _job)
+                <!--load item DM-->
+                (set: _itemDM to (passage: "item." + _jobInfo's 1st))
+                
+                <!--print readout-->
+                <li style=" line-height: 1.5">''(print: _labDM's title):''` `
+                (print: _jobInfo's 2nd)` `
+                (print: _itemDM's id)($funcLogTip: "item.", _jobInfo's 1st)` `
+                <!--time-->
+                (if: _jobInfo's 3rd > 0)[((plural: _jobInfo's 3rd, "day")` `left)]
+                (else:)[(color: yellow)[(Done!)]] 
+
+                </li>
+
+            }]<!--end of looping-->
+            </ol>
+            }]<!--end of scrollbox-->
+        ]<!--end of boxItem-->
+    ]<!--end of card/box-->
+}]
+
+<!--generate story cards-->
+(_funcStoryCard: _listLeft, [📜])
+
+}]
+(else:)[$cssDesc[(Empty.)]]
+
+]<!--end child 2a: left column-->
+
+
+<!--Child 2b: right column-->
+$cssColumnChild[
+
+(_funcStoryCard: _listRight, [📜])
+
+]<!--end child 2b: right column-->
+
+
+]<!--end of parent 2: Display Active-->
+
+
+<br>
+---
+<br>
+
+
+<!--heading (completed)-->
+<h3>_storiesTitle` `(Completed)</h3>
+(align: "=><=")+$cssDesc[_keyDesc]
+<br>
+<!--parent 3: Display Completed-->
+$cssColumnParent[
+
+<!--build 2 lists-->
+(_funcLeftRight: _listCompleted)
+
+<!--Child 3a: left column-->
+$cssColumnChild[
+
+(if: _listLeft's length > 0)[{
+    (_funcStoryCard: _listLeft, [✔️])
+}]
+(else:)[$cssDesc[(Empty.)]]
+
+]<!--end child 3a: left column-->
+
+
+<!--Child 3b: right column-->
+$cssColumnChild[
+(_funcStoryCard: _listRight, [✔️])
+]<!--end child 3b: right column-->
+
+
+]<!--end of parent 3: Display Completed-->
+
+
+<br>
+---
+<br>
+
+
+<!--heading (failed)-->
+<h3 id="displayedList">_storiesTitle` `(Failed)</h3>
+(align: "=><=")+$cssDesc[_keyDesc]
+<br>
+<!--parent 4: Display Failed-->
+$cssColumnParent[
+
+<!--build 2 lists-->
+(_funcLeftRight: _listFailed)
+
+<!--Child 4a: left column-->
+$cssColumnChild[
+
+(if: _listLeft's length > 0)[{
+    (_funcStoryCard: _listLeft, [❌])
+}]
+(else:)[$cssDesc[(Empty.)]]
+
+]<!--end child 4a: left column-->
+
+
+<!--Child 4b: right column-->
+$cssColumnChild[
+(_funcStoryCard: _listRight, [❌])
+]<!--end child 4b: right column-->
+
+
+]<!--end of parent 4: Display Failed-->
+
+]<display|<!--end of main ?display hook that gets updated by filter-->
+
+
+
+
+
+
+
+
+
+
+
+<!--old-->
+[
 <!--Job Queue-->
 (if: (data-names: $char's player's timerCraft)'s length > 0)[\
 <div style="padding: 20px;">
@@ -92,3 +382,5 @@
 </details>
 </div>
 <!--end of failed quests-->
+
+](old|

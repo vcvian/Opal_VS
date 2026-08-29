@@ -11,6 +11,7 @@
 (set: _peopleTitle to "People Met")
 (set: _peopleList to (a:))
 (set: _keyList to (a:))
+(set: _keyDesc to "All notable people you have met on your journey.")
 
 <!--build full list, including unknown people-->
 (set: _listFull to (find: _person where _person is not "player", ...(datanames: $char)))
@@ -32,9 +33,6 @@
 <!--run default list (all met)-->
 (set: _peopleList to _listMet)
 
-<!--test-->
-_keyList
-
 <!--main UI begins-->
 
 <!--menu-->
@@ -42,7 +40,11 @@ $cssColumnParent[
 <!--info text-->
 $cssColumnChild[
 
-Info text
+''People''
+<br>
+No magi succeed alone. On your journey, you will come to know many - from masters whom you might learn from, to foes who dog your steps. You should do well to remember them.
+<br>
+$cssDesc[This screen shows you everyone that you have met so far. You can also filter them by categories, which are added as you get acquainted with more people.]
 
 ]<!--end of child-->
 <!--end of info text-->
@@ -65,6 +67,8 @@ $cssColumnChild[
 	</script>
 }])
 
+''Categories''
+
 <ol>
 
 <li>(link-rerun: "Everyone you have met")[{
@@ -72,6 +76,8 @@ $cssColumnChild[
 	(set: _peopleList to _listMet)
 	<!--set title-->
 	(set: _peopleTitle to "People Met")
+	<!--set _keyDesc-->
+	(set: _keyDesc to "All notable people you have met on your journey.")
 	<!--update-->
 	_updateCode
 }]</li>
@@ -81,6 +87,8 @@ $cssColumnChild[
 	(set: _peopleList to _listFull)
 	<!--set title-->
 	(set: _peopleTitle to "Everyone")
+	<!--set _keyDesc-->
+	(set: _keyDesc to "All characters, known or not.")
 	<!--update-->
 	_updateCode
 }]</li>
@@ -90,6 +98,8 @@ $cssColumnChild[
 	(set: _peopleList to (find: _person where (passage: "npc."+_person)'s key contains "imperial", ..._listMet))
 	<!--set title-->
 	(set: _peopleTitle to "Imperials")
+	<!--set _keyDesc-->
+	(set: _keyDesc to "Citizens whose families trace back to the Nurandahid heartlands.")
 	<!--update-->
 	_updateCode
 }]
@@ -100,6 +110,8 @@ $cssColumnChild[
 	(set: _peopleList to (find: _person where (passage: "npc."+_person)'s key contains "davehmar", ..._listMet))
 	<!--set title-->
 	(set: _peopleTitle to "Davehmars")
+	<!--set _keyDesc-->
+	(set: _keyDesc to "University magi - the most well-learned among the Nurandahids.")
 	<!--update-->
 	_updateCode
 }]
@@ -110,6 +122,8 @@ $cssColumnChild[
 	(set: _peopleList to (find: _person where (passage: "npc."+_person)'s key contains "familyBiz", ..._listMet))
 	<!--set title-->
 	(set: _peopleTitle to "The Inrah Family Business")
+	<!--set _keyDesc-->
+	(set: _keyDesc to "Those associated with the various Inrah family enterprises.")
 	<!--update-->
 	_updateCode
 }]
@@ -128,6 +142,7 @@ $cssColumnChild[
 [
 <!--heading-->
 <h3 id="displayedList">_peopleTitle</h3>
+(align: "=><=")+$cssDesc[_keyDesc]
 <br>
 
 <!--display-->
