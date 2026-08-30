@@ -5,6 +5,214 @@
 
 ($funcUITopBar:)
 
+<!--initialize temp var-->
+(set: _listItems to (a:))
+(set: _displayItems to (a:))
+(set: _keyList to (a:))
+(set: _invTitle to "All Items")
+(set: _keyDesc to "Everything you have with you.")
+(set: _displayDesc to false)
+(set: _displayTip to true)
+
+<!--build list of all current items in inventory-->
+(set: _listItems to (datanames: $char's player's inv))
+
+<!--build list of keys of currently held items-->
+(for: each _item, ..._listItems)[{
+	<!--load full DM-->
+	(set: _itemDM to (passage: "item."+_item))
+	<!--add keys to _keyList-->
+	(set: _keyList to it + _itemDM's key)
+}]
+
+<!--keep only unique keys-->
+(set: _keyList to (unique: ..._keyList))
+
+<!--default: display all items in inventory-->
+(set: _displayItems to _listItems)
+
+
+<!--parent-->
+$cssColumnParent[
+
+<!--menu-->
+$cssColumnChild[
+
+<!--info-->
+''Inventory''
+<br>
+As much as you would like to travel lightly, material possessions have the unfortunate tendency to accumulate. It is good to take stock of them sometimes.
+<br>
+$cssDesc[This screen shows ''items'' currently in your possession. You can also filter them by category or change how much information is shown.]
+
+<!--sample keys: resource,tradeGoods,document,note,book,ingredient,craftable,cosmetic,currency,consumable,potion,long,legal,map,food-->
+
+<br>
+<br>
+<!--end of info-->
+
+<!--default update code-->
+(set: _updateCode to [{
+	<!--update-->
+	(t8n: "dissolve")(rerun: ?display)
+	<!--scroll up to page's top-->
+    <script>
+	requestAnimationFrame(() => {
+		document.getElementById("displayedList").scrollIntoView({
+			behavior: "smooth",
+			block: "start"
+		});
+	});
+	</script>
+}])
+
+<!--filter links-->
+''Categories''
+<ol>
+<li>(link-rerun: "All items")[{
+	<!--set title-->
+	(set: _invTitle to "All Items")
+	<!--set keyDesc-->
+	(set: _keyDesc to "Everything you have with you.")
+	<!--set _displayItems-->
+	(set: _displayItems to _listItems)
+	<!--update-->
+	_updateCode
+}] $cssDesc[(Everything.)]
+</li>
+
+(if: _keyList contains "resource")[
+<li>(link-rerun: "Resources")[{
+	<!--set title-->
+	(set: _invTitle to "Resources")
+	<!--set keyDesc-->
+	(set: _keyDesc to "In the end, they are all types of fuel for machines magical, biological, or economic.")
+	<!--set _displayItems-->
+	(set: _displayItems to (find: _item where (passage: "item."+_item)'s key contains "resource", ..._listItems))
+	<!--update-->
+	_updateCode
+}] $cssDesc[(Money, fuel, and supplies.)]
+</li>
+]
+
+(if: _keyList contains "ingredient")[
+<li>(link-rerun: "Ingredients")[{
+	<!--set title-->
+	(set: _invTitle to "Ingredients")
+	<!--set keyDesc-->
+	(set: _keyDesc to "Fodder for ''elementalysis''.")
+	<!--set _displayItems-->
+	(set: _displayItems to (find: _item where (passage: "item."+_item)'s key contains "ingredient", ..._listItems))
+	<!--update-->
+	_updateCode
+}] $cssDesc[(Things whose elements can easily be extracted.)]
+</li>
+]
+
+(if: _keyList contains "craftable")[
+<li>(link-rerun: "Products")[{
+	<!--set title-->
+	(set: _invTitle to "Products")
+	<!--set keyDesc-->
+	(set: _keyDesc to "Wondrous things ''synthesized'' from magic.")
+	<!--set _displayItems-->
+	(set: _displayItems to (find: _item where (passage: "item."+_item)'s key contains "craftable", ..._listItems))
+	<!--update-->
+	_updateCode
+}] $cssDesc[(Made from magic.)]
+</li>
+]
+
+
+(if: _keyList contains "document")[
+<li>(link-rerun: "Documents")[{
+	<!--set title-->
+	(set: _invTitle to "Documents")
+	<!--set keyDesc-->
+	(set: _keyDesc to "Documents in your possession can be read via the ''(print: (passage: \"S: Reading (Activity)\")'s title)'' story, available wherever you are staying.")
+	<!--set _displayItems-->
+	(set: _displayItems to (find: _item where (passage: "item."+_item)'s key contains "document", ..._listItems))
+	<!--update-->
+	_updateCode
+}] $cssDesc[(Books, letters, papers, etc.)]
+</li>
+]
+
+
+</ol>
+<br>
+<!--end of filter links-->
+
+<!--display options-->
+''Display Options''
+<ol>
+<li>(link-rerun: "Show full item description?")[{
+	<!--switch setting-->
+	(if: _displayDesc is false)[(set: _displayDesc to true)]
+	(else:)[(set: _displayDesc to false)]
+	<!--update-->
+	_updateCode
+}] [$cssDesc[(Currently ''_displayDesc[shown](else:)[hidden]''.)]]<display|</li>
+
+<li>(link-rerun: "Show item tip?")[{
+	<!--switch setting-->
+	(if: _displayTip is false)[(set: _displayTip to true)]
+	(else:)[(set: _displayTip to false)]
+	<!--update-->
+	_updateCode
+}] [$cssDesc[(Currently ''_displayTip[shown](else:)[hidden]''.)]]<display|</li>
+</ol>
+<!--end of display options-->
+
+
+]<!--end of menu-->
+
+
+
+<!--display-->
+$cssColumnChild[
+
+<!--display hook, updated by filter links-->
+[
+<h3 id="displayedList">_invTitle</h3>
+(align: "=><=")+$cssDesc+(css: "line-height: 1.2rem")[_keyDesc<br>''(plural: _displayItems's length, "type").'']
+<br>
+<!--main list box-->
+$cssBox+(css: "box-shadow: inset 0px 4px 8px rgba(0, 0, 0, 0.3); align-items: flex-start; justify-content: flex-start;")+(box: "X", 25)[
+
+<!--print list based on _displayItems-->
+<ol>
+(for: each _item, ..._displayItems)[{
+	<!--load item's DM-->
+	(set: _itemDM to (passage: "item." + _item))
+
+	<!--item-->
+	<li>''(print: _itemDM's id)($funcLogTip: "item.", _item) ((print: $char's player's inv's _item))''
+	<!--desc-->
+	(if: _displayDesc is true)[` `—` `(print: _itemDM's desc)]
+	<!--tip-->
+	(if: _displayTip is true)[<br>$cssDesc[↪` `(print: _itemDM's tip)]
+	</li>]
+
+}]
+</ol>
+
+]<!--end of main list box-->
+
+]<display|
+
+]<!--end of display-->
+
+
+]<!--end of parent-->
+
+
+
+
+
+
+<!--old-->
+[
 <!--All Items-->
 <div style="padding: 20px;">
 <details open>
@@ -19,4 +227,4 @@
 ]<!--end of loops-->\
 </details>
 </div>
-<!--end of All Items-->
+<!--end of All Items-->](old|

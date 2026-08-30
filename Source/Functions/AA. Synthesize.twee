@@ -203,9 +203,9 @@ Ex: 2|1 At, 0|1 Ab, 2|3 Gor, 0|2 Rokh, 0|0 Zam -->
 		(for: each _job, ...(data-names: $char's player's timerCraft))[\
 			(set: $char's player's timerCraft's _job's 3rd to it - 1)\
 			(if: $char's player's timerCraft's _job's 3rd is 0)[\
-				(set: $log to it + (a: "''" + (str: (passage:)'s title) + ":'' " + "Ding! Your ''" + (str: $char's player's timerCraft's _job's 2nd) + " " + (str: (passage: "item." + $char's player's timerCraft's _job's 1st)'s id) + "''($funcLogTip: \"item.\"," + "\"" + (str:$char's player's timerCraft's _job's 1st) + "\"" +  ") " + " is (color:yellow+orange)[done synthesizing]. You can come to the " + "''" + ((passage: _job)'s title) + "'' to pick it up."))\
+				(set: $log to it + (a: "''" + (str: (passage:)'s title) + ":'' " + "(color:yellow+orange)[Ding!] Your ''" + (str: $char's player's timerCraft's _job's 2nd) + " " + (str: (passage: "item." + $char's player's timerCraft's _job's 1st)'s id) + "''($funcLogTip: \"item.\"," + "\"" + (str:$char's player's timerCraft's _job's 1st) + "\"" +  ") " + " is (color:yellow+orange)[done synthesizing]. You can come to the " + "''" + ((passage: _job)'s title) + "'' to pick it up."))\
 				\
-				($funcNoti: "craftTimer", [Ding! Your ''(print: $char's player's timerCraft's _job's 2nd) (print: (passage: "item." + $char's player's timerCraft's _job's 1st)'s id)'' is done synthesizing. You can come to the ''(print: (passage: _job)'s title)'' to pick it up.], "Finally.")\
+				($funcNoti: "craftTimer", [(color:yellow+orange)[Ding!] Your ''(print: $char's player's timerCraft's _job's 2nd) (print: (passage: "item." + $char's player's timerCraft's _job's 1st)'s id)'' is (color:yellow+orange)[done synthesizing]. You can come to the ''(print: (passage: _job)'s title)'' to pick it up.], "Finally.")\
 			]\
 		]\
 	]\

@@ -10,7 +10,7 @@
 "player", (dm:
 "customName", "Lê Thị Mèo", "title", "the Journeyman", "titleList", (a:),
 "id", "You",
-"img", "",
+"img", "https://fallenlondon.wiki/w/images/8/85/Bohogirl1.png",
 
 "health", (a: 9, 10),
 "alive", true,

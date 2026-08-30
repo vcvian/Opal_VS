@@ -49,8 +49,9 @@ $cssColumnChild[
 
     $cssBox[
     	($funcImage: (passage:)'s img)
-         $cssBoxItem[''(print: (passage:)'s title )''<br>(print: (passage:)'s cardDesc)]
+        $cssBoxItem[''(print: (passage:)'s title )''<br>(print: (passage:)'s cardDesc)]
     ]
+    ($funcWeatherBox:)
 ]
 
 $cssColumnChild[

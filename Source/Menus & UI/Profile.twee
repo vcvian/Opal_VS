@@ -5,6 +5,77 @@
 
 ($funcUITopBar:)
 
+<!--initialize temp var-->
+(set: _listAtt to (a:))
+(set: _listTemp to (a:))
+
+(set: _displayAtt to (a:))
+(set: _displayTemp to (a:))
+
+
+<!--parent-->
+$cssColumnParent[
+
+<!--Profile & menus-->
+$cssColumnChild[
+
+<!--Profile card-->
+$cssBox[
+	($funcImage: $char's player's img)
+	$cssBoxItem[
+		''(print: $char's player's customName)''<br>$cssDesc[(print: $char's player's title)]
+		<br>
+		You are a journeyman magus banished to faraway Askava and tasked with creating a ''Sacred Opal'', the completion of which will qualify you as a "master" and allows you to return home.
+	]
+]<!--end of Profile card-->
+
+<!--info and menu links-->
+<br>
+''Things About You''
+<br>
+//"Know thy self,"// so goes the maxim. It is good advice, especially in foreign lands, when one is never quite sure where one stands in relation to others, and what one is at liberty to do. For times like those, one needs a good mirror.
+<br>
+$cssDesc[This screen shows ''things'' about you: Things that do not easily change, and things that are fleeting. You can filter them by category or change how much information is shown.]
+<br>
+<br>
+
+
+<!--filter links-->
+''Categories''
+<ol>
+
+
+
+
+</ol>
+<!--end of filter links-->
+
+
+<!--display options-->
+''Display Options''
+<ol>
+
+
+
+
+</ol>
+<!--end o
+<!--end of display options-->
+
+<!--end of info and menu links-->
+
+
+]<!--end of Profile & menus-->
+
+
+<!--display-->
+$cssColumnChild[
+Display
+]<!--end of display-->
+]<!--end of parent-->
+
+<!--old-->
+[
 ''Currently at (print: $place's location)''
 <br>
 <!--Player profile-->
@@ -67,4 +138,4 @@ $cssBoxItem[\
 ]\
 </details>
 </div>
-<!--end of Attributes-->
+<!--end of Attributes-->](old|

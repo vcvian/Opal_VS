@@ -42,9 +42,9 @@ $cssColumnChild[
 
 ''People''
 <br>
-No magi succeed alone. On your journey, you will come to know many - from masters whom you might learn from, to foes who dog your steps. You should do well to remember them.
+No magi succeed alone. On your journey, you will come to know many - from masters whom you might learn from, to foes who dog your steps, to simply fair-weather friends. You should do well to remember them.
 <br>
-$cssDesc[This screen shows you everyone that you have met so far. You can also filter them by categories, which are added as you get acquainted with more people.]
+$cssDesc[This screen shows ''people'' that you have met so far. You can also filter them by category, which are added as you get acquainted with more people.]
 
 ]<!--end of child-->
 <!--end of info text-->
