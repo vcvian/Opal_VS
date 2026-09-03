@@ -1,0 +1,46 @@
+:: table.storyGroupings [static-storage]
+{=
+(metadata:
+    "main", (dm:
+        "id", "★ The Sacred Opal",
+        "desc", "This is the purpose of your journeying, the reason why you were sent to Askava.",
+        "importance", 0,
+    ),
+
+    "mentor", (dm:
+        "id", "Professor Marrokh's Exile",
+        "desc", "Your mentor, your fellow exile, your ticket back home one day.",
+        "importance", 1,
+    ),
+    
+    "Apesai", (dm:
+        "id", "The City of Apesai",
+        "desc", "Many things are happening at the provincial capital of Askava. Too many.",
+        "importance", 5,
+    ),
+
+    "ApesaiSchool", (dm:
+        "id", "The School at the Lighthouse",
+        "desc", "What will become of the so-called Apesai \"University\"?",
+        "importance", 4,
+    ),
+
+    "principal", (dm:
+        "id", "Apesai's Principal",
+        "desc", "The principal of the Apesai School has grand designs in mind",
+        "importance", 3,
+    ),
+
+    "traveling", (dm:
+        "id", "Traveling",
+        "desc", "What is a journey without a great deal of traveling?",
+        "importance", 0.5,
+    ),
+
+    "playtest", (dm:
+        "id", "TEST",
+        "desc", "You're not supposed to see this.",
+        "importance", 0.1,
+    ),
+
+)

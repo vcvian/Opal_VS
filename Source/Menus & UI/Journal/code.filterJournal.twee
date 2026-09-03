@@ -1,0 +1,61 @@
+:: code.filterJournal
+{=
+
+<!--Note: ONLY use this code passage inside of the "Journal" passage, since there are many temp vars defined outside the former's scope-->
+<!--the main output of this code passage is the array _displayStories, which is used to generate cards-->
+
+<!--initialize-->
+(set: _keyList to (a:))
+
+<!--loop through all stories' keys. _listStories contains all (visible) stories inside $char's player's quests, and it is defined outside of this passage-->
+(for: each _story, ..._listStories)[{
+    <!--load full DM-->
+    (set: _storyDM to (passage: "quest."+_story))
+    <!--add its keys into _keyList-->
+    (set: _keyList to it + _storyDM's key)
+}]
+
+<!--keep only unique keys-->
+(set: _keyList to (unique: ..._keyList))
+
+<!--get a table of matches per key (_listStories defined outside of passage). The output is a (dm: "key", (a: "story1", "story2",))-->
+(set: _keyTable to (dm:))
+(for: each _key, ..._keyList)[{
+    (set: _keyTable to it + (dm:
+        _key, (find: _story where (passage: "quest." + _story)'s key contains _key, ..._listStories),
+    ))
+}]
+
+<!--sort _keyList based on their table.storyGroupings "importance" number (small numbers are more important)-->
+(set: _keyList to (sorted: via (passage: "table.storyGroupings")'s (it)'s importance,..._keyList))
+
+<!--Create link. Each link will ultimately modify the _displayStories array, which is used to generate cards-->
+
+(for: each _key, ..._keyList)[{
+    <!--load from dictionary (table.storyGroupings) if entry exists-->
+    (set: _filterText to _key)
+    (set: _keyDescTemp to "")
+    (set: _storiesTitleTemp to _key)
+    (if: (passage: "table.storyGroupings") contains _key)[{
+        (set: _filterText to (passage: "table.storyGroupings")'s _key's id)
+        (set: _keyDescTemp to (passage: "table.storyGroupings")'s _key's desc)
+        (set: _storiesTitleTemp to (passage: "table.storyGroupings")'s _key's id)
+    }]
+
+    <!--generate links-->
+    <li>(link-rerun: _filterText)[{
+        <!--filter _displayStories-->
+        (set: _displayStories to _keyTable's _key)
+        <!--set title-->
+        (set: _storiesTitle to _storiesTitleTemp)
+        <!--set _keyDesc-->
+        (set: _keyDesc to _keyDescTemp)
+        <!--set pointer-->
+        (set: _pointer to _key)
+        <!--reset _displayMode-->
+        (set: _displayMode to "active")
+        <!--update-->
+        _updateCode
+    }]` `((print: _keyTable's _key's length))` `[(if: _pointer is _key)+$cssDesc[↢ Current.]]<display|
+    </li>
+}]

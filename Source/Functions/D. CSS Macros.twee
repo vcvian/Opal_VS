@@ -20,9 +20,13 @@
 (if: _value <= _half)[
 	(set: _r to 255)
 	(set: _g to (round: (_value / _half) * 255))
+		(if: _g > 255)[(set: _g to 255)]
+		(elseif: _g < 0)[(set: _g to 0)]
 ]
 (else:)[
-	(set: _r to (round: ((_max - _chance) / _half) * 255))
+	(set: _r to (round: ((_max - _value) / _half) * 255))
+		(if: _r > 255)[(set: _r to 255)]
+		(elseif: _r < 0)[(set: _r to 0)]
 	(set: _g to 255)
 ]
 (set: _chanceColor to (color: (rgb: _r, _g, 0)))

@@ -1,0 +1,58 @@
+:: att.alchemy [static-storage]
+{=
+
+(metadata: 
+	"id", [Training: Alchemy],
+    "key", (a: "knowledge", "magic", "training"),
+    "value", (a: 1, 0, 0, 0, 0, 0),
+    "img", "",
+    "desc", [Mind shapes matter. The science of breaking - //elementalysis// - and recombining - //synthesis// - the elements of reality is foundational to all magi.],
+    "tip", [{
+
+<!--tip text-->
+
+Allows you to operate modern magic workstations to extract [(link-rerun: "elements")[{
+    (dialog: [{
+        ''Elements'' that you have absorbed:
+        <!--initialize list-->
+        (set: _elements to (a: "at", "ab", "gor", "rokh", "zam"))
+        <!--loop-->
+        <ul>
+        (for: each _e, ..._elements)[{
+            <!--load full DM-->
+            (set: _attDM to (passage: "att." + _e))
+            <!--print list item-->
+            <li>($funcCheckExists: $char's player's att, _e, 0) ''(print: _attDM's id)''
+            </li>
+        }]<!--end loop-->
+        </ul>
+    }], "✓")
+}]]<linkColorOverride|<!--end element link--> and create substances from [(link-rerun: "formulas you know")[{
+    (dialog: [{
+        <!--standard text-->
+        ''Formulas'' that you know well:<br>
+        <!--loop through $char's player's craftFormula-->
+        (if: $char's player's craftFormula's length > 0)+$cssBox+(css: "flex-direction: column; box-shadow: inset 0px 4px 8px rgba(0, 0, 0, 0.3); align-items: flex-start; justify-content: flex-start;")+(box: "X", 15)[<ol>(for: each _formula, ...$char's player's craftFormula)[{
+            <!--load full item DM-->
+            (set: _itemDM to (passage: "item."+_formula))
+            <!--print list item-->
+            <li style="line-height: 1.2rem">''(print: _itemDM's id)''
+            <!--tip-->
+            <br>$cssDesc[↪` `(print: _itemDM's tip)]
+            <!--cost readout-->
+            <br>$cssDesc[↪` `To make 1, you have|need: ($funcElementHaveNeed: _formula, 1)]
+            </li>
+        }]</ol>]<!--end of if not empty then loop-->
+        <!--else, empty-->
+        (else:)+$cssDesc[None. Your memory is hazy.]
+    }], "✓")
+}]]<linkColorOverride|<!--end of formula link-->.
+
+(enchant: ?linkColorOverride, (color: #2FA4D7))
+
+<!--tip text ends-->
+    }],
+    "gainText", [],
+    "lossText", [],
+
+)

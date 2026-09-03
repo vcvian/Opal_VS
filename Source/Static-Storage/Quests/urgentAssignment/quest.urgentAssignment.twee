@@ -3,6 +3,7 @@
 
 (metadata: 
 	"id", [Urgent: An Assignment],
+    "key", (a: "playtest", "mentor",),
     "img", "https://fallenlondon.wiki/w/images/8/83/University.png",
     "desc", [You've been given an urgent assignment.],
     "tip", [],

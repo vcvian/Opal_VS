@@ -1,7 +1,9 @@
 :: Journal [UI] {"position":"2425,2500","size":"100,100"}
 {=
 
-(metadata: "UI", true,)
+(metadata:
+    "UI", true,
+)
 
 ($funcUITopBar:)
 
@@ -9,9 +11,11 @@
 <!--initialize temp var-->
 (set: _listStories to (a:))
 (set: _displayStories to (a:))
+(set: _keyList to (a:))
 (set: _storiesTitle to "All Stories")
 (set: _keyDesc to "Everything so far.")
 (set: _displayMode to "active")
+(set: _pointer to "everything")
 
 <!--build a list of all visible (active, completed, failed) stories-->
 (set: _listStories to (find: _story where $char's player's quests's _story is "active" or it is "completed" or it is "failed", ...(datanames: $char's player's quests)))
@@ -29,6 +33,49 @@ $cssColumnChild[
 The life of a journeyman is busy, so full of tasks to perform, promises to keep, and opportunities to grasp. The first thing to do is to remember at all.
 <br>
 $cssDesc[This screen shows ''on-going stories'' in which you are/were involved. You can also filter them by groupings of related stories and by stories' status.]
+
+<br>
+
+<!--check if making something-->
+(set: _makingSomething to false)
+(if: (data-names: $char's player's timerCraft)'s length > 0 and _displayMode is "active")[(set: _makingSomething to true)]
+
+<!--generate "Making Something"-->
+(if: _makingSomething is true)[{
+    <!--create card-->
+    $cssBox[
+        <!--image-->
+        ($funcImage: "https://thefifthcity.wiki/w/images/a/a2/Dawnmachinegaz.png")
+        $cssBoxItem[
+            (color:yellow+orange)[⧗]` `''Things Being Made'' — You have (plural: (datanames: $char's player's timerCraft)'s length, "on-going synthesis job")` `at the following locations:
+            <!--scroll box-->$cssDesc+(css: "background: #615244;box-shadow: inset 0px 4px 8px rgba(0, 0, 0, 0.3);")+(box: "X", 5)[{
+            <ol style="margin-block-start: 0; padding-left: 1em">
+            (for: each _job, ...(datanames: $char's player's timerCraft))[{
+                <!--note: Format is (dm: "lab", (a: "item", amount, timer)), where _job represents the lab's passage name-->
+                
+                <!--load lab DM-->
+                (set: _labDM to (passage: _job))
+                <!--load job info (array)-->
+                (set: _jobInfo to $char's player's timerCraft's _job)
+                <!--load item DM-->
+                (set: _itemDM to (passage: "item." + _jobInfo's 1st))
+                
+                <!--print readout-->
+                <li style=" line-height: 1.5">''(print: _labDM's title):''` `
+                (print: _jobInfo's 2nd)` `
+                (print: _itemDM's id)($funcLogTip: "item.", _jobInfo's 1st)` `
+                <!--time-->
+                (if: _jobInfo's 3rd > 0)[((plural: _jobInfo's 3rd, "day")` `left)]
+                (else:)[(color: yellow+orange)[(Done!)]] 
+
+                </li>
+
+            }]<!--end of looping-->
+            </ol>
+            }]<!--end of scrollbox-->
+        ]<!--end of boxItem-->
+    ]<!--end of card/box-->
+}]
 
 ]<!--end child 1a: info text-->
 
@@ -52,8 +99,8 @@ $cssColumnChild[
 }])
 
 <!--filter links-->
-''Filter by Grouping''
-<ol>
+''Story Groupings''
+<ol style="column-count: 2;">
 
 <li>(link-rerun: "All stories")[{
     <!--define list-->
@@ -62,9 +109,17 @@ $cssColumnChild[
     (set: _storiesTitle to "All Stories")
     <!--set _keyDesc-->
     (set: _keyDesc to "Everything so far.")
+    <!--set _pointer-->
+    (set: _pointer to "everything")
+    <!--reset _displayMode-->
+    (set: _displayMode to "active")
     _updateCode
-}]
+}]` `((print: _listStories's length))` `[(if: _pointer is "everything")+$cssDesc[↢ Current.]]<display|
 </li>
+
+
+<!--dynamically generate new filter links based on what story groupings I have-->
+(display: "code.filterJournal")
 
 
 </ol>
@@ -72,7 +127,7 @@ $cssColumnChild[
 <!--end of filter links-->
 
 <!--Display options-->
-''Filter by Status''
+''Story Status''
 <ol>
 
 <li>(link-rerun: "Active stories")[{
@@ -80,7 +135,7 @@ $cssColumnChild[
     (set: _displayMode to "active")
     <!--update-->
     _updateCode
-}]` `[$cssDesc+(if: _displayMode is "active")[↢ Current.]]<display|
+}]` `[((print: (find: _story where $char's player's quests's _story is "active", ..._displayStories)'s length))` `$cssDesc+(if: _displayMode is "active")[↢ Current.]]<display|
 </li>
 
 <li>(link-rerun: "Completed stories")[{
@@ -88,7 +143,7 @@ $cssColumnChild[
     (set: _displayMode to "completed")
     <!--update-->
     _updateCode
-}]` `[$cssDesc+(if: _displayMode is "completed")[↢ Current.]]<display|
+}]` `[((print: (find: _story where $char's player's quests's _story is "completed", ..._displayStories)'s length))` `$cssDesc+(if: _displayMode is "completed")[↢ Current.]]<display|
 </li>
 
 <li>(link-rerun: "Failed stories")[{
@@ -96,9 +151,8 @@ $cssColumnChild[
     (set: _displayMode to "failed")
     <!--update-->
     _updateCode
-}]` `[$cssDesc+(if: _displayMode is "failed")[↢ Current.]]<display|
+}]` `[((print: (find: _story where $char's player's quests's _story is "failed", ..._displayStories)'s length))` `$cssDesc+(if: _displayMode is "failed")[↢ Current.]]<display|
 </li>
-
 
 </ol>
 
@@ -177,7 +231,13 @@ $cssColumnChild[
 
 <!--heading (active)-->
 <h3 id="displayedList">_storiesTitle` `((upperfirst: _displayMode))</h3>
-(align: "=><=")+$cssDesc[_keyDesc]
+(align: "=><=")+$cssDesc+(css: "line-height: 1.2rem")[_keyDesc
+<br>
+''(plural: _displayStories's length, "story", "stories")''` `
+((color: yellow+orange)[(print: (find: _story where $char's player's quests's _story is "active", ..._displayStories)'s length)]` `(if: _displayMode is "active")+(text-style: "wavy-underline")[''active''](else:)[active],
+(color:green)[(print: (find: _story where $char's player's quests's _story is "completed", ..._displayStories)'s length)]` `(if: _displayMode is "completed")+(text-style: "wavy-underline")[''completed''](else:)[completed],
+(color:red)[(print: (find: _story where $char's player's quests's _story is "failed", ..._displayStories)'s length)]` `(if: _displayMode is "failed")+(text-style: "wavy-underline")[''failed''](else:)[failed])
+]
 <br>
 <!--parent 2: Display Cards-->
 $cssColumnParent[
@@ -185,55 +245,14 @@ $cssColumnParent[
 <!--build 2 lists (_listLeft, _listRight, which ought to be initialized already)-->
 (_funcLeftRight: _displayFiltered)
 
-<!--check if making something-->
-(set: _makingSomething to false)
-(if: (data-names: $char's player's timerCraft)'s length > 0 and _displayMode is "active")[(set: _makingSomething to true)]
-
 <!--empty?-->
 (set: _displayEmpty to true)
-(if: _displayFiltered's length > 0 or _makingSomething is true)[(set: _displayEmpty to false)]
+(if: _displayFiltered's length > 0)[(set: _displayEmpty to false)]
 
 <!--Child 2a: left column-->
 $cssColumnChild[
 
 (if: _displayEmpty is false)[{
-
-<!--generate "Making Something"-->
-(if: _makingSomething is true)[{
-    <!--create card-->
-    $cssBox[
-        <!--image-->
-        ($funcImage: "https://thefifthcity.wiki/w/images/a/a2/Dawnmachinegaz.png")
-        $cssBoxItem[
-            (color:yellow+orange)[⧗]` `''Things Being Made'' — You have (plural: (datanames: $char's player's timerCraft)'s length, "on-going synthesis job")` `at the following locations:
-            <!--scroll box-->$cssDesc+(css: "background: #615244;box-shadow: inset 0px 4px 8px rgba(0, 0, 0, 0.3);")+(box: "X", 5)[{
-            <ol style="margin-block-start: 0; padding-left: 1em">
-            (for: each _job, ...(datanames: $char's player's timerCraft))[{
-                <!--note: Format is (dm: "lab", (a: "item", amount, timer)), where _job represents the lab's passage name-->
-                
-                <!--load lab DM-->
-                (set: _labDM to (passage: _job))
-                <!--load job info (array)-->
-                (set: _jobInfo to $char's player's timerCraft's _job)
-                <!--load item DM-->
-                (set: _itemDM to (passage: "item." + _jobInfo's 1st))
-                
-                <!--print readout-->
-                <li style=" line-height: 1.5">''(print: _labDM's title):''` `
-                (print: _jobInfo's 2nd)` `
-                (print: _itemDM's id)($funcLogTip: "item.", _jobInfo's 1st)` `
-                <!--time-->
-                (if: _jobInfo's 3rd > 0)[((plural: _jobInfo's 3rd, "day")` `left)]
-                (else:)[(color: yellow+orange)[(Done!)]] 
-
-                </li>
-
-            }]<!--end of looping-->
-            </ol>
-            }]<!--end of scrollbox-->
-        ]<!--end of boxItem-->
-    ]<!--end of card/box-->
-}]
 
 <!--generate story cards-->
 (_funcStoryCard: _listLeft, _displayIcon)

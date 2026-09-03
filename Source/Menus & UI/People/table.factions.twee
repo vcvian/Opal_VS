@@ -1,0 +1,18 @@
+:: table.factions [static-storage]
+{=
+(metadata:
+    "imperial", (dm:
+        "id", "Imperials",
+        "desc", "Citizens whose families trace back to the Nurandahid heartlands.",
+        ),
+
+    "davehmar", (dm:
+        "id", "Davehmars",
+        "desc", "University magi - the most well-learned among the Nurandahids.",
+        ),
+
+    "familyBiz", (dm:
+    "id", "The Inrah Family Business",
+    "desc", "Those associated with the various Inrah family enterprises.",
+    ),
+)

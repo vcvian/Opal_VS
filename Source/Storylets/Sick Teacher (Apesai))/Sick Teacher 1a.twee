@@ -84,8 +84,8 @@ Thankfully, he cannot see you roll your eyes.
 <!--"spindle" convo, mode 3 (must exhaust all options)-->
 (set: $stuff's convoChoices to (dm:
      "\"<!--A-->Poisoned? It is a mere flux. Fluxes are to be expected from long boat trips; we were warned before.\"", "mereFlux",
-     "\"<!--B-->Who would want to poisoned you?\"", "whoWould",
-     "\"<!--C-->Then we ought to have a physician diagnose you and administer you an antidote.\"", "findPhysician",
+     "\"<!--B-->Who would want to poison you?\"", "whoWould",
+     "\"<!--C-->Then we ought to have a physician diagnose and administer you an antidote.\"", "findPhysician",
      "<!--D-->\"Then what do you want me to do?\"", "exitLink",
 ))
 
@@ -132,7 +132,7 @@ You can never tell if he is being serious about these things, but you have never
 
 <!--_exitLink. Note: this last temp var MUST ALWAYS be named "_exitLink" because the spindle macro expects that exact name-->
 (set: _exitLink to [{
-_line["Not you... My own body, by my own willpower... will fix itself. But it needs quickening... lest the Lady of Sabzam runs out of patience for us. I trust only... a simple tonic of Gor. Anything more... Who knows what they put in their complicated 'medicine' these days?
+_line["Not you... My own body, by my own willpower... will fix itself. But it needs to be quickened... lest the Lady of Sabzam runs out of patience for us. I trust only... a simple tonic of Gor. Anything more... Who knows what they put in their complicated 'medicine' these days?
 <br>
 "But I can't get up from this latrine... let alone leave this room... not without inviting mockery to myself... So it has to be you, unfortunately for me...
 <br>
@@ -165,7 +165,7 @@ _line["There is a circle of magi... davehmars... a school, here in Apesai. Find 
 Something tells you that he won't reimburse you even if you //don't// get scammed.
 <br>
 ($funcInnerConvo: (dm:
-     "\"<!--B-->Understood, professor. Meidicine is on the way. Just hold on.\"", "rightAway",
+     "\"<!--B-->Understood, professor. Medicine is on the way. Just hold on.\"", "rightAway",
 ))
 <br>
 }](whereStart2|

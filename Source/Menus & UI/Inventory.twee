@@ -9,8 +9,11 @@
 (set: _listItems to (a:))
 (set: _displayItems to (a:))
 (set: _keyList to (a:))
+
 (set: _invTitle to "All Items")
 (set: _keyDesc to "Everything you have with you.")
+(set: _pointer to "everything")
+
 (set: _displayDesc to false)
 (set: _displayTip to true)
 
@@ -68,75 +71,94 @@ $cssDesc[This screen shows ''items'' currently in your possession. You can also 
 
 <!--filter links-->
 ''Categories''
-<ol>
+<ol style="column-count: 2;">
 <li>(link-rerun: "All items")[{
 	<!--set title-->
 	(set: _invTitle to "All Items")
 	<!--set keyDesc-->
 	(set: _keyDesc to "Everything you have with you.")
+	<!--set _pointer-->
+	(set: _pointer to "everything")
 	<!--set _displayItems-->
 	(set: _displayItems to _listItems)
 	<!--update-->
 	_updateCode
-}] $cssDesc[(Everything.)]
+}]` `[(if: _pointer is "everything")+$cssDesc[↢ Current.]]<display|
 </li>
 
-(if: _keyList contains "resource")[
 <li>(link-rerun: "Resources")[{
 	<!--set title-->
 	(set: _invTitle to "Resources")
 	<!--set keyDesc-->
 	(set: _keyDesc to "In the end, they are all types of fuel for machines magical, biological, or economic.")
+	<!--set _pointer-->
+	(set: _pointer to "resource")
 	<!--set _displayItems-->
 	(set: _displayItems to (find: _item where (passage: "item."+_item)'s key contains "resource", ..._listItems))
 	<!--update-->
 	_updateCode
-}] $cssDesc[(Money, fuel, and supplies.)]
+}]` `[(if: _pointer is "resource")+$cssDesc[↢ Current.]]<display|
 </li>
-]
 
-(if: _keyList contains "ingredient")[
+
 <li>(link-rerun: "Ingredients")[{
 	<!--set title-->
 	(set: _invTitle to "Ingredients")
 	<!--set keyDesc-->
 	(set: _keyDesc to "Fodder for ''elementalysis''.")
+	<!--set _pointer-->
+	(set: _pointer to "ingredient")
 	<!--set _displayItems-->
 	(set: _displayItems to (find: _item where (passage: "item."+_item)'s key contains "ingredient", ..._listItems))
 	<!--update-->
 	_updateCode
-}] $cssDesc[(Things whose elements can easily be extracted.)]
+}]` `[(if: _pointer is "ingredient")+$cssDesc[↢ Current.]]<display|
 </li>
-]
 
-(if: _keyList contains "craftable")[
-<li>(link-rerun: "Products")[{
+
+<li>(link-rerun: "Magical Products")[{
 	<!--set title-->
-	(set: _invTitle to "Products")
+	(set: _invTitle to "Magical Products")
 	<!--set keyDesc-->
 	(set: _keyDesc to "Wondrous things ''synthesized'' from magic.")
+	<!--set _pointer-->
+	(set: _pointer to "craftable")
 	<!--set _displayItems-->
 	(set: _displayItems to (find: _item where (passage: "item."+_item)'s key contains "craftable", ..._listItems))
 	<!--update-->
 	_updateCode
-}] $cssDesc[(Made from magic.)]
+}]` `[(if: _pointer is "craftable")+$cssDesc[↢ Current.]]<display|
 </li>
-]
 
 
-(if: _keyList contains "document")[
 <li>(link-rerun: "Documents")[{
 	<!--set title-->
 	(set: _invTitle to "Documents")
 	<!--set keyDesc-->
 	(set: _keyDesc to "Documents in your possession can be read via the ''(print: (passage: \"S: Reading (Activity)\")'s title)'' story, available wherever you are staying.")
+	<!--set _pointer-->
+	(set: _pointer to "document")
 	<!--set _displayItems-->
 	(set: _displayItems to (find: _item where (passage: "item."+_item)'s key contains "document", ..._listItems))
 	<!--update-->
 	_updateCode
-}] $cssDesc[(Books, letters, papers, etc.)]
+}]` `[(if: _pointer is "document")+$cssDesc[↢ Current.]]<display|
 </li>
-]
+
+
+<li>(link-rerun: "Other")[{
+	<!--set title-->
+	(set: _invTitle to "Other")
+	<!--set keyDesc-->
+	(set: _keyDesc to "The rest, if there is any.")
+	<!--set _pointer-->
+	(set: _pointer to "other")
+	<!--set _displayItems-->
+	(set: _displayItems to (find: _item where (passage: "item."+_item)'s key does not contain "document" and "craftable" and "ingredient" and "resource", ..._listItems))
+	<!--update-->
+	_updateCode
+}]` `[(if: _pointer is "other")+$cssDesc[↢ Current.]]<display|
+</li>
 
 
 </ol>
@@ -182,19 +204,22 @@ $cssBox+(css: "box-shadow: inset 0px 4px 8px rgba(0, 0, 0, 0.3); align-items: fl
 
 <!--print list based on _displayItems-->
 <ol>
-(for: each _item, ..._displayItems)[{
-	<!--load item's DM-->
-	(set: _itemDM to (passage: "item." + _item))
+(if: _displayItems's length > 0)[
+	(for: each _item, ..._displayItems)[{
+		<!--load item's DM-->
+		(set: _itemDM to (passage: "item." + _item))
 
-	<!--item-->
-	<li>''(print: _itemDM's id)($funcLogTip: "item.", _item) ((print: $char's player's inv's _item))''
-	<!--desc-->
-	(if: _displayDesc is true)[` `—` `(print: _itemDM's desc)]
-	<!--tip-->
-	(if: _displayTip is true)[<br>$cssDesc[↪` `(print: _itemDM's tip)]
-	</li>]
+		<!--item-->
+		<li>''(print: _itemDM's id)($funcLogTip: "item.", _item) ((print: $char's player's inv's _item))''
+		<!--desc-->
+		(if: _displayDesc is true)[` `—` `(print: _itemDM's desc)]
+		<!--tip-->
+		(if: _displayTip is true)[<br>$cssDesc[↪` `(print: _itemDM's tip)]
+		</li>]
 
-}]
+	}]
+]
+(else:)[$cssDesc[(Empty.)]]
 </ol>
 
 ]<!--end of main list box-->

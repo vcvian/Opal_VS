@@ -1,7 +1,9 @@
 :: Profile [UI] {"position":"2300,2400","size":"100,100"}
 {=
 
-(metadata: "UI", true,)
+(metadata:
+	"UI", true,
+)
 
 ($funcUITopBar:)
 
@@ -9,8 +11,25 @@
 (set: _listAtt to (a:))
 (set: _listTemp to (a:))
 
-(set: _displayAtt to (a:))
-(set: _displayTemp to (a:))
+(set: _listAttFiltered to (a:))
+(set: _listTempFiltered to (a:))
+
+(set: _displayAtt to true)
+(set: _displayTemp to true)
+(set: _displayDesc to false)
+(set: _displayTip to true)
+
+(set: _selfTitle to "Everything About You")
+(set: _keyDesc to "All that you are at this moment.")
+(set: _pointer to "everything")
+
+<!--default: Show everything-->
+<!--att-->
+(set: _listAtt to (datanames: $char's player's att))
+(set: _listAttFiltered to _listAtt)
+<!--temp-->
+(set: _listTemp to (datanames: $char's player's temp))
+(set: _listTempFiltered to _listTemp)
 
 
 <!--parent-->
@@ -40,11 +59,116 @@ $cssDesc[This screen shows ''things'' about you: Things that do not easily chang
 <br>
 
 
+<!--default update code-->
+(set: _updateCode to [{
+	<!--update-->
+	(t8n: "dissolve")(rerun: ?display)
+	<!--scroll up to page's top-->
+    <script>
+	requestAnimationFrame(() => {
+		document.getElementById("displayedList").scrollIntoView({
+			behavior: "smooth",
+			block: "start"
+		});
+	});
+	</script>
+}])
+
+
 <!--filter links-->
 ''Categories''
-<ol>
+<ol style="column-count: 2;">
+<li>(link-rerun: "Everything")[{
+	<!--show both categories-->
+	(set: _displayAtt to true)
+	(set: _displayTemp to true)
+	<!--reset filtered lists-->
+	(set: _listAttFiltered to _listAtt)
+	(set: _listTempFiltered to _listTemp)
+	<!--set _selfTitle and _keyDesc-->
+	(set: _selfTitle to "Everything About You")
+	(set: _keyDesc to "All that you are at this moment.")
+	(set: _pointer to "everything")
+	<!--update-->
+	_updateCode
+}]` `[(if: _pointer is "everything")+$cssDesc[↢ Current.]]<display|</li>
+
+<li>(link-rerun: "Cognitive")[{
+	<!--show both categories-->
+	(set: _displayAtt to true)
+	(set: _displayTemp to true)
+	<!--reset filtered lists-->
+	(set: _listAttFiltered to (find: _thing where (passage: "att." + _thing)'s key contains "memory" or "knowledge", ..._listAtt))
+	(set: _listTempFiltered to (find: _thing where (passage: "temp." + _thing)'s key contains "memory" or "knowledge", ..._listTemp))
+	<!--set _selfTitle and _keyDesc-->
+	(set: _selfTitle to "Cognitive Functions")
+	(set: _keyDesc to "Things of which the mind can behold.")
+	(set: _pointer to "cognitive")
+	<!--update-->
+	_updateCode
+}]` `[(if: _pointer is "cognitive")+$cssDesc[↢ Current.]]<display|</li>
+
+<li>(link-rerun: "Physical")[{
+	<!--show both categories-->
+	(set: _displayAtt to true)
+	(set: _displayTemp to true)
+	<!--reset filtered lists-->
+	(set: _listAttFiltered to (find: _thing where (passage: "att." + _thing)'s key contains "body", ..._listAtt))
+	(set: _listTempFiltered to (find: _thing where (passage: "temp." + _thing)'s key contains "body", ..._listTemp))
+	<!--set _selfTitle and _keyDesc-->
+	(set: _selfTitle to "Physical Matters")
+	(set: _keyDesc to "Pertaining to the body and its parts.")
+	(set: _pointer to "body")
+	<!--update-->
+	_updateCode
+}]` `[(if: _pointer is "body")+$cssDesc[↢ Current.]]<display|</li>
 
 
+<li>(link-rerun: "Magical")[{
+	<!--show both categories-->
+	(set: _displayAtt to true)
+	(set: _displayTemp to true)
+	<!--reset filtered lists-->
+	(set: _listAttFiltered to (find: _thing where (passage: "att." + _thing)'s key contains "magic" or "element", ..._listAtt))
+	(set: _listTempFiltered to (find: _thing where (passage: "temp." + _thing)'s key contains "magic" or "element", ..._listTemp))
+	<!--set _selfTitle and _keyDesc-->
+	(set: _selfTitle to "Magic")
+	(set: _keyDesc to "The mind holds great potential over the external world.")
+	(set: _pointer to "magic")
+	<!--update-->
+	_updateCode
+}]` `[(if: _pointer is "magic")+$cssDesc[↢ Current.]]<display|</li>
+
+
+<li>(link-rerun: "Social")[{
+	<!--show both categories-->
+	(set: _displayAtt to true)
+	(set: _displayTemp to true)
+	<!--reset filtered lists-->
+	(set: _listAttFiltered to (find: _thing where (passage: "att." + _thing)'s key contains "social" or "access", ..._listAtt))
+	(set: _listTempFiltered to (find: _thing where (passage: "temp." + _thing)'s key contains "social" or "access", ..._listTemp))
+	<!--set _selfTitle and _keyDesc-->
+	(set: _selfTitle to "Social Standing")
+	(set: _keyDesc to "How various groups think of you, and what they allow you to do.")
+	(set: _pointer to "social")
+	<!--update-->
+	_updateCode
+}]` `[(if: _pointer is "social")+$cssDesc[↢ Current.]]<display|</li>
+
+<li>(link-rerun: "Progress")[{
+	<!--show both categories-->
+	(set: _displayAtt to true)
+	(set: _displayTemp to true)
+	<!--reset filtered lists-->
+	(set: _listAttFiltered to (find: _thing where (passage: "att." + _thing)'s key contains "progress", ..._listAtt))
+	(set: _listTempFiltered to (find: _thing where (passage: "temp." + _thing)'s key contains "progress", ..._listTemp))
+	<!--set _selfTitle and _keyDesc-->
+	(set: _selfTitle to "Progress")
+	(set: _keyDesc to "The state of certain on-going stories.")
+	(set: _pointer to "progress")
+	<!--update-->
+	_updateCode
+}]` `[(if: _pointer is "progress")+$cssDesc[↢ Current.]]<display|</li>
 
 
 </ol>
@@ -52,17 +176,54 @@ $cssDesc[This screen shows ''things'' about you: Things that do not easily chang
 
 
 <!--display options-->
+<br>
 ''Display Options''
-<ol>
+<ol style="column-count: 2;">
+''Things''
 
+<li>(link-rerun: "Stable things only")[{
+	<!--switch-->
+	(set: _displayAtt to true)
+	(set: _displayTemp to false)
+	<!--update-->
+	_updateCode
+}]|display>[$cssDesc+(if: _displayAtt is true and _displayTemp is false)[↢ Current.]]</li>
 
+<li>(link-rerun: "Fleeting things only")[{
+	<!--switch-->
+	(set: _displayAtt to false)
+	(set: _displayTemp to true)
+	<!--update-->
+	_updateCode
+}]|display>[$cssDesc+(if: _displayAtt is false and _displayTemp is true)[↢ Current.]]</li>
 
+<li>(link-rerun: "Both")[{
+	<!--switch-->
+	(set: _displayAtt to true)
+	(set: _displayTemp to true)
+	<!--update-->
+	_updateCode
+}]|display>[$cssDesc+(if: _displayAtt is true and _displayTemp is true)[↢ Current.]]</li>
+
+''Informnation''
+<li>(link-rerun: "Show full description?")[{
+	<!--switch setting-->
+	(if: _displayDesc is false)[(set: _displayDesc to true)]
+	(else:)[(set: _displayDesc to false)]
+	<!--update-->
+	_updateCode
+}] [$cssDesc[(Currently ''_displayDesc[shown](else:)[hidden]''.)]]<display|</li>
+
+<li>(link-rerun: "Show tip?")[{
+	<!--switch setting-->
+	(if: _displayTip is false)[(set: _displayTip to true)]
+	(else:)[(set: _displayTip to false)]
+	<!--update-->
+	_updateCode
+}] [$cssDesc[(Currently ''_displayTip[shown](else:)[hidden]''.)]]<display|</li>
 
 </ol>
-<!--end o
 <!--end of display options-->
-
-<!--end of info and menu links-->
 
 
 ]<!--end of Profile & menus-->
@@ -70,72 +231,100 @@ $cssDesc[This screen shows ''things'' about you: Things that do not easily chang
 
 <!--display-->
 $cssColumnChild[
-Display
-]<!--end of display-->
-]<!--end of parent-->
 
-<!--old-->
+
+<!--macro that generates att-->
+(set: _funcAtt to (macro: array-type _listAtt, [(out:)[{
+	(if: _listAtt's length > 0)[
+		<!--loop-->
+		(for: each _att, ..._listAtt)[{
+			<!--load full att DM-->
+			(set: _attDM to (passage: "att." + _att))
+			<!--print list entry-->
+			<li>''(print: _attDM's id)'' ($funcLogTip: "att.", _att)` `((print: $char's player's att's _att))
+			<!--print desc-->
+			(if: _displayDesc is true)[` `—` `(print: _attDM's desc)]
+			<!--print tip-->
+			(if: _displayTip is true)+$cssDesc[<br>↪` `(print: _attDM's tip)]
+			</li>
+		}]<!--end of looping-->
+	]<!--end of if not empty-->
+	<!--else, say that it's empty-->
+	(else:)[$cssDesc[(Empty.)]]
+}]]))
+
+<!--macro that generates temp-->
+(set: _funTemp to (macro: array-type _listTemp, [(out:)[{
+	(if: _listTemp's length > 0)[
+		<!--loop-->
+		(for: each _temp, ..._listTemp)[{
+			<!--load full temp DM-->
+			(set: _tempDM to (passage: "temp." + _temp))
+			<!--print list entry-->
+			<li>''(print: _tempDM's id)'' ($funcLogTip: "temp.", _temp)` `((print: $char's player's temp's _temp's 1st))
+			<!--print desc-->
+			(if: _displayDesc is true)[` `—` `(print: _tempDM's desc)]
+			<!--print tip-->
+			(if: _displayTip is true)+$cssDesc[<br>↪` `(print: _tempDM's tip)]
+			<!--calculate time left in stack-->
+			(set: _timeLeftStack to ($char's player's temp's _temp's 1st - 1) * _tempDM's timer)
+			(if: _timeLeftStack < 0)[(set: _timeLeftStack to 0)]
+			<!--timer indicator-->
+			$cssDesc[<br>↪` `(color:red+purple)[⧗ Fading...] (plural: $char's player's temp's _temp's 2nd, "day") left (total (plural: $char's player's temp's _temp's 2nd + _timeLeftStack, "day")).]
+			</li>
+		}]<!--end of looping-->
+	]<!--end of if not empty-->
+	<!--else, say that it's empty-->
+	(else:)[$cssDesc[(Empty.)]]
+}]]))
+
+
+<!--?display hook, updated by filter links-->
 [
-''Currently at (print: $place's location)''
+
+
+<!--count types-->
+(set: _count to 0)
+(if: _displayAtt is true)[(set: _count to it + _listAttFiltered's length)]
+(if: _displayTemp is true)[(set: _count to it + _listTempFiltered's length)]
+
+<h3 id="displayedList">_selfTitle</h3>
+(align: "=><=")+$cssDesc+(css: "line-height: 1.2rem")[_keyDesc<br>
+(if: _displayAtt is true and _displayTemp is true)[Fleeting & Stable:]
+(elseif: _displayAtt is false and _displayTemp is true)[Fleeting only:]
+(elseif: _displayAtt is true and _displayTemp is false)[Stable only:]
+` `''(plural: _count, "type").'']
 <br>
-<!--Player profile-->
-$cssBox[\
-	(print: "<img style=\"margin: 20px\" width=\"150px\" src=\"" + "https://fallenlondon.wiki/w/images/8/85/Bohogirl1.png" + "\">")\
-	$cssBoxItem[\
-    <h4>(print: $char's player's customName) $cssDesc[(print: $char's player's title)]</h4>
-    ''Health'': (print: $char's player's health's 1st)/(print: $char's player's health's 2nd)
-    ]\
-]
-<!--end of player profile-->
+<br>
+<!--scroll box-->
+$cssBox+(css: "flex-direction: column; box-shadow: inset 0px 4px 8px rgba(0, 0, 0, 0.3); align-items: flex-start; justify-content: flex-start;")+(box: "X", 45)[
+<ol>
 
-<!--Resources-->
-$cssBox[\
-$cssBoxItem[\
-	<ul style="list-style-type:none;">
-	<li>''(print: (passage: "item.supplies")'s id)'': ($funcCheckExists: $char's player's inv, "supplies", 0)
-    <li>''(print: (passage: "item.rial")'s id)'': ($funcCheckExists: $char's player's inv, "rial", 0)
-	<li>''(print: (passage: "item.ghan")'s id)'': ($funcCheckExists: $char's player's inv, "ghan", 0)
-	<li>''(print: (passage: "item.keshi")'s id)'': ($funcCheckExists: $char's player's inv, "keshi", 0)
-	</ul>
-]\
-$cssBoxItem[\
-	<ul style="list-style-type:none;">
-	<li>''(print: (passage: "att.at")'s id)'': ($funcCheckExists: $char's player's att, "at", 0)
-	<li>''(print: (passage: "att.ab")'s id)'': ($funcCheckExists: $char's player's att, "ab", 0)
-	<li>''(print: (passage: "att.gor")'s id)'': ($funcCheckExists: $char's player's att, "gor", 0)
-	<li>''(print: (passage: "att.rokh")'s id)'': ($funcCheckExists: $char's player's att, "rokh", 0)
-	<li>''(print: (passage: "att.zam")'s id)'': ($funcCheckExists: $char's player's att, "zam", 0)
-	</ul>
-]\
+<!--displayTemp-->
+(if: _displayTemp is true)[
+<h4>Fleeting Things</h4>
+(_funTemp: _listTempFiltered)
 ]
-<!--end of Resources-->
+<!--end of if displayTemp is true-->
 
-<!--Conditions-->
-(if: (data-names: $conditionTimer)'s length > 0)[\
-<div style="padding: 20px;">\
-	<details open>\
-	<summary>''Temporary Conditions''</summary>\
-	(for: each _conID, ...(data-names: $conditionTimer))[\
-		<div style="padding:10px">''(print: $conditions's _conID's id)'' — (print: $conditions's _conID's desc)
-		$cssDesc[<br>		↪  (print: $conditions's _conID's timerDesc) (plural: $conditionTimer's _conID, "day") left.]
-        </div>
-	]\
-	</details>
-</div>
+<!--line break if shown both-->
+(if: _displayAtt is true and _displayTemp is true)[
+<br>
+<br>
 ]
 
-<!--Attributes-->
-<div style="padding: 20px;">
-<details open>
-<summary>''Attributes''</summary>
-(for: each _att, ...(data-names: $char's player's att))[\
-	(if: $char's player's att's _att > 0)[\
-    	<!--Load att's DM-->\
-        (set: _attDM to (passage: "att."+_att))\
-		<div style="padding:10px">''(print: _attDM's id)'' ((print: $char's player's att's _att)) — (print: _attDM's desc)
-        </div>
-	]\
-]\
-</details>
-</div>
-<!--end of Attributes-->](old|
+<!--displayAtt-->
+(if: _displayAtt is true)[
+<h4>Stable Things</h4>
+
+(_funcAtt: _listAttFiltered)
+]
+<!--end of displayAtt-->
+
+</ol>
+]<!--end of scroll box-->
+
+]<display|<!--end of ?display hook-->
+
+]<!--end of display child-->
+]<!--end of parent-->

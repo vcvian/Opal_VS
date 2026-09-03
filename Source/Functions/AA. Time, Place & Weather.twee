@@ -71,7 +71,7 @@
 		<!--Text-->
 		$cssBoxItem[$cssDesc[
         	<!--By default, uses the table.weather[location], but a different table (table.weatherTraveling) is used when traveling-->
-        	(if: (passage:)'s name is not "Traveling")[(print: _weatherData's text's ($place's weather))]
+        	(if: $place's traveling is false)[(print: _weatherData's text's ($place's weather))]
             (else:)[(print: _weatherTravelText's ($place's weather))]
         ]]
 	]</div>
@@ -90,7 +90,7 @@
 		(replace: ?location)[somewhere between ''(print: $place's travelingFrom)'' and ''(print: $place's travelingTo)'']\
 	]\
 	(else:)[\
-		(replace: ?location)[(print: $place's location)]\
+		(replace: ?location)[''(print: $place's location)'']\
 	]\
 	(replace: ?prefecture)[(print: $place's prefecture)]\
 ]]))

@@ -3,6 +3,9 @@
 
 (metadata: "title", "Passage of Time")
 
+<!--Note to self: Why "mock"? It was supposed to be "setDay", but then I was testing out new codes in a new passage called "mockDay". Long story short, I now use only "mockDay" and has deleted the other passage.-->
+
+
 <!--Change the weather-->
 ($funcWeatherToday:)
 
@@ -40,4 +43,5 @@
 (set: $stuff to (dm:))
 (set: $stuffDaily to (dm:))
 
-(link: "Go to nextDay")[(goto: "nextDay"))]
+<!--redirect-->
+(goto: "nextDay")

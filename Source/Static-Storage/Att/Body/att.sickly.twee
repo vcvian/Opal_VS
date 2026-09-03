@@ -3,7 +3,7 @@
 
 (metadata: 
 	"id", [Body: Ill-Health],
-    "key", (a: "attribute", "health", ),
+    "key", (a: "body", "health", ),
     "img", "",
     "desc", [Your body protests the long journey. It's been doing that a lot.],
     "tip", [Each (print: (passage: "att.sickly")'s id) ''decreases max health by 1.''],

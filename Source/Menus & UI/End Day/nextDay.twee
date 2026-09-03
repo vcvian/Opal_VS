@@ -1,0 +1,72 @@
+:: nextDay [effect] {"position":"2300,2725","size":"100,100"}
+{=
+
+<!--parent-->
+$cssColumnParent[
+
+<!--child (summary log)-->
+$cssColumnChild[
+
+<h4>End-Of-Day Summary</h4>
+<br>
+
+$cssBox+(css: "box-shadow: inset 0px 4px 8px rgba(0, 0, 0, 0.3); align-items: flex-start; justify-content: flex-start;")+(box: "X", 15)[{
+	<ol>
+	(for: each _logItem, ...$log)[
+    	<li> <span style="font-size: 80%">_logItem</span></li>
+	]
+	</ol>
+}]<!--end of box log-->
+]<!--end of child (summary log)-->
+
+
+<!--child (info & onward)-->
+$cssColumnChild[
+
+<h4 style="column-count: 2;">A New Day Dawns
+
+<div style="text-align: right;">(link: "Onward ⇢")[{
+	(set: $logLong to it + (dm: $time's dayCount-1, $log))
+	(set: $log to (a:))
+	(goto: $place's stay)
+}]</div>
+
+</h4>
+
+<br>
+
+<!--time card/box-->
+$cssBox[
+    	($funcImage: "https://fallenlondon.wiki/w/images/3/30/Bookpurple.png")
+        $cssBoxItem[''Time Has Crawled Forward''<br>
+		$cssDesc[It is now ''(display:"table.dayNames")'',
+		<br>''(display:"table.weekNames")'',
+		<br>''(display:"table.monthNames")'',
+		<br>year ''(print:$time's year)''.]
+		]
+    ]
+<!--end of time card/box-->
+
+<!--weather-->
+($funcWeatherBox:)
+
+<!--$dice-->
+$cssBox[
+    	($funcImage: "https://thefifthcity.wiki/w/images/4/4c/Dice.png?20250219072406")
+         $cssBoxItem[''Fortune Shifts Her Weight''<br>$cssDesc[Today, your lucky number is: ($funcNumToNurango: $dice).]]
+    ]
+<!--end of $dice-->
+
+
+<br>
+---
+<div style="text-align: right;">(link: "Onward ⇢")[{
+	(set: $logLong to it + (dm: $time's dayCount-1, $log))
+	(set: $log to (a:))
+	(goto: $place's stay)
+}]</div>
+
+]<!--end of child (info & onward)-->
+
+
+]<!--end of parent-->

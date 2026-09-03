@@ -1,0 +1,39 @@
+:: att.alive [static-storage]
+{=
+
+(metadata: 
+	"id", [Body: Alive],
+    "key", (a: "body", "health",),
+    "value", (a: 1, 0, 0, 0, 0, 0),
+    "img", "",
+    "desc", [The precondition to a life well-lived is being alive at all.],
+    "tip", [{
+
+<!--initialize temp var (to do color gradient later)-->
+(set: _healthCurrent to $char's player's health's 1st)
+(set: _healthMax to $char's player's health's 2nd)
+
+<!--tip text-->
+Current ''Health'': ($cssChanceColor:(str:_healthCurrent)+"`/`"+(str:_healthMax),_healthCurrent,_healthMax).
+
+<!--if overhealed-->
+(if: _healthCurrent > _healthMax)[` `Warning: <span style="font-size: 1.2em; padding-top: 0.2em; padding-bottom: 0.2em;" class="rainbow">''OVERHEALED!''</span>
+    <!--?linkColorOverride hook-->
+    [
+        (text-style: "superscript")[
+            (link-rerun: "?")[{
+            (dialog: [<span style="font-size: 1.2em; padding-top: 0.2em; padding-bottom: 0.2em;" class="rainbow">''OVERHEALED!''</span><br>There may be unintended consequences.], "✓")
+            }]<!--end of link-->
+        ]<!--end of superscript-->
+    ]<linkColorOverride|
+    (enchant: ?linkColorOverride, (color: #2FA4D7))
+
+]<!--end of if overhealed-->
+` `If your ''Health'' drops to 0 or below, your journey will come to a premature end.
+
+<!--tip text ends-->
+    }],
+    "gainText", [],
+    "lossText", [],
+
+)

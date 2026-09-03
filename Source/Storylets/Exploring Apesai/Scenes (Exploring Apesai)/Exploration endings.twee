@@ -41,7 +41,7 @@ $place's weather is "sunny", "Looking up, you see the sun reddening in the horiz
 <br>
 Though Apesai has won today, it isn't a complete defeat for you. You've gotten better acquainted with this city, even if you can never know it fully. Perhaps next time (and soon, lest you start forgetting the side streets and the hidden alleyways), you'll do better.
 <br>
-$cssDesc[You gain a temporary ''(print: (passage: "temp.impressionApesai")'s id)'', which will increase your chances next time you explore Apesai.]
+$cssDesc[You gain a temporary ''(print: (passage: "temp.impressionApesai")'s id)''($funcLogTip: "temp.", "impressionApesai"), which will increase your chances next time you explore Apesai.]
 <br>
 ---
 
@@ -85,7 +85,7 @@ But before you can call out to your peers, a bell tolls, and they retreat inside
 <br>
 The tower will still be here tomorrow. You know where it is now.
 <br>
-$cssDesc[You gain ''(print: (passage: "att.knowApesaiLighthouse")'s id)'', allowing you to quickly travel here (via the ''"Getting Around Apesai"'' menu) without having to search for it like you just did.]
+$cssDesc[You gain ''(print: (passage: "att.knowApesaiLighthouse")'s id)''($funcLogTip: "att.", "knowApesaiLighthouse"), allowing you to quickly travel here (via the ''"Getting Around Apesai"'' menu) without having to search for it like you just did.]
 <br>
 ---
 
@@ -126,7 +126,7 @@ Placed at the crossroads of civilizations, the Apesai branch of the Grand Exchan
 <br>
 The thought of joining that crowd makes your head spin, let alone having to put up with hawkers. You've been wandering the entire afternoon. It's time to rest; at least you know how to get here now, if you ever crave the thrill of being swindled.
 <br>
-$cssDesc[You gain ''(print: (passage: "att.knowApesaiGE")'s id)'', allowing you to quickly travel here (via the ''"Getting Around Apesai"'' menu) without having to search for it like you just did.]
+$cssDesc[You gain ''(print: (passage: "att.knowApesaiGE")'s id)''($funcLogTip: "att.", "knowApesaiGE"), allowing you to quickly travel here (via the ''"Getting Around Apesai"'' menu) without having to search for it like you just did.]
 <br>
 ---
 
@@ -169,7 +169,7 @@ This shift has been going on everywhere in the empire for nearly a century now. 
 <br>
 As far as you know, Askava remains untamed. The governor of Askava has his work cut out for him. And so do you, but the day is ending, and you need your rest. Whatever business you have with the local government, you can always come back later.
 <br>
-$cssDesc[You gain ''(print: (passage: "att.knowApesaiCourt")'s id)'', allowing you to quickly travel here (via the ''"Getting Around Apesai"'' menu) without having to search for it like you just did.]
+$cssDesc[You gain ''(print: (passage: "att.knowApesaiCourt")'s id)''($funcLogTip: "att.", "knowApesaiCourt"), allowing you to quickly travel here (via the ''"Getting Around Apesai"'' menu) without having to search for it like you just did.]
 <br>
 ---
 
@@ -207,7 +207,7 @@ Gathering in the courtyard are dozens of people in traveling gears - some pilgri
 <br>
 At least you know where the Traveler's Society is. You can always come back later.
 <br>
-$cssDesc[You gain ''(print: (passage: "att.knowApesaiTraveler")'s id)'', allowing you to quickly travel here (via the ''"Getting Around Apesai"'' menu) without having to search for it like you just did.]
+$cssDesc[You gain ''(print: (passage: "att.knowApesaiTraveler")'s id)''($funcLogTip: "att.", "knowApesaiTraveler"), allowing you to quickly travel here (via the ''"Getting Around Apesai"'' menu) without having to search for it like you just did.]
 <br>
 ---
 
@@ -253,7 +253,7 @@ How did you get here? You are flanked by two-, three-stories condominiums, all i
 <br>
 And where are the city guards? Burly men with pale face powder are laughing and glaring at you, and is that child breathing fire from his his mouth? Someone yells at you in a foreign tongue, but you cannot tell if it is a threat or an invitation. The sun is setting. You should get out of here.
 <br>
-$cssDesc[You gain ''1 (print: (passage: "att.knowApesaiPleasure")'s id)'', but it is not enough yet to find your way back here.]
+$cssDesc[You gain ''1 (print: (passage: "att.knowApesaiPleasure")'s id)''($funcLogTip: "att.", "knowApesaiPleasure"), but it is not enough yet to find your way back here.]
 <br>
 ---
 (link: "Go back the way you came. That's it for today.")[
@@ -273,7 +273,7 @@ This must be the island's Yavanid enclave - the so-called "Pleasure Quarter" you
 <br>
 And they're all looking at you - the drab and nervous imperial. You should head back; it's late. At least you can now find your way back to the Pleasure Quarter, for whatever reason.
 <br>
-$cssDesc[You gain ''1 more (print: (passage: "att.knowApesaiPleasure")'s id)'', allowing you to quickly travel here (via the ''"Getting Around Apesai"'' menu) without having to search for it like you just did.]
+$cssDesc[You gain ''1 more (print: (passage: "att.knowApesaiPleasure")'s id)''($funcLogTip: "att.", "knowApesaiPleasure"), allowing you to quickly travel here (via the ''"Getting Around Apesai"'' menu) without having to search for it like you just did.]
 <br>
 ---
 (link: "Go back and rest. It has been a long day.")[

@@ -1,8 +1,147 @@
 :: Depart from Apesai 1a {"position":"4475,3100","size":"100,100"}
 {=
 
-(metadata: "title", "Departing from Apesai",)
+(metadata:
+    "title", "Hiring a Ferry",
+    "cardDesc", "Your papers are cleared. Now, the money..."
+)
 
+
+$cssColumnParent[
+
+$cssColumnChild[
+	$cssBox[
+    	($funcImage: (passage: "S: Depart from Apesai")'s img)
+         $cssBoxItem[''(print: (passage:)'s title )''<br>(print: (passage:)'s cardDesc)]
+    ]
+]<!--end child 1-->
+
+
+$cssColumnChild[
+
+<!--determine sailor (should be the same as the previous passage, since $dice is stable within the same day)-->
+(set: _whichSailor to "genericSailor1")
+(cond:
+    $dice <= 33, [(set: _whichSailor to "genericSailor2")],
+    $dice <= 67, [(set: _whichSailor to "genericSailor3")],
+    [(set: _whichSailor to "genericSailor1")],
+)
+
+<!--enchant speaker lines-->
+($funcNPCSpeakManual: _whichSailor)
+
+<!--line shorthand-->
+(set: _line to (hook: _whichSailor + "Line"))
+
+<!--determine destination-->
+(set: _destination to $stuff's destinationFromApesai)
+
+<!--determine price-->
+(set: _price to (cond:
+    _destination is "Rokhab", 25,
+    _destination is "Navveh", 100,
+    _destination is "Zirab", 200,
+))
+
+<!--main content-->
+
+<!--paper check line-->
+(cond:
+_whichSailor is "genericSailor1", [{
+_line["A //davehmar//? Fancy that,"] she chuckles. Sailors like her must find it funny that a university magus is taking such pedestrian transportation. _line["You'll find our humble ship as capable - and as cozy - as any. Guild-guaranteed."]
+<br>
+She hands you back your papers.
+<br>
+}],
+
+_whichSailor is "genericSailor2", [{
+_line["Very well, //magus//,"] the tattooed sailor nods deferentially, having spotted your stated vocation among the wall of text. _line["Your papers seem to be in order."]
+<br>
+He hands them back to you.
+<br>
+}],
+
+_whichSailor is "genericSailor3", [{
+The bejeweled man looks at your papers sideways, quite literally. It is as if he has not gotten used to written Nurango just yet, though he speaks it just fine.
+<br>
+_line["Eh, blue-wax seal - good enough for me,"] he says, handing it back to you. _line["Just a humble promoter, I am."]
+}],
+)
+<!--end of paper check line-->
+
+
+
+
+<!--comment about destination and price-->
+<!--if Rokhab-->
+(if: _destination is "Rokhab")[{
+(cond:
+_whichSailor is "genericSailor1", [{
+
+}],
+
+_whichSailor is "genericSailor2", [{
+
+}],
+
+_whichSailor is "genericSailor3", [{
+
+}],
+)
+}]
+<!--end of Rokhab-->
+
+
+<!--if Navveh-->
+(if: _destination is "Navveh")[{
+(cond:
+_whichSailor is "genericSailor1", [{
+
+}],
+
+_whichSailor is "genericSailor2", [{
+
+}],
+
+_whichSailor is "genericSailor3", [{
+
+}],
+)    
+}]
+<!--end of Navveh-->
+
+
+<!--if Navveh-->
+(if: _destination is "Navveh")[{
+(cond:
+_whichSailor is "genericSailor1", [{
+
+}],
+
+_whichSailor is "genericSailor2", [{
+
+}],
+
+_whichSailor is "genericSailor3", [{
+
+}],
+)    
+}]
+<!--end of Navveh-->
+<!--end of comment about destination and price-->
+
+
+<!--price tip text-->
+$cssDesc[Sailing to ''_destination'' from Apesai will cost you ''_price rial''.]
+<!--end price tip text-->
+
+<!--end of main content-->
+]<!--end child 2-->
+]<!--end parent-->
+
+
+<!--old-->
+[
 (Hiring a boat to the Rokhab docks (mainland)...)
 <br>
 $cssDesc[The journey will take ''(plural: ($funcDistance: "Rokhab"), "day")''. Each travel day costs ''1 (print: $items's supplies's id)'', of which you have ''(print: $items's supplies's qt) left''.]
@@ -11,4 +150,4 @@ $cssDesc[The journey will take ''(plural: ($funcDistance: "Rokhab"), "day")''. E
 <ol>
 <li>($funcSpendGate: "Pay for a place on a passenger boat.", $items's rial, 25, 100, "Depart from Apesai 1b", "",)<!--[[Depart from Apesai 1b]]-->
 <li>[[On second thought, you want to travel somewhere else.->S: Depart from Apesai]] $cssDesc[(Or you want to have more time to prepare.)]
-</ol>
+</ol>](old|

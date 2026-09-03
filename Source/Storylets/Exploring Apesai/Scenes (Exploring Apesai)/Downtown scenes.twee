@@ -73,9 +73,9 @@ You better move on. They tend to ask too many theological questions.
 [
 You walk and walk, losing and regaining your way. Eventually, at a grassy clearing, you see an encampment. An ashen-haired boy is trying to get a fire started, but the sticks he had picked from the nearby beach are too damp. He mutters curses in Askavan.
 <br>
-Inside the large velvet tent, another boy - a dark-haired imperial of the same age and build - is posing before a large mirror, his oversized helm and scale coat gleaming in the crystal light. He is attended (or rather, doted on) by two tall, redhaired warriors in far better fitting leather, their long, muscular arms filled with intricate tattoos.
+Inside the large velvet tent, another boy - a dark-haired imperial of the same age and build - is posing before a large mirror, his oversized helm and scale coat gleaming in the crystal light. He is attended (or rather, doted on) by two tall, red-haired warriors in far better fitting leather, their long, muscular arms filled with intricate tattoos.
 <br>
-Adventurers - you realize. Likely treasure-hunters bound for Navveh. Some vain little lordling with his hired retinue, presently pretending to rough it out in the "wilderness". The nearest fruit market is literally half a mile away.
+Adventurers - you realize. Likely treasure-hunters bound for Navveh. Some vain little lordling with his hired retinue, presently pretending to rough it out in the "wilderness". The nearest fruit market is, in fact, only half a mile away.
 ](traveler2|
 
 (set: _show to (either: "traveler1", "traveler2"))

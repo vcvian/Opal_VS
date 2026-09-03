@@ -39,21 +39,21 @@ He does not even look at the ginger; he only looks at you as though you have jus
 
 <!--localSays-->
 [
-_line["I'm sure they do,"] he says, staring at you, unblinking. _line["How much... did they charge you?"]
+_line["I'm sure they do,"] he says, staring at you, unblinking. _line["How much... did they charge you... for this thing?"]
 (show: ?howMuch)
 ](localSays|
 
 
 <!--notPleased-->
 [
-_line["What makes you... think that?"] He asks with a snort. _line["How much... did they ask from you?"]
+_line["What makes you... think that?"] He asks with a snort. _line["How much... did they ask... for this thing?"]
 (show: ?howMuch)
 ](notPleased|
 
 
 <!--sorry-->
 [
-_line["Hmm..."] he says. _line["How much... was it?"]
+_line["Hmm..."] he says. _line["How much... did you pay?"]
 (show: ?howMuch)
 ](sorry|
 
@@ -118,7 +118,7 @@ _line["But time itself... is worth something. You know why? Because we have to p
 
 <!--doneChoices-->
 [
-_line["Go find us medicine, or we'll both be stuck here on this rock."]
+_line["Go find that medicine, or we'll both be stuck here on this rock."]
 <br>
 ---
 (link: "\"Yes, professor. I'll get on it right away.\"")[

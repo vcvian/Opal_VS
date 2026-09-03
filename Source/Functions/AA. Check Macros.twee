@@ -203,8 +203,7 @@ $cssDesc[{
 	(if: _singleCheck is false)[{
 
 		<!--first line (lose or check?)-->
-<br>
-		↪`	`(if: _spend is true)[(color: red+orange)[Lose]]
+		<br>↪`	`(if: _spend is true)[(color: red+orange)[Lose]]
 		(else:)[(color: yellow)[Checking] for]
 		` `the following:
 		<!--list (loop)-->
@@ -260,8 +259,7 @@ $cssDesc[{
 	(set: _needed to _thingList's _thing)
 
 	<!--first line (lose or check?)-->
-<br>
-	↪`	`(if: _spend is true)[(color: red+orange)[Lose]]
+	<br>↪`	`(if: _spend is true)[(color: red+orange)[Lose]]
 	(else:)[(color: yellow)[Checking] for]
 	` `the following:` `
 	<!--readout sole requirement-->

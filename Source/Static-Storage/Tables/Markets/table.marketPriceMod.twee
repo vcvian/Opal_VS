@@ -1,4 +1,4 @@
-:: table.marketPriceMod
+:: table.marketPriceMod [static-storage]
 
 (metadata:
 "universalBuy", (dm:

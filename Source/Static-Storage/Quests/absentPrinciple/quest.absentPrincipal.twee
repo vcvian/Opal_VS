@@ -5,19 +5,8 @@
 <!--quests can be "inactive", "primed", "active", "completed", "failed"-->
 (metadata: 
 "id", [The Absent Principal],
+"key", (a: "ApesaiSchool", "principal",),
 "img", "https://fallenlondon.wiki/w/images/8/83/University.png",
 "desc", [???],
 "tip",[],
-)
-
-(set: $quests to it + (dm:
-
-"absentPrincipal", (dm:
-"id", [The Absent Principal],
-"img", "https://fallenlondon.wiki/w/images/8/83/University.png",
-"status", "inactive",
-"desc", [???],
-
-))
-
 )

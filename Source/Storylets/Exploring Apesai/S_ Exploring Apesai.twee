@@ -24,7 +24,9 @@ $cssColumnChild[
 
 $cssColumnChild[
 
-From afar, island-city of Apesai had (cycling-link: "seemed intelligible enough.(hide:?city)", "seemed intelligible enough.(show:?city)")
+(set: _showCity to false)
+
+From afar, island-city of Apesai had (cycling-link: "seemed intelligible enough.(hide:?city)", "seemed intelligible enough.(t8n: \"dissolve\")(show:?city)")
 <br>
 [The rainbow-spewing lighthouse stood tall the island's tallest peak, surrounded by domes of red steel - the unmistakable Nurandahid grand architecture. Civilization.
 <br>

@@ -13,6 +13,80 @@
 	(out-data: _out)\
 ]))
 
+<!--translates number into Nurango words-->
+(set: $funcNumToNurango to (macro: num-type _input, [{
+	<!--initialize output var-->
+	(set: _out to "")
+
+	<!--initialize temp var-->
+	(set: _hundreds to "")
+	(set: _tens to "")
+	(set: _singles to "")
+
+	<!--define Nurango numbers-->
+	(set: _dict to (dm:
+	"0", "hun",
+	"1", "yek",
+	"2", "du",
+	"3", "ser",
+	"4", "char",
+	"5", "pan",
+	"6", "shes",
+	"7", "haft",
+	"8", "hasht",
+	"9", "noh",
+	"10", "dah",
+	))
+
+	<!--parse _input-->
+	(set: _length to (str:_input)'s length)
+
+	<!--switch cases-->
+	<!--3 places-->
+	(if: _length is 3)[{
+		<!--hundreds-->
+		(set: _hundreds to _dict's ((str: _input)'s 1st) + "sat")
+		(if: (str: _input)'s 1st is "1")[(set: _hundreds to "sat")]
+		<!--tens-->
+		(set: _tens to _dict's ((str: _input)'s 2nd) + "dah")
+		(if: (str: _input)'s 2nd is "1")[(set: _tens to "dah")]
+		(if: (str: _input)'s 2nd is "0")[(set: _tens to "hun")]
+		<!--singles-->
+		(if: (str: _input)'s 3rd is not "0")[(set: _singles to _dict's ((str: _input)'s 3rd))]
+		<!--collate hundreds and tens-->
+		(set: _out to _hundreds+"-"+_tens)
+		<!--collate singles, ONLY if singles isn't zero-->
+		(if: (str: _input)'s 3rd is not "0")[(set: _out to it + "-"+_singles)]
+	}]<!--3 places-->
+
+	<!--2 places-->
+	(elseif: _length is 2)[{
+		<!--tens-->
+		(set: _tens to _dict's ((str: _input)'s 1st) + "dah")
+		(if: (str: _input)'s 1st is "1")[(set: _tens to "dah")]
+		(if: (str: _input)'s 1st is "0")[(set: _tens to "hun")]
+		<!--singles-->
+		(if: (str: _input)'s 2nd is not "0")[(set: _singles to _dict's ((str: _input)'s 2nd))]
+		<!--collate tens and singles-->
+		(set: _out to _tens+"-"+_singles)
+		<!--If singles is zero-->
+		(if: (str: _input)'s 2nd is "0")[(set: _out to _tens)]
+	}]<!--end of 2 places-->
+
+	<!--1 place-->
+	(elseif: _length is 1)[{
+		<!--singles-->
+		(set: _singles to _dict's ((str: _input)'s 1st))
+		<!--collate?-->
+		(set: _out to _singles)
+	}]<!--end 1 place-->
+
+	(else:)[(set: _out to [(color: red)[ERROR! `$funcNumToNurango` failed to translate a (str: _length)-digit number.]])]
+
+	<!--output data-->
+	(out-data: _out)
+}]))
+
 <!--"stuff" datamap to track miscellaneous things. Meant to be deleted-->
 (set: $stuff to (dm:))
 

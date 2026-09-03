@@ -201,7 +201,7 @@ $cssDesc[You can now access the ''student lab'' - a tentative place for you to w
 <br>
 ["Oh, and one last thing: Since I couldn't help out more,"]<VehVehLine| she pulls from her coat pocket a small gut skin bag, the content inside glowing a faint red. ["Take my leftover vehzin. It's not a lot, but the student lab doesn't need much fuel either. Should be enough for a full synthesis cycle."]<VehVehLine|
 <br>
-$cssDesc[You also receive a ''(print: (passage: "item.vehzin")'s id)'' - standard fuel for many magical machineries.]
+$cssDesc[You also receive a ''(print: (passage: "item.vehzin")'s id)''($funcLogTip: "item.", "vehzin") - standard fuel for many magical machineries.]
 <br>
 ---
 (link: "\"This is a lot already. Gratitude, Veh-Veh.\"")[{

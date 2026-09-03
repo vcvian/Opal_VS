@@ -3,6 +3,7 @@
 
 (metadata:
 	"id", [Task: Permit into Askava],
+    "key", (a: "traveling", "Apesai",),
     "img", "https://thefifthcity.wiki/w/images/3/3f/Currency3_copper.png",
     "desc", [No-one enters mainland Askava without a permit from the provincial government.],
     "tip", [You must produce both an ''(print: (passage: "item.identityReceipt")'s id)''($funcLogTip: "item.", "identityReceipt") and a ''(print: (passage: "item.universityCertificate")'s id)''($funcLogTip: "item.", "universityCertificate")],
@@ -12,10 +13,10 @@
     "waitAddLog", [You were told to come back in (plural: (passage: "quest.permitAskava")'s wait, "day").],
     "waitAddDialog", [The clerk has filed away your application. You resolve to come back in (plural: (passage: "quest.permitAskava")'s wait, "day").],
     "waitAddConfirm", "Right.",
-    "waitDoneDialog", [The result for your Askava entry permit application should be available. Come to the ''Provincial Court of Askava'' on a weekday.],
+    "waitDoneDialog", [The result for your Askava entry permit application should be available. Come to the ''Provincial Court of Askava'' on a weekday to pick it up.],
     "waitDoneConfirm", "Finally.",
     "waitDoneEffect", [],
-    "waitDoneLog", [The result for your Askava entry permit application should be available. Come to the ''Provincial Court of Askava'' on a weekday.],
+    "waitDoneLog", [The result for your Askava entry permit application should be available. Come to the ''Provincial Court of Askava'' on a weekday to pick it up.],
     
 )\
 <!--Example of a quest that makes you wait-->

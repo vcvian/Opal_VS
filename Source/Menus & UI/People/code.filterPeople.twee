@@ -1,0 +1,66 @@
+:: code.filterPeople
+{=
+
+<!--Note: ONLY use inside of the "People" passage, since it depends on many things that are defined outside of its scope-->
+
+<!--this code passage, when displayed, will list all available (met) NPC filter-keys. The goal is to modify _peopleList (initialized outside of this passage) based on keys-->
+
+<!--initialize-->
+(set: _keyList to (a:))
+
+<!--run all available keys of all known people (_listMet defined outside of this passage)-->
+(for: each _person, ..._listMet)[{
+	<!--load full DM-->
+	(set: _personDM to (passage: "npc."+_person))
+	<!--add their keys into _keyList-->
+	(set: _keyList to it + _personDM's key)
+}]
+
+<!--keep only unique keys-->
+(set: _keyList to (unique: ..._keyList))
+
+<!--get a table of matches per key (_listMet defined outside of passage). The output is a (dm: "key", (a: "npc1", "npc2",))-->
+(set: _keyTable to (dm:))
+(for: each _key, ..._keyList)[{
+    (set: _keyTable to it + (dm:
+        _key, (find: _npc where (passage: "npc." + _npc)'s key contains _key, ..._listMet),
+    ))
+}]
+
+<!--sort _keyList based on whichever is more numerous-->
+(set: _keyList to (reversed: ...(sorted: via (_keyTable's (it))'s length,..._keyList)))
+
+<!--Create link. Most important to modify is _peopleList, which is used to generate cards.
+Things defined outside of this passage:
+1. _peopleList
+2. _listMet
+3. _peopleTitle
+4. _keyDesc
+5. _updateCode-->
+
+(for: each _key, ..._keyList)[{
+    <!--load from dictionary (table.factions) if entry exists-->
+    (set: _filterText to _key)
+    (set: _keyDescTemp to "")
+    (set: _peopleTitleTemp to _key)
+    (if: (passage: "table.factions") contains _key)[{
+        (set: _filterText to (passage: "table.factions")'s _key's id)
+        (set: _keyDescTemp to (passage: "table.factions")'s _key's desc)
+        (set: _peopleTitleTemp to (passage: "table.factions")'s _key's id)
+    }]
+
+    <!--generate links-->
+    <li>(link-rerun: _filterText)[{
+        <!--filter _peopleList-->
+        (set: _peopleList to _keyTable's _key)
+        <!--set title-->
+        (set: _peopleTitle to _peopleTitleTemp)
+        <!--set _keyDesc-->
+        (set: _keyDesc to _keyDescTemp)
+        <!--set pointer-->
+        (set: _pointer to _key)
+        <!--update-->
+        _updateCode
+    }]` `((print: _keyTable's _key's length))` `[(if: _pointer is _key)+$cssDesc[↢ Current.]]<display|
+    </li>
+}]

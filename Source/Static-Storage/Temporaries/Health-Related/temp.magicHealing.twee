@@ -2,7 +2,7 @@
 (metadata:
 "id", [Magical Healing],
 "timer", 7,
-"key", (a: "condition", "body",),
+"key", (a: "body", "health", "magic"),
 "desc", [You are healing, slowly.],
 "tip", [Magically regaining 1 health each day for an entire week. May even exceed maximum health, but that can be troublesome.],
 

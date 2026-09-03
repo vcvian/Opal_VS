@@ -1,7 +1,10 @@
-:: Lists
+:: Lists [unfinished]
 {=
 
-(metadata: "title", "Lists")
+(metadata:
+    "title", "Lists",
+    "devNote", [Update the keys for att and temp (they have changed, so some of the filters no longer work. Rethink the entire key rules for these while you're at it). Also, npcs and quests should have their keys displayed.],
+)
 
 (link: "⇦ BACK")[(set: $stuff to (dm:))(goto: "Pre-Test (NEW)")]
 

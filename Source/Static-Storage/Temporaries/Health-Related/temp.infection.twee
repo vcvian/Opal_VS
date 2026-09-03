@@ -2,7 +2,7 @@
 (metadata:
 "id", [Infection],
 "timer", 5,
-"key", (a: "condition", "body",),
+"key", (a: "body", "health",),
 "desc", [You're burning up from an infection.],
 "tip", [Losing 1 health each day. Might leave you permanently weaker at the end.],
 

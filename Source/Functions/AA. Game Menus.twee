@@ -38,7 +38,7 @@
 		
 		<div style="width: 100%;">(link-rerun: "👩 Self")[(redirect: "Profile")](if: (passage:)'s name is "Profile")[$cssDesc[ ↢ (You are here.)]]</div>
 		
-		<div style="width: 100%;">(link-rerun: "📦 Things")[(redirect: "Inventory")](if: (passage:)'s name is "Inventory")[$cssDesc[ ↢ (You are here.)]]</div>
+		<div style="width: 100%;">(link-rerun: "📦 Inventory")[(redirect: "Inventory")](if: (passage:)'s name is "Inventory")[$cssDesc[ ↢ (You are here.)]]</div>
 		
 		<div style="width: 100%;">(link-rerun: "📜 Going-ons")[(redirect: "Journal")](if: (passage:)'s name is "Journal")[$cssDesc[ ↢ (You are here.)]]</div>
         

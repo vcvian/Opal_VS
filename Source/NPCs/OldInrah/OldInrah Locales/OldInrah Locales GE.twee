@@ -27,7 +27,7 @@ $cssDesc[''You: //(print: (passage:)'s topic)//'']
 <!--first time-->[
 You place her fee on the table.
 <br>
-["Maginificent, isn't it? Red steel,"]<OldInrahLine| she says. You're unsure whether she is referring to the rial coins or the dome of the Grand Exchange. ["Askava's Grand Exchange might not be as... well, grand as the ones where you're from, whichever dahak it is, but //almost// anything can be found in our branch. With a hefty markup, of course. You have the Ministry of Funds to thank for that. Ah, but Old Inrah should not speak ill of the taxmen."]<OldInrahLine|
+["Magnificent, isn't it? Red steel,"]<OldInrahLine| she says. You're unsure whether she is referring to the rial coins or the dome of the Grand Exchange. ["Askava's Grand Exchange might not be as... well, grand as the ones where you're from, whichever dahak it is, but //almost// anything can be found in our branch. With a hefty markup, of course. You have the Ministry of Funds to thank for that. Ah, but Old Inrah should not speak ill of the taxmen."]<OldInrahLine|
 <br>
 ($funcInnerConvo: (dm:
 	"<!--A-->\"Then you can speak *positively* about which direction, which streets, which turns I might take to get there.\"", "1a",

@@ -3,7 +3,7 @@
 
 (metadata: 
 	"id", [Body: Vigorous],
-    "key", (a: "attribute", "health", ),
+    "key", (a: "body", "health", ),
     "img", "",
     "desc", [We all die, but some do so later.],
     "tip", [Each (print: (passage: "att.vigorous")'s id) ''increases max health by 1.''],

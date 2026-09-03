@@ -2,6 +2,7 @@
 {=
 (metadata: 
 	"id", [Currently: Traveling],
+    "key", (a: "traveling",),
     "img", "https://fallenlondon.wiki/w/images/f/f6/Ship3.png",
     "desc", [You are currently traveling from ''(print: $place's travelingFrom)'' to ''(print: $place's travelingTo)''.],
     "tip", [Each day, the journey will cost ''1 (print: (passage: "item.supplies")'s id)''.],

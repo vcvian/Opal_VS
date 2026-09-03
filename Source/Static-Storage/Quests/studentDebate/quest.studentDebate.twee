@@ -5,6 +5,7 @@
 
 (metadata: 
 "id", [Situation: A Debate Among Half-Peers],
+"key", (a: "ApesaiSchool", "Apesai",),
 "img", "Assets/Portraits/Event_Argue_1.png",
 "desc", [The sort-of-students of Apesai's quasi-academy will hold a series of debates (is it so civil?) in the lighthouse's courtyard.],
 "tip",[{

@@ -3,6 +3,7 @@
 
 (metadata: 
 	"id", [Situation: A Fluxy Mentor],
+    "key", (a: "main", "mentor",),
     "img", "https://thefifthcity.wiki/w/images/b/bc/Bloodstain.png?20240509225948",
     "desc", [Your mentor - the respectable Fir-Marrokh-Kuchtar-da-Zagash - is sick with the flux and cannot travel. He needs his medicine.],
     "tip", [Find him a ''(print: (passage: "item.healingTonic")'s id)''($funcLogTip: "item.", "healingTonic")],

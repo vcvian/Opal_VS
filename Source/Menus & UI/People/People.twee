@@ -1,7 +1,10 @@
-:: People [UI] {"position":"2475,2550","size":"100,100"}
+:: People [UI unfinished] {"position":"2475,2550","size":"100,100"}
 {=
 
-(metadata: "UI", true,)
+(metadata:
+    "UI", true,
+    "devNote", [Make people keys dynamic so you don't have to manually add more in as you make more npcs and keys.],
+)
 
 ($funcUITopBar:)
 
@@ -9,26 +12,16 @@
 
 <!--initialize temp vars-->
 (set: _peopleTitle to "People Met")
-(set: _peopleList to (a:))
-(set: _keyList to (a:))
 (set: _keyDesc to "All notable people you have met on your journey.")
+(set: _pointer to "everyone")
+(set: _peopleList to (a:))
+
 
 <!--build full list, including unknown people-->
 (set: _listFull to (find: _person where _person is not "player", ...(datanames: $char)))
 
 <!--build list of all currently known people-->
 (set: _listMet to (find: _person where $char's _person's know is true, ..._listFull))
-
-<!--build list of keys of known people-->
-(for: each _person, ..._listMet)[{
-	<!--load full DM-->
-	(set: _personDM to (passage: "npc."+_person))
-	<!--add their keys into _keyList-->
-	(set: _keyList to it + _personDM's key)
-}]
-
-<!--keep only unique keys-->
-(set: _keyList to (unique: ..._keyList))
 
 <!--run default list (all met)-->
 (set: _peopleList to _listMet)
@@ -69,20 +62,23 @@ $cssColumnChild[
 
 ''Categories''
 
-<ol>
+<ol style="column-count: 2;">
 
-<li>(link-rerun: "Everyone you have met")[{
+<li>(link-rerun: "Everyone")[{
 	<!--filter _peopleList-->
 	(set: _peopleList to _listMet)
 	<!--set title-->
-	(set: _peopleTitle to "People Met")
+	(set: _peopleTitle to "Everyone Met")
 	<!--set _keyDesc-->
 	(set: _keyDesc to "All notable people you have met on your journey.")
+	<!--set pointer-->
+    (set: _pointer to "everyone")
 	<!--update-->
 	_updateCode
-}]</li>
+}]` `((print: _listMet's length))` `[(if: _pointer is "everyone")+$cssDesc[↢ Current.]]<display|
+    </li></li>
 
-<li>(link-rerun: "Everyone")[{
+<li>(link-rerun: "Everyone in the game (TEST)")[{
 	<!--filter _peopleList-->
 	(set: _peopleList to _listFull)
 	<!--set title-->
@@ -93,41 +89,8 @@ $cssColumnChild[
 	_updateCode
 }]</li>
 
-(if: _keyList contains "imperial")[<li>(link-rerun: "Imperials")[{
-	<!--filter _peopleList-->
-	(set: _peopleList to (find: _person where (passage: "npc."+_person)'s key contains "imperial", ..._listMet))
-	<!--set title-->
-	(set: _peopleTitle to "Imperials")
-	<!--set _keyDesc-->
-	(set: _keyDesc to "Citizens whose families trace back to the Nurandahid heartlands.")
-	<!--update-->
-	_updateCode
-}]
-</li>]
-
-(if: _keyList contains "davehmar")[<li>(link-rerun: "Davehmars")[{
-	<!--filter _peopleList-->
-	(set: _peopleList to (find: _person where (passage: "npc."+_person)'s key contains "davehmar", ..._listMet))
-	<!--set title-->
-	(set: _peopleTitle to "Davehmars")
-	<!--set _keyDesc-->
-	(set: _keyDesc to "University magi - the most well-learned among the Nurandahids.")
-	<!--update-->
-	_updateCode
-}]
-</li>]
-
-(if: _keyList contains "familyBiz")[<li>(link-rerun: "The Inrah Family Business")[{
-	<!--filter _peopleList-->
-	(set: _peopleList to (find: _person where (passage: "npc."+_person)'s key contains "familyBiz", ..._listMet))
-	<!--set title-->
-	(set: _peopleTitle to "The Inrah Family Business")
-	<!--set _keyDesc-->
-	(set: _keyDesc to "Those associated with the various Inrah family enterprises.")
-	<!--update-->
-	_updateCode
-}]
-</li>]
+<!--dynamically generate links based on how many categories of people met-->
+(display: "code.filterPeople")
 
 </ol>
 
@@ -142,8 +105,10 @@ $cssColumnChild[
 [
 <!--heading-->
 <h3 id="displayedList">_peopleTitle</h3>
-(align: "=><=")+$cssDesc[_keyDesc]
+(align: "=><=")+$cssDesc+(css: "line-height: 1.2rem")[_keyDesc
 <br>
+''(plural: _peopleList's length, "person", "people")''
+]
 
 <!--display-->
 $cssColumnParent[

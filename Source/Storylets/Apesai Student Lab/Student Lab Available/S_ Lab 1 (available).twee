@@ -73,19 +73,17 @@ $cssDesc[Magical labs have specialized equipment that allows you to ''elementali
 <br>
 ---
 <ol>
-<li>(link: "Elementalize your ingredients.")[{
-     (set: $stuff's attendantReady to true)
-     (goto: "Lab 1b")
-}]
+
+<li>($funcMultiCheckGate: "Elementalize your ingredients.", "att", (dm: "alchemy", 1), false, 100, [(set: $stuff's attendantReady to true)], "Lab 1b", "")
+</li>
 
 (set: _synthesisText to "Synthesize a substance.")
 (if: _jobBusy is true and _jobDone is false)[(set: _synthesisText to "Check up on your on-going synthesis job.")]
 (elseif: _jobDone is true)[(set: _synthesisText to "Go claim your finished product.")]
 
-<li>(link: _synthesisText)[{
-     (set: $stuff's attendantReady to true)
-     (goto: "Apesai Student Lab")
-}]
+<li>($funcMultiCheckGate: _synthesisText, "att", (dm: "alchemy", 1), false, 100, [(set: $stuff's attendantReady to true)], "Apesai Student Lab", "")
+</li>
+
 <li>(link: "Leave the lab.")[{
      (set: $stuff to (dm:))
      $funcBack
