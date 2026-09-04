@@ -1,9 +1,128 @@
 :: Depart from Apesai 1b {"position":"4475,3225","size":"100,100"}
 {=
 
-(metadata: "title", "Departing from Apesai",)
+(metadata:
+    "title", "Boarding a Ferry",
+    "cardDesc", "Everything is in order. At last, you are leaving Apesai Island. Mainland Askava awaits."
+)
 
-(You board a passenger boat...)
+
+$cssColumnParent[
+
+<!--child 1: card-->
+$cssColumnChild[
+    $cssBox[
+    	($funcImage: (passage: "S: Depart from Apesai")'s img)
+         $cssBoxItem[''(print: (passage:)'s title )''<br>(print: (passage:)'s cardDesc)]
+    ]
+]<!--end child 1: card-->
+
+$cssColumnChild[
+
+<!--determine sailor (should be the same as the previous passage, since $dice is stable within the same day)-->
+(set: _whichSailor to "genericSailor1")
+(cond:
+    $dice <= 33, [(set: _whichSailor to "genericSailor2")],
+    $dice <= 67, [(set: _whichSailor to "genericSailor3")],
+    [(set: _whichSailor to "genericSailor1")],
+)
+
+<!--enchant speaker lines-->
+($funcNPCSpeakManual: _whichSailor)
+
+<!--line shorthand-->
+(set: _line to (hook: _whichSailor + "Line"))
+
+<!--determine destination ($stuff's destinationFromApesai already determined at the parent passage)-->
+(set: _destination to $stuff's destinationFromApesai)
+
+
+<!--main content-->
+You hand over the coins.
 <br>
+(cond:
+_whichSailor is "genericSailor1", [{
+_line["Yek, du, ser..."] the sailor counts them one by one, then a handful at a time, dropping them into a coinpurse comically small compared to its holder's bulk. Eventually, she finishes. _line["Right, welcome aboard, //davehmar//.
+<br>
+"Come on, you layabouts! Passenger's coming, get to work!"]
+}],
+
+_whichSailor is "genericSailor2", [{
+_line["Pan, dah, dah-pan..."] the tattooed sailor counts them, dropping five at a time into a roughspun bag. _line["All good. I'll let the men know.
+<br>
+"Ho! Men! Cargo!"]
+}],
+
+_whichSailor is "genericSailor3", [{
+_line["I know you're good for it,"] the man in silk says as he drops the payment into a velvet purse, having deduced the sum from a glance. _line["We are honored to have you, esteemed guest. Leave your things on the pier, and our people will take care of them.
+<br>
+"Oh, my sweets! Lower the stairs! A customer is coming aboard!"]
+}],
+)
+
+<br>
+($funcInnerConvo: (dm:
+	"Watch what happens.", "continueSailors",
+))
+<br>
+
+<!--continueSailors-->
+[
+(cond:
+_whichSailor is "genericSailor1", [{
+At her signal, several sailors just as burly as her hurries to take your belongings aboard. You cringe when you see them throw bags after bags, but the receiving one always catches them deftly without much more than a grunt.
+<br>
+The woman lays down a heavy plank - your walkway from the marble pier onto the the swaying cutter. _line["Try not to look down."]
+
+}],
+
+_whichSailor is "genericSailor2", [{
+At his signal, several similarly-tattooed sailors hurries to haul your things onto the dromon, taking swift but balanced steps along a narrow ramp, while others pull trunk-like ropes to steady the ship against the marble pier.
+<br>
+_line["Have a safe trip,"] the sailor says as you step up to the ramp. It looks like he is staying back.
+
+}],
+
+_whichSailor is "genericSailor3", [{
+From above the deck, a retractable set of stairs extends towards the marble wharf, operated by a sailor spinning a winch.
+<br>
+As you take your first steps up the flimsy thing, you look back to see that a flock of veiled men and women have surrounded your belongings, bringing them up after you. The fat man waves at you, _line["Though my heart breaks, farewell, dear traveler. May fortune smiles upon us soon, so our paths may cross once more."]
+<br>
+Then, he immediately starts hawking spare cabins to the next person who happens to wander by. You get the feeling that he won't remember you if you ever meet again.
+}],
+)
+<br>
+($funcInnerConvo: (dm:
+	"Board the ferry.", "Done",
+))
+<br>
+](continueSailors|
+
+<!--Done, set sail-->
+[
+
+After you have settled in your cabin - a tight, dingy compartment under the deck with suspicious beddings - and the last few passangers have boarded, you hear sailors shouting for the anchor to be lifted. There are frantic footsteps above your ceiling.
+<br>
+You join everyone else on the deck, just in time to see the main sail being unfurled.
+<br>
+Before long, your ship is breaking away from the swarm of vessels and setting into freer waters. How the captain has managed to make it out without crashing into anything is a miracle.
+<br>
+The marble wharf of Apesai slowly recedes away. Waves beneath you twinkle with the rainbow light from the island's lighthouse.
+
+<br>
+
 ---
-($funcDepart: "Leave for Rokhab Docks", "Rokhab",)
+
+<!--determine _linkText-->
+(set: _linkText to "Onward to _destination!")
+(if: _destination is "Rokhab")[(set: _linkText to "Rokhab Docks - your first destination into mainland Askava.")]
+(elseif: _destination is "Navveh")[(set: _linkText to "The Ruins of Old Navveh calls out to you.")]
+(elseif: _destination is "Zirab")[(set: _linkText to "Brace yourself, for a trip ahead, and for Zirab.")]
+
+($funcDepart: _linkText, _destination)
+](done|
+
+<!--end of main content-->
+
+]<!--end child 2: main content-->
+]<!--end of parent-->

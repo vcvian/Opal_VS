@@ -45,7 +45,7 @@ $cssColumnChild[
 <!--greetings-->
 (cond:
 _whichSailor is "genericSailor1", [{
-_line["You there, you with the clueless face! Looking for a ship to the mainland?"] a large woman in salt-stained linen hails you down.
+_line["You there, you with the clueless face! Looking for a ship to the mainland?"] a large, muscular woman in salt-stained linen hails you down.
 <br>
 Behind her is an old cutter that has seen better days, but that is precisely the mark of quality: worse ships will not sail if they are in such a condition.
 <br>
@@ -53,7 +53,7 @@ _line["No point in browsing; we all charge a standard guild price here,"] she gr
 }],
 
 _whichSailor is "genericSailor2", [{
-_line["Ho, traveler! Yes, well met. Are you looking for a ship to the mainland?"] a man approaches you. He wears a quilted vest, arms bare and tattooed. _line["There's still space on our ship. We set sail today."]
+_line["Ho, traveler! Yes, well met. Are you looking for a ship to the mainland?"] a gaunt man approaches you. He wears a quilted vest, arms bare and tattooed. _line["There's still space on our ship. We set sail today."]
 <br>
 He gestures at a large dromon with sweeping, fin-like sails. Smaller merchant ships often moonlight as coastal ferries while waiting for their shipments to arrive.
 <br>
@@ -102,7 +102,7 @@ _line["Now, before we start discussing details, I must ask to see your entry per
 _whichSailor is "genericSailor3", [{
 _line["How original,"] he rolls his eyes, disappointed. _line["I'm joking; we'll have to stop at Rokhab anyhow. Most of our passengers are headed there as well. Personally, I just don't like the smell."]
 <br>
-The Rokhab port is the closest to Apesai, and it is not surprising that it sees the most traffic going to and from, since Rokhab connects with the rest of the dahak, from which riches flows out.
+The Rokhab port is the closest to Apesai Island, and it is not surprising that it sees the most traffic going to and from Apesai, since Rokhab connects with the rest of the dahak, out from which riches flows.
 <br>
 _line["And now, it is my turn to do the unoriginal thing: Please show me your entry permit. Due diligence, you understand."]
 
@@ -168,7 +168,7 @@ _line["What //is// my business whether that you're vetted. The whole Navveh rost
 }],
 
 _whichSailor is "genericSailor2", [{
-_line["Oh? You're interested in the ruins,"] he says, trying his best to hide his hesitation. _line["Shouldn't be a surprise. It is one of Askava's major attractions anyhow. Although, it is not the most pleasant waters to sail in."]
+_line["Oh? You're interested in the ruins,"] he says, trying his best to hide his hesitation. _line["Shouldn't be a surprise, being one of Askava's major attractions. Although, it is not the most pleasant waters to sail in."]
 <br>
 The quake that destroyed Old Navveh - the former capital of Askava dahak - has also disturbed the geology of its coastlines, raising up jagged rocks that make for a hazardous trip. Still, a small but steady number of adventurers go there every month, and a smaller number returns enviably rich, if they return at all.
 <br>

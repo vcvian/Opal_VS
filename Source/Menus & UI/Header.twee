@@ -2,12 +2,14 @@
 {=
 
 $cssDesc[It is ''(display:"table.dayNames")'', ''(display:"table.weekNames")'', ''(display:"table.monthNames")'', year ''(print:$time's year)''. Location: [''(print: $place's location)'']<location|, [(print: $place's prefecture)]<prefecture|, Askava.]
-<br>
+
 ---
-<br>
+
 
 <!--run this to make sure that header is accurate, especially when traveling, which may fail to show the correct location info (in-between) when not at the "Traveling" screen (viewing menus or playing storylets)-->
 ($funcUpdateHeader:)
 
 <!--Clear history-->
 (forget-visits:-50)(forget-undos:-50)
+
+<!--TEST Setting (ideally placed in header because in-passage test settings can get hard to keep track of)-->

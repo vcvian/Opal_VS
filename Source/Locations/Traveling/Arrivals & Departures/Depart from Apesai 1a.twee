@@ -6,7 +6,6 @@
     "cardDesc", "Your papers are cleared. Now, the money..."
 )
 
-
 $cssColumnParent[
 
 $cssColumnChild[
@@ -15,7 +14,6 @@ $cssColumnChild[
          $cssBoxItem[''(print: (passage:)'s title )''<br>(print: (passage:)'s cardDesc)]
     ]
 ]<!--end child 1-->
-
 
 $cssColumnChild[
 
@@ -33,7 +31,7 @@ $cssColumnChild[
 <!--line shorthand-->
 (set: _line to (hook: _whichSailor + "Line"))
 
-<!--determine destination-->
+<!--determine destination ($stuff's destinationFromApesai already determined at the parent passage)-->
 (set: _destination to $stuff's destinationFromApesai)
 
 <!--determine price-->
@@ -42,6 +40,10 @@ $cssColumnChild[
     _destination is "Navveh", 100,
     _destination is "Zirab", 200,
 ))
+
+<!--calculate supplies-->
+(set: _suppliesNeeded to ($funcGetDistance: $place's location, _destination))
+(set: _suppliesHave to ($funcCheckExists: $char's player's inv, "supplies", 0))
 
 <!--main content-->
 
@@ -64,12 +66,13 @@ He hands them back to you.
 _whichSailor is "genericSailor3", [{
 The bejeweled man looks at your papers sideways, quite literally. It is as if he has not gotten used to written Nurango just yet, though he speaks it just fine.
 <br>
-_line["Eh, blue-wax seal - good enough for me,"] he says, handing it back to you. _line["Just a humble promoter, I am."]
+_line["Eh, blue-wax seal - good enough for me,"] he says, handing them back to you. _line["Just a humble promoter, I am."]
+<br>
+He strokes his red beard while watching you stash away your papers.
+<br>
 }],
 )
 <!--end of paper check line-->
-
-
 
 
 <!--comment about destination and price-->
@@ -77,15 +80,24 @@ _line["Eh, blue-wax seal - good enough for me,"] he says, handing it back to you
 (if: _destination is "Rokhab")[{
 (cond:
 _whichSailor is "genericSailor1", [{
-
+_line["Let's see, Rokhab... I'm going to ask ya for //($funcNumToNurango: _price)// in rials. Guild price, of course. That should get ya a bed and some storage space. Don't worry - we're trained to handle any... delicate belongings. I know your type has a lot of those,"] she chuckles, again. _line["You'll eat your own supplies, but nothing's stopping ya from buying some gruel off of the cook. But personally, I wouldn't recommend it...
+<br>
+"Pay up, and we'll set sail right away."]
+<br>
 }],
 
 _whichSailor is "genericSailor2", [{
-
+_line["Rokhab's a common route, and a short one at that. We ask for the standard guild price - //($funcNumToNurango: _price)//, in rials only - lodging and baggage handling included,"] he explains. _line["Keep in mind that everyone eats their own meal, so plan accordingly.
+<br>
+"You pay whenever you're ready to leave."]
+<br>
 }],
 
 _whichSailor is "genericSailor3", [{
-
+_line["Next, for the truly unpleasant part,"] he says apologetically, placing a ringed hand on his chest. _line["For Rokhab-bound guests, we are required by our guild to ask that you part with some of your rials - //($funcNumToNurango: _price)//, to be exact. Rest assured, your valuables will be guarded well. We have a reputation to uphold. And, of course, our cook provides on-demand dining services for an extra fee, though guests are free to prepare their own meals.
+<br>
+"Payment is collected whenever you are ready to board."]
+<br>
 }],
 )
 }]
@@ -96,44 +108,105 @@ _whichSailor is "genericSailor3", [{
 (if: _destination is "Navveh")[{
 (cond:
 _whichSailor is "genericSailor1", [{
-
+_line["Navveh's a risky route, what with all the undersea //teeth//,"] she sighs in anticipation of what is coming. _line["Guild's insured our ship, dearly. That gets passed onto the customers, so //($funcNumToNurango: _price)// is what I'm gonna ask ya for a bunk. Bring your own food. Sure, price's steep, but hey, ruin-divers make a fortune anyway, so it's a drop in the ocean, right?
+<br>
+"Soon as you've paid up, we'll set sail."]
+<br>
 }],
 
 _whichSailor is "genericSailor2", [{
-
+_line["Since you've got the papers, we'll sail,"] he shrugs. _line["Don't mind my tone though. Our captain is more than capable of making it through the coastal rocks. Relishes in it, in fact. But insurance's going to bump the price up. Say, //($funcNumToNurango: _price)//?
+<br>
+"Bed's included, but not meals. You can give me the rials whenever you're ready to leave."]
+<br>
 }],
 
 _whichSailor is "genericSailor3", [{
-
+_line["If it was up to me - and how I wish it was - I'd let you on board for nothing,"] he feigns a wistful gaze towards the adventuresome horizon. _line["But unfortunately, it is not up to me. Our guild must have its cut of the riches that you will find in Old Navveh, and so our captain must charge you... //($funcNumToNurango: _price)//.
+<br>
+"Is that fair? I don't think it is, especially not when you have to provide your own meals! But... they're not letting anyone board after payment is rendered. You understand..."]
+<br>
 }],
 )    
 }]
 <!--end of Navveh-->
 
 
-<!--if Navveh-->
-(if: _destination is "Navveh")[{
+<!--if Zirab-->
+(if: _destination is "Zirab")[{
 (cond:
 _whichSailor is "genericSailor1", [{
-
+_line["Excuse my surprise earlier. Ya didn't look like a merchant to me, and the only other type left who'd go to Zirab is smugglers..."] she scans you once again from head to toe, flexing her muscles to see if you will flinch, which you do. _line["But... if the Exchange says you're a merchant, then a merchant you are. And surely, a merchant has the rials - //($funcNumToNurango: _price)//. Ya heard that right. Guild ships rarely sail there, so they want to make the trip worth it... not to mention the risks.
+<br>
+"But don't ya worry your pretty little head. The captain's gonna make sure ya get to the swamps in one piece; just make sure to bring a week's worth of food, maybe more. We'll set sail as soon as you pay up."]
+<br>
 }],
 
 _whichSailor is "genericSailor2", [{
-
+_line["Whatever business you have in the swamps is certainly not mine,"] the sailor scratches his head. _line["Guild's treating all trips to Zirab like they're export trips - you //are// a licensed Exchange trader - so you're going to have to pay //($funcNumToNurango: _price)// in rials. A small fortune, sure, but it's not my call.
+<br>
+"I'd suggest you bring enough food for a week, with a little bit extra. When you're ready to leave, I'll collect the payment."]
+<br>
 }],
 
 _whichSailor is "genericSailor3", [{
-
+_line["Vayu's... untamed beauty is unmatched anywhere this side of Askava, so long as it remains relatively free from..."] he takes a deep breath, then exhales in a whisper, _line["... imperial attention."]
+<br>
+You nod. He knows you're an imperial.
+<br>
+_line["Ah, but the fewer the visitors, the fewer the ships. And the fewer the ships, the steeper the price. Many of our other passengers will not appreciate the week-long detour - they will complain of mosquitoes, to which their soft, pale skin is oh, so vulnerable...
+<br>
+"What I'm trying to get at, dear customer, is that the trip is going to cost you //($funcNumToNurango: _price)// in rials.
+<br>
+"Shocking, I know. Complete rip-off! I'd suggest against going to Vayu - I mean, //Zirab// - altogether, but we guildsmen will honor our duties. And likewise, we must collect the guild price before letting you board."]
+<br>
 }],
 )    
 }]
-<!--end of Navveh-->
+<!--end of Zirab-->
 <!--end of comment about destination and price-->
 
 
 <!--price tip text-->
-$cssDesc[Sailing to ''_destination'' from Apesai will cost you ''_price rial''.]
+$cssDesc[Sailing to` `''_destination''` `from Apesai will cost you ''_price` `(print: (passage: "item.rial")'s id)''. You only have to pay for yourself; any companion you have can pay their own fees.
+<br>
+
+<!--supplies cost readout (initialized at the beginning of passage)-->
+The journey will take about ''(plural: ($funcGetDistance: $place's location, _destination), "day")''. Each travel day costs ''1 (print: (passage: "item.supplies")'s id)''($funcLogTip: "item.", "supplies"). Current: _suppliesHave` `-` `
+<!--enough?-->
+(if: (_suppliesHave - _suppliesNeeded) > (round: _suppliesNeeded/3))+(color: green)[you are well-stocked.]
+(elseif: _suppliesHave < _suppliesNeeded)+(color: red)[not enough; you might go hungry.]
+(else:)+(color: yellow)[sufficient, but barely. Better to prepare for delays.]
+
+]
 <!--end price tip text-->
+
+<br>
+---
+<ol>
+
+<!--determine _linkText-->
+(set: _linkText1 to "Ready to board.")
+(set: _linkText2 to "Never mind. You are not done with Apesai yet.")
+(unless: (_suppliesHave - _suppliesNeeded) > (round: _suppliesNeeded/3))[
+    (set: _linkText1 to "Board anyway. You'll get more supplies along the way.")
+    (set: _linkText2 to "Never mind. You need more time to prepare.")
+]
+
+<li>($funcMultiCheckGate: _linkText1, "inv", (dm: "rial", _price), true, 100, [], "Depart from Apesai 1b", "")
+</li>
+
+<br>
+Actually...
+<li>(link: _linkText2)[{
+    (set: $stuff to (dm:))
+    $funcBack
+}]
+</li>
+
+</ol>
+
+
 
 <!--end of main content-->
 ]<!--end child 2-->

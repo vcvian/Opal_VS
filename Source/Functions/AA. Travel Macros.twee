@@ -37,7 +37,7 @@
 		(set: $place's travelingTo to _to)\
 		\
 		<!--Activate quest-->\
-		($funcQuestUpdate: "traveling", "active", "Hauling your bags upon your shoulders, you set out.", "A new journey.")\
+		($funcQuestUpdate: "traveling", "active", "With preparations complete, you are now enroute.", "A new journey.")\
 		\
 		<!--Manually add timer, due to all the in-built log/noti shenanigan in the normal $funcAddTimer-->\
 		(set: _distance to ($funcGetDistance: $place's location, _to))\
@@ -51,7 +51,7 @@
 		\
 		<!--Goto-->\
 		(goto: "Traveling")\
-	] $cssDesc[(Leave (print: $place's location) for _to.)]\
+	] $cssDesc[(Leave ''(print: $place's location)'' for ''_to''.)]\
 ]]))
 
 <!--Arrive, complete quest, remove timer, and reset $place-->

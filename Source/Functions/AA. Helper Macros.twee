@@ -55,6 +55,7 @@
 		(if: (str: _input)'s 3rd is not "0")[(set: _singles to _dict's ((str: _input)'s 3rd))]
 		<!--collate hundreds and tens-->
 		(set: _out to _hundreds+"-"+_tens)
+		(if: (str: _input)'s 2nd is "0" and (str: _input)'s 3rd is "0")[(set: _out to _hundreds)]
 		<!--collate singles, ONLY if singles isn't zero-->
 		(if: (str: _input)'s 3rd is not "0")[(set: _out to it + "-"+_singles)]
 	}]<!--3 places-->
