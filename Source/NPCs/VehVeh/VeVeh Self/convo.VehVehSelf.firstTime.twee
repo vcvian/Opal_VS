@@ -1,0 +1,117 @@
+:: convo.VehVehSelf.firstTime
+{=
+
+_line["What, is my //name// Askavan?"] She seems amused, but quickly composes herself. _line["Oh no, I have a Nurandahid name. Just a regular name found in any corner of the Seven Provinces, heh."]
+<br>
+You keep waiting for an elaboration because what she has said is plainly not the case. Double "Veh", double "wisdom" - the name is so aspirational that it will sound cheesy to any heartlander.
+<br>
+But she clearly is more refined than the average provincial stock.
+<br>
+($funcInnerConvo: (dm:
+	"<!--A-->\"Not the corner //I'm// from.\"", "imFrom",
+    "<!--B-->\"So, is it a nickname? Short for something?\"", "shortFor",
+))
+<br>
+
+<!--imFrom-->
+[
+_line["And where might //that// be?"]
+<br>
+($funcInnerConvo: (dm:
+	"<!--A-->\"Bakho dahak - land of scholars.\"", "Bakho",
+    "<!--B-->\"The heartlands.\" (which Bakho is part of)", "heartlands",
+    "<!--C-->\"I thought //I// was the one asking the questions.\"", "imAsking",
+))
+<br>
+](imFrom|
+
+<!--Bakho-->
+[
+_line["And here I thought Nudankhan was the 'land of the scholars', but what do I know? So what is //Bakho// like?"] She does not sound all that enthused. _line["What kinds of names are 'regular' there?"]
+<br>
+($funcInnerConvo: (dm:
+    "<!--A-->\"Well, there's- Hey, //I'm// asking the questions here.\"", "imAsking",
+    "<!--B-->\"Didn't mean to be a thorn. I was just looking for a conversation starter, and you're Askavan, and your name...\"", "shortFor",
+))
+<br>
+](Bakho|
+
+
+<!--heartlands-->
+[
+_line["Ah, see? Two can play at being mysterious, hehe,"] she giggles. _line["But I'm game. Tell me about the heartlands and the fun, strange, //exotic// names that you have."]
+<br>
+($funcInnerConvo: (dm:
+    "<!--A-->\"Well, there's- Hey, //I'm// asking the questions here.\"", "imAsking",
+    "<!--B-->\"Didn't mean to be a thorn. I was just looking for a conversation starter, and you're Askavan, and your name...\"", "shortFor",
+))
+<br>
+](heartlands|
+
+
+<!--imAsking-->
+[
+_line["Sorry, //officer//,"] she shows her palms, feigning submission. _line["Didn't know I was being interrogated."]
+<br>
+It seems that the meek always veils some great insolence. You have the feeling that if you were a member of the city guard or even an imperial agent, she'd be just as nonchalant. 
+<br>
+($funcInnerConvo: (dm:
+    "<!--B-->\"Didn't mean to interrogate. I was just looking for a conversation starter, and you're Askavan, and your name...\"", "shortFor",
+))
+<br>
+](imAsking|
+
+
+
+<!--shortFor-->
+[
+_line["It's the name I gave myself. You might call that a 'nickname', but if I answer only to 'Veh-Veh', who's to say otherwise?"] She stares at you, deathly serious. Does she expect and answer? But then, she lets out a snort. _line["Yeah, I know what 'regular' names are, silly. It //is// short for something. The hyphenated part of my name is the only part that sounds good. It's catchy. So, I kept it."]
+<br>
+($funcInnerConvo: (dm:
+    "<!--A-->\"What is it short for, if I may ask?\"", "mayAskShort",
+    "<!--B-->\"You, what, threw away the rest? But what is your name in the records? Who are you to the provincial government?\"", "governmentName"
+))
+<br>
+](shortFor|
+
+
+<!--mayAskShort-->
+[
+_line["You may,"] she switches to an aristocratic lilt, sounding like a mistress speaking to her servant. _line["But I may not answer. Haha,"] she giggles again, unable to hold for long the high-chinned accent, well imitated as it is.
+<br>
+It seems that she has a habit of playing these language games by herself, not minding whether her opponent is in on the jest - typical of those who grew up sheltered, if a bit lonesome.
+<br>
+_line["No, but seriously, there's so many other interesting things to talk about. Things that are not me. I am 'Veh-Veh', and that's about as interesting as this gets."]
+<br>
+($funcInnerConvo: (dm:
+    "<!--A-->\"Hm, alright.\"", "preDone1",
+))
+<br>
+](mayAskShort|
+
+
+
+<!--governmentName-->
+[
+_line["Why, do you work for the governorship? Are you checking my papers right now? No? I'm not having my papers checked every day. I don't wear the same clothes all the time either."]
+<br>
+It seems odd that out of anything, she would be this defensive about a mere name. But then again, with others, you don't dog them with inquiries over the origins of their identifying phonemes either.
+<br>
+_line["No, but seriously, there's so many other interesting things to talk about. Things that are not me //or// my name. I am 'Veh-Veh', and that's about as interesting as this gets."]
+<br>
+($funcInnerConvo: (dm:
+    "<!--A-->\"Hm, alright.\"", "preDone1",
+))
+<br>
+](governmentName|
+
+
+<!--preDone1-->
+[
+_line["Yeah."]
+<br>
+For something that is supposedly "uninteresting", at least to her, she is sure saying a lot of words just to avoid explaining the matter. Perhaps there is //something// there. Perhaps not. But either way, it's clear that she's done with this topic... for today.
+<br>
+(show: ?done)
+](preDone1|
+

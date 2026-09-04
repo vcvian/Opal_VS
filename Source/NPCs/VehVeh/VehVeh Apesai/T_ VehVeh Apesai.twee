@@ -96,7 +96,7 @@ _line["Erm... sure, I'm not the best tour guide - barely get out of the lighthou
 <br>
 
 <!--reward tip-->
-(if: _rewardOrNot is true)[$cssDesc[The more you ask, the better you understand. You temporarily gain ''(print:_score -1 ) (print: (passage: "temp.impressionApesai")'s id)'', which increases your chances when exploring the island-city.]
+(if: _rewardOrNot is true)[$cssDesc[The more you ask, the better you understand. You temporarily gain ''(print:_score -1 ) (print: (passage: "temp.impressionApesai")'s id)''($funcLogTip: "temp.", "impressionApesai"), which increases your chances when exploring the island-city.]
 <br>
 ]
 ---

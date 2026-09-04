@@ -1,0 +1,92 @@
+:: T: VehVeh Self [topic] {"position":"6275,1650","size":"100,100"}
+{=
+
+(storylet: when
+(passage:) contains "NPC"
+and $char's VehVeh's opinion's 2nd > 20
+and $char's VehVeh's location is "Apesai Lighthouse"
+and $char's player's timerCooldown does not contain "T: VehVeh Self"
+)
+
+(metadata:
+"NPC", "VehVeh",
+"title", "Regarding Veh-Veh Herself",
+"topic", [{(cond:
+		($funcTalkedTimesCheck: "nameVehVeh") < 1, "\"'Veh-Veh' - is that an Askavan name?\"",
+		($funcTalkedTimesCheck: "nameVehVeh") < 2, "\"I still want to hear more about that name of yours - 'Veh-Veh'. It feels like there's more to that story.\"",
+		"\"Apologies for asking again, but I am still curious about you, Veh-Veh.\"",
+	)}],
+"topicDetail", [{(cond:
+	($funcTalkedTimesCheck: "nameVehVeh") < 1, "She seems like the chatty sort. Maybe she'll like talking about herself?",
+	($funcTalkedTimesCheck: "nameVehVeh") < 2, "She's been cagey, but that only means that there's something worth hiding.",
+	"You are so close to cracking this case wide open.")}],
+"cooldown", 1,
+"talked", (a: "nameVehVeh", ),
+"addCode", [{
+	(if: ($funcTalkedTimesCheck: "nameVehVeh") >= 1)[{
+    	($funcOpinionGainLoss: "VehVeh", -2, "Veh-Veh seems annoyed that you keep pursuing this line of questioning.")
+    }]
+}],
+)
+
+$cssColumnParent[
+
+$cssColumnChild[
+	$cssBox[
+    	($funcImage: (passage: "S: VehVeh")'s img)
+         $cssBoxItem[''(print: (passage:)'s title )''<br>(print: (passage:)'s topicDetail)]
+    ]
+]
+
+$cssColumnChild[
+
+$cssDesc[''You: //(print: (passage:)'s topic)//'']
+<br>
+
+<!--VehVehLine short hand-->
+(set: _line to (hook: "VehVehLine"))
+
+<!--First time intro-->
+(if: ($funcTalkedTimesCheck: "nameVehVeh") < 1)[(display: "convo.VehVehSelf.firstTime")]
+
+<!--Second time intro-->
+(elseif: ($funcTalkedTimesCheck: "nameVehVeh") < 2)[(display: "convo.VehVehSelf.secondTime")]
+
+<!--Third time intro-->
+(else:)[(display: "convo.VehVehSelf.thirdTime")]
+
+<!--done-->
+[
+---
+<ol>
+($funcNPCTopics: "Veh-Veh is beginning to gaze back at her book. She's done talking for the day.", "Good talk anyway, Veh-Veh. Bye.")
+</ol>
+](done|
+
+]<!--end child-->
+]<!--end parent-->
+
+
+
+
+
+[
+
+(if: ($funcTalkedTimesCheck: "nameVehVeh") < 1)[Veh-Veh squints at you a bit.
+<br>
+["It is a nickname... My full name is Mahveh-Vehkhan, but I feel like that's a bit ostentatious."]<VehVehLine|
+<br>
+Despite her hesitation, she continues.]
+(elseif: ($funcTalkedTimesCheck: "nameVehVeh") < 2)[["I already told you, haven't I? Sorry..."]<VehVehLine|
+<br>
+(repeats... )]
+(else:)[["I don't want to talk about that. Sorry."]<VehVehLine|]
+<br>
+[(...the story about her name)
+<br>
+]<nameStory|(if: ($funcTalkedTimesCheck: "nameVehVeh") >= 2)[(hide: ?nameStory)]
+---
+<ol>
+($funcNPCTopics: "Veh-Veh is beginning to gaze back at her book. She's done talking for the day.", "Thanks for sharing, Veh-Veh. Bye.")
+</ol>
+](old|

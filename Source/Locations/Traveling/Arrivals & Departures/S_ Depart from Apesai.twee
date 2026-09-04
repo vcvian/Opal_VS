@@ -9,7 +9,7 @@ $place's sublocation is "Apesai Wharf"
 "title", "Hiring a Ferry",
 "cardDesc", "Ferries-for-hire flock the wharf, waiting to take those with the coins out of Apesai and into mainland Askava.",
 "img", "https://fallenlondon.wiki/w/images/3/3b/Shipilaltun.png",
-"devNote", [Add item.licenseAdventure and licenseTrade to the game],
+"devNote", [Find a way to restrict traveling while the sickTeacher quest is still active. Add item.licenseAdventure and licenseTrade to the game],
 )
 
 $cssColumnParent[
