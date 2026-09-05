@@ -47,11 +47,11 @@ Back home, "heartland" strictly refers to the capital and its surrounds, but in 
 
 <!--1end-->
 [
-["Oh, I'm being rude. Sorry. I'm Vehk- I mean, I'm Veh-Veh. Please, call me Veh-Veh,"]<VehVehLine| she stands up and bows. ["Assistant at Apesai Davehkhan."]<VehVehLine|
+["Oh, I'm being rude. Sorry. I'm Vehk- I mean, I'm Veh-Veh. Please, call me Veh-Veh,"]<VehVehLine| she stands up and bows. What an odd name. ["I'm a student-assistant at Apesai Davehkhan."]<VehVehLine|
 <br>
 ($funcInnerConvo: (dm:
      "<!--A-->\"An honor, Veh-Veh.\" Bow and introduce yourself.", "2b",
-     "<!--B-->\"'Davehkhan'? I wasn't aware that Apesai had a //university//.\"", "2a",
+     "<!--B-->\"Apesai 'Davehkhan'? I wasn't aware that Apesai had a //university//.\"", "2a",
 ))
 <br>
 ](1end|
@@ -74,7 +74,7 @@ Informal teaching circles are everywhere, but only land grants by the emperor an
 [
 You tell her who you are and where you graduated from.
 <br>
-["So '(print: $char's player's customName)' the journeyman,"]<VehVehLine| she mutters, repeating your words.
+["So '(print: $char's player's customName)' the journeyman from Bakho university,"]<VehVehLine| she mutters, repeating your words.
 <br>
 Yes, you're currently journeying for employment and studying to create a Sacred Opal, as all journeymen are tasked.
 <br>
@@ -100,7 +100,7 @@ Veh-Veh snorts and giggles.
 <br>
 She thumbs her book, seriously thinking about it.
 <br>
-(show:?3end)
+(t8n: "dissolve")(show:?3end)
 ](3a|
 
 <!--3b-->
@@ -122,14 +122,14 @@ You've seen a public "admonishment" of plagiarists once. It smelled awful. The R
 [
 ["But then, we'd have a boom in increasingly complex heists and a crisis of academic integrity. Oh, Veh-Veh, what have you done..."]<VehVehLine| she continues muttering, lost in hypotheticals.
 <br>
-(show:?3end)
+(t8n: "dissolve")(show:?3end)
 ](3b1|
 
 <!--3b2-->
 [
 ["Yes, well, it wouldn't be so bad. Most of the municipal lamps in Apesai run on vehzin anyway, and maybe we'd even get to see the night stars again, so..."]<VehVehLine| she continues muttering, lost in hypotheticals.
 <br>
-(show:?3end)
+(t8n: "dissolve")(show:?3end)
 ](3b2|
 
 <!--3c-->
@@ -145,20 +145,20 @@ You've seen a public "admonishment" of plagiarists once. It smelled awful. The R
 
 <!--3c1-->
 [
-["Nudankhan, of course. Who wouldn't want to study in the 'Capital of Magic' if it's just a matter of hypotheticals?"]<VehVehLine| She sighs. ["Failing that, I suppose Sisua is fine, too. Then I'd become a hospitaler like my cousins. No, wait, that's only their school. There are other things to do in Sisua, right?"]<VehVehLine|
+["Nudankhan, of course. Who wouldn't want to study in the 'Capital of Magic' if it's just a matter of hypotheticals?"]<VehVehLine| She sighs. ["Failing that, I suppose Esora is fine, too. They've got big observatories, I've read that somewhere. Esorans aren't called 'star-gazers' for nothing, right? Or does that mean something else?"]<VehVehLine|
 <br>
-The more she goes on, the more she seems to run up against the limits of her knowledge of places outside of Askava, or even Apesai.
+The more she goes on, the more she seems to run up against the limits of her knowledge of places outside of Askava, or even Apesai. "Star-gazers" when applied to Esorans is like "hut-dweller" here in Askava.
 <br>
-(show:?3end)
+(t8n: "dissolve")(show:?3end)
 ](3c1|
 
 <!--3c2-->
 [
-["Or I can just get up and leave, right? There has been 'outsider masters' before, hasn't there? Not many, but not zero. I can travel to Nudankhan, or maybe Sisua, find my own mentors, then... Ugh, but the children - //someone// has to look after them, and what about traveling stipend? Without a school's sanction..."]<VehVehLine|
+["Or I can just get up and leave, right? There has been 'outsider masters' before, hasn't there? Not many, but not zero. I can travel to Nudankhan, or maybe Esora, find my own mentors, then... Ugh, but the children - //someone// has to look after them, and what about traveling stipend? Without a school's sanction..."]<VehVehLine|
 <br>
 She stammers and fidgets with her book. You seem to have touched a sore spot.
 <br>
-(show:?3end)
+(t8n: "dissolve")(show:?3end)
 ](3c2|
 
 <!--3end-->

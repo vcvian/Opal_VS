@@ -1,3 +1,116 @@
 :: convo.VehVehSelf.secondTime
 {=
-(Second time)
+
+_line["What's more to say?"] She asks, exasperated. _line["Like I said, the hyphenated part of my Nurandahid name has the same syllables, and people have been calling me 'Veh-Veh' since I came to Askava, so that's who I am."]
+<br>
+($funcInnerConvo: (dm:
+	"<!--A-->\"'Came to Askava'... You were born somewhere else?\"", "bornElsewhere",
+    "<!--B-->\"That's what I'm curious about: your Nurandahid name.\"", "nameNurandahid",
+))
+<br>
+
+<!--bornElsewhere-->
+[
+_line["Yes, if it wasn't already obvious, I'm not exactly //native//, am I?"] She crosses her arms. As obvious as it might be, not being native doesn't sound like something she is proud to say out loud.
+<br>
+_line["I might have told you this before this before, but my family moved here from Sisua when I was about three years old. //Got transferred//, to be exact. A lot of imperial families move here since the Raclamation began. Both of my parents are Sisuans, and so I was given a Nurandahid name - 'Mahveh'. There, happy?"]
+<br>
+"Moon-Wisdom" - a very common name for girls of a certain well-to-do background.
+<br>
+($funcInnerConvo: (dm:
+	"<!--A-->\"So 'Veh-Veh' is short for 'Mahveh-Veh...' something, right?\"", "VehVehSomething",
+))
+<br>
+](bornElsewhere|
+
+
+<!--nameNurandahid-->
+[
+_line["It's 'Mahveh' - happy?"] She crosses her arms and looks down at her feet. "Moon-Wisdom" - a very common name for girls of a certain well-to-do background. The name is not strange, but her antipathy is.
+<br>
+_line["Totally normal name. There's a million Mahvehs in Sisua, and I'm sure there's a million more where you're from. But I haven't been Sisuan for at least two decades. I'm Askavan. And Askavans here, native or not, call me 'Veh-Veh'."]
+<br>
+($funcInnerConvo: (dm:
+	"<!--A-->\"So 'Veh-Veh' is short for 'Mahveh-Veh...' something, right?\"", "VehVehSomething",
+))
+<br>
+](nameNurandahid|
+
+
+<!--VehVehSomething-->
+[
+_line["Wow. You've figured it out. Yes, it is short for 'Mahveh-Veh-something',"] she half-heartedly claps. _line["Mahveh, daughter of House Veh-something. All twelve - no, //fifteen// - years in school, I've got to be wise about //something//, right?"]
+<br>
+It seems like you're climbing this mountain one step at a time, and "the Moon" is as high as you can ask for today.
+<br>
+($funcInnerConvo: (dm:
+	"<!--A-->\"I understand local nicknames, but why bury your //real// name?\"", "buryRealName",
+))
+<br>
+](VehVehSomething|
+
+
+<!--buryRealName-->
+[
+_line["'Real'? I reject the premise. Why is traditional Nurango anymore 'real' than something like a creole or an invented name? Tradition has to start //somewhere//, right? Even Nurango - itself a creole - was invented at one time in history. Else, we'd all be made to learn the capital's Sanurango, and I don't think I have the wisdom to be fluent in //that//."]
+($funcInnerConvo: (dm:
+	"<!--B-->\"You're over-complicating things. I'm only talking about a name.\"", "onlyAName",
+    "<!--A-->\"Yes, but the fact is that you were born 'Mahveh-Veh-something' in Sisua dahak. That's real.\"", "onlyAName",
+))
+<br>
+](buryRealName|
+
+
+<!--onlyAName-->
+[
+_line["Sure, but I'm not a newborn, am I? Neither am I three years old. Ask anyone here, I can hardly be considered a Sisuan. Names are appropriate to who you are, not who you were."]
+<br>
+She sighs. This has upset her more than you thought.
+<br>
+_line["How about we leave it at that? I don't enjoy being this argumentative."]
+<br>
+($funcInnerConvo: (dm:
+	"<!--B-->\"Hmm, alright, //Mahveh//.\"", "prePreDone1",
+    "<!--A-->\"Sure, Veh-Veh. Apologies.\"", "prePreDone2",
+    "<!--C-->\"...\"", "prePreDone2",
+))
+<br>
+](onlyAName|
+
+<!--prePreDone1-->
+[
+_line["Ugh..."]
+<br>
+(set: $char's VehVeh's energy's 1st to 0)
+(t8n:"dissolve")(show: ?preDone)
+](prePreDone1|
+
+
+<!--prePreDone2-->
+[
+_line["Gratitude..."]
+<br>
+(t8n:"dissolve")(show: ?preDone)
+](prePreDone2|
+
+<!--preDone-->
+[For a heartlander like yourself, there is very few reason why one would be so uptight about a simple name. In fact, many flaunt their names, the especially when that name is very long, with names of prestigious cities attached, and even better if preceded by an honorific indicating a title.
+<br>
+Perhaps Veh-Veh's name is not long at all, and she feels lesser compared to some of her aristorcratic peers. It wouldn't surprise you if the fallen nobility flocked here. The fringe territories are where the old spirit of the Kuchkhan League is most alive. After the purges, powerful upstart families needed to stay away from the capital.
+<br>
+Or perhaps the Veh-something family is one such fallen lineages. It might explain Veh-Veh hesitation.
+<br>
+($funcInnerConvo: (dm:
+    "<!--A-->The key is to figure out Veh-//what//.", "reallyDone",
+    "<!--B-->Who cares? It shouldn't concern you anyway. You have bothered her enough.", "reallyDone",
+))
+<br>
+
+](preDone|
+
+<!--reallyDone-->
+[
+Whatever it is, it's time to shelf this topic for today.
+<br>
+(t8n:"dissolve")(show: ?done)
+](reallyDone|

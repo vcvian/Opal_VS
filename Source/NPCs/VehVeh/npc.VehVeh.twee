@@ -4,7 +4,14 @@
 (metadata:
 "id", [Veh-Veh],
 "key", (a: "imperial", "davehmar",),
-"desc", "<!--Mahveh-Vehkhan-->Veh-Veh is a magus-in-training studying at the Apesai Lighthouse. She is studious and helpful, if a little put-upon, as all studious and helpful people tend to be.",
+"desc", [{
+    <!--Note in the future: Add condition where the full name "Mahveh-Vehkhan" is revealed-->
+    (if: $char's VehVeh's talked contains "nameVehVeh")[{
+        (if: $char's VehVeh's talked's nameVehVeh's 2nd > 1)[Mahveh-Veh-//something//]
+        (else:)[Veh-Veh]
+    }]
+    (else:)[Veh-Veh]
+    ` `is a magus-in-training studying at the Apesai Lighthouse. She is studious and helpful, if a little put-upon, as all studious and helpful people tend to be.}],
 "img", "Assets/Portraits/Girl_1.png",
 "color", #ccbff2,
 "opinionBonus", (dm:

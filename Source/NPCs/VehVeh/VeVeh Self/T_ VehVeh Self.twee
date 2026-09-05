@@ -19,7 +19,8 @@ and $char's player's timerCooldown does not contain "T: VehVeh Self"
 "topicDetail", [{(cond:
 	($funcTalkedTimesCheck: "nameVehVeh") < 1, "She seems like the chatty sort. Maybe she'll like talking about herself?",
 	($funcTalkedTimesCheck: "nameVehVeh") < 2, "She's been cagey, but that only means that there's something worth hiding.",
-	"You are so close to cracking this case wide open.")}],
+	($funcTalkedTimesCheck: "nameVehVeh") < 3, "You are so close to cracking this case wide open.",
+	"You should be double-wise and not bring this up again in a while.")}],
 "cooldown", 1,
 "talked", (a: "nameVehVeh", ),
 "addCode", [{
@@ -59,34 +60,9 @@ $cssDesc[''You: //(print: (passage:)'s topic)//'']
 [
 ---
 <ol>
-($funcNPCTopics: "Veh-Veh is beginning to gaze back at her book. She's done talking for the day.", "Good talk anyway, Veh-Veh. Bye.")
+($funcNPCTopics: "Veh-Veh is beginning to gaze back at her book. You've exhausted her goodwill for today.", "Good talk anyway, Veh-Veh. Bye.")
 </ol>
 ](done|
 
 ]<!--end child-->
 ]<!--end parent-->
-
-
-
-
-
-[
-
-(if: ($funcTalkedTimesCheck: "nameVehVeh") < 1)[Veh-Veh squints at you a bit.
-<br>
-["It is a nickname... My full name is Mahveh-Vehkhan, but I feel like that's a bit ostentatious."]<VehVehLine|
-<br>
-Despite her hesitation, she continues.]
-(elseif: ($funcTalkedTimesCheck: "nameVehVeh") < 2)[["I already told you, haven't I? Sorry..."]<VehVehLine|
-<br>
-(repeats... )]
-(else:)[["I don't want to talk about that. Sorry."]<VehVehLine|]
-<br>
-[(...the story about her name)
-<br>
-]<nameStory|(if: ($funcTalkedTimesCheck: "nameVehVeh") >= 2)[(hide: ?nameStory)]
----
-<ol>
-($funcNPCTopics: "Veh-Veh is beginning to gaze back at her book. She's done talking for the day.", "Thanks for sharing, Veh-Veh. Bye.")
-</ol>
-](old|

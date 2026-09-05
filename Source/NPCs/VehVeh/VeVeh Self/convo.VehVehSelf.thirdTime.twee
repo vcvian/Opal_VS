@@ -1,3 +1,68 @@
 :: convo.VehVehSelf.thirdTime
 {=
-(Third time)
+
+_line["Is it about my name again?"] She stands back, guarded. Last time, you reached an impasse at "Mahveh-Veh-//something//".
+<br>
+($funcInnerConvo: (dm:
+	"<!--A-->\"You don't want to talk your family name... Are you some kind of nobility?\"", "someNobility",
+    "<!--B-->\"No, I just wanted to hear more about you.\"", "moreAbout",
+))
+<br>
+
+<!--someNobility-->
+[
+_line["Yes,"] she scoffs. _line["Many city-dwelling imperials have some lord or lady in their family tree. Even the merchants' kids are pretending to be nobles. Mine's no major family, no-one involved with the Kuchkhan League, if //that's// what you're wondering."]
+<br>
+In other words, her family is not among the upstart ones with ill-blood towards the Reclaimer-Emperors. There goes one of your hypotheses.
+<br>
+($funcInnerConvo: (dm:
+	"<!--A-->\"Then why don't you want to talk about it? Are you self-conscious about being from a minor family?\"", "smallFamily",
+    "<!--B-->\"So there's no reason to hide your name, is there? And things have normalized between the League and Nudankhan.\"", "noReason",
+))
+<br>
+](someNobility|
+
+
+<!--smallFamily-->
+[
+_line["Self-conscious... Yeah, let's say that,"] she sighs. It's clear that whatever you put forth now, she will assent.
+<br>
+($funcInnerConvo: (dm:
+	"<!--A-->\"Just wanted to know more about you, is all.\"", "moreAbout",
+))
+<br>
+](smallFamily|
+
+
+<!--noReason-->
+[
+_line["Sure... normalized,"] she sighs. You wonder what stake she has in this century-old game among the ruling class. _line["Is there a reason why you're asking me about it?"]
+<br>
+($funcInnerConvo: (dm:
+	"<!--A-->\"Just wanted to know more about you, is all.\"", "moreAbout",
+))
+<br>
+](noReason|
+
+
+<!--moreAbout-->
+[
+_line["Is that what you're doing - getting to know me?"] The way she scoffs makes you feel ridiculous. Definitely nobility. _line["I'm more than happy to talk about anything else - my studies, for example. What inconsequential house I belong to simply isn't the most interesting thing about myself."]
+<br>
+($funcInnerConvo: (dm:
+	"<!--A-->\"Understood.\"", "preDone1",
+    "<!--B-->\"Apologies.\"", "preDone1",
+    "<!--C-->\"...\"", "preDone1",
+))
+<br>
+](moreAbout|
+
+
+<!--preDone1-->
+[
+_line["I really enjoy meeting someone new, someone close to my station. So please, let's keep it pleasant and not place me where I'm not."]
+<br>
+$cssDesc[You should be double-wise and not bring this up again in a while.]
+<br>
+(t8n: "dissolve")(show: ?done)
+](preDone1|

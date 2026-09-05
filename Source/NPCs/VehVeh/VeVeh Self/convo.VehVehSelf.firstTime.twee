@@ -112,6 +112,6 @@ _line["Yeah."]
 <br>
 For something that is supposedly "uninteresting", at least to her, she is sure saying a lot of words just to avoid explaining the matter. Perhaps there is //something// there. Perhaps not. But either way, it's clear that she's done with this topic... for today.
 <br>
-(show: ?done)
+(t8n: "dissolve")(show: ?done)
 ](preDone1|
 

@@ -100,7 +100,7 @@ $(document).on('keydown', function (ev) {
             }
         }
     }
-});</script><tw-tag name="UI" color="orange"></tw-tag><tw-tag name="effect" color="yellow"></tw-tag><tw-tag name="header" color="yellow"></tw-tag><tw-tag name="storylet" color="blue"></tw-tag><tw-tag name="traveling" color="purple"></tw-tag><tw-tag name="test" color="blue"></tw-tag><tw-tag name="topic" color="purple"></tw-tag><tw-tag name="book" color="yellow"></tw-tag><tw-tag name="footer" color="yellow"></tw-tag><tw-tag name="startup" color="orange"></tw-tag><tw-tag name="static-storage" color="yellow"></tw-tag><tw-tag name="stay" color="yellow"></tw-tag><tw-tag name="sublocation" color="green"></tw-tag><tw-passagedata pid="1" name="AA. Books, Reading &amp; Formulae" tags="startup" position="100,100" size="100,100">{=
+});</script><tw-tag name="static-storage" color="yellow"></tw-tag><tw-tag name="topic" color="purple"></tw-tag><tw-tag name="traveling" color="purple"></tw-tag><tw-tag name="stay" color="yellow"></tw-tag><tw-tag name="storylet" color="blue"></tw-tag><tw-tag name="UI" color="orange"></tw-tag><tw-tag name="book" color="yellow"></tw-tag><tw-tag name="effect" color="yellow"></tw-tag><tw-tag name="footer" color="yellow"></tw-tag><tw-tag name="header" color="yellow"></tw-tag><tw-tag name="startup" color="orange"></tw-tag><tw-tag name="sublocation" color="green"></tw-tag><tw-tag name="test" color="blue"></tw-tag><tw-passagedata pid="1" name="AA. Books, Reading &amp; Formulae" tags="startup" position="100,100" size="100,100">{=
 &lt;!--Macros related to books and reading--&gt;
 
 (set: $readingNav to (dm:
@@ -8134,7 +8134,8 @@ and $char&#39;s player&#39;s timerCooldown does not contain &quot;T: VehVeh Self
 &quot;topicDetail&quot;, [{(cond:
 	($funcTalkedTimesCheck: &quot;nameVehVeh&quot;) &lt; 1, &quot;She seems like the chatty sort. Maybe she&#39;ll like talking about herself?&quot;,
 	($funcTalkedTimesCheck: &quot;nameVehVeh&quot;) &lt; 2, &quot;She&#39;s been cagey, but that only means that there&#39;s something worth hiding.&quot;,
-	&quot;You are so close to cracking this case wide open.&quot;)}],
+	($funcTalkedTimesCheck: &quot;nameVehVeh&quot;) &lt; 3, &quot;You are so close to cracking this case wide open.&quot;,
+	&quot;You should be double-wise and not bring this up again in a while.&quot;)}],
 &quot;cooldown&quot;, 1,
 &quot;talked&quot;, (a: &quot;nameVehVeh&quot;, ),
 &quot;addCode&quot;, [{
@@ -8174,37 +8175,12 @@ $cssDesc[&#39;&#39;You: //(print: (passage:)&#39;s topic)//&#39;&#39;]
 [
 ---
 &lt;ol&gt;
-($funcNPCTopics: &quot;Veh-Veh is beginning to gaze back at her book. She&#39;s done talking for the day.&quot;, &quot;Good talk anyway, Veh-Veh. Bye.&quot;)
+($funcNPCTopics: &quot;Veh-Veh is beginning to gaze back at her book. You&#39;ve exhausted her goodwill for today.&quot;, &quot;Good talk anyway, Veh-Veh. Bye.&quot;)
 &lt;/ol&gt;
 ](done|
 
 ]&lt;!--end child--&gt;
-]&lt;!--end parent--&gt;
-
-
-
-
-
-[
-
-(if: ($funcTalkedTimesCheck: &quot;nameVehVeh&quot;) &lt; 1)[Veh-Veh squints at you a bit.
-&lt;br&gt;
-[&quot;It is a nickname... My full name is Mahveh-Vehkhan, but I feel like that&#39;s a bit ostentatious.&quot;]&lt;VehVehLine|
-&lt;br&gt;
-Despite her hesitation, she continues.]
-(elseif: ($funcTalkedTimesCheck: &quot;nameVehVeh&quot;) &lt; 2)[[&quot;I already told you, haven&#39;t I? Sorry...&quot;]&lt;VehVehLine|
-&lt;br&gt;
-(repeats... )]
-(else:)[[&quot;I don&#39;t want to talk about that. Sorry.&quot;]&lt;VehVehLine|]
-&lt;br&gt;
-[(...the story about her name)
-&lt;br&gt;
-]&lt;nameStory|(if: ($funcTalkedTimesCheck: &quot;nameVehVeh&quot;) &gt;= 2)[(hide: ?nameStory)]
----
-&lt;ol&gt;
-($funcNPCTopics: &quot;Veh-Veh is beginning to gaze back at her book. She&#39;s done talking for the day.&quot;, &quot;Thanks for sharing, Veh-Veh. Bye.&quot;)
-&lt;/ol&gt;
-](old|</tw-passagedata><tw-passagedata pid="121" name="convo.VehVehSelf.firstTime" tags="" position="100,1600" size="100,100">{=
+]&lt;!--end parent--&gt;</tw-passagedata><tw-passagedata pid="121" name="convo.VehVehSelf.firstTime" tags="" position="100,1600" size="100,100">{=
 
 _line[&quot;What, is my //name// Askavan?&quot;] She seems amused, but quickly composes herself. _line[&quot;Oh no, I have a Nurandahid name. Just a regular name found in any corner of the Seven Provinces, heh.&quot;]
 &lt;br&gt;
@@ -8317,10 +8293,188 @@ _line[&quot;Yeah.&quot;]
 &lt;br&gt;
 For something that is supposedly &quot;uninteresting&quot;, at least to her, she is sure saying a lot of words just to avoid explaining the matter. Perhaps there is //something// there. Perhaps not. But either way, it&#39;s clear that she&#39;s done with this topic... for today.
 &lt;br&gt;
-(show: ?done)
+(t8n: &quot;dissolve&quot;)(show: ?done)
 ](preDone1|</tw-passagedata><tw-passagedata pid="122" name="convo.VehVehSelf.secondTime" tags="" position="225,1600" size="100,100">{=
-(Second time)</tw-passagedata><tw-passagedata pid="123" name="convo.VehVehSelf.thirdTime" tags="" position="350,1600" size="100,100">{=
-(Third time)</tw-passagedata><tw-passagedata pid="124" name="T: VehVeh Apesai" tags="topic" position="6750,1650" size="100,100">{=
+
+_line[&quot;What&#39;s more to say?&quot;] She asks, exasperated. _line[&quot;Like I said, the hyphenated part of my Nurandahid name has the same syllables, and people have been calling me &#39;Veh-Veh&#39; since I came to Askava, so that&#39;s who I am.&quot;]
+&lt;br&gt;
+($funcInnerConvo: (dm:
+	&quot;&lt;!--A--&gt;\&quot;&#39;Came to Askava&#39;... You were born somewhere else?\&quot;&quot;, &quot;bornElsewhere&quot;,
+    &quot;&lt;!--B--&gt;\&quot;That&#39;s what I&#39;m curious about: your Nurandahid name.\&quot;&quot;, &quot;nameNurandahid&quot;,
+))
+&lt;br&gt;
+
+&lt;!--bornElsewhere--&gt;
+[
+_line[&quot;Yes, if it wasn&#39;t already obvious, I&#39;m not exactly //native//, am I?&quot;] She crosses her arms. As obvious as it might be, not being native doesn&#39;t sound like something she is proud to say out loud.
+&lt;br&gt;
+_line[&quot;I might have told you this before this before, but my family moved here from Sisua when I was about three years old. //Got transferred//, to be exact. A lot of imperial families move here since the Raclamation began. Both of my parents are Sisuans, and so I was given a Nurandahid name - &#39;Mahveh&#39;. There, happy?&quot;]
+&lt;br&gt;
+&quot;Moon-Wisdom&quot; - a very common name for girls of a certain well-to-do background.
+&lt;br&gt;
+($funcInnerConvo: (dm:
+	&quot;&lt;!--A--&gt;\&quot;So &#39;Veh-Veh&#39; is short for &#39;Mahveh-Veh...&#39; something, right?\&quot;&quot;, &quot;VehVehSomething&quot;,
+))
+&lt;br&gt;
+](bornElsewhere|
+
+
+&lt;!--nameNurandahid--&gt;
+[
+_line[&quot;It&#39;s &#39;Mahveh&#39; - happy?&quot;] She crosses her arms and looks down at her feet. &quot;Moon-Wisdom&quot; - a very common name for girls of a certain well-to-do background. The name is not strange, but her antipathy is.
+&lt;br&gt;
+_line[&quot;Totally normal name. There&#39;s a million Mahvehs in Sisua, and I&#39;m sure there&#39;s a million more where you&#39;re from. But I haven&#39;t been Sisuan for at least two decades. I&#39;m Askavan. And Askavans here, native or not, call me &#39;Veh-Veh&#39;.&quot;]
+&lt;br&gt;
+($funcInnerConvo: (dm:
+	&quot;&lt;!--A--&gt;\&quot;So &#39;Veh-Veh&#39; is short for &#39;Mahveh-Veh...&#39; something, right?\&quot;&quot;, &quot;VehVehSomething&quot;,
+))
+&lt;br&gt;
+](nameNurandahid|
+
+
+&lt;!--VehVehSomething--&gt;
+[
+_line[&quot;Wow. You&#39;ve figured it out. Yes, it is short for &#39;Mahveh-Veh-something&#39;,&quot;] she half-heartedly claps. _line[&quot;Mahveh, daughter of House Veh-something. All twelve - no, //fifteen// - years in school, I&#39;ve got to be wise about //something//, right?&quot;]
+&lt;br&gt;
+It seems like you&#39;re climbing this mountain one step at a time, and &quot;the Moon&quot; is as high as you can ask for today.
+&lt;br&gt;
+($funcInnerConvo: (dm:
+	&quot;&lt;!--A--&gt;\&quot;I understand local nicknames, but why bury your //real// name?\&quot;&quot;, &quot;buryRealName&quot;,
+))
+&lt;br&gt;
+](VehVehSomething|
+
+
+&lt;!--buryRealName--&gt;
+[
+_line[&quot;&#39;Real&#39;? I reject the premise. Why is traditional Nurango anymore &#39;real&#39; than something like a creole or an invented name? Tradition has to start //somewhere//, right? Even Nurango - itself a creole - was invented at one time in history. Else, we&#39;d all be made to learn the capital&#39;s Sanurango, and I don&#39;t think I have the wisdom to be fluent in //that//.&quot;]
+($funcInnerConvo: (dm:
+	&quot;&lt;!--B--&gt;\&quot;You&#39;re over-complicating things. I&#39;m only talking about a name.\&quot;&quot;, &quot;onlyAName&quot;,
+    &quot;&lt;!--A--&gt;\&quot;Yes, but the fact is that you were born &#39;Mahveh-Veh-something&#39; in Sisua dahak. That&#39;s real.\&quot;&quot;, &quot;onlyAName&quot;,
+))
+&lt;br&gt;
+](buryRealName|
+
+
+&lt;!--onlyAName--&gt;
+[
+_line[&quot;Sure, but I&#39;m not a newborn, am I? Neither am I three years old. Ask anyone here, I can hardly be considered a Sisuan. Names are appropriate to who you are, not who you were.&quot;]
+&lt;br&gt;
+She sighs. This has upset her more than you thought.
+&lt;br&gt;
+_line[&quot;How about we leave it at that? I don&#39;t enjoy being this argumentative.&quot;]
+&lt;br&gt;
+($funcInnerConvo: (dm:
+	&quot;&lt;!--B--&gt;\&quot;Hmm, alright, //Mahveh//.\&quot;&quot;, &quot;prePreDone1&quot;,
+    &quot;&lt;!--A--&gt;\&quot;Sure, Veh-Veh. Apologies.\&quot;&quot;, &quot;prePreDone2&quot;,
+    &quot;&lt;!--C--&gt;\&quot;...\&quot;&quot;, &quot;prePreDone2&quot;,
+))
+&lt;br&gt;
+](onlyAName|
+
+&lt;!--prePreDone1--&gt;
+[
+_line[&quot;Ugh...&quot;]
+&lt;br&gt;
+(set: $char&#39;s VehVeh&#39;s energy&#39;s 1st to 0)
+(t8n:&quot;dissolve&quot;)(show: ?preDone)
+](prePreDone1|
+
+
+&lt;!--prePreDone2--&gt;
+[
+_line[&quot;Gratitude...&quot;]
+&lt;br&gt;
+(t8n:&quot;dissolve&quot;)(show: ?preDone)
+](prePreDone2|
+
+&lt;!--preDone--&gt;
+[For a heartlander like yourself, there is very few reason why one would be so uptight about a simple name. In fact, many flaunt their names, the especially when that name is very long, with names of prestigious cities attached, and even better if preceded by an honorific indicating a title.
+&lt;br&gt;
+Perhaps Veh-Veh&#39;s name is not long at all, and she feels lesser compared to some of her aristorcratic peers. It wouldn&#39;t surprise you if the fallen nobility flocked here. The fringe territories are where the old spirit of the Kuchkhan League is most alive. After the purges, powerful upstart families needed to stay away from the capital.
+&lt;br&gt;
+Or perhaps the Veh-something family is one such fallen lineages. It might explain Veh-Veh hesitation.
+&lt;br&gt;
+($funcInnerConvo: (dm:
+    &quot;&lt;!--A--&gt;The key is to figure out Veh-//what//.&quot;, &quot;reallyDone&quot;,
+    &quot;&lt;!--B--&gt;Who cares? It shouldn&#39;t concern you anyway. You have bothered her enough.&quot;, &quot;reallyDone&quot;,
+))
+&lt;br&gt;
+
+](preDone|
+
+&lt;!--reallyDone--&gt;
+[
+Whatever it is, it&#39;s time to shelf this topic for today.
+&lt;br&gt;
+(t8n:&quot;dissolve&quot;)(show: ?done)
+](reallyDone|</tw-passagedata><tw-passagedata pid="123" name="convo.VehVehSelf.thirdTime" tags="" position="350,1600" size="100,100">{=
+
+_line[&quot;Is it about my name again?&quot;] She stands back, guarded. Last time, you reached an impasse at &quot;Mahveh-Veh-//something//&quot;.
+&lt;br&gt;
+($funcInnerConvo: (dm:
+	&quot;&lt;!--A--&gt;\&quot;You don&#39;t want to talk your family name... Are you some kind of nobility?\&quot;&quot;, &quot;someNobility&quot;,
+    &quot;&lt;!--B--&gt;\&quot;No, I just wanted to hear more about you.\&quot;&quot;, &quot;moreAbout&quot;,
+))
+&lt;br&gt;
+
+&lt;!--someNobility--&gt;
+[
+_line[&quot;Yes,&quot;] she scoffs. _line[&quot;Many city-dwelling imperials have some lord or lady in their family tree. Even the merchants&#39; kids are pretending to be nobles. Mine&#39;s no major family, no-one involved with the Kuchkhan League, if //that&#39;s// what you&#39;re wondering.&quot;]
+&lt;br&gt;
+In other words, her family is not among the upstart ones with ill-blood towards the Reclaimer-Emperors. There goes one of your hypotheses.
+&lt;br&gt;
+($funcInnerConvo: (dm:
+	&quot;&lt;!--A--&gt;\&quot;Then why don&#39;t you want to talk about it? Are you self-conscious about being from a minor family?\&quot;&quot;, &quot;smallFamily&quot;,
+    &quot;&lt;!--B--&gt;\&quot;So there&#39;s no reason to hide your name, is there? And things have normalized between the League and Nudankhan.\&quot;&quot;, &quot;noReason&quot;,
+))
+&lt;br&gt;
+](someNobility|
+
+
+&lt;!--smallFamily--&gt;
+[
+_line[&quot;Self-conscious... Yeah, let&#39;s say that,&quot;] she sighs. It&#39;s clear that whatever you put forth now, she will assent.
+&lt;br&gt;
+($funcInnerConvo: (dm:
+	&quot;&lt;!--A--&gt;\&quot;Just wanted to know more about you, is all.\&quot;&quot;, &quot;moreAbout&quot;,
+))
+&lt;br&gt;
+](smallFamily|
+
+
+&lt;!--noReason--&gt;
+[
+_line[&quot;Sure... normalized,&quot;] she sighs. You wonder what stake she has in this century-old game among the ruling class. _line[&quot;Is there a reason why you&#39;re asking me about it?&quot;]
+&lt;br&gt;
+($funcInnerConvo: (dm:
+	&quot;&lt;!--A--&gt;\&quot;Just wanted to know more about you, is all.\&quot;&quot;, &quot;moreAbout&quot;,
+))
+&lt;br&gt;
+](noReason|
+
+
+&lt;!--moreAbout--&gt;
+[
+_line[&quot;Is that what you&#39;re doing - getting to know me?&quot;] The way she scoffs makes you feel ridiculous. Definitely nobility. _line[&quot;I&#39;m more than happy to talk about anything else - my studies, for example. What inconsequential house I belong to simply isn&#39;t the most interesting thing about myself.&quot;]
+&lt;br&gt;
+($funcInnerConvo: (dm:
+	&quot;&lt;!--A--&gt;\&quot;Understood.\&quot;&quot;, &quot;preDone1&quot;,
+    &quot;&lt;!--B--&gt;\&quot;Apologies.\&quot;&quot;, &quot;preDone1&quot;,
+    &quot;&lt;!--C--&gt;\&quot;...\&quot;&quot;, &quot;preDone1&quot;,
+))
+&lt;br&gt;
+](moreAbout|
+
+
+&lt;!--preDone1--&gt;
+[
+_line[&quot;I really enjoy meeting someone new, someone close to my station. So please, let&#39;s keep it pleasant and not place me where I&#39;m not.&quot;]
+&lt;br&gt;
+$cssDesc[You should be double-wise and not bring this up again in a while.]
+&lt;br&gt;
+(t8n: &quot;dissolve&quot;)(show: ?done)
+](preDone1|</tw-passagedata><tw-passagedata pid="124" name="T: VehVeh Apesai" tags="topic" position="6750,1650" size="100,100">{=
 
 (storylet: when
 (passage:) contains &quot;NPC&quot;
@@ -9836,11 +9990,11 @@ Back home, &quot;heartland&quot; strictly refers to the capital and its surround
 
 &lt;!--1end--&gt;
 [
-[&quot;Oh, I&#39;m being rude. Sorry. I&#39;m Vehk- I mean, I&#39;m Veh-Veh. Please, call me Veh-Veh,&quot;]&lt;VehVehLine| she stands up and bows. [&quot;Assistant at Apesai Davehkhan.&quot;]&lt;VehVehLine|
+[&quot;Oh, I&#39;m being rude. Sorry. I&#39;m Vehk- I mean, I&#39;m Veh-Veh. Please, call me Veh-Veh,&quot;]&lt;VehVehLine| she stands up and bows. What an odd name. [&quot;I&#39;m a student-assistant at Apesai Davehkhan.&quot;]&lt;VehVehLine|
 &lt;br&gt;
 ($funcInnerConvo: (dm:
      &quot;&lt;!--A--&gt;\&quot;An honor, Veh-Veh.\&quot; Bow and introduce yourself.&quot;, &quot;2b&quot;,
-     &quot;&lt;!--B--&gt;\&quot;&#39;Davehkhan&#39;? I wasn&#39;t aware that Apesai had a //university//.\&quot;&quot;, &quot;2a&quot;,
+     &quot;&lt;!--B--&gt;\&quot;Apesai &#39;Davehkhan&#39;? I wasn&#39;t aware that Apesai had a //university//.\&quot;&quot;, &quot;2a&quot;,
 ))
 &lt;br&gt;
 ](1end|
@@ -9863,7 +10017,7 @@ Informal teaching circles are everywhere, but only land grants by the emperor an
 [
 You tell her who you are and where you graduated from.
 &lt;br&gt;
-[&quot;So &#39;(print: $char&#39;s player&#39;s customName)&#39; the journeyman,&quot;]&lt;VehVehLine| she mutters, repeating your words.
+[&quot;So &#39;(print: $char&#39;s player&#39;s customName)&#39; the journeyman from Bakho university,&quot;]&lt;VehVehLine| she mutters, repeating your words.
 &lt;br&gt;
 Yes, you&#39;re currently journeying for employment and studying to create a Sacred Opal, as all journeymen are tasked.
 &lt;br&gt;
@@ -9889,7 +10043,7 @@ Veh-Veh snorts and giggles.
 &lt;br&gt;
 She thumbs her book, seriously thinking about it.
 &lt;br&gt;
-(show:?3end)
+(t8n: &quot;dissolve&quot;)(show:?3end)
 ](3a|
 
 &lt;!--3b--&gt;
@@ -9911,14 +10065,14 @@ You&#39;ve seen a public &quot;admonishment&quot; of plagiarists once. It smelle
 [
 [&quot;But then, we&#39;d have a boom in increasingly complex heists and a crisis of academic integrity. Oh, Veh-Veh, what have you done...&quot;]&lt;VehVehLine| she continues muttering, lost in hypotheticals.
 &lt;br&gt;
-(show:?3end)
+(t8n: &quot;dissolve&quot;)(show:?3end)
 ](3b1|
 
 &lt;!--3b2--&gt;
 [
 [&quot;Yes, well, it wouldn&#39;t be so bad. Most of the municipal lamps in Apesai run on vehzin anyway, and maybe we&#39;d even get to see the night stars again, so...&quot;]&lt;VehVehLine| she continues muttering, lost in hypotheticals.
 &lt;br&gt;
-(show:?3end)
+(t8n: &quot;dissolve&quot;)(show:?3end)
 ](3b2|
 
 &lt;!--3c--&gt;
@@ -9934,20 +10088,20 @@ You&#39;ve seen a public &quot;admonishment&quot; of plagiarists once. It smelle
 
 &lt;!--3c1--&gt;
 [
-[&quot;Nudankhan, of course. Who wouldn&#39;t want to study in the &#39;Capital of Magic&#39; if it&#39;s just a matter of hypotheticals?&quot;]&lt;VehVehLine| She sighs. [&quot;Failing that, I suppose Sisua is fine, too. Then I&#39;d become a hospitaler like my cousins. No, wait, that&#39;s only their school. There are other things to do in Sisua, right?&quot;]&lt;VehVehLine|
+[&quot;Nudankhan, of course. Who wouldn&#39;t want to study in the &#39;Capital of Magic&#39; if it&#39;s just a matter of hypotheticals?&quot;]&lt;VehVehLine| She sighs. [&quot;Failing that, I suppose Esora is fine, too. They&#39;ve got big observatories, I&#39;ve read that somewhere. Esorans aren&#39;t called &#39;star-gazers&#39; for nothing, right? Or does that mean something else?&quot;]&lt;VehVehLine|
 &lt;br&gt;
-The more she goes on, the more she seems to run up against the limits of her knowledge of places outside of Askava, or even Apesai.
+The more she goes on, the more she seems to run up against the limits of her knowledge of places outside of Askava, or even Apesai. &quot;Star-gazers&quot; when applied to Esorans is like &quot;hut-dweller&quot; here in Askava.
 &lt;br&gt;
-(show:?3end)
+(t8n: &quot;dissolve&quot;)(show:?3end)
 ](3c1|
 
 &lt;!--3c2--&gt;
 [
-[&quot;Or I can just get up and leave, right? There has been &#39;outsider masters&#39; before, hasn&#39;t there? Not many, but not zero. I can travel to Nudankhan, or maybe Sisua, find my own mentors, then... Ugh, but the children - //someone// has to look after them, and what about traveling stipend? Without a school&#39;s sanction...&quot;]&lt;VehVehLine|
+[&quot;Or I can just get up and leave, right? There has been &#39;outsider masters&#39; before, hasn&#39;t there? Not many, but not zero. I can travel to Nudankhan, or maybe Esora, find my own mentors, then... Ugh, but the children - //someone// has to look after them, and what about traveling stipend? Without a school&#39;s sanction...&quot;]&lt;VehVehLine|
 &lt;br&gt;
 She stammers and fidgets with her book. You seem to have touched a sore spot.
 &lt;br&gt;
-(show:?3end)
+(t8n: &quot;dissolve&quot;)(show:?3end)
 ](3c2|
 
 &lt;!--3end--&gt;
@@ -11247,7 +11401,14 @@ You nod. Your teacher is eager to get out of Apesai more than anything, but you 
 (metadata:
 &quot;id&quot;, [Veh-Veh],
 &quot;key&quot;, (a: &quot;imperial&quot;, &quot;davehmar&quot;,),
-&quot;desc&quot;, &quot;&lt;!--Mahveh-Vehkhan--&gt;Veh-Veh is a magus-in-training studying at the Apesai Lighthouse. She is studious and helpful, if a little put-upon, as all studious and helpful people tend to be.&quot;,
+&quot;desc&quot;, [{
+    &lt;!--Note in the future: Add condition where the full name &quot;Mahveh-Vehkhan&quot; is revealed--&gt;
+    (if: $char&#39;s VehVeh&#39;s talked contains &quot;nameVehVeh&quot;)[{
+        (if: $char&#39;s VehVeh&#39;s talked&#39;s nameVehVeh&#39;s 2nd &gt; 1)[Mahveh-Veh-//something//]
+        (else:)[Veh-Veh]
+    }]
+    (else:)[Veh-Veh]
+    ` `is a magus-in-training studying at the Apesai Lighthouse. She is studious and helpful, if a little put-upon, as all studious and helpful people tend to be.}],
 &quot;img&quot;, &quot;Assets/Portraits/Girl_1.png&quot;,
 &quot;color&quot;, #ccbff2,
 &quot;opinionBonus&quot;, (dm:
