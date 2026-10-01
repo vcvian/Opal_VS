@@ -85,7 +85,7 @@ Thankfully, he cannot see you roll your eyes.
 (set: $stuff's convoChoices to (dm:
      "\"<!--A-->Poisoned? It is a mere flux. Fluxes are to be expected from long boat trips; we were warned before.\"", "mereFlux",
      "\"<!--B-->Who would want to poison you?\"", "whoWould",
-     "\"<!--C-->Then we ought to have a physician diagnose and administer you an antidote.\"", "findPhysician",
+     "\"<!--C-->If it is poison, we ought to have a physician diagnose and administer you an antidote.\"", "findPhysician",
      "<!--D-->\"Then what do you want me to do?\"", "exitLink",
 ))
 

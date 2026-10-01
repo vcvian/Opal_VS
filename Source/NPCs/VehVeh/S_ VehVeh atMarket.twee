@@ -12,8 +12,8 @@ and $char's VehVeh's arc is 1
 "NPC", "VehVeh",
 "convoHub", true,
 
-"title", "Veh-Veh the Apprentice",
-"cardDesc", "Mahveh-Vehkhan is wrangling a group of rowdy fair-haired toddlers.",
+"title", "Veh-Veh at the Market",
+"cardDesc", "Veh-Veh is wrangling a group of fair-haired children, trying not to lose any of them in the crowded market.",
 "img", "Assets/Portraits/Girl_1.png", 
 )
 
@@ -29,9 +29,114 @@ $cssColumnChild[
 
 $cssColumnChild[
 
-(if: $char's VehVeh's energy's 1st > 0)[A child's arm in one hand and heavy bags in another, she spots you and says hi.]
+<!--busy or not?-->
+(set: _busy to true)
+(if: $char's VehVeh's energy's 1st > 0)[(set: _busy to false)]
 
-(else:)[Veh-Veh says hi but remains busy with chores for her school.]
+<!--opinion thresholds-->
+(set: _opinion to "neutral")
+(if: $char's VehVeh's opinion's 2nd >= 40)[(set: _opinion to "very good")]
+(elseif: $char's VehVeh's opinion's 2nd >= 20)[(set: _opinion to "good")]
+(elseif: $char's VehVeh's opinion's 2nd >= 10)[(set: _opinion to "neutral")]
+(elseif: $char's VehVeh's opinion's 2nd >= 0)[(set: _opinion to "bad")]
+(else:)[(set: _opinion to "very bad")]
+
+<!--VehVehLine short hand-->
+(set: _line to (hook: "VehVehLine"))
+
+
+<!--if not busy-->
+(if: _busy is false)[{
+
+<!--paragraph 1 (weather dependent)-->
+(cond:
+     $place's weather is "rainy", "The cobblestones of the market district is slick with rain, which has been raining in sheets all day long. In an alleyway, you see Veh-Veh wrangling a group of small children, all fair-haired and tied together at the waist with apprentice sashes, one after the other, now huddled together and trying to stay dry.",
+     $place's weather is "stormy", "A storm is raging overhead. Fortunately, the giant dome of the Exchange building provides a much needed shelter. Behind a huddled group of merchants, you see Veh-Veh and a group of small children, all fair-haired and tied together at the waist with apprentice sashes, one after the other. She is trying to wring the water from their robes.",
+     $place's weather is "overcast", "It is a cool day, and the market is bustling. Among the crowd, you see Veh-Veh leading a chain of fair-haired children, all tied together at the waist with apprentice sashes, one after the other.",
+     $place's weather is "foggy", "Among the fog and the crowd, you see a familiar figure - Veh-Veh with her star cap. Following behind her, like a column of ducklings, is a chain of fair-haired children, all tied together at the waist with apprentice sashes, one after the other. You catch up to them.",
+     $place's weather is "windy", "Harsh winds are screeching through the narrow alleyways of the market district. Just around the corner, you see Veh-Veh trying to keep her star cap on with one hand and leading a column of fair-haired children with the other, with apprentice sashes tying their waist together, one after the other, like a tether to keep them from blowing away.",
+     $place's weather is "sunny", "The sun is high and unadulterated by any cloud. Among the crowd, you spot Veh-veh, sweating and trying to pull behind her a column of listless, shuffling children, all tied together at the waist with apprentice sashes, one after the other. Their fair hair glow in the sun light.",
+     "Veh-Veh is wrangling a group of rowdy fair-haired children." 
+)
+<!--end of paragraph 1-->
+
+<br>
+
+<!--paragraph 2 (opinion dependent)-->
+(cond:
+     _opinion is "very good", [Though busy, Veh-Veh breaks out in a smile and greets you excitedly, _line["Fortune blesses. I wasn't expecting to see you, but here you are!"]],
+     _opinion is "good", [Veh-Veh smiles warmly as she waves at you, _line["Greetings, colleague! Looks like we've picked the same day to run errands. Yes, these are my charges."]],
+     _opinion is "neutral", [Veh-Veh smiles and nods when she sees you, _line["Greetings, journeyman. It's good to see that you're still around. You must excuse my state; I'm running some errands for the school."]],
+     _opinion is "bad", [Veh-Veh glances at you briefly before returning her attention to the children, _line["Oh, it's you again."]],
+     _opinion is "very bad", [Her face betrays a hint of irritation, though you cannot tell if it's directed at you or the children.]
+)
+<!--end of paragraph 2-->
+
+<br>
+
+<!--paragraph 3 (weather dependent)-->
+(cond:
+     $place's weather is "rainy", [{A restless apprentice has begun splashing in a puddle.
+<br>
+     _line["Farmar, get back here, right now, or you'll be washing everyone's clothes today."]
+     }],
+
+     $place's weather is "stormy", [{Lightning flashes, and the children shriek.
+<br>
+     _line["Hush! You're //davehmars//! Act like it."]
+     }],
+
+     $place's weather is "overcast", [{An apprentice suddenly screams and begins to chase after a seagull; the bird has stolen the child's bread.
+<br>     
+     _line["Come back here,"] Veh-Veh yanks the child by the collar. _line["Let the bird have it. We'll buy you another loaf on our way back."]}],
+
+     $place's weather is "foggy", [{As if suddenly remembering something, Veh-Veh starts counting the apprentices in a panic.
+<br>
+     _line["Yek, du, ser, char, pan, shesh..."] She mutters, then sighs in relief. _line["All here. Can't see anything in this weather."]}],
+
+     $place's weather is "windy", [{You follow them into the Grand Exchange building, where massive, plank-like blinds have fallen over the wind traps, shielding the interior from the gusts.
+<br>
+     _line["That's better. We should stay inside for a while,"] she says, turning to the apprentices. _line["Do //not// touch the merchandise. I don't have the rial to pay for what you break."]}],
+
+     $place's weather is "sunny", [{Some of the apprentices has begun loosening the garbs and taking off their caps, trying to cool off.
+<br>
+     _line["Wear your uniform properly,"] Veh-Veh says, and they grumpily comply.}]
+)
+<!--end of paragraph 3-->
+
+
+}]<!--end of if not busy-->
+
+
+
+<!--if busy-->
+(else:)[
+
+<!--paragraph 1 (weather dependent)-->
+(cond:
+     $place's weather is "rainy", [{The rain continues to pour down, and the streets are turning to mud. Veh-Veh and the children are still huddled under the awning. They are not going anywhere soon.}],
+     $place's weather is "stormy", [{Lightining still streaks the sky, and the rain is still angry. Veh-Veh and the children have sunken into the crowd, unable to leave until the storm passes.}],
+     $place's weather is "overcast", [{Veh-Veh and the children are going from shop to shop. The larger among the apprentices are hauling roughspun bags of supplies. At least they can be helpful when she needs them to be.}],
+     $place's weather is "foggy", [{In the fog, you still see Veh-Veh and the children sticking close to the walls, going from shop to shop. One child is ceaselessly sneezing.}],
+     $place's weather is "windy", [{The wind is still fierce, and Veh-Veh and the children are trying to make it through the market in one piece.}],
+     $place's weather is "sunny", [{It is awfully hot. Veh-Veh and the children are moving slowly, trying to find shade.}]
+)
+<!--end of paragraph 1-->
+<br>
+
+<!--paragraph 2 (opinion dependent)-->
+(cond:
+     _opinion is "very good", [Veh-Veh waves at you as she spots you in the distance, but she is quickly turns her attention back to the task at hand - the apprentices.],
+     _opinion is "good", [Veh-Veh smiles warmly as she spots you, but she is quickly distracted by one of the apprentices, who have begun to wander off.],
+     _opinion is "neutral", [Veh-Veh nods at you in acknowledgement as she sees you in the crowd, but in the next moment, she and her group of children are already hurrying off somewhere.],
+     _opinion is "bad", [Veh-Veh glances at you briefly, but she promptly returns her attention to apprentices, who look bored out of their minds.],
+     _opinion is "very bad", [Veh-Veh must have seen you. Why else would she take hurry the apprentices elsewhere?]
+)
+<!--end of paragraph 2-->
+
+
+]
+<!--end of if busy-->
 
 
 <br>

@@ -100,7 +100,7 @@ $(document).on('keydown', function (ev) {
             }
         }
     }
-});</script><tw-tag name="static-storage" color="yellow"></tw-tag><tw-tag name="topic" color="purple"></tw-tag><tw-tag name="traveling" color="purple"></tw-tag><tw-tag name="stay" color="yellow"></tw-tag><tw-tag name="storylet" color="blue"></tw-tag><tw-tag name="UI" color="orange"></tw-tag><tw-tag name="book" color="yellow"></tw-tag><tw-tag name="effect" color="yellow"></tw-tag><tw-tag name="footer" color="yellow"></tw-tag><tw-tag name="header" color="yellow"></tw-tag><tw-tag name="startup" color="orange"></tw-tag><tw-tag name="sublocation" color="green"></tw-tag><tw-tag name="test" color="blue"></tw-tag><tw-passagedata pid="1" name="AA. Books, Reading &amp; Formulae" tags="startup" position="100,100" size="100,100">{=
+});</script><tw-tag name="book" color="yellow"></tw-tag><tw-tag name="footer" color="yellow"></tw-tag><tw-tag name="startup" color="orange"></tw-tag><tw-tag name="test" color="blue"></tw-tag><tw-tag name="topic" color="purple"></tw-tag><tw-tag name="traveling" color="purple"></tw-tag><tw-tag name="UI" color="orange"></tw-tag><tw-tag name="effect" color="yellow"></tw-tag><tw-tag name="header" color="yellow"></tw-tag><tw-tag name="static-storage" color="yellow"></tw-tag><tw-tag name="stay" color="yellow"></tw-tag><tw-tag name="storylet" color="blue"></tw-tag><tw-tag name="sublocation" color="green"></tw-tag><tw-passagedata pid="1" name="AA. Books, Reading &amp; Formulae" tags="startup" position="100,100" size="100,100">{=
 &lt;!--Macros related to books and reading--&gt;
 
 (set: $readingNav to (dm:
@@ -7864,8 +7864,8 @@ and $char&#39;s VehVeh&#39;s arc is 1
 &quot;NPC&quot;, &quot;VehVeh&quot;,
 &quot;convoHub&quot;, true,
 
-&quot;title&quot;, &quot;Veh-Veh the Apprentice&quot;,
-&quot;cardDesc&quot;, &quot;Mahveh-Vehkhan is wrangling a group of rowdy fair-haired toddlers.&quot;,
+&quot;title&quot;, &quot;Veh-Veh at the Market&quot;,
+&quot;cardDesc&quot;, &quot;Veh-Veh is wrangling a group of fair-haired children, trying not to lose any of them in the crowded market.&quot;,
 &quot;img&quot;, &quot;Assets/Portraits/Girl_1.png&quot;, 
 )
 
@@ -7881,9 +7881,114 @@ $cssColumnChild[
 
 $cssColumnChild[
 
-(if: $char&#39;s VehVeh&#39;s energy&#39;s 1st &gt; 0)[A child&#39;s arm in one hand and heavy bags in another, she spots you and says hi.]
+&lt;!--busy or not?--&gt;
+(set: _busy to true)
+(if: $char&#39;s VehVeh&#39;s energy&#39;s 1st &gt; 0)[(set: _busy to false)]
 
-(else:)[Veh-Veh says hi but remains busy with chores for her school.]
+&lt;!--opinion thresholds--&gt;
+(set: _opinion to &quot;neutral&quot;)
+(if: $char&#39;s VehVeh&#39;s opinion&#39;s 2nd &gt;= 40)[(set: _opinion to &quot;very good&quot;)]
+(elseif: $char&#39;s VehVeh&#39;s opinion&#39;s 2nd &gt;= 20)[(set: _opinion to &quot;good&quot;)]
+(elseif: $char&#39;s VehVeh&#39;s opinion&#39;s 2nd &gt;= 10)[(set: _opinion to &quot;neutral&quot;)]
+(elseif: $char&#39;s VehVeh&#39;s opinion&#39;s 2nd &gt;= 0)[(set: _opinion to &quot;bad&quot;)]
+(else:)[(set: _opinion to &quot;very bad&quot;)]
+
+&lt;!--VehVehLine short hand--&gt;
+(set: _line to (hook: &quot;VehVehLine&quot;))
+
+
+&lt;!--if not busy--&gt;
+(if: _busy is false)[{
+
+&lt;!--paragraph 1 (weather dependent)--&gt;
+(cond:
+     $place&#39;s weather is &quot;rainy&quot;, &quot;The cobblestones of the market district is slick with rain, which has been raining in sheets all day long. In an alleyway, you see Veh-Veh wrangling a group of small children, all fair-haired and tied together at the waist with apprentice sashes, one after the other, now huddled together and trying to stay dry.&quot;,
+     $place&#39;s weather is &quot;stormy&quot;, &quot;A storm is raging overhead. Fortunately, the giant dome of the Exchange building provides a much needed shelter. Behind a huddled group of merchants, you see Veh-Veh and a group of small children, all fair-haired and tied together at the waist with apprentice sashes, one after the other. She is trying to wring the water from their robes.&quot;,
+     $place&#39;s weather is &quot;overcast&quot;, &quot;It is a cool day, and the market is bustling. Among the crowd, you see Veh-Veh leading a chain of fair-haired children, all tied together at the waist with apprentice sashes, one after the other.&quot;,
+     $place&#39;s weather is &quot;foggy&quot;, &quot;Among the fog and the crowd, you see a familiar figure - Veh-Veh with her star cap. Following behind her, like a column of ducklings, is a chain of fair-haired children, all tied together at the waist with apprentice sashes, one after the other. You catch up to them.&quot;,
+     $place&#39;s weather is &quot;windy&quot;, &quot;Harsh winds are screeching through the narrow alleyways of the market district. Just around the corner, you see Veh-Veh trying to keep her star cap on with one hand and leading a column of fair-haired children with the other, with apprentice sashes tying their waist together, one after the other, like a tether to keep them from blowing away.&quot;,
+     $place&#39;s weather is &quot;sunny&quot;, &quot;The sun is high and unadulterated by any cloud. Among the crowd, you spot Veh-veh, sweating and trying to pull behind her a column of listless, shuffling children, all tied together at the waist with apprentice sashes, one after the other. Their fair hair glow in the sun light.&quot;,
+     &quot;Veh-Veh is wrangling a group of rowdy fair-haired children.&quot; 
+)
+&lt;!--end of paragraph 1--&gt;
+
+&lt;br&gt;
+
+&lt;!--paragraph 2 (opinion dependent)--&gt;
+(cond:
+     _opinion is &quot;very good&quot;, [Though busy, Veh-Veh breaks out in a smile and greets you excitedly, _line[&quot;Fortune blesses. I wasn&#39;t expecting to see you, but here you are!&quot;]],
+     _opinion is &quot;good&quot;, [Veh-Veh smiles warmly as she waves at you, _line[&quot;Greetings, colleague! Looks like we&#39;ve picked the same day to run errands. Yes, these are my charges.&quot;]],
+     _opinion is &quot;neutral&quot;, [Veh-Veh smiles and nods when she sees you, _line[&quot;Greetings, journeyman. It&#39;s good to see that you&#39;re still around. You must excuse my state; I&#39;m running some errands for the school.&quot;]],
+     _opinion is &quot;bad&quot;, [Veh-Veh glances at you briefly before returning her attention to the children, _line[&quot;Oh, it&#39;s you again.&quot;]],
+     _opinion is &quot;very bad&quot;, [Her face betrays a hint of irritation, though you cannot tell if it&#39;s directed at you or the children.]
+)
+&lt;!--end of paragraph 2--&gt;
+
+&lt;br&gt;
+
+&lt;!--paragraph 3 (weather dependent)--&gt;
+(cond:
+     $place&#39;s weather is &quot;rainy&quot;, [{A restless apprentice has begun splashing in a puddle.
+&lt;br&gt;
+     _line[&quot;Farmar, get back here, right now, or you&#39;ll be washing everyone&#39;s clothes today.&quot;]
+     }],
+
+     $place&#39;s weather is &quot;stormy&quot;, [{Lightning flashes, and the children shriek.
+&lt;br&gt;
+     _line[&quot;Hush! You&#39;re //davehmars//! Act like it.&quot;]
+     }],
+
+     $place&#39;s weather is &quot;overcast&quot;, [{An apprentice suddenly screams and begins to chase after a seagull; the bird has stolen the child&#39;s bread.
+&lt;br&gt;     
+     _line[&quot;Come back here,&quot;] Veh-Veh yanks the child by the collar. _line[&quot;Let the bird have it. We&#39;ll buy you another loaf on our way back.&quot;]}],
+
+     $place&#39;s weather is &quot;foggy&quot;, [{As if suddenly remembering something, Veh-Veh starts counting the apprentices in a panic.
+&lt;br&gt;
+     _line[&quot;Yek, du, ser, char, pan, shesh...&quot;] She mutters, then sighs in relief. _line[&quot;All here. Can&#39;t see anything in this weather.&quot;]}],
+
+     $place&#39;s weather is &quot;windy&quot;, [{You follow them into the Grand Exchange building, where massive, plank-like blinds have fallen over the wind traps, shielding the interior from the gusts.
+&lt;br&gt;
+     _line[&quot;That&#39;s better. We should stay inside for a while,&quot;] she says, turning to the apprentices. _line[&quot;Do //not// touch the merchandise. I don&#39;t have the rial to pay for what you break.&quot;]}],
+
+     $place&#39;s weather is &quot;sunny&quot;, [{Some of the apprentices has begun loosening the garbs and taking off their caps, trying to cool off.
+&lt;br&gt;
+     _line[&quot;Wear your uniform properly,&quot;] Veh-Veh says, and they grumpily comply.}]
+)
+&lt;!--end of paragraph 3--&gt;
+
+
+}]&lt;!--end of if not busy--&gt;
+
+
+
+&lt;!--if busy--&gt;
+(else:)[
+
+&lt;!--paragraph 1 (weather dependent)--&gt;
+(cond:
+     $place&#39;s weather is &quot;rainy&quot;, [{The rain continues to pour down, and the streets are turning to mud. Veh-Veh and the children are still huddled under the awning. They are not going anywhere soon.}],
+     $place&#39;s weather is &quot;stormy&quot;, [{Lightining still streaks the sky, and the rain is still angry. Veh-Veh and the children have sunken into the crowd, unable to leave until the storm passes.}],
+     $place&#39;s weather is &quot;overcast&quot;, [{Veh-Veh and the children are going from shop to shop. The larger among the apprentices are hauling roughspun bags of supplies. At least they can be helpful when she needs them to be.}],
+     $place&#39;s weather is &quot;foggy&quot;, [{In the fog, you still see Veh-Veh and the children sticking close to the walls, going from shop to shop. One child is ceaselessly sneezing.}],
+     $place&#39;s weather is &quot;windy&quot;, [{The wind is still fierce, and Veh-Veh and the children are trying to make it through the market in one piece.}],
+     $place&#39;s weather is &quot;sunny&quot;, [{It is awfully hot. Veh-Veh and the children are moving slowly, trying to find shade.}]
+)
+&lt;!--end of paragraph 1--&gt;
+&lt;br&gt;
+
+&lt;!--paragraph 2 (opinion dependent)--&gt;
+(cond:
+     _opinion is &quot;very good&quot;, [Veh-Veh waves at you as she spots you in the distance, but she is quickly turns her attention back to the task at hand - the apprentices.],
+     _opinion is &quot;good&quot;, [Veh-Veh smiles warmly as she spots you, but she is quickly distracted by one of the apprentices, who have begun to wander off.],
+     _opinion is &quot;neutral&quot;, [Veh-Veh nods at you in acknowledgement as she sees you in the crowd, but in the next moment, she and her group of children are already hurrying off somewhere.],
+     _opinion is &quot;bad&quot;, [Veh-Veh glances at you briefly, but she promptly returns her attention to apprentices, who look bored out of their minds.],
+     _opinion is &quot;very bad&quot;, [Veh-Veh must have seen you. Why else would she take hurry the apprentices elsewhere?]
+)
+&lt;!--end of paragraph 2--&gt;
+
+
+]
+&lt;!--end of if busy--&gt;
 
 
 &lt;br&gt;
@@ -8033,9 +8138,9 @@ and $char&#39;s player&#39;s timerCooldown does not contain &quot;T: VehVeh Chil
 (urgency: 1)
 (metadata:
 &quot;NPC&quot;, &quot;VehVeh&quot;,
-&quot;title&quot;, &quot;Chatting with Veh-Veh&quot;,
-&quot;topic&quot;, &quot;Veh-Veh, who //are// these children?&quot;,
-&quot;topicDetail&quot;, &quot;Askavans - from their fair hair, gray eyes, and copper skin - and each with a davehmar&#39;s sash.&quot;,
+&quot;title&quot;, &quot;Inquiring about Veh-Veh&#39;s Charges&quot;,
+&quot;topic&quot;, &quot;\&quot;Veh-Veh, who //are// these children?\&quot;&quot;,
+&quot;topicDetail&quot;, &quot;Askavans - judging from their light-colored hair, gray eyes, and copper skin.&quot;,
 &quot;cooldown&quot;, 1,
 &quot;talked&quot;, (a: &quot;nativeChildren&quot;,),
 &quot;addCode&quot;, [],
@@ -8045,32 +8150,283 @@ $cssColumnParent[
 
 $cssColumnChild[
 	$cssBox[
-    	($funcImage: (passage: &quot;S: VehVeh Market&quot;)&#39;s img)
+    	($funcImage: (passage: &quot;S: VehVeh atMarket&quot;)&#39;s img)
          $cssBoxItem[&#39;&#39;(print: (passage:)&#39;s title )&#39;&#39;&lt;br&gt;(print: (passage:)&#39;s topicDetail)]
     ]
 ]
 
 $cssColumnChild[
 
+&lt;!--VehVehLine short hand--&gt;
+(set: _line to (hook: &quot;VehVehLine&quot;))
+
+
 $cssDesc[&#39;&#39;You: //(print: (passage:)&#39;s topic)//&#39;&#39;]
 &lt;br&gt;
 
-(A moment of rest...)
+_line[&quot;Oh, ha ha, them?&quot;] She says, tugging at the sash that is tying her waist to the children&#39;s, signalling for them to follow her to a nearby bench. Only the smallest get to sit. _line[&quot;These are... my fellow students.&quot;]
+
 &lt;br&gt;
-[&quot;Yeah, these are my... fellow students. The davehmars think the native children will benefit from spending time with an imperial &quot;lady&quot;.&quot;]&lt;VehVehLine|
+($funcInnerConvo: (dm:
+    &quot;&lt;!--A--&gt;\&quot;Why do you have to nanny for them?\&quot;&quot;, &quot;playNanny&quot;,
+    &quot;&lt;!--C--&gt;\&quot;Do they //have// to be tied? Doesn&#39;t look comfortable.\&quot;&quot;, &quot;haveToTie&quot;,
+    &quot;&lt;!--B--&gt;\&quot;Why are they out here in the market with you?\&quot;&quot;, &quot;whyOut&quot;,
+))
 &lt;br&gt;
-[&quot;I told them that I could barely remember the imperium, but they insisted that it was every citizen&#39;s duties to bring up the peoples of the fringes.&quot;]&lt;VehVehLine|
+
+
+&lt;!--playNanny--&gt;
+[
+_line[&quot;They&#39;re not going to nanny themselves, are they?&quot;] She jokes, but a hint of incredulity flashes across her face. _line[&quot;The oldest one - this one - is seven, but the rest are in their first and second years. All fresh recruits from mainland Askava. They&#39;re not allowed to leave the tower unsupervised, and they shouldn&#39;t be.&quot;]
 &lt;br&gt;
-[&quot;Which is funny, because when they don&#39;t have chores for me, I might as well be just another Askavan.&quot;]&lt;VehVehLine|
+A girl yelps. Another girl has picked up a twig somewhere and is now poking the first with it, giggling. Veh-Veh puts a stop to that quickly.
 &lt;br&gt;
-[&quot;I told them I wasn&#39;t really a lady either. Both my parents were merchants. But no, suddenly everyone&#39;s an expert on my lineage. Can you believe it?&quot;]&lt;VehVehLine|
+($funcInnerConvo: (dm:
+    &quot;&lt;!--A--&gt;\&quot;I see.\&quot;&quot;, &quot;iSee&quot;,
+))
 &lt;br&gt;
-[&quot;Ugh, I complain a lot, but I do care about them, you know? Boarding here all together, far away from their tribes... Sometimes, seems like I&#39;m the only one who cares.&quot;]&lt;VehVehLine|
+](playNanny|
+
+
+&lt;!--haveToTie--&gt;
+[
+_line[&quot;You obviously haven&#39;t been around young children recently, especially native ones,&quot;] Veh-Veh says as she swats a boy&#39;s hand away from a stall. Guilty, he wipes the glitter dust on his robe. The monger sneers at the group. _line[&quot;Try to take your eyes off them for a second, and they get themselves lost. Or worse, kidnapped.&quot;]
+&lt;br&gt;
+It appears that the Apesai school has picked these children up from the mainland. No doubt, they are the most promising among the native tribes, but for the moment, they remain children all the same.
+&lt;br&gt;
+($funcInnerConvo: (dm:
+    &quot;&lt;!--A--&gt;\&quot;I see.\&quot;&quot;, &quot;iSee&quot;,
+))
+&lt;br&gt;
+](haveToTie|
+
+
+&lt;!--whyOut--&gt;
+[
+_line[&quot;The recruits need some fresh air, and I do too,&quot;] she says with a forced smile. _line[&quot;Plus, how would they integrate with Nurandahid society if they never get to see how an adult goes about living in a proper city? It&#39;s as much part of their education as their books and lectures.&quot;]
+&lt;br&gt;
+Veh-Veh sighs, fixing a girl&#39;s star cap, _line[&quot;I&#39;m made to take them outside once in a while, if that&#39;s the answer you&#39;re looking for.&quot;]
+&lt;br&gt;
+($funcInnerConvo: (dm:
+    &quot;&lt;!--A--&gt;\&quot;I see.\&quot;&quot;, &quot;iSee&quot;,
+))
+&lt;br&gt;
+](whyOut|
+
+
+&lt;!--iSee--&gt;
+[
+_line[&quot;Yes... the davehmars believe that the native children will benefit from spending time with an &#39;imperial lady&#39;,&quot;] she sneers at the haughty title.
+&lt;br&gt;
+($funcInnerConvo: (dm:
+    &quot;&lt;!--A--&gt;\&quot;Well, //are// you a &#39;imperial lady&#39;?\&quot;&quot;, &quot;areLady&quot;,
+    &quot;&lt;!--B--&gt;\&quot;Are you //not// a &#39;imperial lady&#39;?\&quot;&quot;, &quot;areLady&quot;,
+))
+&lt;br&gt;
+](iSee|
+
+
+&lt;!--areLady--&gt;
+[
+_line[&quot;Ha, do I //look// like a &#39;imperial lady&#39; to you?&quot;] She asks, spreading her arms.
+&lt;br&gt;
+She is Nurandahid, that much is clear from her pale face and dark hair, one not born under this land&#39;s sun. However, it is difficult to gauge whether anyone is of noble birth these days, especially from appearance alone; many of the old aristocracy has sold off their fineries simply to be able to afford food.
+&lt;br&gt;
+Either way, she means for you to say &quot;no&quot;.
+&lt;br&gt;
+($funcInnerConvo: (dm:
+    &quot;&lt;!--A--&gt;\&quot;Lady or not, there is sense in your teachers&#39; decision. The children need a good role model.\&quot;&quot;, &quot;roleModel&quot;,
+    &quot;&lt;!--B--&gt;\&quot;No, one would expect a noble to have flaunted that fact already.\&quot;&quot;, &quot;notLady&quot;,
+    &quot;&lt;!--C--&gt;\&quot;... Yes?\&quot;&quot;, &quot;yeslady&quot;,
+))
+&lt;br&gt;
+](areLady|
+
+
+&lt;!--roleModel--&gt;
+[
+_line[&quot;Ha ha, sure, if they&#39;ll grow up to be disgruntled adults,&quot;] she chuckles bitterly. _line[&quot;But that&#39;s just it, isn&#39;t it? Civilized adults must do what they can for their civilization, not what they prefer.&quot;]
+&lt;br&gt;
+($funcInnerConvo: (dm:
+    &quot;&lt;!--A--&gt;\&quot;Do you not think you&#39;re a good representative of Nurandahid values?\&quot;&quot;, &quot;dontRemember&quot;,
+    &quot;&lt;!--B--&gt;\&quot;That&#39;s not wrong, but do you put it in that way?\&quot;&quot;, &quot;dontRemember&quot;,
+))
+&lt;br&gt;
+](roleModel|
+
+
+&lt;!--notLady--&gt;
+[
+_line[&quot;Right? You&#39;d hear enough of that if you had a class full of those from named families,&quot;] she says bitterly.
+&lt;br&gt;
+It is common for universities to be treated like a glorified daycare for those not in line for inheritance, who tend to have an excess in pride nonetheless. Some of your own classes back in Bakho were like that, and it is likely that Apesai is no exception.
+&lt;br&gt;
+($funcInnerConvo: (dm:
+    &quot;&lt;!--A--&gt;\&quot;Actual nobles will make poor mentors. They hardly represent Nurandahid values. A regular citizen like yourself, on the other hand...\&quot;&quot;, &quot;dontRemember&quot;,
+    &quot;&lt;!--B--&gt;\&quot;That&#39;s not wrong, but you don&#39;t have to make it sound so bad.\&quot;&quot;, &quot;dontRemember&quot;,
+))
+&lt;br&gt;
+](notLady|
+
+
+&lt;!--yeslady--&gt;
+[
+_line[&quot;Erm...&quot;] she looks at you askew, the look a teacher would give you when you said something dumb out of inattention, for they have caught you daydreaming or napping during class. _line[&quot;Forget it. It&#39;s not important what you or I think anyhow. My teachers have decided that I must help them educate the younger apprentices, and so help them I must.&quot;]
+&lt;br&gt;
+($funcInnerConvo: (dm:
+    &quot;&lt;!--A--&gt;\&quot;You don&#39;t seem very enthused about it. Don&#39;t you agree with them that you&#39;re a good fit for the role?\&quot;&quot;, &quot;dontRemember&quot;,
+    &quot;&lt;!--B--&gt;\&quot;Nobility or not, you //are// Nurandahid.\&quot;&quot;, &quot;dontRemember&quot;,
+))
+&lt;br&gt;
+](yeslady|
+
+
+&lt;!--dontRemember--&gt;
+[
+_line[&quot;I&#39;ve already told my teachers this much: I can&#39;t remember anything about the imperial heartlands, so I&#39;m no better than your average Apesai maid,&quot;] she says, exasperated. _line[&quot;But they keep insisting that it is every citizen&#39;s duty to bring up the peoples of the fringes.&quot;]
+&lt;br&gt;
+Veh-Veh gazes with a tired smile at the children who are talking among themselves in their own tongues. One of them waves at her, as if to signal that everything is fine.
+&lt;br&gt;
+_line[&quot;Which is funny, because when they don&#39;t have chores for me, I might as well be just another Askavan.&quot;]
+&lt;br&gt;
+($funcInnerConvo: (dm:
+    &quot;&lt;!--A--&gt;\&quot;What do you mean? What&#39;s wrong with being Askavan?\&quot;&quot;, &quot;wrongAskavan&quot;,
+    &quot;&lt;!--B--&gt;\&quot;The davehmars are like that.\&quot;&quot;, &quot;davehmarsAreLikeThat&quot;,
+))
+&lt;br&gt;
+](dontRemember|
+
+
+&lt;!--wrongAskavan--&gt;
+[
+_line[&quot;Nothing,&quot;] she shrugs. _line[&quot;What&#39;s &#39;wrong&#39; is how others //make// it a problem. For example, if I was in any other dahak, I would have been journeying in the heartlands by now, but my teachers are - I think - worried that I&#39;m not well-prepared enough to not embarrass the school&#39;s name... At least that&#39;s one theory I have for why they&#39;re still keeping me from graduating.
+&lt;br&gt;
+&quot;I suppose I should be grateful that I&#39;m not fully native. The some of the seniors before me got sent straight to some dingy workshop or the mines inland.&quot;]
+&lt;br&gt;
+One bored apprentice has begun wandering as far as the sash around his waist would allow, tugging on another, who in annoyance pulls him back to the group. It&#39;s strange to think that in about a decade, most of these children will not see comfort like this, as restrictive as it might be.
+&lt;br&gt;
+($funcInnerConvo: (dm:
+    &quot;&lt;!--A--&gt;\&quot;That sounds awful...\&quot;&quot;, &quot;soundsAwful&quot;,
+    &quot;&lt;!--B--&gt;\&quot;At least they will be gainfully employed.\&quot;&quot;, &quot;gainfulEmployment&quot;,
+))
+&lt;br&gt;
+](wrongAskavan|
+
+
+&lt;!--davehmarsAreLikeThat--&gt;
+[
+_line[&quot;Heh, you and I //are// davehmars too, at least to th lay citizens,&quot;] she smiles at the thought. _line[&quot;But I understand what you mean. My teachers want to make double-sure that an Apesai-trained magus like myself is just as capable as, if not more than, any heartlander, so I don&#39;t embarrass the school&#39;s name when I do journey - which I am quite overdue for. We don&#39;t exactly have a high standing among the universities.&quot;]
+&lt;br&gt;
+... Which is to say //if// the Apesai school can be considered a university at all. You look at the copper-skinned children arguing with each other over a piece of pastry, and you wonder if any of this is worth their time at all. But then again, it might be better than to leave them to a life of precarity in the desert. You&#39;ve heard some bone-chilling things about the tribal life.
+&lt;br&gt;
+($funcInnerConvo: (dm:
+    &quot;&lt;!--A--&gt;\&quot;Your hard work today will improve your school tomorrow.\&quot;&quot;, &quot;improveSchool&quot;,
+    &quot;&lt;!--B--&gt;\&quot;Once you become a //master//, you&#39;ll do things differently. You&#39;ll show all of them.\&quot;&quot;, &quot;onceMaster&quot;,
+))
+&lt;br&gt;
+](davehmarsAreLikeThat|
+
+
+&lt;!--soundsAwful--&gt;
+[
+_line[&quot;It&#39;s not as glamorous as what is promised to us imperials, but nothing is guaranteed to anyone,&quot;] she quickly corrects. _line[&quot;I&#39;ve seen imperial graduates wasting their lives in the swamps, and I&#39;ve heard of native journeymen making a name for themselves in the heartlands. Rare, but it happens. One&#39;s life is as good as one&#39;s mind. A century ago, these children would have been slaves in some Kesh temple-settlement.&quot;]
+&lt;br&gt;
+The peoples of the frontier have much more to fear from the bordering Kesh than heartlanders like you do. It makes their deprivation bearable.
+&lt;br&gt;
+($funcInnerConvo: (dm:
+    &quot;&lt;!--A--&gt;\&quot;I suppose that&#39;s one reason to stay positive.\&quot;&quot;, &quot;complainALot&quot;,
+    &quot;&lt;!--B--&gt;\&quot;Worse fates are more than possible.\&quot;&quot;, &quot;complainALot&quot;,
+    &quot;&lt;!--C--&gt;\&quot;There&#39;s no way around hard work.\&quot;&quot;, &quot;complainALot&quot;,
+))
+&lt;br&gt;
+](soundsAwful|
+
+
+&lt;!--gainfulEmployment--&gt;
+[
+_line[&quot;Yes, precisely. After all, they will be //magi//. Their labor is of the mind. They may never have to pick up a pickaxe or a plow,&quot;] she pinches a girl&#39;s cheeks, who sticks out a tongue at her. _line[&quot;I tell myself that it&#39;s better than a herder&#39;s life, or a fisherman&#39;s, or a miner&#39;s, or a salt-scraper&#39;s, or a wanderer&#39;s... But I see in them the same potential as any of us. They should be promised just as much as you and I are.&quot;]
+&lt;br&gt;
+It is rare, though not unheard of, for an Askavan native to journey in and make a name for themselves in the heartlands. Although, as far as you know, all of them have been trained in an established university. Frontier schools like the one here in Apesai were set up to fill in a hole in the local workforce, not to make anyone famous.
+&lt;br&gt;
+($funcInnerConvo: (dm:
+    &quot;&lt;!--A--&gt;\&quot;Better not tempt others with promises that won&#39;t be kept.\&quot;&quot;, &quot;complainALot&quot;,
+    &quot;&lt;!--B--&gt;\&quot;It is rational that talent be allocated where it is needed. There is no need to make everyone equal.\&quot;&quot;, &quot;complainALot&quot;,
+    &quot;&lt;!--C--&gt;\&quot;Each has their own place in the light.\&quot;&quot;, &quot;complainALot&quot;,
+))
+&lt;br&gt;
+](gainfulEmployment|
+
+
+&lt;!--improveSchool--&gt;
+[
+_line[&quot;Yeah, that&#39;s what my teachers say too, heh,&quot;] she shifts in place, restless. _line[&quot;I really //do// want the best for the school - and for the native children, too. It&#39;s obvious that many of them are not ready to part ways with their tribes, much less ready for society.
+&lt;br&gt;
+&quot;But our teachers believe that it&#39;s better that they begin their education early, as it is harder to reform an older child, whose minds are already fixed. I don&#39;t disagree, but perhaps the school can be more... selective. Otherwise, we&#39;ll still be overstretched, and the school will still suffer.&quot;]
+&lt;br&gt;
+It occurs to you that such an idea must have crossed the davehmars&#39; minds, but they also have priorities to which a student like Veh-Veh, as entrusted as she is, is not privy. Frontier schools often have many functions, which sometimes compete against or even contradict its mandate to educate. Veh-Veh must have known this also; accepting it is a different matter.
+&lt;br&gt;
+($funcInnerConvo: (dm:
+    &quot;&lt;!--A--&gt;\&quot;Being selective in Askava might as well be squeezing blood from a stone. Your davehmars are balancing many things.\&quot;&quot;, &quot;complainALot&quot;,
+    &quot;&lt;!--B--&gt;\&quot;If one of these children succeed, that&#39;s more rial to hire a real minder for the next cohort. It&#39;s worth it to work beyond our means right now.\&quot;&quot;, &quot;complainALot&quot;,
+    &quot;&lt;!--C--&gt;\&quot;If only apprentices like yourself had more say in the matter...\&quot;&quot;, &quot;complainALot&quot;,
+))
+&lt;br&gt;
+](improveSchool|
+
+
+&lt;!--onceMaster--&gt;
+[
+_line[&quot;Oh no, I wouldn&#39;t want to be that confident... or petty,&quot;] she shakes her head. _line[&quot;It&#39;s not the davehmars&#39; fault, not entirely. They have so many mandates that they have to fulfill, and there&#39;s only so many hands, so many rials to go around. If- //when// I become a master magus, and I ever have an opportunity to make decisions for a school, I doubt I&#39;ll be much different. I know, &#39;mind makes matter&#39;, but my mind isn&#39;t... you know, the //emperor&#39;s//. There&#39;ll always be things I won&#39;t do well, and I wouldn&#39;t want my future students to hold it against me.&quot;]
+&lt;br&gt;
+But they will; that is the natural state of things. The frustration of the young is as much part of things as the wisdom of the old. Something tells you that Veh-Veh has already accepted this principle, that someone will always hold something against her, and that she is used to this.
+&lt;br&gt;
+($funcInnerConvo: (dm:
+    &quot;&lt;!--A--&gt;\&quot;Still, it should give comfort to think that the future may be different.\&quot;&quot;, &quot;complainALot&quot;,
+    &quot;&lt;!--C--&gt;\&quot;No choice but to be the best you can be.\&quot;&quot;, &quot;complainALot&quot;,
+    &quot;&lt;!--B--&gt;\&quot;Accountability should mean being able to change things, regardless of blame.\&quot;&quot;, &quot;complainALot&quot;,
+))
+&lt;br&gt;
+](onceMaster|
+
+
+&lt;!--complainALot--&gt;
+[
+Veh-Veh opens her mouth but thinks better of it and shakes her head.
+&lt;br&gt;
+_line[&quot;Ugh, if you let me, I&#39;ll just keep complaining,&quot;] she says, tugging the sash at her waist, signalling for the children that break time is over. You, sashless, follow along nonetheless. _line[&quot;I //do// care about the children, and I don&#39;t hate having to take them out for a stroll every so often. It&#39;s not easy for them, being holed up together in the lighthouse. They&#39;re children. I just hope our davehmars remember that as well.&quot;]
+&lt;br&gt;
+($funcInnerConvo: (dm:
+    &quot;&lt;!--B--&gt;\&quot;At least the apprentices still have you.\&quot;&quot;, &quot;doneChoices&quot;,
+    &quot;&lt;!--C--&gt;\&quot;The davehmars do care, in their own, big-picture sort of way.\&quot;&quot;, &quot;doneChoices&quot;,
+    &quot;&lt;!--A--&gt;\&quot;...\&quot;&quot;, &quot;doneChoices&quot;,
+))
+&lt;br&gt;
+](complainALot|
+
+
+&lt;!--doneChoices--&gt;
+[
+&lt;!--busy or not?--&gt;
+(set: _busy to true)
+(if: $char&#39;s VehVeh&#39;s energy&#39;s 1st &gt; 0)[(set: _busy to false)]
+
+(if: _busy)[
+_line[&quot;Anyways,&quot;] she stops to face you. _line[&quot;Thank you for keeping us company on our break, but we still have a few more chores to run, and we shouldn&#39;t keep you.&quot;]
+&lt;br&gt;
+Meaning, you shouldn&#39;t keep her.
+]
+
+(else:)[
+_line[&quot;Anyways,&quot;] she says, back to her usual, sprightly tone. _line[&quot;Let&#39;s talk about something else, if you don&#39;t mind us walking and talking.&quot;]
+]
+
 &lt;br&gt;
 ---
 &lt;ol&gt;
-($funcNPCTopics: &quot;Before she has a chance to finish that thought, one of the children has already broke something. Veh-Veh rushes off.&quot;, &quot;That sucks, Veh-Veh. Hope you hold it together.&quot;)
+($funcNPCTopics: &quot;Veh-Veh has given you all the time she can afford for today.&quot;, &quot;\&quot;I should leave you be, Veh-Veh. Keep up the good work.\&quot;&quot;)
 &lt;/ol&gt;
+](doneChoices|
+
 ]&lt;!--end child--&gt;
 ]&lt;!--end parent--&gt;</tw-passagedata><tw-passagedata pid="119" name="T: VehVeh Market" tags="topic" position="6525,1175" size="100,100">{=
 
@@ -18405,7 +18761,7 @@ Thankfully, he cannot see you roll your eyes.
 (set: $stuff&#39;s convoChoices to (dm:
      &quot;\&quot;&lt;!--A--&gt;Poisoned? It is a mere flux. Fluxes are to be expected from long boat trips; we were warned before.\&quot;&quot;, &quot;mereFlux&quot;,
      &quot;\&quot;&lt;!--B--&gt;Who would want to poison you?\&quot;&quot;, &quot;whoWould&quot;,
-     &quot;\&quot;&lt;!--C--&gt;Then we ought to have a physician diagnose and administer you an antidote.\&quot;&quot;, &quot;findPhysician&quot;,
+     &quot;\&quot;&lt;!--C--&gt;If it is poison, we ought to have a physician diagnose and administer you an antidote.\&quot;&quot;, &quot;findPhysician&quot;,
      &quot;&lt;!--D--&gt;\&quot;Then what do you want me to do?\&quot;&quot;, &quot;exitLink&quot;,
 ))
 
@@ -21266,6 +21622,7 @@ $cssColumnChild[
     &lt;ol&gt;
     (for: each _passage, ..._passageList)[{
         &lt;li&gt;(link: _passage)[(goto: _passage)]
+         (if: (passage: _passage) contains &quot;title&quot;)[` `((print: (passage: _passage)&#39;s title))]
         (if: (passage: _passage) contains &quot;devNote&quot;)[&lt;br&gt; $cssDesc[` `↪` `(print: (passage: _passage)&#39;s devNote)]]
     }]
     &lt;/ol&gt;

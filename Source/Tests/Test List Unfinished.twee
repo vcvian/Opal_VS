@@ -23,6 +23,7 @@
     <ol>
     (for: each _passage, ..._passageList)[{
         <li>(link: _passage)[(goto: _passage)]
+         (if: (passage: _passage) contains "title")[` `((print: (passage: _passage)'s title))]
         (if: (passage: _passage) contains "devNote")[<br> $cssDesc[` `↪` `(print: (passage: _passage)'s devNote)]]
     }]
     </ol>
