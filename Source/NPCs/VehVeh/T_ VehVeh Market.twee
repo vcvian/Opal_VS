@@ -1,19 +1,19 @@
-:: T: VehVeh Market [topic] {"position":"6525,1175","size":"100,100"}
+:: T: VehVeh doAtMarket [topic] {"position":"6525,1175","size":"100,100"}
 {=
 
 (storylet: when
 (passage:) contains "NPC"
 and $char's VehVeh's opinion's 2nd >= 10
 and $char's VehVeh's location is "The Grand Exchange"
-and $char's player's timerCooldown does not contain "T: VehVeh Market"
+and $char's player's timerCooldown does not contain "T: VehVeh doAtMarket"
 )
 
 (urgency: 1)
 (metadata:
 "NPC", "VehVeh",
-"title", "Chatting with Veh-Veh",
-"topic", "What's there to do in the market?",
-"topicDetail", "Small talk about the market has never failed anyone.",
+"title", "Chatting About the Grand Exchange",
+"topic", "This place is huge, and crowded, too...",
+"topicDetail", "Small talk about the market is only second to small talk about the weather.",
 "cooldown", 1,
 "talked", (a:),
 "addCode", [],
@@ -23,22 +23,172 @@ $cssColumnParent[
 
 $cssColumnChild[
 	$cssBox[
-    	($funcImage: (passage: "S: VehVeh Market")'s img)
+    	($funcImage: (passage: "S: VehVeh atMarket")'s img)
          $cssBoxItem[''(print: (passage:)'s title )''<br>(print: (passage:)'s topicDetail)]
     ]
 ]
 
 $cssColumnChild[
 
+<!--VehVehLine short hand-->
+(set: _line to (hook: "VehVehLine"))
+
 $cssDesc[''You: //(print: (passage:)'s topic)//'']
 <br>
 
-["You can help me shop for a few things haha!"]<VehVehLine|
+_line["Yeah, it //is// a Grand Exchange, after all,"] Veh-Veh gazes up at the red steel dome above, which has replaced most of the sky, and ceiling murals - depicting the reigns and deeds of various emperors - function like guiding stars for the lost customer. _line["Is there one where you're from?"]
+<br>
+($funcInnerConvo: (dm:
+    "<!--A-->\"Yes, but the Grand Exchange in Kom City isn't as large as this one.\"", "inKom",
+    "<!--B-->\"Bakho dahak isn't known for our commerce, but yes, we do have a few.\"", "fewBakho",
+    "<!--C-->\"In the heartlands, there are domes as far as the eyes can see.\"", "heartlandDomes",
+))
+<br>
+
+
+<!--inKom-->
+[
+Kom City is far from the largest settlement in Bakho dahak, and its relatively humble Exchange branch reflects this. In actuality, the so-called "city" is only an outcrop of the much larger Bakho University - your alma mater.
+<br>
+_line["Oh? Glad to know Apesai isn't the least in the land at //something//,"] Veh-Veh grins as if she has won some unspoken competition. _line["If Apesai is known for anything, it would be its Grand Exchange. Although, I hope we'll have more to offer in the future."]
+<br>
+She means her school.
+<br>
+($funcInnerConvo: (dm:
+    "<!--A-->\"Anyhow, what's there to do here?\"", "whatsThere",
+))
+<br>
+](inKom|
+
+
+<!--fewBakho-->
+[
+There are around five Grand Exchanges in Bakho, to be exact, with a one more under construction, which is quite few for such a large province. But, things are changing fast under the Reclamation. Too fast. Many are finding themselves falling through the cracks, you included.
+<br>
+_line["Well, the whole of Askava only has this one,"] Veh-Veh gestures at the dome above. _line["If there can only ever be one, it should at least be this big. We are at the terminus of the Exchange network, after all."]
+<br>
+You cannot tell if she is proud or weary of that fact.
+<br>
+($funcInnerConvo: (dm:
+    "<!--A-->\"Anyhow, what's there to do here?\"", "whatsThere",
+))
+<br>
+](fewBakho|
+
+
+<!--heartlandDomes-->
+[
+It is true that in the heartlands, one can find always find red steel domes, crystal-encrusted domes, even tacky gilded domes wherever one goes. And there are towers too - ivory minarets, bare metal spires, glass skyscrapers, and so on. But all of this is trivially true, like saying a forest is full of trees. The wealth of many civilizations pour into the heartlands and their numerous Grand Exchanges. You are just showing off.
+<br>
+_line["So I've read,"] Veh-Veh nods, eyes dimmed as though seeing the magnificent scene in her own mind. _line["Silly of me to have asked."]
+<br>
+($funcInnerConvo: (dm:
+    "<!--A-->\"Anyhow, what's there to do here?\"", "whatsThere",
+))
+<br>
+](heartlandDomes|
+
+
+<!--whatsThere-->
+[
+_line["Buying and selling things, what else? It's the //market district//,"] she chuckles, then clears her throat. _line["I'm joking. Of course you know that.
+<br>
+"Nearly everything that can be found in Askava is sold here. I'm to fetch supplies for the school; there's a whole floor that only sells magical ingredients, same goes with books. It's heavenly, but the price is //extra// steep, so you should really have your rials ready."]
+<!--"spindle" convo, mode 1 (exit available at the start)-->
+<!--better idea to use the standard variable $stuff's convoChoices so that it can be reused at will in the content temp vars (I've removed automated spindle convo since conversations can go on a bit longer)-->
+(set: $stuff's convoChoices to (dm:
+     "<!--B-->\"Why are things so expensive here?\"", "spindleWhyExpensive",
+     "<!--A-->\"Truly? I can buy //everything// here?\"", "spindleEverything",
+     "<!--C-->\"Can one make a decent profit selling things in the Exchange?\"", "spindleSellProfit",
+     "<!--D-->\"What else is there to spend my money on, other than ingredients and books?\"", "spindleElse",
+     "<!--E-->\"I see. That's all I wanted to know.\"", "exitLink",
+))
+
+($funcSpindleConvo: $stuff's convoChoices, 1)
+](whatsThere|
+
+
+(set: _spindleWhyExpensive to [{
+Veh-Veh sighs, _line["I wonder the same thing.
+<br>
+"It probably has something to do with the fact that Apesai produces very few things of its own. We are on a rocky island, as you may have noticed. There is precious little land for crops or large workshops.
+<br>
+"Most of what we need is imported. For instance, mainland Askava supplies the majority of our food and fresh water. And, the various guilds charge heavily for their trouble."]
+<br>
+($funcInnerConvo: $stuff's convoChoices)
+<br>
+}])<!--end of _spindleWhyExpensive-->
+
+
+(set: _spindleEverything to [{
+Veh-Veh suppresses a chuckle, _line["Heh, no, I'm being hyperbolic.
+<br>
+"The most valuable goods here are bulk exports, like compacted vehzin, for example. Unless you're a registered exporter, us regular folks are left with whatever that's come loose or won't fit on their cargo.
+<br>
+"And it goes without saying, but 'everything' means 'everything //legal//'. But, Askava is also known for... well, never mind."]
+<br>
+Any number of thing can fit into that gap: the mind-bending farabek, the artifacts of Navveh and the Askavan Queendoms, Keshan literature, and so on. These are the things you were warned about before leaving the heartlands.
+<br>
+($funcInnerConvo: $stuff's convoChoices)
+<br>
+}])<!--end of _spindleEverything-->
+
+
+(set: _spindleSellProfit to [{
+Veh-Veh gives you a confused look, _line["No, not unless you're part of some merchant's guild, and if you //are//, then you would already have known that.
+<br>
+"Some shops will accept resale from non-members, but you should treat it like a small step up from tossing your belongings into the sea. The guilds are smarter than to let us compete with their merchants and workshops.
+<br>
+"I'd bet that if it wasn't for the guilds, a third of those pilgrims would stay here in Apesai instead of continuing into the inland desert. Not all of them believe in prophecy."]
+
+<br>
+($funcInnerConvo: $stuff's convoChoices)
+<br>
+}])<!--end of _spindleSellProfit-->
+
+
+(set: _spindleElse to [{
+Veh-Veh thinks about it for a moment, _line["If you plan to travel, you'll want to visit the dry goods warehouse. Our teachers' rule of thumb is to buy according to their expected travel days, plus half.
+<br>
+"Also, it's always a good idea to have some spare vehzin ready - that's obvious for us magi. But, if I were you, I'll wait to buy inland. I heard there's a shortage; something's going on in the mines.
+<br>
+"And, you can always buy rial itself, if you happen to have foreign currencies. Those things are dead weight in the Exchange, though I like to keep a little bit as souvenir, even keshi, though don't tell anyone that..."]
+<br>
+($funcInnerConvo: $stuff's convoChoices)
+<br>
+}])<!--end of _spindleElse-->
+
+
+(set: _exitLink to [{
+_line["Right, right,"] she nods. _line["Truth be told, I only shop here because I have to. But if you're not in a hurry, I'll advise that you save your rial and buy things inland. The merchants here don't really need to get any richer than they already are."]
+<br>
+($funcInnerConvo: (dm:
+    "<!--A-->\"Understood.\"", "doneChoices",
+))
+<br>
+}])<!--end of _exitLink-->
+
+
+<!--doneChoices-->
+[
+<!--busy or not?-->
+(set: _busy to true)
+(if: $char's VehVeh's energy's 1st > 0)[(set: _busy to false)]
+
+(if: _busy)[
+_line["Anyways,"] she sighs, restlessly shuffling. _line["I still have some more chores to do. We'll catch up again soon, if you're still in Apesai."]
+]
+
+(else:)[
+_line["Anyways,"] she says. _line["We can keep talking, if you don't mind following me on my chores."]
+]
+
 <br>
 ---
 <ol>
-($funcNPCTopics: "She's already wandering off, more than comfortable of her ability to haul groceries without you.", "Alright, be seeing you, Veh-Veh.")
+($funcNPCTopics: "You have kept her for long enough. She needs to get on with things.", "Be seeing you, Veh-Veh. Goodbye.")
 </ol>
+](doneChoices|
 
 ]<!--end child-->
 ]<!--end parent-->

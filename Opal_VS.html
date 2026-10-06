@@ -100,7 +100,7 @@ $(document).on('keydown', function (ev) {
             }
         }
     }
-});</script><tw-tag name="book" color="yellow"></tw-tag><tw-tag name="footer" color="yellow"></tw-tag><tw-tag name="startup" color="orange"></tw-tag><tw-tag name="test" color="blue"></tw-tag><tw-tag name="topic" color="purple"></tw-tag><tw-tag name="traveling" color="purple"></tw-tag><tw-tag name="UI" color="orange"></tw-tag><tw-tag name="effect" color="yellow"></tw-tag><tw-tag name="header" color="yellow"></tw-tag><tw-tag name="static-storage" color="yellow"></tw-tag><tw-tag name="stay" color="yellow"></tw-tag><tw-tag name="storylet" color="blue"></tw-tag><tw-tag name="sublocation" color="green"></tw-tag><tw-passagedata pid="1" name="AA. Books, Reading &amp; Formulae" tags="startup" position="100,100" size="100,100">{=
+});</script><tw-tag name="header" color="yellow"></tw-tag><tw-tag name="sublocation" color="green"></tw-tag><tw-tag name="topic" color="purple"></tw-tag><tw-tag name="traveling" color="purple"></tw-tag><tw-tag name="UI" color="orange"></tw-tag><tw-tag name="book" color="yellow"></tw-tag><tw-tag name="footer" color="yellow"></tw-tag><tw-tag name="stay" color="yellow"></tw-tag><tw-tag name="storylet" color="blue"></tw-tag><tw-tag name="test" color="blue"></tw-tag><tw-tag name="effect" color="yellow"></tw-tag><tw-tag name="startup" color="orange"></tw-tag><tw-tag name="static-storage" color="yellow"></tw-tag><tw-passagedata pid="1" name="AA. Books, Reading &amp; Formulae" tags="startup" position="100,100" size="100,100">{=
 &lt;!--Macros related to books and reading--&gt;
 
 (set: $readingNav to (dm:
@@ -2956,7 +2956,7 @@ To say that the &#39;&#39;Grand Exchange&#39;&#39; building dominates Apesai&#39
 &lt;br&gt;
 Rather, it is more accurate to say that the entire district - warehouses, merchant residences, accounting and notary offices, commodity trading floors, and many alleyside markets - has grown out from the Grand Exchange, like moss gathering around a stone.
 &lt;br&gt;
-And what a stone it is. If not for the literal Opal atop the lighthouse, the Grand Exchange building, with its massive dome made from enough red steel to break a small kingdom&#39;s coffer - could be said to be Apesai&#39;s crown jewel.
+And what a stone it is. If not for the literal Opal atop the lighthouse, the Grand Exchange building, with its massive dome made from enough red steel to break a small kingdom&#39;s coffer, fully lavishly with murals on the inside, which appears to be the heavens themselves to visitors on the ground - could be said to be Apesai&#39;s crown jewel.
 
 ]
 $cssColumnChild[($funcNavigateSublocations:)]
@@ -8126,23 +8126,23 @@ $cssColumnChild[
 &lt;/ol&gt;
 
 ]&lt;!--end child--&gt;
-]&lt;!--end parent--&gt;</tw-passagedata><tw-passagedata pid="118" name="T: VehVeh Children" tags="topic" position="6400,1175" size="100,100">{=
+]&lt;!--end parent--&gt;</tw-passagedata><tw-passagedata pid="118" name="T: VehVeh doAtMarket" tags="topic" position="6525,1175" size="100,100">{=
 
 (storylet: when
 (passage:) contains &quot;NPC&quot;
 and $char&#39;s VehVeh&#39;s opinion&#39;s 2nd &gt;= 10
 and $char&#39;s VehVeh&#39;s location is &quot;The Grand Exchange&quot;
-and $char&#39;s player&#39;s timerCooldown does not contain &quot;T: VehVeh Children&quot;
+and $char&#39;s player&#39;s timerCooldown does not contain &quot;T: VehVeh doAtMarket&quot;
 )
 
 (urgency: 1)
 (metadata:
 &quot;NPC&quot;, &quot;VehVeh&quot;,
-&quot;title&quot;, &quot;Inquiring about Veh-Veh&#39;s Charges&quot;,
-&quot;topic&quot;, &quot;\&quot;Veh-Veh, who //are// these children?\&quot;&quot;,
-&quot;topicDetail&quot;, &quot;Askavans - judging from their light-colored hair, gray eyes, and copper skin.&quot;,
+&quot;title&quot;, &quot;Chatting About the Grand Exchange&quot;,
+&quot;topic&quot;, &quot;This place is huge, and crowded, too...&quot;,
+&quot;topicDetail&quot;, &quot;Small talk about the market is only second to small talk about the weather.&quot;,
 &quot;cooldown&quot;, 1,
-&quot;talked&quot;, (a: &quot;nativeChildren&quot;,),
+&quot;talked&quot;, (a:),
 &quot;addCode&quot;, [],
 )
 
@@ -8160,248 +8160,140 @@ $cssColumnChild[
 &lt;!--VehVehLine short hand--&gt;
 (set: _line to (hook: &quot;VehVehLine&quot;))
 
-
 $cssDesc[&#39;&#39;You: //(print: (passage:)&#39;s topic)//&#39;&#39;]
 &lt;br&gt;
 
-_line[&quot;Oh, ha ha, them?&quot;] She says, tugging at the sash that is tying her waist to the children&#39;s, signalling for them to follow her to a nearby bench. Only the smallest get to sit. _line[&quot;These are... my fellow students.&quot;]
-
+_line[&quot;Yeah, it //is// a Grand Exchange, after all,&quot;] Veh-Veh gazes up at the red steel dome above, which has replaced most of the sky, and ceiling murals - depicting the reigns and deeds of various emperors - function like guiding stars for the lost customer. _line[&quot;Is there one where you&#39;re from?&quot;]
 &lt;br&gt;
 ($funcInnerConvo: (dm:
-    &quot;&lt;!--A--&gt;\&quot;Why do you have to nanny for them?\&quot;&quot;, &quot;playNanny&quot;,
-    &quot;&lt;!--C--&gt;\&quot;Do they //have// to be tied? Doesn&#39;t look comfortable.\&quot;&quot;, &quot;haveToTie&quot;,
-    &quot;&lt;!--B--&gt;\&quot;Why are they out here in the market with you?\&quot;&quot;, &quot;whyOut&quot;,
+    &quot;&lt;!--A--&gt;\&quot;Yes, but the Grand Exchange in Kom City isn&#39;t as large as this one.\&quot;&quot;, &quot;inKom&quot;,
+    &quot;&lt;!--B--&gt;\&quot;Bakho dahak isn&#39;t known for our commerce, but yes, we do have a few.\&quot;&quot;, &quot;fewBakho&quot;,
+    &quot;&lt;!--C--&gt;\&quot;In the heartlands, there are domes as far as the eyes can see.\&quot;&quot;, &quot;heartlandDomes&quot;,
 ))
 &lt;br&gt;
 
 
-&lt;!--playNanny--&gt;
+&lt;!--inKom--&gt;
 [
-_line[&quot;They&#39;re not going to nanny themselves, are they?&quot;] She jokes, but a hint of incredulity flashes across her face. _line[&quot;The oldest one - this one - is seven, but the rest are in their first and second years. All fresh recruits from mainland Askava. They&#39;re not allowed to leave the tower unsupervised, and they shouldn&#39;t be.&quot;]
+Kom City is far from the largest settlement in Bakho dahak, and its relatively humble Exchange branch reflects this. In actuality, the so-called &quot;city&quot; is only an outcrop of the much larger Bakho University - your alma mater.
 &lt;br&gt;
-A girl yelps. Another girl has picked up a twig somewhere and is now poking the first with it, giggling. Veh-Veh puts a stop to that quickly.
+_line[&quot;Oh? Glad to know Apesai isn&#39;t the least in the land at //something//,&quot;] Veh-Veh grins as if she has won some unspoken competition. _line[&quot;If Apesai is known for anything, it would be its Grand Exchange. Although, I hope we&#39;ll have more to offer in the future.&quot;]
+&lt;br&gt;
+She means her school.
 &lt;br&gt;
 ($funcInnerConvo: (dm:
-    &quot;&lt;!--A--&gt;\&quot;I see.\&quot;&quot;, &quot;iSee&quot;,
+    &quot;&lt;!--A--&gt;\&quot;Anyhow, what&#39;s there to do here?\&quot;&quot;, &quot;whatsThere&quot;,
 ))
 &lt;br&gt;
-](playNanny|
+](inKom|
 
 
-&lt;!--haveToTie--&gt;
+&lt;!--fewBakho--&gt;
 [
-_line[&quot;You obviously haven&#39;t been around young children recently, especially native ones,&quot;] Veh-Veh says as she swats a boy&#39;s hand away from a stall. Guilty, he wipes the glitter dust on his robe. The monger sneers at the group. _line[&quot;Try to take your eyes off them for a second, and they get themselves lost. Or worse, kidnapped.&quot;]
+There are around five Grand Exchanges in Bakho, to be exact, with a one more under construction, which is quite few for such a large province. But, things are changing fast under the Reclamation. Too fast. Many are finding themselves falling through the cracks, you included.
 &lt;br&gt;
-It appears that the Apesai school has picked these children up from the mainland. No doubt, they are the most promising among the native tribes, but for the moment, they remain children all the same.
+_line[&quot;Well, the whole of Askava only has this one,&quot;] Veh-Veh gestures at the dome above. _line[&quot;If there can only ever be one, it should at least be this big. We are at the terminus of the Exchange network, after all.&quot;]
+&lt;br&gt;
+You cannot tell if she is proud or weary of that fact.
 &lt;br&gt;
 ($funcInnerConvo: (dm:
-    &quot;&lt;!--A--&gt;\&quot;I see.\&quot;&quot;, &quot;iSee&quot;,
+    &quot;&lt;!--A--&gt;\&quot;Anyhow, what&#39;s there to do here?\&quot;&quot;, &quot;whatsThere&quot;,
 ))
 &lt;br&gt;
-](haveToTie|
+](fewBakho|
 
 
-&lt;!--whyOut--&gt;
+&lt;!--heartlandDomes--&gt;
 [
-_line[&quot;The recruits need some fresh air, and I do too,&quot;] she says with a forced smile. _line[&quot;Plus, how would they integrate with Nurandahid society if they never get to see how an adult goes about living in a proper city? It&#39;s as much part of their education as their books and lectures.&quot;]
+It is true that in the heartlands, one can find always find red steel domes, crystal-encrusted domes, even tacky gilded domes wherever one goes. And there are towers too - ivory minarets, bare metal spires, glass skyscrapers, and so on. But all of this is trivially true, like saying a forest is full of trees. The wealth of many civilizations pour into the heartlands and their numerous Grand Exchanges. You are just showing off.
 &lt;br&gt;
-Veh-Veh sighs, fixing a girl&#39;s star cap, _line[&quot;I&#39;m made to take them outside once in a while, if that&#39;s the answer you&#39;re looking for.&quot;]
+_line[&quot;So I&#39;ve read,&quot;] Veh-Veh nods, eyes dimmed as though seeing the magnificent scene in her own mind. _line[&quot;Silly of me to have asked.&quot;]
 &lt;br&gt;
 ($funcInnerConvo: (dm:
-    &quot;&lt;!--A--&gt;\&quot;I see.\&quot;&quot;, &quot;iSee&quot;,
+    &quot;&lt;!--A--&gt;\&quot;Anyhow, what&#39;s there to do here?\&quot;&quot;, &quot;whatsThere&quot;,
 ))
 &lt;br&gt;
-](whyOut|
+](heartlandDomes|
 
 
-&lt;!--iSee--&gt;
+&lt;!--whatsThere--&gt;
 [
-_line[&quot;Yes... the davehmars believe that the native children will benefit from spending time with an &#39;imperial lady&#39;,&quot;] she sneers at the haughty title.
+_line[&quot;Buying and selling things, what else? It&#39;s the //market district//,&quot;] she chuckles, then clears her throat. _line[&quot;I&#39;m joking. Of course you know that.
+&lt;br&gt;
+&quot;Nearly everything that can be found in Askava is sold here. I&#39;m to fetch supplies for the school; there&#39;s a whole floor that only sells magical ingredients, same goes with books. It&#39;s heavenly, but the price is //extra// steep, so you should really have your rials ready.&quot;]
+&lt;!--&quot;spindle&quot; convo, mode 1 (exit available at the start)--&gt;
+&lt;!--better idea to use the standard variable $stuff&#39;s convoChoices so that it can be reused at will in the content temp vars (I&#39;ve removed automated spindle convo since conversations can go on a bit longer)--&gt;
+(set: $stuff&#39;s convoChoices to (dm:
+     &quot;&lt;!--B--&gt;\&quot;Why are things so expensive here?\&quot;&quot;, &quot;spindleWhyExpensive&quot;,
+     &quot;&lt;!--A--&gt;\&quot;Truly? I can buy //everything// here?\&quot;&quot;, &quot;spindleEverything&quot;,
+     &quot;&lt;!--C--&gt;\&quot;Can one make a decent profit selling things in the Exchange?\&quot;&quot;, &quot;spindleSellProfit&quot;,
+     &quot;&lt;!--D--&gt;\&quot;What else is there to spend my money on, other than ingredients and books?\&quot;&quot;, &quot;spindleElse&quot;,
+     &quot;&lt;!--E--&gt;\&quot;I see. That&#39;s all I wanted to know.\&quot;&quot;, &quot;exitLink&quot;,
+))
+
+($funcSpindleConvo: $stuff&#39;s convoChoices, 1)
+](whatsThere|
+
+
+(set: _spindleWhyExpensive to [{
+Veh-Veh sighs, _line[&quot;I wonder the same thing.
+&lt;br&gt;
+&quot;It probably has something to do with the fact that Apesai produces very few things of its own. We are on a rocky island, as you may have noticed. There is precious little land for crops or large workshops.
+&lt;br&gt;
+&quot;Most of what we need is imported. For instance, mainland Askava supplies the majority of our food and fresh water. And, the various guilds charge heavily for their trouble.&quot;]
+&lt;br&gt;
+($funcInnerConvo: $stuff&#39;s convoChoices)
+&lt;br&gt;
+}])&lt;!--end of _spindleWhyExpensive--&gt;
+
+
+(set: _spindleEverything to [{
+Veh-Veh suppresses a chuckle, _line[&quot;Heh, no, I&#39;m being hyperbolic.
+&lt;br&gt;
+&quot;The most valuable goods here are bulk exports, like compacted vehzin, for example. Unless you&#39;re a registered exporter, us regular folks are left with whatever that&#39;s come loose or won&#39;t fit on their cargo.
+&lt;br&gt;
+&quot;And it goes without saying, but &#39;everything&#39; means &#39;everything //legal//&#39;. But, Askava is also known for... well, never mind.&quot;]
+&lt;br&gt;
+Any number of thing can fit into that gap: the mind-bending farabek, the artifacts of Navveh and the Askavan Queendoms, Keshan literature, and so on. These are the things you were warned about before leaving the heartlands.
+&lt;br&gt;
+($funcInnerConvo: $stuff&#39;s convoChoices)
+&lt;br&gt;
+}])&lt;!--end of _spindleEverything--&gt;
+
+
+(set: _spindleSellProfit to [{
+Veh-Veh gives you a confused look, _line[&quot;No, not unless you&#39;re part of some merchant&#39;s guild, and if you //are//, then you would already have known that.
+&lt;br&gt;
+&quot;Some shops will accept resale from non-members, but you should treat it like a small step up from tossing your belongings into the sea. The guilds are smarter than to let us compete with their merchants and workshops.
+&lt;br&gt;
+&quot;I&#39;d bet that if it wasn&#39;t for the guilds, a third of those pilgrims would stay here in Apesai instead of continuing into the inland desert. Not all of them believe in prophecy.&quot;]
+
+&lt;br&gt;
+($funcInnerConvo: $stuff&#39;s convoChoices)
+&lt;br&gt;
+}])&lt;!--end of _spindleSellProfit--&gt;
+
+
+(set: _spindleElse to [{
+Veh-Veh thinks about it for a moment, _line[&quot;If you plan to travel, you&#39;ll want to visit the dry goods warehouse. Our teachers&#39; rule of thumb is to buy according to their expected travel days, plus half.
+&lt;br&gt;
+&quot;Also, it&#39;s always a good idea to have some spare vehzin ready - that&#39;s obvious for us magi. But, if I were you, I&#39;ll wait to buy inland. I heard there&#39;s a shortage; something&#39;s going on in the mines.
+&lt;br&gt;
+&quot;And, you can always buy rial itself, if you happen to have foreign currencies. Those things are dead weight in the Exchange, though I like to keep a little bit as souvenir, even keshi, though don&#39;t tell anyone that...&quot;]
+&lt;br&gt;
+($funcInnerConvo: $stuff&#39;s convoChoices)
+&lt;br&gt;
+}])&lt;!--end of _spindleElse--&gt;
+
+
+(set: _exitLink to [{
+_line[&quot;Right, right,&quot;] she nods. _line[&quot;Truth be told, I only shop here because I have to. But if you&#39;re not in a hurry, I&#39;ll advise that you save your rial and buy things inland. The merchants here don&#39;t really need to get any richer than they already are.&quot;]
 &lt;br&gt;
 ($funcInnerConvo: (dm:
-    &quot;&lt;!--A--&gt;\&quot;Well, //are// you a &#39;imperial lady&#39;?\&quot;&quot;, &quot;areLady&quot;,
-    &quot;&lt;!--B--&gt;\&quot;Are you //not// a &#39;imperial lady&#39;?\&quot;&quot;, &quot;areLady&quot;,
+    &quot;&lt;!--A--&gt;\&quot;Understood.\&quot;&quot;, &quot;doneChoices&quot;,
 ))
 &lt;br&gt;
-](iSee|
-
-
-&lt;!--areLady--&gt;
-[
-_line[&quot;Ha, do I //look// like a &#39;imperial lady&#39; to you?&quot;] She asks, spreading her arms.
-&lt;br&gt;
-She is Nurandahid, that much is clear from her pale face and dark hair, one not born under this land&#39;s sun. However, it is difficult to gauge whether anyone is of noble birth these days, especially from appearance alone; many of the old aristocracy has sold off their fineries simply to be able to afford food.
-&lt;br&gt;
-Either way, she means for you to say &quot;no&quot;.
-&lt;br&gt;
-($funcInnerConvo: (dm:
-    &quot;&lt;!--A--&gt;\&quot;Lady or not, there is sense in your teachers&#39; decision. The children need a good role model.\&quot;&quot;, &quot;roleModel&quot;,
-    &quot;&lt;!--B--&gt;\&quot;No, one would expect a noble to have flaunted that fact already.\&quot;&quot;, &quot;notLady&quot;,
-    &quot;&lt;!--C--&gt;\&quot;... Yes?\&quot;&quot;, &quot;yeslady&quot;,
-))
-&lt;br&gt;
-](areLady|
-
-
-&lt;!--roleModel--&gt;
-[
-_line[&quot;Ha ha, sure, if they&#39;ll grow up to be disgruntled adults,&quot;] she chuckles bitterly. _line[&quot;But that&#39;s just it, isn&#39;t it? Civilized adults must do what they can for their civilization, not what they prefer.&quot;]
-&lt;br&gt;
-($funcInnerConvo: (dm:
-    &quot;&lt;!--A--&gt;\&quot;Do you not think you&#39;re a good representative of Nurandahid values?\&quot;&quot;, &quot;dontRemember&quot;,
-    &quot;&lt;!--B--&gt;\&quot;That&#39;s not wrong, but do you put it in that way?\&quot;&quot;, &quot;dontRemember&quot;,
-))
-&lt;br&gt;
-](roleModel|
-
-
-&lt;!--notLady--&gt;
-[
-_line[&quot;Right? You&#39;d hear enough of that if you had a class full of those from named families,&quot;] she says bitterly.
-&lt;br&gt;
-It is common for universities to be treated like a glorified daycare for those not in line for inheritance, who tend to have an excess in pride nonetheless. Some of your own classes back in Bakho were like that, and it is likely that Apesai is no exception.
-&lt;br&gt;
-($funcInnerConvo: (dm:
-    &quot;&lt;!--A--&gt;\&quot;Actual nobles will make poor mentors. They hardly represent Nurandahid values. A regular citizen like yourself, on the other hand...\&quot;&quot;, &quot;dontRemember&quot;,
-    &quot;&lt;!--B--&gt;\&quot;That&#39;s not wrong, but you don&#39;t have to make it sound so bad.\&quot;&quot;, &quot;dontRemember&quot;,
-))
-&lt;br&gt;
-](notLady|
-
-
-&lt;!--yeslady--&gt;
-[
-_line[&quot;Erm...&quot;] she looks at you askew, the look a teacher would give you when you said something dumb out of inattention, for they have caught you daydreaming or napping during class. _line[&quot;Forget it. It&#39;s not important what you or I think anyhow. My teachers have decided that I must help them educate the younger apprentices, and so help them I must.&quot;]
-&lt;br&gt;
-($funcInnerConvo: (dm:
-    &quot;&lt;!--A--&gt;\&quot;You don&#39;t seem very enthused about it. Don&#39;t you agree with them that you&#39;re a good fit for the role?\&quot;&quot;, &quot;dontRemember&quot;,
-    &quot;&lt;!--B--&gt;\&quot;Nobility or not, you //are// Nurandahid.\&quot;&quot;, &quot;dontRemember&quot;,
-))
-&lt;br&gt;
-](yeslady|
-
-
-&lt;!--dontRemember--&gt;
-[
-_line[&quot;I&#39;ve already told my teachers this much: I can&#39;t remember anything about the imperial heartlands, so I&#39;m no better than your average Apesai maid,&quot;] she says, exasperated. _line[&quot;But they keep insisting that it is every citizen&#39;s duty to bring up the peoples of the fringes.&quot;]
-&lt;br&gt;
-Veh-Veh gazes with a tired smile at the children who are talking among themselves in their own tongues. One of them waves at her, as if to signal that everything is fine.
-&lt;br&gt;
-_line[&quot;Which is funny, because when they don&#39;t have chores for me, I might as well be just another Askavan.&quot;]
-&lt;br&gt;
-($funcInnerConvo: (dm:
-    &quot;&lt;!--A--&gt;\&quot;What do you mean? What&#39;s wrong with being Askavan?\&quot;&quot;, &quot;wrongAskavan&quot;,
-    &quot;&lt;!--B--&gt;\&quot;The davehmars are like that.\&quot;&quot;, &quot;davehmarsAreLikeThat&quot;,
-))
-&lt;br&gt;
-](dontRemember|
-
-
-&lt;!--wrongAskavan--&gt;
-[
-_line[&quot;Nothing,&quot;] she shrugs. _line[&quot;What&#39;s &#39;wrong&#39; is how others //make// it a problem. For example, if I was in any other dahak, I would have been journeying in the heartlands by now, but my teachers are - I think - worried that I&#39;m not well-prepared enough to not embarrass the school&#39;s name... At least that&#39;s one theory I have for why they&#39;re still keeping me from graduating.
-&lt;br&gt;
-&quot;I suppose I should be grateful that I&#39;m not fully native. The some of the seniors before me got sent straight to some dingy workshop or the mines inland.&quot;]
-&lt;br&gt;
-One bored apprentice has begun wandering as far as the sash around his waist would allow, tugging on another, who in annoyance pulls him back to the group. It&#39;s strange to think that in about a decade, most of these children will not see comfort like this, as restrictive as it might be.
-&lt;br&gt;
-($funcInnerConvo: (dm:
-    &quot;&lt;!--A--&gt;\&quot;That sounds awful...\&quot;&quot;, &quot;soundsAwful&quot;,
-    &quot;&lt;!--B--&gt;\&quot;At least they will be gainfully employed.\&quot;&quot;, &quot;gainfulEmployment&quot;,
-))
-&lt;br&gt;
-](wrongAskavan|
-
-
-&lt;!--davehmarsAreLikeThat--&gt;
-[
-_line[&quot;Heh, you and I //are// davehmars too, at least to th lay citizens,&quot;] she smiles at the thought. _line[&quot;But I understand what you mean. My teachers want to make double-sure that an Apesai-trained magus like myself is just as capable as, if not more than, any heartlander, so I don&#39;t embarrass the school&#39;s name when I do journey - which I am quite overdue for. We don&#39;t exactly have a high standing among the universities.&quot;]
-&lt;br&gt;
-... Which is to say //if// the Apesai school can be considered a university at all. You look at the copper-skinned children arguing with each other over a piece of pastry, and you wonder if any of this is worth their time at all. But then again, it might be better than to leave them to a life of precarity in the desert. You&#39;ve heard some bone-chilling things about the tribal life.
-&lt;br&gt;
-($funcInnerConvo: (dm:
-    &quot;&lt;!--A--&gt;\&quot;Your hard work today will improve your school tomorrow.\&quot;&quot;, &quot;improveSchool&quot;,
-    &quot;&lt;!--B--&gt;\&quot;Once you become a //master//, you&#39;ll do things differently. You&#39;ll show all of them.\&quot;&quot;, &quot;onceMaster&quot;,
-))
-&lt;br&gt;
-](davehmarsAreLikeThat|
-
-
-&lt;!--soundsAwful--&gt;
-[
-_line[&quot;It&#39;s not as glamorous as what is promised to us imperials, but nothing is guaranteed to anyone,&quot;] she quickly corrects. _line[&quot;I&#39;ve seen imperial graduates wasting their lives in the swamps, and I&#39;ve heard of native journeymen making a name for themselves in the heartlands. Rare, but it happens. One&#39;s life is as good as one&#39;s mind. A century ago, these children would have been slaves in some Kesh temple-settlement.&quot;]
-&lt;br&gt;
-The peoples of the frontier have much more to fear from the bordering Kesh than heartlanders like you do. It makes their deprivation bearable.
-&lt;br&gt;
-($funcInnerConvo: (dm:
-    &quot;&lt;!--A--&gt;\&quot;I suppose that&#39;s one reason to stay positive.\&quot;&quot;, &quot;complainALot&quot;,
-    &quot;&lt;!--B--&gt;\&quot;Worse fates are more than possible.\&quot;&quot;, &quot;complainALot&quot;,
-    &quot;&lt;!--C--&gt;\&quot;There&#39;s no way around hard work.\&quot;&quot;, &quot;complainALot&quot;,
-))
-&lt;br&gt;
-](soundsAwful|
-
-
-&lt;!--gainfulEmployment--&gt;
-[
-_line[&quot;Yes, precisely. After all, they will be //magi//. Their labor is of the mind. They may never have to pick up a pickaxe or a plow,&quot;] she pinches a girl&#39;s cheeks, who sticks out a tongue at her. _line[&quot;I tell myself that it&#39;s better than a herder&#39;s life, or a fisherman&#39;s, or a miner&#39;s, or a salt-scraper&#39;s, or a wanderer&#39;s... But I see in them the same potential as any of us. They should be promised just as much as you and I are.&quot;]
-&lt;br&gt;
-It is rare, though not unheard of, for an Askavan native to journey in and make a name for themselves in the heartlands. Although, as far as you know, all of them have been trained in an established university. Frontier schools like the one here in Apesai were set up to fill in a hole in the local workforce, not to make anyone famous.
-&lt;br&gt;
-($funcInnerConvo: (dm:
-    &quot;&lt;!--A--&gt;\&quot;Better not tempt others with promises that won&#39;t be kept.\&quot;&quot;, &quot;complainALot&quot;,
-    &quot;&lt;!--B--&gt;\&quot;It is rational that talent be allocated where it is needed. There is no need to make everyone equal.\&quot;&quot;, &quot;complainALot&quot;,
-    &quot;&lt;!--C--&gt;\&quot;Each has their own place in the light.\&quot;&quot;, &quot;complainALot&quot;,
-))
-&lt;br&gt;
-](gainfulEmployment|
-
-
-&lt;!--improveSchool--&gt;
-[
-_line[&quot;Yeah, that&#39;s what my teachers say too, heh,&quot;] she shifts in place, restless. _line[&quot;I really //do// want the best for the school - and for the native children, too. It&#39;s obvious that many of them are not ready to part ways with their tribes, much less ready for society.
-&lt;br&gt;
-&quot;But our teachers believe that it&#39;s better that they begin their education early, as it is harder to reform an older child, whose minds are already fixed. I don&#39;t disagree, but perhaps the school can be more... selective. Otherwise, we&#39;ll still be overstretched, and the school will still suffer.&quot;]
-&lt;br&gt;
-It occurs to you that such an idea must have crossed the davehmars&#39; minds, but they also have priorities to which a student like Veh-Veh, as entrusted as she is, is not privy. Frontier schools often have many functions, which sometimes compete against or even contradict its mandate to educate. Veh-Veh must have known this also; accepting it is a different matter.
-&lt;br&gt;
-($funcInnerConvo: (dm:
-    &quot;&lt;!--A--&gt;\&quot;Being selective in Askava might as well be squeezing blood from a stone. Your davehmars are balancing many things.\&quot;&quot;, &quot;complainALot&quot;,
-    &quot;&lt;!--B--&gt;\&quot;If one of these children succeed, that&#39;s more rial to hire a real minder for the next cohort. It&#39;s worth it to work beyond our means right now.\&quot;&quot;, &quot;complainALot&quot;,
-    &quot;&lt;!--C--&gt;\&quot;If only apprentices like yourself had more say in the matter...\&quot;&quot;, &quot;complainALot&quot;,
-))
-&lt;br&gt;
-](improveSchool|
-
-
-&lt;!--onceMaster--&gt;
-[
-_line[&quot;Oh no, I wouldn&#39;t want to be that confident... or petty,&quot;] she shakes her head. _line[&quot;It&#39;s not the davehmars&#39; fault, not entirely. They have so many mandates that they have to fulfill, and there&#39;s only so many hands, so many rials to go around. If- //when// I become a master magus, and I ever have an opportunity to make decisions for a school, I doubt I&#39;ll be much different. I know, &#39;mind makes matter&#39;, but my mind isn&#39;t... you know, the //emperor&#39;s//. There&#39;ll always be things I won&#39;t do well, and I wouldn&#39;t want my future students to hold it against me.&quot;]
-&lt;br&gt;
-But they will; that is the natural state of things. The frustration of the young is as much part of things as the wisdom of the old. Something tells you that Veh-Veh has already accepted this principle, that someone will always hold something against her, and that she is used to this.
-&lt;br&gt;
-($funcInnerConvo: (dm:
-    &quot;&lt;!--A--&gt;\&quot;Still, it should give comfort to think that the future may be different.\&quot;&quot;, &quot;complainALot&quot;,
-    &quot;&lt;!--C--&gt;\&quot;No choice but to be the best you can be.\&quot;&quot;, &quot;complainALot&quot;,
-    &quot;&lt;!--B--&gt;\&quot;Accountability should mean being able to change things, regardless of blame.\&quot;&quot;, &quot;complainALot&quot;,
-))
-&lt;br&gt;
-](onceMaster|
-
-
-&lt;!--complainALot--&gt;
-[
-Veh-Veh opens her mouth but thinks better of it and shakes her head.
-&lt;br&gt;
-_line[&quot;Ugh, if you let me, I&#39;ll just keep complaining,&quot;] she says, tugging the sash at her waist, signalling for the children that break time is over. You, sashless, follow along nonetheless. _line[&quot;I //do// care about the children, and I don&#39;t hate having to take them out for a stroll every so often. It&#39;s not easy for them, being holed up together in the lighthouse. They&#39;re children. I just hope our davehmars remember that as well.&quot;]
-&lt;br&gt;
-($funcInnerConvo: (dm:
-    &quot;&lt;!--B--&gt;\&quot;At least the apprentices still have you.\&quot;&quot;, &quot;doneChoices&quot;,
-    &quot;&lt;!--C--&gt;\&quot;The davehmars do care, in their own, big-picture sort of way.\&quot;&quot;, &quot;doneChoices&quot;,
-    &quot;&lt;!--A--&gt;\&quot;...\&quot;&quot;, &quot;doneChoices&quot;,
-))
-&lt;br&gt;
-](complainALot|
+}])&lt;!--end of _exitLink--&gt;
 
 
 &lt;!--doneChoices--&gt;
@@ -8411,66 +8303,22 @@ _line[&quot;Ugh, if you let me, I&#39;ll just keep complaining,&quot;] she says,
 (if: $char&#39;s VehVeh&#39;s energy&#39;s 1st &gt; 0)[(set: _busy to false)]
 
 (if: _busy)[
-_line[&quot;Anyways,&quot;] she stops to face you. _line[&quot;Thank you for keeping us company on our break, but we still have a few more chores to run, and we shouldn&#39;t keep you.&quot;]
-&lt;br&gt;
-Meaning, you shouldn&#39;t keep her.
+_line[&quot;Anyways,&quot;] she sighs, restlessly shuffling. _line[&quot;I still have some more chores to do. We&#39;ll catch up again soon, if you&#39;re still in Apesai.&quot;]
 ]
 
 (else:)[
-_line[&quot;Anyways,&quot;] she says, back to her usual, sprightly tone. _line[&quot;Let&#39;s talk about something else, if you don&#39;t mind us walking and talking.&quot;]
+_line[&quot;Anyways,&quot;] she says. _line[&quot;We can keep talking, if you don&#39;t mind following me on my chores.&quot;]
 ]
 
 &lt;br&gt;
 ---
 &lt;ol&gt;
-($funcNPCTopics: &quot;Veh-Veh has given you all the time she can afford for today.&quot;, &quot;\&quot;I should leave you be, Veh-Veh. Keep up the good work.\&quot;&quot;)
+($funcNPCTopics: &quot;You have kept her for long enough. She needs to get on with things.&quot;, &quot;Be seeing you, Veh-Veh. Goodbye.&quot;)
 &lt;/ol&gt;
 ](doneChoices|
 
 ]&lt;!--end child--&gt;
-]&lt;!--end parent--&gt;</tw-passagedata><tw-passagedata pid="119" name="T: VehVeh Market" tags="topic" position="6525,1175" size="100,100">{=
-
-(storylet: when
-(passage:) contains &quot;NPC&quot;
-and $char&#39;s VehVeh&#39;s opinion&#39;s 2nd &gt;= 10
-and $char&#39;s VehVeh&#39;s location is &quot;The Grand Exchange&quot;
-and $char&#39;s player&#39;s timerCooldown does not contain &quot;T: VehVeh Market&quot;
-)
-
-(urgency: 1)
-(metadata:
-&quot;NPC&quot;, &quot;VehVeh&quot;,
-&quot;title&quot;, &quot;Chatting with Veh-Veh&quot;,
-&quot;topic&quot;, &quot;What&#39;s there to do in the market?&quot;,
-&quot;topicDetail&quot;, &quot;Small talk about the market has never failed anyone.&quot;,
-&quot;cooldown&quot;, 1,
-&quot;talked&quot;, (a:),
-&quot;addCode&quot;, [],
-)
-
-$cssColumnParent[
-
-$cssColumnChild[
-	$cssBox[
-    	($funcImage: (passage: &quot;S: VehVeh Market&quot;)&#39;s img)
-         $cssBoxItem[&#39;&#39;(print: (passage:)&#39;s title )&#39;&#39;&lt;br&gt;(print: (passage:)&#39;s topicDetail)]
-    ]
-]
-
-$cssColumnChild[
-
-$cssDesc[&#39;&#39;You: //(print: (passage:)&#39;s topic)//&#39;&#39;]
-&lt;br&gt;
-
-[&quot;You can help me shop for a few things haha!&quot;]&lt;VehVehLine|
-&lt;br&gt;
----
-&lt;ol&gt;
-($funcNPCTopics: &quot;She&#39;s already wandering off, more than comfortable of her ability to haul groceries without you.&quot;, &quot;Alright, be seeing you, Veh-Veh.&quot;)
-&lt;/ol&gt;
-
-]&lt;!--end child--&gt;
-]&lt;!--end parent--&gt;</tw-passagedata><tw-passagedata pid="120" name="T: VehVeh Self" tags="topic" position="6275,1650" size="100,100">{=
+]&lt;!--end parent--&gt;</tw-passagedata><tw-passagedata pid="119" name="T: VehVeh Self" tags="topic" position="6275,1650" size="100,100">{=
 
 (storylet: when
 (passage:) contains &quot;NPC&quot;
@@ -8536,7 +8384,7 @@ $cssDesc[&#39;&#39;You: //(print: (passage:)&#39;s topic)//&#39;&#39;]
 ](done|
 
 ]&lt;!--end child--&gt;
-]&lt;!--end parent--&gt;</tw-passagedata><tw-passagedata pid="121" name="convo.VehVehSelf.firstTime" tags="" position="100,1600" size="100,100">{=
+]&lt;!--end parent--&gt;</tw-passagedata><tw-passagedata pid="120" name="convo.VehVehSelf.firstTime" tags="" position="1225,1475" size="100,100">{=
 
 _line[&quot;What, is my //name// Askavan?&quot;] She seems amused, but quickly composes herself. _line[&quot;Oh no, I have a Nurandahid name. Just a regular name found in any corner of the Seven Provinces, heh.&quot;]
 &lt;br&gt;
@@ -8650,7 +8498,7 @@ _line[&quot;Yeah.&quot;]
 For something that is supposedly &quot;uninteresting&quot;, at least to her, she is sure saying a lot of words just to avoid explaining the matter. Perhaps there is //something// there. Perhaps not. But either way, it&#39;s clear that she&#39;s done with this topic... for today.
 &lt;br&gt;
 (t8n: &quot;dissolve&quot;)(show: ?done)
-](preDone1|</tw-passagedata><tw-passagedata pid="122" name="convo.VehVehSelf.secondTime" tags="" position="225,1600" size="100,100">{=
+](preDone1|</tw-passagedata><tw-passagedata pid="121" name="convo.VehVehSelf.secondTime" tags="" position="100,1600" size="100,100">{=
 
 _line[&quot;What&#39;s more to say?&quot;] She asks, exasperated. _line[&quot;Like I said, the hyphenated part of my Nurandahid name has the same syllables, and people have been calling me &#39;Veh-Veh&#39; since I came to Askava, so that&#39;s who I am.&quot;]
 &lt;br&gt;
@@ -8764,7 +8612,7 @@ Or perhaps the Veh-something family is one such fallen lineages. It might explai
 Whatever it is, it&#39;s time to shelf this topic for today.
 &lt;br&gt;
 (t8n:&quot;dissolve&quot;)(show: ?done)
-](reallyDone|</tw-passagedata><tw-passagedata pid="123" name="convo.VehVehSelf.thirdTime" tags="" position="350,1600" size="100,100">{=
+](reallyDone|</tw-passagedata><tw-passagedata pid="122" name="convo.VehVehSelf.thirdTime" tags="" position="225,1600" size="100,100">{=
 
 _line[&quot;Is it about my name again?&quot;] She stands back, guarded. Last time, you reached an impasse at &quot;Mahveh-Veh-//something//&quot;.
 &lt;br&gt;
@@ -8830,7 +8678,7 @@ _line[&quot;I really enjoy meeting someone new, someone close to my station. So 
 $cssDesc[You should be double-wise and not bring this up again in a while.]
 &lt;br&gt;
 (t8n: &quot;dissolve&quot;)(show: ?done)
-](preDone1|</tw-passagedata><tw-passagedata pid="124" name="T: VehVeh Apesai" tags="topic" position="6750,1650" size="100,100">{=
+](preDone1|</tw-passagedata><tw-passagedata pid="123" name="T: VehVeh Apesai" tags="topic" position="6750,1650" size="100,100">{=
 
 (storylet: when
 (passage:) contains &quot;NPC&quot;
@@ -8943,7 +8791,7 @@ _line[&quot;Erm... sure, I&#39;m not the best tour guide - barely get out of the
 }]&lt;!--end done--&gt;
 
 ]&lt;!--end child--&gt;
-]&lt;!--end parent--&gt;</tw-passagedata><tw-passagedata pid="125" name="VehVeh Apesai (exit)" tags="" position="600,1600" size="100,100">{=
+]&lt;!--end parent--&gt;</tw-passagedata><tw-passagedata pid="124" name="VehVeh Apesai (exit)" tags="" position="475,1600" size="100,100">{=
 
 (metadata:
 &quot;NPC&quot;, &quot;VehVeh&quot;,
@@ -8997,7 +8845,7 @@ _line[&quot;Erm, by the way, if you don&#39;t mind, can we pick this up some oth
 ($funcNPCTopics: _textBusy, _textExit)
 &lt;/ol&gt;
 ]&lt;!--end child--&gt;
-]&lt;!--end parent--&gt;</tw-passagedata><tw-passagedata pid="126" name="convo.VehVeh.doApesai" tags="" position="725,1600" size="100,100">{=
+]&lt;!--end parent--&gt;</tw-passagedata><tw-passagedata pid="125" name="convo.VehVeh.doApesai" tags="" position="600,1600" size="100,100">{=
 
 &lt;!--award score--&gt;
 (set: _score to it + 1)
@@ -9223,10 +9071,10 @@ _line[&quot;Anyway, is there something else you want to ask?&quot;]
 &lt;br&gt;
 ($funcInnerConvo: $stuff&#39;s convoChoices)
 &lt;br&gt;
-](doApesaiDone|</tw-passagedata><tw-passagedata pid="127" name="convo.VehVeh.exitLink" tags="" position="850,1600" size="100,100">{=
+](doApesaiDone|</tw-passagedata><tw-passagedata pid="126" name="convo.VehVeh.exitLink" tags="" position="725,1600" size="100,100">{=
 
 _line[&quot;Right. I hope you&#39;re not having too hard of a time. Apesai can be a lot, especially for newcomers,&quot;] Veh-Veh chuckles nervously. She knows that she is too honest to be any sort of travel agent.
-(show:?done)</tw-passagedata><tw-passagedata pid="128" name="convo.VehVeh.generalApesai" tags="" position="975,1600" size="100,100">{=
+(show:?done)</tw-passagedata><tw-passagedata pid="127" name="convo.VehVeh.generalApesai" tags="" position="850,1600" size="100,100">{=
 
 &lt;!--award score--&gt;
 (set: _score to it + 1)
@@ -9333,7 +9181,7 @@ _line[&quot;(either: &quot;All ears.&quot;, &quot;Go ahead.&quot;, &quot;Yes, so
 &lt;br&gt;
 ($funcInnerConvo: $stuff&#39;s convoChoices)
 &lt;br&gt;
-](generalApesaiDone|</tw-passagedata><tw-passagedata pid="129" name="convo.VehVeh.leaveApesai" tags="" position="1100,1600" size="100,100">{=
+](generalApesaiDone|</tw-passagedata><tw-passagedata pid="128" name="convo.VehVeh.leaveApesai" tags="" position="975,1600" size="100,100">{=
 
 &lt;!--award score--&gt;
 (set: _score to it + 1)
@@ -9507,7 +9355,7 @@ _line[&quot;So, is there anything else?&quot;]
 &lt;br&gt;
 ($funcInnerConvo: $stuff&#39;s convoChoices)
 &lt;br&gt;
-](leaveApesaiPreDone1|</tw-passagedata><tw-passagedata pid="130" name="convo.VehVeh.marketApesai" tags="" position="1225,1600" size="100,100">{=
+](leaveApesaiPreDone1|</tw-passagedata><tw-passagedata pid="129" name="convo.VehVeh.marketApesai" tags="" position="1100,1600" size="100,100">{=
 
 &lt;!--award score--&gt;
 (set: _score to it + 1)
@@ -9630,7 +9478,7 @@ _line[&quot;Right. What else do you want to know?&quot;]
 &lt;br&gt;
 ($funcInnerConvo: $stuff&#39;s convoChoices)
 &lt;br&gt;
-](marketApesaiDone|</tw-passagedata><tw-passagedata pid="131" name="T: VehVeh Boarding" tags="topic" position="100,1725" size="100,100">{=
+](marketApesaiDone|</tw-passagedata><tw-passagedata pid="130" name="T: VehVeh Boarding" tags="topic" position="1225,1600" size="100,100">{=
 
 (storylet: when
 (passage:) contains &quot;NPC&quot;
@@ -9851,6 +9699,308 @@ _line[&quot;I&#39;ll let you know if anything changes,&quot;] Veh-Veh says.` `
 ($funcNPCTopics: _busyText, _goodbyeText)
 &lt;/ol&gt;
 ](done|
+
+]&lt;!--end child--&gt;
+]&lt;!--end parent--&gt;</tw-passagedata><tw-passagedata pid="131" name="T: VehVeh Children" tags="topic" position="6400,1175" size="100,100">{=
+
+(storylet: when
+(passage:) contains &quot;NPC&quot;
+and $char&#39;s VehVeh&#39;s opinion&#39;s 2nd &gt;= 10
+and $char&#39;s VehVeh&#39;s location is &quot;The Grand Exchange&quot;
+and $char&#39;s player&#39;s timerCooldown does not contain &quot;T: VehVeh Children&quot;
+)
+
+(urgency: 1)
+(metadata:
+&quot;NPC&quot;, &quot;VehVeh&quot;,
+&quot;title&quot;, &quot;Inquiring about Veh-Veh&#39;s Charges&quot;,
+&quot;topic&quot;, &quot;\&quot;Veh-Veh, who //are// these children?\&quot;&quot;,
+&quot;topicDetail&quot;, &quot;Askavans - judging from their light-colored hair, gray eyes, and copper skin.&quot;,
+&quot;cooldown&quot;, 1,
+&quot;talked&quot;, (a: &quot;nativeChildren&quot;,),
+&quot;addCode&quot;, [],
+)
+
+$cssColumnParent[
+
+$cssColumnChild[
+	$cssBox[
+    	($funcImage: (passage: &quot;S: VehVeh atMarket&quot;)&#39;s img)
+         $cssBoxItem[&#39;&#39;(print: (passage:)&#39;s title )&#39;&#39;&lt;br&gt;(print: (passage:)&#39;s topicDetail)]
+    ]
+]
+
+$cssColumnChild[
+
+&lt;!--VehVehLine short hand--&gt;
+(set: _line to (hook: &quot;VehVehLine&quot;))
+
+
+$cssDesc[&#39;&#39;You: //(print: (passage:)&#39;s topic)//&#39;&#39;]
+&lt;br&gt;
+
+_line[&quot;Oh, ha ha, them?&quot;] She says, tugging at the sash that is tying her waist to the children&#39;s, signalling for them to follow her to a nearby bench. Only the smallest get to sit. _line[&quot;These are... my fellow students.&quot;]
+
+&lt;br&gt;
+($funcInnerConvo: (dm:
+    &quot;&lt;!--A--&gt;\&quot;Why do you have to nanny for them?\&quot;&quot;, &quot;playNanny&quot;,
+    &quot;&lt;!--C--&gt;\&quot;Do they //have// to be tied? Doesn&#39;t look comfortable.\&quot;&quot;, &quot;haveToTie&quot;,
+    &quot;&lt;!--B--&gt;\&quot;Why are they out here in the market with you?\&quot;&quot;, &quot;whyOut&quot;,
+))
+&lt;br&gt;
+
+
+&lt;!--playNanny--&gt;
+[
+_line[&quot;They&#39;re not going to nanny themselves, are they?&quot;] She jokes, but a hint of incredulity flashes across her face. _line[&quot;The oldest one - this one - is seven, but the rest are in their first and second years. All fresh recruits from mainland Askava. They&#39;re not allowed to leave the tower unsupervised, and they shouldn&#39;t be.&quot;]
+&lt;br&gt;
+A girl yelps. Another girl has picked up a twig somewhere and is now poking the first with it, giggling. Veh-Veh puts a stop to that quickly.
+&lt;br&gt;
+($funcInnerConvo: (dm:
+    &quot;&lt;!--A--&gt;\&quot;I see.\&quot;&quot;, &quot;iSee&quot;,
+))
+&lt;br&gt;
+](playNanny|
+
+
+&lt;!--haveToTie--&gt;
+[
+_line[&quot;You obviously haven&#39;t been around young children recently, especially native ones,&quot;] Veh-Veh says as she swats a boy&#39;s hand away from a stall. Guilty, he wipes the glitter dust on his robe. The monger sneers at the group. _line[&quot;Try to take your eyes off them for a second, and they get themselves lost. Or worse, kidnapped.&quot;]
+&lt;br&gt;
+It appears that the Apesai school has picked these children up from the mainland. No doubt, they are the most promising among the native tribes, but for the moment, they remain children all the same.
+&lt;br&gt;
+($funcInnerConvo: (dm:
+    &quot;&lt;!--A--&gt;\&quot;I see.\&quot;&quot;, &quot;iSee&quot;,
+))
+&lt;br&gt;
+](haveToTie|
+
+
+&lt;!--whyOut--&gt;
+[
+_line[&quot;The recruits need some fresh air, and I do too,&quot;] she says with a forced smile. _line[&quot;Plus, how would they integrate with Nurandahid society if they never get to see how an adult goes about living in a proper city? It&#39;s as much part of their education as their books and lectures.&quot;]
+&lt;br&gt;
+Veh-Veh sighs, fixing a girl&#39;s star cap, _line[&quot;I&#39;m made to take them outside once in a while, if that&#39;s the answer you&#39;re looking for.&quot;]
+&lt;br&gt;
+($funcInnerConvo: (dm:
+    &quot;&lt;!--A--&gt;\&quot;I see.\&quot;&quot;, &quot;iSee&quot;,
+))
+&lt;br&gt;
+](whyOut|
+
+
+&lt;!--iSee--&gt;
+[
+_line[&quot;Yes... the davehmars believe that the native children will benefit from spending time with an &#39;imperial lady&#39;,&quot;] she sneers at the haughty title.
+&lt;br&gt;
+($funcInnerConvo: (dm:
+    &quot;&lt;!--A--&gt;\&quot;Well, //are// you a &#39;imperial lady&#39;?\&quot;&quot;, &quot;areLady&quot;,
+    &quot;&lt;!--B--&gt;\&quot;Are you //not// a &#39;imperial lady&#39;?\&quot;&quot;, &quot;areLady&quot;,
+))
+&lt;br&gt;
+](iSee|
+
+
+&lt;!--areLady--&gt;
+[
+_line[&quot;Ha, do I //look// like a &#39;imperial lady&#39; to you?&quot;] She asks, spreading her arms.
+&lt;br&gt;
+She is Nurandahid, that much is clear from her pale face and dark hair, one not born under this land&#39;s sun. However, it is difficult to gauge whether anyone is of noble birth these days, especially from appearance alone; many of the old aristocracy has sold off their fineries simply to be able to afford food.
+&lt;br&gt;
+Either way, she means for you to say &quot;no&quot;.
+&lt;br&gt;
+($funcInnerConvo: (dm:
+    &quot;&lt;!--A--&gt;\&quot;Lady or not, there is sense in your teachers&#39; decision. The children need a good role model.\&quot;&quot;, &quot;roleModel&quot;,
+    &quot;&lt;!--B--&gt;\&quot;No, one would expect a noble to have flaunted that fact already.\&quot;&quot;, &quot;notLady&quot;,
+    &quot;&lt;!--C--&gt;\&quot;... Yes?\&quot;&quot;, &quot;yeslady&quot;,
+))
+&lt;br&gt;
+](areLady|
+
+
+&lt;!--roleModel--&gt;
+[
+_line[&quot;Ha ha, sure, if they&#39;ll grow up to be disgruntled adults,&quot;] she chuckles bitterly. _line[&quot;But that&#39;s just it, isn&#39;t it? Civilized adults must do what they can for their civilization, not what they prefer.&quot;]
+&lt;br&gt;
+($funcInnerConvo: (dm:
+    &quot;&lt;!--A--&gt;\&quot;Do you not think you&#39;re a good representative of Nurandahid values?\&quot;&quot;, &quot;dontRemember&quot;,
+    &quot;&lt;!--B--&gt;\&quot;That&#39;s not wrong, but do you put it in that way?\&quot;&quot;, &quot;dontRemember&quot;,
+))
+&lt;br&gt;
+](roleModel|
+
+
+&lt;!--notLady--&gt;
+[
+_line[&quot;Right? You&#39;d hear enough of that if you had a class full of those from named families,&quot;] she says bitterly.
+&lt;br&gt;
+It is common for universities to be treated like a glorified daycare for those not in line for inheritance, who tend to have an excess in pride nonetheless. Some of your own classes back in Bakho were like that, and it is likely that Apesai is no exception.
+&lt;br&gt;
+($funcInnerConvo: (dm:
+    &quot;&lt;!--A--&gt;\&quot;Actual nobles will make poor mentors. They hardly represent Nurandahid values. A regular citizen like yourself, on the other hand...\&quot;&quot;, &quot;dontRemember&quot;,
+    &quot;&lt;!--B--&gt;\&quot;That&#39;s not wrong, but you don&#39;t have to make it sound so bad.\&quot;&quot;, &quot;dontRemember&quot;,
+))
+&lt;br&gt;
+](notLady|
+
+
+&lt;!--yeslady--&gt;
+[
+_line[&quot;Erm...&quot;] she looks at you askew, the look a teacher would give you when you said something dumb out of inattention, for they have caught you daydreaming or napping during class. _line[&quot;Forget it. It&#39;s not important what you or I think anyhow. My teachers have decided that I must help them educate the younger apprentices, and so help them I must.&quot;]
+&lt;br&gt;
+($funcInnerConvo: (dm:
+    &quot;&lt;!--A--&gt;\&quot;You don&#39;t seem very enthused about it. Don&#39;t you agree with them that you&#39;re a good fit for the role?\&quot;&quot;, &quot;dontRemember&quot;,
+    &quot;&lt;!--B--&gt;\&quot;Nobility or not, you //are// Nurandahid.\&quot;&quot;, &quot;dontRemember&quot;,
+))
+&lt;br&gt;
+](yeslady|
+
+
+&lt;!--dontRemember--&gt;
+[
+_line[&quot;I&#39;ve already told my teachers this much: I can&#39;t remember anything about the imperial heartlands, so I&#39;m no better than your average Apesai maid,&quot;] she says, exasperated. _line[&quot;But they keep insisting that it is every citizen&#39;s duty to bring up the peoples of the fringes.&quot;]
+&lt;br&gt;
+Veh-Veh gazes with a tired smile at the children who are talking among themselves in their own tongues. One of them waves at her, as if to signal that everything is fine.
+&lt;br&gt;
+_line[&quot;Which is funny, because when they don&#39;t have chores for me, I might as well be just another Askavan.&quot;]
+&lt;br&gt;
+($funcInnerConvo: (dm:
+    &quot;&lt;!--A--&gt;\&quot;What do you mean? What&#39;s wrong with being Askavan?\&quot;&quot;, &quot;wrongAskavan&quot;,
+    &quot;&lt;!--B--&gt;\&quot;The davehmars are like that.\&quot;&quot;, &quot;davehmarsAreLikeThat&quot;,
+))
+&lt;br&gt;
+](dontRemember|
+
+
+&lt;!--wrongAskavan--&gt;
+[
+_line[&quot;Nothing,&quot;] she shrugs. _line[&quot;What&#39;s &#39;wrong&#39; is how others //make// it a problem. For example, if I was in any other dahak, I would have been journeying in the heartlands by now, but my teachers are - I think - worried that I&#39;m not well-prepared enough to not embarrass the school&#39;s name... At least that&#39;s one theory I have for why they&#39;re still keeping me from graduating.
+&lt;br&gt;
+&quot;I suppose I should be grateful that I&#39;m not fully native. The some of the seniors before me got sent straight to some dingy workshop or the mines inland.&quot;]
+&lt;br&gt;
+One bored apprentice has begun wandering as far as the sash around his waist would allow, tugging on another, who in annoyance pulls him back to the group. It&#39;s strange to think that in about a decade, most of these children will not see comfort like this, as restrictive as it might be.
+&lt;br&gt;
+($funcInnerConvo: (dm:
+    &quot;&lt;!--A--&gt;\&quot;That sounds awful...\&quot;&quot;, &quot;soundsAwful&quot;,
+    &quot;&lt;!--B--&gt;\&quot;At least they will be gainfully employed.\&quot;&quot;, &quot;gainfulEmployment&quot;,
+))
+&lt;br&gt;
+](wrongAskavan|
+
+
+&lt;!--davehmarsAreLikeThat--&gt;
+[
+_line[&quot;Heh, you and I //are// davehmars too, at least to th lay citizens,&quot;] she smiles at the thought. _line[&quot;But I understand what you mean. My teachers want to make double-sure that an Apesai-trained magus like myself is just as capable as, if not more than, any heartlander, so I don&#39;t embarrass the school&#39;s name when I do journey - which I am quite overdue for. We don&#39;t exactly have a high standing among the universities.&quot;]
+&lt;br&gt;
+... Which is to say //if// the Apesai school can be considered a university at all. You look at the copper-skinned children arguing with each other over a piece of pastry, and you wonder if any of this is worth their time at all. But then again, it might be better than to leave them to a life of precarity in the desert. You&#39;ve heard some bone-chilling things about the tribal life.
+&lt;br&gt;
+($funcInnerConvo: (dm:
+    &quot;&lt;!--A--&gt;\&quot;Your hard work today will improve your school tomorrow.\&quot;&quot;, &quot;improveSchool&quot;,
+    &quot;&lt;!--B--&gt;\&quot;Once you become a //master//, you&#39;ll do things differently. You&#39;ll show all of them.\&quot;&quot;, &quot;onceMaster&quot;,
+))
+&lt;br&gt;
+](davehmarsAreLikeThat|
+
+
+&lt;!--soundsAwful--&gt;
+[
+_line[&quot;It&#39;s not as glamorous as what is promised to us imperials, but nothing is guaranteed to anyone,&quot;] she quickly corrects. _line[&quot;I&#39;ve seen imperial graduates wasting their lives in the swamps, and I&#39;ve heard of native journeymen making a name for themselves in the heartlands. Rare, but it happens. One&#39;s life is as good as one&#39;s mind. A century ago, these children would have been slaves in some Kesh temple-settlement.&quot;]
+&lt;br&gt;
+The peoples of the frontier have much more to fear from the bordering Kesh than heartlanders like you do. It makes their privations bearable.
+&lt;br&gt;
+($funcInnerConvo: (dm:
+    &quot;&lt;!--A--&gt;\&quot;I suppose that&#39;s one reason to stay positive.\&quot;&quot;, &quot;complainALot&quot;,
+    &quot;&lt;!--B--&gt;\&quot;Worse fates are more than possible.\&quot;&quot;, &quot;complainALot&quot;,
+    &quot;&lt;!--C--&gt;\&quot;There&#39;s no way around hard work.\&quot;&quot;, &quot;complainALot&quot;,
+))
+&lt;br&gt;
+](soundsAwful|
+
+
+&lt;!--gainfulEmployment--&gt;
+[
+_line[&quot;Yes, precisely. After all, they will be //magi//. Their labor is of the mind. They may never have to pick up a pickaxe or a plow,&quot;] she pinches a girl&#39;s cheeks, who sticks out a tongue at her. _line[&quot;I tell myself that it&#39;s better than a herder&#39;s life, or a fisherman&#39;s, or a miner&#39;s, or a salt-scraper&#39;s, or a wanderer&#39;s... But I see in them the same potential as any of us. They should be promised just as much as you and I are.&quot;]
+&lt;br&gt;
+It is rare, though not unheard of, for an Askavan native to journey in and make a name for themselves in the heartlands. Although, as far as you know, all of them have been trained in an established university. Frontier schools like the one here in Apesai were set up to fill in a hole in the local workforce, not to make anyone famous.
+&lt;br&gt;
+($funcInnerConvo: (dm:
+    &quot;&lt;!--A--&gt;\&quot;Better not tempt others with promises that won&#39;t be kept.\&quot;&quot;, &quot;complainALot&quot;,
+    &quot;&lt;!--B--&gt;\&quot;It is rational that talent be allocated where it is needed. There is no need to make everyone equal.\&quot;&quot;, &quot;complainALot&quot;,
+    &quot;&lt;!--C--&gt;\&quot;Each has their own place in the light.\&quot;&quot;, &quot;complainALot&quot;,
+))
+&lt;br&gt;
+](gainfulEmployment|
+
+
+&lt;!--improveSchool--&gt;
+[
+_line[&quot;Yeah, that&#39;s what my teachers say too, heh,&quot;] she shifts in place, restless. _line[&quot;I really //do// want the best for the school - and for the native children, too. It&#39;s obvious that many of them are not ready to part ways with their tribes, much less ready for society.
+&lt;br&gt;
+&quot;But our teachers believe that it&#39;s better that they begin their education early, as it is harder to reform an older child, whose minds are already fixed. I don&#39;t disagree, but perhaps the school can be more... selective. Otherwise, we&#39;ll still be overstretched, and the school will still suffer.&quot;]
+&lt;br&gt;
+It occurs to you that such an idea must have crossed the davehmars&#39; minds, but they also have priorities to which a student like Veh-Veh, as entrusted as she is, is not privy. Frontier schools often have many functions, which sometimes compete against or even contradict its mandate to educate. Veh-Veh must have known this also; accepting it is a different matter.
+&lt;br&gt;
+($funcInnerConvo: (dm:
+    &quot;&lt;!--A--&gt;\&quot;Being selective in Askava might as well be squeezing blood from a stone. Your davehmars are balancing many things.\&quot;&quot;, &quot;complainALot&quot;,
+    &quot;&lt;!--B--&gt;\&quot;If one of these children succeed, that&#39;s more rial to hire a real minder for the next cohort. It&#39;s worth it to work beyond our means right now.\&quot;&quot;, &quot;complainALot&quot;,
+    &quot;&lt;!--C--&gt;\&quot;If only apprentices like yourself had more say in the matter...\&quot;&quot;, &quot;complainALot&quot;,
+))
+&lt;br&gt;
+](improveSchool|
+
+
+&lt;!--onceMaster--&gt;
+[
+_line[&quot;Oh no, I wouldn&#39;t want to be that confident... or petty,&quot;] she shakes her head. _line[&quot;It&#39;s not the davehmars&#39; fault, not entirely. They have so many mandates that they have to fulfill, and there&#39;s only so many hands, so many rials to go around. If- //when// I become a master magus, and I ever have an opportunity to make decisions for a school, I doubt I&#39;ll be much different. I know, &#39;mind makes matter&#39;, but my mind isn&#39;t... you know, the //emperor&#39;s//. There&#39;ll always be things I won&#39;t do well, and I wouldn&#39;t want my future students to hold it against me.&quot;]
+&lt;br&gt;
+But they will; that is the natural state of things. The frustration of the young is as much part of things as the wisdom of the old. Something tells you that Veh-Veh has already accepted this principle, that someone will always hold something against her, and that she is used to this.
+&lt;br&gt;
+($funcInnerConvo: (dm:
+    &quot;&lt;!--A--&gt;\&quot;Still, it should give comfort to think that the future may be different.\&quot;&quot;, &quot;complainALot&quot;,
+    &quot;&lt;!--C--&gt;\&quot;No choice but to be the best you can be.\&quot;&quot;, &quot;complainALot&quot;,
+    &quot;&lt;!--B--&gt;\&quot;Accountability should mean being able to change things, regardless of blame.\&quot;&quot;, &quot;complainALot&quot;,
+))
+&lt;br&gt;
+](onceMaster|
+
+
+&lt;!--complainALot--&gt;
+[
+Veh-Veh opens her mouth but thinks better of it and shakes her head.
+&lt;br&gt;
+_line[&quot;Ugh, if you let me, I&#39;ll just keep complaining,&quot;] she says, tugging the sash at her waist, signalling for the children that break time is over. You, sashless, follow along nonetheless. _line[&quot;I //do// care about the children, and I don&#39;t hate having to take them out for a stroll every so often. It&#39;s not easy for them, being holed up together in the lighthouse. They&#39;re children. I just hope our davehmars remember that as well.&quot;]
+&lt;br&gt;
+($funcInnerConvo: (dm:
+    &quot;&lt;!--B--&gt;\&quot;At least the apprentices still have you.\&quot;&quot;, &quot;doneChoices&quot;,
+    &quot;&lt;!--C--&gt;\&quot;The davehmars do care, in their own, big-picture sort of way.\&quot;&quot;, &quot;doneChoices&quot;,
+    &quot;&lt;!--A--&gt;\&quot;...\&quot;&quot;, &quot;doneChoices&quot;,
+))
+&lt;br&gt;
+](complainALot|
+
+
+&lt;!--doneChoices--&gt;
+[
+&lt;!--busy or not?--&gt;
+(set: _busy to true)
+(if: $char&#39;s VehVeh&#39;s energy&#39;s 1st &gt; 0)[(set: _busy to false)]
+
+(if: _busy)[
+_line[&quot;Anyways,&quot;] she stops to face you. _line[&quot;Thank you for keeping us company on our break, but we still have a few more chores to run, and we shouldn&#39;t keep you.&quot;]
+&lt;br&gt;
+Meaning, you shouldn&#39;t keep her.
+]
+
+(else:)[
+_line[&quot;Anyways,&quot;] she says, back to her usual, sprightly tone. _line[&quot;Let&#39;s talk about something else, if you don&#39;t mind us walking and talking.&quot;]
+]
+
+&lt;br&gt;
+---
+&lt;ol&gt;
+($funcNPCTopics: &quot;Veh-Veh has given you all the time she can afford for today.&quot;, &quot;\&quot;I should leave you be, Veh-Veh. Keep up the good work.\&quot;&quot;)
+&lt;/ol&gt;
+](doneChoices|
 
 ]&lt;!--end child--&gt;
 ]&lt;!--end parent--&gt;</tw-passagedata><tw-passagedata pid="132" name="T: VehVeh Crafting" tags="topic" position="7025,1650" size="100,100">{=

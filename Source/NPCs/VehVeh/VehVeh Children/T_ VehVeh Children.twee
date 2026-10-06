@@ -204,7 +204,7 @@ _line["Heh, you and I //are// davehmars too, at least to th lay citizens,"] she 
 [
 _line["It's not as glamorous as what is promised to us imperials, but nothing is guaranteed to anyone,"] she quickly corrects. _line["I've seen imperial graduates wasting their lives in the swamps, and I've heard of native journeymen making a name for themselves in the heartlands. Rare, but it happens. One's life is as good as one's mind. A century ago, these children would have been slaves in some Kesh temple-settlement."]
 <br>
-The peoples of the frontier have much more to fear from the bordering Kesh than heartlanders like you do. It makes their deprivation bearable.
+The peoples of the frontier have much more to fear from the bordering Kesh than heartlanders like you do. It makes their privations bearable.
 <br>
 ($funcInnerConvo: (dm:
     "<!--A-->\"I suppose that's one reason to stay positive.\"", "complainALot",
