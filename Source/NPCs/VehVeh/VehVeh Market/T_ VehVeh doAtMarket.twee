@@ -1,4 +1,4 @@
-:: T: VehVeh doAtMarket [topic] {"position":"6525,1175","size":"100,100"}
+:: T: VehVeh doAtMarket [topic unfinished] {"position":"6525,1175","size":"100,100"}
 {=
 
 (storylet: when
@@ -12,11 +12,12 @@ and $char's player's timerCooldown does not contain "T: VehVeh doAtMarket"
 (metadata:
 "NPC", "VehVeh",
 "title", "Chatting About the Grand Exchange",
-"topic", "This place is huge, and crowded, too...",
+"topic", "\"This place is huge, and crowded, too...\"",
 "topicDetail", "Small talk about the market is only second to small talk about the weather.",
 "cooldown", 1,
 "talked", (a:),
 "addCode", [],
+"devNote", [Add first time, second time.],
 )
 
 $cssColumnParent[

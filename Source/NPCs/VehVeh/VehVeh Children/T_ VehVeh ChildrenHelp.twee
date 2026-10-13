@@ -1,0 +1,77 @@
+:: T: VehVeh ChildrenHelp [topic unfinished]
+{=
+
+(storylet: when
+(passage:) contains "NPC"
+and $char's VehVeh's opinion's 2nd >= 10
+and $char's VehVeh's location is "The Grand Exchange"
+and $char's VehVeh's talked contains "nativeChildren"
+and $char's player's timerCooldown does not contain "T: VehVeh ChildrenHelp"
+)
+
+(urgency: 1.1)
+(metadata:
+"NPC", "VehVeh",
+"title", "Offering to Help Veh-Veh",
+"topic", "\"These children look like a handful. Do you need any help?\"",
+"topicDetail", "Veh-Veh seems to need it. You don't have anything else planned today anyway, do you?",
+"cooldown", 1,
+"talked", (a: "",),
+"addCode", [],
+"devNote", [Need to implement babysitting quest.]
+)
+
+
+$cssColumnParent[
+
+$cssColumnChild[
+	$cssBox[
+    	($funcImage: (passage: "S: VehVeh atMarket")'s img)
+         $cssBoxItem[''(print: (passage:)'s title )''<br>(print: (passage:)'s topicDetail)]
+    ]
+]
+
+$cssColumnChild[
+
+<!--VehVehLine short hand-->
+(set: _line to (hook: "VehVehLine"))
+
+
+$cssDesc[''You: //(print: (passage:)'s topic)//'']
+<br>
+
+_line["Oh, do I ever?"] Veh-Veh laughs to herself. _line["Oh, wait, are you //offering// to help me?"]
+<br>
+She is looking at you, and so are the children, having noticed that their minder has raised her voice but, curiously, not to berate them.
+<br>
+$cssDesc[Helping Veh-Veh will take up the rest of the day.]
+<br>
+($funcInnerConvo: (dm:
+    "<!--A-->\"Yes, I am offering. What do you need me to do?\"", "yes",
+    "<!--B-->\"No...\"", "no",
+))
+<br>
+
+<!--no-->
+[
+You awkwardly explain that you were merely inquiring about her needs to confirm an observation, and that you have other obligations indeterminably soon, obligations which you cannot withdraw from, and that your stomach is starting to act up.
+<br>
+_line["Aw... I understand,"] Veh-Veh covers her face, embarrassed. _line["Apologies, I was overeager. It would have been great if someone could watch the children for me while I ran the rest of my itinerary. But I understand that you're busy. I didn't mean to impose."]
+<br>
+($funcInnerConvo: (dm:
+    "<!--A-->\"\"", "",
+    "<!--B-->\"\"", "",
+))
+<br>
+
+](no|
+
+<!--yes-->
+[](yes|
+
+
+
+
+
+]<!--end child-->
+]<!--end parent-->

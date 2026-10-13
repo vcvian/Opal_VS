@@ -5,8 +5,8 @@
 "id", [Professor Marrokh],
 "key", (a: "imperial", "davehmar",),
 "desc", "Fir-Marrokh-Kuchtar-da-Zagash is your long-time mentor at Bakho University. When he was exiled to Askava, you were too. He has promised to credit you with your first Sacred Opal - and the title of \"master\" - if you can help him prove his controversial theories. And just maybe, you will both be permitted back to the imperial heartlands.",
-"img", "Assets/Portraits/Old_2.png",
-"color", #cde74c,
+"img", "Assets/Portraits/Old_3.png",
+"color", #7294e3,
 "opinionBonus", (dm:
 	"repDavehmarGood", 1,
     "repDavehmarBad", -2,
