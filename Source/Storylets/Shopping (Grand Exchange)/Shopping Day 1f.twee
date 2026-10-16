@@ -5,7 +5,7 @@
 "title", "The Vehzin Warehouse",
 "cardDesc", "If the Grand Exchange is the heart, then vehzin is the blood. Crimson, powdery, raw - it is mined in great quantities in Central Askava before coming here and ultimately, to everywhere else in the world.",
 "parent", "S: Shopping Day 1",
-"devNote", [Need to implement the vehzin shortage.],
+"devNote", [Need to implement the vehzin shortage event.],
 )
 
 <!--Market setup-->

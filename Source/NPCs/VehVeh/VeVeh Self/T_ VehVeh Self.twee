@@ -25,7 +25,7 @@ and $char's player's timerCooldown does not contain "T: VehVeh Self"
 "talked", (a: "nameVehVeh", ),
 "addCode", [{
 	(if: ($funcTalkedTimesCheck: "nameVehVeh") >= 1)[{
-    	($funcOpinionGainLoss: "VehVeh", -2, "Veh-Veh seems annoyed that you keep pursuing this line of questioning.")
+    	($funcOpinionGainLoss: "VehVeh", -1, "Veh-Veh seems annoyed that you keep pursuing this line of questioning.")
     }]
 }],
 )

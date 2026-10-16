@@ -1,0 +1,10 @@
+:: quest.babysitMarket [static-storage unfinished]
+
+(metadata: 
+	"id", [Favor: Babysitting for Veh-Veh],
+    "key", (a: "ApesaiSchool", "Apesai",),
+    "img", "https://fallenlondon.wiki/w/images/e/e3/Urchin.png",
+    "desc", [Watch over the junior apprentices until Veh-Veh's return.],
+    "tip", [Show them around. Keep them happy and behaving. And don't exhaust yourself.],
+    "devNote", [Design quest structure + write storylets],
+)

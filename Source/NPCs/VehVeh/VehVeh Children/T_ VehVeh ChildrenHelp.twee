@@ -1,4 +1,4 @@
-:: T: VehVeh ChildrenHelp [topic unfinished]
+:: T: VehVeh ChildrenHelp [topic]
 {=
 
 (storylet: when
@@ -18,7 +18,6 @@ and $char's player's timerCooldown does not contain "T: VehVeh ChildrenHelp"
 "cooldown", 1,
 "talked", (a: "",),
 "addCode", [],
-"devNote", [Need to implement babysitting quest.]
 )
 
 
@@ -59,18 +58,52 @@ You awkwardly explain that you were merely inquiring about her needs to confirm 
 _line["Aw... I understand,"] Veh-Veh covers her face, embarrassed. _line["Apologies, I was overeager. It would have been great if someone could watch the children for me while I ran the rest of my itinerary. But I understand that you're busy. I didn't mean to impose."]
 <br>
 ($funcInnerConvo: (dm:
-    "<!--A-->\"\"", "",
-    "<!--B-->\"\"", "",
+    "<!--A-->\"Actually, I don't mind helping out.\"", "yes",
+    "<!--B-->\"Sorry.\"", "rejectExit",
 ))
 <br>
 
 ](no|
 
 <!--yes-->
-[](yes|
+[
+_line["Really? Fortune blesses me!"] Veh-Veh seems to jump in place. _line["I'll be very quick, I promise, and the children are ever so lovely. You'll see."]
+<br>
+---
+
+(link: "\"Just tell me what I need to do.\"")[{
+    <!--put this topic on cooldown-->
+    ($funcAddStoryletCooldown: (passage:)'s name)
+    (goto: "VehVeh ChildrenHelp (Accept)")
+}]
+
+](yes|
 
 
+<!--rejectExit-->
+[
+You apologize for the misunderstanding. Veh-Veh brushes it aside; she really //does// understand. She is used to this. It is no disappointment to someone like her.
+<br>
 
+<!--busy or not?-->
+(set: _busy to true)
+(if: $char's VehVeh's energy's 1st > 0)[(set: _busy to false)]
+
+(if: _busy)[
+_line["Please, you are busy. Don't let us keep you. We'll be on our way anyhow; we need to be back before sundown."]
+]
+
+(else:)[
+_line["We have to get a move on anyway. You can walk with us for a bit more until you have to leave. Unless you mean now-now."]
+]
+
+<br>
+---
+<ol>
+($funcNPCTopics: "You //are// busy, aren't you?", "\"Yes, it's best that I get going. Keep up the good work, Veh-Veh.\"")
+</ol>
+<br>
+](rejectExit|
 
 
 ]<!--end child-->

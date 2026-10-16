@@ -1,0 +1,86 @@
+:: VehVeh ChildrenHelp (Accept)
+
+(metadata:
+"title", "Offering to Help Veh-Veh",
+"topicDetail", "She explains what you must do. It sounds simple enough."
+)
+
+$cssColumnParent[
+
+$cssColumnChild[
+	$cssBox[
+    	($funcImage: (passage: "S: VehVeh atMarket")'s img)
+         $cssBoxItem[''(print: (passage:)'s title )''<br>(print: (passage:)'s topicDetail)]
+    ]
+]
+
+$cssColumnChild[
+
+<!--VehVehLine short hand-->
+(set: _line to (hook: "VehVehLine"))
+
+<!--rial gain-->
+(set: _rialGain to 10)
+
+Veh-Veh undoes the sash around her waist and, upon having your permission, quickly ties it around yours. You are now bound to a chain of mewling apprentices, who are cheering at the changing of the guard.
+
+<br>
+($funcInnerConvo: (dm:
+    "<!--A-->\"A bit tight...\"", "bitTight",
+))
+<br>
+
+
+<!--bitTight-->
+[
+_line["Keep the sash on, and tug if any of them is straying or dragging their feet. It'll startle all of them, and they'll keep the culprit in line for you.
+<br>
+"You'll only need to take them around the Exchange. Show them how a citizen of Nurandah carry themselves. Be normal, I suppose.
+<br>
+"Any if they're being good, buy them a candied fruit or something. Here, have some of my pocket change."]
+<br>
+She hands you a few coins.
+<br>
+$cssDesc[You gain ''_rialGain` `(print: (passage: "item.rial")'s id)''.]
+
+<br>
+($funcInnerConvo: (dm:
+    "<!--A-->\"Wow, gratitude, Veh-Veh.\"", "thanks",
+))
+<br>
+](bitTight|
+
+
+
+<!--thanks-->
+[
+_line["You all behave, understood? This is an esteemed guest from the //imperial heartlands//. Open your eyes and learn. Do not embarrass our school,"] she says loudly to the children. Half of them nod, the other half are already giggling, head swimming with schemes, must be. _line["I'll find you all when I'm done."]
+<br>
+And with that, Veh-Veh disappears into the crowd.
+
+<br>
+($funcInnerConvo: (dm:
+    "<!--A-->You are left with the children.", "done",
+))
+<br>
+](thanks|
+
+<!--done-->
+[
+About a dozen pairs of gray-and-blue eyes are looking at you expectantly.
+<br>
+---
+
+($funcQuestUpdateLink: "Time for some sightseeing!", "babysitMarket", "active", "You have agreed to watch over the junior apprentices for Veh-Veh while she does her other errands.", "All in a davehmar's duty.", [{
+    <!--gain rial-->
+    ($funcGainLoss: "item.", "rial", _rialGain)
+    <!--gain positive opinion-->
+    ($funcOpinionGainLoss: "VehVeh", 1, "You are doing Veh-Veh a favor, and she is thankful.")
+}], $place's sublocation,)
+
+](done|
+
+
+
+]<!--end child-->
+]<!--end parent-->
