@@ -1,0 +1,13 @@
+:: att.babysitMarketBoredom [static-storage]
+
+(metadata: 
+	"id", ["I'm BoOored!"],
+    "key", (a: "progress", ),
+    "value", (a: 1, 0, 0, 0, 0, 0),
+    "img", "",
+    "desc", [The children //will// have their amusement, by your doing or theirs. The former is far more preferable.],
+    "tip", [Keep this low, or there might be trouble.],
+    "gainText", [It is in children's nature to grow bored. It is also in their nature to be a headache when they do.],
+    "lossText", [The children are entertained. May their contentment translate to mercy.]
+
+)

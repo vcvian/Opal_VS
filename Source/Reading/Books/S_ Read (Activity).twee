@@ -6,7 +6,7 @@
 )
 (metadata:
 "title", "Read Something",
-"cardDesc", "Studying textbooks, reading letters, examining documents - a scholar's favorite pastime.",
+"cardDesc", "A scholar always has with them textbooks to study, letters to open, or documents with fine prints to inspect, but rarer is the time to do all of that. Perhaps now is one such times.",
 "img", "https://images.fallenlondon.com/icons/book.png",
 )
 (urgency: -1)
@@ -30,7 +30,7 @@ $cssColumnChild[
 
 It is said that writing is one of the earliest forms of magic, wherein a human's cognition is made into matter. This is, of course, hyperbole - yet another form of magic, wherein things are enlarged through say-so alone. 
 <br>
-$cssDesc[Read to better understand the world, learn magical formulas, or simply to pass the time.]
+$cssDesc[Read documents from your inventory to better understand the world, learn magical formulas, or simply to pass the time.]
 <br>
 ---
 

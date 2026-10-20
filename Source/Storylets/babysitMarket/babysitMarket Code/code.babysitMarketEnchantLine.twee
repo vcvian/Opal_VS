@@ -1,0 +1,12 @@
+:: code.babysitMarketEnchantLine
+{=
+
+<!--color voice according to table.babysitMarketVoices-->
+(for: each _childNumber, ...(range: 1,6))[{
+    <!--identify child's voice in table ("child1", "child2")-->
+    (set: _voice to "child"+(str:_childNumber))
+    <!--enhance!-->
+    (enchant: (hooks-named: "line"+(str:_childNumber)), (color: (passage: "table.babysitMarketVoices")'s _voice))
+}]
+
+<!--Now, use shorthands like _line1 and _line2 to selectively color dialogue hooks-->

@@ -8,7 +8,7 @@ and ($funcCheckExists: $place's events, "studentDebate", "inactive") is "active"
 )
 (exclusivity: 1)
 (urgency: 2)
-(metadata: "title", "The Student Debate", "cardDesc", "Cracked, heavily-accented, and mostly loud. A debate is raging in the school courtyard.", "img", "Assets/Portraits/Event_Argue_1.png",)
+(metadata: "title", "The Student Debate", "cardDesc", "Cracked, heavily-accented, and mostly loud. A debate is raging in the school courtyard.", "img", (passage: "quest.studentDebate")'s img,)
 
 $cssColumnParent[
 

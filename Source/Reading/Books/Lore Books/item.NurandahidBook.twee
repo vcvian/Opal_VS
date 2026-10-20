@@ -4,7 +4,7 @@
     "id", [On Nurandahids: A Sagely Dialogue],
     "key", (a: "document", "book",),
     "value", (a: 15, 0, 0, 0, 0, 20,),
-    "img", "https://fallenlondon.wiki/w/images/3/30/Bookpurple.png",
+    "img", "Assets/Portraits/Obj/Obj_Book_Red.png",
     "desc", [A pamphlet published by the Nudankhan Council's Popular Press in the "sagely dialogue" genre, depicting a fictionalized exchange between an unnamed savage child and the mythic founder of Nurandah - Serpadi I - regarding whom the term "Nurandahid" includes.],
     "tip", [You ''are'' a Nurandahid; there is no doubt about that.],
     "gainText", [You are quite sure that you were assigned this pamphlet for your civics class. Or foundational logic class. It's difficult to remember. It was so long ago. You've read hundreds of such dialogues since then.],

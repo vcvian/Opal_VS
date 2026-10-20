@@ -1,0 +1,65 @@
+:: S: babysitMarket (start) [storylet unfinished]
+
+(storylet: when
+($funcCheckExists: $char's player's quests, "babysitMarket", "inactive") is "active"
+and $place's sublocation is "The Grand Exchange"
+and ($funcCheckExists: $char's player's att, "babysitMarketReturn", 0) <= 0
+)
+(exclusivity: 3)
+(metadata:
+    "title", "babysit (start)",
+    "cardDesc", "start of quest",
+    "img", (passage: "quest.babysitMarket")'s img,
+    "interrupt", true,
+    "devNote", [Entirely placeholder],
+)
+
+$cssColumnParent[
+
+$cssColumnChild[
+	$cssBox[
+    	($funcImage: (passage:)'s img)
+         $cssBoxItem[''(print: (passage:)'s title )''<br>(print: (passage:)'s cardDesc)]
+    ]
+]
+
+$cssColumnChild[
+
+<!--run voice formatting code-->
+(display: "code.babysitMarketEnchantLine")
+<!--initialize shorthands-->
+(set: _line1 to (hook: "line1"))
+(set: _line2 to (hook: "line2"))
+(set: _line3 to (hook: "line3"))
+(set: _line4 to (hook: "line4"))
+(set: _line5 to (hook: "line5"))
+(set: _line6 to (hook: "line6"))
+
+<!--main content-->
+Child 1 says: _line1["Hello!"]
+<br>
+Child 2 says: _line2["Hello!"]
+<br>
+Child 3 says: _line3["Hello!"]
+<br>
+Child 4 says: _line4["Hello!"]
+<br>
+Child 5 says: _line5["Hello!"]
+<br>
+Child 6 says: _line6["Hello!"]
+
+<!--end of main content-->
+
+<br>
+---
+(link: "Let's go!")[{
+    <!--time allowance, storylet disables upon gaining time allowance-->
+    ($funcGainLoss: "att.", "babysitMarketReturn", (random: 5,6))
+    <!--exit-->
+    $funcBack
+}]
+
+
+
+]<!--end child-->
+]<!--end parent-->

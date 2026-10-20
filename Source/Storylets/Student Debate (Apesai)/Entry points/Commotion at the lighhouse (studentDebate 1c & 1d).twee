@@ -9,7 +9,7 @@ and ($funcCheckExists: $char's player's quests, "studentDebate", "") is not "act
 )
 (exclusivity: 1)
 (urgency: 2)
-(metadata: "title", "Commotion Near the Lighthouse", "cardDesc", "A crowd has gathered around the gate of the Apesai Lighthouse, gawking, shouting, holding up in the air pieces of paper.", "img", "Assets/Portraits/Event_Argue_1.png",)
+(metadata: "title", "Commotion Near the Lighthouse", "cardDesc", "A crowd has gathered around the gate of the Apesai Lighthouse, gawking, shouting, holding up in the air pieces of paper.", "img", (passage: "quest.studentDebate")'s img,)
 
 $cssColumnParent[
 

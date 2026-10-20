@@ -8,7 +8,7 @@ and ($funcCheckExists: $char's player's quests, "studentDebate", "") is "active"
 and (($funcCheckExists: $char's player's inv, "betTicketX", 0) <= 0 and ($funcCheckExists: $char's player's inv, "betTicketY", 0) <= 0)
 )
 (exclusivity: 1)
-(metadata: "title", "Post-Debate", "cardDesc", "You hear news of the semi-conclusion of the impromptu debate tournament.", "img", "Assets/Portraits/Event_Argue_1.png", "interrupt", true)
+(metadata: "title", "Post-Debate", "cardDesc", "You hear news of the semi-conclusion of the impromptu debate tournament.", "img", (passage: "quest.studentDebate")'s img, "interrupt", true)
 
 $cssColumnParent[
 

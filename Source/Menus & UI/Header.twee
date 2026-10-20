@@ -13,3 +13,4 @@ $cssDesc[It is ''(display:"table.dayNames")'', ''(display:"table.weekNames")'', 
 (forget-visits:-50)(forget-undos:-50)
 
 <!--TEST Setting (ideally placed in header because in-passage test settings can get hard to keep track of)-->
+(set: $char's VehVeh's know to true)

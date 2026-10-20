@@ -3,7 +3,7 @@
 
 (metadata: 
 	"id", [Situation: A Debate Among Half-Peers],
-    "img", "Assets/Portraits/Event_Argue_1.png",
+    "img", "Assets/Portraits/Event/Event_Argue_1.png",
     "desc", [The sort-of-students of Apesai's quasi-academy will hold a series of debates (is it so civil?) in the lighthouse's courtyard.],
     "tip", [The debate will go on for a few days, with or without your interference.],
     "eventConditions", [{

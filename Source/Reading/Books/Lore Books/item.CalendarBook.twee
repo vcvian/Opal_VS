@@ -4,7 +4,7 @@
 	"id", [Our Calendar Decoded! Essential Astrology for the Layman (with Warning)],
     "key", (a: "document", "book",),
     "value", (a: 30, 0, 0, 0, 0, 20,),
-    "img", "https://fallenlondon.wiki/w/images/3/30/Bookpurple.png",
+    "img", "Assets/Portraits/Obj/Obj_Book_Green.png",
     "desc", [A book published by "The Neighborhood Astrologian & Co.", which is forced by law to print with a foreword by the Esora Guild of Astrologians denouncing the ensuing content as pseudoscience - as if the exclamation in the title didn't already give that away.],
     "tip", [At least the book doesn't misspell the names of days, weeks, and months.],
     "gainText", [You now hold in your hand what is technically "suppressed literature", much in the same way poison mushrooms are a "forbidden fruit": naturally shunned out of good sense, not a fruit, and surprisingly ubiquitous.],

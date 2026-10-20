@@ -9,7 +9,7 @@ and ($funcCheckExists: $char's player's att, "repApesaiSwindler", 0) is > 0
 
 (exclusivity: 1)
 (urgency: 2)
-(metadata: "title", "An Academic Wager", "cardDesc", "A man is calling on people to place bets on the debate, calling on anyone but you.", "img", "Assets/Portraits/Event_Argue_1.png",)
+(metadata: "title", "An Academic Wager", "cardDesc", "A man is calling on people to place bets on the debate, calling on anyone but you.", "img", (passage: "quest.studentDebate")'s img,)
 
 $cssColumnParent[
 

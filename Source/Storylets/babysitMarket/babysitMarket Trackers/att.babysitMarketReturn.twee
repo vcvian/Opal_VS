@@ -1,0 +1,13 @@
+:: att.babysitMarketReturn [static-storage]
+
+(metadata: 
+	"id", [Until Veh-Veh Returns],
+    "key", (a: "progress", ),
+    "value", (a: 1, 0, 0, 0, 0, 0),
+    "img", "",
+    "desc", [It will be a while before Veh-Veh comes back from her errands. But for now, you are responsible for the junior apprentices.],
+    "tip", [Your responsibility ends when this reaches zero.],
+    "gainText", [Veh-Veh has left you with the junior apprentices. It will be a while before she comes back.],
+    "lossText", [You keep yourself busy with the apprentices, anxiously waiting for Veh-Veh's return.]
+
+)

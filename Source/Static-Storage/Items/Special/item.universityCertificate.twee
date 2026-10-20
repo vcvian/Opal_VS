@@ -5,7 +5,7 @@
 	"id", [Certificate of Journeymanship],
     "key", (a: "document", "legal",),
     "value", (a: 300, 100, 500, 200, 500, 1000,),
-    "img", "https://thefifthcity.wiki/w/images/3/3f/Currency3_copper.png",
+    "img", "Assets/Portraits/Obj/Obj_Legal_2.png",
     "desc", [A piece of vellum from the Bakho University certifying that you have completed your apprenticeship and are qualified to practice magic.],
     "tip", [You will be asked to submit this document in various imperial offices.],
     "gainText", [You pick up the certificate. Twelve years of being practically locked up in a tower has earned you this piece of skin. Do not lose it.],

@@ -1,0 +1,61 @@
+:: S: babysitMarket (idle) [storylet unfinished]
+
+(storylet: when
+($funcCheckExists: $char's player's quests, "babysitMarket", "inactive") is "active"
+and $place's sublocation is "The Grand Exchange"
+and ($funcCheckExists: $char's player's att, "babysitMarketReturn", 0) > 0
+)
+(exclusivity: 3)
+(urgency: 2)
+(metadata:
+    "title", "babysit (idle)",
+    "cardDesc", "idle option",
+    "img", (passage: "quest.babysitMarket")'s img,
+    "interrupt", true,
+    "devNote", [Entirely placeholder],
+)
+
+$cssColumnParent[
+
+$cssColumnChild[
+	$cssBox[
+    	($funcImage: (passage:)'s img)
+         $cssBoxItem[''(print: (passage:)'s title )''<br>(print: (passage:)'s cardDesc)]
+    ]
+]
+
+$cssColumnChild[
+
+<!--run voice formatting code-->
+(display: "code.babysitMarketEnchantLine")
+<!--initialize shorthands-->
+(set: _line1 to (hook: "line1"))
+(set: _line2 to (hook: "line2"))
+(set: _line3 to (hook: "line3"))
+(set: _line4 to (hook: "line4"))
+(set: _line5 to (hook: "line5"))
+(set: _line6 to (hook: "line6"))
+
+<!--main content-->
+
+
+<!--Readout-->
+(display: "code.babysitMarketReadOut")
+
+
+<!--end of main content-->
+<br>
+---
+
+<ol>
+
+<li>($funcMultiCheckGate: "Commit to action.", "att", (dm: "babysitMarketReturn", 1), true, 100, [], "babysitMarket (idle-commit)", "",)</li>
+
+Actually...
+<li>(link: "Never mind.")[$funcBack]</li>
+
+</ol>
+
+
+]<!--end child-->
+]<!--end parent-->

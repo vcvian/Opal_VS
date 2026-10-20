@@ -1,8 +1,9 @@
-:: VehVeh ChildrenHelp (Accept)
+:: VehVeh ChildrenHelp (Accept) [unfinished]
 
 (metadata:
 "title", "Offering to Help Veh-Veh",
 "topicDetail", "She explains what you must do. It sounds simple enough."
+"devNote", [Advice needs to reflect the babysitMarket's game rule.],
 )
 
 $cssColumnParent[

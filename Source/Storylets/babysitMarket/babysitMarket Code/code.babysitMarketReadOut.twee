@@ -1,0 +1,15 @@
+:: code.babysitMarketReadOut
+
+{=
+
+<!--Create a readout of the current situation-->
+
+(set: _relevantTrackers to (a: "babysitMarketReturn", "babysitMarketBoredom", "babysitMarketFatigue"))
+
+$cssDesc[
+<ul>
+(for: each _tracker, ..._relevantTrackers)[{
+    <li>''(print: (passage: "att." + _tracker)'s id)''($funcLogTip: "att.", _tracker): ($funcCheckExists: $char's player's att, _tracker, 0)</li>
+}]
+</ul>
+]<!--end of cssDesc-->

@@ -4,7 +4,7 @@
 	"id", [The Many Sacred Opals and Their Human Creators],
     "key", (a: "document", "book",),
     "value", (a: 70, 0, 0, 0, 0, 20,),
-    "img", "https://fallenlondon.wiki/w/images/3/33/Bookbrown.png",
+    "img", "Assets/Portraits/Obj/Obj_Book_Black.png",
     "desc", [A hefty record of the most notable achievements in magical science within the last ten centuries of Nurandah, published by the Bakho University Press. Will your name be in such a book one day?],
     "tip", [Envy is a form of leisure.],
     "gainText", [You are sure that you have come across some version of this book before. Books like this can be found on the shelves of every university city, both a source of motivation and envy for all budding magi.],

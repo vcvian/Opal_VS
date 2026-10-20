@@ -9,7 +9,11 @@ and ($funcCheckExists: $place's events, "studentDebate", "inactive") is "active"
 and ($funcCheckExists: $char's player's quests, "studentDebate", "") is not "active"
 )
 (urgency: 2)
-(metadata: "title", "A Streetside Argument", "cardDesc", "A pair of street urchins are theatrically arguing. And they're taking turns to speak?", "img", "Assets/Portraits/Event_Argue_1.png",)
+(metadata:
+"title", "A Streetside Argument",
+"cardDesc", "A pair of street urchins are theatrically arguing. And they're taking turns to speak?",
+"img", (passage: "quest.studentDebate")'s img,
+)
 
 $cssColumnParent[
 

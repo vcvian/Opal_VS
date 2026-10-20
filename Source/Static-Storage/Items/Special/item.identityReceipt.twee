@@ -5,7 +5,7 @@
 	"id", [Identity Receipt],
     "key", (a: "document", "legal",),
     "value", (a: 300, 100, 500, 200, 500, 1000,),
-    "img", "https://thefifthcity.wiki/w/images/3/3f/Currency3_copper.png",
+    "img", "Assets/Portraits/Obj/Obj_Legal_1.png",
     "desc", [A paper receipt that verifies that you have paid all of your dues and taxes and are therefore free to travel outside of your dahak of residence. Such receipts are the most common form of identity document in Nurandah.],
     "tip", [You will be asked to submit this document in various imperial offices.],
     "gainText", [You pick up the receipt. Such a simple paper, but without it, you are simply not you.],

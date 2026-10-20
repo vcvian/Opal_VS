@@ -1,0 +1,13 @@
+:: att.babysitMarketFatigue [static-storage]
+
+(metadata: 
+	"id", [Children Are Exhausting],
+    "key", (a: "progress", ),
+    "value", (a: 1, 0, 0, 0, 0, 0),
+    "img", "",
+    "desc", [Being around the apprentices gets tiresome after a while. Perhaps you have earned some rest?],
+    "tip", [Keep this low, or you will be paying with your own health.],
+    "gainText", [The sash grows tight around your belly, and your ears are ringing with the children's laughter. The exertion is taking its toll.],
+    "lossText", [After a brief respite, and the aching in your ankles quiets down somewhat. You feel readier to continue with the market tour.]
+
+)
