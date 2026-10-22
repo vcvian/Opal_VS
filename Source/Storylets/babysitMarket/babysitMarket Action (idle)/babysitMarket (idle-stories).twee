@@ -1,0 +1,66 @@
+:: story.babysitMarket.idle.1
+{=
+
+(metadata:
+"story", [{
+    (sample idle story 1)
+
+    <!--set the done link text-->
+    (set: _babysitMarketChoice1 to "idle story 1 choice 1")
+    (set: _babysitMarketChoice2 to "idle story 1 choice 2")
+    <!--should end with (show: ?done)-->
+}],
+
+"success", [{
+    (sample idle story 1 success)
+    (set: _babysitMarketDoneLink to "idle story 1 link text (success)")
+}],
+
+"fail", [{
+    (sample idle story 1 fail)
+    (set: _babysitMarketDoneLink to "idle story 1 link text (fail)")
+}],
+)
+
+:: story.babysitMarket.idle.2
+{=
+(metadata:
+"story", [{
+    (sample idle story 2)
+
+    (set: _babysitMarketChoice1 to "idle story 2 choice 1")
+    (set: _babysitMarketChoice2 to "idle story 2 choice 2")
+}],
+
+"success", [{
+    (sample idle story 2 success)
+    (set: _babysitMarketDoneLink to "idle story 2 link text (success)")
+}],
+
+"fail", [{
+    (sample idle story 2 fail)
+    (set: _babysitMarketDoneLink to "idle story 2 link text (fail)")
+}],
+)
+
+
+:: story.babysitMarket.idle.3
+{=
+(metadata:
+"story", [{
+    (sample idle story 3)
+
+(set: _babysitMarketChoice1 to "idle story 3 choice 1")
+(set: _babysitMarketChoice2 to "idle story 3 choice 2")
+}],
+
+"success", [{
+    (sample idle story 3 success)
+    (set: _babysitMarketDoneLink to "idle story 3 link text (fail)")
+}],
+
+"fail", [{
+    (sample idle story 3 fail)
+    (set: _babysitMarketDoneLink to "idle story 3 link text (fail)")
+}],
+)

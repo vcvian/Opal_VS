@@ -1,0 +1,64 @@
+:: babysitMarket (idle-success) [unfinished]
+
+{=
+(metadata:
+"title", "idle success",
+"cardDesc", "idle desc",
+"devNote", [placeholder],
+)
+
+$cssColumnParent[
+
+$cssColumnChild[
+	$cssBox[
+    	($funcImage: (passage: "S: babysitMarket (start)")'s img)
+         $cssBoxItem[''(print: (passage:)'s title )''<br>(print: (passage:)'s cardDesc)]
+    ]
+]
+
+$cssColumnChild[
+
+<!--run voice formatting code-->
+(display: "code.babysitMarketEnchantLine")
+<!--initialize shorthands-->
+(set: _line1 to (hook: "line1"))
+(set: _line2 to (hook: "line2"))
+(set: _line3 to (hook: "line3"))
+(set: _line4 to (hook: "line4"))
+(set: _line5 to (hook: "line5"))
+(set: _line6 to (hook: "line6"))
+
+<!--default end link text-->
+(set: _babysitMarketDoneLink to "default end text (success)")
+
+<!--default reward-->
+(set: _babysitMarketDoneReward to [{
+    <!--check if tired-->
+    (set: _tired to false)
+    (if: ($funcCheckExists: $char's player's att, "babysitMarketFatigue", 0) > 0)[((set: _tired to true))]
+    <!--if tired, then subtract-->
+    (if: _tired is true)[($funcGainLoss: "att.", "babysitMarketFatigue", -1)]
+    <!--if not tired-->
+    (if: _tired is false)[(dialog: [The children are already as well-rested as they can be. You're just wasting time.<br>$cssDesc[''(print: (passage: "att.babysitMarketFatigue")'s id)'' is 0.]], "✓")]
+}])
+
+
+<!--main content-->
+(print: $stuffDaily's babysitMarketStory's success)
+<!--end of main content-->
+
+<!--done-->
+[
+<br>
+---
+(link: _babysitMarketDoneLink)[{
+    <!--reward-->
+    _babysitMarketDoneReward
+    <!--goto result-->
+    (display: "code.babysitMarketRelay")
+}]
+]<done|
+
+
+]<!--end child-->
+]<!--end parent-->

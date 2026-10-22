@@ -1,0 +1,62 @@
+:: babysitMarket (exciting-fail) [unfinished]
+
+{=
+(metadata:
+"title", "exciting fail",
+"cardDesc", "exciting desc",
+"devNote", [placeholder; do replace punishment text],
+)
+
+$cssColumnParent[
+
+$cssColumnChild[
+	$cssBox[
+    	($funcImage: (passage: "S: babysitMarket (start)")'s img)
+         $cssBoxItem[''(print: (passage:)'s title )''<br>(print: (passage:)'s cardDesc)]
+    ]
+]
+
+$cssColumnChild[
+
+<!--run voice formatting code-->
+(display: "code.babysitMarketEnchantLine")
+<!--initialize shorthands-->
+(set: _line1 to (hook: "line1"))
+(set: _line2 to (hook: "line2"))
+(set: _line3 to (hook: "line3"))
+(set: _line4 to (hook: "line4"))
+(set: _line5 to (hook: "line5"))
+(set: _line6 to (hook: "line6"))
+
+<!--default end link text-->
+(set: _babysitMarketDoneLink to "default end text (fail)")
+<!--default reward values-->
+(set: _gainFatigue to 2)
+<!--punishment-->
+(set: _babysitMarketSafePunishment to [{
+    <!--no edValue gain-->
+    (dialog: [Too bad, not much was had.], "OK")
+    <!--gain fatigue-->
+    ($funcGainLoss: "att.", "babysitMarketFatigue", _gainFatigue)
+}])
+
+
+<!--main content-->
+(print: $stuffDaily's babysitMarketStory's fail)
+<!--end of main content-->
+
+<!--done-->
+[
+<br>
+---
+(link: _babysitMarketDoneLink)[{
+    <!--punishment-->
+    _babysitMarketSafePunishment
+    <!--goto result-->
+    (display: "code.babysitMarketRelay")
+}]
+]<done|
+
+
+]<!--end child-->
+]<!--end parent-->

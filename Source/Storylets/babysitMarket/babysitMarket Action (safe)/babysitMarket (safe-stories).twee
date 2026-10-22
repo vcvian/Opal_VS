@@ -1,0 +1,72 @@
+:: story.babysitMarket.safe.1
+{=
+(metadata:
+"story", [{
+    (sample safe story 1)
+
+    <!--set the done link text-->
+    (set: _babysitMarketChoice1 to "safe story 1 choice 1")
+    (set: _babysitMarketChoice2 to "safe story 1 choice 2")
+    <!--should end with (show: ?done)-->
+}],
+
+"success", [{
+    (sample safe story 1 success)
+    (set: _babysitMarketDoneLink to "safe story 1 link text (success)")
+}],
+
+"fail", [{
+    (sample safe story 1 fail)
+    (set: _babysitMarketDoneLink to "safe story 1 link text (fail)")
+}],
+)
+
+
+
+:: story.babysitMarket.safe.2
+{=
+(metadata:
+"story", [{
+    (sample safe story 2)
+
+    <!--set the done link text-->
+    (set: _babysitMarketChoice1 to "safe story 2 choice 1")
+    (set: _babysitMarketChoice2 to "safe story 2 choice 2")
+    <!--should end with (show: ?done)-->
+}],
+
+"success", [{
+    (sample safe story 2 success)
+    (set: _babysitMarketDoneLink to "safe story 2 link text (success)")
+}],
+
+"fail", [{
+    (sample safe story 2 fail)
+    (set: _babysitMarketDoneLink to "safe story 2 link text (fail)")
+}],
+)
+
+
+
+:: story.babysitMarket.safe.3
+{=
+(metadata:
+"story", [{
+    (sample safe story 3)
+
+    <!--set the done link text-->
+    (set: _babysitMarketChoice1 to "safe story 3 choice 1")
+    (set: _babysitMarketChoice2 to "safe story 3 choice 2")
+    <!--should end with (show: ?done)-->
+}],
+
+"success", [{
+    (sample safe story 3 success)
+    (set: _babysitMarketDoneLink to "safe story 3 link text (success)")
+}],
+
+"fail", [{
+    (sample safe story 3 fail)
+    (set: _babysitMarketDoneLink to "safe story 3 link text (fail)")
+}],
+)

@@ -1,0 +1,48 @@
+:: babysitMarket (interrupt-good)
+{=
+(metadata:
+"title", "good interrupt",
+"cardDesc", "good interrupt desc",
+"devNote", [placeholder],
+)
+
+$cssColumnParent[
+
+$cssColumnChild[
+	$cssBox[
+    	($funcImage: (passage: "S: babysitMarket (start)")'s img)
+         $cssBoxItem[''(print: (passage:)'s title )''<br>(print: (passage:)'s cardDesc)]
+    ]
+]
+
+$cssColumnChild[
+
+<!--run voice formatting code-->
+(display: "code.babysitMarketEnchantLine")
+<!--initialize shorthands-->
+(set: _line1 to (hook: "line1"))
+(set: _line2 to (hook: "line2"))
+(set: _line3 to (hook: "line3"))
+(set: _line4 to (hook: "line4"))
+(set: _line5 to (hook: "line5"))
+(set: _line6 to (hook: "line6"))
+
+
+<!--main content-->
+
+<!--end of main content-->
+
+[
+<br>
+---
+(link: "Reward")[{
+    <!--implement reward later-->
+
+    <!--return to action hub-->
+    (goto: "babysitMarket (action)")
+}]
+]<done|
+
+
+]<!--end child-->
+]<!--end parent-->

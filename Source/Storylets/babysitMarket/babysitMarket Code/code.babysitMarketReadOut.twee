@@ -4,7 +4,7 @@
 
 <!--Create a readout of the current situation-->
 
-(set: _relevantTrackers to (a: "babysitMarketReturn", "babysitMarketBoredom", "babysitMarketFatigue"))
+(set: _relevantTrackers to (a: "babysitMarketReturn", "babysitMarketEdValue", "babysitMarketFatigue"))
 
 $cssDesc[
 <ul>

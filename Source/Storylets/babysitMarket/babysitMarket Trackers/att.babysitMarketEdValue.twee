@@ -1,0 +1,13 @@
+:: att.babysitMarketEdValue [static-storage]
+
+(metadata: 
+	"id", [Some Educational Value],
+    "key", (a: "progress", ),
+    "value", (a: 1, 0, 0, 0, 0, 0),
+    "img", "",
+    "desc", [Tying the apprentices up and leading them around the city like this... whether any of this is good for something really depends on you.],
+    "tip", [The higher this is, the more this has all been worth their while.],
+    "gainText", [You hope this experience has been instructive. You hope they were looking.],
+    "lossText", [It is entirely possible to learn an "anti-lesson".]
+
+)

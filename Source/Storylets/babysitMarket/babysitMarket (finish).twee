@@ -1,0 +1,12 @@
+:: babysitMarket (finish) [unfinished]
+
+(metadata:
+"devNote", [empty. Must evaluate trackers and give appropriate rewards/endings.],
+)
+
+
+(finish!)
+
+<br>
+
+(display: "code.babysitMarketReadOut")

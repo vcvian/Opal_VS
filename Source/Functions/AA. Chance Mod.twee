@@ -23,13 +23,26 @@ $cssDesc[How likely you are to be successful at this challenge will ''depend on 
 <!--apply bonus and & update prose-->
 (for: each _factor, ...(data-names: _chanceModList))[
     <!--temporary formatting macro-->
-    (set: _colorNumber to (macro: num-type _num, boolean-type _plus, [(out:)[\
-        (set: _output to "")\
-        (if: _num >= 0 and _plus is true)[(set: _output to "(color: green+yellow)[+" + (str: _num) + "]")]\
-        (elseif: _num >= 0 and _plus is false)[(set: _output to "(color: green+yellow)[" + (str: _num) + "]")]\
-        (elseif: _chanceModList's _factor < 0)[(set: _output to "(color: red+orange)[" + (str: _num) + "]")]\
-        (print: _output)\
-    ]]))
+    (set: _colorNumber to (macro: num-type _num, boolean-type _plus, [(out:)[{
+        <!--initialize output-->
+        (set: _output to "")
+        <!--plus sign or not?-->
+        (set: _plusText to "+")
+        (if: _plus is false or _chanceModList's _factor < 0)[(set: _plusText to "")]
+        <!--set color based on whether _factor is a bonus or a malus-->
+        (set: _numFormatting to "(color: green+yellow)[")
+        (if: _chanceModList's _factor < 0)[(set: _numFormatting to "(color: red+orange)[")]
+
+        <!--build output-->
+        (set: _output to _numFormatting + _plusText + (str: _num) + "]")
+
+        <!--(if: _num >= 0 and _plus is true)[(set: _output to "(color: green+yellow)[+" + (str: _num) + "]")]
+        (elseif: _num >= 0 and _plus is false)[(set: _output to "(color: green+yellow)[" + (str: _num) + "]")]
+        (elseif: _chanceModList's _factor < 0)[(set: _output to "(color: red+orange)[" + (str: _num) + "]")]-->
+
+        <!--print output-->
+        (print: _output)
+    }]]))
     
     (if: $place's weather is _factor)[
         (show: ?chanceModProse)

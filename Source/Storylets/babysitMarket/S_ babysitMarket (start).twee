@@ -1,9 +1,10 @@
 :: S: babysitMarket (start) [storylet unfinished]
-
+{=
 (storylet: when
 ($funcCheckExists: $char's player's quests, "babysitMarket", "inactive") is "active"
 and $place's sublocation is "The Grand Exchange"
 and ($funcCheckExists: $char's player's att, "babysitMarketReturn", 0) <= 0
+and $char's player's timerCooldown does not contain "S: babysitMarket (start)"
 )
 (exclusivity: 3)
 (metadata:
@@ -11,6 +12,7 @@ and ($funcCheckExists: $char's player's att, "babysitMarketReturn", 0) <= 0
     "cardDesc", "start of quest",
     "img", (passage: "quest.babysitMarket")'s img,
     "interrupt", true,
+    "cooldown", 1,
     "devNote", [Entirely placeholder],
 )
 
@@ -55,8 +57,10 @@ Child 6 says: _line6["Hello!"]
 (link: "Let's go!")[{
     <!--time allowance, storylet disables upon gaining time allowance-->
     ($funcGainLoss: "att.", "babysitMarketReturn", (random: 5,6))
-    <!--exit-->
-    $funcBack
+    <!--also disables with cooldown-->
+    ($funcAddStoryletCooldown: (passage:)'s name)
+    <!--goto action menu-->
+    (goto: "babysitMarket (action)")
 }]
 
 

@@ -1,0 +1,80 @@
+:: babysitMarket (action) [unfinished]
+
+{=
+(storylet: when
+($funcCheckExists: $char's player's quests, "babysitMarket", "inactive") is "active"
+and $place's sublocation is "The Grand Exchange"
+and ($funcCheckExists: $char's player's att, "babysitMarketReturn", 0) > 0
+)
+(exclusivity: 3)
+(urgency: 2)
+(metadata:
+    "title", "babysit (action hub)",
+    "cardDesc", "action hub",
+    "img", (passage: "quest.babysitMarket")'s img,
+    "devNote", [Entirely placeholder. Consider implementing negative gates.],
+)
+
+$cssColumnParent[
+
+$cssColumnChild[
+	$cssBox[
+    	($funcImage: (passage:)'s img)
+         $cssBoxItem[''(print: (passage:)'s title )''<br>(print: (passage:)'s cardDesc)]
+    ]
+]
+
+$cssColumnChild[
+
+<!--run voice formatting code-->
+(display: "code.babysitMarketEnchantLine")
+<!--initialize shorthands-->
+(set: _line1 to (hook: "line1"))
+(set: _line2 to (hook: "line2"))
+(set: _line3 to (hook: "line3"))
+(set: _line4 to (hook: "line4"))
+(set: _line5 to (hook: "line5"))
+(set: _line6 to (hook: "line6"))
+
+<!--main content-->
+
+
+<!--Readout-->
+(display: "code.babysitMarketReadOut")
+
+
+<!--end of main content-->
+<br>
+---
+
+<ol>
+
+<li>($funcMultiCheckGate: "Commit to idle action.", "att", (dm: "babysitMarketReturn", 1), true, 100, [{
+    <!--determine story to display-->
+    (set: $stuffDaily's babysitMarketStory to (either: ...(passages: where its name contains "story.babysitMarket.idle.")))
+}], "babysitMarket (idle-commit)", "",)</li>
+
+<li>($funcMultiCheckGate: "Commit to safe action.", "att", (dm: "babysitMarketReturn", 1), true, 100, [{
+    <!--determine story to display-->
+    (set: $stuffDaily's babysitMarketStory to (either: ...(passages: where its name contains "story.babysitMarket.safe.")))
+}], "babysitMarket (safe-commit)", "",)</li>
+
+<li>($funcMultiCheckGate: "Commit to exciting action.", "att", (dm: "babysitMarketReturn", 1), true, 100, [{
+    <!--determine story to display-->
+    (set: $stuffDaily's babysitMarketStory to (either: ...(passages: where its name contains "story.babysitMarket.exciting.")))
+}], "babysitMarket (exciting-commit)", "",)</li>
+
+
+<li>
+(set: _babysitMarketQuestEnd to "finish quest (Veh-Veh returns)")
+(if: ($funcCheckExists: $char's player's att, "babysitMarketReturn", 0) <= 0)[{
+    (link: _babysitMarketQuestEnd)[(goto: "babysitMarket (finish)")]
+}]
+(else:)[~~_babysitMarketQuestEnd~~ $cssDesc[(Must have no ''(print: (passage: "att.babysitMarketReturn")'s id)''($funcLogTip: "att.", "babysitMarketReturn"))]]
+</li>
+
+</ol>
+
+
+]<!--end child-->
+]<!--end parent-->

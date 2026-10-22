@@ -1,0 +1,69 @@
+:: babysitMarket (safe-commit) [unfinished]
+{=
+(metadata:
+"title", "safe",
+"cardDesc", "safe desc",
+"devNote", [placeholder],
+)
+
+$cssColumnParent[
+
+$cssColumnChild[
+	$cssBox[
+    	($funcImage: (passage: "S: babysitMarket (start)")'s img)
+         $cssBoxItem[''(print: (passage:)'s title )''<br>(print: (passage:)'s cardDesc)]
+    ]
+]
+
+$cssColumnChild[
+
+<!--run voice formatting code-->
+(display: "code.babysitMarketEnchantLine")
+<!--initialize shorthands-->
+(set: _line1 to (hook: "line1"))
+(set: _line2 to (hook: "line2"))
+(set: _line3 to (hook: "line3"))
+(set: _line4 to (hook: "line4"))
+(set: _line5 to (hook: "line5"))
+(set: _line6 to (hook: "line6"))
+<!--default end link text-->
+(set: _babysitMarketChoice1 to "choice 1 default text")
+(set: _babysitMarketChoice2 to "choice 2 default text")
+<!--default _bribeCost for Choice2; displayed stories may modify-->
+(set: _bribeCost to 5)
+
+<!--default _chance1 and _chance2-->
+(set: _chance1 to 60)
+(set: _chance2 to 90)
+<!--_chanceMod-->
+(set: _chanceMod to 0)
+($funcChanceMod: (dm:
+    "babysitMarketFatigue", -10,
+))
+
+
+
+<!--main content-->
+(print: $stuffDaily's babysitMarketStory's story)
+
+<!--end of main content-->
+
+<!--done-->
+[
+<!--calculate chances-->
+(set: _chance1 to it + _chanceMod)
+(set: _chance2 to it + _chanceMod)
+<br>
+---
+
+<ol>
+
+<li>($funcLuckGate: _babysitMarketChoice1, _chance1, "babysitMarket (safe-success)", "babysitMarket (safe-fail)")</li>
+
+<li>($funcMultiCheckGate: _babysitMarketChoice2, "inv", (dm: "rial", _bribeCost), true, _chance2, [], "babysitMarket (safe-success)", "babysitMarket (safe-fail)",)</li>
+</ol>
+]<done|
+
+
+]<!--end child-->
+]<!--end parent-->
