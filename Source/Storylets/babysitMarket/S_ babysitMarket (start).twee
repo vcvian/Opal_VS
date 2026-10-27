@@ -55,6 +55,8 @@ Child 6 says: _line6["Hello!"]
 <br>
 ---
 (link: "Let's go!")[{
+    <!--shuffle story decks-->
+    (print: (passage: "code.babysitMarketShuffle")'s shuffleStory)
     <!--time allowance, storylet disables upon gaining time allowance-->
     ($funcGainLoss: "att.", "babysitMarketReturn", (random: 5,6))
     <!--also disables with cooldown-->

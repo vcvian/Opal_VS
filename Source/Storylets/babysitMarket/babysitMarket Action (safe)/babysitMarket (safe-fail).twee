@@ -42,7 +42,7 @@ $cssColumnChild[
 
 
 <!--main content-->
-(print: $stuffDaily's babysitMarketStory's fail)
+(print: (passage: $stuffDaily's babysitMarketStory)'s fail)
 <!--end of main content-->
 
 <!--done-->
@@ -53,7 +53,8 @@ $cssColumnChild[
     <!--punishment-->
     _babysitMarketSafePunishment
     <!--goto result-->
-    (display: "code.babysitMarketRelay")
+    (print: (passage: "code.babysitMarketRelay")'s endAction)
+
 }]
 ]<done|
 

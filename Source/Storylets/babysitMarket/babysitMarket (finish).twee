@@ -1,7 +1,9 @@
 :: babysitMarket (finish) [unfinished]
 
 (metadata:
-"devNote", [empty. Must evaluate trackers and give appropriate rewards/endings.],
+"title", "",
+"cardDesc", "",
+"devNote", [empty. Must evaluate trackers and give appropriate rewards/endings. Use code.babysitMarketRelay],
 )
 
 
@@ -10,3 +12,10 @@
 <br>
 
 (display: "code.babysitMarketReadOut")
+
+<br>
+---
+($funcQuestUpdateLink: "Phew, done with quest!", "babysitMarket", "completed", "Done, finally.", "Yay.", [{
+    <!--gain positive opinion-->
+    ($funcOpinionGainLoss: "VehVeh", 2, "You did Veh-Veh a favor, and she is thankful.")
+}], $place's sublocation,)

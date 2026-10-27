@@ -43,7 +43,7 @@ $cssColumnChild[
 ))
 
 <!--main content-->
-(print: $stuffDaily's babysitMarketStory's story)
+(print: (passage: $stuffDaily's babysitMarketStory)'s story)
 <!--end of main content-->
 
 <!--done-->

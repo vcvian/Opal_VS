@@ -33,7 +33,7 @@ $cssColumnChild[
 
 
 <!--main content-->
-(print: $stuffDaily's babysitMarketStory's fail)
+(print: (passage: $stuffDaily's babysitMarketStory)'s fail)
 <!--end of main content-->
 
 <!--done-->
@@ -44,7 +44,8 @@ $cssColumnChild[
     <!--punishment-->
     (dialog: [Little rest was had.], "OK")
     <!--goto result-->
-    (display: "code.babysitMarketRelay")
+    (print: (passage: "code.babysitMarketRelay")'s endAction)
+
 }]
 ]<done|
 

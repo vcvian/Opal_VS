@@ -23,7 +23,7 @@
 
 
 
-:: story.babysitMarket.idle.2
+:: story.babysitMarket.exciting.2
 {=
 (metadata:
 "story", [{
@@ -47,7 +47,7 @@
 )
 
 
-:: story.babysitMarket.idle.3
+:: story.babysitMarket.exciting.3
 {=
 (metadata:
 "story", [{

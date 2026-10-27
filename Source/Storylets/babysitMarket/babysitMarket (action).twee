@@ -51,19 +51,21 @@ $cssColumnChild[
 
 <li>($funcMultiCheckGate: "Commit to idle action.", "att", (dm: "babysitMarketReturn", 1), true, 100, [{
     <!--determine story to display-->
-    (set: $stuffDaily's babysitMarketStory to (either: ...(passages: where its name contains "story.babysitMarket.idle.")))
+    (set: _codePick to (passage: "code.babysitMarketShuffle")'s pickStory)
+    (_codePick: "idle")
 }], "babysitMarket (idle-commit)", "",)</li>
 
 <li>($funcMultiCheckGate: "Commit to safe action.", "att", (dm: "babysitMarketReturn", 1), true, 100, [{
     <!--determine story to display-->
-    (set: $stuffDaily's babysitMarketStory to (either: ...(passages: where its name contains "story.babysitMarket.safe.")))
+    (set: _codePick to (passage: "code.babysitMarketShuffle")'s pickStory)
+    (_codePick: "safe")
 }], "babysitMarket (safe-commit)", "",)</li>
 
 <li>($funcMultiCheckGate: "Commit to exciting action.", "att", (dm: "babysitMarketReturn", 1), true, 100, [{
     <!--determine story to display-->
-    (set: $stuffDaily's babysitMarketStory to (either: ...(passages: where its name contains "story.babysitMarket.exciting.")))
+    (set: _codePick to (passage: "code.babysitMarketShuffle")'s pickStory)
+    (_codePick: "exciting")
 }], "babysitMarket (exciting-commit)", "",)</li>
-
 
 <li>
 (set: _babysitMarketQuestEnd to "finish quest (Veh-Veh returns)")

@@ -1,0 +1,29 @@
+:: code.babysitMarketShuffle
+
+(metadata: 
+
+"shuffleStory", [
+    <!--create idle deck-->
+    (set: $stuffDaily's idle to (shuffled: ...(altered: via its name, ...(passages: where its name contains "story.babysitMarket.idle."))))
+
+    <!--create safe deck-->
+    (set: $stuffDaily's safe to (shuffled: ...(altered: via its name, ...(passages: where its name contains "story.babysitMarket.safe."))))
+
+    <!--create exciting deck-->
+    (set: $stuffDaily's exciting to (shuffled: ...(altered: via its name, ...(passages: where its name contains "story.babysitMarket.exciting."))))
+
+    ],
+
+"pickStory", (macro: str-type _storyType, [(out:)[{
+    <!--set to-->
+    (set: $stuffDaily's babysitMarketStory to $stuffDaily's _storyType's 1st)
+    <!--remove-->
+    (move: $stuffDaily's _storyType's 1st into _trash)
+    <!--if empty, reshuffle-->
+    (if: $stuffDaily's _storyType's length is 0)[{
+        (set: $stuffDaily's _storyType to (shuffled: ...(altered: via its name, ...(passages: where its name contains "story.babysitMarket." + _storyType + "."))))
+    }]
+}]]),
+
+
+)

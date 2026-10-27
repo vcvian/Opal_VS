@@ -4,33 +4,43 @@
 (metadata:
 "devNote", [Touch up on the prose of the various notifications.],
 
+
+"evaluateTrackers", [{
+    <!--will output _evaluate to either "neutral", "good", or "bad"-->
+    <!--initialize-->
+    (set: _evaluate to "neutral")
+
+    <!--is good?-->
+    (if: ($funcCheckExists: $char's player's att, "babysitMarketEdValue", 0) > (random: 2,3))[(set: _evaluate to "good")]
+
+    <!--is bad? (override)-->
+    (if: ($funcCheckExists: $char's player's att, "babysitMarketFatigue", 0) > (random: 3,4))[(set: _evaluate to "bad")]
+}],
+
 "endAction", [{
-    <!--Are we near the end of the quest?-->
+    
+    <!--initialize evaluation-->
+    (set: _evaluate to "neutral")
+    <!--run evaluation code, should turn _evaluate to either "neutral", "good", or "bad"-->
+    (print: (passage: "code.babysitMarketRelay")'s evaluateTrackers)
+
+    <!--are we close to the end?-->
     (set: _nearQuestEnd to false)
     (if: ($funcCheckExists: $char's player's att, "babysitMarketReturn", 0) <= 0)[(set: _nearQuestEnd to true)]
 
-    <!--When close to the end, roll to see if there will be a fatigue interrupt-->
-    (set: _fatigueInterrupt to false)
-    (if:
-        _nearQuestEnd
-        and ($funcCheckExists: $char's player's att, "babysitMarketFatigue", 0) > (random: 3,4)
-    )[(set: _fatigueInterrupt to true)]
+    <!--if bad, goto bad-->
+    (if: _evaluate is "bad" and _nearQuestEnd)[{
+        (goto: "babysitMarket (interrupt-bad)")
+    }]
 
-    <!--Has the player done well?-->
-    (set: _didWell to false)
-    (if: 
-        _nearQuestEnd
-        and ($funcCheckExists: $char's player's att, "babysitMarketEdValue", 0) > (random: 2,3)
-    )[(set: _didWell to true)]
+    <!--if good, goto good-->
+    (if: _evaluate is "good" and _nearQuestEnd)[{
+        (goto: "babysitMarket (interrupt-good)")
+    }]
 
-    <!--Finally, perform relay calculations:
-    1. If not near the end, then return to action hub.
-    2. If near the end, then compare the good and bad and roll dice:
-        a. Sum of fatigue and edValue must be at least 1.
-        b. Roll within the range of (1, sum)
-        c. Fatigue is threshold; failing which will goto interrupt-bad. Else, goto interrupt-good
-    -->
-
-
+    <!--otherwise, neutral or not near the end, return to action hub-->
+    (if: _evaluate is "neutral" or _nearQuestEnd is false)[{
+        (goto: "babysitMarket (action)")
+    }]
 }],
 )

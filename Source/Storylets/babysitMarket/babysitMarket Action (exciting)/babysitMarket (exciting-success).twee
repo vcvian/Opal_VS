@@ -41,7 +41,7 @@ $cssColumnChild[
 }])
 
 <!--main content-->
-(print: $stuffDaily's babysitMarketStory's success)
+(print: (passage: $stuffDaily's babysitMarketStory)'s success)
 <!--end of main content-->
 
 <!--done-->
@@ -49,10 +49,11 @@ $cssColumnChild[
 <br>
 ---
 (link: _babysitMarketDoneLink)[{
-     <!--reward-->
-     _babysitMarketDoneReward
-     <!--goto next-->
-     (display: "code.babysitMarketRelay")
+    <!--reward-->
+    _babysitMarketDoneReward
+    <!--goto next-->
+    (print: (passage: "code.babysitMarketRelay")'s endAction)
+
 }]
 ]<done|
 
